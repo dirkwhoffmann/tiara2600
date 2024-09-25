@@ -9,7 +9,7 @@
 
 #import "config.h"
 #import "EmulatorProxy.h"
-#import "VirtualC64.h"
+#import "Tiara.h"
 #import "DiskAnalyzer.h"
 #import "FFmpeg.h"
 #import "FileSystem.h"
@@ -70,7 +70,7 @@ using namespace tiara;
 
 @implementation SubComponentProxy
 
-- (instancetype) initWith:(void *)ref emu:(VirtualC64 *)emuref
+- (instancetype) initWith:(void *)ref emu:(Tiara *)emuref
 {
     if (ref == nil || emuref == nil) {
         return nil;
@@ -598,9 +598,9 @@ using namespace tiara;
     return (KeyboardAPI *)obj;
 }
 
-- (VirtualC64 *)emu
+- (Tiara *)emu
 {
-    return (VirtualC64 *)emu;
+    return (Tiara *)emu;
 }
 
 - (BOOL)isPressed:(NSInteger)nr
@@ -665,7 +665,7 @@ using namespace tiara;
 @synthesize mouse;
 @synthesize joystick;
 
-- (instancetype) initWith:(void *)ref emu:(VirtualC64 *)emuref
+- (instancetype) initWith:(void *)ref emu:(Tiara *)emuref
 {
     if (self = [super initWith:ref emu:emuref]) {
 
@@ -695,9 +695,9 @@ using namespace tiara;
     return (ExpansionPortAPI *)obj;
 }
 
-- (VirtualC64 *)emu
+- (Tiara *)emu
 {
-    return (VirtualC64 *)emu;
+    return (Tiara *)emu;
 }
 
 - (CartridgeTraits)traits
@@ -762,7 +762,7 @@ using namespace tiara;
 
 @synthesize rs232;
 
-- (instancetype) initWith:(void *)ref emu:(VirtualC64 *)emuref
+- (instancetype) initWith:(void *)ref emu:(Tiara *)emuref
 {
     if (self = [super initWith:ref emu:emuref]) {
 
@@ -864,9 +864,9 @@ using namespace tiara;
     return (DriveAPI *)obj;
 }
 
-- (VirtualC64 *)emu
+- (Tiara *)emu
 {
-    return (VirtualC64 *)emu;
+    return (Tiara *)emu;
 }
 
 - (DriveConfig)config
@@ -918,9 +918,9 @@ using namespace tiara;
     return (DatasetteAPI *)obj;
 }
 
-- (VirtualC64 *)emu
+- (Tiara *)emu
 {
-    return (VirtualC64 *)emu;
+    return (Tiara *)emu;
 }
 
 - (DatasetteInfo)info
@@ -1237,10 +1237,10 @@ using namespace tiara;
     catch (Error &error) { [ex save:error]; return nil; }
 }
 
-+ (instancetype)makeWithC64:(EmulatorProxy *)proxy
++ (instancetype)makeWithTiara:(EmulatorProxy *)proxy
 {
-    auto vc64 = (VirtualC64 *)proxy->obj;
-    return [self make:vc64->c64.takeSnapshot()];
+    auto tiara = (Tiara *)proxy->obj;
+    return [self make:tiara->c64.takeSnapshot()];
 }
 
 + (instancetype)makeWithDrive:(DriveProxy *)proxy
@@ -1724,7 +1724,7 @@ using namespace tiara;
     if (!(self = [super init])) return self;
     
     // Create the emulator instance
-    VirtualC64 *emu = new VirtualC64();
+    Tiara *emu = new Tiara();
     obj = emu;
 
     // Create sub proxys
@@ -1754,14 +1754,14 @@ using namespace tiara;
     return self;
 }
 
-- (VirtualC64 *)emu
+- (Tiara *)emu
 {
-    return (VirtualC64 *)obj;
+    return (Tiara *)obj;
 }
 
 + (DefaultsProxy *) defaults
 {
-    return [[DefaultsProxy alloc] initWith:(void *)&VirtualC64::defaults];
+    return [[DefaultsProxy alloc] initWith:(void *)&Tiara::defaults];
 }
 
 - (void)dealloc
@@ -1778,12 +1778,12 @@ using namespace tiara;
 
 + (NSString *)build
 {
-    return @(VirtualC64::build().c_str());
+    return @(Tiara::build().c_str());
 }
 
 + (NSString *)version
 {
-    return @(VirtualC64::version().c_str());
+    return @(Tiara::version().c_str());
 }
 
 - (BOOL)releaseBuild

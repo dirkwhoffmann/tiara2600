@@ -64,7 +64,7 @@ extension NSError {
 
     convenience init(error: VC64Error) {
 
-        self.init(domain: "VirtualC64",
+        self.init(domain: "Tiara",
                   code: error.errorCode.rawValue,
                   userInfo: [NSLocalizedRecoverySuggestionErrorKey: error.what])
     }

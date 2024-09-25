@@ -4,6 +4,6 @@
 
 #define __SWIFT__
 
-#import "VirtualC64.h"
+#import "Tiara.h"
 #import "EmulatorProxy.h"
 #import "iCarousel.h"

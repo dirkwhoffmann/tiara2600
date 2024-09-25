@@ -186,8 +186,8 @@
 		506F303F2B7364270083EAEA /* Suspendable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 506F303C2B7364270083EAEA /* Suspendable.cpp */; };
 		506F30422B74C1C70083EAEA /* Wakeable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 506F30402B74C1C70083EAEA /* Wakeable.cpp */; };
 		506F30432B74C1C70083EAEA /* Wakeable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 506F30402B74C1C70083EAEA /* Wakeable.cpp */; };
-		506F30472B7692180083EAEA /* VirtualC64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 506F30462B7692180083EAEA /* VirtualC64.cpp */; };
-		506F30482B7692180083EAEA /* VirtualC64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 506F30462B7692180083EAEA /* VirtualC64.cpp */; };
+		506F30472B7692180083EAEA /* Tiara.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 506F30462B7692180083EAEA /* Tiara.cpp */; };
+		506F30482B7692180083EAEA /* Tiara.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 506F30462B7692180083EAEA /* Tiara.cpp */; };
 		50726F2B295B61C50031F2F5 /* DebugConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50726F2A295B61C50031F2F5 /* DebugConsole.cpp */; };
 		50726F2F295C27360031F2F5 /* EventPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50726F2E295C27360031F2F5 /* EventPanel.swift */; };
 		50726F31295C27470031F2F5 /* EventTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50726F30295C27470031F2F5 /* EventTableView.swift */; };
@@ -618,7 +618,7 @@
 		503E198F20C42C6D007E91F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		504268AC24F0F76F006BB841 /* C64Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = C64Types.h; sourceTree = "<group>"; };
 		504268AD24F12705006BB841 /* DiskTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiskTypes.h; sourceTree = "<group>"; };
-		50441A872B93CE2600102A4D /* VirtualC64Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VirtualC64Types.h; sourceTree = "<group>"; };
+		50441A872B93CE2600102A4D /* TiaraTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TiaraTypes.h; sourceTree = "<group>"; };
 		50441A8A2B9495BE00102A4D /* communication.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = communication.md; sourceTree = "<group>"; };
 		50441A8C2B9495BE00102A4D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		50441A8D2B9495BE00102A4D /* banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner.png; sourceTree = "<group>"; };
@@ -862,8 +862,8 @@
 		506F30402B74C1C70083EAEA /* Wakeable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Wakeable.cpp; sourceTree = "<group>"; };
 		506F30412B74C1C70083EAEA /* Wakeable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wakeable.h; sourceTree = "<group>"; };
 		506F30442B7578870083EAEA /* EmulatorTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmulatorTypes.h; sourceTree = "<group>"; };
-		506F30452B768DE30083EAEA /* VirtualC64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VirtualC64.h; sourceTree = "<group>"; };
-		506F30462B7692180083EAEA /* VirtualC64.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VirtualC64.cpp; sourceTree = "<group>"; };
+		506F30452B768DE30083EAEA /* Tiara.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tiara.h; sourceTree = "<group>"; };
+		506F30462B7692180083EAEA /* Tiara.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tiara.cpp; sourceTree = "<group>"; };
 		50726F2A295B61C50031F2F5 /* DebugConsole.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DebugConsole.cpp; sourceTree = "<group>"; };
 		50726F2E295C27360031F2F5 /* EventPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPanel.swift; sourceTree = "<group>"; };
 		50726F30295C27470031F2F5 /* EventTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableView.swift; sourceTree = "<group>"; };
@@ -1536,9 +1536,9 @@
 				5078BEAA264D70AC00EDA161 /* CMakeLists.txt */,
 				504C42F824AF29AB00E69CAE /* config.h */,
 				5077AC672B5ACC5100EFAC85 /* config.cpp */,
-				50441A872B93CE2600102A4D /* VirtualC64Types.h */,
-				506F30452B768DE30083EAEA /* VirtualC64.h */,
-				506F30462B7692180083EAEA /* VirtualC64.cpp */,
+				50441A872B93CE2600102A4D /* TiaraTypes.h */,
+				506F30452B768DE30083EAEA /* Tiara.h */,
+				506F30462B7692180083EAEA /* Tiara.cpp */,
 				50726FBC2961CA5A0031F2F5 /* Headless.h */,
 				50726FBB2961CA5A0031F2F5 /* Headless.cpp */,
 				50EAF5292C7A101E005AC890 /* HeadlessScripts.h */,
@@ -2426,7 +2426,7 @@
 				500C1C762965D11000071AF3 /* StrWriter.cpp in Sources */,
 				50A1948B2BDA5EED0046849E /* VICIIBase.cpp in Sources */,
 				50726F842961C9F10031F2F5 /* Cartridge.cpp in Sources */,
-				506F30482B7692180083EAEA /* VirtualC64.cpp in Sources */,
+				506F30482B7692180083EAEA /* Tiara.cpp in Sources */,
 				50726F542961C99A0031F2F5 /* PeddleDebugger.cpp in Sources */,
 				50726F462961C9940031F2F5 /* Error.cpp in Sources */,
 				50726F452961C97B0031F2F5 /* Buffer.cpp in Sources */,
@@ -2769,7 +2769,7 @@
 				50D3092824C71B0A00B92563 /* Monitor.swift in Sources */,
 				504C436C24AF29AC00E69CAE /* Isepic.cpp in Sources */,
 				50A194932BDA709D0046849E /* CPUBase.cpp in Sources */,
-				506F30472B7692180083EAEA /* VirtualC64.cpp in Sources */,
+				506F30472B7692180083EAEA /* Tiara.cpp in Sources */,
 				50AB70762721B8EE004ABB2B /* DiskAnalyzer.cpp in Sources */,
 				5018BFB324B48DD500551848 /* RendererSetup.swift in Sources */,
 				506F30422B74C1C70083EAEA /* Wakeable.cpp in Sources */,

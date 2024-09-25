@@ -16,7 +16,7 @@
 
 namespace tiara {
 
-class VirtualC64;
+class Tiara;
 
 class Script : public AnyFile {
     

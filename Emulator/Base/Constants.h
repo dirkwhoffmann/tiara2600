@@ -15,7 +15,7 @@
 
 #include "BasicTypes.h"
 
-/** VirtualC64 project namespace
+/** Tiara project namespace
  */
 namespace tiara {
 

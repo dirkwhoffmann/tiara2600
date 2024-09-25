@@ -186,17 +186,17 @@ Error::Error(ErrorCode code, const string &s)
             break;
 
         case VC64ERROR_SNAP_TOO_OLD:
-            description = "The snapshot was created with an older version of VirtualC64";
+            description = "The snapshot was created with an older version of Tiara";
             description += " and is incompatible with this release.";
             break;
 
         case VC64ERROR_SNAP_TOO_NEW:
-            description = "The snapshot was created with a newer version of VirtualC64";
+            description = "The snapshot was created with a newer version of Tiara";
             description += " and is incompatible with this release.";
             break;
 
         case VC64ERROR_SNAP_IS_BETA:
-            description = "The snapshot was created with a beta version of VirtualC64";
+            description = "The snapshot was created with a beta version of Tiara";
             description += " and is incompatible with this release.";
             break;
 

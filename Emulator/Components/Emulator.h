@@ -21,13 +21,13 @@
 
 namespace tiara {
 
-class VirtualC64;
+class Tiara;
 
 class Emulator : public Thread, public Synchronizable,
 public Inspectable<EmulatorInfo, EmulatorStats> {
 
     friend class API;
-    friend class VirtualC64;
+    friend class Tiara;
 
     // The virtual C64
     C64 main = C64(*this, 0);

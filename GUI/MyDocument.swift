@@ -134,7 +134,7 @@ class MyDocument: NSDocument {
 
         if typeName == UTType.tiara.identifier {
 
-            if let snapshot = MediaFileProxy.make(withC64: emu) {
+            if let snapshot = MediaFileProxy.make(withTiara: emu) {
 
                 do {
                     try snapshot.writeToFile(url: url)

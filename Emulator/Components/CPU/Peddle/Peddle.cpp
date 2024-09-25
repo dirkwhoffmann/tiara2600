@@ -21,8 +21,7 @@ Peddle::Peddle(C64 &ref) : SubComponent(ref)
 
     /* Assign a unique ID to this CPU. The ID is not needed for emulation. It
      * is merely provided to allow the client code to easily distinguish
-     * between different CPU instances. For instance, VirtualC64 uses it to
-     * distinguish the CPUs of the attached floppy drives.
+     * between different CPU instances.
      */
     id = counter++;
 

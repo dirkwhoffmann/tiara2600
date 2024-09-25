@@ -23,7 +23,7 @@ class VideoExporter: DialogController {
     var panel: NSSavePanel!
     var recorder: RecorderProxy? { return emu?.recorder }
 
-    var name: String { return "virtualc64.mp4" }
+    var name: String { return "tiara.mp4" }
     var tmp: URL { return URL(fileURLWithPath: NSTemporaryDirectory()) }
     var path: URL { return tmp.appendingPathComponent(name); }
 

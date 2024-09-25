@@ -47,7 +47,7 @@
  * In this mode, the higher-level API, which is used inside the instruction
  * handlers, is synthesized automatically. Alternatively, Peddle offers you
  * to implement the high-level API by yourself. This is done, e.g., by
- * VirtualC64 to speed up emulation.
+ * Tiara to speed up emulation.
  *
  * Enable to simplify usage, disable to gain speed.
  */

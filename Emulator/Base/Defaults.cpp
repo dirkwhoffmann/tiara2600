@@ -327,8 +327,8 @@ Defaults::save(std::stringstream &stream)
         std::map <string, std::map <string, string>> groups;
 
         // Write header
-        stream << "# VirtualC64 " << C64::build() << std::endl;
-        stream << "# dirkwhoffmann.github.io/virtualc64" << std::endl;
+        stream << "# Tiara " << C64::build() << std::endl;
+        stream << "# dirkwhoffmann.github.io/tiara2600" << std::endl;
         stream << std::endl;
 
         // Iterate through all known keys

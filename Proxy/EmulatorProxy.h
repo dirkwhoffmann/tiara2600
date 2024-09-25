@@ -8,7 +8,7 @@
 // -----------------------------------------------------------------------------
 
 #import "config.h"
-#import "VirtualC64Types.h"
+#import "TiaraTypes.h"
 #import <Cocoa/Cocoa.h>
 #import <MetalKit/MetalKit.h>
 
@@ -659,7 +659,7 @@ struct GuardInfo {
 + (instancetype)makeWithFile:(NSString *)path exception:(ExceptionWrapper *)ex;
 + (instancetype)makeWithFile:(NSString *)path type:(FileType)t exception:(ExceptionWrapper *)ex;
 + (instancetype)makeWithBuffer:(const void *)buf length:(NSInteger)len type:(FileType)t exception:(ExceptionWrapper *)ex;
-+ (instancetype)makeWithC64:(EmulatorProxy *)c64proxy;
++ (instancetype)makeWithTiara:(EmulatorProxy *)c64proxy;
 + (instancetype)makeWithDrive:(DriveProxy *)proxy type:(FileType)t exception:(ExceptionWrapper *)ex;
 + (instancetype)makeWithFileSystem:(FileSystemProxy *)proxy type:(FileType)t exception:(ExceptionWrapper *)ex;
 

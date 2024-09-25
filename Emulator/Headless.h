@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "VirtualC64.h"
+#include "Tiara.h"
 #include "Wakeable.h"
 #include <map>
 

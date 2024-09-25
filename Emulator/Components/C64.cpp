@@ -395,7 +395,7 @@ C64::exportConfig(const fs::path &path) const
 void
 C64::exportConfig(std::ostream &stream) const
 {
-    stream << "# VirtualC64 " << C64::build() << "\n";
+    stream << "# Tiara " << C64::build() << "\n";
     stream << "\n";
     stream << "c64 power off\n";
     stream << "\n";

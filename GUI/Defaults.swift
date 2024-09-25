@@ -38,7 +38,7 @@ extension DefaultsProxy {
 
         do {
             let folder = try URL.appSupportFolder()
-            let path = folder.appendingPathComponent("virtualc64.ini")
+            let path = folder.appendingPathComponent("tiara.ini")
 
             do {
                 try load(url: path)
@@ -65,7 +65,7 @@ extension DefaultsProxy {
 
         do {
             let folder = try URL.appSupportFolder()
-            let path = folder.appendingPathComponent("virtualc64.ini")
+            let path = folder.appendingPathComponent("tiara.ini")
 
             do {
                 try save(url: path)

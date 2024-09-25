@@ -12,7 +12,7 @@
 
 #include "config.h"
 #include "MediaFile.h"
-#include "VirtualC64.h"
+#include "Tiara.h"
 #include "StringUtils.h"
 #include "Checksum.h"
 #include "CRTFile.h"

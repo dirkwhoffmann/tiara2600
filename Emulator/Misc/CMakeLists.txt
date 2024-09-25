@@ -1,4 +1,4 @@
-target_include_directories(vc64Core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(tiaraCore PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_subdirectory(RemoteServers)
 add_subdirectory(RegressionTester)

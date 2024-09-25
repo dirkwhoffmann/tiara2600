@@ -12,7 +12,7 @@
 
 #include "config.h"
 #include "Option.h"
-#include "VirtualC64Types.h"
+#include "TiaraTypes.h"
 #include "Error.h"
 #include "IOUtils.h"
 

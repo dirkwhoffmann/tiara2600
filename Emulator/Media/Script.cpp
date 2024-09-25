@@ -12,7 +12,7 @@
 
 #include "config.h"
 #include "Script.h"
-#include "VirtualC64.h"
+#include "Tiara.h"
 #include "IOUtils.h"
 
 #include <sstream>

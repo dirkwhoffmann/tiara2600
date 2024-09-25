@@ -11,12 +11,12 @@
 // -----------------------------------------------------------------------------
 
 #include "config.h"
-#include "VirtualC64.h"
+#include "Tiara.h"
 #include "Emulator.h"
 
 namespace tiara {
 
-DefaultsAPI VirtualC64::defaults(&Emulator::defaults);
+DefaultsAPI Tiara::defaults(&Emulator::defaults);
 
 void 
 API::suspend()
@@ -37,18 +37,18 @@ API::isUserThread() const
 }
 
 string
-VirtualC64::version()
+Tiara::version()
 {
     return C64::version();
 }
 
 string
-VirtualC64::build()
+Tiara::build()
 {
     return C64::build();
 }
 
-VirtualC64::VirtualC64() {
+Tiara::Tiara() {
 
     emu = new Emulator();
 
@@ -138,201 +138,201 @@ VirtualC64::VirtualC64() {
     defaults.defaults = &emu->defaults;
 }
 
-VirtualC64::~VirtualC64()
+Tiara::~Tiara()
 {
     delete emu;
     emu = nullptr;
 }
 
 const EmulatorInfo &
-VirtualC64::getInfo() const 
+Tiara::getInfo() const 
 {
     return emu->getInfo();
 }
 
 const EmulatorInfo &
-VirtualC64::getCachedInfo() const
+Tiara::getCachedInfo() const
 {
     return emu->getCachedInfo();
 }
 
 const EmulatorStats &
-VirtualC64::getStats() const 
+Tiara::getStats() const 
 {
     return emu->getStats();
 }
 
 bool
-VirtualC64::isPoweredOn() const
+Tiara::isPoweredOn() const
 {
     return emu->isPoweredOn();
 }
 
 bool
-VirtualC64::isPoweredOff() const
+Tiara::isPoweredOff() const
 {
     return emu->isPoweredOff();
 }
 
 bool
-VirtualC64::isPaused() const
+Tiara::isPaused() const
 {
     return emu->isPaused();
 }
 
 bool
-VirtualC64::isRunning() const
+Tiara::isRunning() const
 {
     return emu->isRunning();
 }
 
 bool
-VirtualC64::isSuspended() const
+Tiara::isSuspended() const
 {
     return emu->isSuspended();
 }
 
 bool
-VirtualC64::isHalted() const
+Tiara::isHalted() const
 {
     return emu->isHalted();
 }
 
 bool
-VirtualC64::isWarping() const
+Tiara::isWarping() const
 {
     return emu->isWarping();
 }
 
 bool
-VirtualC64::isTracking() const
+Tiara::isTracking() const
 {
     return emu->isTracking();
 }
 
 void 
-VirtualC64::isReady() const
+Tiara::isReady() const
 {
     return emu->isReady();
 }
 
 void 
-VirtualC64::powerOn() 
+Tiara::powerOn() 
 {
     emu->Thread::powerOn();
 }
 
 void 
-VirtualC64::powerOff() 
+Tiara::powerOff() 
 {
     emu->Thread::powerOff();
 }
 
 void 
-VirtualC64::run() 
+Tiara::run() 
 {
     emu->run();
 }
 
 void 
-VirtualC64::pause() 
+Tiara::pause() 
 {
     emu->pause();
 }
 
 void 
-VirtualC64::halt() 
+Tiara::halt() 
 {
     emu->halt();
 }
 
 void 
-VirtualC64::suspend() 
+Tiara::suspend() 
 {
     emu->suspend();
 }
 
 void 
-VirtualC64::resume() 
+Tiara::resume() 
 {
     emu->resume();
 }
 
 void 
-VirtualC64::warpOn(isize source)
+Tiara::warpOn(isize source)
 {
     emu->warpOn(source);
 }
 
 void 
-VirtualC64::warpOff(isize source)
+Tiara::warpOff(isize source)
 {
     emu->warpOff(source);
 }
 
 void 
-VirtualC64::trackOn(isize source)
+Tiara::trackOn(isize source)
 {
     emu->trackOn(source);
 }
 
 void 
-VirtualC64::trackOff(isize source)
+Tiara::trackOff(isize source)
 {
     emu->trackOff(source);
 }
 
 void
-VirtualC64::stepInto()
+Tiara::stepInto()
 {
     emu->stepInto();
 }
 
 void
-VirtualC64::stepOver()
+Tiara::stepOver()
 {
     emu->stepOver();
 }
 
 void 
-VirtualC64::wakeUp()
+Tiara::wakeUp()
 {
     emu->wakeUp();
 }
 
 void
-VirtualC64::launch(const void *listener, Callback *func)
+Tiara::launch(const void *listener, Callback *func)
 {
     emu->launch(listener, func);
 }
 
 bool
-VirtualC64::isLaunched() const
+Tiara::isLaunched() const
 {
     return emu->isLaunched();
 }
 
 i64
-VirtualC64::get(Option option) const
+Tiara::get(Option option) const
 {
     return emu->get(option);
 }
 
 i64
-VirtualC64::get(Option option, long id) const
+Tiara::get(Option option, long id) const
 {
     return emu->get(option, id);
 }
 
 void
-VirtualC64::set(C64Model model)
+Tiara::set(C64Model model)
 {
     emu->set(model);
     emu->markAsDirty();
 }
 
 void
-VirtualC64::set(Option opt, i64 value) throws
+Tiara::set(Option opt, i64 value) throws
 {
     emu->check(opt, value);
     put(CMD_CONFIG_ALL, ConfigCmd { .option = opt, .value = value });
@@ -340,7 +340,7 @@ VirtualC64::set(Option opt, i64 value) throws
 }
 
 void
-VirtualC64::set(Option opt, i64 value, long id)
+Tiara::set(Option opt, i64 value, long id)
 {
     emu->check(opt, value, { id });
     put(CMD_CONFIG, ConfigCmd { .option = opt, .value = value, .id = id });
@@ -348,19 +348,19 @@ VirtualC64::set(Option opt, i64 value, long id)
 }
 
 void
-VirtualC64::exportConfig(const fs::path &path) const
+Tiara::exportConfig(const fs::path &path) const
 {
     emu->main.exportConfig(path);
 }
 
 void
-VirtualC64::exportConfig(std::ostream& stream) const
+Tiara::exportConfig(std::ostream& stream) const
 {
     emu->main.exportConfig(stream);
 }
 
 void
-VirtualC64::put(const Cmd &cmd)
+Tiara::put(const Cmd &cmd)
 {
     emu->put(cmd);
 }

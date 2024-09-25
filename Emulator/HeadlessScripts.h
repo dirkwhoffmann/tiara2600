@@ -11,7 +11,7 @@
 
 static const char *selfTestScript[] = {
 
-    "# VirtualC64 Self Check",
+    "# Tiara Self Check",
     "# ",
     "# Dirk W. Hoffmann, 2024",
     "",

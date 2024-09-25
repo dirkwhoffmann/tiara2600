@@ -6,7 +6,7 @@ The following diagram summarizes how the emulator core interacts with the front-
  
 @image html communication.png
 
-VirtualC64 utilizes the following communication mechanisms:
+Tiara utilizes the following communication mechanisms:
 
 - **Command queue**
 
@@ -24,6 +24,6 @@ VirtualC64 utilizes the following communication mechanisms:
 
 | Previous                      |                           Next |
 |:------------------------------|-------------------------------:|
-| [State Model](state.md)       |               tiara::VirtualC64 |
+| [State Model](state.md)       |                   tiara::Tiara |
  
 </div>

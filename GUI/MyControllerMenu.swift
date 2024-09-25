@@ -267,7 +267,7 @@ extension MyController: NSMenuItemValidation {
         savePanel.prompt = "Export"
         savePanel.title = "Export"
         savePanel.nameFieldLabel = "Export As:"
-        savePanel.nameFieldStringValue = "virtualc64.ini"
+        savePanel.nameFieldStringValue = "tiara.ini"
         savePanel.canCreateDirectories = true
         savePanel.beginSheetModal(for: window!, completionHandler: { result in
 

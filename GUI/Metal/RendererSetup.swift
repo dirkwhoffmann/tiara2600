@@ -125,7 +125,7 @@ extension Renderer {
         
         // Render pipeline
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
-        pipelineDescriptor.label = "VirtualC64 Metal pipeline"
+        pipelineDescriptor.label = "Tiara Metal pipeline"
         pipelineDescriptor.depthAttachmentPixelFormat = MTLPixelFormat.depth32Float
         pipelineDescriptor.vertexFunction = vertexFunc
         pipelineDescriptor.fragmentFunction = fragmentFunc

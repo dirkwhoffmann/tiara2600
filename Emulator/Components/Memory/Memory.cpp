@@ -142,18 +142,6 @@ Memory::operator << (SerWriter &worker)
 void
 Memory::eraseWithPattern(RamPattern pattern)
 {
-    /* Note: The RAM init pattern is not unique across C64 models (for details,
-     * see the README file in the VICE test suite C64/raminitpattern). By
-     * default, VirtualC64 utilizes the same patters as VICE. This pattern has
-     * been selected, because it is pretty close to what can be seen on most
-     * real machines and it make all four tests from the VICE test suite pass
-     * (cyberloadtest.prg, darkstarbbstest.prg, platoontest.prg, and
-     * typicaltet.prg). The CCS scheme is the one that is used by CCS 3.9. Note
-     * that the darkstarbbstest fails with this pattern. The remainung patterns
-     * can't be found in the wild. They allow the user to initialize the RAM
-     * with all zeroes, all ones, or random values, respectively.
-     */
-    
     switch (pattern) {
             
         case RAM_PATTERN_VICE:

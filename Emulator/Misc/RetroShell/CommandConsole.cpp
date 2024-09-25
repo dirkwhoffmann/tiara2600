@@ -40,18 +40,18 @@ CommandConsole::_pause()
 string
 CommandConsole::getPrompt()
 {
-    return "vc64% ";
+    return "tiara% ";
 }
 
 void
 CommandConsole::welcome()
 {
-    storage << "VirtualC64 RetroShell ";
-    remoteManager.rshServer << "VirtualC64 RetroShell Remote Server ";
+    storage << "Tiara RetroShell ";
+    remoteManager.rshServer << "Tiara RetroShell Remote Server ";
     *this << C64::build() << '\n';
     *this << '\n';
     *this << "Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de" << '\n';
-    *this << "https://github.com/dirkwhoffmann/virtualc64" << '\n';
+    *this << "https://github.com/dirkwhoffmann/tiara2600" << '\n';
     *this << '\n';
 
     printHelp();

@@ -13,7 +13,7 @@
 
 #pragma once
 
-#include "VirtualC64Types.h"
+#include "TiaraTypes.h"
 #include "Error.h"
 #include "MediaFile.h"
 #include <filesystem>
@@ -1180,7 +1180,7 @@ struct C64API : public API {
  * VICII API provides additional functions that interact directly with the
  * VICII graphics chip.
  */
-class VirtualC64 : API {
+class Tiara : API {
 
     //
     // Static methods
@@ -1203,8 +1203,8 @@ public:
 
 public:
 
-    VirtualC64();
-    ~VirtualC64();
+    Tiara();
+    ~Tiara();
 
     /** @brief  Returns the component's current state.
      */

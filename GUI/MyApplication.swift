@@ -99,7 +99,7 @@ class MyApplication: NSApplication {
         debug(.lifetime)
 
         token = ProcessInfo.processInfo.beginActivity(options: [ .userInitiated ],
-                                                      reason: "Running VirtualC64")
+                                                      reason: "Running Tiara")
 
         argv = Array(CommandLine.arguments.dropFirst())
     }

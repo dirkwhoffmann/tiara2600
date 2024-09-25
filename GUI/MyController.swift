@@ -217,7 +217,7 @@ extension MyController {
         // Adjust size and enable auto-save for window coordinates
         adjustWindowSize()
         window?.windowController?.shouldCascadeWindows = false // true ?!
-        let name = NSWindow.FrameAutosaveName("dirkwhoffmann.de.virtualC64.window")
+        let name = NSWindow.FrameAutosaveName("dirkwhoffmann.de.tiara.window")
         window?.setFrameAutosaveName(name)
         
         // Enable fullscreen mode

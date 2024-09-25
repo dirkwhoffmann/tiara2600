@@ -102,13 +102,13 @@ Host::tmp() const
         base = "/tmp";
 
         // Open a file to see if we have write permissions
-        std::ofstream logfile(base / "virtualc64.log");
+        std::ofstream logfile(base / "tiara.log");
 
         // If /tmp is not accessible, use a different directory
         if (!logfile.is_open()) {
 
             base = fs::temp_directory_path();
-            logfile.open(base / "virtualc64.log");
+            logfile.open(base / "tiara.log");
 
             if (!logfile.is_open()) {
 
@@ -117,7 +117,7 @@ Host::tmp() const
         }
 
         logfile.close();
-        fs::remove(base / "virtualc64.log");
+        fs::remove(base / "tiara.log");
     }
 
     return base;

@@ -62,7 +62,7 @@ namespace tiara {
 int
 Headless::main(int argc, char *argv[])
 {
-    std::cout << "VirtualC64 Headless v" << VirtualC64::version();
+    std::cout << "Tiara Headless v" << Tiara::version();
     std::cout << " - (C)opyright Dirk W. Hoffmann" << std::endl << std::endl;
 
     // Parse all command line arguments
@@ -150,7 +150,7 @@ Headless::runScript(const std::filesystem::path &path)
     Script script(path);
 
     // Create an emulator instance
-    VirtualC64 c64;
+    Tiara c64;
 
     // Plug in the three MEGA65 OpenROMs
     c64.c64.installOpenRoms();

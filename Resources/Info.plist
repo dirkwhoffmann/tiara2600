@@ -249,11 +249,11 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>VirtualC64 Snapshot</string>
+			<string>Tiara Snapshot</string>
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>de.dirkwhoffmann.retro.vc64</string>
+			<string>de.dirkwhoffmann.retro.tiara</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -449,11 +449,11 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>VirtualC64 Snapshot</string>
+			<string>Tiara Snapshot</string>
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>de.dirkwhoffmann.retro.vc64</string>
+			<string>de.dirkwhoffmann.retro.tiara</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
