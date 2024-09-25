@@ -1,0 +1,26 @@
+LICENSE INFORMATION
+
+VirtualC64 consists of four major parts:
+
+1. The VirtualC64 application, as provided by this repository
+2. The core C64 emulator except in directory `Emulator` except reSID
+3. The CPU emulator in the directory `Emulator/Components/CPU/Peddle`
+4. reSID in the directory `Emulator/Components/SID/reSID`
+
+The top-level license of the VirtualC64 project is the GNU General Public License. The core emulator and the CPU emulator are published under more liberate terms. In detail:
+
+Component 1: VirtualC64 application
+    License: GPL-3.0-or-later
+             https://www.gnu.org/licenses/gpl-3.0.html
+
+Component 2: Core emulator (except reSID)
+    License: MPL-2.0
+             https://mozilla.org/MPL/2.0
+
+Component 3: CPU emulator (Peddle)
+    License: MIT
+             https://github.com/dirkwhoffmann/Peddle
+
+Component 4: reSID
+    License: GPL-2.0-or-later
+             https://www.gnu.org/licenses/gpl-2.0.html
