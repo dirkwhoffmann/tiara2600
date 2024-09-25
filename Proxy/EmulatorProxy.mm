@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -14,7 +14,7 @@
 #import "FFmpeg.h"
 #import "FileSystem.h"
 
-using namespace vc64;
+using namespace tiara;
 
 //
 // Exception wrapper

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -58,7 +58,7 @@ class DropZone: Layer {
         return NSImage(named: "dropZone\(zone)\(suffix)")!
     }
     
-    private func setType(_ type: vc64.FileType) {
+    private func setType(_ type: tiara.FileType) {
     
         if let emu = emu {
 
@@ -102,7 +102,7 @@ class DropZone: Layer {
         }
     }
 
-    func open(type: vc64.FileType, delay: Double) {
+    func open(type: tiara.FileType, delay: Double) {
 
         setType(type)
         open(delay: delay)

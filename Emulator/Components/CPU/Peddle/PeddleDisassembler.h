@@ -11,7 +11,7 @@
 #include "PeddleUtils.h"
 #include "StrWriter.h"
 
-namespace vc64::peddle {
+namespace tiara::peddle {
 
 class Disassembler {
 

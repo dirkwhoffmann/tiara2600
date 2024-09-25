@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -569,7 +569,7 @@ class Configuration {
 
     func loadRomUserDefaults() {
 
-        func load(_ url: URL?, type: vc64.FileType) {
+        func load(_ url: URL?, type: tiara.FileType) {
 
             if url != nil {
                 if let file = try? MediaFileProxy.make(with: url!) {
@@ -597,9 +597,9 @@ class Configuration {
 
         var url: URL?
 
-        func save(_ type: vc64.RomType) throws {
+        func save(_ type: tiara.RomType) throws {
 
-            if url == nil { throw VC64Error(vc64.ErrorCode.FILE_CANT_WRITE) }
+            if url == nil { throw VC64Error(tiara.ErrorCode.FILE_CANT_WRITE) }
             try? FileManager.default.removeItem(at: url!)
             try emu?.saveRom(type, url: url!)
         }

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -44,7 +44,7 @@ public func warn(_ msg: String = "",
 
 class VC64Error: Error {
     
-    var errorCode: vc64.ErrorCode
+    var errorCode: tiara.ErrorCode
     var what: String
     
     init(_ exception: ExceptionWrapper) {
@@ -53,7 +53,7 @@ class VC64Error: Error {
         self.what = exception.what
     }
     
-    init(_ errorCode: vc64.ErrorCode, _ what: String = "") {
+    init(_ errorCode: tiara.ErrorCode, _ what: String = "") {
         
         self.errorCode = errorCode
         self.what = what

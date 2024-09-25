@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -15,7 +15,7 @@
 #include "Emulator.h"
 #include "IOUtils.h"
 
-namespace vc64 {
+namespace tiara {
 
 Joystick::Joystick(C64& ref, ControlPort& pref) : SubComponent(ref, pref.objid), port(pref)
 {

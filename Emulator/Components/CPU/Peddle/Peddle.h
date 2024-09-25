@@ -15,9 +15,9 @@
 #include "PeddleUtils.h"
 #include "TimeDelayed.h"
 
-// using namespace vc64;
+// using namespace tiara;
 
-namespace vc64::peddle {
+namespace tiara::peddle {
 
 class Peddle : public SubComponent {
 

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -13,7 +13,7 @@ class EventTableView: NSTableView {
 
     var emu: EmulatorProxy? { return inspector.emu }
 
-    var slotInfo = [vc64.EventSlotInfo?](repeating: nil, count: vc64.EventSlot._COUNT.rawValue)
+    var slotInfo = [tiara.EventSlotInfo?](repeating: nil, count: tiara.EventSlot._COUNT.rawValue)
 
     override func awakeFromNib() {
 
@@ -26,7 +26,7 @@ class EventTableView: NSTableView {
 
         if let emu = emu {
 
-            for row in 0 ..< vc64.EventSlot._COUNT.rawValue {
+            for row in 0 ..< tiara.EventSlot._COUNT.rawValue {
                 slotInfo[row] = emu.c64.cachedSlotInfo(row)
             }
         }
@@ -43,7 +43,7 @@ extension EventTableView: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
 
-        return vc64.EventSlot._COUNT.rawValue
+        return tiara.EventSlot._COUNT.rawValue
     }
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {

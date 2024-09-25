@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -14,7 +14,7 @@
 
 #include "BasicTypes.h"
 
-namespace vc64::util {
+namespace tiara::util {
 
 /* This class provides a wrapper around a value type making it fadable. I.e.,
  * the value can be smoothly increased to it's maximum value or decreases to

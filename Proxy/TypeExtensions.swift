@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -7,7 +7,7 @@
 // See https://www.gnu.org for license information
 // -----------------------------------------------------------------------------
 
-extension vc64.EventSlot: CustomStringConvertible {
+extension tiara.EventSlot: CustomStringConvertible {
 
     public var description: String {
 
@@ -42,13 +42,13 @@ extension vc64.EventSlot: CustomStringConvertible {
     }
 }
 
-extension vc64.FileType {
+extension tiara.FileType {
 
     init?(url: URL?) {
         self = url == nil ? .UNKNOWN : MediaFileProxy.type(of: url)
     }
 
-    static var all: [vc64.FileType] {
+    static var all: [tiara.FileType] {
         return [
             .SNAPSHOT, .SCRIPT,
             .CRT,
@@ -60,7 +60,7 @@ extension vc64.FileType {
         ]
     }
 
-    static var draggable: [vc64.FileType] {
+    static var draggable: [tiara.FileType] {
         return [
             .SNAPSHOT, .SCRIPT,
             .CRT, .T64, .PRG, .P00,
@@ -71,7 +71,7 @@ extension vc64.FileType {
     }
 }
 
-extension vc64.DOSType: CustomStringConvertible {
+extension tiara.DOSType: CustomStringConvertible {
 
     public var description: String {
         
@@ -85,7 +85,7 @@ extension vc64.DOSType: CustomStringConvertible {
     }
 }
 
-extension vc64.FSFileType: CustomStringConvertible {
+extension tiara.FSFileType: CustomStringConvertible {
 
     public var description: String {
         
@@ -102,7 +102,7 @@ extension vc64.FSFileType: CustomStringConvertible {
     }
 }
 
-extension vc64.FSBlockType: CustomStringConvertible {
+extension tiara.FSBlockType: CustomStringConvertible {
 
     public var description: String {
         
@@ -118,7 +118,7 @@ extension vc64.FSBlockType: CustomStringConvertible {
     }
 }
 
-extension vc64.FSUsage: CustomStringConvertible {
+extension tiara.FSUsage: CustomStringConvertible {
 
     public var description: String {
         
@@ -153,7 +153,7 @@ extension vc64.FSUsage: CustomStringConvertible {
     }
 }
 
-extension vc64.ErrorCode {
+extension tiara.ErrorCode {
 
     func description(expected exp: Int = 0) -> String {
         
@@ -174,7 +174,7 @@ extension vc64.ErrorCode {
     }
 }
 
-extension vc64.CartridgeType {
+extension tiara.CartridgeType {
     
     var description: String {
         
@@ -246,7 +246,7 @@ extension vc64.CartridgeType {
     }
 }
             
-extension vc64.TAPVersion {
+extension tiara.TAPVersion {
     
     var description: String {
         

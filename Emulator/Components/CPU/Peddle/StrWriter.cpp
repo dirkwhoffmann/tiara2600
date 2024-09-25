@@ -8,7 +8,7 @@
 #include "PeddleTypes.h"
 #include "StrWriter.h"
 
-namespace vc64::peddle {
+namespace tiara::peddle {
 
 void
 StrWriter::sprintd(char *&s, u64 value, isize digits)

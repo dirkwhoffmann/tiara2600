@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -31,7 +31,7 @@ class MemTableView: NSTableView {
         reloadData()
     }
     
-    var bankType: vc64.MemoryType {
+    var bankType: tiara.MemoryType {
 
         let type = inspector.bankType[inspector.displayedBank]!
         return type.rawValue == 0 ? .NONE : type

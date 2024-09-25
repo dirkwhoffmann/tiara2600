@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -25,9 +25,9 @@
 #include <vector>
 
 // Namespace aliases
-namespace vc64 { namespace fs = std::filesystem; }
+namespace tiara { namespace fs = std::filesystem; }
 
-namespace vc64::util {
+namespace tiara::util {
 
 //
 // Handling files

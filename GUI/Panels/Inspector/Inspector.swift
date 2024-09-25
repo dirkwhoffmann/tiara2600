@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -92,7 +92,7 @@ class Inspector: DialogController {
     @IBOutlet weak var memSource: NSPopUpButton!
     @IBOutlet weak var memHeatmapView: HeatmapView!
 
-    var bankType: [Int: vc64.MemoryType] = [:]
+    var bankType: [Int: tiara.MemoryType] = [:]
     var displayedBank = 0
     var layoutIsDirty = true
     var nextLayoutRefresh = 0
@@ -285,13 +285,13 @@ class Inspector: DialogController {
     @IBOutlet weak var evTableView: EventTableView!
 
     // Cached state of all C64 components
-    var cpuInfo: vc64.CPUInfo!
-    var ciaInfo: vc64.CIAInfo!
-    var ciaStats: vc64.CIAStats!
-    var memInfo: vc64.MemInfo!
-    var vicInfo: vc64.VICIIInfo!
-    var sprInfo: vc64.SpriteInfo!
-    var eventInfo: vc64.C64Info!
+    var cpuInfo: tiara.CPUInfo!
+    var ciaInfo: tiara.CIAInfo!
+    var ciaStats: tiara.CIAStats!
+    var memInfo: tiara.MemInfo!
+    var vicInfo: tiara.VICIIInfo!
+    var sprInfo: tiara.SpriteInfo!
+    var eventInfo: tiara.C64Info!
     var isRunning = true
     
     // Number format selection (hexadecimal or decimal)

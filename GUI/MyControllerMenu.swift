@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -733,7 +733,7 @@ extension MyController: NSMenuItemValidation {
 
     func insertRecentDiskAction(drive: Int, slot: Int) {
 
-        let types: [vc64.FileType] = [ .D64, .T64, .PRG, .P00, .G64 ]
+        let types: [tiara.FileType] = [ .D64, .T64, .PRG, .P00, .G64 ]
 
         if let url = MediaManager.getRecentlyInsertedDiskURL(slot) {
 

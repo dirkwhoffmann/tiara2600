@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -16,7 +16,7 @@
 #include "MemUtils.h"
 #include <fstream>
 
-namespace vc64::util {
+namespace tiara::util {
 
 template <class T> Allocator<T>&
 Allocator<T>::operator= (const Allocator<T>& other)

@@ -12,7 +12,7 @@
 #include <fstream>
 #include <cassert>
 
-namespace vc64::peddle {
+namespace tiara::peddle {
 
 //
 // Guard

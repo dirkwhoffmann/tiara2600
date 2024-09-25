@@ -9,7 +9,7 @@
 
 #include "BasicTypes.h"
 
-namespace vc64::peddle {
+namespace tiara::peddle {
 
 // Base structure for a single breakpoint or watchpoint
 struct Guard {

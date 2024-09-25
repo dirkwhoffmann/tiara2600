@@ -1,5 +1,5 @@
 //
-// This file is part of VirtualC64 - A Commodore 64 emulator
+// This file is part of Tiara2600 - A Commodore 64 emulator
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3

@@ -63,7 +63,7 @@ class VolumeInspector: DialogController {
     var vol: FileSystemProxy!
 
     // Result of the consistency checker
-    var errorReport: vc64.FSErrorReport?
+    var errorReport: tiara.FSErrorReport?
 
     var selection: Int?
     var selectedRow: Int? { return selection == nil ? nil : selection! / 16 }
@@ -73,7 +73,7 @@ class VolumeInspector: DialogController {
     // Block preview
     var blockNr = 0
 
-    let palette: [vc64.FSBlockType: NSColor] = [
+    let palette: [tiara.FSBlockType: NSColor] = [
 
         .UNKNOWN: Palette.white,
         .EMPTY: Palette.gray,
@@ -312,7 +312,7 @@ class VolumeInspector: DialogController {
 
     @IBAction func blockTypeAction(_ sender: NSButton!) {
 
-        let type = vc64.FSBlockType(rawValue: sender.tag)!
+        let type = tiara.FSBlockType(rawValue: sender.tag)!
 
         // Goto the next block of the requested type
         let nextBlock = vol.nextBlock(of: type, after: blockNr)

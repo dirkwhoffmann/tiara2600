@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -17,7 +17,7 @@
 #include "IOUtils.h"
 #include <algorithm>
 
-namespace vc64 {
+namespace tiara {
 
 using namespace util;
 

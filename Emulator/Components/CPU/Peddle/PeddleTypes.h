@@ -10,7 +10,7 @@
 #include "BasicTypes.h"
 #include "PeddleDebuggerTypes.h"
 
-namespace vc64::peddle {
+namespace tiara::peddle {
 
 //
 // Constants

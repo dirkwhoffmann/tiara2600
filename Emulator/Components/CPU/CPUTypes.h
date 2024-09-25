@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -15,7 +15,7 @@
 #include "Reflection.h"
 #include "PeddleTypes.h"
 
-namespace vc64 {
+namespace tiara {
 
 //
 // Bit fields
@@ -33,20 +33,20 @@ namespace vc64 {
 // Enumerations
 //
 
-struct CPURevisionEnum : util::Reflection<CPURevisionEnum, vc64::peddle::CPURevision> {
+struct CPURevisionEnum : util::Reflection<CPURevisionEnum, tiara::peddle::CPURevision> {
 
     static constexpr long minVal = 0;
-    static constexpr long maxVal = vc64::peddle::MOS_8502;
+    static constexpr long maxVal = tiara::peddle::MOS_8502;
 
     static const char *prefix() { return nullptr; }
     static const char *_key(long value)
     {
         switch (value) {
 
-            case vc64::peddle::MOS_6502:  return "MOS_6502";
-            case vc64::peddle::MOS_6507:  return "MOS_6507";
-            case vc64::peddle::MOS_6510:  return "MOS_6510";
-            case vc64::peddle::MOS_8502:  return "MOS_8502";
+            case tiara::peddle::MOS_6502:  return "MOS_6502";
+            case tiara::peddle::MOS_6507:  return "MOS_6507";
+            case tiara::peddle::MOS_6510:  return "MOS_6510";
+            case tiara::peddle::MOS_8502:  return "MOS_8502";
         }
         return "???";
     }

@@ -15,7 +15,7 @@ After lauching, the emulator runs as a single thread alongside the GUI. The thre
  
  @image html state.png
  
- The thread executes an infinite loop which periodically calls function vc64::Thread::execute. After each iteration, the thread is put to sleep to synchronize timing.
+ The thread executes an infinite loop which periodically calls function tiara::Thread::execute. After each iteration, the thread is put to sleep to synchronize timing.
  
  ## Suspend / Resume
  
@@ -29,7 +29,7 @@ After lauching, the emulator runs as a single thread alongside the GUI. The thre
     resume();
  ```
 
- It it safe to nest multiple suspend/resume blocks, but it is essential that each call to [suspend](@ref vc64::Thread::suspend) is followed by a call to Thread class [resume](@ref vc64::Thread::resume). As a result, the critical code section must not be exited in the middle, e.g., by throwing an exception. It is therefore recommended to use the `SUSPENDED` macro which is exit-safe. It is used in the following way:
+ It it safe to nest multiple suspend/resume blocks, but it is essential that each call to [suspend](@ref tiara::Thread::suspend) is followed by a call to Thread class [resume](@ref tiara::Thread::resume). As a result, the critical code section must not be exited in the middle, e.g., by throwing an exception. It is therefore recommended to use the `SUSPENDED` macro which is exit-safe. It is used in the following way:
  
  ```{.cpp}
  	{  SUSPENDED
@@ -41,7 +41,7 @@ After lauching, the emulator runs as a single thread alongside the GUI. The thre
 
  ## Synchronization
  
- The Thread class is responsible for timing synchronization. I.e., it has to ensure that the proper amount of frames are executed per second. To synchronize timing, the thread waits for an external wake-up signal. When the wake-up signal comes in (by calling [wakeUp](@ref vc64::Thread::wakeUp), the thread computes the computes computes all missing frames. If the number of missing frames exceeds a threshold, the thread resynchronizes itself by calling [resync](@ref vc64::Thread::resync).
+ The Thread class is responsible for timing synchronization. I.e., it has to ensure that the proper amount of frames are executed per second. To synchronize timing, the thread waits for an external wake-up signal. When the wake-up signal comes in (by calling [wakeUp](@ref tiara::Thread::wakeUp), the thread computes the computes computes all missing frames. If the number of missing frames exceeds a threshold, the thread resynchronizes itself by calling [resync](@ref tiara::Thread::resync).
  
  ## Warp mode
  

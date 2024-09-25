@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -18,7 +18,7 @@
 // Action Replay (hardware version 3)
 //
 
-namespace vc64 {
+namespace tiara {
 
 class ActionReplay3 final : public Cartridge {
 

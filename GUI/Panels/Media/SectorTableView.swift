@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -40,8 +40,8 @@ class SectorTableView: NSTableView, NSTableViewDelegate {
         if halftrack != nil && analyzer != nil {
             
             var row = 0
-            for i in 0 ... Int(vc64.highestSector) {
-                let info = analyzer!.sectorInfo(halftrack!, sector: vc64.Sector(i))
+            for i in 0 ... Int(tiara.highestSector) {
+                let info = analyzer!.sectorInfo(halftrack!, sector: tiara.Sector(i))
                 if info.headerBegin != info.headerEnd {
                     sectorForRow[row] = i
                     row += 1

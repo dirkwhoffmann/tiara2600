@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -140,7 +140,7 @@ class MediaManager {
     // Loading media files
     //
 
-    func createFileProxy(from url: URL, allowedTypes: [vc64.FileType]) throws -> MediaFileProxy {
+    func createFileProxy(from url: URL, allowedTypes: [tiara.FileType]) throws -> MediaFileProxy {
 
         debug(.media, "Reading file \(url.lastPathComponent)")
 
@@ -204,7 +204,7 @@ class MediaManager {
     //
 
     func addMedia(url: URL,
-                  allowedTypes types: [vc64.FileType] = vc64.FileType.all,
+                  allowedTypes types: [tiara.FileType] = tiara.FileType.all,
                   drive id: Int = DRIVE8,
                   options: [Option] = [.remember]) throws {
 
@@ -408,7 +408,7 @@ class MediaManager {
             file = try MediaFileProxy.make(with: fs, type: .P00)
 
         default:
-            throw VC64Error(vc64.ErrorCode.FILE_TYPE_MISMATCH)
+            throw VC64Error(tiara.ErrorCode.FILE_TYPE_MISMATCH)
         }
 
         try export(file: file!, to: url)

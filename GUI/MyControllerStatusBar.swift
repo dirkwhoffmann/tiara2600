@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -11,7 +11,7 @@ extension MyController {
 
     var hourglassIcon: NSImage? {
 
-        if vc64.WarpMode(rawValue: config.warpMode) == .AUTO {
+        if tiara.WarpMode(rawValue: config.warpMode) == .AUTO {
 
             return NSImage(named: emu?.info.warping == true ? "hourglass3Template" : "hourglass1Template")
 
@@ -343,11 +343,11 @@ extension MyController {
 
     @IBAction func warpAction(_ sender: Any!) {
 
-        switch vc64.WarpMode(rawValue: config.warpMode) {
+        switch tiara.WarpMode(rawValue: config.warpMode) {
 
-        case .AUTO: config.warpMode = vc64.WarpMode.NEVER.rawValue
-        case .NEVER: config.warpMode = vc64.WarpMode.ALWAYS.rawValue
-        case .ALWAYS: config.warpMode = vc64.WarpMode.AUTO.rawValue
+        case .AUTO: config.warpMode = tiara.WarpMode.NEVER.rawValue
+        case .NEVER: config.warpMode = tiara.WarpMode.ALWAYS.rawValue
+        case .ALWAYS: config.warpMode = tiara.WarpMode.AUTO.rawValue
 
         default:
             fatalError()

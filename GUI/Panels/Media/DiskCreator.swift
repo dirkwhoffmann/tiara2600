@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -17,7 +17,7 @@ class DiskCreator: DialogController {
     @IBOutlet weak var nameLabel: NSTextField!
     @IBOutlet weak var nameField: NSTextField!
 
-    var dos: vc64.DOSType { return fileSystem.selectedTag() == 1 ? .CBM : .NODOS }
+    var dos: tiara.DOSType { return fileSystem.selectedTag() == 1 ? .CBM : .NODOS }
     var name: String { return nameField.stringValue }
 
     var nr = DRIVE8
@@ -41,7 +41,7 @@ class DiskCreator: DialogController {
         if let emu = emu {
 
             let type = emu.get(.DRV_TYPE, drive: nr)
-            switch vc64.DriveType(rawValue: type) {
+            switch tiara.DriveType(rawValue: type) {
 
             case .VC1541, .VC1541C, .VC1541II:
                 capacity.lastItem?.title = "5.25\" SD"

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -29,7 +29,7 @@ typedef struct
 }
 HostConfig;
 
-namespace vc64 {
+namespace tiara {
 
 /* This class stores some information about the host system. The values have
  * are set by the GUI on start and updated on-the-fly when a value changes.

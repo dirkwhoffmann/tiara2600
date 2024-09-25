@@ -10,7 +10,7 @@
 #include "Peddle.h"
 #include <cmath>
 
-namespace vc64::peddle {
+namespace tiara::peddle {
 
 //
 // Wrapper structures controlling the output format

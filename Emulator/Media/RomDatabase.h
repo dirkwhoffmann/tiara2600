@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -12,7 +12,7 @@
 
 #pragma once
 
-namespace vc64 {
+namespace tiara {
 
 #define BASIC       ROM_TYPE_BASIC
 #define KERNAL      ROM_TYPE_KERNAL

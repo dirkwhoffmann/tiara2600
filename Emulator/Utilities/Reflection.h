@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -33,7 +33,7 @@
  *   enumeration is treated as flag of a combined bit field.
  */
 
-namespace vc64::util {
+namespace tiara::util {
 
 #define assert_enum(e,v) assert(e##Enum::isValid(v))
 

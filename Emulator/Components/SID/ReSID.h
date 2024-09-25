@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -17,7 +17,7 @@
 #include "AudioPort.h"
 #include "resid/sid.h"
 
-namespace vc64 {
+namespace tiara {
 
 /* This class is a wrapper around the third-party reSID library.
  *

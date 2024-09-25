@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -14,7 +14,7 @@ extension ConfigurationController {
         // Engine
         audEngine.selectItem(withTag: config.sidEngine)
         audFilter.state = config.sidFilter ? .on : .off
-        audSampling.isEnabled = config.sidEngine == vc64.SIDEngine.RESID.rawValue
+        audSampling.isEnabled = config.sidEngine == tiara.SIDEngine.RESID.rawValue
         audSampling.selectItem(withTag: config.sidSampling)
 
         // In

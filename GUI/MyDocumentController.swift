@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -15,7 +15,7 @@ class MyDocumentController: NSDocumentController {
                                ofType typeName: String) throws -> NSDocument {
         
         // For media files, attach the file to a new untitled document
-        if typeName != UTType.vc64.identifier {
+        if typeName != UTType.tiara.identifier {
 
             let doc = try super.makeUntitledDocument(ofType: typeName)
 

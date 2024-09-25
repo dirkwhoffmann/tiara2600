@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -13,7 +13,7 @@
 
 extension MediaFileProxy {
 
-    static func makeWith(buffer: UnsafeRawPointer, length: Int, type: vc64.FileType) throws -> Self {
+    static func makeWith(buffer: UnsafeRawPointer, length: Int, type: tiara.FileType) throws -> Self {
 
         let exc = ExceptionWrapper()
         let obj = make(withBuffer: buffer, length: length, type: type, exception: exc)
@@ -21,7 +21,7 @@ extension MediaFileProxy {
         return obj!
     }
 
-    static func make(with data: Data, type: vc64.FileType) throws -> Self {
+    static func make(with data: Data, type: tiara.FileType) throws -> Self {
 
         let exc = ExceptionWrapper()
         let obj = make(with: data, type: type, exception: exc)
@@ -29,7 +29,7 @@ extension MediaFileProxy {
         return obj!
     }
 
-    private static func make(with data: Data, type: vc64.FileType, exception: ExceptionWrapper) -> Self? {
+    private static func make(with data: Data, type: tiara.FileType, exception: ExceptionWrapper) -> Self? {
 
         return data.withUnsafeBytes { uwbp -> Self? in
 
@@ -45,7 +45,7 @@ extension MediaFileProxy {
         return obj!
     }
 
-    static func make(with url: URL, type: vc64.FileType) throws -> Self {
+    static func make(with url: URL, type: tiara.FileType) throws -> Self {
 
         let exc = ExceptionWrapper()
         let obj = make(withFile: url.path, type: type, exception: exc)
@@ -53,7 +53,7 @@ extension MediaFileProxy {
         return obj!
     }
 
-    static func make(with drive: DriveProxy, type: vc64.FileType) throws -> Self {
+    static func make(with drive: DriveProxy, type: tiara.FileType) throws -> Self {
 
         let exc = ExceptionWrapper()
         let obj = make(withDrive: drive, type: type, exception: exc)
@@ -61,7 +61,7 @@ extension MediaFileProxy {
         return obj!
     }
 
-    static func make(with fs: FileSystemProxy, type: vc64.FileType) throws -> Self {
+    static func make(with fs: FileSystemProxy, type: tiara.FileType) throws -> Self {
 
         let exc = ExceptionWrapper()
         let obj = make(withFileSystem: fs, type: type, exception: exc)
@@ -123,7 +123,7 @@ extension EmulatorProxy {
         if exception.errorCode != .OK { throw VC64Error(exception) }
     }
 
-    func saveRom(_ type: vc64.RomType, url: URL) throws {
+    func saveRom(_ type: tiara.RomType, url: URL) throws {
 
         let exception = ExceptionWrapper()
         saveRom(type, url: url, exception: exception)

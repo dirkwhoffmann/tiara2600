@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -65,7 +65,7 @@ class DropView: NSImageView {
 
 class RomDropView: DropView {
 
-    func performDrag(type: vc64.RomType, url: URL?) -> Bool {
+    func performDrag(type: tiara.RomType, url: URL?) -> Bool {
 
         guard let url = url?.unpacked else { return false }
 

@@ -11,15 +11,15 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>VC64</string>
+				<string>Tiara</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>IconV64</string>
 			<key>CFBundleTypeName</key>
-			<string>VC64</string>
+			<string>Tiara</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
-				<string>VC64</string>
+				<string>Tiara</string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
@@ -27,7 +27,7 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>de.dirkwhoffmann.retro.vc64</string>
+				<string>de.dirkwhoffmann.retro.tiara</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>

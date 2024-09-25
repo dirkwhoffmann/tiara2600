@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -366,12 +366,12 @@ class KeyboardController: NSObject {
 
     func capsLockDown() {
 
-        parent.config.warpMode = vc64.WarpMode.ALWAYS.rawValue
+        parent.config.warpMode = tiara.WarpMode.ALWAYS.rawValue
     }
 
     func capsLockUp() {
 
-        parent.config.warpMode = vc64.WarpMode.NEVER.rawValue
+        parent.config.warpMode = tiara.WarpMode.NEVER.rawValue
     }
 
     func type(_ string: String) {

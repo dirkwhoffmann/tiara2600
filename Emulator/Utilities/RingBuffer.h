@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -15,7 +15,7 @@
 #include "BasicTypes.h"
 #include <utility>
 
-namespace vc64::util {
+namespace tiara::util {
 
 /* The emulator uses buffers at various places. Most of them are derived from
  * one of the following two classes:

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -34,7 +34,7 @@ class TrackTableView: NSTableView, NSTableViewDelegate {
     func cache() {
         
         if analyzer != nil {
-            numItems = Int(showHalftracks ? vc64.highestHalftrack : vc64.highestTrack)
+            numItems = Int(showHalftracks ? tiara.highestHalftrack : tiara.highestTrack)
         } else {
             numItems = 0
         }

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -23,9 +23,9 @@ int main(int argc, char *argv[])
 {
     try {
 
-        return vc64::Headless().main(argc, argv);
+        return tiara::Headless().main(argc, argv);
 
-    } catch (vc64::SyntaxError &e) {
+    } catch (tiara::SyntaxError &e) {
 
         std::cout << "Usage: vAmigaCore [-fsdvm] [<script>]" << std::endl;
         std::cout << std::endl;
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
             std::cout << what << std::endl;
         }
 
-    } catch (vc64::Error &e) {
+    } catch (tiara::Error &e) {
 
         std::cout << "VAError: " << e.what() << std::endl;
 
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     return 1;
 }
 
-namespace vc64 {
+namespace tiara {
 
 int
 Headless::main(int argc, char *argv[])
@@ -160,7 +160,7 @@ Headless::runScript(const std::filesystem::path &path)
     if (keys.find("verbose") != keys.end()) c64.retroShell.setStream(std::cout);
 
     // Launch the emulator thread
-    c64.launch(this, vc64::process);
+    c64.launch(this, tiara::process);
 
     // Execute script
     const auto timeout = util::Time::seconds(500.0);

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -11,7 +11,7 @@ extension PreferencesController {
     
     func refreshControlsTab() {
                 
-        func refreshKey(map: Int, dir: vc64.GamePadAction, button: NSButton, txt: NSTextField) {
+        func refreshKey(map: Int, dir: tiara.GamePadAction, button: NSButton, txt: NSTextField) {
 
             var keyDesc = ""
             var keyCode = ""
@@ -72,12 +72,12 @@ extension PreferencesController {
     }
     
     // Translates a button tag back to the related slot and gamepad action
-    func gamePadAction(for tag: Int) -> (Int, vc64.GamePadAction) {
+    func gamePadAction(for tag: Int) -> (Int, tiara.GamePadAction) {
         
         switch tag {
-        case 5...6:   return (0, vc64.GamePadAction(rawValue: tag)!)      // Mouse
-        case 0...4:   return (1, vc64.GamePadAction(rawValue: tag)!)      // Joy 1
-        case 10...14: return (2, vc64.GamePadAction(rawValue: tag - 10)!) // Joy 2
+        case 5...6:   return (0, tiara.GamePadAction(rawValue: tag)!)      // Mouse
+        case 0...4:   return (1, tiara.GamePadAction(rawValue: tag)!)      // Joy 1
+        case 10...14: return (2, tiara.GamePadAction(rawValue: tag - 10)!) // Joy 2
         default:      fatalError()
         }
     }

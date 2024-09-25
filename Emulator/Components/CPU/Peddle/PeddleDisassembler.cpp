@@ -12,7 +12,7 @@
 #include <fstream>
 
 
-namespace vc64::peddle {
+namespace tiara::peddle {
 
 Disassembler::Disassembler(Peddle& ref) : cpu(ref)
 {

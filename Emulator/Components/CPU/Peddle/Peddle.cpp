@@ -8,7 +8,7 @@
 #include "Peddle.h"
 #include "PeddleUtils.h"
 
-namespace vc64::peddle {
+namespace tiara::peddle {
 
 // Static lookup tables
 MicroInstruction Peddle::actionFunc[256] = { };

@@ -10,7 +10,7 @@
 #include "PeddleDebugger.h"
 #include "Peddle.h"
 
-namespace vc64::peddle {
+namespace tiara::peddle {
 
 /*
 // Base structure for a single breakpoint or watchpoint

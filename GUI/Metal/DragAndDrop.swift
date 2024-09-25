@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -118,10 +118,10 @@ public extension MetalView {
         if dropUrl == nil { return false }
 
         // Only proceed if a file type can be derived
-        guard let type = vc64.FileType(url: dropUrl) else { return false }
+        guard let type = tiara.FileType(url: dropUrl) else { return false }
 
         // Only proceed if a draggable type is given
-        if !vc64.FileType.draggable.contains(type) { return false }
+        if !tiara.FileType.draggable.contains(type) { return false }
 
         // Check all drop zones
         var zone: Int?

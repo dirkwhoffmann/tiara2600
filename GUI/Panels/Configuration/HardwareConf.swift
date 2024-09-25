@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -28,7 +28,7 @@ extension ConfigurationController {
         // VIC
         hwVicModelPopup.selectItem(withTag: config.vicRevision)
         
-        switch vc64.VICIIRevision(rawValue: config.vicRevision) {
+        switch tiara.VICIIRevision(rawValue: config.vicRevision) {
 
         case .PAL_6569_R1, .PAL_6569_R3:
 
@@ -155,58 +155,58 @@ extension ConfigurationController {
             switch sender.selectedTag() {
 
             case 0: // C64_PAL
-                config.vicRevision = vc64.VICIIRevision.PAL_6569_R3.rawValue
+                config.vicRevision = tiara.VICIIRevision.PAL_6569_R3.rawValue
                 config.vicGrayDotBug = false
-                config.ciaRevision = vc64.CIARevision.MOS_6526.rawValue
+                config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = true
-                config.sidRevision = vc64.SIDRevision.MOS_6581.rawValue
-                config.glueLogic = vc64.GlueLogic.DISCRETE.rawValue
-                config.powerGrid = vc64.PowerGrid.STABLE_50HZ.rawValue
+                config.sidRevision = tiara.SIDRevision.MOS_6581.rawValue
+                config.glueLogic = tiara.GlueLogic.DISCRETE.rawValue
+                config.powerGrid = tiara.PowerGrid.STABLE_50HZ.rawValue
 
             case 1: // C64_II_PAL
-                config.vicRevision = vc64.VICIIRevision.PAL_8565.rawValue
+                config.vicRevision = tiara.VICIIRevision.PAL_8565.rawValue
                 config.vicGrayDotBug = true
-                config.ciaRevision = vc64.CIARevision.MOS_8521.rawValue
+                config.ciaRevision = tiara.CIARevision.MOS_8521.rawValue
                 config.ciaTimerBBug = false
-                config.sidRevision = vc64.SIDRevision.MOS_8580.rawValue
-                config.glueLogic = vc64.GlueLogic.IC.rawValue
-                config.powerGrid = vc64.PowerGrid.STABLE_50HZ.rawValue
+                config.sidRevision = tiara.SIDRevision.MOS_8580.rawValue
+                config.glueLogic = tiara.GlueLogic.IC.rawValue
+                config.powerGrid = tiara.PowerGrid.STABLE_50HZ.rawValue
 
             case 2: // C64_OLD_PAL
-                config.vicRevision = vc64.VICIIRevision.PAL_6569_R1.rawValue
+                config.vicRevision = tiara.VICIIRevision.PAL_6569_R1.rawValue
                 config.vicGrayDotBug = false
-                config.ciaRevision = vc64.CIARevision.MOS_6526.rawValue
+                config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = true
-                config.sidRevision = vc64.SIDRevision.MOS_6581.rawValue
-                config.glueLogic = vc64.GlueLogic.DISCRETE.rawValue
-                config.powerGrid = vc64.PowerGrid.STABLE_50HZ.rawValue
+                config.sidRevision = tiara.SIDRevision.MOS_6581.rawValue
+                config.glueLogic = tiara.GlueLogic.DISCRETE.rawValue
+                config.powerGrid = tiara.PowerGrid.STABLE_50HZ.rawValue
 
             case 3: // C64_NTSC
-                config.vicRevision = vc64.VICIIRevision.NTSC_6567.rawValue
+                config.vicRevision = tiara.VICIIRevision.NTSC_6567.rawValue
                 config.vicGrayDotBug = false
-                config.ciaRevision = vc64.CIARevision.MOS_6526.rawValue
+                config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = false
-                config.sidRevision = vc64.SIDRevision.MOS_6581.rawValue
-                config.glueLogic = vc64.GlueLogic.DISCRETE.rawValue
-                config.powerGrid = vc64.PowerGrid.STABLE_60HZ.rawValue
+                config.sidRevision = tiara.SIDRevision.MOS_6581.rawValue
+                config.glueLogic = tiara.GlueLogic.DISCRETE.rawValue
+                config.powerGrid = tiara.PowerGrid.STABLE_60HZ.rawValue
 
             case 4: // C64_II_NTSC
-                config.vicRevision = vc64.VICIIRevision.NTSC_8562.rawValue
+                config.vicRevision = tiara.VICIIRevision.NTSC_8562.rawValue
                 config.vicGrayDotBug = true
-                config.ciaRevision = vc64.CIARevision.MOS_8521.rawValue
+                config.ciaRevision = tiara.CIARevision.MOS_8521.rawValue
                 config.ciaTimerBBug = true
-                config.sidRevision = vc64.SIDRevision.MOS_8580.rawValue
-                config.glueLogic = vc64.GlueLogic.IC.rawValue
-                config.powerGrid = vc64.PowerGrid.STABLE_60HZ.rawValue
+                config.sidRevision = tiara.SIDRevision.MOS_8580.rawValue
+                config.glueLogic = tiara.GlueLogic.IC.rawValue
+                config.powerGrid = tiara.PowerGrid.STABLE_60HZ.rawValue
 
             case 5: // C64_OLD_NTSC
-                config.vicRevision = vc64.VICIIRevision.NTSC_6567_R56A.rawValue
+                config.vicRevision = tiara.VICIIRevision.NTSC_6567_R56A.rawValue
                 config.vicGrayDotBug = false
-                config.ciaRevision = vc64.CIARevision.MOS_6526.rawValue
+                config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = false
-                config.sidRevision = vc64.SIDRevision.MOS_6581.rawValue
-                config.glueLogic = vc64.GlueLogic.DISCRETE.rawValue
-                config.powerGrid = vc64.PowerGrid.STABLE_60HZ.rawValue
+                config.sidRevision = tiara.SIDRevision.MOS_6581.rawValue
+                config.glueLogic = tiara.GlueLogic.DISCRETE.rawValue
+                config.powerGrid = tiara.PowerGrid.STABLE_60HZ.rawValue
 
             default:
                 fatalError()

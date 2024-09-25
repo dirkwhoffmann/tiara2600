@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -14,7 +14,7 @@
 
 #include "Serializable.h"
 
-namespace vc64 {
+namespace tiara {
 
 /* An object of this class stores a single volume value and provides the means
  * to emulate a fading effect. Fading is utilized to avoid cracking noises if,

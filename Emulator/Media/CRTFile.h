@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -15,7 +15,7 @@
 #include "CartridgeTypes.h"
 #include "AnyFile.h"
 
-namespace vc64 {
+namespace tiara {
 
 /* For details about the .CRT format,
  * see: http://vice-emu.sourceforge.net/vice_16.html

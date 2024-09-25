@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -104,7 +104,7 @@ extension ConfigurationController {
             
             // Create image data
             for n in 0 ... 15 {
-                let p = vc64.Palette(rawValue: palette)!
+                let p = tiara.Palette(rawValue: palette)!
                 let rgba = c64.vic.rgbaColor(n, palette: p)
                 ptr[n] = rgba
             }

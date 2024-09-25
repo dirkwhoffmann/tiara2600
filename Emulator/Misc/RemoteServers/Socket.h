@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -28,12 +28,12 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-namespace vc64 { typedef int SOCKET; }
+namespace tiara { typedef int SOCKET; }
 #define INVALID_SOCKET -1
 
 #endif
 
-namespace vc64 {
+namespace tiara {
 
 class Socket : public CoreObject {
 

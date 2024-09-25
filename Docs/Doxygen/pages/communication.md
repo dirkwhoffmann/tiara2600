@@ -24,6 +24,6 @@ VirtualC64 utilizes the following communication mechanisms:
 
 | Previous                      |                           Next |
 |:------------------------------|-------------------------------:|
-| [State Model](state.md)       |               vc64::VirtualC64 |
+| [State Model](state.md)       |               tiara::VirtualC64 |
  
 </div>

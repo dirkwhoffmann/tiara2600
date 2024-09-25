@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 
 extension UTType {
 
-    static let vc64 = UTType("de.dirkwhoffmann.retro.vc64")!
+    static let tiara = UTType("de.dirkwhoffmann.retro.tiara")!
     static let ini = UTType("de.dirkwhoffmann.retro.ini")!
     static let d64 = UTType("de.dirkwhoffmann.retro.d64")!
     static let g64 = UTType("de.dirkwhoffmann.retro.g64")!
@@ -102,7 +102,7 @@ class MyDocument: NSDocument {
         launchUrl = url
         /*
         do {
-            try mm.addMedia(url: url, allowedTypes: vc64.FileType.draggable)
+            try mm.addMedia(url: url, allowedTypes: tiara.FileType.draggable)
 
         } catch let error as VC64Error {
 
@@ -132,7 +132,7 @@ class MyDocument: NSDocument {
 
         debug(.media)
 
-        if typeName == UTType.vc64.identifier {
+        if typeName == UTType.tiara.identifier {
 
             if let snapshot = MediaFileProxy.make(withC64: emu) {
 

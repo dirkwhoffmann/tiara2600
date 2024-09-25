@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -18,7 +18,7 @@
 #include "MediaFile.h"
 #include <filesystem>
 
-namespace vc64 {
+namespace tiara {
 
 using peddle::Guard;
 using peddle::DasmStyle;
@@ -295,8 +295,8 @@ struct VideoPortAPI : API {
 
     /** @brief  Returns a pointer to the most recent stable texture
      *
-     * The texture dimensions are given by constants vc64::Texture::width
-     * and vc64::Texture::height texels. Each texel is represented by a
+     * The texture dimensions are given by constants tiara::Texture::width
+     * and tiara::Texture::height texels. Each texel is represented by a
      * 32 bit color value.
      */
     u32 *getTexture() const;
@@ -1312,14 +1312,14 @@ public:
 
     /** @brief   Suspends the emulator thread
      *
-     *  See the \ref vc64::Suspendable "Suspendable" class for a detailes
+     *  See the \ref tiara::Suspendable "Suspendable" class for a detailes
      *  description of the suspend-resume machanism.
      */
     void suspend();
 
     /** @brief   Suspends the emulator thread
      *
-     *  See the \ref vc64::Suspendable "Suspendable" class for a detailes
+     *  See the \ref tiara::Suspendable "Suspendable" class for a detailes
      *  description of the suspend-resume machanism.
      */
     void resume();

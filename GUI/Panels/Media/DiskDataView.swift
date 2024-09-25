@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -13,8 +13,8 @@ class DiskDataView: NSScrollView {
    
     // Shortcuts
     var analyzer: DiskAnalyzerProxy? { return inspector.analyzer }
-    var halftrack: vc64.Halftrack? { return inspector.halftrack }
-    var sector: vc64.Sector? { return inspector.sector }
+    var halftrack: tiara.Halftrack? { return inspector.halftrack }
+    var sector: tiara.Sector? { return inspector.sector }
     var textView: NSTextView? { return documentView as? NSTextView }
     var storage: NSTextStorage? { return textView?.textStorage }
 

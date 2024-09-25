@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // This FILE is dual-licensed. You are free to choose between:
@@ -15,7 +15,7 @@
 #include "SubComponent.h"
 #include "CartridgeTypes.h"
 
-namespace vc64 {
+namespace tiara {
 
 /* This class implements a Flash Rom module of type Am29F040B. Flash Roms
  * of this type are used, e.g., by the EasyFlash cartridge. The implementation

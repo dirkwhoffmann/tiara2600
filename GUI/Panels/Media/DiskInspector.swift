@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file is part of VirtualC64
+// This file is part of Tiara2600
 //
 // Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de
 // Licensed under the GNU General Public License v3
@@ -46,16 +46,16 @@ class DiskInspector: DialogController {
     var showGcr: Bool { return formatPopup.selectedTag() == 0 }
     var showBytes: Bool { return formatPopup.selectedTag() == 1 }
 
-    var halftrack: vc64.Halftrack? {
+    var halftrack: tiara.Halftrack? {
         didSet {
-            if let ht = halftrack, !vc64.isHalftrackNumber(ht) {
+            if let ht = halftrack, !tiara.isHalftrackNumber(ht) {
                 halftrack = nil
             }
         }
     }
-    var sector: vc64.Sector? {
+    var sector: tiara.Sector? {
         didSet {
-            if let s = sector, !vc64.isSectorNumber(s) {
+            if let s = sector, !tiara.isSectorNumber(s) {
                 sector = nil
             }
         }
