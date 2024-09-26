@@ -202,7 +202,6 @@ class VICII final : public SubComponent, public Inspectable<VICIIInfo, VICIIStat
         OPT_VICII_REVISION,
         OPT_VICII_POWER_SAVE,
         OPT_VICII_GRAY_DOT_BUG,
-        OPT_GLUE_LOGIC,
         OPT_VICII_HIDE_SPRITES,
         OPT_VICII_SS_COLLISIONS,
         OPT_VICII_SB_COLLISIONS

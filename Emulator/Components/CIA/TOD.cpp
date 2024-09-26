@@ -14,7 +14,6 @@
 #include "TOD.h"
 #include "C64.h"
 #include "IOUtils.h"
-#include "PowerPort.h"
 
 namespace tiara {
 
@@ -87,14 +86,14 @@ TOD::increment()
     }
 
     checkIrq();
-    nextTodTrigger += powerSupply.todTickDelay(cia.CRA);
+    nextTodTrigger += PAL::CLOCK_FREQUENCY / 10;
 }
 
 void
 TOD::cont()
 {
     stopped = false;
-    nextTodTrigger = cpu.clock + powerSupply.todTickDelay(cia.CRA);
+    nextTodTrigger = cpu.clock + PAL::CLOCK_FREQUENCY / 10;
 }
 
 void

@@ -63,10 +63,6 @@ class ConfigurationController: DialogController {
     @IBOutlet weak var hwCiaModelPopup: NSPopUpButton!
     @IBOutlet weak var hwCiaTimerBBug: NSButton!
 
-    // Board logic and power supply
-    @IBOutlet weak var hwGlueLogicPopup: NSPopUpButton!
-    @IBOutlet weak var hwPowerGridPopup: NSPopUpButton!
-
     // Startup
     @IBOutlet weak var hwRamPatternPopup: NSPopUpButton!
 

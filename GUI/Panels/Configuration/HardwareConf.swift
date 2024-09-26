@@ -49,10 +49,6 @@ extension ConfigurationController {
         hwCiaModelPopup.selectItem(withTag: config.ciaRevision)
         hwCiaTimerBBug.state = config.ciaTimerBBug ? .on : .off
 
-        // Logic board and power supply
-        hwGlueLogicPopup.selectItem(withTag: config.glueLogic)
-        hwPowerGridPopup.selectItem(withTag: config.powerGrid)
-
         // Startup
         hwRamPatternPopup.selectItem(withTag: config.ramPattern)
 
@@ -80,16 +76,6 @@ extension ConfigurationController {
         config.ciaTimerBBug = sender.state == .on
     }
                 
-    @IBAction func hwGlueLogicAction(_ sender: NSPopUpButton!) {
-        
-        config.glueLogic = sender.selectedTag()
-    }
-
-    @IBAction func hwPowerGridAction(_ sender: NSPopUpButton!) {
-        
-        config.powerGrid = sender.selectedTag()
-    }
-
     @IBAction func hwRamPatternAction(_ sender: NSPopUpButton!) {
         
         config.ramPattern = sender.selectedTag()
@@ -115,48 +101,36 @@ extension ConfigurationController {
                 config.vicGrayDotBug = false
                 config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = true
-                config.glueLogic = tiara.GlueLogic.DISCRETE.rawValue
-                config.powerGrid = tiara.PowerGrid.STABLE_50HZ.rawValue
 
             case 1: // C64_II_PAL
                 config.vicRevision = tiara.VICIIRevision.PAL_8565.rawValue
                 config.vicGrayDotBug = true
                 config.ciaRevision = tiara.CIARevision.MOS_8521.rawValue
                 config.ciaTimerBBug = false
-                config.glueLogic = tiara.GlueLogic.IC.rawValue
-                config.powerGrid = tiara.PowerGrid.STABLE_50HZ.rawValue
 
             case 2: // C64_OLD_PAL
                 config.vicRevision = tiara.VICIIRevision.PAL_6569_R1.rawValue
                 config.vicGrayDotBug = false
                 config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = true
-                config.glueLogic = tiara.GlueLogic.DISCRETE.rawValue
-                config.powerGrid = tiara.PowerGrid.STABLE_50HZ.rawValue
 
             case 3: // C64_NTSC
                 config.vicRevision = tiara.VICIIRevision.NTSC_6567.rawValue
                 config.vicGrayDotBug = false
                 config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = false
-                config.glueLogic = tiara.GlueLogic.DISCRETE.rawValue
-                config.powerGrid = tiara.PowerGrid.STABLE_60HZ.rawValue
 
             case 4: // C64_II_NTSC
                 config.vicRevision = tiara.VICIIRevision.NTSC_8562.rawValue
                 config.vicGrayDotBug = true
                 config.ciaRevision = tiara.CIARevision.MOS_8521.rawValue
                 config.ciaTimerBBug = true
-                config.glueLogic = tiara.GlueLogic.IC.rawValue
-                config.powerGrid = tiara.PowerGrid.STABLE_60HZ.rawValue
 
             case 5: // C64_OLD_NTSC
                 config.vicRevision = tiara.VICIIRevision.NTSC_6567_R56A.rawValue
                 config.vicGrayDotBug = false
                 config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = false
-                config.glueLogic = tiara.GlueLogic.DISCRETE.rawValue
-                config.powerGrid = tiara.PowerGrid.STABLE_60HZ.rawValue
 
             default:
                 fatalError()

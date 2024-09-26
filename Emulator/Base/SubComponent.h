@@ -28,12 +28,10 @@ protected:
     class ControlPort &port2;
     class CPU &cpu;
     class ExpansionPort &expansionPort;
-    class UserPort &userPort;
     class Host &host;
     class Memory &mem;
     class Monitor &monitor;
     class MsgQueue &msgQueue;
-    class PowerPort &powerSupply;
     class Recorder &recorder;
     class RegressionTester &regressionTester;
     class RemoteManager &remoteManager;

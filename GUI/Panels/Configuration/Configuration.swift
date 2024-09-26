@@ -60,16 +60,6 @@ class Configuration {
         get { return emu?.get(.CIA_TIMER_B_BUG) != 0}
         set { emu?.set(.CIA_TIMER_B_BUG, enable: newValue) }
     }
-    
-    var glueLogic: Int {
-        get { return emu?.get(.GLUE_LOGIC) ?? 0 }
-        set { emu?.set(.GLUE_LOGIC, value: newValue) }
-    }
-
-    var powerGrid: Int {
-        get { return emu?.get(.POWER_GRID) ?? 0 }
-        set { emu?.set(.POWER_GRID, value: newValue) }
-    }
 
     var ramPattern: Int {
         get { return emu?.get(.MEM_INIT_PATTERN) ?? 0 }

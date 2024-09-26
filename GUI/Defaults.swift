@@ -603,9 +603,6 @@ extension DefaultsProxy {
         remove(.CIA_REVISION)
         remove(.CIA_TIMER_B_BUG)
 
-        remove(.GLUE_LOGIC)
-        remove(.POWER_GRID)
-
         remove(.MEM_INIT_PATTERN)
     }
 }
@@ -627,9 +624,6 @@ extension Configuration {
 
             defaults.set(.CIA_REVISION, ciaRevision)
             defaults.set(.CIA_TIMER_B_BUG, ciaTimerBBug)
-
-            defaults.set(.GLUE_LOGIC, glueLogic)
-            defaults.set(.POWER_GRID, powerGrid)
 
             defaults.set(.MEM_INIT_PATTERN, ramPattern)
 
@@ -654,9 +648,6 @@ extension Configuration {
 
             ciaRevision = defaults.get(.CIA_REVISION)
             ciaTimerBBug = defaults.get(.CIA_TIMER_B_BUG) != 0
-
-            glueLogic = defaults.get(.GLUE_LOGIC)
-            powerGrid = defaults.get(.POWER_GRID)
 
             ramPattern = defaults.get(.MEM_INIT_PATTERN)
 

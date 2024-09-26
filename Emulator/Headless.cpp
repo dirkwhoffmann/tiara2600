@@ -213,7 +213,6 @@ Headless::reportSize()
     msg("               CPU : %zu bytes\n", sizeof(CPU));
     msg("               CIA : %zu bytes\n", sizeof(CIA));
     msg("             VICII : %zu bytes\n", sizeof(VICII));
-    msg("         PowerPort : %zu bytes\n", sizeof(PowerPort));
     msg("       ControlPort : %zu bytes\n", sizeof(ControlPort));
     msg("     ExpansionPort : %zu bytes\n", sizeof(ExpansionPort));
     msg("        RetroShell : %zu bytes\n", sizeof(RetroShell));

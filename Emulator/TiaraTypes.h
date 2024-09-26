@@ -32,13 +32,11 @@
 #include "MsgQueueTypes.h"
 #include "OptionTypes.h"
 #include "PaddleTypes.h"
-#include "PowerPortTypes.h"
 #include "RecorderTypes.h"
 #include "RemoteManagerTypes.h"
 #include "RemoteServerTypes.h"
 #include "RetroShellTypes.h"
 #include "ThreadTypes.h"
-#include "UserPortTypes.h"
 #include "VICIITypes.h"
 
 #include "Constants.h"

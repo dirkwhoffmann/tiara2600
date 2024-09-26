@@ -99,8 +99,6 @@ enum_long(SLOT)
 
     // Tertiary slots
     SLOT_EXP,                       // Expansion port
-    SLOT_TXD,                       // Serial data out (RS232)
-    SLOT_RXD,                       // Serial data in (RS232)
     SLOT_SNP,                       // Snapshots
     SLOT_RSH,                       // Retro Shell
     SLOT_KEY,                       // Auto-typing
@@ -182,14 +180,6 @@ enum_i8(EventID)
     EXP_REU_AUTOLOAD,
     EXP_REU_FINALIZE,
     EXP_EVENT_COUNT,
-
-    // Serial data out (RS232)
-    TXD_BIT             = 1,
-    TXD_EVENT_COUNT,
-
-    // Serial data in (RS232)
-    RXD_BIT             = 1,
-    RXD_EVENT_COUT,
 
     // Disk change
     DCH_INSERT          = 1,

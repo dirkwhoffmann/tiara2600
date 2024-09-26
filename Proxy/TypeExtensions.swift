@@ -20,8 +20,6 @@ extension tiara.EventSlot: CustomStringConvertible {
         case ._TER:     return "Next Tertiary Event"
 
         case ._EXP:     return "Expansion Port"
-        case ._TXD:     return "RS232 Out"
-        case ._RXD:     return "RS232 In"
         case ._SNP:     return "Snapshots"
         case ._RSH:     return "Retro Shell"
         case ._KEY:     return "Auto Typing"

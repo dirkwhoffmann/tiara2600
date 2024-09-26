@@ -35,10 +35,6 @@ Defaults::Defaults()
     setFallback(OPT_C64_SNAP_DELAY,             10);
     setFallback(OPT_C64_SNAP_COMPRESS,          true);
 
-    setFallback(OPT_POWER_GRID,                 GRID_STABLE_50HZ);
-
-    setFallback(OPT_GLUE_LOGIC,                 GLUE_LOGIC_DISCRETE);
-
     setFallback(OPT_CIA_REVISION,               MOS_6526);
     setFallback(OPT_CIA_TIMER_B_BUG,            true);
     setFallback(OPT_CIA_IDLE_SLEEP,             true);
@@ -69,8 +65,6 @@ Defaults::Defaults()
     setFallback(OPT_DMA_DEBUG_COLOR5,           GpuColor(0x00, 0x80, 0xFF).abgr);
 
     setFallback(OPT_EXP_REU_SPEED,              1);
-
-    setFallback(OPT_USR_DEVICE,                 USR_RS232);
 
     setFallback(OPT_VID_WHITE_NOISE,            true);
 
@@ -124,12 +118,7 @@ Defaults::Defaults()
     setFallback(OPT_AUTOFIRE_BULLETS,           3);
     setFallback(OPT_AUTOFIRE_DELAY,             5);
 
-    setFallback(OPT_RS232_DEVICE,               COMDEV_NONE);
-    setFallback(OPT_RS232_BAUD,                 600);
-
     setFallback(OPT_PADDLE_ORIENTATION,         PADDLE_HORIZONTAL);
-
-    setFallback(OPT_RS232_BAUD,                 600);
 
     setFallback(OPT_REC_FRAME_RATE,             50);
     setFallback(OPT_REC_BIT_RATE,               512);

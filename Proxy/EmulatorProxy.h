@@ -33,9 +33,7 @@ using namespace tiara;
 @class RecorderProxy;
 @class RemoteManagerProxy;
 @class RetroShellProxy;
-@class RS232Proxy;
 @class SIDProxy;
-@class UserPortProxy;
 @class VICIIProxy;
 @class VideoPortProxy;
 
@@ -102,7 +100,6 @@ using namespace tiara;
     CPUProxy *cpu;
     DmaDebuggerProxy *dmaDebugger;
     ExpansionPortProxy *expansionport;
-    UserPortProxy *userPort;
     MemoryProxy *mem;
     MouseProxy *mouse;
     RecorderProxy *recorder;
@@ -123,7 +120,6 @@ using namespace tiara;
 @property (readonly, strong) CPUProxy *cpu;
 @property (readonly, strong) DmaDebuggerProxy *dmaDebugger;
 @property (readonly, strong) ExpansionPortProxy *expansionport;
-@property (readonly, strong) UserPortProxy *userPort;
 @property (readonly, strong) MemoryProxy *mem;
 @property (readonly, strong) RecorderProxy *recorder;
 @property (readonly, strong) RemoteManagerProxy *remoteManager;
@@ -427,35 +423,6 @@ struct GuardInfo {
 - (BOOL)cartridgeAttached;
 - (void)attachCartridge:(MediaFileProxy *)c reset:(BOOL)reset exception:(ExceptionWrapper *)ex;
 - (void)detachCartridge;
-
-@end
-
-
-//
-// RS232
-//
-
-@interface RS232Proxy : SubComponentProxy { }
-
-// @property (readonly) RS232Info info;
-// @property (readonly) RS232Info cachedInfo;
-
-- (NSInteger)readIncomingPrintableByte;
-- (NSInteger)readOutgoingPrintableByte;
-
-@end
-
-
-//
-// UserPort
-//
-
-@interface UserPortProxy : SubComponentProxy {
-
-    RS232Proxy *rs232;
-}
-
-@property (readonly) RS232Proxy *rs232;
 
 @end
 

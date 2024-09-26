@@ -367,47 +367,6 @@ struct PaddleAPI : API {
     const PaddleInfo &getCachedInfo() const;
 };
 
-/** RS232 Public API
- */
-struct RS232API : API {
-
-    class RS232 *rs232 = nullptr;
-
-    /** @brief  Returns the component's current state.
-     */
-    // const RS232Info &getInfo() const;
-    // const RS232Info &getCachedInfo() const;
-
-    /** @brief  Feeds textual data into the RS232 adapter
-     *  This function emulates the transmission of incoming data from an
-     *  external device.
-     */
-    void operator<<(char c);
-    void operator<<(const string &s);
-
-    /** @brief  Read a printable byte from the incoming logbuffer.
-     *  Calling this function empties the logbuffer. When the logbuffer is
-     *  empty and a new data packet is received, a MSG_RS232_IN message is
-     *  sent to the GUI.
-     */
-    std::u16string readIncoming();
-
-    /** @brief  Read the logbuffer that records outgoing data.
-     *  Calling this function empties the logbuffer. When the logbuffer is
-     *  empty and a new data packet is sent, a MSG_RS232_OUT message is
-     *  sent to the GUI.
-     */
-    std::u16string readOutgoing();
-
-    /** @brief  Read a printable byte from the incoming logbuffer.
-     */
-    int readIncomingPrintableByte();
-
-    /** @brief  Read a printable byte from the outgoing logbuffer.
-     */
-    int readOutgoingPrintableByte();
-};
-
 
 /** Control Port API
  */
@@ -426,18 +385,6 @@ struct ControlPortAPI : API {
     /** @brief  Custom API of the paddle connected to this port
      */
     PaddleAPI paddle;
-};
-
-
-/** User Port API
- */
-struct UserPortAPI : API {
-
-    class UserPort *userPort = nullptr;
-
-    /** @brief  Custom API of the RS232 adapter
-     */
-    RS232API rs232;
 };
 
 
@@ -1323,7 +1270,6 @@ public:
     VideoPortAPI videoPort;
     DmaDebuggerAPI dmaDebugger;
     ControlPortAPI controlPort1, controlPort2;
-    UserPortAPI userPort;
     RecorderAPI recorder;
     ExpansionPortAPI expansionPort;
     RemoteManagerAPI remoteManager;

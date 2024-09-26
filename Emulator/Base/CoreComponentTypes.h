@@ -40,9 +40,6 @@ enum_long(COMP_TYPE)
     AudioPortClass,
     ControlPortClass,
     ExpansionPortClass,
-    PowerPortClass,
-    RS232Class,
-    UserPortClass,
     VideoPortClass,
 
     // Peripherals

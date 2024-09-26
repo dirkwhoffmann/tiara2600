@@ -650,55 +650,6 @@ using namespace tiara;
 
 
 //
-// User port
-//
-
-@implementation UserPortProxy
-
-@synthesize rs232;
-
-- (instancetype) initWith:(void *)ref emu:(Tiara *)emuref
-{
-    if (self = [super initWith:ref emu:emuref]) {
-
-        UserPortAPI *port = (UserPortAPI *)obj;
-        rs232 = [[RS232Proxy alloc] initWith:&port->rs232];
-    }
-    return self;
-}
-
-- (RS232API *)port
-{
-    return (RS232API *)obj;
-}
-
-@end
-
-
-//
-// RS232 proxy
-//
-
-@implementation RS232Proxy
-
-- (RS232API *)rs232
-{
-    return (RS232API *)obj;
-}
-
-- (NSInteger)readIncomingPrintableByte
-{
-    return [self rs232]->readIncomingPrintableByte();
-}
-
-- (NSInteger)readOutgoingPrintableByte
-{
-    return [self rs232]->readOutgoingPrintableByte();
-}
-
-@end
-
-//
 // Mouse proxy
 //
 
@@ -1124,7 +1075,6 @@ using namespace tiara;
 @synthesize cpu;
 @synthesize dmaDebugger;
 @synthesize expansionport;
-@synthesize userPort;
 @synthesize mem;
 @synthesize port1;
 @synthesize port2;
@@ -1151,7 +1101,6 @@ using namespace tiara;
     cpu = [[CPUProxy alloc] initWith:&emu->cpu emu:emu];
     dmaDebugger = [[DmaDebuggerProxy alloc] initWith:&emu->dmaDebugger];
     expansionport = [[ExpansionPortProxy alloc] initWith:&emu->expansionPort emu:emu];
-    userPort = [[UserPortProxy alloc] initWith:&emu->userPort emu:emu];
     mem = [[MemoryProxy alloc] initWith:&emu->mem emu:emu];
     port1 = [[ControlPortProxy alloc] initWith:&emu->controlPort1 emu:emu];
     port2 = [[ControlPortProxy alloc] initWith:&emu->controlPort2 emu:emu];

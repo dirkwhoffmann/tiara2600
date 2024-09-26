@@ -72,9 +72,6 @@ enum_long(OPT)
     // Expansion port
     OPT_EXP_REU_SPEED,          ///< Transfer speed of the RAM Extension Unit
 
-    // User port
-    OPT_USR_DEVICE,             ///< Device connected to the user port
-
     // Video port
     OPT_VID_WHITE_NOISE,        ///< Generate white-noise when switched off
 
@@ -102,12 +99,6 @@ enum_long(OPT)
     OPT_MON_DISALIGNMENT,       ///< Cathode ray disalignment enable
     OPT_MON_DISALIGNMENT_H,     ///< Horizontal cathode ray disalignment
     OPT_MON_DISALIGNMENT_V,     ///< Vertical cathode ray disalignment
-
-    // Power supply
-    OPT_POWER_GRID,             ///< Power-grid stability (affects TOD)
-
-    // Logic board
-    OPT_GLUE_LOGIC,             ///< VICII glue-logic type
 
     // CIA
     OPT_CIA_REVISION,           ///< Chip revision
@@ -147,10 +138,6 @@ enum_long(OPT)
 
     // Paddles
     OPT_PADDLE_ORIENTATION,     ///< Paddle value mapping scheme
-
-    // RS232 adapter
-    OPT_RS232_DEVICE,           ///< Device connected to the RS232 adapter
-    OPT_RS232_BAUD,             ///< Transmission rate
 
     // Screen recorder
     OPT_REC_FRAME_RATE,         ///< Frame rate of the recorded video
@@ -225,8 +212,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
 
             case OPT_EXP_REU_SPEED:         return "EXP.REU_SPEED";
 
-            case OPT_USR_DEVICE:            return "USR.DEVICE";
-
             case OPT_VID_WHITE_NOISE:       return "VID.WHITE_NOISE";
 
             case OPT_MON_PALETTE:           return "MON.PALETTE";
@@ -252,9 +237,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_MON_DISALIGNMENT:      return "MON.DISALIGNMENT";
             case OPT_MON_DISALIGNMENT_H:    return "MON.DISALIGNMENT_H";
             case OPT_MON_DISALIGNMENT_V:    return "MON.DISALIGNMENT_V";
-
-            case OPT_POWER_GRID:            return "POWER_GRID";
-            case OPT_GLUE_LOGIC:            return "GLUE_LOGIC";
 
             case OPT_CIA_REVISION:          return "CIA.REVISION";
             case OPT_CIA_TIMER_B_BUG:       return "CIA.TIMER_B_BUG";
@@ -287,9 +269,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_AUTOFIRE_DELAY:        return "AUTOFIRE.DELAY";
 
             case OPT_PADDLE_ORIENTATION:    return "PADDLE.ORIENTATION";
-
-            case OPT_RS232_DEVICE:          return "RS232.DEVICE";
-            case OPT_RS232_BAUD:            return "RS232.BAUD";
 
             case OPT_REC_FRAME_RATE:        return "REC.FRAME_RATE";
             case OPT_REC_BIT_RATE:          return "REC.BIT_RATE";
@@ -356,8 +335,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
 
             case OPT_EXP_REU_SPEED:         return "REU transfer speed";
 
-            case OPT_USR_DEVICE:            return "User port device";
-
             case OPT_VID_WHITE_NOISE:       return "White noise";
 
             case OPT_MON_PALETTE:           return "Color palette";
@@ -383,9 +360,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_MON_DISALIGNMENT:      return "Cathode rays disalignment";
             case OPT_MON_DISALIGNMENT_H:    return "Horizontal cathode ray shift";
             case OPT_MON_DISALIGNMENT_V:    return "Vertical cathode ray shift";
-
-            case OPT_POWER_GRID:            return "Power grid stability";
-            case OPT_GLUE_LOGIC:            return "Glue-logic type";
 
             case OPT_CIA_REVISION:          return "Chip revision";
             case OPT_CIA_TIMER_B_BUG:       return "Emulate Timer-B bug";
@@ -417,9 +391,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_AUTOFIRE_DELAY:        return "Autofire delay in frames";
 
             case OPT_PADDLE_ORIENTATION:    return "Paddle value mapping scheme";
-
-            case OPT_RS232_DEVICE:          return "Connected RS232 device";
-            case OPT_RS232_BAUD:            return "Transmission rate (baud)";
 
             case OPT_REC_FRAME_RATE:        return "Frame rate of the recorded video";
             case OPT_REC_BIT_RATE:          return "Bit rate of the recorded video";

@@ -292,24 +292,10 @@ CommandConsole::initCommands(Command &root)
 
 
     //
-    // Ports (Power port)
-    //
-
-    cmd = registerComponent(powerSupply);
-
-
-    //
     // Ports (Audio port)
     //
 
     cmd = registerComponent(audioPort);
-
-
-    //
-    // Ports (User port)
-    //
-
-    cmd = registerComponent(userPort);
 
 
     //
@@ -455,19 +441,6 @@ CommandConsole::initCommands(Command &root)
 
     cmd = registerComponent(port1.paddle);
     cmd = registerComponent(port2.paddle);
-
-    //
-    // Peripherals (RS232)
-    //
-
-    cmd = registerComponent(userPort.rs232);
-
-    root.add({cmd, "send"}, {Arg::string},
-             "Feeds text into the RS232 adapter",
-             [this](Arguments& argv, long value) {
-
-        userPort.rs232 << argv[0];
-    });
 
 
     //

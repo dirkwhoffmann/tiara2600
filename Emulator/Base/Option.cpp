@@ -50,7 +50,6 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_VICII_HIDE_SPRITES:        return boolParser();
         case OPT_VICII_SS_COLLISIONS:       return boolParser();
         case OPT_VICII_SB_COLLISIONS:       return boolParser();
-        case OPT_GLUE_LOGIC:                return enumParser.template operator()<GlueLogicEnum>();
         case OPT_VICII_CUT_LAYERS:          return numParser();
         case OPT_VICII_CUT_OPACITY:         return numParser("%");
         case OPT_DMA_DEBUG_ENABLE:          return boolParser();
@@ -70,8 +69,6 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_DMA_DEBUG_COLOR5:          return numParser();
 
         case OPT_EXP_REU_SPEED:             return numParser();
-
-        case OPT_USR_DEVICE:                return enumParser.template operator()<UserPortDeviceEnum>();
 
         case OPT_VID_WHITE_NOISE:           return boolParser();
             
@@ -98,8 +95,6 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_MON_DISALIGNMENT:          return boolParser();
         case OPT_MON_DISALIGNMENT_H:        return numParser();
         case OPT_MON_DISALIGNMENT_V:        return numParser();
-
-        case OPT_POWER_GRID:                return enumParser.template operator()<PowerGridEnum>();
 
         case OPT_CIA_REVISION:              return enumParser.template operator()<CIARevisionEnum>();
         case OPT_CIA_TIMER_B_BUG:           return boolParser();
@@ -132,9 +127,6 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_AUTOFIRE_DELAY:            return numParser(" frames");
 
         case OPT_PADDLE_ORIENTATION:        return enumParser.template operator()<PaddleOrientationEnum>();
-
-        case OPT_RS232_DEVICE:              return enumParser.template operator()<CommunicationDeviceEnum>();
-        case OPT_RS232_BAUD:                return numParser(" Bd");
 
         case OPT_REC_FRAME_RATE:            return numParser(" fps");
         case OPT_REC_BIT_RATE:              return numParser(" kBit");

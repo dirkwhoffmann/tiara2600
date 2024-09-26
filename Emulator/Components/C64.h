@@ -28,9 +28,7 @@
 #include "AudioPort.h"
 #include "VideoPort.h"
 #include "ControlPort.h"
-#include "PowerPort.h"
 #include "ExpansionPort.h"
-#include "UserPort.h"
 
 // Peripherals
 #include "Mouse.h"
@@ -130,11 +128,9 @@ public:
     // Ports
     AudioPort audioPort = AudioPort(*this);
     VideoPort videoPort = VideoPort(*this);
-    PowerPort supply = PowerPort(*this);
     ControlPort port1 = ControlPort(*this, PORT_1);
     ControlPort port2 = ControlPort(*this, PORT_2);
     ExpansionPort expansionport = ExpansionPort(*this);
-    UserPort userPort = UserPort(*this);
 
     // Peripherals
     Monitor monitor = Monitor(*this);
@@ -286,11 +282,9 @@ public:
         CLONE(vic)
         CLONE(audioPort)
         CLONE(videoPort)
-        CLONE(supply)
         CLONE(port1)
         CLONE(port2)
         CLONE(expansionport)
-        CLONE(userPort)
         CLONE(monitor)
         CLONE(retroShell)
         CLONE(regressionTester)

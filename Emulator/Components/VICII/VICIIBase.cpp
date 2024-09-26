@@ -209,7 +209,6 @@ VICII::getOption(Option option) const
         case OPT_VICII_REVISION:        return config.awaiting;
         case OPT_VICII_POWER_SAVE:      return config.powerSave;
         case OPT_VICII_GRAY_DOT_BUG:    return config.grayDotBug;
-        case OPT_GLUE_LOGIC:            return config.glueLogic;
         case OPT_VICII_HIDE_SPRITES:    return config.hideSprites;
         case OPT_VICII_SS_COLLISIONS:   return config.checkSSCollisions;
         case OPT_VICII_SB_COLLISIONS:   return config.checkSBCollisions;
@@ -237,13 +236,6 @@ VICII::checkOption(Option opt, i64 value)
         case OPT_VICII_SS_COLLISIONS:
         case OPT_VICII_SB_COLLISIONS:
 
-            return;
-
-        case OPT_GLUE_LOGIC:
-
-            if (!GlueLogicEnum::isValid(value)) {
-                throw Error(VC64ERROR_OPT_INV_ARG, GlueLogicEnum::keyList());
-            }
             return;
 
         default:
@@ -290,11 +282,6 @@ VICII::setOption(Option opt, i64 value)
         case OPT_VICII_SB_COLLISIONS:
 
             config.checkSBCollisions = bool(value);
-            return;
-
-        case OPT_GLUE_LOGIC:
-
-            config.glueLogic = GlueLogic(value);
             return;
 
         default:

@@ -7,5 +7,4 @@ target_sources(tiaraCore PRIVATE
 add_subdirectory(Joystick)
 add_subdirectory(Monitor)
 add_subdirectory(Mouse)
-add_subdirectory(Network)
 add_subdirectory(Paddle)

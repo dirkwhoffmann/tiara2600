@@ -96,26 +96,6 @@ C64::eventName(EventSlot slot, EventID id)
             }
             break;
 
-        case SLOT_TXD:
-
-            switch (id) {
-
-                case EVENT_NONE:    return "none";
-                case TXD_BIT:       return "TXD_BIT";
-                default:            return "*** INVALID ***";
-            }
-            break;
-
-        case SLOT_RXD:
-
-            switch (id) {
-
-                case EVENT_NONE:    return "none";
-                case RXD_BIT:       return "RXD_BIT";
-                default:            return "*** INVALID ***";
-            }
-            break;
-
         case SLOT_SNP:
 
             switch (id) {
@@ -451,8 +431,6 @@ C64::set(C64Model model)
                 set(OPT_VICII_GRAY_DOT_BUG, false);
                 set(OPT_CIA_REVISION, MOS_6526);
                 set(OPT_CIA_TIMER_B_BUG, true);
-                set(OPT_POWER_GRID, GRID_STABLE_50HZ);
-                set(OPT_GLUE_LOGIC, GLUE_LOGIC_DISCRETE);
                 set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
                 break;
 
@@ -462,8 +440,6 @@ C64::set(C64Model model)
                 set(OPT_VICII_GRAY_DOT_BUG, true);
                 set(OPT_CIA_REVISION, MOS_8521);
                 set(OPT_CIA_TIMER_B_BUG, false);
-                set(OPT_POWER_GRID, GRID_STABLE_50HZ);
-                set(OPT_GLUE_LOGIC, GLUE_LOGIC_IC);
                 set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
                 break;
 
@@ -473,8 +449,6 @@ C64::set(C64Model model)
                 set(OPT_VICII_GRAY_DOT_BUG, false);
                 set(OPT_CIA_REVISION, MOS_6526);
                 set(OPT_CIA_TIMER_B_BUG, true);
-                set(OPT_POWER_GRID, GRID_STABLE_50HZ);
-                set(OPT_GLUE_LOGIC, GLUE_LOGIC_DISCRETE);
                 set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
                 break;
 
@@ -484,8 +458,6 @@ C64::set(C64Model model)
                 set(OPT_VICII_GRAY_DOT_BUG, false);
                 set(OPT_CIA_REVISION, MOS_6526);
                 set(OPT_CIA_TIMER_B_BUG, false);
-                set(OPT_POWER_GRID, GRID_STABLE_60HZ);
-                set(OPT_GLUE_LOGIC, GLUE_LOGIC_DISCRETE);
                 set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
                 break;
 
@@ -495,8 +467,6 @@ C64::set(C64Model model)
                 set(OPT_VICII_GRAY_DOT_BUG, true);
                 set(OPT_CIA_REVISION, MOS_8521);
                 set(OPT_CIA_TIMER_B_BUG, true);
-                set(OPT_POWER_GRID, GRID_STABLE_60HZ);
-                set(OPT_GLUE_LOGIC, GLUE_LOGIC_IC);
                 set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
                 break;
 
@@ -506,8 +476,6 @@ C64::set(C64Model model)
                 set(OPT_VICII_GRAY_DOT_BUG, false);
                 set(OPT_CIA_REVISION, MOS_6526);
                 set(OPT_CIA_TIMER_B_BUG, false);
-                set(OPT_POWER_GRID, GRID_STABLE_60HZ);
-                set(OPT_GLUE_LOGIC, GLUE_LOGIC_DISCRETE);
                 set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
                 break;
 
@@ -1066,12 +1034,6 @@ C64::processEvents(Cycle cycle)
             //
             if (isDue<SLOT_EXP>(cycle)) {
                 expansionport.processEvent(eventid[SLOT_EXP]);
-            }
-            if (isDue<SLOT_TXD>(cycle)) {
-                userPort.rs232.processTxdEvent();
-            }
-            if (isDue<SLOT_RXD>(cycle)) {
-                userPort.rs232.processRxdEvent();
             }
             if (isDue<SLOT_SNP>(cycle)) {
                 processSNPEvent(eventid[SLOT_SNP]);

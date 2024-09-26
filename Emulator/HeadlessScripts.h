@@ -175,12 +175,6 @@ static const char *smokeTestScript[] = {
     "audio set PAN2 50",
     "audio set PAN3 50",
 
-    "user",
-    "user set DEVICE NONE",
-    "user set DEVICE PARCABLE",
-    "user set DEVICE PARCABLE_DOLPHIN",
-    "user set DEVICE RS232",
-
     "video",
     "video set WHITE_NOISE true",
     "video set WHITE_NOISE false",
@@ -305,13 +299,6 @@ static const char *smokeTestScript[] = {
     "paddle2 set ORIENTATION HORIZONTAL_FLIPPED",
     "paddle2 set ORIENTATION VERTICAL",
     "paddle2 set ORIENTATION VERTICAL_FLIPPED",
-
-    "rs232",
-    "rs232 set DEVICE NONE",
-    "rs232 set DEVICE COMMANDER",
-    "rs232 set DEVICE LOOPBACK",
-    "rs232 set DEVICE RETROSHELL",
-    "rs232 set BAUD 300",
 
     "host",
     "host set REFRESH_RATE 60",

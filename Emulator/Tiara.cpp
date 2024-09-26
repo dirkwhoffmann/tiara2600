@@ -100,11 +100,6 @@ Tiara::Tiara() {
     controlPort2.paddle.emu = emu;
     controlPort2.paddle.paddle = &emu->main.port2.paddle;
 
-    userPort.emu = emu;
-    userPort.userPort = &emu->main.userPort;
-    userPort.rs232.emu = emu;
-    userPort.rs232.rs232 = &emu->main.userPort.rs232;
-
     expansionPort.emu = emu;
     expansionPort.expansionPort = &emu->main.expansionport;
 
@@ -756,46 +751,6 @@ const PaddleInfo &
 PaddleAPI::getCachedInfo() const
 {
     return paddle->getCachedInfo();
-}
-
-//
-// RS232
-//
-
-void
-RS232API::operator<<(char c)
-{
-    *rs232 << c;
-}
-
-void 
-RS232API::operator<<(const string &s)
-{
-    *rs232 << s;
-}
-
-std::u16string
-RS232API::readIncoming()
-{
-    return rs232->readIncoming();
-}
-
-std::u16string 
-RS232API::readOutgoing()
-{
-    return rs232->readOutgoing();
-}
-
-int
-RS232API::readIncomingPrintableByte()
-{
-    return rs232->readIncomingPrintableByte();
-}
-
-int
-RS232API::readOutgoingPrintableByte()
-{
-    return rs232->readOutgoingPrintableByte();
 }
 
 
