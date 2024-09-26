@@ -28,7 +28,7 @@ using namespace tiara;
 @class JoystickProxy;
 @class MediaFileProxy;
 @class MemoryProxy;
-@class MouseProxy;
+@class PaddleProxy;
 @class MyController;
 @class RecorderProxy;
 @class RemoteManagerProxy;
@@ -101,7 +101,7 @@ using namespace tiara;
     DmaDebuggerProxy *dmaDebugger;
     ExpansionPortProxy *expansionport;
     MemoryProxy *mem;
-    MouseProxy *mouse;
+    PaddleProxy *paddle;
     RecorderProxy *recorder;
     RetroShellProxy *retroShell;
     SIDProxy *sid;
@@ -400,11 +400,11 @@ struct GuardInfo {
 @interface ControlPortProxy : SubComponentProxy {
 
     JoystickProxy *joystick;
-    MouseProxy *mouse;
+    PaddleProxy *paddle;
 }
 
 @property (readonly) JoystickProxy *joystick;
-@property (readonly) MouseProxy *mouse;
+@property (readonly) PaddleProxy *paddle;
 
 @end
 
@@ -428,10 +428,10 @@ struct GuardInfo {
 
 
 //
-// Mouse
+// Paddle
 //
 
-@interface MouseProxy : SubComponentProxy { }
+@interface PaddleProxy : SubComponentProxy { }
 
 - (BOOL)detectShakeAbs:(NSPoint)pos;
 - (BOOL)detectShakeRel:(NSPoint)pos;

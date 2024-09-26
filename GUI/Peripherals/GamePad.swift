@@ -537,7 +537,7 @@ class GamePad {
         let c64 = manager.parent.emu!
 
         // Check for a shaking mouse
-        c64.port1.mouse.detectShakeRel(delta)
+        c64.port1.paddle.detectShakeRel(delta)
 
         if let id = port {
 

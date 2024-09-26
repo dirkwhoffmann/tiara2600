@@ -73,7 +73,8 @@ Paddle::getOption(Option option) const
     switch (option) {
 
         case OPT_PADDLE_ORIENTATION:    return config.orientation;
-
+        case OPT_MOUSE_SHAKE_DETECT:    return config.shakeDetection;
+            
         default:
             fatalError;
     }
@@ -91,6 +92,10 @@ Paddle::checkOption(Option opt, i64 value)
             }
             return;
 
+        case OPT_MOUSE_SHAKE_DETECT:
+
+            return;
+            
         default:
             throw Error(VC64ERROR_OPT_UNSUPPORTED);
     }
@@ -104,6 +109,11 @@ Paddle::setOption(Option opt, i64 value)
         case OPT_PADDLE_ORIENTATION:
             
             config.orientation = PaddleOrientation(value);
+            return;
+
+        case OPT_MOUSE_SHAKE_DETECT:
+
+            config.shakeDetection = bool(value);
             return;
             
         default:

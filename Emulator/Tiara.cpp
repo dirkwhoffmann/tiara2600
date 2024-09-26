@@ -753,19 +753,16 @@ PaddleAPI::getCachedInfo() const
     return paddle->getCachedInfo();
 }
 
-
-//
-// Mouse
-//
-
-bool MouseAPI::detectShakeXY(double x, double y)
+bool
+PaddleAPI::detectShakeXY(double x, double y)
 {
-    return mouse->detectShakeXY(x, y);
+    return paddle->detectShakeXY(x, y);
 }
 
-bool MouseAPI::detectShakeDxDy(double dx, double dy)
+bool
+PaddleAPI::detectShakeDxDy(double dx, double dy)
 {
-    return mouse->detectShakeDxDy(dx, dy);
+    return paddle->detectShakeDxDy(dx, dy);
 }
 
 

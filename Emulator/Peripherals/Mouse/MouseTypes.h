@@ -61,7 +61,6 @@ struct MouseModelEnum : util::Reflection<MouseModelEnum, MouseModel> {
 typedef struct
 {
     MouseModel model;
-    bool shakeDetection;
     isize velocity;
 }
 MouseConfig;

@@ -22,31 +22,6 @@
 
 namespace tiara {
 
-class ShakeDetector {
-    
-    // Horizontal position
-    double x = 0.0;
-    
-    // Moved distance
-    double dxsum = 0.0;
-
-    // Direction (1 or -1)
-    double dxsign = 1.0;
-    
-    // Number of turns
-    isize dxturns = 0;
-    
-    // Time stamps
-    u64 lastTurn = 0;
-    util::Time lastShake;
-    
-public:
-    
-    // Feed in new coordinates and checks for a shake
-    bool isShakingAbs(double x);
-    bool isShakingRel(double dx);
-};
-
 class Mouse final : public SubComponent {
     
     Descriptions descriptions = {
@@ -67,7 +42,6 @@ class Mouse final : public SubComponent {
     Options options = {
 
         OPT_MOUSE_MODEL,
-        OPT_MOUSE_SHAKE_DETECT,
         OPT_MOUSE_VELOCITY
     };
 
@@ -82,8 +56,6 @@ class Mouse final : public SubComponent {
     // Subcomponents
     //
 
-    // Shake detector
-    class ShakeDetector shakeDetector;
 
     // A Commdore 1350 (digital) mouse
     Mouse1350 mouse1350 = Mouse1350(c64);
@@ -184,10 +156,6 @@ private:
     //
     
 public:
-
-    // Runs the shake detector
-    bool detectShakeXY(double x, double y);
-    bool detectShakeDxDy(double dx, double dy);
 
     // Emulates a mouse movement
     void setXY(double x, double y);

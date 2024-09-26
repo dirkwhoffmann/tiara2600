@@ -572,7 +572,7 @@ using namespace tiara;
 
 @implementation ControlPortProxy
 
-@synthesize mouse;
+@synthesize paddle;
 @synthesize joystick;
 
 - (instancetype) initWith:(void *)ref emu:(Tiara *)emuref
@@ -581,7 +581,7 @@ using namespace tiara;
 
         ControlPortAPI *port = (ControlPortAPI *)obj;
         joystick = [[JoystickProxy alloc] initWith:&port->joystick];
-        mouse = [[MouseProxy alloc] initWith:&port->mouse];
+        paddle = [[PaddleProxy alloc] initWith:&port->paddle];
     }
     return self;
 }
@@ -650,24 +650,24 @@ using namespace tiara;
 
 
 //
-// Mouse proxy
+// Paddle proxy
 //
 
-@implementation MouseProxy
+@implementation PaddleProxy
 
-- (MouseAPI *)mouse
+- (PaddleAPI *)paddle
 {
-    return (MouseAPI *)obj;
+    return (PaddleAPI *)obj;
 }
 
 - (BOOL)detectShakeAbs:(NSPoint)pos
 {
-    return [self mouse]->detectShakeXY(pos.x, pos.y);
+    return [self paddle]->detectShakeXY(pos.x, pos.y);
 }
 
 - (BOOL)detectShakeRel:(NSPoint)pos
 {
-    return [self mouse]->detectShakeDxDy(pos.x, pos.y);
+    return [self paddle]->detectShakeDxDy(pos.x, pos.y);
 }
 
 @end

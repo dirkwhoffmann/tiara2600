@@ -315,30 +315,6 @@ struct DmaDebuggerAPI : API {
 struct MouseAPI : API {
 
     class Mouse *mouse = nullptr;
-
-    /** Feeds a coordinate into the shake detector.
-     *
-     *  The shake detector keeps track of the transmitted coordinates and
-     *  scans for rapid movements caused by shaking the mouse.
-     *
-     *  @param x    Current horizontal mouse position.
-     *  @param y    Current vertical mouse position.
-     *  @return     true iff a shaking mouse has been detected.
-     */
-    bool detectShakeXY(double x, double y);
-
-    /** Feeds a coordinate into the shake detector.
-     *
-     *  The shake detector keeps track of the transmitted coordinates and
-     *  scans for rapid movements caused by shaking the mouse.
-     *
-     *  @param dx   Current horizontal mouse position, relative to the
-     *              previous position.
-     *  @param dy   Current vertical mouse position, relative to the
-     *              previous position.
-     *  @return     true iff a shaking mouse has been detected.
-     */
-    bool detectShakeDxDy(double dx, double dy);
 };
 
 
@@ -365,6 +341,30 @@ struct PaddleAPI : API {
      */
     const PaddleInfo &getInfo() const;
     const PaddleInfo &getCachedInfo() const;
+
+    /** Feeds a coordinate into the shake detector.
+     *
+     *  The shake detector keeps track of the transmitted coordinates and
+     *  scans for rapid movements caused by shaking the mouse.
+     *
+     *  @param x    Current horizontal mouse position.
+     *  @param y    Current vertical mouse position.
+     *  @return     true iff a shaking mouse has been detected.
+     */
+    bool detectShakeXY(double x, double y);
+
+    /** Feeds a coordinate into the shake detector.
+     *
+     *  The shake detector keeps track of the transmitted coordinates and
+     *  scans for rapid movements caused by shaking the mouse.
+     *
+     *  @param dx   Current horizontal mouse position, relative to the
+     *              previous position.
+     *  @param dy   Current vertical mouse position, relative to the
+     *              previous position.
+     *  @return     true iff a shaking mouse has been detected.
+     */
+    bool detectShakeDxDy(double dx, double dy);
 };
 
 

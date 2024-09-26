@@ -19,6 +19,31 @@
 
 namespace tiara {
 
+class ShakeDetector {
+
+    // Horizontal position
+    double x = 0.0;
+
+    // Moved distance
+    double dxsum = 0.0;
+
+    // Direction (1 or -1)
+    double dxsign = 1.0;
+
+    // Number of turns
+    isize dxturns = 0;
+
+    // Time stamps
+    u64 lastTurn = 0;
+    util::Time lastShake;
+
+public:
+
+    // Feed in new coordinates and checks for a shake
+    bool isShakingAbs(double x);
+    bool isShakingRel(double dx);
+};
+
 class Paddle final : public SubComponent, public Inspectable<PaddleInfo> {
 
     Descriptions descriptions = {
@@ -38,7 +63,8 @@ class Paddle final : public SubComponent, public Inspectable<PaddleInfo> {
 
     Options options = {
 
-        OPT_PADDLE_ORIENTATION
+        OPT_PADDLE_ORIENTATION,
+        OPT_MOUSE_SHAKE_DETECT
     };
 
     // Reference to the control port this device belongs to
@@ -46,6 +72,9 @@ class Paddle final : public SubComponent, public Inspectable<PaddleInfo> {
 
     // Current configuration
     PaddleConfig config = { };
+
+    // Shake detector
+    ShakeDetector shakeDetector;
 
     // Paddle positions in the range [-1...1]
     double pos[2] = { };
@@ -148,6 +177,9 @@ public:
     u8 readPotX() const;
     u8 readPotY() const;
 
+    // Runs the shake detector
+    bool detectShakeXY(double x, double y);
+    bool detectShakeDxDy(double dx, double dy);
 };
 
 }

@@ -40,7 +40,6 @@ Mouse::getOption(Option option) const
     switch (option) {
 
         case OPT_MOUSE_MODEL:           return config.model;
-        case OPT_MOUSE_SHAKE_DETECT:    return config.shakeDetection;
         case OPT_MOUSE_VELOCITY:        return config.velocity;
 
         default:
@@ -58,10 +57,6 @@ Mouse::checkOption(Option opt, i64 value)
             if (!MouseModelEnum::isValid(value)) {
                 throw Error(VC64ERROR_OPT_INV_ARG, MouseModelEnum::keyList());
             }
-            return;
-
-        case OPT_MOUSE_SHAKE_DETECT:
-
             return;
 
         case OPT_MOUSE_VELOCITY:
@@ -89,12 +84,7 @@ Mouse::setOption(Option opt, i64 value)
             targetX = 0;
             targetY = 0;
             return;
-            
-        case OPT_MOUSE_SHAKE_DETECT:
-            
-            config.shakeDetection = bool(value);
-            return;
-            
+
         case OPT_MOUSE_VELOCITY:
 
             if (value < 0 || value > 255) {
@@ -132,26 +122,6 @@ Mouse::_dump(Category category, std::ostream& os) const
         os << tab("targetX") << targetX << std::endl;
         os << tab("targetY") << targetY << std::endl;
     }
-}
-
-bool
-Mouse::detectShakeXY(double x, double y)
-{
-    if (config.shakeDetection && shakeDetector.isShakingAbs(x)) {
-        msgQueue.put(MSG_SHAKING);
-        return true;
-    }
-    return false;
-}
-
-bool
-Mouse::detectShakeDxDy(double dx, double dy)
-{
-    if (config.shakeDetection && shakeDetector.isShakingRel(dx)) {
-        msgQueue.put(MSG_SHAKING);
-        return true;
-    }
-    return false;
 }
 
 void
@@ -395,60 +365,6 @@ Mouse::execute()
         default:
             fatalError;
     }
-}
-
-bool
-ShakeDetector::isShakingAbs(double newx)
-{
-    return isShakingRel(newx - x);
-}
-
-bool
-ShakeDetector::isShakingRel(double dx) {
-    
-    // Accumulate the travelled distance
-    x += dx;
-    dxsum += abs(dx);
-    
-    // Check for a direction reversal
-    if (dx * dxsign < 0) {
-
-        u64 dt = util::Time::now().asNanoseconds() - lastTurn;
-        dxsign = -dxsign;
-
-        // A direction reversal is considered part of a shake, if the
-        // previous reversal happened a short while ago.
-        if (dt < 400 * 1000 * 1000) {
-
-            // Eliminate jitter by demanding that the mouse has travelled
-            // a long enough distance.
-            if (dxsum > 400) {
-                
-                dxturns += 1;
-                dxsum = 0;
-                
-                // Report a shake if the threshold has been reached.
-                if (dxturns > 3) {
-                    
-                    // printf("Mouse shake detected\n");
-                    lastShake = util::Time::now().asNanoseconds();
-                    dxturns = 0;
-                    return true;
-                }
-            }
-            
-        } else {
-            
-            // Time out. The user is definitely not shaking the mouse.
-            // Let's reset the recorded movement histoy.
-            dxturns = 0;
-            dxsum = 0;
-        }
-        
-        lastTurn = util::Time::now().asNanoseconds();
-    }
-    
-    return false;
 }
 
 }

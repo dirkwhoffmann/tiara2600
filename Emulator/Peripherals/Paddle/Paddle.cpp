@@ -91,4 +91,78 @@ Paddle::readPotY() const
     return u8((pos[1] + 1.0) * 127.5);
 }
 
+bool
+Paddle::detectShakeXY(double x, double y)
+{
+    if (config.shakeDetection && shakeDetector.isShakingAbs(x)) {
+        msgQueue.put(MSG_SHAKING);
+        return true;
+    }
+    return false;
+}
+
+bool
+Paddle::detectShakeDxDy(double dx, double dy)
+{
+    if (config.shakeDetection && shakeDetector.isShakingRel(dx)) {
+        msgQueue.put(MSG_SHAKING);
+        return true;
+    }
+    return false;
+}
+
+bool
+ShakeDetector::isShakingAbs(double newx)
+{
+    return isShakingRel(newx - x);
+}
+
+bool
+ShakeDetector::isShakingRel(double dx) {
+
+    // Accumulate the travelled distance
+    x += dx;
+    dxsum += abs(dx);
+
+    // Check for a direction reversal
+    if (dx * dxsign < 0) {
+
+        u64 dt = util::Time::now().asNanoseconds() - lastTurn;
+        dxsign = -dxsign;
+
+        // A direction reversal is considered part of a shake, if the
+        // previous reversal happened a short while ago.
+        if (dt < 400 * 1000 * 1000) {
+
+            // Eliminate jitter by demanding that the mouse has travelled
+            // a long enough distance.
+            if (dxsum > 400) {
+
+                dxturns += 1;
+                dxsum = 0;
+
+                // Report a shake if the threshold has been reached.
+                if (dxturns > 3) {
+
+                    // printf("Mouse shake detected\n");
+                    lastShake = util::Time::now().asNanoseconds();
+                    dxturns = 0;
+                    return true;
+                }
+            }
+
+        } else {
+
+            // Time out. The user is definitely not shaking the mouse.
+            // Let's reset the recorded movement histoy.
+            dxturns = 0;
+            dxsum = 0;
+        }
+
+        lastTurn = util::Time::now().asNanoseconds();
+    }
+
+    return false;
+}
+
 }

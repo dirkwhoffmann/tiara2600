@@ -57,6 +57,7 @@ struct PaddleOrientationEnum : util::Reflection<PaddleOrientationEnum, PaddleOri
 typedef struct
 {
     PaddleOrientation orientation;
+    bool shakeDetection;
 }
 PaddleConfig;
 
