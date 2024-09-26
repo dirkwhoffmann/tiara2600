@@ -528,22 +528,6 @@ struct ExpansionPortAPI : API {
      */
     void attachCartridge(const MediaFile &c, bool reset = true);
 
-    /** @brief  Attaches a cartridge to the expansion port.
-     */
-    // void attachCartridge(Cartridge *c);
-
-    /** @brief  Attaches a RAM Expansion Unit to the expansion port.
-     */
-    void attachReu(isize capacity);
-
-    /** @brief  Attaches a GeoRAM module to the expansion port.
-     */
-    void attachGeoRam(isize capacity);
-
-    /** @brief  Attaches an Isepic module to the expansion port.
-     */
-    void attachIsepicCartridge();
-
     /** @brief  Detaches the currently plugged in cartridge
      */
     void detachCartridge();

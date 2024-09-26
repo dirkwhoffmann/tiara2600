@@ -18,7 +18,6 @@
 
 // Components
 #include "Memory.h"
-#include "FlashRom.h"
 #include "VICII.h"
 #include "SIDBridge.h"
 #include "TOD.h"

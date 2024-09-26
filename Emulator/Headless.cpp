@@ -16,6 +16,7 @@
 #include "HeadlessScripts.h"
 #include "C64.h"
 #include "Script.h"
+#include "IOUtils.h"
 #include <chrono>
 #include <iostream>
 

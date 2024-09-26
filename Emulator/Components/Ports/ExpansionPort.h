@@ -140,8 +140,6 @@ public:
     CartridgeRomInfo getRomInfo(isize nr) const;
     CartridgeType getCartridgeType() const;
 
-    bool hasReu() const { return getCartridgeType() == CRT_REU; }
-
     
     //
     // Accessing cartrige memory
@@ -189,9 +187,6 @@ public:
     void attachCartridge(const fs::path &path, bool reset = true) throws;
     void attachCartridge(const MediaFile &file, bool reset = true) throws;
     void attachCartridge(Cartridge *c);
-    void attachReu(isize capacity);
-    void attachGeoRam(isize capacity);
-    void attachIsepicCartridge();
 
     // Removes a cartridge from the expansion port (if any)
     void detachCartridge();

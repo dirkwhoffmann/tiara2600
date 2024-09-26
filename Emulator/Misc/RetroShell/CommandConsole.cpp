@@ -354,20 +354,6 @@ CommandConsole::initCommands(Command &root)
         expansionPort.attachCartridge(path);
     });
 
-    root.add({cmd, "attach", "reu"}, { "<KB>" },
-             "Attaches a REU expansion cartridge",
-             [this](Arguments& argv, long value) {
-
-        expansionPort.attachReu(parseNum(argv[0]));
-    });
-
-    root.add({cmd, "attach", "georam"}, { "<KB>" },
-             "Attaches a GeoRAM expansion cartridge",
-             [this](Arguments& argv, long value) {
-
-        expansionPort.attachGeoRam(parseNum(argv[0]));
-    });
-
 
     //
     // Peripherals

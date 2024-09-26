@@ -1006,27 +1006,6 @@ ExpansionPortAPI::attachCartridge(const MediaFile &c, bool reset)
 }
 
 void
-ExpansionPortAPI::attachReu(isize capacity)
-{
-    expansionPort->attachReu(capacity);
-    emu->markAsDirty();
-}
-
-void
-ExpansionPortAPI::attachGeoRam(isize capacity)
-{
-    expansionPort->attachGeoRam(capacity);
-    emu->markAsDirty();
-}
-
-void
-ExpansionPortAPI::attachIsepicCartridge()
-{
-    expansionPort->attachIsepicCartridge();
-    emu->markAsDirty();
-}
-
-void
 ExpansionPortAPI::detachCartridge()
 {
     expansionPort->detachCartridge();

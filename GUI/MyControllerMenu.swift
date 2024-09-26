@@ -62,23 +62,6 @@ extension MyController: NSMenuItemValidation {
             case #selector(MyController.attachRecentCartridgeAction(_:)):
                 return validateURLlist(MediaManager.attachedCartridges, image: smallCart)
 
-            case #selector(MyController.attachReuDummyAction(_:)):
-                item.state = (emu.expansionport.traits.type == .REU) ? .on : .off
-
-            case #selector(MyController.attachReuAction(_:)):
-                item.state = (emu.expansionport.traits.type == .REU &&
-                              emu.expansionport.traits.memory == item.tag * 1024) ? .on : .off
-
-            case #selector(MyController.attachGeoRamDummyAction(_:)):
-                item.state = (emu.expansionport.traits.type == .GEO_RAM) ? .on : .off
-
-            case #selector(MyController.attachGeoRamAction(_:)):
-                item.state = (emu.expansionport.traits.type == .GEO_RAM &&
-                              emu.expansionport.traits.memory == item.tag * 1024) ? .on : .off
-
-            case #selector(MyController.attachIsepicAction(_:)):
-                item.state = (emu.expansionport.traits.type == .ISEPIC) ? .on : .off
-
             case #selector(MyController.detachCartridgeAction(_:)):
                 return emu.expansionport.cartridgeAttached()
 
@@ -87,42 +70,6 @@ extension MyController: NSMenuItemValidation {
 
             case #selector(MyController.pressButtonDummyAction(_:)):
                 return emu.expansionport.traits.buttons > 0
-
-            case #selector(MyController.pressCartridgeButton1Action(_:)):
-                let title = String(charptr: emu.expansionport.traits.button1)
-                item.title = title ?? ""
-                item.isHidden = title == nil
-                return title != nil
-
-            case #selector(MyController.pressCartridgeButton2Action(_:)):
-                let title = String(charptr: emu.expansionport.traits.button2)
-                item.title = title ?? ""
-                item.isHidden = title == nil
-                return title != nil
-
-            case #selector(MyController.setSwitchDummyAction(_:)):
-                return emu.expansionport.traits.switches > 0
-
-            case #selector(MyController.setSwitchNeutralAction(_:)):
-                let title = String(charptr: emu.expansionport.traits.switchNeutral)
-                item.title = title ?? ""
-                item.isHidden = title == nil
-                item.state = emu.expansionport.info.switchPos == 0 ? .on : .off
-                return title != nil
-
-            case #selector(MyController.setSwitchLeftAction(_:)):
-                let title = String(charptr: emu.expansionport.traits.switchLeft)
-                item.title = title ?? ""
-                item.isHidden = title == nil
-                item.state = emu.expansionport.info.switchPos < 0 ? .on : .off
-                return title != nil
-
-            case #selector(MyController.setSwitchRightAction(_:)):
-                let title = String(charptr: emu.expansionport.traits.switchRight)
-                item.title = title ?? ""
-                item.isHidden = title == nil
-                item.state = emu.expansionport.info.switchPos > 0 ? .on : .off
-                return title != nil
 
             default:
                 return true

@@ -191,20 +191,6 @@ ExpansionPort::attachCartridge(Cartridge *c)
 }
 
 void
-ExpansionPort::attachReu(isize kb)
-{
-    debug(EXP_DEBUG, "Attaching REU (%ld KB)\n", kb);
-    attachCartridge(new Reu(c64, kb));
-}
-
-void
-ExpansionPort::attachGeoRam(isize kb)
-{
-    debug(EXP_DEBUG, "Attaching GeoRAM (%ld KB)\n", kb);
-    attachCartridge(new GeoRAM(c64, kb));
-}
-
-void
 ExpansionPort::attachCartridge(const fs::path &path, bool reset)
 {
     attachCartridge(CRTFile(path), reset);
@@ -236,15 +222,6 @@ ExpansionPort::attachCartridge(const MediaFile &file, bool reset)
 
         throw Error(VC64ERROR_FILE_TYPE_MISMATCH);
     }
-}
-
-void
-ExpansionPort::attachIsepicCartridge()
-{
-    debug(EXP_DEBUG, "Attaching Isepic cartridge\n");
-    
-    Cartridge *isepic = new Isepic(c64); //  Cartridge::makeWithType(c64, CRT_ISEPIC);
-    (void)attachCartridge(isepic);
 }
 
 void

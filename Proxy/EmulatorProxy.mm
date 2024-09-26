@@ -646,21 +646,6 @@ using namespace tiara;
     catch (Error &err) { [ex save:err]; }
 }
 
-- (void)attachReuCartridge:(NSInteger)capacity
-{
-    [self eport]->attachReu(capacity);
-}
-
-- (void)attachGeoRamCartridge:(NSInteger)capacity
-{
-    [self eport]->attachGeoRam(capacity);
-}
-
-- (void)attachIsepicCartridge
-{
-    [self eport]->attachIsepicCartridge();
-}
-
 - (void)detachCartridge
 {
     [self eport]->detachCartridge();
