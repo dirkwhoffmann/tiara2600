@@ -411,20 +411,6 @@ DebugConsole::initCommands(Command &root)
         dump(port2.joystick, { Category::Config, Category::State });
     });
 
-    cmd = port1.mouse.shellName();
-    description = port1.mouse.description();
-    root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
-
-        dump(port1.mouse, { Category::Config, Category::State });
-    });
-
-    cmd = port2.mouse.shellName();
-    description = port2.mouse.description();
-    root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
-
-        dump(port2.mouse, { Category::Config, Category::State });
-    });
-
     cmd = audioPort.shellName();
     description = audioPort.description();
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {

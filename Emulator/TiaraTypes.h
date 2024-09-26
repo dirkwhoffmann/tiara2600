@@ -28,7 +28,6 @@
 #include "MediaFileTypes.h"
 #include "MemoryTypes.h"
 #include "MonitorTypes.h"
-#include "MouseTypes.h"
 #include "MsgQueueTypes.h"
 #include "OptionTypes.h"
 #include "PaddleTypes.h"

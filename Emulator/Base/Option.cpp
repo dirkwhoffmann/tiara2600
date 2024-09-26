@@ -117,9 +117,7 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_MEM_HEATMAP:               return boolParser();
         case OPT_MEM_SAVE_ROMS:             return boolParser();
 
-        case OPT_MOUSE_MODEL:               return enumParser.template operator()<MouseModelEnum>();
         case OPT_MOUSE_SHAKE_DETECT:        return boolParser();
-        case OPT_MOUSE_VELOCITY:            return numParser();
 
         case OPT_AUTOFIRE:                  return boolParser();
         case OPT_AUTOFIRE_BURSTS:           return boolParser();

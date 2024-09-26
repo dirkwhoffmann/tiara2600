@@ -126,9 +126,7 @@ enum_long(OPT)
     OPT_MEM_SAVE_ROMS,          ///< Save Roms in snapshots
 
     // Mouse
-    OPT_MOUSE_MODEL,            ///< Mouse model
     OPT_MOUSE_SHAKE_DETECT,     ///< Detect a shaking mouse
-    OPT_MOUSE_VELOCITY,         ///< Mouse velocity
 
     // Joystick
     OPT_AUTOFIRE,               ///< Autofire status [on/off]
@@ -259,9 +257,7 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_MEM_HEATMAP:           return "MEM.HEATMAP";
             case OPT_MEM_SAVE_ROMS:         return "MEM.SAVE_ROMS";
 
-            case OPT_MOUSE_MODEL:           return "MOUSE.MODEL";
             case OPT_MOUSE_SHAKE_DETECT:    return "MOUSE.SHAKE_DETECTION";
-            case OPT_MOUSE_VELOCITY:        return "MOUSE.VELOCITY";
 
             case OPT_AUTOFIRE:              return "AUTOFIRE.ENABLE";
             case OPT_AUTOFIRE_BURSTS:       return "AUTOFIRE.BURSTS";
@@ -381,9 +377,7 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_MEM_HEATMAP:           return "Heatmap";
             case OPT_MEM_SAVE_ROMS:         return "Save ROMs in snapshots";
 
-            case OPT_MOUSE_MODEL:           return "Mouse model";
             case OPT_MOUSE_SHAKE_DETECT:    return "Detect a shaked mouse";
-            case OPT_MOUSE_VELOCITY:        return "Mouse velocity";
 
             case OPT_AUTOFIRE:              return "Autofire";
             case OPT_AUTOFIRE_BURSTS:       return "Burst mode";

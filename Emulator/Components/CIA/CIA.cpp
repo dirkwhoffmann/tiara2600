@@ -604,12 +604,7 @@ CIA1::portAexternal() const
 void
 CIA1::updatePA()
 {
-    u8 oldPA = PA;
     PA = computePA();
-
-    // An edge on PA4 triggers the NeosMouse on port 2
-    if (FALLING_EDGE_BIT(oldPA, PA, 4)) port2.mouse.fallingStrobe();
-    if (RISING_EDGE_BIT(oldPA, PA, 4)) port2.mouse.risingStrobe();
 }
 
 u8
@@ -649,15 +644,10 @@ CIA1::portBexternal() const
 void
 CIA1::updatePB()
 {
-    u8 oldPB = PB;
     PB = computePB();
 
     // PB4 is connected to the VICII (LP pin)
-    vic.setLP(GET_BIT(PB, 4) != 0);
-    
-    // An edge on PB4 triggers the NeosMouse on port 1
-    if (FALLING_EDGE_BIT(oldPB, PB, 4)) port1.mouse.fallingStrobe();
-    if (RISING_EDGE_BIT(oldPB, PB, 4)) port1.mouse.risingStrobe();
+    vic.setLP(GET_BIT(PB, 4) != 0);    
 }
 
 u8

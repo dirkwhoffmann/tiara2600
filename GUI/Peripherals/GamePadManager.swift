@@ -165,7 +165,7 @@ class GamePadManager {
     func icon(slot: Int) -> NSImage {
 
         // Override the icon if a mouse-emulated paddle is connected
-        if gamePads[slot]?.isMouse == true && parent.config.mouseModel >= 3 {
+        if gamePads[slot]?.isMouse == true {
             return NSImage(named: "devPaddleTemplate")!
         }
 

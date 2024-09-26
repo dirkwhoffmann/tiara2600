@@ -16,14 +16,12 @@
 #include "CmdQueueTypes.h"
 #include "SubComponent.h"
 #include "Joystick.h"
-#include "Mouse.h"
 #include "Paddle.h"
 
 namespace tiara {
 
 class ControlPort final : public SubComponent {
 
-    friend class Mouse;
     friend class Joystick;
     friend class Paddle;
 
@@ -55,8 +53,7 @@ class ControlPort final : public SubComponent {
     //
 
 public:
-    
-    Mouse mouse = Mouse(c64, *this);
+
     Joystick joystick = Joystick(c64, *this);
     Paddle paddle = Paddle(c64, *this);
 
@@ -71,7 +68,6 @@ public:
 
     ControlPort& operator= (const ControlPort& other) {
 
-        CLONE(mouse)
         CLONE(joystick)
         CLONE(paddle)
         CLONE(device)

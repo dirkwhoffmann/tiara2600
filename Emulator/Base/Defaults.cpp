@@ -109,9 +109,7 @@ Defaults::Defaults()
     setFallback(OPT_MEM_HEATMAP,                false);
     setFallback(OPT_MEM_SAVE_ROMS,              true);
     
-    setFallback(OPT_MOUSE_MODEL,                MOUSE_C1350);
     setFallback(OPT_MOUSE_SHAKE_DETECT,         true);
-    setFallback(OPT_MOUSE_VELOCITY,             100);
 
     setFallback(OPT_AUTOFIRE,                   false);
     setFallback(OPT_AUTOFIRE_BURSTS,            false);

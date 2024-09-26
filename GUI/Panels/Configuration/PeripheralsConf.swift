@@ -52,11 +52,6 @@ extension ConfigurationController {
         }
     }
     
-    @IBAction func perMouseModelAction(_ sender: NSPopUpButton!) {
-        
-        config.mouseModel = sender.selectedTag()
-    }
-
     @IBAction func perPaddleOrientationAction(_ sender: NSPopUpButton!) {
 
         config.paddleOrientation = sender.selectedTag()

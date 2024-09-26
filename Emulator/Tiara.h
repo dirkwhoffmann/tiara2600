@@ -310,14 +310,6 @@ struct DmaDebuggerAPI : API {
 };
 
 
-/** Mouse Public API
- */
-struct MouseAPI : API {
-
-    class Mouse *mouse = nullptr;
-};
-
-
 /** Joystick Public API
  */
 struct JoystickAPI : API {
@@ -377,10 +369,6 @@ struct ControlPortAPI : API {
     /** @brief  Custom API of the joystick connected to this port
      */
     JoystickAPI joystick;
-
-    /** @brief  Custom API of the mouse connected to this port
-     */
-    MouseAPI mouse;
 
     /** @brief  Custom API of the paddle connected to this port
      */

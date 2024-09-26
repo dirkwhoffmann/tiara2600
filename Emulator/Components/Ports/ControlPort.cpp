@@ -22,7 +22,7 @@ ControlPort::execute()
 {
     switch (device) {
             
-        case CPDEVICE_MOUSE:    mouse.execute(); break;
+        case CPDEVICE_MOUSE:    break;
         case CPDEVICE_JOYSTICK: joystick.eofHandler(); break;
 
         default:
@@ -33,7 +33,7 @@ ControlPort::execute()
 void
 ControlPort::updateControlPort()
 {
-    if (device == CPDEVICE_MOUSE) mouse.updateControlPort();
+    // if (device == CPDEVICE_MOUSE) mouse.updateControlPort();
 }
 
 u8
@@ -42,7 +42,7 @@ ControlPort::getControlPort() const
     switch (device) {
             
         case CPDEVICE_JOYSTICK: return joystick.getControlPort();
-        case CPDEVICE_MOUSE: return mouse.getControlPort();
+        // case CPDEVICE_MOUSE: return mouse.getControlPort();
 
         default:
             return 0xFF;
@@ -54,7 +54,7 @@ ControlPort::updatePotX()
 {
     switch (device) {
 
-        case CPDEVICE_MOUSE: mouse.updatePotX(); break;
+        // case CPDEVICE_MOUSE: mouse.updatePotX(); break;
 
         default:
             break;
@@ -66,7 +66,7 @@ ControlPort::updatePotY()
 {
     switch (device) {
 
-        case CPDEVICE_MOUSE: mouse.updatePotY(); break;
+        // case CPDEVICE_MOUSE: mouse.updatePotY(); break;
 
         default:
             break;
@@ -78,7 +78,7 @@ ControlPort::readPotX() const
 {
     switch (device) {
 
-        case CPDEVICE_MOUSE: return mouse.readPotX();
+        // case CPDEVICE_MOUSE: return mouse.readPotX();
 
         default:
             return 0xFF;
@@ -90,7 +90,7 @@ ControlPort::readPotY() const
 {
     switch (device) {
 
-        case CPDEVICE_MOUSE: return mouse.readPotY();
+        // case CPDEVICE_MOUSE: return mouse.readPotY();
 
         default:
             return 0xFF;
@@ -102,9 +102,6 @@ ControlPort::processCommand(const Cmd &cmd)
 {
     switch (cmd.type) {
 
-        case CMD_MOUSE_MOVE_ABS:    mouse.setXY(cmd.coord.x, cmd.coord.y); break;
-        case CMD_MOUSE_MOVE_REL:    mouse.setDxDy(cmd.coord.x, cmd.coord.y); break;
-        case CMD_MOUSE_EVENT:       mouse.trigger(cmd.action.action); break;
         case CMD_JOY_EVENT:         joystick.trigger(cmd.action.action); break;
 
         default:

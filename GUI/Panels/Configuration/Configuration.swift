@@ -102,11 +102,6 @@ class Configuration {
         }
     }
     
-    var mouseModel: Int {
-        get { return emu?.get(.MOUSE_MODEL, id: 1) ?? 0 }
-        set { emu?.set(.MOUSE_MODEL, value: newValue) }
-    }
-
     var paddleOrientation: Int {
         get { return emu?.get(.PADDLE_ORIENTATION, id: 1) ?? 0 }
         set { emu?.set(.PADDLE_ORIENTATION, value: newValue) }

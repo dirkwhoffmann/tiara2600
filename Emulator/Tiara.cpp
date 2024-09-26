@@ -84,8 +84,6 @@ Tiara::Tiara() {
 
     controlPort1.emu = emu;
     controlPort1.controlPort = &emu->main.port1;
-    controlPort1.mouse.emu = emu;
-    controlPort1.mouse.mouse = &emu->main.port1.mouse;
     controlPort1.joystick.emu = emu;
     controlPort1.joystick.joystick = &emu->main.port1.joystick;
     controlPort1.paddle.emu = emu;
@@ -93,8 +91,6 @@ Tiara::Tiara() {
 
     controlPort2.emu = emu;
     controlPort2.controlPort = &emu->main.port2;
-    controlPort2.mouse.emu = emu;
-    controlPort2.mouse.mouse = &emu->main.port2.mouse;
     controlPort2.joystick.emu = emu;
     controlPort2.joystick.joystick = &emu->main.port2.joystick;
     controlPort2.paddle.emu = emu;

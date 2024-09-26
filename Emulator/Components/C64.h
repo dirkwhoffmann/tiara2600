@@ -31,7 +31,6 @@
 #include "ExpansionPort.h"
 
 // Peripherals
-#include "Mouse.h"
 #include "Monitor.h"
 
 // Cartridges

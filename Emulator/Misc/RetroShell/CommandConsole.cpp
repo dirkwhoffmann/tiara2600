@@ -339,14 +339,6 @@ CommandConsole::initCommands(Command &root)
 
 
     //
-    // Peripherals (Mouse)
-    //
-
-    registerComponent(c64.port1.mouse);
-    registerComponent(c64.port2.mouse);
-
-
-    //
     // Peripherals (Joystick)
     //
 

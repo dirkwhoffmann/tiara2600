@@ -704,8 +704,6 @@ extension Configuration {
 
             defaults.set(Keys.Per.gameDevice1, gameDevice1)
             defaults.set(Keys.Per.gameDevice2, gameDevice2)
-
-            defaults.set(.MOUSE_MODEL, mouseModel)
             defaults.set(.PADDLE_ORIENTATION, paddleOrientation)
 
             defaults.save()
@@ -726,8 +724,6 @@ extension Configuration {
 
             gameDevice1 = defaults.int(Keys.Per.gameDevice1)
             gameDevice2 = defaults.int(Keys.Per.gameDevice2)
-
-            mouseModel = defaults.get(.MOUSE_MODEL)
             paddleOrientation = defaults.get(.PADDLE_ORIENTATION)
 
             emu.resume()
