@@ -13,6 +13,7 @@
 #include "config.h"
 #include "SID.h"
 #include "Emulator.h"
+#include "IOUtils.h"
 
 namespace tiara {
 

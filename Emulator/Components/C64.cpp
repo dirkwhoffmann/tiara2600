@@ -1678,85 +1678,11 @@ C64::flash(const MediaFile &file)
                 loadSnapshot(dynamic_cast<const Snapshot &>(file));
                 break;
                 
-            case FILETYPE_D64:
-            case FILETYPE_T64:
-            case FILETYPE_P00:
-            case FILETYPE_PRG:
-            case FILETYPE_FOLDER:
-
-                flash(file, 0);
-                break;
 
             default:
                 fatalError;
         }
     }
-}
-
-void
-C64::flash(const MediaFile &file, isize nr)
-{
-    try {
-
-        const AnyCollection &collection = dynamic_cast<const AnyCollection &>(file);
-        auto addr = (u16)collection.itemLoadAddr(nr);
-        auto size = collection.itemSize(nr);
-        if (size <= 2) return;
-
-        {   SUSPENDED
-
-            switch (collection.type()) {
-
-                case FILETYPE_D64:
-                case FILETYPE_T64:
-                case FILETYPE_P00:
-                case FILETYPE_PRG:
-                case FILETYPE_FOLDER:
-
-                    // Flash data into memory
-                    size = std::min(size - 2, isize(0x10000 - addr));
-                    collection.copyItem(nr, mem.ram + addr, size, 2);
-
-                    // Rectify zero page
-                    mem.ram[0x2D] = LO_BYTE(addr + size);   // VARTAB (lo byte)
-                    mem.ram[0x2E] = HI_BYTE(addr + size);   // VARTAB (high byte)
-                    break;
-
-                default:
-                    fatalError;
-            }
-        }
-
-        msgQueue.put(MSG_FILE_FLASHED);
-
-    } catch (...) {
-
-        throw Error(VC64ERROR_FILE_TYPE_MISMATCH);
-    }
-}
-
-void
-C64::flash(const FileSystem &fs, isize nr)
-{
-    u16 addr = fs.loadAddr(nr);
-    u64 size = fs.fileSize(nr);
-    
-    if (size <= 2) {
-        return;
-    }
-    
-    {   SUSPENDED
-
-        // Flash data into memory
-        size = std::min(size - 2, (u64)(0x10000 - addr));
-        fs.copyFile(nr, mem.ram + addr, size, 2);
-
-        // Rectify zero page
-        mem.ram[0x2D] = LO_BYTE(addr + size);   // VARTAB (lo byte)
-        mem.ram[0x2E] = HI_BYTE(addr + size);   // VARTAB (high byte)
-    }
-    
-    msgQueue.put(MSG_FILE_FLASHED);
 }
 
 void

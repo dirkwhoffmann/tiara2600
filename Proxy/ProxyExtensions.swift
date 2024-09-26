@@ -101,13 +101,6 @@ extension EmulatorProxy {
         flash(proxy, exception: exception)
         if exception.errorCode != .OK { throw VC64Error(exception) }
     }
-    
-    func flash(_ proxy: FileSystemProxy, item: Int) throws {
-
-        let exception = ExceptionWrapper()
-        flash(proxy, item: item, exception: exception)
-        if exception.errorCode != .OK { throw VC64Error(exception) }
-    }
 }
  
 extension ExpansionPortProxy {
@@ -126,16 +119,6 @@ extension MediaFileProxy {
         
         let exception = ExceptionWrapper()
         write(toFile: url.path, exception: exception)
-        if exception.errorCode != .OK { throw VC64Error(exception) }
-    }
-}
-
-extension FileSystemProxy {
-        
-    func export(url: URL) throws {
-            
-        let exception = ExceptionWrapper()
-        export(url.path, exception: exception)
         if exception.errorCode != .OK { throw VC64Error(exception) }
     }
 }
@@ -213,15 +196,6 @@ extension MediaFileProxy {
         case .CRT:
             return NSImage(named: "cartridge")!
         
-        case .TAP:
-            return NSImage(named: "tape")!
-            
-        case .FOLDER:
-            return NSImage(named: "NSFolder")!
-
-        case .D64, .G64, .T64, .PRG, .P00:
-            return MediaFileProxy.diskIcon(protected: protected)
-
         default:
             fatalError()
         }
@@ -233,35 +207,3 @@ extension MediaFileProxy {
         return NSImage(named: name)!
     }
 }
-
-extension FileSystemProxy {
-
-    func icon(protected: Bool) -> NSImage {
-                        
-        let name = "disk2" + (protected ? "_protected" : "")
-        return NSImage(named: name)!
-    }
-
-    var layoutInfo: String {
-
-        return "Single sided, single density disk with \(numTracks) tracks"
-    }
-
-    var dosInfo: String {
-
-        return dos.description
-    }
-
-    var usageInfo: String {
-
-        return "\(numBlocks) blocks, \(usedBlocks) blocks used"
-    }
-
-    var filesInfo: String {
-        
-        let num = numFiles
-        let files = num == 1 ? "file" : "files"
-        return "\(num) \(files)"
-    }
-}
-    

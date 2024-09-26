@@ -14,6 +14,7 @@
 #include "C64.h"
 #include "Option.h"
 #include "Emulator.h"
+#include "IOUtils.h"
 
 namespace tiara {
 

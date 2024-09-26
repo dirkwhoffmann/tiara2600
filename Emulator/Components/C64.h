@@ -48,21 +48,14 @@
 
 // Media files
 #include "Snapshot.h"
-#include "T64File.h"
-#include "D64File.h"
-#include "G64File.h"
-#include "PRGFile.h"
-#include "Folder.h"
-#include "P00File.h"
 #include "RomFile.h"
-#include "TAPFile.h"
 #include "CRTFile.h"
-#include "FileSystem.h"
 
 // Misc
 #include "Host.h"
 #include "RegressionTester.h"
 #include "RemoteManager.h"
+
 #include "RetroShell.h"
 #include "RshServer.h"
 
@@ -732,8 +725,6 @@ public:
 
     // Flashes a single file into memory
     void flash(const MediaFile &file) throws;
-    void flash(const MediaFile &file, isize item) throws;
-    void flash(const FileSystem &fs, isize item) throws;
 
 
     //

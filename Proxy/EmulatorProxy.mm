@@ -10,9 +10,7 @@
 #import "config.h"
 #import "EmulatorProxy.h"
 #import "Tiara.h"
-#import "DiskAnalyzer.h"
 #import "FFmpeg.h"
-#import "FileSystem.h"
 
 using namespace tiara;
 
@@ -1529,12 +1527,6 @@ using namespace tiara;
 - (void)flash:(MediaFileProxy *)proxy exception:(ExceptionWrapper *)ex
 {
     try { [self emu]->c64.flash(*(MediaFile *)proxy->obj); }
-    catch (Error &error) { [ex save:error]; }
-}
-
-- (void)flash:(FileSystemProxy *)proxy item:(NSInteger)nr exception:(ExceptionWrapper *)ex
-{
-    try { [self emu]->c64.flash(*(FileSystem *)proxy->obj, (unsigned)nr); }
     catch (Error &error) { [ex save:error]; }
 }
 

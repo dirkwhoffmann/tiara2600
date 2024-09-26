@@ -477,20 +477,6 @@ C64API::flash(const MediaFile &file)
     emu->markAsDirty();
 }
 
-void 
-C64API::flash(const MediaFile &file, isize item)
-{
-    c64->flash(file, item);
-    emu->markAsDirty();
-}
-
-void 
-C64API::flash(const FileSystem &fs, isize item)
-{
-    c64->flash(fs, item);
-    emu->markAsDirty();
-}
-
 
 //
 // CPU
@@ -1093,30 +1079,9 @@ DriveAPI::getCachedInfo() const
 }
 
 void
-DriveAPI::insertBlankDisk(DOSType fstype, string name)
-{
-    drive->insertNewDisk(fstype, name);
-    emu->markAsDirty();
-}
-
-void
 DriveAPI::insertMedia(MediaFile &file, bool wp)
 {
     drive->insertMediaFile(file, wp);
-    emu->markAsDirty();
-}
-
-void
-DriveAPI::insertFileSystem(const class FileSystem &device, bool wp)
-{
-    drive->insertFileSystem(device, wp);
-    emu->markAsDirty();
-}
-
-void
-DriveAPI::ejectDisk()
-{
-    drive->ejectDisk();
     emu->markAsDirty();
 }
 

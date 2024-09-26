@@ -10,6 +10,5 @@ VIA.cpp
 PIA.cpp
 ParCable.cpp
 Disk.cpp
-DiskAnalyzer.cpp
 
 )

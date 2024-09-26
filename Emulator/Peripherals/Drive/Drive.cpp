@@ -392,58 +392,10 @@ Drive::insertDisk(std::unique_ptr<Disk> disk)
     }
 }
 
-void
-Drive::insertNewDisk(DOSType fsType, string name)
-{
-    insertDisk(std::make_unique<Disk>(fsType, name));
-}
-
-void
-Drive::insertFileSystem(const FileSystem &device, bool wp)
-{
-    insertDisk(std::make_unique<Disk>(device, wp));
-}
-
 void 
 Drive::insertMediaFile(class MediaFile &file, bool wp)
 {
-    try {
-
-        const D64File &d64 = dynamic_cast<const D64File &>(file);
-        insertDisk(std::make_unique<Disk>(d64, wp));
-
-    } catch (...) { try {
-        
-        const G64File &g64 = dynamic_cast<const G64File &>(file);
-        insertDisk(std::make_unique<Disk>(g64, wp));
-        
-    } catch (...) { try {
-        
-        AnyCollection &collection = dynamic_cast<AnyCollection &>(file);
-        insertDisk(std::make_unique<Disk>(collection, wp));
-
-    } catch (...) {
-        
-        throw Error(VC64ERROR_FILE_TYPE_MISMATCH);
-    }}}
-}
-
-void
-Drive::insertD64(const D64File &d64, bool wp)
-{
-    insertDisk(std::make_unique<Disk>(d64, wp));
-}
-
-void
-Drive::insertG64(const G64File &g64, bool wp)
-{
-    insertDisk(std::make_unique<Disk>(g64, wp));
-}
-
-void
-Drive::insertCollection(AnyCollection &collection, bool wp)
-{
-    insertDisk(std::make_unique<Disk>(collection, wp));
+    throw Error(VC64ERROR_FILE_TYPE_MISMATCH);
 }
 
 void 

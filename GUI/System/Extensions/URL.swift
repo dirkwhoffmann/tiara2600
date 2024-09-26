@@ -282,13 +282,7 @@ extension URL {
         
         switch pathExtension.lowercased() {
         
-        case "v64": return .SNAPSHOT
-        case "d64": return .D64
-        case "g64": return .G64
-        case "t64": return .T64
-        case "prg": return .PRG
-        case "p00": return .P00
-        case "tap": return .TAP
+        case "tiara": return .SNAPSHOT
         case "crt": return .CRT
             
         default:

@@ -13,6 +13,7 @@
 #include "config.h"
 #include "SerialPort.h"
 #include "Drive.h"
+#include "IOUtils.h"
 
 namespace tiara {
 

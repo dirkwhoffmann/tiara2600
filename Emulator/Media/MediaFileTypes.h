@@ -27,13 +27,6 @@ enum_long(FILETYPE)
     FILETYPE_SNAPSHOT,
     FILETYPE_SCRIPT,
     FILETYPE_CRT,
-    FILETYPE_T64,
-    FILETYPE_P00,
-    FILETYPE_PRG,
-    FILETYPE_FOLDER,
-    FILETYPE_D64,
-    FILETYPE_G64,
-    FILETYPE_TAP,
     FILETYPE_BASIC_ROM,
     FILETYPE_CHAR_ROM,
     FILETYPE_KERNAL_ROM,
@@ -55,13 +48,6 @@ struct FileTypeEnum : util::Reflection<FileTypeEnum, FileType> {
             case FILETYPE_SNAPSHOT:   return "SNAPSHOT";
             case FILETYPE_SCRIPT:     return "SCRIPT";
             case FILETYPE_CRT:        return "CRT";
-            case FILETYPE_T64:        return "T64";
-            case FILETYPE_PRG:        return "PRG";
-            case FILETYPE_FOLDER:     return "FOLDER";
-            case FILETYPE_P00:        return "P00";
-            case FILETYPE_D64:        return "D64";
-            case FILETYPE_G64:        return "G64";
-            case FILETYPE_TAP:        return "TAP";
             case FILETYPE_BASIC_ROM:  return "BASIC_ROM";
             case FILETYPE_CHAR_ROM:   return "CHAR_ROM";
             case FILETYPE_KERNAL_ROM: return "KERNAL_ROM";

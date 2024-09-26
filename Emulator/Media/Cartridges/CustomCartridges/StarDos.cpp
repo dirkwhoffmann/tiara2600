@@ -12,6 +12,7 @@
 
 #include "config.h"
 #include "C64.h"
+#include "IOUtils.h"
 #include <algorithm>
 
 namespace tiara {

@@ -70,17 +70,8 @@ class DropZone: Layer {
 
             switch type {
 
-            case .T64, .P00, .PRG:
-                enabled = [false, false, true, false, false]
-
-            case .FOLDER, .D64, .G64:
-                enabled = [false, false, false, false, false]
-
             case .CRT:
                 enabled = [false, false, false, true, false]
-
-            case .TAP:
-                enabled = [false, false, false, false, true]
 
             default:
                 enabled = [false, false, false, false, false]

@@ -50,104 +50,13 @@ extension tiara.FileType {
         return [
             .SNAPSHOT, .SCRIPT,
             .CRT,
-            .T64, .PRG, .P00,
-            .D64, .G64,
-            .TAP,
-            .BASIC_ROM, .CHAR_ROM, .KERNAL_ROM, .VC1541_ROM,
-            .FOLDER
+            .BASIC_ROM, .CHAR_ROM, .KERNAL_ROM, .VC1541_ROM
         ]
     }
 
     static var draggable: [tiara.FileType] {
-        return [
-            .SNAPSHOT, .SCRIPT,
-            .CRT, .T64, .PRG, .P00,
-            .D64, .G64,
-            .TAP,
-            .FOLDER
-        ]
-    }
-}
 
-extension tiara.DOSType: CustomStringConvertible {
-
-    public var description: String {
-        
-        switch self {
-        
-        case .NODOS:  return "No File System"
-        case .CBM:    return "Commodore File System"
-            
-        default:      fatalError()
-        }
-    }
-}
-
-extension tiara.FSFileType: CustomStringConvertible {
-
-    public var description: String {
-        
-        switch self {
-        
-        case .DEL:  return "DEL"
-        case .SEQ:  return "SEQ"
-        case .PRG:  return "PRG"
-        case .USR:  return "USR"
-        case .REL:  return "REL"
-            
-        default:    fatalError()
-        }
-    }
-}
-
-extension tiara.FSBlockType: CustomStringConvertible {
-
-    public var description: String {
-        
-        switch self {
-        
-        case .UNKNOWN:  return "Unknown block type"
-        case .BAM:      return "Block Allocation Map (BAM)"
-        case .DIR:      return "Directory Block"
-        case .DATA:     return "Data Block"
-            
-        default:        fatalError()
-        }
-    }
-}
-
-extension tiara.FSUsage: CustomStringConvertible {
-
-    public var description: String {
-        
-        switch self {
-        
-        case .UNKNOWN:           return "Unknown"
-        case .UNUSED:            return "Unused"
-        case .DOS_VERSION:       return "DOS version"
-        case .DOS_TYPE:          return "DOS type"
-        case .ALLOCATION_BITS:   return "Block allocation bits"
-        case .DISK_ID:           return "Disk ID"
-        case .DISK_NAME:         return "Disk name (PETSCII character)"
-        case .TRACK_LINK:        return "Link to the next block (track number)"
-        case .SECTOR_LINK:       return "Link to the next block (sector number)"
-        case .FIRST_FILE_TRACK:  return "File start (track number)"
-        case .FIRST_FILE_SECTOR: return "File start (sector number)"
-        case .FIRST_REL_TRACK:   return "First side-sector block (track number)"
-        case .FIRST_REL_SECTOR:  return "First side-sector block (sector number)"
-        case .FIRST_DIR_TRACK:   return "Track number of the first directory block"
-        case .FIRST_DIR_SECTOR:  return "Sector number of the first directory block"
-        case .FILE_TYPE:         return "File type"
-        case .FILE_NAME:         return "File name (PETSCII character)"
-        case .FILE_LENGTH_LO:    return "File length (low byte)"
-        case .FILE_LENGTH_HI:    return "File length (high byte)"
-        case .REL_RECORD_LENGTH: return "REL file record length"
-        case .GEOS:              return "Unused (except for GEOS)"
-        case .DATA:              return "Data byte"
-            
-        default:
-            fatalError()
-        }
+        return [ .SNAPSHOT, .SCRIPT, .CRT ]
     }
 }
 

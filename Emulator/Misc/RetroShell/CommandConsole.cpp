@@ -14,6 +14,7 @@
 #include "Console.h"
 #include "Emulator.h"
 #include "Option.h"
+#include "IOUtils.h"
 
 namespace tiara {
 
@@ -209,17 +210,6 @@ CommandConsole::initCommands(Command &root)
     //
 
     cmd = registerComponent(mem);
-
-    root.add({cmd, "flash"}, { Arg::path },
-             "Flash a file into memory",
-             [this](Arguments& argv, long value) {
-
-        auto path = argv.front();
-        if (!util::fileExists(path)) throw Error(VC64ERROR_FILE_NOT_FOUND, path);
-
-        auto file = PRGFile(path);
-        c64.flash(file, 0);
-    });
 
     root.add({cmd, "load"},
              "Load memory contents from a file");
@@ -496,75 +486,6 @@ CommandConsole::initCommands(Command &root)
 
     cmd = registerComponent(port1.paddle);
     cmd = registerComponent(port2.paddle);
-
-    //
-    // Peripherals (Drives)
-    //
-
-    for (isize i = 0; i < 2; i++) {
-
-        if (i == 0) cmd = registerComponent(drive8);
-        if (i == 1) cmd = registerComponent(drive9);
-
-        root.add({cmd, "bankmap"},
-                 "Displays the memory layout",
-                 [this](Arguments& argv, long value) {
-
-            auto &drive = value ? drive9 : drive8;
-            dump(drive, Category::BankMap);
-
-        }, i);
-
-        root.add({cmd, "connect"},
-                 "Connects the drive",
-                 [this](Arguments& argv, long value) {
-
-            auto id = value ? DRIVE9 : DRIVE8;
-            emulator.set(OPT_DRV_CONNECT, true, { id });
-
-        }, i);
-
-        root.add({cmd, "disconnect"},
-                 "Disconnects the drive",
-                 [this](Arguments& argv, long value) {
-
-            auto id = value ? DRIVE9 : DRIVE8;
-            emulator.set(OPT_DRV_CONNECT, false, { id });
-
-        }, i);
-
-        root.add({cmd, "eject"},
-                 "Ejects a floppy disk",
-                 [this](Arguments& argv, long value) {
-
-            auto &drive = value ? drive9 : drive8;
-            drive.ejectDisk();
-
-        }, i);
-
-        root.add({cmd, "insert"}, { Arg::path },
-                 "Inserts a floppy disk",
-                 [this](Arguments& argv, long value) {
-
-            auto path = argv.front();
-            if (!util::fileExists(path)) throw Error(VC64ERROR_FILE_NOT_FOUND, path);
-
-            auto &drive = value ? drive9 : drive8;
-            drive.insertDisk(path, false);
-
-        }, i);
-
-        root.add({cmd, "newdisk"}, { DOSTypeEnum::argList() },
-                 "Inserts a new blank disk",
-                 [this](Arguments& argv, long value) {
-
-            auto type = util::parseEnum <DOSType, DOSTypeEnum> (argv.front());
-            auto &drive = value ? drive9 : drive8;
-            drive.insertNewDisk(type, "NEW DISK");
-
-        }, i);
-    }
-
 
     //
     // Peripherals (RS232)

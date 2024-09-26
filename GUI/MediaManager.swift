@@ -162,27 +162,6 @@ class MediaManager {
                 case .CRT:
                     return try MediaFileProxy.make(with: newUrl, type: .CRT)
 
-                case .D64:
-                    return try MediaFileProxy.make(with: newUrl, type: .D64)
-
-                case .T64:
-                    return try MediaFileProxy.make(with: newUrl, type: .T64)
-
-                case .PRG:
-                    return try MediaFileProxy.make(with: newUrl, type: .PRG)
-
-                case .P00:
-                    return try MediaFileProxy.make(with: newUrl, type: .P00)
-
-                case .G64:
-                    return try MediaFileProxy.make(with: newUrl, type: .G64)
-
-                case .TAP:
-                    return try MediaFileProxy.make(with: newUrl, type: .TAP)
-
-                case .FOLDER:
-                    return try MediaFileProxy.make(with: newUrl, type: .FOLDER)
-
                 default:
                     fatalError()
                 }
@@ -209,37 +188,28 @@ class MediaManager {
 
         debug(.media, "url = \(url) types = \(types)")
 
-        if let emu = emu {
+        // Read file
+        let file = try createFileProxy(from: url, allowedTypes: types)
 
-            // Read file
-            let file = try createFileProxy(from: url, allowedTypes: types)
+        // Remember the URL if requested
+        if options.contains(.remember) {
 
-            // Remember the URL if requested
-            if options.contains(.remember) {
+            switch file.type {
 
-                switch file.type {
+            case .SNAPSHOT:
+                document.snapshots.append(file, size: file.size)
 
-                case .SNAPSHOT:
-                    document.snapshots.append(file, size: file.size)
+            case .CRT:
+                MediaManager.noteNewRecentlyAtachedCartridgeURL(url)
 
-                case .CRT:
-                    MediaManager.noteNewRecentlyAtachedCartridgeURL(url)
-
-                case .TAP:
-                    MediaManager.noteNewRecentlyInsertedTapeURL(url)
-
-                case .T64, .P00, .PRG, .D64, .G64:
-                    MediaManager.noteNewRecentlyInsertedDiskURL(url)
-
-                default:
-                    break
-                }
+            default:
+                break
             }
+        }
 
-            // Process file
-            if options.contains(.flash) {
-                try flashMedia(proxy: file, options: options)
-            }
+        // Process file
+        if options.contains(.flash) {
+            try flashMedia(proxy: file, options: options)
         }
     }
 

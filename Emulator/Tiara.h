@@ -602,27 +602,11 @@ struct DriveAPI : API {
     const DriveInfo &getInfo() const;
     const DriveInfo &getCachedInfo() const;
 
-    /** @brief  Inserts a new disk.
-     *  @param  fstype  The file system the disk should be formatted with.
-     *  @param  name    A PET string with the name of the new disk.
-     */
-    void insertBlankDisk(DOSType fstype, string name);
-
     /** @brief  Inserts a disk created from a media file.
      *  @param  file    A media file wrapper object.
      *  @param  wp      Write-protection status of the disk.
      */
     void insertMedia(MediaFile &file, bool wp);
-
-    /** @brief  Inserts a disk created from a file system.
-     *  @param  fs      A file system wrapper object.
-     *  @param  wp      Write-protection status of the disk.
-     */
-    void insertFileSystem(const class FileSystem &fs, bool wp);
-
-    /** @brief  Ejects the current disk.
-     */
-    void ejectDisk();
 };
 
 
@@ -1076,13 +1060,8 @@ struct C64API : public API {
      */
     void flash(const MediaFile &file);
 
-    /** @brief  Flashes a file from a collection into memory
-     */
-    void flash(const MediaFile &file, isize item);
 
-    /** @brief  Flashes a file from a file system into memory
-     */
-    void flash(const FileSystem &fs, isize item);
+
     /// @}
 };
 

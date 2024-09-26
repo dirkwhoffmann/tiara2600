@@ -14,6 +14,7 @@
 #include "Recorder.h"
 #include "C64.h"
 #include "Host.h"
+#include "IOUtils.h"
 
 namespace tiara {
 

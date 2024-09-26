@@ -51,7 +51,7 @@ RegressionTester::prepare(C64 &c64, C64Model model)
 void
 RegressionTester::run(string path)
 {
-    c64.flash(PRGFile(path), 0);
+
 }
 
 void

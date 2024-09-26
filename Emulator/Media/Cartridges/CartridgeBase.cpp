@@ -13,6 +13,7 @@
 #include "config.h"
 #include "Cartridge.h"
 #include "C64.h"
+#include "IOUtils.h"
 
 namespace tiara {
 

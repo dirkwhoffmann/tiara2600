@@ -50,7 +50,6 @@ target_include_directories(tiaraCore PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 # Add sub directories
 add_subdirectory(Base)
 add_subdirectory(Components)
-add_subdirectory(FileSystems)
 add_subdirectory(Media)
 add_subdirectory(Misc)
 add_subdirectory(Peripherals)
