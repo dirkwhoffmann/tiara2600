@@ -68,9 +68,6 @@ extension MyController: NSMenuItemValidation {
             case #selector(MyController.inspectCartridgeAction(_:)):
                 return emu.expansionport.cartridgeAttached()
 
-            case #selector(MyController.pressButtonDummyAction(_:)):
-                return emu.expansionport.traits.buttons > 0
-
             default:
                 return true
             }
@@ -454,92 +451,6 @@ extension MyController: NSMenuItemValidation {
             emu.expansionport.detachCartridge()
             emu.c64.hardReset()
         }
-    }
-
-    @IBAction func attachReuDummyAction(_ sender: Any!) {
-        // Dummy action method to enable menu item validation
-    }
-
-    @IBAction func attachReuAction(_ sender: NSMenuItem!) {
-
-        if let emu = emu {
-
-            let capacity = sender.tag
-            emu.expansionport.attachReuCartridge(capacity)
-        }
-    }
-
-    @IBAction func attachGeoRamDummyAction(_ sender: Any!) {
-        // Dummy action method to enable menu item validation
-    }
-
-    @IBAction func attachGeoRamAction(_ sender: NSMenuItem!) {
-
-        if let emu = emu {
-
-            let capacity = sender.tag
-            emu.expansionport.attachGeoRamCartridge(capacity)
-        }
-    }
-
-    @IBAction func attachIsepicAction(_ sender: Any!) {
-
-        if let emu = emu {
-            emu.expansionport.attachIsepicCartridge()
-        }
-    }
-
-    @IBAction func pressCartridgeButton1Action(_ sender: NSButton!) {
-        
-        if let emu = emu {
-
-            emu.put(.CRT_BUTTON_PRESS, value: 1)
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.emu!.put(.CRT_BUTTON_RELEASE, value: 1)
-            }
-        }
-    }
-
-    @IBAction func pressCartridgeButton2Action(_ sender: NSButton!) {
-        
-        if let emu = emu {
-
-            emu.put(.CRT_BUTTON_PRESS, value: 2)
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.emu!.put(.CRT_BUTTON_RELEASE, value: 2)
-            }
-        }
-    }
-    
-    @IBAction func pressButtonDummyAction(_ sender: Any!) {
-        // Dummy action method to enable menu item validation
-    }
-
-    @IBAction func setSwitchNeutralAction(_ sender: Any!) {
-        
-        if let emu = emu {
-            emu.put(.CRT_SWITCH_NEUTRAL)
-        }
-    }
-
-    @IBAction func setSwitchLeftAction(_ sender: Any!) {
-        
-        if let emu = emu {
-            emu.put(.CRT_SWITCH_LEFT)
-        }
-    }
-
-    @IBAction func setSwitchRightAction(_ sender: Any!) {
-        
-        if let emu = emu {
-            emu.put(.CRT_SWITCH_RIGHT)
-        }
-    }
-
-    @IBAction func setSwitchDummyAction(_ sender: Any!) {
-        // Dummy action method to enable menu item validation
     }
 
     @IBAction  func inspectCartridgeAction(_ sender: Any!) {

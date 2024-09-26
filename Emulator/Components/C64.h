@@ -19,7 +19,6 @@
 // Components
 #include "Memory.h"
 #include "VICII.h"
-#include "SIDBridge.h"
 #include "TOD.h"
 #include "CIA.h"
 #include "CPU.h"
@@ -127,7 +126,6 @@ public:
     CIA1 cia1 = CIA1(*this);
     CIA2 cia2 = CIA2(*this);
     VICII vic = VICII(*this);
-    SIDBridge sidBridge = SIDBridge(*this);
 
     // Ports
     AudioPort audioPort = AudioPort(*this);
@@ -286,7 +284,6 @@ public:
         CLONE(cia1)
         CLONE(cia2)
         CLONE(vic)
-        CLONE(sidBridge)
         CLONE(audioPort)
         CLONE(videoPort)
         CLONE(supply)

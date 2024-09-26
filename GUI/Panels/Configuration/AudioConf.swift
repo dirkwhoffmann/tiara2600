@@ -11,10 +11,7 @@ extension ConfigurationController {
     
     func refreshAudioTab() {
                                 
-        // Engine
-        audEngine.selectItem(withTag: config.sidEngine)
-        audFilter.state = config.sidFilter ? .on : .off
-        audSampling.isEnabled = config.sidEngine == tiara.SIDEngine.RESID.rawValue
+        // Sampling
         audSampling.selectItem(withTag: config.sidSampling)
 
         // In
@@ -85,21 +82,11 @@ extension ConfigurationController {
         config.volR = sender.integerValue
     }
 
-    @IBAction func audEngineAction(_ sender: NSPopUpButton!) {
-        
-        config.sidEngine = sender.selectedTag()
-    }
-
     @IBAction func audSamplingAction(_ sender: NSPopUpButton!) {
         
         config.sidSampling = sender.selectedTag()
     }
-    
-    @IBAction func audFilterAction(_ sender: NSButton!) {
-        
-        config.sidFilter = sender.state == .on
-    }
-    
+
     @IBAction func audPresetAction(_ sender: NSPopUpButton!) {
               
         if let emu = emu {

@@ -603,11 +603,6 @@ extension DefaultsProxy {
         remove(.CIA_REVISION)
         remove(.CIA_TIMER_B_BUG)
 
-        remove(.SID_REVISION)
-        remove(.SID_FILTER)
-        remove(.SID_ENABLE, [0, 1, 2, 3])
-        remove(.SID_ADDRESS, [0, 1, 2, 3])
-
         remove(.GLUE_LOGIC)
         remove(.POWER_GRID)
 
@@ -632,15 +627,6 @@ extension Configuration {
 
             defaults.set(.CIA_REVISION, ciaRevision)
             defaults.set(.CIA_TIMER_B_BUG, ciaTimerBBug)
-
-            defaults.set(.SID_REVISION, [0, 1, 2, 3], sidRevision)
-            defaults.set(.SID_FILTER, [0, 1, 2, 3], sidFilter)
-            defaults.set(.SID_ENABLE, 1, sidEnable1)
-            defaults.set(.SID_ENABLE, 2, sidEnable2)
-            defaults.set(.SID_ENABLE, 3, sidEnable3)
-            defaults.set(.SID_ADDRESS, 1, sidAddress1)
-            defaults.set(.SID_ADDRESS, 2, sidAddress2)
-            defaults.set(.SID_ADDRESS, 3, sidAddress3)
 
             defaults.set(.GLUE_LOGIC, glueLogic)
             defaults.set(.POWER_GRID, powerGrid)
@@ -668,15 +654,6 @@ extension Configuration {
 
             ciaRevision = defaults.get(.CIA_REVISION)
             ciaTimerBBug = defaults.get(.CIA_TIMER_B_BUG) != 0
-
-            sidRevision = defaults.get(.SID_REVISION, 0)
-            sidFilter = defaults.get(.SID_FILTER, 0) != 0
-            sidEnable1 = defaults.get(.SID_ENABLE, 1) != 0
-            sidEnable2 = defaults.get(.SID_ENABLE, 2) != 0
-            sidEnable3 = defaults.get(.SID_ENABLE, 3) != 0
-            sidAddress1 = defaults.get(.SID_ADDRESS, 1)
-            sidAddress2 = defaults.get(.SID_ADDRESS, 2)
-            sidAddress3 = defaults.get(.SID_ADDRESS, 3)
 
             glueLogic = defaults.get(.GLUE_LOGIC)
             powerGrid = defaults.get(.POWER_GRID)
@@ -786,7 +763,6 @@ extension DefaultsProxy {
         remove(.VICII_POWER_SAVE)
         remove(.VICII_SS_COLLISIONS)
         remove(.VICII_SB_COLLISIONS)
-        remove(.SID_POWER_SAVE, [0, 1, 2, 3])
         remove(.C64_WARP_MODE)
         remove(.C64_WARP_BOOT)
         remove(.C64_SPEED_BOOST)
@@ -807,7 +783,6 @@ extension Configuration {
 
             let defaults = EmulatorProxy.defaults!
 
-            defaults.set(.SID_POWER_SAVE, [0, 1, 2, 3], sidPowerSave)
             defaults.set(.VICII_POWER_SAVE, viciiPowerSave)
             defaults.set(.VICII_SS_COLLISIONS, ssCollisions)
             defaults.set(.VICII_SB_COLLISIONS, sbCollisions)
@@ -833,7 +808,6 @@ extension Configuration {
 
             let defaults = EmulatorProxy.defaults!
 
-            sidPowerSave = defaults.get(.SID_POWER_SAVE, 0) != 0
             viciiPowerSave = defaults.get(.VICII_POWER_SAVE) != 0
             ssCollisions = defaults.get(.VICII_SS_COLLISIONS) != 0
             sbCollisions = defaults.get(.VICII_SB_COLLISIONS) != 0
@@ -864,9 +838,6 @@ extension DefaultsProxy {
 
         debug(.defaults)
 
-        remove(.SID_ENGINE, [0, 1, 2, 3])
-        remove(.SID_SAMPLING, [0, 1, 2, 3])
-        remove(.SID_FILTER, [0, 1, 2, 3])
         remove(.AUD_VOL0)
         remove(.AUD_VOL1)
         remove(.AUD_VOL2)
@@ -902,8 +873,6 @@ extension Configuration {
             defaults.set(.AUD_PAN3, pan3)
             defaults.set(.AUD_VOL_L, volL)
             defaults.set(.AUD_VOL_R, volR)
-            defaults.set(.SID_SAMPLING, [0, 1, 2, 3], sidSampling)
-            defaults.set(.SID_FILTER, [0, 1, 2, 3], sidFilter)
             defaults.save()
 
             emu.resume()
@@ -932,8 +901,6 @@ extension Configuration {
 
             volL = defaults.get(.AUD_VOL_L)
             volR = defaults.get(.AUD_VOL_R)
-            sidSampling = defaults.get(.SID_SAMPLING, 0)
-            sidFilter = defaults.get(.SID_FILTER, 0) != 0
 
             emu.resume()
         }

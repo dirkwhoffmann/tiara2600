@@ -25,13 +25,6 @@ extension ConfigurationController {
         perControlPort1.selectItem(withTag: config.gameDevice1)
         perControlPort2.selectItem(withTag: config.gameDevice2)
 
-        // Mouse
-        let paddle = config.mouseModel >= 3
-        perMouseModel.selectItem(withTag: config.mouseModel)
-        perPaddleOrientation.selectItem(withTag: config.paddleOrientation)
-        update(perPaddleOrientation, enable: paddle)
-        update(perPaddleOrientationText, enable: paddle)
-
         // Joysticks
         let enable = config.autofire
         perAutofire.state = enable ? .on : .off

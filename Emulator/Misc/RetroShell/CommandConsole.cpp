@@ -285,23 +285,6 @@ CommandConsole::initCommands(Command &root)
 
 
     //
-    // Components (SID)
-    //
-
-    cmd = registerComponent(sid0);
-    cmd = registerComponent(sid1);
-    cmd = registerComponent(sid2);
-    cmd = registerComponent(sid3);
-
-
-    //
-    // Components (SIDBridge)
-    //
-
-    // cmd = registerComponent(sidBridge);
-
-
-    //
     // Ports
     //
 

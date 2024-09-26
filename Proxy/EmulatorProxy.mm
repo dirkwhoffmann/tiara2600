@@ -486,11 +486,6 @@ using namespace tiara;
     return (SIDAPI *)obj;
 }
 
-- (SIDInfo)getInfo:(NSInteger)nr
-{
-    return [self bridge]->getInfo((unsigned)nr);
-}
-
 - (float)drawWaveform:(u32 *)buffer
                     w:(NSInteger)w
                     h:(NSInteger)h

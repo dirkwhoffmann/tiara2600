@@ -13,8 +13,7 @@ extension ConfigurationController {
                                 
         // Power saving
         comViciiPowerSave.state = config.viciiPowerSave ? .on : .off
-        comSidPowerSave.state = config.sidPowerSave ? .on : .off
-        
+
         // Collision detection
         comSsCollisions.state = config.ssCollisions ? .on : .off
         comSbCollisions.state = config.sbCollisions ? .on : .off
@@ -47,11 +46,6 @@ extension ConfigurationController {
         config.viciiPowerSave = sender.state == .on
     }
 
-    @IBAction func comSidPowerSaveAction(_ sender: NSButton!) {
-        
-        config.sidPowerSave = sender.state == .on
-    }
-    
     //
     // Action methods (collision detection)
     //
@@ -117,14 +111,12 @@ extension ConfigurationController {
             case 1: // Accurate
 
                 config.viciiPowerSave = false
-                config.sidPowerSave = false
                 config.ssCollisions = true
                 config.sbCollisions = true
 
             case 2: // Accelerated
 
                 config.viciiPowerSave = true
-                config.sidPowerSave = true
                 config.ssCollisions = false
                 config.sbCollisions = false
 

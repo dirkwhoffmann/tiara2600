@@ -841,7 +841,6 @@ VICII::beginScanline()
     if (line == 0) {
 
         beginFrame();
-        sidBridge.beginFrame();
     }
 
     // Reset some variables

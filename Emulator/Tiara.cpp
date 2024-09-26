@@ -71,7 +71,7 @@ Tiara::Tiara() {
     vicii.vicii = &emu->main.vic;
 
     sid.emu = emu;
-    sid.sidBridge = &emu->main.sidBridge;
+    // sid.sidBridge = &emu->main.sidBridge;
 
     audioPort.emu = emu;
     audioPort.audioPort = &emu->main.audioPort;
@@ -659,27 +659,12 @@ VICIIAPI::getColor(isize nr, Palette palette) const
 // SID
 //
 
-SIDInfo
-SIDAPI::getInfo(isize nr) const
-{
-    assert(nr < 3);
-
-    return sidBridge->sid[nr].getInfo();
-}
-
-SIDInfo
-SIDAPI::getCachedInfo(isize nr) const
-{
-    assert(nr < 3);
-
-    return sidBridge->sid[nr].getCachedInfo();
-}
 
 float
 SIDAPI::draw(u32 *buffer, isize width, isize height,
                          float maxAmp, u32 color, isize sid) const
 {
-    return sidBridge->draw(buffer, width, height, maxAmp, color, sid);
+    return 0;
 }
 
 

@@ -62,15 +62,6 @@ class ConfigurationController: DialogController {
     // CIA
     @IBOutlet weak var hwCiaModelPopup: NSPopUpButton!
     @IBOutlet weak var hwCiaTimerBBug: NSButton!
-    
-    // SID
-    @IBOutlet weak var hwSidModelPopup: NSPopUpButton!
-    @IBOutlet weak var hwSidEnable1: NSButton!
-    @IBOutlet weak var hwSidEnable2: NSButton!
-    @IBOutlet weak var hwSidEnable3: NSButton!
-    @IBOutlet weak var hwSidAddress1: NSPopUpButton!
-    @IBOutlet weak var hwSidAddress2: NSPopUpButton!
-    @IBOutlet weak var hwSidAddress3: NSPopUpButton!
 
     // Board logic and power supply
     @IBOutlet weak var hwGlueLogicPopup: NSPopUpButton!
@@ -91,11 +82,6 @@ class ConfigurationController: DialogController {
     @IBOutlet weak var perControlPort1: NSPopUpButton!
     @IBOutlet weak var perControlPort2: NSPopUpButton!
         
-    // Mouse
-    @IBOutlet weak var perMouseModel: NSPopUpButton!
-    @IBOutlet weak var perPaddleOrientation: NSPopUpButton!
-    @IBOutlet weak var perPaddleOrientationText: NSTextField!
-
     // Joystick
     @IBOutlet weak var perAutofire: NSButton!
     @IBOutlet weak var perAutofireText: NSTextField!
@@ -142,8 +128,6 @@ class ConfigurationController: DialogController {
     //
     
     // Engine
-    @IBOutlet weak var audEngine: NSPopUpButton!
-    @IBOutlet weak var audFilter: NSButton!
     @IBOutlet weak var audSampling: NSPopUpButton!
     
     // In

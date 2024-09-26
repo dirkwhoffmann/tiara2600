@@ -25,7 +25,7 @@ OptionParser::create(Option opt, i64 arg)
     auto enumParser = [&]<typename T>() { return std::unique_ptr<EnumParser<T>>(new EnumParser<T>(opt, arg)); };
     auto boolParser = [&]() { return std::unique_ptr<BoolParser>(new BoolParser(opt, arg)); };
     auto numParser  = [&](string unit = "") { return std::unique_ptr<NumParser>(new NumParser(opt, arg, unit)); };
-    auto hexParser  = [&](string unit = "") { return std::unique_ptr<HexParser>(new HexParser(opt, arg, unit)); };
+    // auto hexParser  = [&](string unit = "") { return std::unique_ptr<HexParser>(new HexParser(opt, arg, unit)); };
 
     switch (opt) {
 
@@ -105,13 +105,7 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_CIA_TIMER_B_BUG:           return boolParser();
         case OPT_CIA_IDLE_SLEEP:            return boolParser();
 
-        case OPT_SID_ENABLE:                return boolParser();
-        case OPT_SID_ADDRESS:               return hexParser();
-        case OPT_SID_REVISION:              return enumParser.template operator()<SIDRevisionEnum>();
-        case OPT_SID_FILTER:                return boolParser();
-        case OPT_SID_ENGINE:                return enumParser.template operator()<SIDEngineEnum>();
-        case OPT_SID_SAMPLING:              return enumParser.template operator()<SamplingMethodEnum>();
-        case OPT_SID_POWER_SAVE:            return boolParser();
+        case OPT_SID_SAMPLING:              return numParser(); // enumParser.template operator()<SamplingMethodEnum>();
 
         case OPT_AUD_VOL0:                  return numParser("%");
         case OPT_AUD_VOL1:                  return numParser("%");

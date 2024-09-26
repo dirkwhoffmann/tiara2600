@@ -310,8 +310,8 @@ Memory::peekIO(u16 addr)
         case 0x6: // SID
         case 0x7: // SID
             
-            return sidBridge.peek(addr);
-            
+            return 0;
+
         case 0x8: // Color RAM
         case 0x9: // Color RAM
         case 0xA: // Color RAM
@@ -401,8 +401,8 @@ Memory::spypeekIO(u16 addr) const
         case 0x6: // SID
         case 0x7: // SID
             
-            return sidBridge.spypeek(addr & 0x001F);
-            
+            return 0;
+
         case 0x8: // Color Ram
         case 0x9: // Color Ram
         case 0xA: // Color Ram
@@ -538,13 +538,10 @@ Memory::pokeIO(u16 addr, u8 value)
         case 0x5: // SID
         case 0x6: // SID
 
-            sidBridge.poke(addr, value);
             return;
 
         case 0x7: // SID
 
-            sidBridge.poke(addr, value);
-            regressionTester.pokeDebugCart(addr, value);
             return;
             
         case 0x8: // Color RAM

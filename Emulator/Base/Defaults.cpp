@@ -109,17 +109,7 @@ Defaults::Defaults()
     setFallback(OPT_AUD_VOL_L,                  50);
     setFallback(OPT_AUD_VOL_R,                  50);
 
-    setFallback(OPT_SID_ENABLE,                 true,                   {0});
-    setFallback(OPT_SID_ENABLE,                 false,                  {1, 2, 3});
-    setFallback(OPT_SID_ADDRESS,                0xD400,                 {0});
-    setFallback(OPT_SID_ADDRESS,                0xD420,                 {1});
-    setFallback(OPT_SID_ADDRESS,                0xD440,                 {2});
-    setFallback(OPT_SID_ADDRESS,                0xD460,                 {3});
-    setFallback(OPT_SID_REVISION,               MOS_8580,               {0, 1, 2, 3});
-    setFallback(OPT_SID_FILTER,                 false,                  {0, 1, 2, 3});
-    setFallback(OPT_SID_ENGINE,                 SIDENGINE_RESID,        {0, 1, 2, 3});
-    setFallback(OPT_SID_SAMPLING,               SAMPLING_INTERPOLATE,   {0, 1, 2, 3});
-    setFallback(OPT_SID_POWER_SAVE,             false,                  {0, 1, 2, 3});
+    setFallback(OPT_SID_SAMPLING,               0);
 
     setFallback(OPT_MEM_INIT_PATTERN,           RAM_PATTERN_VICE);
     setFallback(OPT_MEM_HEATMAP,                false);

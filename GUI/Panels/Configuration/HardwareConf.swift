@@ -11,16 +11,6 @@ extension ConfigurationController {
     
     func awakeHardwarePrefsFromNib() {
         
-        for addr in stride(from: 0xD400, through: 0xD7E0, by: 0x20) {
-
-            let label = String(format: "$%04X", addr)
-            hwSidAddress1.addItem(withTitle: label)
-            hwSidAddress2.addItem(withTitle: label)
-            hwSidAddress3.addItem(withTitle: label)
-            hwSidAddress1.lastItem!.tag = addr
-            hwSidAddress2.lastItem!.tag = addr
-            hwSidAddress3.lastItem!.tag = addr
-        }
     }
     
     func refreshHardwareTab() {
@@ -58,16 +48,7 @@ extension ConfigurationController {
         // CIA
         hwCiaModelPopup.selectItem(withTag: config.ciaRevision)
         hwCiaTimerBBug.state = config.ciaTimerBBug ? .on : .off
-        
-        // Audio
-        hwSidModelPopup.selectItem(withTag: config.sidRevision)
-        hwSidEnable1.state = config.sidEnable1 ? .on : .off
-        hwSidEnable2.state = config.sidEnable2 ? .on : .off
-        hwSidEnable3.state = config.sidEnable3 ? .on : .off
-        hwSidAddress1.selectItem(withTag: config.sidAddress1)
-        hwSidAddress2.selectItem(withTag: config.sidAddress2)
-        hwSidAddress3.selectItem(withTag: config.sidAddress3)
-        
+
         // Logic board and power supply
         hwGlueLogicPopup.selectItem(withTag: config.glueLogic)
         hwPowerGridPopup.selectItem(withTag: config.powerGrid)
@@ -98,32 +79,7 @@ extension ConfigurationController {
 
         config.ciaTimerBBug = sender.state == .on
     }
-    
-    @IBAction func hwSidRevAction(_ sender: NSPopUpButton!) {
-        
-        config.sidRevision = sender.selectedTag()
-    }
-
-    @IBAction func hwSidEnable(_ sender: NSButton!) {
-
-        switch sender.tag {
-        case 1: config.sidEnable1 = sender.state == .on
-        case 2: config.sidEnable2 = sender.state == .on
-        case 3: config.sidEnable3 = sender.state == .on
-        default: fatalError()
-        }
-    }
-
-    @IBAction func hwSidAddressAction(_ sender: NSPopUpButton!) {
-
-        switch sender.tag {
-        case 1: config.sidAddress1 = sender.selectedTag()
-        case 2: config.sidAddress2 = sender.selectedTag()
-        case 3: config.sidAddress3 = sender.selectedTag()
-        default: fatalError()
-        }
-    }
-            
+                
     @IBAction func hwGlueLogicAction(_ sender: NSPopUpButton!) {
         
         config.glueLogic = sender.selectedTag()
@@ -159,7 +115,6 @@ extension ConfigurationController {
                 config.vicGrayDotBug = false
                 config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = true
-                config.sidRevision = tiara.SIDRevision.MOS_6581.rawValue
                 config.glueLogic = tiara.GlueLogic.DISCRETE.rawValue
                 config.powerGrid = tiara.PowerGrid.STABLE_50HZ.rawValue
 
@@ -168,7 +123,6 @@ extension ConfigurationController {
                 config.vicGrayDotBug = true
                 config.ciaRevision = tiara.CIARevision.MOS_8521.rawValue
                 config.ciaTimerBBug = false
-                config.sidRevision = tiara.SIDRevision.MOS_8580.rawValue
                 config.glueLogic = tiara.GlueLogic.IC.rawValue
                 config.powerGrid = tiara.PowerGrid.STABLE_50HZ.rawValue
 
@@ -177,7 +131,6 @@ extension ConfigurationController {
                 config.vicGrayDotBug = false
                 config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = true
-                config.sidRevision = tiara.SIDRevision.MOS_6581.rawValue
                 config.glueLogic = tiara.GlueLogic.DISCRETE.rawValue
                 config.powerGrid = tiara.PowerGrid.STABLE_50HZ.rawValue
 
@@ -186,7 +139,6 @@ extension ConfigurationController {
                 config.vicGrayDotBug = false
                 config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = false
-                config.sidRevision = tiara.SIDRevision.MOS_6581.rawValue
                 config.glueLogic = tiara.GlueLogic.DISCRETE.rawValue
                 config.powerGrid = tiara.PowerGrid.STABLE_60HZ.rawValue
 
@@ -195,7 +147,6 @@ extension ConfigurationController {
                 config.vicGrayDotBug = true
                 config.ciaRevision = tiara.CIARevision.MOS_8521.rawValue
                 config.ciaTimerBBug = true
-                config.sidRevision = tiara.SIDRevision.MOS_8580.rawValue
                 config.glueLogic = tiara.GlueLogic.IC.rawValue
                 config.powerGrid = tiara.PowerGrid.STABLE_60HZ.rawValue
 
@@ -204,7 +155,6 @@ extension ConfigurationController {
                 config.vicGrayDotBug = false
                 config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = false
-                config.sidRevision = tiara.SIDRevision.MOS_6581.rawValue
                 config.glueLogic = tiara.GlueLogic.DISCRETE.rawValue
                 config.powerGrid = tiara.PowerGrid.STABLE_60HZ.rawValue
 

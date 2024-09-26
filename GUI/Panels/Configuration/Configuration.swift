@@ -61,16 +61,6 @@ class Configuration {
         set { emu?.set(.CIA_TIMER_B_BUG, enable: newValue) }
     }
     
-    var sidRevision: Int {
-        get { return emu?.get(.SID_REVISION, id: 0) ?? 0 }
-        set { emu?.set(.SID_REVISION, value: newValue) }
-    }
-    
-    var sidFilter: Bool {
-        get { return emu?.get(.SID_FILTER, id: 0) != 0 }
-        set { emu?.set(.SID_FILTER, enable: newValue) }
-    }
-    
     var glueLogic: Int {
         get { return emu?.get(.GLUE_LOGIC) ?? 0 }
         set { emu?.set(.GLUE_LOGIC, value: newValue) }
@@ -161,11 +151,6 @@ class Configuration {
         set { emu?.set(.VICII_POWER_SAVE, enable: newValue) }
     }
 
-    var sidPowerSave: Bool {
-        get { return emu?.get(.SID_POWER_SAVE, id: 0) != 0 }
-        set { emu?.set(.SID_POWER_SAVE, enable: newValue) }
-    }
-
     var ssCollisions: Bool {
         get { return emu?.get(.VICII_SS_COLLISIONS) != 0 }
         set { emu?.set(.VICII_SS_COLLISIONS, enable: newValue) }
@@ -204,37 +189,9 @@ class Configuration {
     // Audio
     //
     
-    var sidEnable1: Bool {
-        get { return emu?.get(.SID_ENABLE, id: 1) != 0 }
-        set { emu?.set(.SID_ENABLE, id: 1, enable: newValue) }
-    }
-    var sidEnable2: Bool {
-        get { return emu?.get(.SID_ENABLE, id: 2) != 0 }
-        set { emu?.set(.SID_ENABLE, id: 2, enable: newValue) }
-    }
-    var sidEnable3: Bool {
-        get { return emu?.get(.SID_ENABLE, id: 3) != 0 }
-        set { emu?.set(.SID_ENABLE, id: 3, enable: newValue) }
-    }
-    var sidAddress1: Int {
-        get { return emu?.get(.SID_ADDRESS, id: 1) ?? 0 }
-        set { emu?.set(.SID_ADDRESS, id: 1, value: newValue) }
-    }
-    var sidAddress2: Int {
-        get { return emu?.get(.SID_ADDRESS, id: 2) ?? 0 }
-        set { emu?.set(.SID_ADDRESS, id: 2, value: newValue) }
-    }
-    var sidAddress3: Int {
-        get { return emu?.get(.SID_ADDRESS, id: 3) ?? 0 }
-        set { emu?.set(.SID_ADDRESS, id: 3, value: newValue) }
-    }
-    var sidEngine: Int {
-        get { return emu?.get(.SID_ENGINE, id: 0) ?? 0 }
-        set { emu?.set(.SID_ENGINE, value: newValue) }
-    }
     var sidSampling: Int {
-        get { return emu?.get(.SID_SAMPLING, id: 0) ?? 0 }
-        set { emu?.set(.SID_SAMPLING, value: newValue) }
+        get { return 0 } // emu?.get(.SID_SAMPLING, id: 0) ?? 0 }
+        set { } // emu?.set(.SID_SAMPLING, value: newValue) }
     }
     var vol0: Int {
         get { return emu?.get(.AUD_VOL0) ?? 0 }

@@ -38,11 +38,6 @@ protected:
     class RegressionTester &regressionTester;
     class RemoteManager &remoteManager;
     class RetroShell &retroShell;
-    class SIDBridge &sidBridge;
-    class SID& sid0;
-    class SID& sid1;
-    class SID& sid2;
-    class SID& sid3;
     class VICII &vic;
     class VideoPort &videoPort;
 

@@ -365,8 +365,6 @@ struct GuardInfo {
 
 @interface SIDProxy : SubComponentProxy { }
 
-- (SIDInfo)getInfo:(NSInteger)nr;
-
 - (float)drawWaveform:(u32 *)buffer w:(NSInteger)w h:(NSInteger)h scale:(float)s color:(u32)c source:(NSInteger)source;
 - (float)drawWaveform:(u32 *)buffer size:(NSSize)size scale:(float)s color:(u32)c source:(NSInteger)source;
 
@@ -428,9 +426,6 @@ struct GuardInfo {
 
 - (BOOL)cartridgeAttached;
 - (void)attachCartridge:(MediaFileProxy *)c reset:(BOOL)reset exception:(ExceptionWrapper *)ex;
-- (void)attachReuCartridge:(NSInteger)capacity;
-- (void)attachGeoRamCartridge:(NSInteger)capacity;
-- (void)attachIsepicCartridge;
 - (void)detachCartridge;
 
 @end

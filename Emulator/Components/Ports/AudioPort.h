@@ -13,14 +13,22 @@
 #pragma once
 
 #include "AudioPortTypes.h"
-#include "SIDTypes.h"
 #include "SubComponent.h"
 #include "Concurrency.h"
+#include "RingBuffer.h"
 #include "Volume.h"
 
 namespace tiara {
 
-class SIDBridge;
+typedef struct {
+
+    // Audio sample of the left stereo channel
+    float l;
+
+    // Audio sample of the right stereo channel
+    float r;
+}
+SamplePair;
 
 class AudioPort final :
 public SubComponent,
@@ -190,14 +198,6 @@ public:
 
     // Returns the sample rate adjustment
     double getSampleRateCorrection() { return sampleRateCorrection; }
-
-private:
-
-    // Generates samples from the audio source with a single active SID
-    template <bool fading> void mixSingleSID(isize numSamples);
-
-    // Generates samples from the audio source with multiple active SIDs
-    template <bool fading> void mixMultiSID(isize numSamples);
 
 
     //

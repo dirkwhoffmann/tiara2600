@@ -203,14 +203,6 @@ struct VICIIAPI : API {
  */
 struct SIDAPI : API {
 
-    class SIDBridge *sidBridge = nullptr;
-
-    /** @brief  Returns the current state of a specific SID.
-     *  @param  nr      SID number (0 - 3). 0 is the primary SID.
-     */
-    SIDInfo getInfo(isize nr) const;
-    SIDInfo getCachedInfo(isize nr) const;
-
     /// @}
     /// @name Visualizing waveforms
     /// @{

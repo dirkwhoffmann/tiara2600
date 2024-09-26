@@ -313,12 +313,6 @@ DebugConsole::initCommands(Command &root)
         dump(cia2, Category::Registers);
     });
 
-    root.add({"r", "sid"},          "Primary SID",
-             [this](Arguments& argv, long value) {
-
-        dump(sidBridge.sid[0], Category::Registers);
-    });
-
     root.add({"?"},
              "Inspect a component");
 
@@ -378,22 +372,6 @@ DebugConsole::initCommands(Command &root)
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
 
         dump(vic, { Category::Config, Category::State });
-    });
-
-    root.add({"?", "sid"}, { }, { Arg::value }, "Primary SID",
-             [this](Arguments& argv, long value) {
-
-        isize nr = parseNum(argv, 0, 0);
-        if (nr < 0 || nr > 3) throw Error(VC64ERROR_OPT_INV_ARG, "0 ... 3");
-
-        dump(sidBridge.sid[nr], { Category::Config, Category::State });
-    });
-
-    cmd = sidBridge.shellName();
-    description = sidBridge.description();
-    root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
-
-        dump(sidBridge, { Category::Config, Category::State });
     });
 
     cmd = expansionPort.shellName();

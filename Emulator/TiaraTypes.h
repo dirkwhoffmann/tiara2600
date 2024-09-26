@@ -37,7 +37,6 @@
 #include "RemoteManagerTypes.h"
 #include "RemoteServerTypes.h"
 #include "RetroShellTypes.h"
-#include "SIDTypes.h"
 #include "ThreadTypes.h"
 #include "UserPortTypes.h"
 #include "VICIITypes.h"

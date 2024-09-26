@@ -32,7 +32,6 @@ RegressionTester::prepare(C64 &c64, C64Model model)
     emulator.set(model);
 
     // Make sure we run with high emulation accuracy
-    emulator.set(OPT_SID_POWER_SAVE, false);
     emulator.set(OPT_VICII_POWER_SAVE, false);
     emulator.set(OPT_VICII_SS_COLLISIONS, true);
     emulator.set(OPT_VICII_SB_COLLISIONS, true);

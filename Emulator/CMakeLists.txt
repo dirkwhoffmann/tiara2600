@@ -58,7 +58,7 @@ add_subdirectory(Utilities)
 # Add libraries
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
-target_link_libraries(tiaraCore resid Threads::Threads)
+target_link_libraries(tiaraCore Threads::Threads)
 
 # Add tests
 add_test(NAME SelfTest1 COMMAND tiaraConsole --verbose --footprint)

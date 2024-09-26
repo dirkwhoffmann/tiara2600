@@ -11,7 +11,6 @@
 // -----------------------------------------------------------------------------
 
 #include "config.h"
-#include "SIDBridge.h"
 #include "Emulator.h"
 
 namespace tiara {
@@ -96,25 +95,6 @@ AudioPort::generateSamples()
 {
     SYNCHRONIZED
 
-    // Check how many samples can be generated
-    auto s0 = sid0.stream.count();
-    auto s1 = sid1.stream.count();
-    auto s2 = sid2.stream.count();
-    auto s3 = sid3.stream.count();
-
-    auto numSamples = s0;
-    if (s1) numSamples = std::min(numSamples, s1);
-    if (s2) numSamples = std::min(numSamples, s2);
-    if (s3) numSamples = std::min(numSamples, s3);
-
-    // Generate the samples
-    bool fading = volL.isFading() || volR.isFading();
-
-    if (sid1.isEnabled() || sid2.isEnabled() || sid3.isEnabled()) {
-        fading ? mixMultiSID<true>(numSamples) : mixMultiSID<false>(numSamples);
-    } else {
-        fading ? mixSingleSID<true>(numSamples) : mixSingleSID<false>(numSamples);
-    }
 }
 
 void
@@ -147,129 +127,7 @@ AudioPort::fadeOut()
     }
 }
 
-template <bool fading> void
-AudioPort::mixSingleSID(isize numSamples)
-{
-    auto vol0 = vol[0];
-    auto pan0 = pan[0];
-    auto curL = volL.current;
-    auto curR = volR.current;
 
-    // Print some debug info
-    debug(SID_EXEC, "volL: %f volR: %f vol0: %f pan0: %f\n", curL, curR, vol0, pan0);
-
-    // Check for buffer overflow
-    if (free() < numSamples) handleBufferOverflow();
-
-    if constexpr (fading == false) {
-
-        if (curL + curR == 0.0 || vol0 == 0.0) {
-
-            // Fast path: All samples are zero
-            for (isize i = 0; i < numSamples; i++) (void)sid0.stream.read();
-            for (isize i = 0; i < numSamples; i++) write(SamplePair { 0, 0 } );
-
-            // Send a MUTE message if applicable
-            if (!muted) { muted = true; msgQueue.put(MSG_MUTE, true); }
-            return;
-        }
-    }
-
-    // Slow path: There is something to hear
-    for (isize i = 0; i < numSamples; i++) {
-
-        // Read SID sample from ring buffer
-        float ch0 = (float)sidBridge.sid0.stream.read() * vol0;
-
-        // Compute left and right channel output
-        float l = ch0 * (1 - pan0);
-        float r = ch0 * pan0;
-
-        // Modulate the master volume
-        if constexpr (fading) { volL.shift(); curL = volL.current; }
-        if constexpr (fading) { volR.shift(); curR = volR.current; }
-
-        // Apply master volume
-        l *= curL;
-        r *= curR;
-
-        // Prevent hearing loss
-        assert(std::abs(l) < 1.0);
-        assert(std::abs(r) < 1.0);
-
-        write(SamplePair { l, r } );
-    }
-
-    // Send a MUTE message if applicable
-    if (muted) { muted = false; msgQueue.put(MSG_MUTE, false); }
-}
-
-template <bool fading> void
-AudioPort::mixMultiSID(isize numSamples)
-{
-    auto vol0 = vol[0]; auto pan0 = pan[0];
-    auto vol1 = vol[1]; auto pan1 = pan[1];
-    auto vol2 = vol[2]; auto pan2 = pan[2];
-    auto vol3 = vol[3]; auto pan3 = pan[3];
-    auto curL = volL.current;
-    auto curR = volR.current;
-
-    // Print some debug info
-    debug(SID_EXEC, "volL: %f volR: %f\n", curL, curR);
-    debug(SID_EXEC, "vol0: %f vol1: %f vol2: %f vol3: %f\n", vol0, vol1, vol2, vol3);
-
-    // Check for buffer overflow
-    if (free() < numSamples) handleBufferOverflow();
-
-    if constexpr (fading == false) {
-
-        if (curL + curR == 0.0 || vol0 + vol1 + vol2 + vol3 == 0.0) {
-
-            // Fast path: All samples are zero
-            for (isize i = 0; i < numSamples; i++) (void)sid0.stream.read();
-            for (isize i = 0; i < numSamples; i++) (void)sid1.stream.read(0);
-            for (isize i = 0; i < numSamples; i++) (void)sid2.stream.read(0);
-            for (isize i = 0; i < numSamples; i++) (void)sid3.stream.read(0);
-            for (isize i = 0; i < numSamples; i++) write(SamplePair { 0, 0 } );
-
-            // Send a MUTE message if applicable
-            if (!muted) { muted = true; msgQueue.put(MSG_MUTE, true); }
-            return;
-        }
-    }
-
-    // Slow path: There is something to hear
-    for (isize i = 0; i < numSamples; i++) {
-
-        float ch0, ch1, ch2, ch3, l, r;
-
-        ch0 = (float)sid0.stream.read()  * vol0;
-        ch1 = (float)sid1.stream.read(0) * vol1;
-        ch2 = (float)sid2.stream.read(0) * vol2;
-        ch3 = (float)sid3.stream.read(0) * vol3;
-
-        // Compute left and right channel output
-        l = ch0 * (1 - pan0) + ch1 * (1 - pan1) + ch2 * (1 - pan2) + ch3 * (1 - pan3);
-        r = ch0 * pan0 + ch1 * pan1 + ch2 * pan2 + ch3 * pan3;
-
-        // Modulate the master volume
-        if constexpr (fading) { volL.shift(); curL = volL.current; }
-        if constexpr (fading) { volR.shift(); curR = volR.current; }
-
-        // Apply master volume
-        l *= curL;
-        r *= curR;
-
-        // Prevent hearing loss
-        assert(abs(l) < 1.0);
-        assert(abs(r) < 1.0);
-
-        write(SamplePair { l, r } );
-    }
-
-    // Send a MUTE message if applicable
-    if (muted) { muted = false; msgQueue.put(MSG_MUTE, false); }
-}
 
 isize
 AudioPort::copyMono(float *buffer, isize n)

@@ -29,7 +29,6 @@ C64::C64(class Emulator& ref, isize id) : CoreComponent(ref, id)
         &cpu,
         &cia1, &cia2,
         &vic,
-        &sidBridge,
         &audioPort,
         &videoPort,
         &supply,
@@ -114,7 +113,6 @@ C64::_dump(Category category, std::ostream& os) const
     if (category == Category::Summary) {
 
         auto vicRev = (VICIIRevision)emulator.get(OPT_VICII_REVISION);
-        auto sidRev = (SIDRevision)emulator.get(OPT_SID_REVISION);
         auto cia1Rev = (CIARevision)cia1.getOption(OPT_CIA_REVISION);
         auto cia2Rev = (CIARevision)cia2.getOption(OPT_CIA_REVISION);
 
@@ -122,8 +120,6 @@ C64::_dump(Category category, std::ostream& os) const
         os << (vic.pal() ? "PAL" : "NTSC") << std::endl;
         os << tab("VICII");
         os << VICIIRevisionEnum::key(vicRev) << std::endl;
-        os << tab("SID");
-        os << SIDRevisionEnum::key(sidRev) << std::endl;
         os << tab("CIA 1");
         os << CIARevisionEnum::key(cia1Rev) << std::endl;
         os << tab("CIA 2");

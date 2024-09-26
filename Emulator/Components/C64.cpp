@@ -329,11 +329,6 @@ void
 C64::updateClockFrequency()
 {
     auto frequency = clockFrequency();
-
-    sidBridge.sid[0].setClockFrequency((u32)frequency);
-    sidBridge.sid[1].setClockFrequency((u32)frequency);
-    sidBridge.sid[2].setClockFrequency((u32)frequency);
-    sidBridge.sid[3].setClockFrequency((u32)frequency);
     durationOfOneCycle = 10000000000 / frequency;
 }
 
@@ -456,8 +451,6 @@ C64::set(C64Model model)
                 set(OPT_VICII_GRAY_DOT_BUG, false);
                 set(OPT_CIA_REVISION, MOS_6526);
                 set(OPT_CIA_TIMER_B_BUG, true);
-                set(OPT_SID_REVISION, MOS_6581);
-                set(OPT_SID_FILTER, true);
                 set(OPT_POWER_GRID, GRID_STABLE_50HZ);
                 set(OPT_GLUE_LOGIC, GLUE_LOGIC_DISCRETE);
                 set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
@@ -469,8 +462,6 @@ C64::set(C64Model model)
                 set(OPT_VICII_GRAY_DOT_BUG, true);
                 set(OPT_CIA_REVISION, MOS_8521);
                 set(OPT_CIA_TIMER_B_BUG, false);
-                set(OPT_SID_REVISION, MOS_8580);
-                set(OPT_SID_FILTER, true);
                 set(OPT_POWER_GRID, GRID_STABLE_50HZ);
                 set(OPT_GLUE_LOGIC, GLUE_LOGIC_IC);
                 set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
@@ -482,8 +473,6 @@ C64::set(C64Model model)
                 set(OPT_VICII_GRAY_DOT_BUG, false);
                 set(OPT_CIA_REVISION, MOS_6526);
                 set(OPT_CIA_TIMER_B_BUG, true);
-                set(OPT_SID_REVISION, MOS_6581);
-                set(OPT_SID_FILTER, true);
                 set(OPT_POWER_GRID, GRID_STABLE_50HZ);
                 set(OPT_GLUE_LOGIC, GLUE_LOGIC_DISCRETE);
                 set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
@@ -495,8 +484,6 @@ C64::set(C64Model model)
                 set(OPT_VICII_GRAY_DOT_BUG, false);
                 set(OPT_CIA_REVISION, MOS_6526);
                 set(OPT_CIA_TIMER_B_BUG, false);
-                set(OPT_SID_REVISION, MOS_6581);
-                set(OPT_SID_FILTER, true);
                 set(OPT_POWER_GRID, GRID_STABLE_60HZ);
                 set(OPT_GLUE_LOGIC, GLUE_LOGIC_DISCRETE);
                 set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
@@ -508,8 +495,6 @@ C64::set(C64Model model)
                 set(OPT_VICII_GRAY_DOT_BUG, true);
                 set(OPT_CIA_REVISION, MOS_8521);
                 set(OPT_CIA_TIMER_B_BUG, true);
-                set(OPT_SID_REVISION, MOS_8580);
-                set(OPT_SID_FILTER, true);
                 set(OPT_POWER_GRID, GRID_STABLE_60HZ);
                 set(OPT_GLUE_LOGIC, GLUE_LOGIC_IC);
                 set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
@@ -521,8 +506,6 @@ C64::set(C64Model model)
                 set(OPT_VICII_GRAY_DOT_BUG, false);
                 set(OPT_CIA_REVISION, MOS_6526);
                 set(OPT_CIA_TIMER_B_BUG, false);
-                set(OPT_SID_REVISION, MOS_6581);
-                set(OPT_SID_FILTER, true);
                 set(OPT_POWER_GRID, GRID_STABLE_60HZ);
                 set(OPT_GLUE_LOGIC, GLUE_LOGIC_DISCRETE);
                 set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
@@ -1024,7 +1007,6 @@ C64::endFrame()
     frame++;
     
     vic.endFrame();
-    sidBridge.endFrame();
     mem.endFrame();
     expansionport.endOfFrame();
     port1.execute();
@@ -1146,10 +1128,6 @@ C64::processINSEvent()
     if (mask & 1LL << CIAClass)             { cia1.record(); cia2.record(); }
     if (mask & 1LL << VICIIClass)           { vic.record(); }
     
-    if (mask & 1LL << SIDClass) {
-        for (isize i = 0; i < 4; i++) sidBridge.sid[i].record();
-    }
-
     // Reschedule the event
     rescheduleRel<SLOT_INS>(Cycle(inspectionInterval * PAL::CYCLES_PER_SECOND));
 }
