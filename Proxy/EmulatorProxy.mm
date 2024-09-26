@@ -712,132 +712,6 @@ using namespace tiara;
 
 
 //
-// DiskAnalyzer
-//
-
-@implementation DiskAnalyzerProxy
-
-- (DiskAnalyzer *)analyzer
-{
-    return (DiskAnalyzer *)obj;
-}
-
-- (instancetype) initWithDrive:(DriveProxy *)drive
-{
-    NSLog(@"DiskAnalyzerProxy::initWithDrive");
-
-    if (!(self = [super init])) return self;
-    auto drv = (DriveAPI *)drive->obj;
-    obj = new DiskAnalyzer(*drv->drive);
-
-    return self;
-}
-
-- (void)dealloc
-{
-    NSLog(@"DiskAnalyzerProxy::dealloc");
-    
-    if (obj) delete (DiskAnalyzer *)obj;
-}
-
-- (NSInteger)lengthOfTrack:(Track)t
-{
-    return [self analyzer]->lengthOfTrack(t);
-}
-
-- (NSInteger)lengthOfHalftrack:(Halftrack)ht
-{
-    return [self analyzer]->lengthOfHalftrack(ht);
-}
-
-- (NSString *)getLogbook:(Halftrack)ht
-{
-    string s = [self analyzer]->getLogbook(ht);
-    return [NSString stringWithUTF8String:s.c_str()];
-}
-
-- (SectorInfo)sectorInfo:(Halftrack)ht sector:(Sector)s
-{
-    return [self analyzer]->sectorLayout(ht, s);
-}
-
-- (const char *)trackBitsAsString:(Halftrack)ht
-{
-    return [self analyzer]->trackBitsAsString(ht);
-}
-
-- (const char *)diskNameAsString
-{
-    return [self analyzer]->diskNameAsString();
-}
-
-- (const char *)sectorHeaderBytesAsString:(Halftrack)ht sector:(Sector)nr hex:(BOOL)hex
-{
-    return [self analyzer]->sectorHeaderBytesAsString(ht, nr, hex);
-}
-
-- (const char *)sectorDataBytesAsString:(Halftrack)ht sector:(Sector)nr hex:(BOOL)hex
-{
-    return [self analyzer]->sectorDataBytesAsString(ht, nr, hex);
-}
-
-@end
-
-
-//
-// Drive
-//
-
-@implementation DriveProxy
-
-- (DriveAPI *)drive
-{
-    return (DriveAPI *)obj;
-}
-
-- (Tiara *)emu
-{
-    return (Tiara *)emu;
-}
-
-- (DriveConfig)config
-{
-    return [self drive]->getConfig();
-}
-
-- (DriveInfo)info
-{
-    return [self drive]->getInfo();
-}
-
-- (DriveInfo)cachedInfo
-{
-    return [self drive]->getCachedInfo();
-}
-
-- (void)insertMedia:(MediaFileProxy *)proxy protected:(BOOL)wp
-{
-    [self drive]->insertMedia(*(MediaFile *)proxy->obj, wp);
-}
-
-- (void)insertFileSystem:(FileSystemProxy *)proxy protected:(BOOL)wp
-{
-    [self drive]->insertFileSystem(*(FileSystem *)proxy->obj, wp);
-}
-
-- (void)insertBlankDisk:(DOSType)fsType name:(NSString *)name
-{
-    [self drive]->insertBlankDisk(fsType, [name UTF8String]);
-}
-
-- (void)ejectDisk
-{
-    [self drive]->ejectDisk();
-}
-
-@end
-
-//
 // RS232 proxy
 //
 
@@ -859,8 +733,6 @@ using namespace tiara;
 }
 
 @end
-
-
 
 //
 // Mouse proxy
@@ -884,7 +756,6 @@ using namespace tiara;
 }
 
 @end
-
 
 //
 // Joystick proxy
@@ -1119,24 +990,6 @@ using namespace tiara;
     return [self make:tiara->c64.takeSnapshot()];
 }
 
-+ (instancetype)makeWithDrive:(DriveProxy *)proxy
-                        type:(FileType)type
-                   exception:(ExceptionWrapper *)ex
-{
-    auto drive = (DriveAPI *)proxy->obj;
-    try { return [self make: MediaFile::make(*drive, type)]; }
-    catch (Error &error) { [ex save:error]; return nil; }
-}
-
-+ (instancetype)makeWithFileSystem:(FileSystemProxy *)proxy
-                              type:(FileType)type
-                         exception:(ExceptionWrapper *)ex
-{
-    auto fs = (FileSystem *)proxy->obj;
-    try { return [self make: MediaFile::make(*fs, type)]; }
-    catch (Error &error) { [ex save:error]; return nil; }
-}
-
 - (FileType)type
 {
     return [self file]->type();
@@ -1201,278 +1054,6 @@ using namespace tiara;
 }
 
 @end
-
-
-//
-// FileSystem
-//
-
-@implementation FileSystemProxy
-
-- (FileSystem *)fs
-{
-    return (FileSystem *)obj;
-}
-
-+ (instancetype)make:(FileSystem *)fs
-{
-    return fs ? [[self alloc] initWith: fs] : nil;
-}
-
-+ (instancetype)makeWithDrive:(DriveProxy *)proxy exception:(ExceptionWrapper *)ex
-{
-    auto *disk = [proxy drive]->disk.get();
-    try { return [self make: new FileSystem(*disk)]; }
-    catch (Error &err) { [ex save:err]; return nil; }
-}
-
-+ (instancetype)makeWithDiskType:(DiskType)diskType dosType:(DOSType)dosType
-{
-    return [self make: new FileSystem(diskType, dosType)];
-}
-
-+ (instancetype)makeWithMediaFile:(MediaFileProxy *)proxy exception:(ExceptionWrapper *)ex
-{
-    try { return [self make: new FileSystem(*(MediaFile *)proxy->obj)]; }
-    catch (Error &err) { [ex save:err]; return nil; }
-}
-
-- (NSString *)name
-{
-    auto str = [self fs]->getName();
-    return @(str.c_str());
-}
-
-- (void)setName:(NSString *)name
-{
-    auto str = string([name UTF8String]);
-    [self fs]->setName(PETName<16>(str));
-}
-
-- (NSString *)idString
-{
-    auto str = [self fs]->getID();
-    return @(str.c_str());
-}
-
-- (NSString *)capacityString
-{
-    auto str = util::byteCountAsString([self fs]->getNumBytes());
-    return @(str.c_str());
-}
-
-- (NSString *)fillLevelString
-{
-    auto str = util::fillLevelAsString([self fs]->fillLevel());
-    return @(str.c_str());
-}
-
-- (DOSType)dos
-{
-    return [self fs]->dos();
-}
-
-- (NSInteger)numCyls
-{
-    return [self fs]->getNumCyls();
-}
-
-- (NSInteger)numHeads
-{
-    return [self fs]->getNumHeads();
-}
-
-- (NSInteger)numTracks
-{
-    return [self fs]->getNumTracks();
-}
-
-- (NSInteger)numSectors:(NSInteger)track
-{
-    return [self fs]->getNumSectors((Track)track);
-}
-
-- (NSInteger)numBlocks
-{
-    return [self fs]->getNumBlocks();
-}
-
-- (NSInteger)freeBlocks
-{
-    return [self fs]->freeBlocks();
-}
-
-- (NSInteger)usedBlocks
-{
-    return [self fs]->usedBlocks();
-}
-
-- (NSInteger)numFiles
-{
-    return [self fs]->numFiles();
-}
-
-- (NSInteger)cylNr:(NSInteger)t
-{
-    return [self fs]->layout.cylNr((Track)t);
-}
-
-- (NSInteger)headNr:(NSInteger)t
-{
-    return [self fs]->layout.headNr((Track)t);
-}
-
-- (NSInteger)trackNr:(NSInteger)c head:(NSInteger)h
-{
-    return [self fs]->layout.trackNr((Cylinder)c, (Head)h);
-}
-
-- (TSLink)tsLink:(NSInteger)b
-{
-    return [self fs]->layout.tsLink((Block)b);
-}
-
-- (NSInteger)trackNr:(NSInteger)b
-{
-    return (NSInteger)[self tsLink:b].t;
-}
-
-- (NSInteger)sectorNr:(NSInteger)b
-{
-    return (NSInteger)[self tsLink:b].s;
-}
-
-- (NSInteger)blockNr:(TSLink)ts
-{
-    return [self fs]->layout.blockNr(ts);
-}
-
-- (NSInteger)blockNr:(NSInteger)t sector:(NSInteger)s
-{
-    return [self fs]->layout.blockNr((Track)t, (Sector)s);
-}
-
-- (NSInteger)blockNr:(NSInteger)c head:(NSInteger)h sector:(NSInteger)s
-{
-    return [self fs]->layout.blockNr((Cylinder)c, (Head)h, (Sector)s);
-}
-
-- (FSBlockType)blockType:(NSInteger)blockNr
-{
-    return [self fs]->blockType((u32)blockNr);
-}
-
-- (FSUsage)itemType:(NSInteger)blockNr pos:(NSInteger)pos
-{
-    return [self fs]->usage((u32)blockNr, (u32)pos);
-}
-
-- (FSErrorReport)check:(BOOL)strict
-{
-    return [self fs]->check(strict);
-}
-
-- (ErrorCode)check:(NSInteger)blockNr
-               pos:(NSInteger)pos
-          expected:(unsigned char *)exp
-            strict:(BOOL)strict
-{
-    return [self fs]->check((u32)blockNr, (u32)pos, exp, strict);
-}
-
-- (BOOL)isCorrupted:(NSInteger)blockNr
-{
-    return [self fs]->isCorrupted((u32)blockNr);
-}
-
-- (NSInteger)getCorrupted:(NSInteger)blockNr
-{
-    return [self fs]->getCorrupted((u32)blockNr);
-}
-
-- (NSInteger)nextCorrupted:(NSInteger)blockNr
-{
-    return [self fs]->nextCorrupted((u32)blockNr);
-}
-
-- (NSInteger)prevCorrupted:(NSInteger)blockNr
-{
-    return [self fs]->prevCorrupted((u32)blockNr);
-}
-
-- (void)printDirectory
-{
-    return [self fs]->printDirectory();
-}
-
-- (NSInteger)readByte:(NSInteger)block offset:(NSInteger)offset
-{
-    return [self fs]->readByte((u32)block, offset);
-}
-
-- (NSString *)ascii:(NSInteger)block offset:(NSInteger)offset length:(NSInteger)len
-{
-    return @([self fs]->ascii(Block(block), offset, len).c_str());
-}
-
-- (void)export:(NSString *)path exception:(ExceptionWrapper *)e
-{
-    try { [self fs]->exportDirectory([path fileSystemRepresentation]); }
-    catch (Error &error) { [e save:error]; }
-}
-
-- (void)info
-{
-    [self fs]->info();
-}
-
-- (BOOL)isFree:(NSInteger)blockNr
-{
-    return [self fs]->isFree(blockNr);
-}
-
-- (NSString *)fileName:(NSInteger)nr
-{
-    return @([self fs]->fileName((unsigned)nr).c_str());
-}
-
-- (FSFileType)fileType:(NSInteger)nr
-{
-    return [self fs]->fileType((unsigned)nr);
-}
-
-- (NSInteger)fileSize:(NSInteger)nr
-{
-    return [self fs]->fileSize((unsigned)nr);
-}
-
-- (NSInteger)fileBlocks:(NSInteger)nr
-{
-    return [self fs]->fileBlocks((unsigned)nr);
-}
-
-- (FSBlockType)getDisplayType:(NSInteger)column
-{
-    return [self fs]->getDisplayType(column);
-}
-
-- (NSInteger)diagnoseImageSlice:(NSInteger)column
-{
-    return [self fs]->diagnoseImageSlice(column);
-}
-
-- (NSInteger)nextBlockOfType:(FSBlockType)type after:(NSInteger)after
-{
-    return [self fs]->nextBlockOfType(type, after);
-}
-
-- (NSInteger)nextCorruptedBlock:(NSInteger)after
-{
-    return [self fs]->nextCorruptedBlock(after);
-}
-
-@end
-
 
 //
 // Constants
@@ -1578,8 +1159,6 @@ using namespace tiara;
 @synthesize cia2;
 @synthesize cpu;
 @synthesize dmaDebugger;
-@synthesize drive8;
-@synthesize drive9;
 @synthesize expansionport;
 @synthesize userPort;
 @synthesize iec;
@@ -1608,8 +1187,6 @@ using namespace tiara;
     cia2 = [[CIAProxy alloc] initWith:&emu->cia2 emu:emu];
     cpu = [[CPUProxy alloc] initWith:&emu->cpu emu:emu];
     dmaDebugger = [[DmaDebuggerProxy alloc] initWith:&emu->dmaDebugger];
-    drive8 = [[DriveProxy alloc] initWith:&emu->drive8 emu:emu];
-    drive9 = [[DriveProxy alloc] initWith:&emu->drive9 emu:emu];
     expansionport = [[ExpansionPortProxy alloc] initWith:&emu->expansionPort emu:emu];
     userPort = [[UserPortProxy alloc] initWith:&emu->userPort emu:emu];
     iec = [[SerialPortProxy alloc] initWith:&emu->serialPort emu:emu];

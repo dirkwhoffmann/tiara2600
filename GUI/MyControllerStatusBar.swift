@@ -31,13 +31,6 @@ extension MyController {
             let warping = c64state.warping
             let boost = emu.get(.C64_SPEED_BOOST)
 
-            let config8 = emu.drive8.config
-            let config9 = emu.drive9.config
-            let connected8 = config8.connected
-            let connected9 = config9.connected
-            let on8 = config8.switchedOn
-            let on9 = config9.switchedOn
-
             let hasCrt = emu.expansionport.cartridgeAttached()
 
             // Remote server icon
@@ -52,13 +45,6 @@ extension MyController {
 
             // Visibility
             let items: [NSView: Bool] = [
-
-                redLED8: connected8,
-                redLED9: connected9,
-                greenLED8: connected8,
-                greenLED9: connected9,
-                trackNumber8: connected8 && on8,
-                trackNumber9: connected9 && on9,
 
                 haltIcon: jammed,
                 serverIcon: true,
@@ -185,11 +171,6 @@ extension MyController {
     //
     // Action methods
     //
-
-    @IBAction func drivePowerButtonAction(_ sender: NSButton!) {
-
-        drivePowerAction(drive: sender.tag == 0 ? DRIVE8 : DRIVE9)
-    }
 
     @IBAction func warpAction(_ sender: Any!) {
 

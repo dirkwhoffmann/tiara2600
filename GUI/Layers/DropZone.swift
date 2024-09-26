@@ -62,14 +62,8 @@ class DropZone: Layer {
     
         if let emu = emu {
 
-            let info8 = emu.drive8.info
-            let config8 = emu.drive8.config
-
-            let info9 = emu.drive9.info
-            let config9 = emu.drive9.config
-
-            inUse[0] = info8.hasDisk
-            inUse[1] = info9.hasDisk
+            inUse[0] = false
+            inUse[1] = false
             inUse[2] = false
             inUse[3] = emu.expansionport.cartridgeAttached()
             inUse[4] = false
@@ -77,10 +71,10 @@ class DropZone: Layer {
             switch type {
 
             case .T64, .P00, .PRG:
-                enabled = [config8.connected, config9.connected, true, false, false]
+                enabled = [false, false, true, false, false]
 
             case .FOLDER, .D64, .G64:
-                enabled = [config8.connected, config9.connected, false, false, false]
+                enabled = [false, false, false, false, false]
 
             case .CRT:
                 enabled = [false, false, false, true, false]
@@ -184,8 +178,8 @@ class DropZone: Layer {
 
                 switch n {
 
-                case 0: try mm.addMedia(url: url, allowedTypes: [type], drive: DRIVE8)
-                case 1: try mm.addMedia(url: url, allowedTypes: [type], drive: DRIVE9)
+                case 0: break
+                case 1: break
                 case 2: try mm.addMedia(url: url, allowedTypes: [type], options: [.flash])
                 case 3: try mm.addMedia(url: url, allowedTypes: [type])
                 case 4: try mm.addMedia(url: url, allowedTypes: [type])

@@ -25,11 +25,6 @@ class KeyboardController: NSObject {
     var leftCommand = false, rightCommand = false
     var capsLock    = false
 
-    // Remembers the currently pressed keys and their assigned C64 key list.
-    // This variable is only used when keys are mapped symbolically. It it
-    // written in keyDown and picked up in keyUp.
-    var pressedKeys: [Int: [C64Key]] = [:]
-        
     init(parent: MyController) {
         
         super.init()

@@ -86,21 +86,6 @@ class ConfigurationController: DialogController {
     //
     // Peripherals
     //
-    
-    // Drive
-    @IBOutlet weak var perDrive8Connect: NSButton!
-    @IBOutlet weak var perDrive8Config: NSPopUpButton!
-    @IBOutlet weak var perDrive8Type: NSPopUpButton!
-    @IBOutlet weak var perDrive8Ram: NSPopUpButton!
-    @IBOutlet weak var perDrive8Cable: NSPopUpButton!
-    @IBOutlet weak var perDrive9Connect: NSButton!
-    @IBOutlet weak var perDrive9Config: NSPopUpButton!
-    @IBOutlet weak var perDrive9Type: NSPopUpButton!
-    @IBOutlet weak var perDrive9Ram: NSPopUpButton!
-    @IBOutlet weak var perDrive9Cable: NSPopUpButton!
-
-    // Parallel cable
-    @IBOutlet weak var perParCableType: NSPopUpButton!
 
     // Ports
     @IBOutlet weak var perControlPort1: NSPopUpButton!
@@ -130,7 +115,6 @@ class ConfigurationController: DialogController {
     //
     
     // Power saving
-    @IBOutlet weak var comDrivePowerSave: NSButton!
     @IBOutlet weak var comViciiPowerSave: NSButton!
     @IBOutlet weak var comSidPowerSave: NSButton!
 

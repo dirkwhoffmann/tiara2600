@@ -90,18 +90,7 @@ class MyController: NSWindowController, MessageReceiver {
     
     var renderer: Renderer!
 
-    // Status bar
-    @IBOutlet weak var greenLED8: NSButton!
-    @IBOutlet weak var greenLED9: NSButton!
-    @IBOutlet weak var redLED8: NSButton!
-    @IBOutlet weak var redLED9: NSButton!
-    @IBOutlet weak var diskIcon8: NSButton!
-    @IBOutlet weak var diskIcon9: NSButton!
-    @IBOutlet weak var trackNumber8: NSTextField!
-    @IBOutlet weak var trackNumber9: NSTextField!
-    @IBOutlet weak var spinning8: NSProgressIndicator!
-    @IBOutlet weak var spinning9: NSProgressIndicator!
-    
+    // Status bar    
     @IBOutlet weak var haltIcon: NSButton!
     @IBOutlet weak var serverIcon: NSButton!
     @IBOutlet weak var trackIcon: NSButton!
@@ -387,7 +376,7 @@ extension MyController {
 
         case .DRIVE_STEP, .DISK_INSERT, .DISK_EJECT:
             break
-            
+
         case .FILE_FLASHED:
             break
 

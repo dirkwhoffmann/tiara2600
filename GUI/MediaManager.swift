@@ -205,7 +205,6 @@ class MediaManager {
 
     func addMedia(url: URL,
                   allowedTypes types: [tiara.FileType] = tiara.FileType.all,
-                  drive id: Int = DRIVE8,
                   options: [Option] = [.remember]) throws {
 
         debug(.media, "url = \(url) types = \(types)")
@@ -240,19 +239,12 @@ class MediaManager {
             // Process file
             if options.contains(.flash) {
                 try flashMedia(proxy: file, options: options)
-            } else {
-                try addMedia(proxy: file, drive: emu.drive(id), options: options)
             }
         }
     }
 
     func addMedia(proxy: MediaFileProxy,
-                  drive: DriveProxy? = nil,
                   options: [Option] = []) throws {
-
-        var proceedUnsaved: Bool {
-            return options.contains(.force) || proceedWithUnsavedFloppyDisk(drive: drive!)
-        }
 
         if let emu = emu {
 
@@ -268,13 +260,6 @@ class MediaManager {
 
                 debug(.media, "CRT")
                 try emu.expansionport.attachCartridge(proxy, reset: true)
-
-            case .T64, .PRG, .P00, .D64, .G64, .FOLDER:
-
-                debug(.media, "T64, PRG, P00, D64, G64, FOLDER")
-                if proceedUnsaved {
-                    drive!.insertMedia(proxy, protected: options.contains(.protect))
-                }
 
             case .SCRIPT:
 
@@ -303,15 +288,6 @@ class MediaManager {
                 debug(.media, "CRT")
                 try emu.expansionport.attachCartridge(proxy, reset: true)
 
-            case .PRG, .P00, .T64:
-
-                debug(.media, "PRG, P00, T64")
-                if let volume = try? FileSystemProxy.make(with: proxy) {
-
-                    try? emu.flash(volume, item: 0)
-                    controller.renderer.rotateLeft()
-                }
-
             case .SCRIPT:
 
                 debug(.media, "Script")
@@ -324,74 +300,8 @@ class MediaManager {
     }
 
     //
-    // Exporting disks
+    // Exporting
     //
-
-    func export(drive id: Int, to url: URL) throws {
-
-        debug(.media, "drive: \(id) to: \(url)")
-
-        if let emu = emu {
-            
-            let drive = emu.drive(id)
-            try export(disk: drive, to: url)
-
-            emu.put(.DSK_MODIFIED, value: id)
-        }
-    }
-
-    func export(disk: DriveProxy, to url: URL) throws {
-
-        debug(.media, "disk: \(disk) to: \(url)")
-
-        if url.c64FileType == .G64 {
-
-            let g64 = try MediaFileProxy.make(with: disk, type: .G64)
-            try export(file: g64, to: url)
-
-        } else {
-
-            let fs = try FileSystemProxy.make(with: disk)
-            try export(fs: fs, to: url)
-        }
-    }
-
-    func export(fs: FileSystemProxy, to url: URL) throws {
-
-        func showAlert(format: String) {
-
-            let msg1 = "Only the first file will be exported."
-            let msg2 = "The \(format) format is designed to store a single file."
-
-            showMultipleFilesAlert(msg1: msg1, msg2: msg2)
-        }
-
-        debug(.media, "fs: \(fs) to: \(url)")
-
-        var file: MediaFileProxy?
-
-        switch url.c64FileType {
-
-        case .D64:
-            file = try MediaFileProxy.make(with: fs, type: .D64)
-
-        case .T64:
-            file = try MediaFileProxy.make(with: fs, type: .T64)
-
-        case .PRG:
-            if fs.numFiles > 1 { showAlert(format: "PRG") }
-            file = try MediaFileProxy.make(with: fs, type: .PRG)
-
-        case .P00:
-            if fs.numFiles > 1 { showAlert(format: "P00") }
-            file = try MediaFileProxy.make(with: fs, type: .P00)
-
-        default:
-            throw VC64Error(tiara.ErrorCode.FILE_TYPE_MISMATCH)
-        }
-
-        try export(file: file!, to: url)
-    }
 
     func export(file: MediaFileProxy, to url: URL) throws {
 

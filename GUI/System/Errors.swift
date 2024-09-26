@@ -312,47 +312,6 @@ extension MyDocument {
         return alert.runSheet(for: windowForSheet!)
     }
 
-    func proceedWithUnsavedFloppyDisks(drives: [DriveProxy]) -> Bool {
-
-        func name(drive: DriveProxy) -> String {
-
-            switch drive.info.id {
-
-            case DRIVE8: return "Drive 8"
-            case DRIVE9: return "Drive 9"
-
-            default:
-                fatalError()
-            }
-        }
-
-        let modified = drives.filter { $0.info.hasModifiedDisk }
-
-        if modified.isEmpty || parent.pref.ejectWithoutAsking {
-            return true
-        }
-
-        let names = modified.map({ name(drive: $0) }).joined(separator: " and ")
-        let text = modified.count == 1 ?
-        "\(names) contains an unsaved disk." :
-        "\(names) contain unsaved disks."
-
-        return showIsUnsavedAlert(msg: text, icon: "adf") == .alertFirstButtonReturn
-    }
-
-    func proceedWithUnsavedFloppyDisk(drive: DriveProxy) -> Bool {
-
-        return proceedWithUnsavedFloppyDisks(drives: [drive])
-    }
-
-    func proceedWithUnsavedFloppyDisks() -> Bool {
-
-        if emu == nil { return true }
-
-        let drives = [emu!.drive8!, emu!.drive9!]
-        return proceedWithUnsavedFloppyDisks(drives: drives)
-    }
-
     func askToPowerOff() -> Bool {
 
         if emu?.poweredOn == true {
@@ -382,14 +341,6 @@ extension MyController {
         mydocument.showMultipleFilesAlert(msg1: msg1, msg2: msg2)
     }
 
-    func proceedWithUnsavedFloppyDisk(drive: DriveProxy) -> Bool {
-        return mydocument.proceedWithUnsavedFloppyDisk(drive: drive)
-    }
-
-    func proceedWithUnsavedFloppyDisks() -> Bool {
-        return mydocument.proceedWithUnsavedFloppyDisks()
-    }
-
     func askToPowerOff() -> Bool {
         return mydocument.askToPowerOff()
     }
@@ -399,13 +350,5 @@ extension MediaManager {
 
     func showMultipleFilesAlert(msg1: String, msg2: String) {
         document.showMultipleFilesAlert(msg1: msg1, msg2: msg2)
-    }
-
-    func proceedWithUnsavedFloppyDisk(drive: DriveProxy) -> Bool {
-        document.proceedWithUnsavedFloppyDisk(drive: drive)
-    }
-
-    func proceedWithUnsavedFloppyDisks() -> Bool {
-        document.proceedWithUnsavedFloppyDisks()
     }
 }

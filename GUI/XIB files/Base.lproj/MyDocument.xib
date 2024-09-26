@@ -12,23 +12,13 @@
                 <outlet property="activityInfo" destination="tD7-Kt-2R4" id="vjY-Pa-Shn"/>
                 <outlet property="activityType" destination="ApN-dX-M4Z" id="zMi-4l-Cko"/>
                 <outlet property="crtIcon" destination="2003" id="CVl-nZ-xP2"/>
-                <outlet property="diskIcon8" destination="1045" id="wFy-Xz-5J7"/>
-                <outlet property="diskIcon9" destination="D1i-Ep-fTN" id="4H9-ek-oFn"/>
-                <outlet property="greenLED8" destination="1208" id="wdq-y9-MpT"/>
-                <outlet property="greenLED9" destination="FWS-Ng-oe6" id="A7p-ch-sbx"/>
                 <outlet property="haltIcon" destination="LJd-96-8ze" id="t1x-xJ-LfW"/>
                 <outlet property="metal" destination="DD4-5B-w9h" id="rGV-rL-MLo"/>
                 <outlet property="muteIcon" destination="1v4-GY-YOm" id="Quj-qX-AH1"/>
-                <outlet property="redLED8" destination="1210" id="GLI-bf-y3R"/>
-                <outlet property="redLED9" destination="iKN-RM-vsV" id="cac-3p-tQd"/>
                 <outlet property="serverIcon" destination="SCM-Qu-4XG" id="40K-fX-k5b"/>
                 <outlet property="speedStepper" destination="thS-H1-lgy" id="fcb-xj-h0B"/>
-                <outlet property="spinning8" destination="2203" id="ons-cN-UFy"/>
-                <outlet property="tapeProgress" destination="H1X-Kk-fcE" id="HyE-RP-1yJ"/>
                 <outlet property="toolbar" destination="1845" id="vCR-nf-AUd"/>
                 <outlet property="trackIcon" destination="6c9-VQ-Wmb" id="2dW-WG-eAT"/>
-                <outlet property="trackNumber8" destination="eRV-bT-c7s" id="0Q1-xr-S5e"/>
-                <outlet property="trackNumber9" destination="ndF-PV-uVn" id="bAX-4R-ZjY"/>
                 <outlet property="warpIcon" destination="1052" id="uvG-el-lRi"/>
                 <outlet property="window" destination="5" id="2164"/>
             </connections>
@@ -44,17 +34,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="800" height="640"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <button toolTip="Connect / Disconnect drive" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1208">
-                        <rect key="frame" x="8" y="5" width="17" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="LEDgray" imagePosition="only" alignment="right" imageScaling="proportionallyDown" id="1709">
-                            <behavior key="behavior" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="drivePowerButtonAction:" target="-2" id="8WG-jz-D5t"/>
-                        </connections>
-                    </button>
                     <button toolTip="Warp mode" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1052">
                         <rect key="frame" x="692" y="4" width="18" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -65,57 +44,6 @@
                         <connections>
                             <action selector="warpAction:" target="-2" id="qwQ-Ql-wzH"/>
                         </connections>
-                    </button>
-                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="2203">
-                        <rect key="frame" x="106" y="5" width="16" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </progressIndicator>
-                    <button toolTip="Drive LED" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1210">
-                        <rect key="frame" x="29" y="5" width="17" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="LEDgray" imagePosition="only" alignment="right" imageScaling="proportionallyDown" id="1710">
-                            <behavior key="behavior" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
-                    <button hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1045">
-                        <rect key="frame" x="78" y="3" width="20" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="diskTemplate" imagePosition="only" alignment="right" imageScaling="proportionallyUpOrDown" id="1706">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu" size="10"/>
-                        </buttonCell>
-                    </button>
-                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="H1X-Kk-fcE">
-                        <rect key="frame" x="321" y="5" width="16" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </progressIndicator>
-                    <button toolTip="Connect / Disconnect drive" tag="1" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FWS-Ng-oe6">
-                        <rect key="frame" x="130" y="4" width="17" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="LEDgray" imagePosition="only" alignment="right" imageScaling="proportionallyDown" id="i9n-Ra-mbF">
-                            <behavior key="behavior" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="drivePowerButtonAction:" target="-2" id="7w9-yh-J1T"/>
-                        </connections>
-                    </button>
-                    <button toolTip="Drive LED" tag="1" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iKN-RM-vsV">
-                        <rect key="frame" x="151" y="4" width="17" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="LEDgray" imagePosition="only" alignment="right" imageScaling="proportionallyDown" id="v9S-no-L5h">
-                            <behavior key="behavior" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
-                    <button hidden="YES" tag="1" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D1i-Ep-fTN">
-                        <rect key="frame" x="200" y="3" width="20" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="diskTemplate" imagePosition="only" alignment="right" imageScaling="proportionallyUpOrDown" id="dWc-LE-E52">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu" size="10"/>
-                        </buttonCell>
                     </button>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DD4-5B-w9h" customClass="MetalView" customModule="Tiara" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="26" width="800" height="614"/>
@@ -157,24 +85,6 @@
                             <action selector="pressCartridgeButton2Action:" target="-1" id="r8J-zq-Djz"/>
                         </connections>
                     </button>
-                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eRV-bT-c7s">
-                        <rect key="frame" x="52" y="6" width="20" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="00" id="reP-W9-Peb">
-                            <font key="font" metaFont="message" size="11"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="ndF-PV-uVn">
-                        <rect key="frame" x="174" y="6" width="20" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="00" id="Ek0-5h-PCi">
-                            <font key="font" metaFont="message" size="11"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <button hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2003">
                         <rect key="frame" x="345" y="3" width="20" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -440,7 +350,6 @@
         </window>
     </objects>
     <resources>
-        <image name="LEDgray" width="128" height="128"/>
         <image name="clickTemplate" width="36" height="36"/>
         <image name="confTemplate" width="37" height="36"/>
         <image name="consoleTemplate" width="176" height="176"/>
@@ -452,7 +361,6 @@
         <image name="devKeyset2Template" width="20" height="20"/>
         <image name="devMouseTemplate" width="20" height="20"/>
         <image name="devNoneTemplate" width="20" height="20"/>
-        <image name="diskTemplate" width="241" height="241"/>
         <image name="galleryTemplate" width="36" height="36"/>
         <image name="haltTemplate" width="240" height="241"/>
         <image name="hourglass1Template" width="241" height="241"/>

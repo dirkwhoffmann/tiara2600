@@ -38,7 +38,6 @@
                 <outlet property="charSubsubtitle" destination="pJq-X4-x2y" id="dnt-HT-phH"/>
                 <outlet property="charSubtitle" destination="Pea-uJ-4G8" id="raO-PO-Cfy"/>
                 <outlet property="charTitle" destination="m0b-3R-CyB" id="sy5-3M-2iP"/>
-                <outlet property="comDrivePowerSave" destination="r7b-YR-bii" id="a19-hq-nxo"/>
                 <outlet property="comPowerButton" destination="MaC-Tv-e4H" id="r0L-EC-VjG"/>
                 <outlet property="comSbCollisions" destination="bnG-rw-e1M" id="HG9-2I-s0C"/>
                 <outlet property="comSidPowerSave" destination="xx0-43-RDp" id="xyp-xA-a8H"/>
@@ -1261,19 +1260,8 @@ Gw
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button toolTip="Disable this option in combination with Fast Loaders or programs that run directly in the memory of the floppy drive. " verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r7b-YR-bii">
-                                            <rect key="frame" x="26" y="259" width="238" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Put drives to sleep when not in use" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ENc-Xp-SX3">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="comDrivePowerSaveAction:" target="-2" id="r8L-gM-OwA"/>
-                                            </connections>
-                                        </button>
                                         <button toolTip="Disable this option in combination with programs that rely on exact collision register values while warp mode is active." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WZL-K6-LDf">
-                                            <rect key="frame" x="26" y="232" width="284" height="18"/>
+                                            <rect key="frame" x="26" y="260" width="284" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Run with reduced frame rate in warp mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="YgZ-jT-3Uo">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1284,7 +1272,7 @@ Gw
                                             </connections>
                                         </button>
                                         <button toolTip="Disable this option to avoid the unlikely, but possible case of corrupted sound being played after leaving warp mode." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xx0-43-RDp">
-                                            <rect key="frame" x="26" y="205" width="315" height="18"/>
+                                            <rect key="frame" x="26" y="233" width="315" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Do not synthesize sound samples in warp mode" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Bxr-vl-hDe">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

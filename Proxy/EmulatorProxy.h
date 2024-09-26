@@ -23,7 +23,6 @@ using namespace tiara;
 @class CPUProxy;
 @class DefaultsProxy;
 @class DmaDebuggerProxy;
-@class DriveProxy;
 @class ExpansionPortProxy;
 @class FileSystemProxy;
 @class SerialPortProxy;
@@ -103,8 +102,6 @@ using namespace tiara;
     ControlPortProxy *port2;
     CPUProxy *cpu;
     DmaDebuggerProxy *dmaDebugger;
-    DriveProxy *drive8;
-    DriveProxy *drive9;
     ExpansionPortProxy *expansionport;
     UserPortProxy *userPort;
     SerialPortProxy *iec;
@@ -127,8 +124,6 @@ using namespace tiara;
 @property (readonly, strong) ControlPortProxy *port2;
 @property (readonly, strong) CPUProxy *cpu;
 @property (readonly, strong) DmaDebuggerProxy *dmaDebugger;
-@property (readonly, strong) DriveProxy *drive8;
-@property (readonly, strong) DriveProxy *drive9;
 @property (readonly, strong) ExpansionPortProxy *expansionport;
 @property (readonly, strong) UserPortProxy *userPort;
 @property (readonly, strong) SerialPortProxy *iec;
@@ -473,56 +468,11 @@ struct GuardInfo {
 
 @end
 
-
-
 //
 // Serial port
 //
 
 @interface SerialPortProxy : SubComponentProxy { }
-
-@end
-
-
-//
-// Drive
-//
-
-@interface DriveProxy : SubComponentProxy {
-
-}
-
-@property (readonly) DriveConfig config;
-@property (readonly) DriveInfo info;
-@property (readonly) DriveInfo cachedInfo;
-
-- (void)insertBlankDisk:(DOSType)fstype name:(NSString *)name;
-- (void)insertMedia:(MediaFileProxy *)proxy protected:(BOOL)wp;
-- (void)insertFileSystem:(FileSystemProxy *)proxy protected:(BOOL)wp;
-- (void)ejectDisk;
-
-@end
-
-
-//
-// DiskAnalyzer
-//
-
-@interface DiskAnalyzerProxy : Proxy { }
-
-- (instancetype) initWithDrive:(DriveProxy *)drive;
-- (void)dealloc;
-
-- (NSInteger)lengthOfTrack:(Track)t;
-- (NSInteger)lengthOfHalftrack:(Halftrack)ht;
-
-- (SectorInfo)sectorInfo:(Halftrack)ht sector:(Sector)s;
-- (const char *)diskNameAsString;
-- (const char *)trackBitsAsString:(Halftrack)ht;
-- (const char *)sectorHeaderBytesAsString:(Halftrack)ht sector:(Sector)s hex:(BOOL)hex;
-- (const char *)sectorDataBytesAsString:(Halftrack)ht sector:(Sector)s hex:(BOOL)hex;
-
-- (NSString *)getLogbook:(Halftrack)ht;
 
 @end
 
@@ -614,8 +564,6 @@ struct GuardInfo {
 + (instancetype)makeWithFile:(NSString *)path type:(FileType)t exception:(ExceptionWrapper *)ex;
 + (instancetype)makeWithBuffer:(const void *)buf length:(NSInteger)len type:(FileType)t exception:(ExceptionWrapper *)ex;
 + (instancetype)makeWithTiara:(EmulatorProxy *)c64proxy;
-+ (instancetype)makeWithDrive:(DriveProxy *)proxy type:(FileType)t exception:(ExceptionWrapper *)ex;
-+ (instancetype)makeWithFileSystem:(FileSystemProxy *)proxy type:(FileType)t exception:(ExceptionWrapper *)ex;
 
 @property (readonly) FileType type;
 @property (readonly) u64 fnv;
@@ -636,7 +584,6 @@ struct GuardInfo {
 
 @interface FileSystemProxy : Proxy { }
 
-+ (instancetype)makeWithDrive:(DriveProxy *)drive exception:(ExceptionWrapper *)ex;
 + (instancetype)makeWithDiskType:(DiskType)diskType dosType:(DOSType)dosType;
 + (instancetype)makeWithMediaFile:(MediaFileProxy *)file exception:(ExceptionWrapper *)ex;
 

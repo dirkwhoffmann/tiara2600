@@ -52,41 +52,6 @@ extension MediaFileProxy {
         if exc.errorCode != .OK { throw VC64Error(exc) }
         return obj!
     }
-
-    static func make(with drive: DriveProxy, type: tiara.FileType) throws -> Self {
-
-        let exc = ExceptionWrapper()
-        let obj = make(withDrive: drive, type: type, exception: exc)
-        if exc.errorCode != .OK { throw VC64Error(exc) }
-        return obj!
-    }
-
-    static func make(with fs: FileSystemProxy, type: tiara.FileType) throws -> Self {
-
-        let exc = ExceptionWrapper()
-        let obj = make(withFileSystem: fs, type: type, exception: exc)
-        if exc.errorCode != .OK { throw VC64Error(exc) }
-        return obj!
-    }
-}
-
-extension FileSystemProxy {
-
-    static func make(with file: MediaFileProxy) throws -> Self {
-
-        let exc = ExceptionWrapper()
-        let obj = make(withMediaFile: file, exception: exc)
-        if exc.errorCode != .OK { throw VC64Error(exc) }
-        return obj!
-    }
-
-    static func make(with drive: DriveProxy) throws -> Self {
-
-        let exc = ExceptionWrapper()
-        let obj = make(withDrive: drive, exception: exc)
-        if exc.errorCode != .OK { throw VC64Error(exc) }
-        return obj!
-    }
 }
 
 //
@@ -213,29 +178,7 @@ extension RemoteManagerProxy {
 //
 
 public extension EmulatorProxy {
-    
-    func drive(_ nr: NSInteger) -> DriveProxy {
-        
-        switch nr {
-            
-        case DRIVE8: return drive8
-        case DRIVE9: return drive9
-        
-        default:
-            fatalError()
-        }
-    }
-    
-    func drive(_ item: NSButton!) -> DriveProxy {
-        
-        return drive(item.tag)
-    }
-    
-    func drive(_ item: NSMenuItem!) -> DriveProxy {
-        
-        return drive(item.tag)
-    }
-    
+
     func image(data: UnsafeMutablePointer<UInt8>?, size: NSSize) -> NSImage {
         
         var bitmap = data
@@ -258,33 +201,6 @@ public extension EmulatorProxy {
         image.makeGlossy()
         
         return image
-    }
-}
-
-public extension DriveProxy {
-    
-    static let ledGray = NSImage(named: "LEDgray")!
-    static let ledGreen = NSImage(named: "LEDgreen")!
-    static let ledRed = NSImage(named: "LEDred")!
-    static let diskProt = NSImage(named: "diskTemplate")!
-    static let diskProtGray = NSImage(named: "diskGrayTemplate")!
-    static let diskUnprot = NSImage(named: "diskWritableTemplate")!
-    static let diskUnprotGray = NSImage(named: "diskWritableGrayTemplate")!
-
-    var greenLedImage: NSImage {        
-        return config.switchedOn ? DriveProxy.ledGreen : DriveProxy.ledGray
-    }
-    
-    var redLedImage: NSImage {
-        return info.redLED ? DriveProxy.ledRed : DriveProxy.ledGray
-    }
-
-    var icon: NSImage {
-        if info.hasProtectedDisk {
-            return info.hasModifiedDisk ? DriveProxy.diskProtGray : DriveProxy.diskProt
-        } else {
-            return info.hasModifiedDisk ? DriveProxy.diskUnprotGray : DriveProxy.diskUnprot
-        }
     }
 }
 

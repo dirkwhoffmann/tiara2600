@@ -64,10 +64,6 @@ class MyApplication: NSApplication {
     // Replace the old document controller by instantiating a custom controller
     let myDocumentController = MyDocumentController()
 
-    // Indicates if the Command keys should be mapped to a C64 key
-    var mapLeftCmdKey: C64Key?
-    var mapRightCmdKey: C64Key?
-
     // Indicates if the CapsLock key should control warp mode
     var mapCapsLockWarp = true
 

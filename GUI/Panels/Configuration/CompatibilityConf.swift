@@ -12,7 +12,6 @@ extension ConfigurationController {
     func refreshPerformanceTab() {
                                 
         // Power saving
-        comDrivePowerSave.state = config.drive8PowerSave ? .on : .off
         comViciiPowerSave.state = config.viciiPowerSave ? .on : .off
         comSidPowerSave.state = config.sidPowerSave ? .on : .off
         

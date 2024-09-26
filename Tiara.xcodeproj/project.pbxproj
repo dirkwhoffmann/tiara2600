@@ -145,13 +145,7 @@
 		5055A83F1BC7996900399A20 /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5055A83E1BC7996900399A20 /* MetalKit.framework */; };
 		5055D5B42615886E005D3DA6 /* Error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5055D5B32615886E005D3DA6 /* Error.cpp */; };
 		5055D5B726158ABC005D3DA6 /* Checksum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5055D5B526158ABC005D3DA6 /* Checksum.cpp */; };
-		5058A918281D03D200C223C9 /* DiskInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5058A917281D03D200C223C9 /* DiskInspector.xib */; };
 		5058A91A281D041400C223C9 /* DiskExporter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5058A919281D041400C223C9 /* DiskExporter.xib */; };
-		5058A91C281D042D00C223C9 /* VolumeInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5058A91B281D042D00C223C9 /* VolumeInspector.xib */; };
-		5058A91E281D107A00C223C9 /* DiskExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058A91D281D107A00C223C9 /* DiskExporter.swift */; };
-		5058A920281D109F00C223C9 /* DiskInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058A91F281D109F00C223C9 /* DiskInspector.swift */; };
-		5058A922281D10B100C223C9 /* VolumeInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058A921281D10B100C223C9 /* VolumeInspector.swift */; };
-		5058A924281D10C600C223C9 /* DiskCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058A923281D10C600C223C9 /* DiskCreator.swift */; };
 		505A132B2C3503B400FF8D2C /* UserPort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 505A13292C3503B400FF8D2C /* UserPort.cpp */; };
 		505A132C2C3503B400FF8D2C /* UserPort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 505A13292C3503B400FF8D2C /* UserPort.cpp */; };
 		505A132F2C3503EB00FF8D2C /* UserPortBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 505A132D2C3503EB00FF8D2C /* UserPortBase.cpp */; };
@@ -464,17 +458,11 @@
 		50D3092424C7152700B92563 /* Inspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3092324C7152700B92563 /* Inspector.swift */; };
 		50D3092624C71AD300B92563 /* Monitor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50D3092524C71AD300B92563 /* Monitor.xib */; };
 		50D3092824C71B0A00B92563 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3092724C71B0A00B92563 /* Monitor.swift */; };
-		50D5F88024F4F12F0062EF13 /* TrackTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D5F87F24F4F12F0062EF13 /* TrackTableView.swift */; };
-		50D5F88424F4FE9C0062EF13 /* SectorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D5F88324F4FE9C0062EF13 /* SectorTableView.swift */; };
-		50D5F88624F52A300062EF13 /* DiskDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D5F88524F52A300062EF13 /* DiskDataView.swift */; };
-		50D5F88824F556270062EF13 /* DiskErrors.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50D5F88724F556270062EF13 /* DiskErrors.xib */; };
-		50D5F88A24F5573D0062EF13 /* DiskErrorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D5F88924F5573D0062EF13 /* DiskErrorController.swift */; };
 		50D8421820A82CF500EB859A /* MetalViewEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D8421720A82CF500EB859A /* MetalViewEvents.swift */; };
 		50DBB3D12641101E006F45E6 /* DmaDebugger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB3CF2641101E006F45E6 /* DmaDebugger.cpp */; };
 		50DBB44B2025CE5700489271 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB44A2025CE5700489271 /* Utils.swift */; };
 		50DD82A02614D47E00B84EB3 /* Chrono.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DD829E2614D47E00B84EB3 /* Chrono.cpp */; };
 		50DEAD8F2008E615008A8761 /* Shaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DEAD8E2008E615008A8761 /* Shaders.swift */; };
-		50DF719425021FCA00953E2E /* Keycap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF719325021FCA00953E2E /* Keycap.swift */; };
 		50E17E212B8B26AC0029747D /* Option.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E17E1F2B8B26AC0029747D /* Option.cpp */; };
 		50E17E222B8B26AC0029747D /* Option.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E17E1F2B8B26AC0029747D /* Option.cpp */; };
 		50E2D9AC25991E4B009A986B /* AnyCollection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E2D9AA25991E4B009A986B /* AnyCollection.cpp */; };
@@ -495,7 +483,6 @@
 		50F5B6A22959C44E000457A0 /* Host.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50F5B6A02959C44E000457A0 /* Host.cpp */; };
 		50FBB62D28294C29001366F9 /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FBB62C28294C29001366F9 /* WaveformView.swift */; };
 		50FE5B362039B3B7006CE7C7 /* MacKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE5B352039B3B7006CE7C7 /* MacKey.swift */; };
-		50FE5B382039B3C5006CE7C7 /* C64Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE5B372039B3C5006CE7C7 /* C64Key.swift */; };
 		50FF1FCB26BAB3DA0061E5CE /* DropZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FF1FCA26BAB3DA0061E5CE /* DropZone.swift */; };
 		50FF818F1F88D9100004548A /* GamePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FF818E1F88D9100004548A /* GamePad.swift */; };
 		50FFB54D2B8262BA00042771 /* Serializable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50FFB54C2B8262BA00042771 /* Serializable.cpp */; };
@@ -802,13 +789,7 @@
 		5055D5B32615886E005D3DA6 /* Error.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Error.cpp; sourceTree = "<group>"; };
 		5055D5B526158ABC005D3DA6 /* Checksum.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Checksum.cpp; sourceTree = "<group>"; };
 		5055D5B626158ABC005D3DA6 /* Checksum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Checksum.h; sourceTree = "<group>"; };
-		5058A917281D03D200C223C9 /* DiskInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiskInspector.xib; sourceTree = "<group>"; };
 		5058A919281D041400C223C9 /* DiskExporter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiskExporter.xib; sourceTree = "<group>"; };
-		5058A91B281D042D00C223C9 /* VolumeInspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolumeInspector.xib; sourceTree = "<group>"; };
-		5058A91D281D107A00C223C9 /* DiskExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskExporter.swift; sourceTree = "<group>"; };
-		5058A91F281D109F00C223C9 /* DiskInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskInspector.swift; sourceTree = "<group>"; };
-		5058A921281D10B100C223C9 /* VolumeInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeInspector.swift; sourceTree = "<group>"; };
-		5058A923281D10C600C223C9 /* DiskCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskCreator.swift; sourceTree = "<group>"; };
 		505A13292C3503B400FF8D2C /* UserPort.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UserPort.cpp; sourceTree = "<group>"; };
 		505A132A2C3503B400FF8D2C /* UserPort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPort.h; sourceTree = "<group>"; };
 		505A132D2C3503EB00FF8D2C /* UserPortBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UserPortBase.cpp; sourceTree = "<group>"; };
@@ -1056,11 +1037,6 @@
 		50D3092324C7152700B92563 /* Inspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inspector.swift; sourceTree = "<group>"; };
 		50D3092524C71AD300B92563 /* Monitor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Monitor.xib; sourceTree = "<group>"; };
 		50D3092724C71B0A00B92563 /* Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
-		50D5F87F24F4F12F0062EF13 /* TrackTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableView.swift; sourceTree = "<group>"; };
-		50D5F88324F4FE9C0062EF13 /* SectorTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectorTableView.swift; sourceTree = "<group>"; };
-		50D5F88524F52A300062EF13 /* DiskDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskDataView.swift; sourceTree = "<group>"; };
-		50D5F88724F556270062EF13 /* DiskErrors.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiskErrors.xib; sourceTree = "<group>"; };
-		50D5F88924F5573D0062EF13 /* DiskErrorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskErrorController.swift; sourceTree = "<group>"; };
 		50D7DE812C5910E700A6CE94 /* Animated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Animated.h; sourceTree = "<group>"; };
 		50D8421720A82CF500EB859A /* MetalViewEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalViewEvents.swift; sourceTree = "<group>"; };
 		50DAABD824F0108A005D426F /* VICIITypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VICIITypes.h; sourceTree = "<group>"; };
@@ -1072,7 +1048,6 @@
 		50DD829E2614D47E00B84EB3 /* Chrono.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Chrono.cpp; sourceTree = "<group>"; };
 		50DD829F2614D47E00B84EB3 /* Chrono.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chrono.h; sourceTree = "<group>"; };
 		50DEAD8E2008E615008A8761 /* Shaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shaders.swift; sourceTree = "<group>"; };
-		50DF719325021FCA00953E2E /* Keycap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keycap.swift; sourceTree = "<group>"; };
 		50E17E1F2B8B26AC0029747D /* Option.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Option.cpp; sourceTree = "<group>"; };
 		50E17E232B8B26D70029747D /* Option.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Option.h; sourceTree = "<group>"; };
 		50E17E242B8B26EB0029747D /* OptionTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptionTypes.h; sourceTree = "<group>"; };
@@ -1112,7 +1087,6 @@
 		50FBB62C28294C29001366F9 /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		50FBB62F282A51FB001366F9 /* VirtualC64.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VirtualC64.entitlements; sourceTree = "<group>"; };
 		50FE5B352039B3B7006CE7C7 /* MacKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacKey.swift; sourceTree = "<group>"; };
-		50FE5B372039B3C5006CE7C7 /* C64Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C64Key.swift; sourceTree = "<group>"; };
 		50FF1FCA26BAB3DA0061E5CE /* DropZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropZone.swift; sourceTree = "<group>"; };
 		50FF818E1F88D9100004548A /* GamePad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePad.swift; sourceTree = "<group>"; };
 		50FFB54C2B8262BA00042771 /* Serializable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Serializable.cpp; sourceTree = "<group>"; };
@@ -1293,16 +1267,6 @@
 		50157EF32825AD6D000E9DDD /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				50FE5B372039B3C5006CE7C7 /* C64Key.swift */,
-				50DF719325021FCA00953E2E /* Keycap.swift */,
-				5058A91F281D109F00C223C9 /* DiskInspector.swift */,
-				50D5F88924F5573D0062EF13 /* DiskErrorController.swift */,
-				50D5F88524F52A300062EF13 /* DiskDataView.swift */,
-				50D5F87F24F4F12F0062EF13 /* TrackTableView.swift */,
-				50D5F88324F4FE9C0062EF13 /* SectorTableView.swift */,
-				5058A921281D10B100C223C9 /* VolumeInspector.swift */,
-				5058A923281D10C600C223C9 /* DiskCreator.swift */,
-				5058A91D281D107A00C223C9 /* DiskExporter.swift */,
 				500E2D652824EC130015C46F /* CartridgeInspector.swift */,
 			);
 			path = Media;
@@ -2090,9 +2054,6 @@
 				500F7CC5281EAB64003F1A7C /* DiskCreator.xib */,
 				5058A919281D041400C223C9 /* DiskExporter.xib */,
 				500E2D632824EBE30015C46F /* CartridgeInspector.xib */,
-				5058A917281D03D200C223C9 /* DiskInspector.xib */,
-				50D5F88724F556270062EF13 /* DiskErrors.xib */,
-				5058A91B281D042D00C223C9 /* VolumeInspector.xib */,
 				5098C57C2658D4DC00E05EFC /* VideoExporter.xib */,
 			);
 			path = "XIB files";
@@ -2280,14 +2241,11 @@
 				50A519411B8DA230006771E2 /* drive_click.aiff in Resources */,
 				5051A1521B88438800CBFB5A /* 1541_track_change_0.aiff in Resources */,
 				501E427C20D975AD000BB48D /* IconD64.icns in Resources */,
-				5058A918281D03D200C223C9 /* DiskInspector.xib in Resources */,
 				5051A15F1B885FDD00CBFB5A /* 1541_power_on_0.aiff in Resources */,
-				50D5F88824F556270062EF13 /* DiskErrors.xib in Resources */,
 				5051A1601B885FDD00CBFB5A /* 1541_track_change_2.aiff in Resources */,
 				501E427D20D975AD000BB48D /* IconCRT.icns in Resources */,
 				50F55DA50F28EADC0040592B /* MyDocument.xib in Resources */,
 				50F55DCD0F28EC010040592B /* MainMenu.xib in Resources */,
-				5058A91C281D042D00C223C9 /* VolumeInspector.xib in Resources */,
 				50A519431B8DA360006771E2 /* drive_snatch_uae.aiff in Resources */,
 				5051A1621B88661000CBFB5A /* 1541_track_change_1.aiff in Resources */,
 				507E7A9E24FB864E00AB433C /* ScreenshotViewer.xib in Resources */,
@@ -2545,7 +2503,6 @@
 				504C439424AF29AC00E69CAE /* SIDBridge.cpp in Sources */,
 				506A724A21C0341900DA0AC3 /* ConfigurationController.swift in Sources */,
 				504C439E24AF29AC00E69CAE /* ReSID.cpp in Sources */,
-				50D5F88624F52A300062EF13 /* DiskDataView.swift in Sources */,
 				504C439B24AF29AC00E69CAE /* extfilt.cc in Sources */,
 				508081EC2511206D0084B060 /* StructuredBasic.cpp in Sources */,
 				504C437124AF29AC00E69CAE /* CartridgeRom.cpp in Sources */,
@@ -2573,7 +2530,6 @@
 				50A22A252618723200C9FB1E /* Canvas.swift in Sources */,
 				504C435B24AF29AC00E69CAE /* StarDos.cpp in Sources */,
 				5055D5B42615886E005D3DA6 /* Error.cpp in Sources */,
-				5058A91E281D107A00C223C9 /* DiskExporter.swift in Sources */,
 				5002FA8121C2654B00DA4BBC /* ControlsPrefs.swift in Sources */,
 				50FE5B362039B3B7006CE7C7 /* MacKey.swift in Sources */,
 				500EA6C724B09037009AA7D7 /* SubComponent.cpp in Sources */,
@@ -2612,7 +2568,6 @@
 				50BD64222C077610007CD347 /* HeatmapView.swift in Sources */,
 				50AE193C2633E9B0005A5898 /* RegressionTester.cpp in Sources */,
 				504C439C24AF29AC00E69CAE /* wave.cc in Sources */,
-				50FE5B382039B3C5006CE7C7 /* C64Key.swift in Sources */,
 				5038CA9720B6C2BE000D9193 /* SIDPanel.swift in Sources */,
 				50BE4B6224E7F8DE008F39C9 /* NSTableView.swift in Sources */,
 				50549B49257D288E006FE39C /* AudioPort.cpp in Sources */,
@@ -2630,7 +2585,6 @@
 				504C438B24AF29AC00E69CAE /* Mouse1351.cpp in Sources */,
 				506D3DCE20223E5E009742CF /* MyApplication.swift in Sources */,
 				504C437A24AF29AC00E69CAE /* AnyFile.cpp in Sources */,
-				50D5F88A24F5573D0062EF13 /* DiskErrorController.swift in Sources */,
 				50C9B3C51F879A3900EA35C6 /* GamePadManager.swift in Sources */,
 				509280CF2930A1B6006E1966 /* PeddleUtils.cpp in Sources */,
 				504C438D24AF29AC00E69CAE /* VICII.cpp in Sources */,
@@ -2640,14 +2594,11 @@
 				50A22A1D261871E600C9FB1E /* Layer.swift in Sources */,
 				50ED5BF812DD99C000596417 /* Speedometer.swift in Sources */,
 				504C43AB24AF29AC00E69CAE /* CIA.cpp in Sources */,
-				5058A922281D10B100C223C9 /* VolumeInspector.swift in Sources */,
 				50A5B7D32C74E44C00D6DDAD /* RshServer.cpp in Sources */,
 				504C436024AF29AC00E69CAE /* Mach5.cpp in Sources */,
 				50891C012652380A0004AC1B /* VICIISprites.cpp in Sources */,
-				50DF719425021FCA00953E2E /* Keycap.swift in Sources */,
 				504C43A724AF29AC00E69CAE /* VIA.cpp in Sources */,
 				503C1DD324FCD1BF00D91141 /* SnapshotViewer.swift in Sources */,
-				50D5F88024F4F12F0062EF13 /* TrackTableView.swift in Sources */,
 				50BE4B6024E7F8A1008F39C9 /* Date.swift in Sources */,
 				50BB3E9A2B7A50F600B2D87B /* Synchronizable.cpp in Sources */,
 				500E34142615BF5E006A38DA /* IOUtils.cpp in Sources */,
@@ -2707,7 +2658,6 @@
 				50D3092024C625B200B92563 /* ProxyExtensions.swift in Sources */,
 				50BE4B5824E7F80C008F39C9 /* FileManager.swift in Sources */,
 				504C436D24AF29AC00E69CAE /* Rex.cpp in Sources */,
-				5058A920281D109F00C223C9 /* DiskInspector.swift in Sources */,
 				508C1E532C0B20610097473C /* ControlPortBase.cpp in Sources */,
 				504C436424AF29AC00E69CAE /* Expert.cpp in Sources */,
 				504C436724AF29AC00E69CAE /* MagicDesk.cpp in Sources */,
@@ -2743,7 +2693,6 @@
 				500C1C752965D10F00071AF3 /* StrWriter.cpp in Sources */,
 				5031D59C200B81D20088C802 /* Animation.swift in Sources */,
 				50BD640A2C01FADC007CD347 /* VideoPort.cpp in Sources */,
-				50D5F88424F4FE9C0062EF13 /* SectorTableView.swift in Sources */,
 				50B165AE25B06A03009B576D /* TextureToolbox.swift in Sources */,
 				50BB3E912B7A232800B2D87B /* Inspectable.cpp in Sources */,
 				506B13C224C1C40600814BB0 /* PreferencesController.swift in Sources */,
@@ -2780,7 +2729,6 @@
 				50FBB62D28294C29001366F9 /* WaveformView.swift in Sources */,
 				504C435D24AF29AC00E69CAE /* EasyFlash.cpp in Sources */,
 				504C435A24AF29AC00E69CAE /* WarpSpeed.cpp in Sources */,
-				5058A924281D10C600C223C9 /* DiskCreator.swift in Sources */,
 				50A1948D2BDA6F490046849E /* EmulatorBase.cpp in Sources */,
 				50D1072E2019D6C3006E6428 /* MyControllerMenu.swift in Sources */,
 				50D3092424C7152700B92563 /* Inspector.swift in Sources */,
