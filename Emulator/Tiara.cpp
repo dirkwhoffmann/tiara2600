@@ -108,17 +108,6 @@ Tiara::Tiara() {
     expansionPort.emu = emu;
     expansionPort.expansionPort = &emu->main.expansionport;
 
-    serialPort.emu = emu;
-    serialPort.serialPort = &emu->main.iec;
-
-    drive8.emu = emu;
-    drive8.drive = &emu->main.drive8;
-    drive8.disk.drive = &emu->main.drive8;
-
-    drive9.emu = emu;
-    drive9.drive = &emu->main.drive9;
-    drive9.disk.drive = &emu->main.drive9;
-
     recorder.emu = emu;
     recorder.recorder = &emu->main.recorder;
 
@@ -1041,47 +1030,6 @@ void
 ExpansionPortAPI::detachCartridge()
 {
     expansionPort->detachCartridge();
-    emu->markAsDirty();
-}
-
-
-//
-// Disk
-//
-
-Disk *
-DiskAPI::get()
-{
-    return drive->disk.get();
-}
-
-
-//
-// Drive
-//
-
-const DriveConfig &
-DriveAPI::getConfig() const
-{
-    return drive->getConfig();
-}
-
-const DriveInfo &
-DriveAPI::getInfo() const
-{
-    return drive->getInfo();
-}
-
-const DriveInfo &
-DriveAPI::getCachedInfo() const
-{
-    return drive->getCachedInfo();
-}
-
-void
-DriveAPI::insertMedia(MediaFile &file, bool wp)
-{
-    drive->insertMediaFile(file, wp);
     emu->markAsDirty();
 }
 

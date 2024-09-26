@@ -31,13 +31,6 @@ extension ConfigurationController {
         audVolL.integerValue = config.volL
         audVolR.integerValue = config.volR
 
-        // Drives
-        audStepVolume.integerValue = config.stepVolume
-        audInsertVolume.integerValue = config.insertVolume
-        audEjectVolume.integerValue = config.ejectVolume
-        audDrive8Pan.integerValue = config.drive8Pan
-        audDrive9Pan.integerValue = config.drive9Pan
-
         // Buttons
         audPowerButton.isHidden = !bootable
     }
@@ -92,31 +85,6 @@ extension ConfigurationController {
         config.volR = sender.integerValue
     }
 
-    @IBAction func audStepVolumeAction(_ sender: NSSlider!) {
-
-        config.stepVolume = sender.integerValue
-    }
-
-    @IBAction func audInsertVolumeAction(_ sender: NSSlider!) {
-
-        config.insertVolume = sender.integerValue
-    }
-
-    @IBAction func audEjectVolumeAction(_ sender: NSSlider!) {
-
-        config.ejectVolume = sender.integerValue
-    }
-    
-    @IBAction func audDrive8PanAction(_ sender: NSSlider!) {
-        
-        config.drive8Pan = sender.integerValue
-    }
-
-    @IBAction func audDrive9PanAction(_ sender: NSSlider!) {
-        
-        config.drive9Pan = sender.integerValue
-    }
-
     @IBAction func audEngineAction(_ sender: NSPopUpButton!) {
         
         config.sidEngine = sender.selectedTag()
@@ -152,16 +120,12 @@ extension ConfigurationController {
                 config.pan1 = 0
                 config.pan2 = 0
                 config.pan3 = 0
-                config.drive8Pan = 0
-                config.drive9Pan = 0
 
             case 1: // Stereo
                 config.pan0 = 100
                 config.pan1 = 300
                 config.pan2 = 300
                 config.pan3 = 100
-                config.drive8Pan = 100
-                config.drive9Pan = 300
 
             default:
                 fatalError()

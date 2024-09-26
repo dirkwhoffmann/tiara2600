@@ -89,66 +89,6 @@ class Configuration {
     //
     // Peripherals
     //
-    
-    var drive8Connected: Bool {
-        get { return emu?.get(.DRV_CONNECT, drive: DRIVE8) != 0 }
-        set { emu?.set(.DRV_CONNECT, drive: DRIVE8, enable: newValue ) }
-    }
-    
-    var drive9Connected: Bool {
-        get { return emu?.get(.DRV_CONNECT, drive: DRIVE9) != 0 }
-        set { emu?.set(.DRV_CONNECT, drive: DRIVE9, enable: newValue ) }
-    }
-
-    var drive8AutoConf: Bool {
-        get { return emu?.get(.DRV_AUTO_CONFIG, drive: DRIVE8) != 0 }
-        set { emu?.set(.DRV_AUTO_CONFIG, drive: DRIVE8, enable: newValue ) }
-    }
-    
-    var drive9AutoConf: Bool {
-        get { return emu?.get(.DRV_AUTO_CONFIG, drive: DRIVE9) != 0}
-        set { emu?.set(.DRV_AUTO_CONFIG, drive: DRIVE9, enable: newValue ) }
-    }
-    
-    var drive8Type: Int {
-        get { return emu?.get(.DRV_TYPE, drive: DRIVE8) ?? 0 }
-        set { emu?.set(.DRV_TYPE, drive: DRIVE8, value: newValue )}
-    }
-    
-    var drive9Type: Int {
-        get { return emu?.get(.DRV_TYPE, drive: DRIVE9) ?? 0 }
-        set { emu?.set(.DRV_TYPE, drive: DRIVE9, value: newValue )}
-    }
-
-    var drive8Ram: Int {
-        get { return emu?.get(.DRV_RAM, drive: DRIVE8) ?? 0 }
-        set { emu?.set(.DRV_RAM, drive: DRIVE8, value: newValue )}
-    }
-
-    var drive9Ram: Int {
-        get { return emu?.get(.DRV_RAM, drive: DRIVE9) ?? 0 }
-        set { emu?.set(.DRV_RAM, drive: DRIVE9, value: newValue )}
-    }
-
-    var drive8ParCable: Int {
-        get { return emu?.get(.DRV_PARCABLE, drive: DRIVE8) ?? 0 }
-        set { emu?.set(.DRV_PARCABLE, drive: DRIVE8, value: newValue ) }
-    }
-
-    var drive9ParCable: Int {
-        get { return emu?.get(.DRV_PARCABLE, drive: DRIVE9) ?? 0 }
-        set { emu?.set(.DRV_PARCABLE, drive: DRIVE9, value: newValue ) }
-    }
-    
-    var drive8PowerSwitch: Bool {
-        get { return emu?.get(.DRV_POWER_SWITCH, drive: DRIVE8) != 0 }
-        set { emu?.set(.DRV_POWER_SWITCH, drive: DRIVE8, enable: newValue )}
-    }
-    
-    var drive9PowerSwitch: Bool {
-        get { return emu?.get(.DRV_POWER_SWITCH, drive: DRIVE9) != 0 }
-        set { emu?.set(.DRV_POWER_SWITCH, drive: DRIVE9, enable: newValue )}
-    }
 
     var gameDevice1 = -1 {
         didSet {
@@ -215,16 +155,6 @@ class Configuration {
     //
     // Performance
     //
-
-    var drive8PowerSave: Bool {
-        get { return emu?.get(.DRV_POWER_SAVE, drive: DRIVE8) != 0 }
-        set { emu?.set(.DRV_POWER_SAVE, drive: DRIVE8, enable: newValue) }
-    }
-
-    var drive9PowerSave: Bool {
-        get { return emu?.get(.DRV_POWER_SAVE, drive: DRIVE9) != 0 }
-        set { emu?.set(.DRV_POWER_SAVE, drive: DRIVE9, enable: newValue) }
-    }
 
     var viciiPowerSave: Bool {
         get { return emu?.get(.VICII_POWER_SAVE) != 0 }
@@ -345,26 +275,6 @@ class Configuration {
     var volR: Int {
         get { return emu?.get(.AUD_VOL_R) ?? 0 }
         set { emu?.set(.AUD_VOL_R, value: newValue) }
-    }
-    var stepVolume: Int {
-        get { return emu?.get(.DRV_STEP_VOL, drive: DRIVE8) ?? 0 }
-        set { emu?.set(.DRV_STEP_VOL, value: newValue) }
-    }
-    var insertVolume: Int {
-        get { return emu?.get(.DRV_INSERT_VOL, drive: DRIVE8) ?? 0 }
-        set { emu?.set(.DRV_INSERT_VOL, value: newValue) }
-    }
-    var ejectVolume: Int {
-        get { return emu?.get(.DRV_EJECT_VOL, drive: DRIVE8) ?? 0 }
-        set { emu?.set(.DRV_EJECT_VOL, value: newValue) }
-    }
-    var drive8Pan: Int {
-        get { return emu?.get(.DRV_PAN, drive: DRIVE8) ?? 0 }
-        set { emu?.set(.DRV_PAN, drive: DRIVE8, value: newValue) }
-    }
-    var drive9Pan: Int {
-        get { return emu?.get(.DRV_PAN, drive: DRIVE9) ?? 0 }
-        set { emu?.set(.DRV_PAN, drive: DRIVE9, value: newValue) }
     }
 
     //

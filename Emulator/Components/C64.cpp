@@ -69,16 +69,6 @@ C64::eventName(EventSlot slot, EventID id)
             }
             break;
 
-        case SLOT_SER:
-
-            switch (id) {
-
-                case EVENT_NONE:    return "none";
-                case SER_UPDATE:    return "SER_UPDATE";
-                default:            return "*** INVALID ***";
-            }
-            break;
-
         case SLOT_TER:
 
             switch (id) {
@@ -122,18 +112,6 @@ C64::eventName(EventSlot slot, EventID id)
 
                 case EVENT_NONE:    return "none";
                 case RXD_BIT:       return "RXD_BIT";
-                default:            return "*** INVALID ***";
-            }
-            break;
-
-        case SLOT_DC8:
-        case SLOT_DC9:
-
-            switch (id) {
-
-                case EVENT_NONE:    return "none";
-                case DCH_INSERT:    return "DCH_INSERT";
-                case DCH_EJECT:     return "DCH_EJECT";
                 default:            return "*** INVALID ***";
             }
             break;
@@ -589,8 +567,6 @@ C64::update(CmdQueue &queue)
     Cmd cmd;
     bool cmdConfig = false;
 
-    auto drive = [&]() -> Drive& { return cmd.value == 0 ? drive8 : drive9; };
-
     while (queue.poll(cmd)) {
 
         debug(CMD_DEBUG, "Command: %s\n", CmdTypeEnum::key(cmd.type));
@@ -642,13 +618,6 @@ C64::update(CmdQueue &queue)
             case CMD_WP_DISABLE_ALL:
 
                 cpu.processCommand(cmd);
-                break;
-
-            case CMD_DSK_TOGGLE_WP:
-            case CMD_DSK_MODIFIED:
-            case CMD_DSK_UNMODIFIED:
-
-                drive().processCommand(cmd);
                 break;
 
             case CMD_MOUSE_MOVE_ABS:
@@ -723,9 +692,7 @@ C64::computeFrame(bool headless)
     cpu.debugger.breakpointPC = -1;
 
     // Dispatch
-    switch ((drive8.isPoweredOn()                   ? 4 : 0) |
-            (drive9.isPoweredOn()                   ? 2 : 0) |
-            (expansionport.needsAccurateEmulation() ? 1 : 0) ) {
+    switch (expansionport.needsAccurateEmulation() ? 1 : 0) {
 
         case 0b000: execute <false, false, false> (); break;
         case 0b001: execute <false, false, true>  (); break;
@@ -813,8 +780,6 @@ alwaysinline void C64::executeCycle()
     //
 
     cpu.execute<MOS_6510>();
-    if constexpr (enable8) { if (drive8.needsEmulation) drive8.execute(durationOfOneCycle); }
-    if constexpr (enable9) { if (drive9.needsEmulation) drive9.execute(durationOfOneCycle); }
     if constexpr (execExp) { expansionport.execute(); }
 }
 
@@ -1061,12 +1026,9 @@ C64::endFrame()
     vic.endFrame();
     sidBridge.endFrame();
     mem.endFrame();
-    iec.execute();
     expansionport.endOfFrame();
     port1.execute();
     port2.execute();
-    drive8.vsyncHandler();
-    drive9.vsyncHandler();
     recorder.vsyncHandler();
 }
 
@@ -1115,10 +1077,6 @@ C64::processEvents(Cycle cycle)
         // Check secondary slots
         //
 
-        if (isDue<SLOT_SER>(cycle)) {
-            iec.update();
-        }
-
         if (isDue<SLOT_TER>(cycle)) {
 
             //
@@ -1132,12 +1090,6 @@ C64::processEvents(Cycle cycle)
             }
             if (isDue<SLOT_RXD>(cycle)) {
                 userPort.rs232.processRxdEvent();
-            }
-            if (isDue<SLOT_DC8>(cycle)) {
-                drive8.processDiskChangeEvent(eventid[SLOT_DC8]);
-            }
-            if (isDue<SLOT_DC9>(cycle)) {
-                drive9.processDiskChangeEvent(eventid[SLOT_DC9]);
             }
             if (isDue<SLOT_SNP>(cycle)) {
                 processSNPEvent(eventid[SLOT_SNP]);
@@ -1373,7 +1325,7 @@ C64::romCRC32(RomType type) const
         case ROM_TYPE_BASIC:  return util::crc32(mem.rom + 0xA000, 0x2000);
         case ROM_TYPE_CHAR:   return util::crc32(mem.rom + 0xD000, 0x1000);
         case ROM_TYPE_KERNAL: return util::crc32(mem.rom + 0xE000, 0x2000);
-        case ROM_TYPE_VC1541: return drive8.mem.romCRC32();
+        case ROM_TYPE_VC1541: return 0;
 
         default:
             fatalError;
@@ -1390,7 +1342,7 @@ C64::romFNV64(RomType type) const
         case ROM_TYPE_BASIC:  return util::fnv64(mem.rom + 0xA000, 0x2000);
         case ROM_TYPE_CHAR:   return util::fnv64(mem.rom + 0xD000, 0x1000);
         case ROM_TYPE_KERNAL: return util::fnv64(mem.rom + 0xE000, 0x2000);
-        case ROM_TYPE_VC1541: return drive8.mem.romFNV64();
+        case ROM_TYPE_VC1541: return 0;
 
         default:
             fatalError;
@@ -1416,8 +1368,7 @@ C64::hasRom(RomType type) const
 
         case ROM_TYPE_VC1541:
 
-            assert(drive8.mem.hasRom() == drive9.mem.hasRom());
-            return drive8.mem.hasRom();
+            return false;
 
         default:
             fatalError;
@@ -1509,10 +1460,6 @@ C64::loadRom(const MediaFile &file)
             break;
             
         case FILETYPE_VC1541_ROM:
-            
-            drive8.mem.loadRom(file.getData(), file.getSize());
-            drive9.mem.loadRom(file.getData(), file.getSize());
-            debug(MEM_DEBUG, "VC1541 Rom flashed\n");
             break;
             
         default:
@@ -1544,9 +1491,6 @@ C64::deleteRom(RomType type)
                 break;
 
             case ROM_TYPE_VC1541:
-
-                drive8.mem.deleteRom();
-                drive9.mem.deleteRom();
                 break;
 
             default:
@@ -1597,10 +1541,6 @@ C64::saveRom(RomType type, const fs::path &path)
             break;
 
         case ROM_TYPE_VC1541:
-
-            if (hasRom(ROM_TYPE_VC1541)) {
-                drive8.mem.saveRom(path);
-            }
             break;
             
         default:
@@ -1670,8 +1610,6 @@ C64::flash(const MediaFile &file)
                 break;
                 
             case FILETYPE_VC1541_ROM:
-                drive8.mem.loadRom(dynamic_cast<const RomFile &>(file));
-                drive9.mem.loadRom(dynamic_cast<const RomFile &>(file));
                 break;
 
             case FILETYPE_SNAPSHOT:

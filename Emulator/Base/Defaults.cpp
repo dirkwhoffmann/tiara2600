@@ -124,26 +124,7 @@ Defaults::Defaults()
     setFallback(OPT_MEM_INIT_PATTERN,           RAM_PATTERN_VICE);
     setFallback(OPT_MEM_HEATMAP,                false);
     setFallback(OPT_MEM_SAVE_ROMS,              true);
-
-    setFallback(OPT_DRV_AUTO_CONFIG,            true,               {DRIVE8, DRIVE9});
-    setFallback(OPT_DRV_TYPE,                   DRIVE_VC1541II,     {DRIVE8, DRIVE9});
-    setFallback(OPT_DRV_RAM,                    DRVRAM_NONE,        {DRIVE8, DRIVE9});
-    setFallback(OPT_DRV_SAVE_ROMS,              true,               {DRIVE8, DRIVE9});
-    setFallback(OPT_DRV_PARCABLE,               PAR_CABLE_NONE,     {DRIVE8, DRIVE9});
-    setFallback(OPT_DRV_CONNECT,                true,               {DRIVE8});
-    setFallback(OPT_DRV_CONNECT,                false,              {DRIVE9});
-    setFallback(OPT_DRV_POWER_SWITCH,           true,               {DRIVE8});
-    setFallback(OPT_DRV_POWER_SWITCH,           true,               {DRIVE9});
-    setFallback(OPT_DRV_POWER_SAVE,             true,               {DRIVE8, DRIVE9});
-    setFallback(OPT_DRV_EJECT_DELAY,            30,                 {DRIVE8, DRIVE9});
-    setFallback(OPT_DRV_SWAP_DELAY,             30,                 {DRIVE8, DRIVE9});
-    setFallback(OPT_DRV_INSERT_DELAY,           30,                 {DRIVE8, DRIVE9});
-    setFallback(OPT_DRV_PAN,                    0,                  {DRIVE8, DRIVE9});
-    setFallback(OPT_DRV_POWER_VOL,              50,                 {DRIVE8, DRIVE9});
-    setFallback(OPT_DRV_STEP_VOL,               50,                 {DRIVE8, DRIVE9});
-    setFallback(OPT_DRV_INSERT_VOL,             50,                 {DRIVE8, DRIVE9});
-    setFallback(OPT_DRV_EJECT_VOL,              50,                 {DRIVE8, DRIVE9});
-
+    
     setFallback(OPT_MOUSE_MODEL,                MOUSE_C1350);
     setFallback(OPT_MOUSE_SHAKE_DETECT,         true);
     setFallback(OPT_MOUSE_VELOCITY,             100);

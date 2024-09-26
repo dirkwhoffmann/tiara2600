@@ -27,16 +27,12 @@ protected:
     class ControlPort &port1;
     class ControlPort &port2;
     class CPU &cpu;
-    class Drive &drive8;
-    class Drive &drive9;
     class ExpansionPort &expansionPort;
     class UserPort &userPort;
     class Host &host;
-    class SerialPort &serialPort;
     class Memory &mem;
     class Monitor &monitor;
     class MsgQueue &msgQueue;
-    class ParCable &parCable;
     class PowerPort &powerSupply;
     class Recorder &recorder;
     class RegressionTester &regressionTester;
@@ -49,8 +45,6 @@ protected:
     class SID& sid3;
     class VICII &vic;
     class VideoPort &videoPort;
-
-    Drive *drive[2] = { &drive8, &drive9 };
 
 public:
 

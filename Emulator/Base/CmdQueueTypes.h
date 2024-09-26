@@ -75,11 +75,6 @@ enum_long(CMD_TYPE)
     // Joystick
     CMD_JOY_EVENT,              ///< Signal a joystick button event
 
-    // Floppy disk
-    CMD_DSK_TOGGLE_WP,          ///< Toggle write-protection
-    CMD_DSK_MODIFIED,           ///< Signal that the disk has been saved
-    CMD_DSK_UNMODIFIED,         ///< Signan that the disk needs saving
-
     // Cartridge
     CMD_CRT_BUTTON_PRESS,       ///< Press a cartridge button
     CMD_CRT_BUTTON_RELEASE,     ///< Release a cartridge button
@@ -144,10 +139,6 @@ struct CmdTypeEnum : util::Reflection<CmdTypeEnum, CmdType> {
             case CMD_MOUSE_EVENT:           return "MOUSE_EVENT";
 
             case CMD_JOY_EVENT:             return "JOY_EVENT";
-
-            case CMD_DSK_TOGGLE_WP:         return "DSK_TOGGLE_WP";
-            case CMD_DSK_MODIFIED:          return "DSK_MODIFIED";
-            case CMD_DSK_UNMODIFIED:        return "DSK_UNMODIFIED";
 
             case CMD_CRT_BUTTON_PRESS:      return "CRT_BUTTON_PRESS";
             case CMD_CRT_BUTTON_RELEASE:    return "CRT_BUTTON_RELEASE";

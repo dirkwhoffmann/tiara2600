@@ -215,7 +215,7 @@ Emulator::shouldWarp()
 
         switch (config.warpMode) {
 
-            case WARP_AUTO:     return main.iec.isTransferring();
+            case WARP_AUTO:     return false;
             case WARP_NEVER:    return false;
             case WARP_ALWAYS:   return true;
 

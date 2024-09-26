@@ -42,12 +42,6 @@ extension ConfigurationController {
     // Action methods (power saving)
     //
 
-    @IBAction func comDrivePowerSaveAction(_ sender: NSButton!) {
-
-        config.drive8PowerSave = sender.state == .on
-        config.drive9PowerSave = sender.state == .on
-    }
-
     @IBAction func comViciiPowerSaveAction(_ sender: NSButton!) {
         
         config.viciiPowerSave = sender.state == .on
@@ -122,8 +116,6 @@ extension ConfigurationController {
 
             case 1: // Accurate
 
-                config.drive8PowerSave = false
-                config.drive9PowerSave = false
                 config.viciiPowerSave = false
                 config.sidPowerSave = false
                 config.ssCollisions = true
@@ -131,8 +123,6 @@ extension ConfigurationController {
 
             case 2: // Accelerated
 
-                config.drive8PowerSave = true
-                config.drive9PowerSave = true
                 config.viciiPowerSave = true
                 config.sidPowerSave = true
                 config.ssCollisions = false

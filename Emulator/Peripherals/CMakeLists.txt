@@ -4,7 +4,6 @@ target_sources(tiaraCore PRIVATE
 
 )
 
-add_subdirectory(Drive)
 add_subdirectory(Joystick)
 add_subdirectory(Monitor)
 add_subdirectory(Mouse)

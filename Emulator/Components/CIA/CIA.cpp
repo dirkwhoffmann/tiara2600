@@ -715,9 +715,6 @@ u8
 CIA2::portAexternal() const
 {
     u8 result = 0x3F;
-    result |= (serialPort.clockLine ? 0x40 : 0x00);
-    result |= (serialPort.dataLine ? 0x80 : 0x00);
-    
     return result;
 }
 
@@ -725,7 +722,6 @@ void
 CIA2::updatePA()
 {
     PA = computePA();
-    serialPort.setNeedsUpdate();
 }
 
 u8
@@ -776,7 +772,7 @@ CIA2::updatePB()
 u8
 CIA2::computePB() const
 {
-    return parCable.getValue();
+    return 0;
 }
 
 void
@@ -809,7 +805,7 @@ CIA2::pokeDDRA(u8 value)
 void
 CIA2::pulsePC()
 {
-    parCable.c64Handshake();
+    
 }
 
 }

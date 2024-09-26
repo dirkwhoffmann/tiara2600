@@ -113,29 +113,6 @@ class MediaManager {
         }
     }
 
-    // Export URLs (not shared)
-
-    func noteNewRecentlyExportedDiskURL(_ url: URL, drive: Int) {
-
-        precondition(drive == DRIVE8 || drive == DRIVE9)
-        let n = drive == DRIVE8 ? 0 : 1
-        MediaManager.noteRecentlyUsedURL(url, to: &exportedFloppyDisks[n], size: 1)
-    }
-
-    func getRecentlyExportedDiskURL(_ pos: Int, drive: Int) -> URL? {
-
-        precondition(drive == DRIVE8 || drive == DRIVE9)
-        let n = drive == DRIVE8 ? 0 : 1
-        return MediaManager.getRecentlyUsedURL(pos, from: exportedFloppyDisks[n])
-    }
-
-    func clearRecentlyExportedDiskURLs(drive: Int) {
-
-        precondition(drive == DRIVE8 || drive == DRIVE9)
-        let n = drive == DRIVE8 ? 0 : 1
-        exportedFloppyDisks[n] = [URL]()
-    }
-
     //
     // Loading media files
     //

@@ -447,55 +447,6 @@ DebugConsole::initCommands(Command &root)
         dump(port2.mouse, { Category::Config, Category::State });
     });
 
-    for (isize i = 0; i < 2; i++) {
-
-        auto &drive = i == 0 ? c64.drive8 : c64.drive9;
-
-        cmd = drive.shellName();
-        description = drive.description();
-
-        root.add({"?", cmd}, description);
-
-        root.add({"?", cmd, ""},
-                 "Inspects the internal state",
-                 [this](Arguments& argv, long value) {
-
-            auto &drive = value ? drive9 : drive8;
-            dump(drive, { Category::Config, Category::State });
-        }, i);
-
-        root.add({"?", cmd, "bankmap"},
-                 "Displays the memory layout",
-                 [this](Arguments& argv, long value) {
-
-            auto &drive = value ? drive9 : drive8;
-            dump(drive, Category::BankMap);
-        }, i);
-
-        root.add({"?", cmd, "disk"},
-                 "Inspects the current disk",
-                 [this](Arguments& argv, long value) {
-
-            auto &drive = value ? drive9 : drive8;
-            dump(drive, Category::Disk);
-        }, i);
-
-        root.add({"?", cmd, "layout"},
-                 "Displays the disk layout",
-                 [this](Arguments& argv, long value) {
-
-            auto &drive = value ? drive9 : drive8;
-            dump(drive, Category::Layout);
-        }, i);
-    }
-
-    cmd = serialPort.shellName();
-    description = serialPort.description();
-    root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
-
-        dump(serialPort, { Category::Config, Category::State });
-    });
-
     cmd = audioPort.shellName();
     description = audioPort.description();
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {

@@ -95,15 +95,12 @@ enum_long(SLOT)
     SLOT_SEC,                       // Enables secondary slots
 
     // Secondary slots
-    SLOT_SER,                       // Serial port (IEC bus)
     SLOT_TER,                       // Enables tertiary slots
 
     // Tertiary slots
     SLOT_EXP,                       // Expansion port
     SLOT_TXD,                       // Serial data out (RS232)
     SLOT_RXD,                       // Serial data in (RS232)
-    SLOT_DC8,                       // Disk change (Drive 8)
-    SLOT_DC9,                       // Disk change (Drive 9)
     SLOT_SNP,                       // Snapshots
     SLOT_RSH,                       // Retro Shell
     SLOT_KEY,                       // Auto-typing
@@ -130,11 +127,8 @@ struct EventSlotEnum : util::Reflection<EventSlotEnum, EventSlot>
             case SLOT_CIA2:     return "CIA2";
             case SLOT_SEC:      return "SEC";
 
-            case SLOT_SER:      return "SER";
             case SLOT_TER:      return "TER";
 
-            case SLOT_DC8:      return "DC8";
-            case SLOT_DC9:      return "DC9";
             case SLOT_SNP:      return "SNP";
             case SLOT_RSH:      return "RSH";
             case SLOT_KEY:      return "KEY";
@@ -169,10 +163,6 @@ enum_i8(EventID)
     //
     // Events in secondary event table
     //
-
-    // SER slot
-    SER_UPDATE          = 1,
-    SER_EVENT_COUNT,
 
     // SEC slot
     TER_TRIGGER         = 1,

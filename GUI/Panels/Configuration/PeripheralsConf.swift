@@ -50,51 +50,6 @@ extension ConfigurationController {
         perPowerButton.isHidden = !bootable
     }
     
-    @IBAction func perDriveConnectAction(_ sender: NSButton!) {
-        
-        switch sender.tag {
-        case 8: config.drive8Connected = sender.state == .on
-        case 9: config.drive9Connected = sender.state == .on
-        default: fatalError()
-        }
-    }
-
-    @IBAction func perDriveConfigAction(_ sender: NSPopUpButton!) {
-        
-        switch sender.tag {
-        case 8: config.drive8AutoConf = sender.selectedTag() == 0
-        case 9: config.drive9AutoConf = sender.selectedTag() == 0
-        default: fatalError()
-        }
-    }
-
-    @IBAction func perDriveTypeAction(_ sender: NSPopUpButton!) {
-        
-        switch sender.tag {
-        case 8: config.drive8Type = sender.selectedTag()
-        case 9: config.drive9Type = sender.selectedTag()
-        default: fatalError()
-        }
-    }
-
-    @IBAction func perDriveRamAction(_ sender: NSPopUpButton!) {
-        
-        switch sender.tag {
-        case 8: config.drive8Ram = sender.selectedTag()
-        case 9: config.drive9Ram = sender.selectedTag()
-        default: fatalError()
-        }
-    }
-
-    @IBAction func perDriveCableAction(_ sender: NSPopUpButton!) {
-        
-        switch sender.tag {
-        case 8: config.drive8ParCable = sender.selectedTag()
-        case 9: config.drive9ParCable = sender.selectedTag()
-        default: fatalError()
-        }
-    }
-
     @IBAction func perControlPortAction(_ sender: NSPopUpButton!) {
                 
         switch sender.tag {

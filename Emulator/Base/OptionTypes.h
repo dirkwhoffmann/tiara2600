@@ -140,24 +140,6 @@ enum_long(OPT)
     OPT_MEM_HEATMAP,            ///< Memory heatmap
     OPT_MEM_SAVE_ROMS,          ///< Save Roms in snapshots
 
-    // Drive
-    OPT_DRV_AUTO_CONFIG,        ///< Auto-configure drives based on the Drive Rom
-    OPT_DRV_TYPE,               ///< Drive model
-    OPT_DRV_RAM,                ///< Drive Ram
-    OPT_DRV_SAVE_ROMS,          ///< Save Roms in snapshots
-    OPT_DRV_PARCABLE,           ///< Parallel cable type
-    OPT_DRV_CONNECT,            ///< Connection status
-    OPT_DRV_POWER_SWITCH,       ///< Power switch (on/off)
-    OPT_DRV_POWER_SAVE,         ///< Enable fast-paths
-    OPT_DRV_EJECT_DELAY,        ///< Disk ejection delay
-    OPT_DRV_SWAP_DELAY,         ///< Disk swap delay
-    OPT_DRV_INSERT_DELAY,       ///< Disk insertion delay
-    OPT_DRV_PAN,                ///< Pan
-    OPT_DRV_POWER_VOL,          ///< Volume (power-up sound)
-    OPT_DRV_STEP_VOL,           ///< Volume (head steps)
-    OPT_DRV_INSERT_VOL,         ///< Volume (disk insertion)
-    OPT_DRV_EJECT_VOL,          ///< Volume (disk ejection)
-
     // Mouse
     OPT_MOUSE_MODEL,            ///< Mouse model
     OPT_MOUSE_SHAKE_DETECT,     ///< Detect a shaking mouse
@@ -307,23 +289,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_MEM_HEATMAP:           return "MEM.HEATMAP";
             case OPT_MEM_SAVE_ROMS:         return "MEM.SAVE_ROMS";
 
-            case OPT_DRV_AUTO_CONFIG:       return "DRV.AUTO_CONFIG";
-            case OPT_DRV_TYPE:              return "DRV.TYPE";
-            case OPT_DRV_RAM:               return "DRV.RAM";
-            case OPT_DRV_SAVE_ROMS:         return "DRV.SAVE_ROMS";
-            case OPT_DRV_PARCABLE:          return "DRV.PARCABLE";
-            case OPT_DRV_CONNECT:           return "DRV.CONNECT";
-            case OPT_DRV_POWER_SWITCH:      return "DRV.POWER_SWITCH";
-            case OPT_DRV_POWER_SAVE:        return "DRV.POWER_SAVE";
-            case OPT_DRV_EJECT_DELAY:       return "DRV.EJECT_DELAY";
-            case OPT_DRV_SWAP_DELAY:        return "DRV.SWAP_DELAY";
-            case OPT_DRV_INSERT_DELAY:      return "DRV.INSERT_DELAY";
-            case OPT_DRV_PAN:               return "DRV.PAN";
-            case OPT_DRV_POWER_VOL:         return "DRV.POWER_VOL";
-            case OPT_DRV_STEP_VOL:          return "DRV.STEP_VOL";
-            case OPT_DRV_INSERT_VOL:        return "DRV.INSERT_VOL";
-            case OPT_DRV_EJECT_VOL:         return "DRV.EJECT_VOL";
-
             case OPT_MOUSE_MODEL:           return "MOUSE.MODEL";
             case OPT_MOUSE_SHAKE_DETECT:    return "MOUSE.SHAKE_DETECTION";
             case OPT_MOUSE_VELOCITY:        return "MOUSE.VELOCITY";
@@ -459,23 +424,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_MEM_INIT_PATTERN:      return "Memory start-up pattern";
             case OPT_MEM_HEATMAP:           return "Heatmap";
             case OPT_MEM_SAVE_ROMS:         return "Save ROMs in snapshots";
-
-            case OPT_DRV_AUTO_CONFIG:       return "Auto-configure drives";
-            case OPT_DRV_TYPE:              return "Drive model";
-            case OPT_DRV_RAM:               return "Drive RAM";
-            case OPT_DRV_SAVE_ROMS:         return "Save Drive ROMs in snapshots";
-            case OPT_DRV_PARCABLE:          return "Parallel cable";
-            case OPT_DRV_CONNECT:           return "Connected";
-            case OPT_DRV_POWER_SWITCH:      return "Power switch";
-            case OPT_DRV_POWER_SAVE:        return "Take fast paths";
-            case OPT_DRV_EJECT_DELAY:       return "Disk eject delay";
-            case OPT_DRV_SWAP_DELAY:        return "Disk swap delay";
-            case OPT_DRV_INSERT_DELAY:      return "Disk insertion delay";
-            case OPT_DRV_PAN:               return "Pan";
-            case OPT_DRV_POWER_VOL:         return "Power switch volume";
-            case OPT_DRV_STEP_VOL:          return "Head step volume";
-            case OPT_DRV_INSERT_VOL:        return "Disk insertion volume";
-            case OPT_DRV_EJECT_VOL:         return "Disk ejection volume";
 
             case OPT_MOUSE_MODEL:           return "Mouse model";
             case OPT_MOUSE_SHAKE_DETECT:    return "Detect a shaked mouse";

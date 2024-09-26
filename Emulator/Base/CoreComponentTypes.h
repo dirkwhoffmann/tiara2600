@@ -42,7 +42,6 @@ enum_long(COMP_TYPE)
     ExpansionPortClass,
     PowerPortClass,
     RS232Class,
-    SerialPortClass,
     UserPortClass,
     VideoPortClass,
 

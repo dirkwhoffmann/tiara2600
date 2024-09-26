@@ -552,64 +552,6 @@ struct ExpansionPortAPI : API {
 
 };
 
-
-//
-// Serial port (IEC bus)
-//
-
-struct SerialPortAPI : API {
-
-    class SerialPort *serialPort = nullptr;
-
-};
-
-
-//
-// Disk
-//
-
-/** Disk Public API
- */
-struct DiskAPI : API {
-
-    class Drive *drive = nullptr;
-
-    /** @brief  Getter for the raw disk object
-     *  @return A pointer to the disk object or nullptr if no disk is present.
-     */
-    class Disk *get();
-};
-
-
-//
-// Drive
-//
-
-/** Drive Public API
- */
-struct DriveAPI : API {
-
-    class Drive *drive = nullptr;
-
-    DiskAPI disk;
-
-    /** @brief  Returns the component's current configuration.
-     */
-    const DriveConfig &getConfig() const;
-
-    /** @brief  Returns the component's current state.
-     */
-    const DriveInfo &getInfo() const;
-    const DriveInfo &getCachedInfo() const;
-
-    /** @brief  Inserts a disk created from a media file.
-     *  @param  file    A media file wrapper object.
-     *  @param  wp      Write-protection status of the disk.
-     */
-    void insertMedia(MediaFile &file, bool wp);
-};
-
-
 /** RemoteManager Public API
  */
 struct RemoteManagerAPI : public API {
@@ -1408,8 +1350,6 @@ public:
     UserPortAPI userPort;
     RecorderAPI recorder;
     ExpansionPortAPI expansionPort;
-    SerialPortAPI serialPort;
-    DriveAPI drive8, drive9;
     RemoteManagerAPI remoteManager;
     RetroShellAPI retroShell;
 };

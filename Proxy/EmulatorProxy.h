@@ -25,7 +25,6 @@ using namespace tiara;
 @class DmaDebuggerProxy;
 @class ExpansionPortProxy;
 @class FileSystemProxy;
-@class SerialPortProxy;
 @class JoystickProxy;
 @class MediaFileProxy;
 @class MemoryProxy;
@@ -104,7 +103,6 @@ using namespace tiara;
     DmaDebuggerProxy *dmaDebugger;
     ExpansionPortProxy *expansionport;
     UserPortProxy *userPort;
-    SerialPortProxy *iec;
     MemoryProxy *mem;
     MouseProxy *mouse;
     RecorderProxy *recorder;
@@ -126,7 +124,6 @@ using namespace tiara;
 @property (readonly, strong) DmaDebuggerProxy *dmaDebugger;
 @property (readonly, strong) ExpansionPortProxy *expansionport;
 @property (readonly, strong) UserPortProxy *userPort;
-@property (readonly, strong) SerialPortProxy *iec;
 @property (readonly, strong) MemoryProxy *mem;
 @property (readonly, strong) RecorderProxy *recorder;
 @property (readonly, strong) RemoteManagerProxy *remoteManager;
@@ -467,13 +464,6 @@ struct GuardInfo {
 
 @end
 
-//
-// Serial port
-//
-
-@interface SerialPortProxy : SubComponentProxy { }
-
-@end
 
 //
 // Mouse

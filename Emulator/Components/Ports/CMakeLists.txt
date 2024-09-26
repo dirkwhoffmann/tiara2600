@@ -10,8 +10,6 @@ ExpansionPort.cpp
 ExpansionPortBase.cpp
 PowerPort.cpp
 PowerPortBase.cpp
-SerialPort.cpp
-SerialPortBase.cpp
 UserPort.cpp
 UserPortBase.cpp
 VideoPort.cpp

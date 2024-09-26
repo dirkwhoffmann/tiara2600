@@ -18,7 +18,6 @@
 
 // Components
 #include "Memory.h"
-#include "DriveMemory.h"
 #include "FlashRom.h"
 #include "VICII.h"
 #include "SIDBridge.h"
@@ -33,12 +32,9 @@
 #include "ControlPort.h"
 #include "PowerPort.h"
 #include "ExpansionPort.h"
-#include "SerialPort.h"
 #include "UserPort.h"
 
 // Peripherals
-#include "Drive.h"
-#include "ParCable.h"
 #include "Mouse.h"
 #include "Monitor.h"
 
@@ -141,13 +137,9 @@ public:
     ControlPort port1 = ControlPort(*this, PORT_1);
     ControlPort port2 = ControlPort(*this, PORT_2);
     ExpansionPort expansionport = ExpansionPort(*this);
-    SerialPort iec = SerialPort(*this);
     UserPort userPort = UserPort(*this);
 
     // Peripherals
-    Drive drive8 = Drive(*this, 0);
-    Drive drive9 = Drive(*this, 1);
-    ParCable parCable = ParCable(*this);
     Monitor monitor = Monitor(*this);
     
     // Gateway to the GUI
@@ -302,11 +294,7 @@ public:
         CLONE(port1)
         CLONE(port2)
         CLONE(expansionport)
-        CLONE(iec)
         CLONE(userPort)
-        CLONE(drive8)
-        CLONE(drive9)
-        CLONE(parCable)
         CLONE(monitor)
         CLONE(retroShell)
         CLONE(regressionTester)

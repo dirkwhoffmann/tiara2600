@@ -572,20 +572,6 @@ using namespace tiara;
 
 
 //
-// Serial port
-//
-
-@implementation SerialPortProxy
-
-- (SerialPortAPI *)iec
-{
-    return (SerialPortAPI *)obj;
-}
-
-@end
-
-
-//
 // Control port
 //
 
@@ -1159,7 +1145,6 @@ using namespace tiara;
 @synthesize dmaDebugger;
 @synthesize expansionport;
 @synthesize userPort;
-@synthesize iec;
 @synthesize mem;
 @synthesize port1;
 @synthesize port2;
@@ -1187,7 +1172,6 @@ using namespace tiara;
     dmaDebugger = [[DmaDebuggerProxy alloc] initWith:&emu->dmaDebugger];
     expansionport = [[ExpansionPortProxy alloc] initWith:&emu->expansionPort emu:emu];
     userPort = [[UserPortProxy alloc] initWith:&emu->userPort emu:emu];
-    iec = [[SerialPortProxy alloc] initWith:&emu->serialPort emu:emu];
     mem = [[MemoryProxy alloc] initWith:&emu->mem emu:emu];
     port1 = [[ControlPortProxy alloc] initWith:&emu->controlPort1 emu:emu];
     port2 = [[ControlPortProxy alloc] initWith:&emu->controlPort2 emu:emu];

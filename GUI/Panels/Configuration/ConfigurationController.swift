@@ -160,13 +160,6 @@ class ConfigurationController: DialogController {
     @IBOutlet weak var audVolL: NSSlider!
     @IBOutlet weak var audVolR: NSSlider!
 
-    // Drives
-    @IBOutlet weak var audStepVolume: NSSlider!
-    @IBOutlet weak var audEjectVolume: NSSlider!
-    @IBOutlet weak var audInsertVolume: NSSlider!
-    @IBOutlet weak var audDrive8Pan: NSSlider!
-    @IBOutlet weak var audDrive9Pan: NSSlider!
-
     // Buttons
     @IBOutlet weak var audOKButton: NSButton!
     @IBOutlet weak var audPowerButton: NSButton!

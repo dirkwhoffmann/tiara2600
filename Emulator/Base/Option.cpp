@@ -15,6 +15,7 @@
 #include "TiaraTypes.h"
 #include "Error.h"
 #include "IOUtils.h"
+#include "Macros.h"
 
 namespace tiara {
 
@@ -126,23 +127,6 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_MEM_INIT_PATTERN:          return enumParser.template operator()<RamPatternEnum>();
         case OPT_MEM_HEATMAP:               return boolParser();
         case OPT_MEM_SAVE_ROMS:             return boolParser();
-
-        case OPT_DRV_AUTO_CONFIG:           return boolParser();
-        case OPT_DRV_TYPE:                  return enumParser.template operator()<DriveTypeEnum>();
-        case OPT_DRV_RAM:                   return enumParser.template operator()<DriveRamEnum>();
-        case OPT_DRV_SAVE_ROMS:             return boolParser();
-        case OPT_DRV_PARCABLE:              return enumParser.template operator()<ParCableTypeEnum>();
-        case OPT_DRV_CONNECT:               return boolParser();
-        case OPT_DRV_POWER_SWITCH:          return boolParser();
-        case OPT_DRV_POWER_SAVE:            return boolParser();
-        case OPT_DRV_EJECT_DELAY:           return numParser(" frames");
-        case OPT_DRV_SWAP_DELAY:            return numParser(" frames");
-        case OPT_DRV_INSERT_DELAY:          return numParser(" frames");
-        case OPT_DRV_PAN:                   return numParser();
-        case OPT_DRV_POWER_VOL:             return numParser("%");
-        case OPT_DRV_STEP_VOL:              return numParser("%");
-        case OPT_DRV_INSERT_VOL:            return numParser("%");
-        case OPT_DRV_EJECT_VOL:             return numParser("%");
 
         case OPT_MOUSE_MODEL:               return enumParser.template operator()<MouseModelEnum>();
         case OPT_MOUSE_SHAKE_DETECT:        return boolParser();

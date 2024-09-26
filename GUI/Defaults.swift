@@ -717,11 +717,6 @@ extension DefaultsProxy {
 
         debug(.defaults)
 
-        remove(.DRV_CONNECT, [0, 1])
-        remove(.DRV_TYPE, [0, 1])
-        remove(.DRV_RAM, [0, 1])
-        remove(.DRV_PARCABLE, [0, 1])
-        remove(.DRV_AUTO_CONFIG, [0, 1])
         removeKey(Keys.Per.gameDevice1)
         removeKey(Keys.Per.gameDevice2)
     }
@@ -738,18 +733,6 @@ extension Configuration {
             emu.suspend()
 
             let defaults = EmulatorProxy.defaults!
-
-            defaults.set(.DRV_CONNECT, 0, drive8Connected)
-            defaults.set(.DRV_TYPE, 0, drive8Type)
-            defaults.set(.DRV_RAM, 0, drive8Ram)
-            defaults.set(.DRV_PARCABLE, 0, drive8ParCable)
-            defaults.set(.DRV_AUTO_CONFIG, 0, drive8AutoConf)
-
-            defaults.set(.DRV_CONNECT, 1, drive9Connected)
-            defaults.set(.DRV_TYPE, 1, drive8Type)
-            defaults.set(.DRV_RAM, 1, drive8Ram)
-            defaults.set(.DRV_PARCABLE, 1, drive8ParCable)
-            defaults.set(.DRV_AUTO_CONFIG, 1, drive8AutoConf)
 
             defaults.set(Keys.Per.gameDevice1, gameDevice1)
             defaults.set(Keys.Per.gameDevice2, gameDevice2)
@@ -772,18 +755,6 @@ extension Configuration {
             emu.suspend()
 
             let defaults = EmulatorProxy.defaults!
-
-            drive8Connected = defaults.get(.DRV_CONNECT, 0) != 0
-            drive8Type = defaults.get(.DRV_TYPE, 0)
-            drive8Ram = defaults.get(.DRV_RAM, 0)
-            drive8ParCable = defaults.get(.DRV_PARCABLE, 0)
-            drive8AutoConf = defaults.get(.DRV_AUTO_CONFIG, 0) != 0
-
-            drive9Connected = defaults.get(.DRV_CONNECT, 1) != 0
-            drive9Type = defaults.get(.DRV_TYPE, 1)
-            drive9Ram = defaults.get(.DRV_RAM, 1)
-            drive9ParCable = defaults.get(.DRV_PARCABLE, 1)
-            drive9AutoConf = defaults.get(.DRV_AUTO_CONFIG, 1) != 0
 
             gameDevice1 = defaults.int(Keys.Per.gameDevice1)
             gameDevice2 = defaults.int(Keys.Per.gameDevice2)
@@ -812,7 +783,6 @@ extension DefaultsProxy {
 
         debug(.defaults)
 
-        remove(.DRV_POWER_SAVE, [0, 1])
         remove(.VICII_POWER_SAVE)
         remove(.VICII_SS_COLLISIONS)
         remove(.VICII_SB_COLLISIONS)
@@ -837,8 +807,6 @@ extension Configuration {
 
             let defaults = EmulatorProxy.defaults!
 
-            defaults.set(.DRV_POWER_SAVE, 0, drive8PowerSave)
-            defaults.set(.DRV_POWER_SAVE, 1, drive9PowerSave)
             defaults.set(.SID_POWER_SAVE, [0, 1, 2, 3], sidPowerSave)
             defaults.set(.VICII_POWER_SAVE, viciiPowerSave)
             defaults.set(.VICII_SS_COLLISIONS, ssCollisions)
@@ -865,8 +833,6 @@ extension Configuration {
 
             let defaults = EmulatorProxy.defaults!
 
-            drive8PowerSave = defaults.get(.DRV_POWER_SAVE, 0) != 0
-            drive9PowerSave = defaults.get(.DRV_POWER_SAVE, 1) != 0
             sidPowerSave = defaults.get(.SID_POWER_SAVE, 0) != 0
             viciiPowerSave = defaults.get(.VICII_POWER_SAVE) != 0
             ssCollisions = defaults.get(.VICII_SS_COLLISIONS) != 0
@@ -911,10 +877,6 @@ extension DefaultsProxy {
         remove(.AUD_PAN3)
         remove(.AUD_VOL_L)
         remove(.AUD_VOL_R)
-        remove(.DRV_STEP_VOL, [0, 1])
-        remove(.DRV_INSERT_VOL, [0, 1])
-        remove(.DRV_EJECT_VOL, [0, 1])
-        remove(.DRV_PAN, [0, 1])
     }
 }
 
@@ -941,11 +903,6 @@ extension Configuration {
             defaults.set(.AUD_VOL_L, volL)
             defaults.set(.AUD_VOL_R, volR)
             defaults.set(.SID_SAMPLING, [0, 1, 2, 3], sidSampling)
-            defaults.set(.DRV_PAN, 0, drive8Pan)
-            defaults.set(.DRV_PAN, 1, drive9Pan)
-            defaults.set(.DRV_STEP_VOL, [0, 1], stepVolume)
-            defaults.set(.DRV_INSERT_VOL, [0, 1], insertVolume)
-            defaults.set(.DRV_EJECT_VOL, [0, 1], ejectVolume)
             defaults.set(.SID_FILTER, [0, 1, 2, 3], sidFilter)
             defaults.save()
 
@@ -973,15 +930,9 @@ extension Configuration {
             pan2 = defaults.get(.AUD_PAN2)
             pan3 = defaults.get(.AUD_PAN3)
 
-            drive8Pan = defaults.get(.DRV_PAN, 0)
-            drive9Pan = defaults.get(.DRV_PAN, 1)
-
             volL = defaults.get(.AUD_VOL_L)
             volR = defaults.get(.AUD_VOL_R)
             sidSampling = defaults.get(.SID_SAMPLING, 0)
-            stepVolume = defaults.get(.DRV_STEP_VOL, 0)
-            insertVolume = defaults.get(.DRV_INSERT_VOL, 0)
-            ejectVolume = defaults.get(.DRV_EJECT_VOL, 0)
             sidFilter = defaults.get(.SID_FILTER, 0) != 0
 
             emu.resume()
