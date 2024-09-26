@@ -102,10 +102,6 @@ class ConfigurationController: DialogController {
     // Parallel cable
     @IBOutlet weak var perParCableType: NSPopUpButton!
 
-    // Datasette
-    @IBOutlet weak var perDatasetteConnect: NSButton!
-    @IBOutlet weak var perDatasetteModel: NSPopUpButton!
-
     // Ports
     @IBOutlet weak var perControlPort1: NSPopUpButton!
     @IBOutlet weak var perControlPort2: NSPopUpButton!

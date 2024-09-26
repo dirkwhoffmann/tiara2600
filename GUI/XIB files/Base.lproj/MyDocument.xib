@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23094" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23094"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,9 +24,6 @@
                 <outlet property="serverIcon" destination="SCM-Qu-4XG" id="40K-fX-k5b"/>
                 <outlet property="speedStepper" destination="thS-H1-lgy" id="fcb-xj-h0B"/>
                 <outlet property="spinning8" destination="2203" id="ons-cN-UFy"/>
-                <outlet property="spinning9" destination="xzf-hU-AKK" id="C8r-MJ-Kde"/>
-                <outlet property="tapeCounter" destination="HdD-JF-2Va" id="Dps-K3-bdI"/>
-                <outlet property="tapeIcon" destination="NlM-JA-g9p" id="N4F-vG-K0f"/>
                 <outlet property="tapeProgress" destination="H1X-Kk-fcE" id="HyE-RP-1yJ"/>
                 <outlet property="toolbar" destination="1845" id="vCR-nf-AUd"/>
                 <outlet property="trackIcon" destination="6c9-VQ-Wmb" id="2dW-WG-eAT"/>
@@ -81,14 +78,6 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <button hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NlM-JA-g9p">
-                        <rect key="frame" x="293" y="3" width="20" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="tapeTemplate" imagePosition="only" alignment="right" imageScaling="proportionallyUpOrDown" id="Rze-Qf-HUV">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu" size="10"/>
-                        </buttonCell>
-                    </button>
                     <button hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1045">
                         <rect key="frame" x="78" y="3" width="20" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -112,10 +101,6 @@
                             <action selector="drivePowerButtonAction:" target="-2" id="7w9-yh-J1T"/>
                         </connections>
                     </button>
-                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="xzf-hU-AKK">
-                        <rect key="frame" x="228" y="5" width="16" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </progressIndicator>
                     <button toolTip="Drive LED" tag="1" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iKN-RM-vsV">
                         <rect key="frame" x="151" y="4" width="17" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -132,7 +117,7 @@
                             <font key="font" metaFont="menu" size="10"/>
                         </buttonCell>
                     </button>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DD4-5B-w9h" customClass="MetalView" customModule="VirtualC64" customModuleProvider="target">
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DD4-5B-w9h" customClass="MetalView" customModule="Tiara" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="26" width="800" height="614"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <connections>
@@ -198,15 +183,6 @@
                             <font key="font" metaFont="menu" size="10"/>
                         </buttonCell>
                     </button>
-                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HdD-JF-2Va">
-                        <rect key="frame" x="253" y="6" width="36" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="00:00" id="hjK-ID-3do">
-                            <font key="font" metaFont="message" size="11"/>
-                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tD7-Kt-2R4">
                         <rect key="frame" x="604" y="5" width="66" height="13"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -266,7 +242,7 @@
                     </stepper>
                 </subviews>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="562FDE63-25B0-4E4E-80C7-EF6E742B5F6F" displayMode="iconAndLabel" sizeMode="regular" id="1845" customClass="MyToolbar" customModule="VirtualC64" customModuleProvider="target">
+            <toolbar key="toolbar" implicitIdentifier="562FDE63-25B0-4E4E-80C7-EF6E742B5F6F" displayMode="iconAndLabel" sizeMode="regular" id="1845" customClass="MyToolbar" customModule="Tiara" customModuleProvider="target">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="B3E0ED18-38A1-47E0-8714-6499B91888F8" label="Inspectors" paletteLabel="Inspectors" sizingBehavior="auto" id="GsP-C7-APh">
                         <nil key="toolTip"/>
@@ -327,7 +303,7 @@
                         <popUpButton key="view" tag="10" id="L2b-nG-yBo" userLabel="Port 1">
                             <rect key="frame" x="0.0" y="14" width="45" height="20"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <popUpButtonCell key="cell" type="roundTextured" title="None" bezelStyle="texturedRounded" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" tag="-1" imageScaling="proportionallyUpOrDown" inset="2" autoenablesItems="NO" selectedItem="VD3-Wr-Ufe" id="Oxd-8A-P5o" userLabel="PopupButtonCell">
+                            <popUpButtonCell key="cell" type="roundTextured" title="None" bezelStyle="texturedRounded" image="devNoneTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" tag="-1" imageScaling="proportionallyUpOrDown" inset="2" autoenablesItems="NO" selectedItem="VD3-Wr-Ufe" id="Oxd-8A-P5o" userLabel="PopupButtonCell">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="menu"/>
                                 <menu key="menu" autoenablesItems="NO" id="zHf-yH-YTM">
@@ -491,7 +467,6 @@
         <image name="pushTemplate" width="36" height="36"/>
         <image name="resetTemplate" width="36" height="36"/>
         <image name="srvConnectTemplate" width="48" height="49"/>
-        <image name="tapeTemplate" width="241" height="240"/>
         <image name="timeMachineTemplate" width="36" height="36"/>
     </resources>
 </document>

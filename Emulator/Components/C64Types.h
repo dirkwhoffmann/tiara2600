@@ -96,14 +96,12 @@ enum_long(SLOT)
 
     // Secondary slots
     SLOT_SER,                       // Serial port (IEC bus)
-    SLOT_DAT,                       // Datasette execution
     SLOT_TER,                       // Enables tertiary slots
 
     // Tertiary slots
     SLOT_EXP,                       // Expansion port
     SLOT_TXD,                       // Serial data out (RS232)
     SLOT_RXD,                       // Serial data in (RS232)
-    SLOT_MOT,                       // Datasette motor
     SLOT_DC8,                       // Disk change (Drive 8)
     SLOT_DC9,                       // Disk change (Drive 9)
     SLOT_SNP,                       // Snapshots
@@ -133,7 +131,6 @@ struct EventSlotEnum : util::Reflection<EventSlotEnum, EventSlot>
             case SLOT_SEC:      return "SEC";
 
             case SLOT_SER:      return "SER";
-            case SLOT_DAT:      return "DAT";
             case SLOT_TER:      return "TER";
 
             case SLOT_DC8:      return "DC8";
@@ -177,10 +174,6 @@ enum_i8(EventID)
     SER_UPDATE          = 1,
     SER_EVENT_COUNT,
 
-    // DAT slot
-    DAT_EXECUTE         = 1,
-    DAT_EVENT_COUNT,
-
     // SEC slot
     TER_TRIGGER         = 1,
     TER_EVENT_COUNT,
@@ -207,11 +200,6 @@ enum_i8(EventID)
     // Serial data in (RS232)
     RXD_BIT             = 1,
     RXD_EVENT_COUT,
-
-    // Datasette motor
-    MOT_START           = 1,
-    MOT_STOP,
-    MOT_EVENT_COUNT,
 
     // Disk change
     DCH_INSERT          = 1,

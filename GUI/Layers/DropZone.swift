@@ -72,7 +72,7 @@ class DropZone: Layer {
             inUse[1] = info9.hasDisk
             inUse[2] = false
             inUse[3] = emu.expansionport.cartridgeAttached()
-            inUse[4] = emu.datasette.info.hasTape
+            inUse[4] = false
 
             switch type {
 

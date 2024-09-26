@@ -375,30 +375,6 @@ struct PaddleAPI : API {
     const PaddleInfo &getCachedInfo() const;
 };
 
-
-/** Datasette Public API
- */
-struct DatasetteAPI : API {
-
-    class Datasette *datasette = nullptr;
-
-    /** @brief  Returns the component's current state.
-     */
-    const DatasetteInfo &getInfo() const;
-    const DatasetteInfo &getCachedInfo() const;
-
-    /** @brief  Inserts a tape.
-     *  @param  file    The tape to insert.
-     */
-    void insertTape(MediaFile &file);
-
-    /** @brief  Ejects a tape.
-     *  This function has no effect if no tape is inserted.
-     */
-    void ejectTape();
-};
-
-
 /** RS232 Public API
  */
 struct RS232API : API {
@@ -1449,7 +1425,6 @@ public:
     AudioPortAPI audioPort;
     VideoPortAPI videoPort;
     DmaDebuggerAPI dmaDebugger;
-    DatasetteAPI datasette;
     ControlPortAPI controlPort1, controlPort2;
     UserPortAPI userPort;
     RecorderAPI recorder;

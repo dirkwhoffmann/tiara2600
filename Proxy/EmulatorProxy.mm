@@ -837,61 +837,6 @@ using namespace tiara;
 
 @end
 
-
-//
-// Datasette
-//
-
-@implementation DatasetteProxy
-
-- (DatasetteAPI *)datasette
-{
-    return (DatasetteAPI *)obj;
-}
-
-- (Tiara *)emu
-{
-    return (Tiara *)emu;
-}
-
-- (DatasetteInfo)info
-{
-    return [self datasette]->getInfo();
-}
-
-- (DatasetteInfo)cachedInfo
-{
-    return [self datasette]->getCachedInfo();
-}
-
-- (void)pressPlay
-{
-    [self emu]->put(CMD_DATASETTE_PLAY);
-}
-
-- (void)pressStop
-{
-    [self emu]->put(CMD_DATASETTE_STOP);
-}
-
-- (void)rewind
-{
-    [self emu]->put(CMD_DATASETTE_REWIND);
-}
-
-- (void)insertTape:(MediaFileProxy *)proxy
-{
-    [self emu]->datasette.insertTape(*(MediaFile *)proxy->obj);
-}
-
-- (void)ejectTape
-{
-    [self emu]->datasette.ejectTape();
-}
-
-@end
-
-
 //
 // RS232 proxy
 //
@@ -1632,7 +1577,6 @@ using namespace tiara;
 @synthesize cia1;
 @synthesize cia2;
 @synthesize cpu;
-@synthesize datasette;
 @synthesize dmaDebugger;
 @synthesize drive8;
 @synthesize drive9;
@@ -1663,7 +1607,6 @@ using namespace tiara;
     cia1 = [[CIAProxy alloc] initWith:&emu->cia1 emu:emu];
     cia2 = [[CIAProxy alloc] initWith:&emu->cia2 emu:emu];
     cpu = [[CPUProxy alloc] initWith:&emu->cpu emu:emu];
-    datasette = [[DatasetteProxy alloc] initWith:&emu->datasette emu:emu];
     dmaDebugger = [[DmaDebuggerProxy alloc] initWith:&emu->dmaDebugger];
     drive8 = [[DriveProxy alloc] initWith:&emu->drive8 emu:emu];
     drive9 = [[DriveProxy alloc] initWith:&emu->drive9 emu:emu];

@@ -141,7 +141,7 @@ public:
 
 public:
 
-    // Processes a datasette command
+    // Processes a control port command
     void processCommand(const Cmd &cmd);
 };
 

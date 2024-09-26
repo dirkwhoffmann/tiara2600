@@ -33,11 +33,6 @@ CPU::writePort(u8 val)
 {
     Peddle::writePort(val);
 
-    // Check the motor bit of the datasette
-    if (reg.pport.direction & 0x20) {
-        datasette.setMotor((val & 0x20) == 0);
-    }
-
     // When writing to the port register, the last VICII byte appears
     mem.ram[0x0001] = vic.getDataBusPhi1();
 
@@ -77,23 +72,10 @@ CPU::writePortDir(u8 val)
 u8
 CPU::externalPortBits() const
 {
-    /* If the port bits are configured as inputs and no datasette is attached,
-     * the following values are returned:
-     *
-     *     Bit 0:  1 (bit is driven by a pull-up resistor)
-     *     Bit 1:  1 (bit is driven by a pull-up resistor)
-     *     Bit 2:  1 (bit is driven by a pull-up resistor)
-     * ??? Bit 3:  Eventually 0 (acts a a capacitor)
-     * ??? Bit 3:  0 (bit is driven by a pull-down resistor)
-     *     Bit 4:  1 (bit is driven by a pull-up resistor)
-     *     Bit 5:  0 (bit is driven by a pull-down resistor)
-     *     Bit 6:  Eventually 0 (acts a a capacitor)
-     *     Bit 7:  Eventually 0 (acts a a capacitor)
-     */
     u8 bit3 = (dischargeCycleBit3 > cpu.clock) ? 0x08 : 0x00;
     u8 bit6 = (dischargeCycleBit6 > cpu.clock) ? 0x40 : 0x00;
     u8 bit7 = (dischargeCycleBit7 > cpu.clock) ? 0x80 : 0x00;
-    u8 bit4 = datasette.getPlayKey() ? 0x00 : 0x10;
+    u8 bit4 = 0x10;
 
     return bit7 | bit6 | bit4 | bit3 | 0x07;
 }

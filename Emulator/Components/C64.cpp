@@ -79,16 +79,6 @@ C64::eventName(EventSlot slot, EventID id)
             }
             break;
 
-        case SLOT_DAT:
-
-            switch (id) {
-
-                case EVENT_NONE:    return "none";
-                case DAT_EXECUTE:   return "DAT_EXECUTE";
-                default:            return "*** INVALID ***";
-            }
-            break;
-
         case SLOT_TER:
 
             switch (id) {
@@ -132,17 +122,6 @@ C64::eventName(EventSlot slot, EventID id)
 
                 case EVENT_NONE:    return "none";
                 case RXD_BIT:       return "RXD_BIT";
-                default:            return "*** INVALID ***";
-            }
-            break;
-
-        case SLOT_MOT:
-
-            switch (id) {
-
-                case EVENT_NONE:    return "none";
-                case MOT_START:     return "MOT_START";
-                case MOT_STOP:      return "MOT_STOP";
                 default:            return "*** INVALID ***";
             }
             break;
@@ -694,13 +673,6 @@ C64::update(CmdQueue &queue)
                 }
                 break;
 
-            case CMD_DATASETTE_PLAY:
-            case CMD_DATASETTE_STOP:
-            case CMD_DATASETTE_REWIND:
-
-                datasette.processCommand(cmd);
-                break;
-
             case CMD_CRT_BUTTON_PRESS:
             case CMD_CRT_BUTTON_RELEASE:
             case CMD_CRT_SWITCH_LEFT:
@@ -1147,10 +1119,6 @@ C64::processEvents(Cycle cycle)
             iec.update();
         }
 
-        if (isDue<SLOT_DAT>(cycle)) {
-            datasette.processDatEvent(eventid[SLOT_DAT], data[SLOT_DAT]);
-        }
-
         if (isDue<SLOT_TER>(cycle)) {
 
             //
@@ -1164,9 +1132,6 @@ C64::processEvents(Cycle cycle)
             }
             if (isDue<SLOT_RXD>(cycle)) {
                 userPort.rs232.processRxdEvent();
-            }
-            if (isDue<SLOT_MOT>(cycle)) {
-                datasette.processMotEvent(eventid[SLOT_MOT]);
             }
             if (isDue<SLOT_DC8>(cycle)) {
                 drive8.processDiskChangeEvent(eventid[SLOT_DC8]);

@@ -48,7 +48,6 @@ enum_long(COMP_TYPE)
 
     // Peripherals
     CartridgeClass,
-    DatasetteClass,
     DriveClass,
     DriveMemoryClass,
     JoystickClass,

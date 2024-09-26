@@ -18,13 +18,11 @@ extension tiara.EventSlot: CustomStringConvertible {
         case ._SEC:     return "Next Secondary Event"
 
         case ._SER:     return "Serial Port"
-        case ._DAT:     return "Datasette Data"
         case ._TER:     return "Next Tertiary Event"
 
         case ._EXP:     return "Expansion Port"
         case ._TXD:     return "RS232 Out"
         case ._RXD:     return "RS232 In"
-        case ._MOT:     return "Datasette Motor"
         case ._DC8:     return "Disk Change Drive 8"
         case ._DC9:     return "Disk Change Drive 9"
         case ._SNP:     return "Snapshots"

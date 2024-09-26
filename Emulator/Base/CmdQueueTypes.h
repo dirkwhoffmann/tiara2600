@@ -80,11 +80,6 @@ enum_long(CMD_TYPE)
     CMD_DSK_MODIFIED,           ///< Signal that the disk has been saved
     CMD_DSK_UNMODIFIED,         ///< Signan that the disk needs saving
 
-    // Datasette
-    CMD_DATASETTE_PLAY,         ///< Press the datasette play key
-    CMD_DATASETTE_STOP,         ///< Press the datasette stop key
-    CMD_DATASETTE_REWIND,       ///< Rewind the tape
-
     // Cartridge
     CMD_CRT_BUTTON_PRESS,       ///< Press a cartridge button
     CMD_CRT_BUTTON_RELEASE,     ///< Release a cartridge button
@@ -153,10 +148,6 @@ struct CmdTypeEnum : util::Reflection<CmdTypeEnum, CmdType> {
             case CMD_DSK_TOGGLE_WP:         return "DSK_TOGGLE_WP";
             case CMD_DSK_MODIFIED:          return "DSK_MODIFIED";
             case CMD_DSK_UNMODIFIED:        return "DSK_UNMODIFIED";
-
-            case CMD_DATASETTE_PLAY:        return "DATASETTE_PLAY";
-            case CMD_DATASETTE_STOP:        return "DATASETTE_STOP";
-            case CMD_DATASETTE_REWIND:      return "DATASETTE_REWIND";
 
             case CMD_CRT_BUTTON_PRESS:      return "CRT_BUTTON_PRESS";
             case CMD_CRT_BUTTON_RELEASE:    return "CRT_BUTTON_RELEASE";

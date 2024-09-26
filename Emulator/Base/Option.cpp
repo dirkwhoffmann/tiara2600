@@ -144,9 +144,6 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_DRV_INSERT_VOL:            return numParser("%");
         case OPT_DRV_EJECT_VOL:             return numParser("%");
 
-        case OPT_DAT_MODEL:                 return enumParser.template operator()<DatasetteModelEnum>();
-        case OPT_DAT_CONNECT:               return boolParser();
-
         case OPT_MOUSE_MODEL:               return enumParser.template operator()<MouseModelEnum>();
         case OPT_MOUSE_SHAKE_DETECT:        return boolParser();
         case OPT_MOUSE_VELOCITY:            return numParser();

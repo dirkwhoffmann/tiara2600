@@ -497,42 +497,6 @@ CommandConsole::initCommands(Command &root)
     cmd = registerComponent(port1.paddle);
     cmd = registerComponent(port2.paddle);
 
-
-    //
-    // Peripherals (Datasette)
-    //
-
-    cmd = registerComponent(datasette);
-
-    root.add({cmd, "connect"},
-             "Connects the datasette",
-             [this](Arguments& argv, long value) {
-
-        emulator.set(OPT_DAT_CONNECT, true);
-    });
-
-    root.add({cmd, "disconnect"},
-             "Disconnects the datasette",
-             [this](Arguments& argv, long value) {
-
-        emulator.set(OPT_DAT_CONNECT, false);
-    });
-
-    root.add({cmd, "rewind"},
-             "Rewinds the tape",
-             [this](Arguments& argv, long value) {
-
-        datasette.rewind();
-    });
-
-    root.add({cmd, "rewind", "to"}, { Arg::value },
-             "Rewinds the tape to a specific position",
-             [this](Arguments& argv, long value) {
-
-        datasette.rewind(parseNum(argv[0]));
-    });
-
-
     //
     // Peripherals (Drives)
     //

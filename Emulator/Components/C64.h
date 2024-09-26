@@ -39,7 +39,6 @@
 // Peripherals
 #include "Drive.h"
 #include "ParCable.h"
-#include "Datasette.h"
 #include "Mouse.h"
 #include "Monitor.h"
 
@@ -156,7 +155,6 @@ public:
     Drive drive8 = Drive(*this, 0);
     Drive drive9 = Drive(*this, 1);
     ParCable parCable = ParCable(*this);
-    Datasette datasette = Datasette(*this);
     Monitor monitor = Monitor(*this);
     
     // Gateway to the GUI
@@ -316,7 +314,6 @@ public:
         CLONE(drive8)
         CLONE(drive9)
         CLONE(parCable)
-        CLONE(datasette)
         CLONE(monitor)
         CLONE(retroShell)
         CLONE(regressionTester)

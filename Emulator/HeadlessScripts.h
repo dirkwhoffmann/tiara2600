@@ -275,13 +275,6 @@ static const char *smokeTestScript[] = {
     "drive9 newdisk NODOS",
     "drive9 newdisk CBM",
 
-    "datasette",
-    "datasette set MODEL C1530",
-    "datasette connect",
-    "datasette disconnect",
-    "datasette rewind",
-    "datasette rewind to 10",
-
     "joystick1",
     "joystick1 set ENABLE true",
     "joystick1 set ENABLE false",

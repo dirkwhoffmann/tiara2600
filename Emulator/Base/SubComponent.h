@@ -27,7 +27,6 @@ protected:
     class ControlPort &port1;
     class ControlPort &port2;
     class CPU &cpu;
-    class Datasette &datasette;
     class Drive &drive8;
     class Drive &drive9;
     class ExpansionPort &expansionPort;

@@ -496,13 +496,6 @@ DebugConsole::initCommands(Command &root)
         dump(serialPort, { Category::Config, Category::State });
     });
 
-    cmd = datasette.shellName();
-    description = datasette.description();
-    root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
-
-        dump(datasette, { Category::Config, Category::State });
-    });
-
     cmd = audioPort.shellName();
     description = audioPort.description();
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {

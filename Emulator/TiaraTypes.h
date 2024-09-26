@@ -21,7 +21,6 @@
 #include "ControlPortTypes.h"
 #include "CoreComponentTypes.h"
 #include "CPUTypes.h"
-#include "DatasetteTypes.h"
 #include "DiskTypes.h"
 #include "DiskAnalyzerTypes.h"
 #include "DriveTypes.h"

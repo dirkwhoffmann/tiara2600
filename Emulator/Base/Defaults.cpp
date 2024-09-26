@@ -144,9 +144,6 @@ Defaults::Defaults()
     setFallback(OPT_DRV_INSERT_VOL,             50,                 {DRIVE8, DRIVE9});
     setFallback(OPT_DRV_EJECT_VOL,              50,                 {DRIVE8, DRIVE9});
 
-    setFallback(OPT_DAT_MODEL,                  DATASETTE_C1530);
-    setFallback(OPT_DAT_CONNECT,                true);
-
     setFallback(OPT_MOUSE_MODEL,                MOUSE_C1350);
     setFallback(OPT_MOUSE_SHAKE_DETECT,         true);
     setFallback(OPT_MOUSE_VELOCITY,             100);

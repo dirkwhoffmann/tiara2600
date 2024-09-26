@@ -44,14 +44,6 @@ extension ConfigurationController {
         perDrive9Ram.isEnabled = enable9
         perDrive9Cable.isEnabled = enable9
 
-        // Datasette
-        perDatasetteModel.selectItem(withTag: config.datasetteModel)
-        perDatasetteConnect.state = config.datasetteConnected ? .on : .off
-        perDrive9Connect.state = config.drive9Connected ? .on : .off
-        perDrive9Config.selectItem(withTag: config.drive9AutoConf ? 0 : 1)
-        perDrive9Type.selectItem(withTag: config.drive9Type)
-        perDatasetteModel.isEnabled = config.datasetteConnected
-
         // Ports
         parent.gamePadManager.refresh(popup: perControlPort1, hide: true)
         parent.gamePadManager.refresh(popup: perControlPort2, hide: true)
@@ -126,16 +118,6 @@ extension ConfigurationController {
         case 9: config.drive9ParCable = sender.selectedTag()
         default: fatalError()
         }
-    }
-
-    @IBAction func perDatasetteConnectAction(_ sender: NSButton!) {
-
-        config.datasetteConnected = sender.state == .on
-    }
-
-    @IBAction func perDatasetteModelAction(_ sender: NSPopUpButton!) {
-
-        config.datasetteModel = sender.selectedTag()
     }
 
     @IBAction func perControlPortAction(_ sender: NSPopUpButton!) {

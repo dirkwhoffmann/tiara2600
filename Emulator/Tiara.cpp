@@ -82,9 +82,6 @@ Tiara::Tiara() {
     dmaDebugger.emu = emu;
     dmaDebugger.dmaDebugger = &emu->main.vic.dmaDebugger;
 
-    datasette.emu = emu;
-    datasette.datasette = &emu->main.datasette;
-
     controlPort1.emu = emu;
     controlPort1.controlPort = &emu->main.port1;
     controlPort1.mouse.emu = emu;
@@ -800,38 +797,6 @@ PaddleAPI::getCachedInfo() const
 {
     return paddle->getCachedInfo();
 }
-
-
-//
-// Datasette
-//
-
-const DatasetteInfo &
-DatasetteAPI::getInfo() const
-{
-    return datasette->getInfo();
-}
-
-const DatasetteInfo &
-DatasetteAPI::getCachedInfo() const
-{
-    return datasette->getCachedInfo();
-}
-
-void
-DatasetteAPI::insertTape(MediaFile &file)
-{
-    datasette->insertTape(file);
-    emu->markAsDirty();
-}
-
-void
-DatasetteAPI::ejectTape()
-{
-    datasette->ejectTape();
-    emu->markAsDirty();
-}
-
 
 //
 // RS232

@@ -158,10 +158,6 @@ enum_long(OPT)
     OPT_DRV_INSERT_VOL,         ///< Volume (disk insertion)
     OPT_DRV_EJECT_VOL,          ///< Volume (disk ejection)
 
-    // Datasette
-    OPT_DAT_MODEL,              ///< Datasette model
-    OPT_DAT_CONNECT,            ///< Connection status
-
     // Mouse
     OPT_MOUSE_MODEL,            ///< Mouse model
     OPT_MOUSE_SHAKE_DETECT,     ///< Detect a shaking mouse
@@ -328,9 +324,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_DRV_INSERT_VOL:        return "DRV.INSERT_VOL";
             case OPT_DRV_EJECT_VOL:         return "DRV.EJECT_VOL";
 
-            case OPT_DAT_MODEL:             return "DAT.MODEL";
-            case OPT_DAT_CONNECT:           return "DAT.CONNECT";
-
             case OPT_MOUSE_MODEL:           return "MOUSE.MODEL";
             case OPT_MOUSE_SHAKE_DETECT:    return "MOUSE.SHAKE_DETECTION";
             case OPT_MOUSE_VELOCITY:        return "MOUSE.VELOCITY";
@@ -483,9 +476,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_DRV_STEP_VOL:          return "Head step volume";
             case OPT_DRV_INSERT_VOL:        return "Disk insertion volume";
             case OPT_DRV_EJECT_VOL:         return "Disk ejection volume";
-
-            case OPT_DAT_MODEL:             return "Datasette model";
-            case OPT_DAT_CONNECT:           return "Datasette connected";
 
             case OPT_MOUSE_MODEL:           return "Mouse model";
             case OPT_MOUSE_SHAKE_DETECT:    return "Detect a shaked mouse";

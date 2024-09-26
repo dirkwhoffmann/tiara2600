@@ -21,7 +21,6 @@ using namespace tiara;
 @class Constants;
 @class ControlPortProxy;
 @class CPUProxy;
-@class DatasetteProxy;
 @class DefaultsProxy;
 @class DmaDebuggerProxy;
 @class DriveProxy;
@@ -103,7 +102,6 @@ using namespace tiara;
     ControlPortProxy *port1;
     ControlPortProxy *port2;
     CPUProxy *cpu;
-    DatasetteProxy *datasette;
     DmaDebuggerProxy *dmaDebugger;
     DriveProxy *drive8;
     DriveProxy *drive9;
@@ -128,7 +126,6 @@ using namespace tiara;
 @property (readonly, strong) ControlPortProxy *port1;
 @property (readonly, strong) ControlPortProxy *port2;
 @property (readonly, strong) CPUProxy *cpu;
-@property (readonly, strong) DatasetteProxy *datasette;
 @property (readonly, strong) DmaDebuggerProxy *dmaDebugger;
 @property (readonly, strong) DriveProxy *drive8;
 @property (readonly, strong) DriveProxy *drive9;
@@ -528,25 +525,6 @@ struct GuardInfo {
 - (NSString *)getLogbook:(Halftrack)ht;
 
 @end
-
-
-//
-// Datasette
-//
-
-@interface DatasetteProxy : SubComponentProxy { }
-
-@property (readonly) DatasetteInfo info;
-@property (readonly) DatasetteInfo cachedInfo;
-
-- (void)pressPlay;
-- (void)pressStop;
-- (void)rewind;
-- (void)insertTape:(MediaFileProxy *)tape;
-- (void)ejectTape;
-
-@end
-
 
 //
 // Mouse

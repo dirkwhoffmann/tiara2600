@@ -25,8 +25,6 @@ extension MyController {
 
         if let emu = emu {
 
-            let dsstate = emu.datasette.info
-
             let c64state = emu.info
             let running = c64state.running
             let tracking = c64state.tracking
@@ -41,13 +39,6 @@ extension MyController {
             let on9 = config9.switchedOn
 
             let hasCrt = emu.expansionport.cartridgeAttached()
-
-            // Floppy drives
-            refreshStatusBarDriveItems(drive: DRIVE8)
-            refreshStatusBarDriveItems(drive: DRIVE9)
-
-            // Datasette
-            refreshStatusBarDatasette()
 
             // Remote server icon
             refreshStatusBarServerIcon()
@@ -74,10 +65,6 @@ extension MyController {
                 trackIcon: tracking,
                 muteIcon: warping || muted,
 
-                tapeIcon: dsstate.hasTape,
-                tapeCounter: dsstate.hasTape,
-                tapeProgress: dsstate.motor,
-
                 crtIcon: hasCrt,
 
                 warpIcon: running,
@@ -90,143 +77,6 @@ extension MyController {
             for (item, visible) in items {
                 item.isHidden = !visible || !statusBar
             }
-        }
-    }
-    
-    private func refreshStatusBarDriveItems(drive: Int) {
-        
-        refreshStatusBarLEDs(drive: drive)
-        refreshStatusBarTracks(drive: drive)
-        refreshStatusBarDiskIcons(drive: drive)
-        refreshStatusBarDriveActivity(drive: drive)
-    }
-    
-    func refreshStatusBarLEDs(drive: Int) {
-        
-        if let emu = emu {
-
-            switch drive {
-
-            case DRIVE8:
-
-                greenLED8.image = emu.drive8.greenLedImage
-                redLED8.image = emu.drive8.redLedImage
-
-            case DRIVE9:
-
-                greenLED9.image = emu.drive9.greenLedImage
-                redLED9.image = emu.drive9.redLedImage
-
-            default:
-                fatalError()
-            }
-        }
-    }
-    
-    func refreshStatusBarTracks(drive: Int) {
-        
-        if let emu = emu {
-
-            switch drive {
-
-            case DRIVE8:
-
-                let info = emu.drive8.info
-                trackNumber8.integerValue = Int((info.halftrack + 1) / 2)
-                trackNumber8.textColor = info.writing ? .red : .secondaryLabelColor
-
-            case DRIVE9:
-
-                let info = emu.drive9.info
-                trackNumber9.integerValue = Int((info.halftrack + 1) / 2)
-                trackNumber9.textColor = info.writing ? .red : .secondaryLabelColor
-
-            default:
-                fatalError()
-            }
-        }
-    }
-
-    func refreshStatusBarDiskIcons(drive: Int) {
-
-        if let emu = emu {
-
-            switch drive {
-
-            case DRIVE8:
-
-                let info = emu.drive8.info
-                let config = emu.drive8.config
-                diskIcon8.image = emu.drive8.icon
-                diskIcon8.isHidden = !config.connected || !info.hasDisk || !statusBar
-
-            case DRIVE9:
-
-                let info = emu.drive9.info
-                let config = emu.drive9.config
-                diskIcon9.image = emu.drive9.icon
-                diskIcon9.isHidden = !config.connected || !info.hasDisk || !statusBar
-
-            default:
-                fatalError()
-            }
-        }
-    }
-
-    func refreshStatusBarDriveActivity() {
-
-        refreshStatusBarDriveActivity(drive: DRIVE8)
-        refreshStatusBarDriveActivity(drive: DRIVE9)
-    }
-
-    func refreshStatusBarDriveActivity(drive: Int) {
-
-        if let emu = emu {
-
-            switch drive {
-
-            case DRIVE8:
-
-                if emu.drive8.info.spinning {
-                    spinning8.startAnimation(self)
-                    spinning8.isHidden = !statusBar
-                } else {
-                    spinning8.stopAnimation(self)
-                    spinning8.isHidden = true
-                }
-
-            case DRIVE9:
-
-                if emu.drive9.info.spinning {
-                    spinning9.startAnimation(self)
-                    spinning9.isHidden = !statusBar
-                } else {
-                    spinning9.stopAnimation(self)
-                    spinning9.isHidden = true
-                }
-
-            default:
-                fatalError()
-            }
-        }
-    }
-
-    func refreshStatusBarDatasette() {
-
-        if let emu = emu {
-
-            let dsstate = emu.datasette.info
-
-            if dsstate.motor && dsstate.playKey {
-                tapeProgress.startAnimation(self)
-            } else {
-                tapeProgress.stopAnimation(self)
-            }
-
-            let counter = dsstate.counter
-            let min = counter / 60
-            let sec = counter % 60
-            tapeCounter.stringValue = String(format: "%02d:%02d", min, sec)
         }
     }
 

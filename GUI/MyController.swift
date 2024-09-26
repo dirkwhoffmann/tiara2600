@@ -106,9 +106,6 @@ class MyController: NSWindowController, MessageReceiver {
     @IBOutlet weak var serverIcon: NSButton!
     @IBOutlet weak var trackIcon: NSButton!
     @IBOutlet weak var muteIcon: NSButton!
-    @IBOutlet weak var tapeIcon: NSButton!
-    @IBOutlet weak var tapeCounter: NSTextField!
-    @IBOutlet weak var tapeProgress: NSProgressIndicator!
     @IBOutlet weak var crtIcon: NSButton!
     
     @IBOutlet weak var warpIcon: NSButton!
@@ -388,20 +385,9 @@ extension MyController {
         case .PAL, .NTSC:
             renderer.canvas.updateTextureRect()
 
-        case .DRIVE_STEP:
-            macAudio.playStepSound(volume: vol, pan: pan)
-            refreshStatusBarTracks(drive: nr)
-
-        case .DISK_INSERT:
-            macAudio.playInsertSound(volume: vol, pan: pan)
-            refreshStatusBarDiskIcons(drive: nr)
-            inspector?.fullRefresh()
-
-        case .DISK_EJECT:
-            macAudio.playEjectSound(volume: vol, pan: pan)
-            refreshStatusBarDiskIcons(drive: nr)
-            inspector?.fullRefresh()
-
+        case .DRIVE_STEP, .DISK_INSERT, .DISK_EJECT:
+            break
+            
         case .FILE_FLASHED:
             break
 
@@ -415,22 +401,6 @@ extension MyController {
 
         case .DRIVE_CONNECT, .DRIVE_POWER, .DRIVE_POWER_SAVE:
             break
-
-        case .VC1530_CONNECT:
-            hideOrShowDriveMenus()
-            refreshStatusBar()
-
-        case .VC1530_TAPE:
-            refreshStatusBar()
-
-        case .VC1530_PLAY:
-            refreshStatusBar()
-
-        case .VC1530_MOTOR:
-            refreshStatusBar()
-
-        case .VC1530_COUNTER:
-            refreshStatusBar()
 
         case .CRT_ATTACHED:
             refreshStatusBar()

@@ -269,11 +269,6 @@ class MediaManager {
                 debug(.media, "CRT")
                 try emu.expansionport.attachCartridge(proxy, reset: true)
 
-            case .TAP:
-
-                debug(.media, "TAP")
-                emu.datasette.insertTape(proxy)
-
             case .T64, .PRG, .P00, .D64, .G64, .FOLDER:
 
                 debug(.media, "T64, PRG, P00, D64, G64, FOLDER")
@@ -307,11 +302,6 @@ class MediaManager {
 
                 debug(.media, "CRT")
                 try emu.expansionport.attachCartridge(proxy, reset: true)
-
-            case .TAP:
-
-                debug(.media, "TAP")
-                emu.datasette.insertTape(proxy)
 
             case .PRG, .P00, .T64:
 

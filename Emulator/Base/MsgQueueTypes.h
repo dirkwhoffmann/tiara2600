@@ -77,13 +77,6 @@ enum_long(MSG_TYPE)
     MSG_DISK_MODIFIED,      ///< The disk needs saving
     MSG_FILE_FLASHED,       ///< A file has been flashed into memory
 
-    // Peripherals (Datasette)
-    MSG_VC1530_CONNECT,     ///< A datasette has been connected or disconnected
-    MSG_VC1530_TAPE,        ///< A tape has been inserted or ejected
-    MSG_VC1530_PLAY,        ///< The play key has been pressed
-    MSG_VC1530_MOTOR,       ///< The drive motor has started or stopped
-    MSG_VC1530_COUNTER,     ///< The tape counter has stepped
-
     // Peripherals (Expansion port)
     MSG_CRT_ATTACHED,       ///< A cartridge has been plugged into the expansion port
 
@@ -171,12 +164,6 @@ struct MsgTypeEnum : util::Reflection<MsgTypeEnum, MsgType> {
             case MSG_DISK_PROTECTED:        return "DISK_PROTECTED";
             case MSG_DISK_MODIFIED:         return "DISK_MODIFIED";
             case MSG_FILE_FLASHED:          return "FILE_FLASHED";
-
-            case MSG_VC1530_CONNECT:        return "VC1530_CONNECT";
-            case MSG_VC1530_TAPE:           return "VC1530_TAPE";
-            case MSG_VC1530_PLAY:           return "VC1530_PLAY";
-            case MSG_VC1530_MOTOR:          return "VC1530_MOTOR";
-            case MSG_VC1530_COUNTER:        return "VC1530_COUNTER";
 
             case MSG_CRT_ATTACHED:          return "CRT_ATTACHED";
 

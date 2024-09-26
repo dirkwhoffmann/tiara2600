@@ -150,16 +150,6 @@ class Configuration {
         set { emu?.set(.DRV_POWER_SWITCH, drive: DRIVE9, enable: newValue )}
     }
 
-    var datasetteConnected: Bool {
-        get { return emu?.get(.DAT_CONNECT) != 0 }
-        set { emu?.set(.DAT_CONNECT, enable: newValue ) }
-    }
-
-    var datasetteModel: Int {
-        get { return emu?.get(.DAT_MODEL) ?? 0 }
-        set { emu?.set(.DAT_MODEL, value: newValue )}
-    }
-
     var gameDevice1 = -1 {
         didSet {
             

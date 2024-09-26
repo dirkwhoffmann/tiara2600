@@ -40,7 +40,6 @@ C64::C64(class Emulator& ref, isize id) : CoreComponent(ref, id)
         &drive8,
         &drive9,
         &parCable,
-        &datasette,
         &monitor,
         &remoteManager,
         &retroShell,
