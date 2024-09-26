@@ -86,9 +86,6 @@ public extension MetalView {
 
             switch type {
 
-            case .string:
-                return performStringDrag(sender)
-
             case .fileURL:
                 return performUrlDrag(sender)
 
@@ -98,18 +95,6 @@ public extension MetalView {
         }
 
         return false
-    }
-
-    func performStringDrag(_ sender: NSDraggingInfo) -> Bool {
-
-        let pasteBoard = sender.draggingPasteboard
-
-        // Type text on virtual keyboard
-        guard let text = pasteBoard.string(forType: .string) else {
-            return false
-        }
-        parent.keyboard.type(text)
-        return true
     }
 
     func performUrlDrag(_ sender: NSDraggingInfo) -> Bool {

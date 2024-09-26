@@ -588,75 +588,6 @@ using namespace tiara;
 
 
 //
-// Keyboard
-//
-
-@implementation KeyboardProxy
-
-- (KeyboardAPI *)kb
-{
-    return (KeyboardAPI *)obj;
-}
-
-- (Tiara *)emu
-{
-    return (Tiara *)emu;
-}
-
-- (BOOL)isPressed:(NSInteger)nr
-{
-    return [self kb]->isPressed(nr);
-}
-
-- (void)pressKey:(NSInteger)nr
-{
-    [self kb]->press(C64Key(nr));
-}
-
-- (void)releaseKey:(NSInteger)nr
-{
-    [self kb]->release(C64Key(nr));
-}
-
-- (void)releaseKey:(NSInteger)nr delay:(double)delay
-{
-    [self kb]->release(C64Key(nr), delay);
-}
-
-- (void)releaseAll
-{
-    [self kb]->releaseAll();
-}
-
-- (void)releaseAllWithDelay:(double)delay
-{
-    [self kb]->releaseAll(delay);
-}
-
-- (void)toggleKey:(NSInteger)nr
-{
-    [self kb]->toggle(C64Key(nr));
-}
-
-- (void)toggleKeyAtRow:(NSInteger)row col:(NSInteger)col
-{
-    [self kb]->toggle(C64Key(row, col).nr);
-}
-
-- (void)autoType:(NSString *)text
-{
-    [self kb]->autoType(string([text UTF8String]));
-}
-
-- (void)abortAutoTyping
-{
-    [self kb]->abortAutoTyping();
-}
-
-@end
-
-
-//
 // Control port
 //
 
@@ -1708,7 +1639,6 @@ using namespace tiara;
 @synthesize expansionport;
 @synthesize userPort;
 @synthesize iec;
-@synthesize keyboard;
 @synthesize mem;
 @synthesize port1;
 @synthesize port2;
@@ -1740,7 +1670,6 @@ using namespace tiara;
     expansionport = [[ExpansionPortProxy alloc] initWith:&emu->expansionPort emu:emu];
     userPort = [[UserPortProxy alloc] initWith:&emu->userPort emu:emu];
     iec = [[SerialPortProxy alloc] initWith:&emu->serialPort emu:emu];
-    keyboard = [[KeyboardProxy alloc] initWith:&emu->keyboard emu:emu];
     mem = [[MemoryProxy alloc] initWith:&emu->mem emu:emu];
     port1 = [[ControlPortProxy alloc] initWith:&emu->controlPort1 emu:emu];
     port2 = [[ControlPortProxy alloc] initWith:&emu->controlPort2 emu:emu];

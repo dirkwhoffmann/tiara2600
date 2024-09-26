@@ -235,7 +235,6 @@ extension DefaultsProxy {
         registerGeneralUserDefaults()
         registerControlsUserDefaults()
         registerDevicesUserDefaults()
-        registerKeyboardUserDefaults()
 
         registerHardwareUserDefaults()
         registerPeripheralsUserDefaults()
@@ -254,7 +253,6 @@ extension Preferences {
         applyGeneralUserDefaults()
         applyControlsUserDefaults()
         applyDevicesUserDefaults()
-        applyKeyboardUserDefaults()
     }
 }
 
@@ -572,65 +570,6 @@ extension Preferences {
     func applyDevicesUserDefaults() {
 
         debug(.defaults)
-    }
-}
-
-//
-// User defaults (Keyboard)
-//
-
-extension Keys {
-    
-    struct Kbd {
-        
-        // Key map
-        static let keyMap            = "Keyboard.KeyMap"
-        static let mapKeysByPosition = "Keyboard.MapKeysByPosition"
-    }
-}
-
-extension DefaultsProxy {
-
-    func registerKeyboardUserDefaults() {
-
-        debug(.defaults)
-
-        // Emulation keys
-        register(Keys.Kbd.keyMap, encodable: KeyboardController.standardKeyMap)
-        register(Keys.Kbd.mapKeysByPosition, false)
-    }
-
-    func removeKeyboardUserDefaults() {
-
-        debug(.defaults)
-
-        let keys = [ Keys.Kbd.keyMap,
-                     Keys.Kbd.mapKeysByPosition ]
-
-        for key in keys { removeKey(key) }
-    }
-}
-
-extension Preferences {
-
-    func saveKeyboardUserDefaults() {
-
-        debug(.defaults)
-        let defaults = EmulatorProxy.defaults!
-
-        defaults.encode(Keys.Kbd.keyMap, keyMap)
-        defaults.set(Keys.Kbd.mapKeysByPosition, mapKeysByPosition)
-
-        defaults.save()
-    }
-
-    func applyKeyboardUserDefaults() {
-
-        debug(.defaults)
-        let defaults = EmulatorProxy.defaults!
-
-        defaults.decode(Keys.Kbd.keyMap, &keyMap)
-        mapKeysByPosition = defaults.bool(Keys.Kbd.mapKeysByPosition)
     }
 }
 

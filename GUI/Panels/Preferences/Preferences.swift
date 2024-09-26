@@ -103,12 +103,4 @@ class Preferences {
     var releaseMouseKeyComb = 0
     var releaseMouseWithKeys = false
     var releaseMouseByShaking = false
-
-    //
-    // Keyboard
-    //
-    
-    // Mapping
-    var mapKeysByPosition = false
-    var keyMap: [MacKey: C64Key] = [:]
 }

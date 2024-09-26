@@ -29,7 +29,6 @@ using namespace tiara;
 @class FileSystemProxy;
 @class SerialPortProxy;
 @class JoystickProxy;
-@class KeyboardProxy;
 @class MediaFileProxy;
 @class MemoryProxy;
 @class MouseProxy;
@@ -111,7 +110,6 @@ using namespace tiara;
     ExpansionPortProxy *expansionport;
     UserPortProxy *userPort;
     SerialPortProxy *iec;
-    KeyboardProxy *keyboard;
     MemoryProxy *mem;
     MouseProxy *mouse;
     RecorderProxy *recorder;
@@ -137,7 +135,6 @@ using namespace tiara;
 @property (readonly, strong) ExpansionPortProxy *expansionport;
 @property (readonly, strong) UserPortProxy *userPort;
 @property (readonly, strong) SerialPortProxy *iec;
-@property (readonly, strong) KeyboardProxy *keyboard;
 @property (readonly, strong) MemoryProxy *mem;
 @property (readonly, strong) RecorderProxy *recorder;
 @property (readonly, strong) RemoteManagerProxy *remoteManager;
@@ -410,27 +407,6 @@ struct GuardInfo {
 @interface VideoPortProxy : SubComponentProxy { }
 
 @property (readonly) u32 *texture;
-
-@end
-
-
-//
-// Keyboard
-//
-
-@interface KeyboardProxy : SubComponentProxy { }
-
-- (BOOL)isPressed:(NSInteger)nr;
-- (void)pressKey:(NSInteger)nr;
-- (void)releaseKey:(NSInteger)nr;
-- (void)releaseKey:(NSInteger)nr delay:(double)delay;
-- (void)releaseAll;
-- (void)releaseAllWithDelay:(double)delay;
-- (void)toggleKey:(NSInteger)nr;
-- (void)toggleKeyAtRow:(NSInteger)row col:(NSInteger)col;
-
-- (void)autoType:(NSString *)text;
-- (void)abortAutoTyping;
 
 @end
 

@@ -617,12 +617,6 @@ CIA1::computePA() const
 {
     u8 result = (portAinternal() & DDRA) | (portAexternal() & ~DDRA);
 
-    // Get lines which are driven actively low by port 2
-    u8 rowMask = ~PRB & DDRB & port1.getControlPort();
-    
-    // Pull lines low that are connected by a pressed key
-    result &= keyboard.getColumnValues(rowMask);
-    
     // The control port can always bring the port lines low
     result &= port2.getControlPort();
     
@@ -670,13 +664,7 @@ u8
 CIA1::computePB() const
 {
     u8 result = (portBinternal() & DDRB) | (portBexternal() & ~DDRB);
-
-    // Get lines which are driven actively low by port 2
-    u8 columnMask = ~PRA & DDRA & port2.getControlPort();
     
-    // Pull lines low that are connected by a pressed key
-    result &= keyboard.getRowValues(columnMask, PRB & DDRB);
-
     // Check if timer A underflow shows up on PB6
     if (GET_BIT(PB67TimerMode, 6)) REPLACE_BIT(result, 6, PB67TimerOut & (1 << 6));
     

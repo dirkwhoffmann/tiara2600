@@ -405,13 +405,6 @@ DebugConsole::initCommands(Command &root)
 
     Command::currentGroup = "Peripherals";
 
-    cmd = keyboard.shellName();
-    description = keyboard.description();
-    root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
-
-        dump(keyboard, { Category::Config, Category::State });
-    });
-
     cmd = port1.shellName();
     description = port1.description();
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {

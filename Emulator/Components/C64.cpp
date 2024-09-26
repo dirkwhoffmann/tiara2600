@@ -665,14 +665,6 @@ C64::update(CmdQueue &queue)
                 cpu.processCommand(cmd);
                 break;
 
-            case CMD_KEY_PRESS:
-            case CMD_KEY_RELEASE:
-            case CMD_KEY_RELEASE_ALL:
-            case CMD_KEY_TOGGLE:
-
-                keyboard.processCommand(cmd);
-                break;
-
             case CMD_DSK_TOGGLE_WP:
             case CMD_DSK_MODIFIED:
             case CMD_DSK_UNMODIFIED:
@@ -1188,9 +1180,6 @@ C64::processEvents(Cycle cycle)
             if (isDue<SLOT_RSH>(cycle)) {
                 retroShell.serviceEvent();
             }
-            if (isDue<SLOT_KEY>(cycle)) {
-                keyboard.processKeyEvent(eventid[SLOT_KEY]);
-            }
             if (isDue<SLOT_SRV>(cycle)) {
                 remoteManager.serviceServerEvent();
             }
@@ -1300,9 +1289,6 @@ C64::loadSnapshot(const MediaFile &file)
 
                 // Rectify the VICII function table (varies between PAL and NTSC)
                 vic.updateVicFunctionTable();
-
-                // Clear the keyboard matrix to avoid constantly pressed keys
-                keyboard.releaseAll();
 
                 // Print some debug info if requested
                 if (SNP_DEBUG) dump(Category::State);

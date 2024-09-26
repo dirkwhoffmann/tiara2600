@@ -121,26 +121,6 @@ class PreferencesController: DialogController {
     @IBOutlet weak var devHatScheme: NSPopUpButton!
     
     //
-    // Keymap
-    //
-    
-    @IBOutlet weak var keyMappingText: NSTextField!
-    @IBOutlet weak var keyMappingPopup: NSPopUpButton!
-    @IBOutlet weak var keyMapText: NSTextField!
-    @IBOutlet weak var keyBox: NSBox!
-
-    // Array holding a reference to the view of each key button
-    var keyView = Array(repeating: nil as RecordButton?, count: 66)
-
-    // Arrays holding the key caps for each record key
-    var keyImage = Array(repeating: nil as NSImage?, count: 66)
-    var pressedKeyImage = Array(repeating: nil as NSImage?, count: 66)
-    var mappedKeyImage = Array(repeating: nil as NSImage?, count: 66)
-    
-    // The C64 key that has been selected to be mapped
-    var selectedKey: C64Key?
-        
-    //
     // Methods
     //
     
@@ -177,7 +157,6 @@ class PreferencesController: DialogController {
             case "General": refreshGeneralTab()
             case "Controls": refreshControlsTab()
             case "Devices": refreshDevicesTab()
-            case "Keyboard": refreshKeyboardTab()
             default: break
             }
         }
@@ -191,7 +170,6 @@ class PreferencesController: DialogController {
             case "General": selectGeneralTab()
             case "Controls": selectControlsTab()
             case "Devices": selectDevicesTab()
-            case "Keyboard": selectKeyboardTab()
             default: fatalError()
             }
         }
@@ -204,7 +182,6 @@ class PreferencesController: DialogController {
             
             switch id {
             case "Controls": return conKeyDown(with: key)
-            case "Keyboard": return mapSelectedKey(to: key)
             default: break
             }
         }
@@ -216,7 +193,6 @@ class PreferencesController: DialogController {
         pref.saveGeneralUserDefaults()
         pref.saveControlsUserDefaults()
         pref.saveDevicesUserDefaults()
-        pref.saveKeyboardUserDefaults()
         myAppDelegate.database.save()
         close()
     }

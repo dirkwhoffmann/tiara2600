@@ -378,7 +378,6 @@ Emulator::getDebugVariable(DebugFlag flag)
         case FLAG_JOY_DEBUG:        return JOY_DEBUG;
         case FLAG_DRV_DEBUG:        return DRV_DEBUG;
         case FLAG_TAP_DEBUG:        return TAP_DEBUG;
-        case FLAG_KBD_DEBUG:        return KBD_DEBUG;
         case FLAG_PRT_DEBUG:        return PRT_DEBUG;
         case FLAG_EXP_DEBUG:        return EXP_DEBUG;
         case FLAG_USR_DEBUG:        return USR_DEBUG;
@@ -468,7 +467,6 @@ Emulator::setDebugVariable(DebugFlag flag, bool val)
         case FLAG_JOY_DEBUG:        JOY_DEBUG       = val; break;
         case FLAG_DRV_DEBUG:        DRV_DEBUG       = val; break;
         case FLAG_TAP_DEBUG:        TAP_DEBUG       = val; break;
-        case FLAG_KBD_DEBUG:        KBD_DEBUG       = val; break;
         case FLAG_PRT_DEBUG:        PRT_DEBUG       = val; break;
         case FLAG_EXP_DEBUG:        EXP_DEBUG       = val; break;
         case FLAG_USR_DEBUG:        USR_DEBUG       = val; break;

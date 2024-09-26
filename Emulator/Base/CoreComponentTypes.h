@@ -52,7 +52,6 @@ enum_long(COMP_TYPE)
     DriveClass,
     DriveMemoryClass,
     JoystickClass,
-    KeyboardClass,
     MonitorClass,
     MouseClass,
     PaddleClass,

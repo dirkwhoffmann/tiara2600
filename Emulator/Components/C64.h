@@ -17,7 +17,6 @@
 #include "Thread.h"
 
 // Components
-#include "Keyboard.h"
 #include "Memory.h"
 #include "DriveMemory.h"
 #include "FlashRom.h"
@@ -154,7 +153,6 @@ public:
     UserPort userPort = UserPort(*this);
 
     // Peripherals
-    Keyboard keyboard = Keyboard(*this);
     Drive drive8 = Drive(*this, 0);
     Drive drive9 = Drive(*this, 1);
     ParCable parCable = ParCable(*this);
@@ -315,7 +313,6 @@ public:
         CLONE(expansionport)
         CLONE(iec)
         CLONE(userPort)
-        CLONE(keyboard)
         CLONE(drive8)
         CLONE(drive9)
         CLONE(parCable)

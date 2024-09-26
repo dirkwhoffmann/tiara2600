@@ -28,12 +28,7 @@ class MyToolbar: NSToolbar {
     @IBOutlet weak var controlsSegCtrl: NSSegmentedControl!
     
     override func validateVisibleItems() {
-                           
-        // Disable the keyboard button if the virtual keyboard is open
-        let visible = parent.virtualKeyboard?.window?.isVisible ?? false
-        let view = keyboardItem.view as? NSButton
-        view?.isEnabled = !visible
-        
+
         // Update input devices
         parent.gamePadManager.refresh(popup: controlPort1)
         parent.gamePadManager.refresh(popup: controlPort2)
@@ -125,13 +120,6 @@ class MyToolbar: NSToolbar {
 
     @IBAction func keyboardAction(_ sender: Any!) {
         
-        if parent.virtualKeyboard == nil {
-            parent.virtualKeyboard =
-            VirtualKeyboardController(with: parent, nibName: "VirtualKeyboard")
-        }
-        if parent.virtualKeyboard?.window?.isVisible == false {
-            parent.virtualKeyboard?.showSheet()
-        }
     }
     
     @IBAction func preferencesAction(_ sender: Any) {

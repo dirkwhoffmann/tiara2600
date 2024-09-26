@@ -82,9 +82,6 @@ Tiara::Tiara() {
     dmaDebugger.emu = emu;
     dmaDebugger.dmaDebugger = &emu->main.vic.dmaDebugger;
 
-    keyboard.emu =emu;
-    keyboard.keyboard = &emu->main.keyboard;
-
     datasette.emu = emu;
     datasette.datasette = &emu->main.datasette;
 
@@ -768,90 +765,6 @@ const DmaDebuggerConfig &
 DmaDebuggerAPI::getConfig() const
 {
     return dmaDebugger->getConfig();
-}
-
-
-//
-// Keyboard
-//
-
-bool 
-KeyboardAPI::isPressed(C64Key key) const
-{
-    return keyboard->isPressed(key);
-}
-
-void
-KeyboardAPI::press(C64Key key, double delay, double duration)
-{
-    if (delay == 0.0) {
-
-        keyboard->press(key);
-        emu->markAsDirty();
-
-    } else {
-        
-        emu->put(Cmd(CMD_KEY_PRESS, KeyCmd { .keycode = (u8)key.nr, .delay = delay }));
-    }
-    if (duration != 0.0) {
-        
-        emu->put(Cmd(CMD_KEY_RELEASE, KeyCmd { .keycode = (u8)key.nr, .delay = delay + duration }));
-    }
-}
-
-void 
-KeyboardAPI::toggle(C64Key key, double delay, double duration)
-{
-    if (delay == 0.0) {
-        
-        keyboard->toggle(key);
-        emu->markAsDirty();
-        
-    } else {
-
-        emu->put(Cmd(CMD_KEY_TOGGLE, KeyCmd { .keycode = (u8)key.nr, .delay = delay }));
-    }
-    if (duration != 0.0) {
-        
-        emu->put(Cmd(CMD_KEY_TOGGLE, KeyCmd { .keycode = (u8)key.nr, .delay = delay + duration }));
-    }
-
-}
-
-void
-KeyboardAPI::release(C64Key key, double delay)
-{
-    if (delay > 0.0) {
-
-        emu->put(Cmd(CMD_KEY_RELEASE, KeyCmd { .keycode = (u8)key.nr, .delay = delay }));
-        return;
-    }
-    keyboard->release(key);
-    emu->markAsDirty();
-}
-
-void 
-KeyboardAPI::releaseAll(double delay)
-{
-    if (delay > 0.0) {
-
-        emu->put(Cmd(CMD_KEY_RELEASE_ALL, KeyCmd { .delay = delay }));
-        return;
-    }
-    keyboard->releaseAll();
-    emu->markAsDirty();
-}
-
-void KeyboardAPI::autoType(const string &text)
-{
-    keyboard->autoType(text);
-    emu->markAsDirty();
-}
-
-void KeyboardAPI::abortAutoTyping()
-{
-    keyboard->abortAutoTyping();
-    emu->markAsDirty();
 }
 
 

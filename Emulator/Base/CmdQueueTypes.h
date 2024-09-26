@@ -67,12 +67,6 @@ enum_long(CMD_TYPE)
     CMD_WP_DISABLE_AT,          ///< Disable the watchpoint at an address
     CMD_WP_DISABLE_ALL,         ///< Disable all watchpoints
 
-    // Keyboard
-    CMD_KEY_PRESS,              ///< Press a key on the C64 keyboard
-    CMD_KEY_RELEASE,            ///< Release a key on the C64 keyboard
-    CMD_KEY_RELEASE_ALL,        ///< Clear the keyboard matrix
-    CMD_KEY_TOGGLE,             ///< Press or release a key on the C64 keyboard
-
     // Mouse
     CMD_MOUSE_MOVE_ABS,         ///< Signal a mouse movement (absolute)
     CMD_MOUSE_MOVE_REL,         ///< Signal a mouse movement (relative)
@@ -149,11 +143,6 @@ struct CmdTypeEnum : util::Reflection<CmdTypeEnum, CmdType> {
             case CMD_WP_DISABLE_NR:         return "WP_DISABLE_NR";
             case CMD_WP_DISABLE_AT:         return "WP_DISABLE_AT";
             case CMD_WP_DISABLE_ALL:        return "WP_DISABLE_ALL";
-
-            case CMD_KEY_PRESS:             return "KEY_PRESS";
-            case CMD_KEY_RELEASE:           return "KEY_RELEASE";
-            case CMD_KEY_RELEASE_ALL:       return "KEY_RELEASE_ALL";
-            case CMD_KEY_TOGGLE:            return "KEY_TOGGLE";
 
             case CMD_MOUSE_MOVE_ABS:        return "MOUSE_MOVE_ABS";
             case CMD_MOUSE_MOVE_REL:        return "MOUSE_MOVE_REL";

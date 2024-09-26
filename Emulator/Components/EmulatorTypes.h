@@ -86,7 +86,6 @@ enum_long(DEBUG_FLAG)
     FLAG_JOY_DEBUG,         ///< Debug the joysticks
     FLAG_DRV_DEBUG,         ///< Debug the floppy drives
     FLAG_TAP_DEBUG,         ///< Debug the datasette
-    FLAG_KBD_DEBUG,         ///< Debug the keyboard
     FLAG_PRT_DEBUG,         ///< Debug the control port and connected devices
     FLAG_EXP_DEBUG,         ///< Debug the expansion port
     FLAG_USR_DEBUG,         ///< User port
@@ -181,7 +180,6 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
             case FLAG_JOY_DEBUG:                return "JOY_DEBUG";
             case FLAG_DRV_DEBUG:                return "DRV_DEBUG";
             case FLAG_TAP_DEBUG:                return "TAP_DEBUG";
-            case FLAG_KBD_DEBUG:                return "KBD_DEBUG";
             case FLAG_PRT_DEBUG:                return "PRT_DEBUG";
             case FLAG_EXP_DEBUG:                return "EXP_DEBUG";
             case FLAG_USR_DEBUG:                return "USR_DEBUG";
@@ -271,7 +269,6 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
             case FLAG_JOY_DEBUG:                return "Joystick";
             case FLAG_DRV_DEBUG:                return "Floppy drives";
             case FLAG_TAP_DEBUG:                return "Datasette";
-            case FLAG_KBD_DEBUG:                return "Keyboard";
             case FLAG_PRT_DEBUG:                return "Control ports and connected devices";
             case FLAG_EXP_DEBUG:                return "Expansion port";
             case FLAG_USR_DEBUG:                return "User port";

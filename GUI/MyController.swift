@@ -51,9 +51,6 @@ class MyController: NSWindowController, MessageReceiver {
     // Keyboard controller
     var keyboard: KeyboardController!
 
-    // Virtual keyboard
-    var virtualKeyboard: VirtualKeyboardController?
-    
     // Speedometer to measure clock frequence and frames per second
     var speedometer: Speedometer!
 
@@ -312,7 +309,6 @@ extension MyController {
             if value != 0 {
 
                 renderer.canvas.open(delay: 2)
-                virtualKeyboard = nil
                 inspector?.powerOn()
 
             } else {
@@ -417,17 +413,7 @@ extension MyController {
                 .DRIVE_MOTOR:
             refreshStatusBar()
 
-        case .DRIVE_CONNECT,
-                .DRIVE_POWER where drive.value == 0:
-            hideOrShowDriveMenus()
-            refreshStatusBar()
-
-        case .DRIVE_POWER where drive.value != 0:
-            macAudio.playPowerSound(volume: vol, pan: pan)
-            hideOrShowDriveMenus()
-            refreshStatusBar()
-
-        case .DRIVE_POWER_SAVE:
+        case .DRIVE_CONNECT, .DRIVE_POWER, .DRIVE_POWER_SAVE:
             break
 
         case .VC1530_CONNECT:
@@ -448,12 +434,7 @@ extension MyController {
 
         case .CRT_ATTACHED:
             refreshStatusBar()
-
-        case .KB_AUTO_RELEASE, .KB_AUTO_PRESS:
-            if virtualKeyboard?.window?.isVisible == true {
-                virtualKeyboard!.refresh()
-            }
-
+            
         case .SHAKING:
             metal.lastShake = DispatchTime(uptimeNanoseconds: 0)
             if pref.releaseMouseByShaking {

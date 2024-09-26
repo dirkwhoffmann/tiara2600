@@ -34,7 +34,6 @@ protected:
     class UserPort &userPort;
     class Host &host;
     class SerialPort &serialPort;
-    class Keyboard &keyboard;
     class Memory &mem;
     class Monitor &monitor;
     class MsgQueue &msgQueue;

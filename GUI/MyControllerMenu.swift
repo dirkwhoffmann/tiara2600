@@ -61,62 +61,6 @@ extension MyController: NSMenuItemValidation {
                 item.title = statusBar ? "Hide Status Bar" : "Show Status Bar"
                 return true
 
-                // Keyboard menu
-            case #selector(MyController.mapLeftCmdKeyAction(_:)):
-                item.state = myAppDelegate.mapLeftCmdKey?.nr == item.tag ? .on : .off
-                return true
-            case #selector(MyController.mapRightCmdKeyAction(_:)):
-                print("item.tag = \(item.tag)")
-                item.state = myAppDelegate.mapRightCmdKey?.nr == item.tag ? .on : .off
-                return true
-            case #selector(MyController.mapCapsLockWarpAction(_:)):
-                item.state = myAppDelegate.mapCapsLockWarp ? .on : .off
-                return true
-            case #selector(MyController.shiftLockAction(_:)):
-                item.state = emu.keyboard.isPressed(.shiftLock) ? .on : .off
-                return true
-
-                // Drive menu
-            case #selector(MyController.insertRecentDiskAction(_:)):
-                return validateURLlist(MediaManager.insertedFloppyDisks, image: smallDisk)
-
-            case  #selector(MyController.ejectDiskAction(_:)),
-                #selector(MyController.exportDiskAction(_:)),
-                #selector(MyController.inspectDiskAction(_:)),
-                #selector(MyController.inspectVolumeAction(_:)):
-                return drive.info.hasDisk
-
-            case #selector(MyController.exportRecentDiskDummyAction8(_:)):
-                return emu.drive8.info.hasDisk
-
-            case #selector(MyController.exportRecentDiskDummyAction9(_:)):
-                return emu.drive9.info.hasDisk
-
-            case #selector(MyController.exportRecentDiskAction(_:)):
-                return validateURLlist(mm.exportedFloppyDisks[driveID], image: smallDisk)
-
-            case #selector(MyController.writeProtectAction(_:)):
-                item.state = drive.info.hasProtectedDisk ? .on : .off
-                return drive.info.hasDisk
-
-            case #selector(MyController.drivePowerAction(_:)):
-                item.title = drive.config.switchedOn ? "Switch off" : "Switch on"
-                return true
-
-                // Tape menu
-            case #selector(MyController.insertRecentTapeAction(_:)):
-                return validateURLlist(MediaManager.insertedTapes, image: smallTape)
-
-            case #selector(MyController.ejectTapeAction(_:)):
-                return emu.datasette.info.hasTape
-
-            case #selector(MyController.playOrStopAction(_:)):
-                item.title = emu.datasette.info.playKey ? "Press Stop Key" : "Press Play On Tape"
-                return emu.datasette.info.hasTape
-
-            case #selector(MyController.rewindAction(_:)):
-                return emu.datasette.info.hasTape
-
                 // Cartridge menu
             case #selector(MyController.attachRecentCartridgeAction(_:)):
                 return validateURLlist(MediaManager.attachedCartridges, image: smallCart)
@@ -193,9 +137,6 @@ extension MyController: NSMenuItemValidation {
 
     func hideOrShowDriveMenus() {
         
-        myAppDelegate.drive8Menu.isHidden = !config.drive8Connected
-        myAppDelegate.drive9Menu.isHidden = !config.drive9Connected
-        myAppDelegate.datasetteMenu.isHidden = !config.datasetteConnected
     }
     
     //
@@ -426,18 +367,7 @@ extension MyController: NSMenuItemValidation {
     //
     // Action methods (Edit menu)
     //
-    
-    @IBAction func paste(_ sender: Any!) {
 
-        let pasteBoard = NSPasteboard.general
-        guard let text = pasteBoard.string(forType: .string) else {
-            warn("Cannot paste. No text in pasteboard")
-            return
-        }
-        
-        keyboard.type(text)
-    }
-    
     @IBAction func pauseAction(_ sender: Any!) {
         
         if let emu = emu {
@@ -532,139 +462,6 @@ extension MyController: NSMenuItemValidation {
     //
     // Action methods (Keyboard menu)
     //
-    
-    @IBAction func stickyKeyboardAction(_ sender: Any!) {
-        
-        if virtualKeyboard == nil {
-            let name = NSNib.Name("VirtualKeyboard")
-            virtualKeyboard = VirtualKeyboardController(with: self, nibName: name)
-        }
-        if virtualKeyboard?.window?.isVisible == true {
-            debug(.lifetime, "Virtual keyboard already open")
-        } else {
-            debug(.lifetime, "Opeining virtual keyboard as a window")
-        }
-
-        virtualKeyboard?.showWindow()
-    }
-
-    @IBAction func mapLeftCmdKeyAction(_ sender: NSMenuItem!) {
-
-        let s = sender.state
-        let tag = sender.tag
-        print("State: \(s) Tag: \(tag)")
-
-        myAppDelegate.mapLeftCmdKey = sender.state == .off ? C64Key(sender.tag) : nil
-        refreshStatusBar()
-    }
-
-    @IBAction func mapRightCmdKeyAction(_ sender: NSMenuItem!) {
-
-        let s = sender.state
-        let tag = sender.tag
-        print("State: \(s) Tag: \(tag)")
-
-        myAppDelegate.mapRightCmdKey = sender.state == .off ? C64Key(sender.tag) : nil
-        refreshStatusBar()
-    }
-
-    @IBAction func mapCapsLockWarpAction(_ sender: NSMenuItem!) {
-
-        myAppDelegate.mapCapsLockWarp = !myAppDelegate.mapCapsLockWarp
-        refreshStatusBar()
-    }
-
-    @IBAction func clearKeyboardMatrixAction(_ sender: Any!) {
-        
-        if let emu = emu {
-            emu.keyboard.releaseAll()
-        }
-    }
-
-    // -----------------------------------------------------------------
-    @IBAction func pressAction(_ sender: NSMenuItem!) {
-     
-        keyboard.pressKey(key: C64Key(sender.tag), duration: 0.08)
-        virtualKeyboard?.refresh()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.virtualKeyboard?.refresh()
-        }
-    }
-
-    @IBAction func pressWithShiftAction(_ sender: NSMenuItem!) {
-        
-        keyboard.pressKeyCombination(key1: C64Key(sender.tag), key2: C64Key.shift, duration: 0.08)
-        virtualKeyboard?.refresh()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.virtualKeyboard?.refresh()
-        }
-    }
-
-    @IBAction func pressRunstopRestoreAction(_ sender: Any!) {
-
-        keyboard.pressKeyCombination(key1: C64Key.runStop, key2: C64Key.restore, duration: 0.08)
-        virtualKeyboard?.refresh()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.virtualKeyboard?.refresh()
-        }
-    }
-
-    @IBAction func runstopAction(_ sender: Any!) {
-        keyboard.pressKey(key: C64Key.runStop, duration: 0.08)
-    }
-    
-    @IBAction func restoreAction(_ sender: Any!) {
-        keyboard.pressKey(key: C64Key.restore, duration: 0.08)
-    }
-    
-    @IBAction func commodoreKeyAction(_ sender: Any!) {
-        keyboard.pressKey(key: C64Key.commodore, duration: 0.08)
-    }
-    
-    @IBAction func clearKeyAction(_ sender: Any!) {
-        keyboard.pressKeyCombination(key1: C64Key.home, key2: C64Key.shift, duration: 0.08)
-    }
-    
-    @IBAction func homeKeyAction(_ sender: Any!) {
-        keyboard.pressKey(key: C64Key.home, duration: 0.08)
-    }
-    
-    @IBAction func insertKeyAction(_ sender: Any!) {
-        keyboard.pressKeyCombination(key1: C64Key.delete, key2: C64Key.shift, duration: 0.08)
-    }
-    
-    @IBAction func deleteKeyAction(_ sender: Any!) {
-        keyboard.pressKey(key: C64Key.delete, duration: 0.08)
-    }
-    
-    @IBAction func leftarrowKeyAction(_ sender: Any!) {
-        keyboard.pressKey(key: C64Key.leftArrow, duration: 0.08)
-    }
-    
-    @IBAction func shiftLockAction(_ sender: Any!) {
-        
-        undoManager?.registerUndo(withTarget: self) { targetSelf in
-            targetSelf.shiftLockAction(sender)
-        }
-        keyboard.toggleKey(key: C64Key.shiftLock)
-    }
-
-    // -----------------------------------------------------------------
-    @IBAction func loadDirectoryAction(_ sender: Any!) {
-        keyboard.type("load \"$\",8:\n")
-    }
-    @IBAction func listAction(_ sender: Any!) {
-        keyboard.type("list:\n")
-    }
-    @IBAction func loadFirstFileAction(_ sender: Any!) {
-        keyboard.type("load \"*\",8,1:\n")
-    }
-    @IBAction func runProgramAction(_ sender: Any!) {
-        keyboard.type("run:")
-    }
-    @IBAction func formatDiskAction(_ sender: Any!) {
-        keyboard.type("open 1,8,15,\"n:test, id\": close 1\n:")
-    }
     
     //
     // Action methods (Drive menu)

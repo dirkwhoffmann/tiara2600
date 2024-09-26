@@ -52,7 +52,6 @@ void
 RegressionTester::run(string path)
 {
     c64.flash(PRGFile(path), 0);
-    keyboard.autoType("run\n");
 }
 
 void

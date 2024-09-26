@@ -394,51 +394,6 @@ CommandConsole::initCommands(Command &root)
 
 
     //
-    // Peripherals (Keyboard)
-    //
-
-    cmd = registerComponent(keyboard);
-
-    root.add({cmd, "press"}, { Arg::value },
-             "Presses a key",
-             [this](Arguments& argv, long value) {
-
-        keyboard.press(C64Key(parseNum(argv[0])));
-    });
-
-    root.add({cmd, "release"}, { Arg::value },
-             "Presses a key",
-             [this](Arguments& argv, long value) {
-
-        keyboard.release(C64Key(parseNum(argv[0])));
-    });
-
-    root.add({cmd, "type"},
-             "Types text on the keyboard");
-
-    root.add({cmd, "type", "text"}, { Arg::string },
-             "Types arbitrary text",
-             [this](Arguments& argv, long value) {
-
-        keyboard.autoType(argv.front());
-    });
-
-    root.add({cmd, "type", "load"},
-             "Types \"LOAD\"*\",8,1",
-             [this](Arguments& argv, long value) {
-
-        keyboard.autoType("load \"*\",8,1\n");
-    });
-
-    root.add({cmd, "type", "run"},
-             "Types RUN",
-             [this](Arguments& argv, long value) {
-
-        keyboard.autoType("run\n");
-    });
-
-
-    //
     // Peripherals (Mouse)
     //
 

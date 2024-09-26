@@ -318,66 +318,6 @@ struct DmaDebuggerAPI : API {
 };
 
 
-/** Keyboard Public API
- */
-struct KeyboardAPI : API {
-
-    class Keyboard *keyboard = nullptr;
-
-    /** @brief  Checks if a key is currently pressed.
-     *  @param  key     The key to check.
-     */
-    bool isPressed(C64Key key) const;
-
-    /** @brief  Presses a key
-     *  @param  key     The key to press.
-     *  @param  delay   An optional delay in seconds.
-     *
-     *  If no delay is specified, the function will immediately modify the
-     *  C64's keyboard matrix. Otherwise, it will ask the event scheduler
-     *  to modify the matrix with the specified delay.
-     *
-     *  @note If you wish to press multiple keys, make sure to let some time
-     *  pass between two key presses. You need to give the C64 time to scan the
-     *  keyboard matrix before another key can be pressed.
-     */
-    void press(C64Key key, double delay = 0.0, double duration = 0.0);
-
-    /** @brief  Toggles a key
-     *  @param  key     The key to press or release.
-     *  @param  delay   An optional delay in seconds.
-     *
-     *  If no delay is specified, the function will immediately modify the
-     *  C64's keyboard matrix. Otherwise, it will ask the event scheduler
-     *  to modify the matrix with the specified delay.
-     */
-    void toggle(C64Key key, double delay = 0.0, double duration = 0.0);
-
-    /** @brief  Releases a key
-     *  @param  key     The key to release.
-     *  @param  delay   An optional delay in seconds.
-     *
-     *  If no delay is specified, the function will immediately modify the
-     *  C64's keyboard matrix. Otherwise, it will ask the event scheduler
-     *  to modify the matrix with the specified delay.
-     */
-    void release(C64Key key, double delay = 0.0);
-
-    /** @brief  Releases all currently pressed keys
-     */
-    void releaseAll(double delay = 0.0);
-
-    /** @brief  Uses the auto-typing daemon to type a string.
-     *  @param  text    The text to type.
-     */
-    void autoType(const string &text);
-
-    /** @brief  Aborts any active auto-typing activity.
-     */
-    void abortAutoTyping();
-};
-
-
 /** Mouse Public API
  */
 struct MouseAPI : API {
@@ -1509,7 +1449,6 @@ public:
     AudioPortAPI audioPort;
     VideoPortAPI videoPort;
     DmaDebuggerAPI dmaDebugger;
-    KeyboardAPI keyboard;
     DatasetteAPI datasette;
     ControlPortAPI controlPort1, controlPort2;
     UserPortAPI userPort;

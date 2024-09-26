@@ -213,15 +213,10 @@ Headless::reportSize()
     msg("               CPU : %zu bytes\n", sizeof(CPU));
     msg("               CIA : %zu bytes\n", sizeof(CIA));
     msg("             VICII : %zu bytes\n", sizeof(VICII));
-    msg("         SIDBridge : %zu bytes\n", sizeof(SIDBridge));
     msg("         PowerPort : %zu bytes\n", sizeof(PowerPort));
     msg("       ControlPort : %zu bytes\n", sizeof(ControlPort));
     msg("     ExpansionPort : %zu bytes\n", sizeof(ExpansionPort));
     msg("        SerialPort : %zu bytes\n", sizeof(SerialPort));
-    msg("          Keyboard : %zu bytes\n", sizeof(Keyboard));
-    msg("             Drive : %zu bytes\n", sizeof(Drive));
-    msg("          ParCable : %zu bytes\n", sizeof(ParCable));
-    msg("         Datasette : %zu bytes\n", sizeof(Datasette));
     msg("        RetroShell : %zu bytes\n", sizeof(RetroShell));
     msg("  RegressionTester : %zu bytes\n", sizeof(RegressionTester));
     msg("          Recorder : %zu bytes\n", sizeof(Recorder));

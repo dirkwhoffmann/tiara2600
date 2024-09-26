@@ -209,18 +209,6 @@ extension RemoteManagerProxy {
 }
 
 //
-// Keyboard
-//
-
-public extension KeyboardProxy {
-
-    func isPressed(_ key: C64Key) -> Bool {
-
-        return isPressed(key.nr)
-    }
-}
-
-//
 // Other extensions
 //
 

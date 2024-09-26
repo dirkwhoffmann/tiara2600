@@ -87,10 +87,6 @@ enum_long(MSG_TYPE)
     // Peripherals (Expansion port)
     MSG_CRT_ATTACHED,       ///< A cartridge has been plugged into the expansion port
 
-    // Peripherals (Keyboard)
-    MSG_KB_AUTO_PRESS,      ///< The auto-typing daemon has pressed a key
-    MSG_KB_AUTO_RELEASE,    ///< The auto-typing daemon has released a key
-
     // Peripherals (Mouse)
     MSG_SHAKING,            ///< A shaking mouse has been detected
 
@@ -183,9 +179,6 @@ struct MsgTypeEnum : util::Reflection<MsgTypeEnum, MsgType> {
             case MSG_VC1530_COUNTER:        return "VC1530_COUNTER";
 
             case MSG_CRT_ATTACHED:          return "CRT_ATTACHED";
-
-            case MSG_KB_AUTO_PRESS:         return "KB_AUTO_PRESS";
-            case MSG_KB_AUTO_RELEASE:       return "KB_AUTO_RELEASE";
 
             case MSG_SHAKING:               return "SHAKING";
 

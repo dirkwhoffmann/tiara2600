@@ -61,10 +61,6 @@ class MyApplication: NSApplication {
 @NSApplicationMain
 @objc public class MyAppDelegate: NSObject, NSApplicationDelegate {
            
-    @IBOutlet weak var drive8Menu: NSMenuItem!
-    @IBOutlet weak var drive9Menu: NSMenuItem!
-    @IBOutlet weak var datasetteMenu: NSMenuItem!
-
     // Replace the old document controller by instantiating a custom controller
     let myDocumentController = MyDocumentController()
 
@@ -146,7 +142,6 @@ extension MyAppDelegate {
             if c.window == window {
                 
                 c.emu?.put(.FOCUS, value: 1)
-                c.hideOrShowDriveMenus()
                 
             } else {
                 

@@ -239,12 +239,6 @@ static const char *smokeTestScript[] = {
     "monitor set CONTRAST 50",
     "monitor set SATURATION 50",
 
-    "keyboard press 32",
-    "keyboard release 32",
-    "keyboard type text \"text\"",
-    "keyboard type load",
-    "keyboard type run",
-
     "drive8",
     "drive8 set AUTO_CONFIG true",
     "drive8 set AUTO_CONFIG false",

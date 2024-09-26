@@ -7,7 +7,6 @@ target_sources(tiaraCore PRIVATE
 add_subdirectory(Drive)
 add_subdirectory(Datasette)
 add_subdirectory(Joystick)
-add_subdirectory(Keyboard)
 add_subdirectory(Monitor)
 add_subdirectory(Mouse)
 add_subdirectory(Network)
