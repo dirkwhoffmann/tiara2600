@@ -20,6 +20,8 @@ namespace tiara {
 
 class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
 
+    friend class DmaDebugger;
+    
     Descriptions descriptions = {
         {
             .type           = TIAClass,

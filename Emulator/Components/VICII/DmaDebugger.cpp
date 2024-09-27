@@ -49,6 +49,7 @@ DmaDebugger::visualizeDma(isize offset, u8 data, MemAccess type)
 void
 DmaDebugger::visualizeDma(u32 *p, u8 data, MemAccess type)
 {
+    /*
     if (config.dmaChannel[type]) {
         
         p[3] = debugColor[type][data & 0b11]; data >>= 2;
@@ -56,6 +57,7 @@ DmaDebugger::visualizeDma(u32 *p, u8 data, MemAccess type)
         p[1] = debugColor[type][data & 0b11]; data >>= 2;
         p[0] = debugColor[type][data & 0b11];
     }
+     */
 }
 
 void
