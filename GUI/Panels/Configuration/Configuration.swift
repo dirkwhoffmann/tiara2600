@@ -174,10 +174,10 @@ class Configuration {
     // Audio
     //
 
-    var sidSampling: Int {
-        get { return 0 } // emu?.get(.SID_SAMPLING, id: 0) ?? 0 }
-        set { } // emu?.set(.SID_SAMPLING, value: newValue) }
-    }
+    var sidSampling: Int = 0 /* {
+        get { remu?.get(.SID_SAMPLING, id: 0) ?? 0 }
+        set { emu?.set(.SID_SAMPLING, value: newValue) }
+    } */
     var vol0: Int {
         get { return emu?.get(.AUD_VOL0) ?? 0 }
         set { emu?.set(.AUD_VOL0, value: newValue) }

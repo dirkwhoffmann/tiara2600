@@ -42,6 +42,10 @@ enum_long(OPT)
     OPT_C64_SNAP_DELAY,         ///< Delay between two snapshots in seconds
     OPT_C64_SNAP_COMPRESS,      ///< Compress snapshot data
 
+    // TIA
+    OPT_TIA_REVISION,           ///< Chip revision
+    OPT_TIA_POWER_SAVE,         ///< Enable fast-paths
+
     // VICII
     OPT_VICII_REVISION,         ///< Chip revision
     OPT_VICII_GRAY_DOT_BUG,     ///< Emulate gray-dot bug
@@ -183,6 +187,9 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_C64_SNAP_DELAY:        return "C64.SNAP_DELAY";
             case OPT_C64_SNAP_COMPRESS:     return "C64.SNAP_COMPRESS";
 
+            case OPT_TIA_REVISION:          return "TIA.REVISION";
+            case OPT_TIA_POWER_SAVE:        return "TIA.POWER_SAVE";
+
             case OPT_VICII_REVISION:        return "VICII.REVISION";
             case OPT_VICII_GRAY_DOT_BUG:    return "VICII.GRAY_DOT_BUG";
             case OPT_VICII_POWER_SAVE:      return "VICII.POWER_SAVE";
@@ -303,6 +310,9 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_C64_SNAP_AUTO:         return "Automatically take snapshots";
             case OPT_C64_SNAP_DELAY:        return "Time span between two snapshots";
             case OPT_C64_SNAP_COMPRESS:     return "Compress snapshot data";
+
+            case OPT_TIA_REVISION:          return "Video standard";
+            case OPT_TIA_POWER_SAVE:        return "Take fast paths";
 
             case OPT_VICII_REVISION:        return "Chip revision";
             case OPT_VICII_GRAY_DOT_BUG:    return "Emulate gray-dot bug";

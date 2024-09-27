@@ -36,6 +36,7 @@ protected:
     class RegressionTester &regressionTester;
     class RemoteManager &remoteManager;
     class RetroShell &retroShell;
+    class TIA &tia;
     class VICII &vic;
     class VideoPort &videoPort;
 

@@ -9,6 +9,8 @@ VICIISprites.cpp
 VICIIMemory.cpp
 VICIICycles.cpp
 VICIITable.cpp
+TIABase.cpp
+TIA.cpp
 DmaDebugger.cpp
 DmaDebuggerBase.cpp
 

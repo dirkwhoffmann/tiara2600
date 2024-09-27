@@ -36,6 +36,7 @@
 #include "RemoteServerTypes.h"
 #include "RetroShellTypes.h"
 #include "ThreadTypes.h"
+#include "TIATypes.h"
 #include "VICIITypes.h"
 
 #include "Constants.h"

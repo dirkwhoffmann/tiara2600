@@ -32,6 +32,7 @@ enum_long(COMP_TYPE)
     PIAClass,
     SIDClass,
     SIDBridgeClass,
+    TIAClass,
     TODClass,
     VIAClass,
     VICIIClass,

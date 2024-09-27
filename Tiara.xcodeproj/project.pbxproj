@@ -57,6 +57,12 @@
 		503C1DD124FC10F400D91141 /* SnapshotViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 503C1DD024FC10F400D91141 /* SnapshotViewer.xib */; };
 		503C1DD324FCD1BF00D91141 /* SnapshotViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503C1DD224FCD1BF00D91141 /* SnapshotViewer.swift */; };
 		503E199020C42C6D007E91F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 503E198F20C42C6D007E91F1 /* Assets.xcassets */; };
+		504104452CA687370004860E /* TIA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504104442CA687300004860E /* TIA.cpp */; };
+		504104462CA687370004860E /* TIA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504104442CA687300004860E /* TIA.cpp */; };
+		504104482CA68BBD0004860E /* TIABase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504104472CA687610004860E /* TIABase.cpp */; };
+		504104492CA68BBD0004860E /* TIABase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504104472CA687610004860E /* TIABase.cpp */; };
+		5041044C2CA691410004860E /* TIAComponents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5041044B2CA6913E0004860E /* TIAComponents.cpp */; };
+		5041044D2CA691410004860E /* TIAComponents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5041044B2CA6913E0004860E /* TIAComponents.cpp */; };
 		5044A03B2657A7A800C551C6 /* Recorder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5044A0392657A7A800C551C6 /* Recorder.cpp */; };
 		50461BBE26B522450019CEDF /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50461BBC26B522450019CEDF /* Thread.cpp */; };
 		504C436124AF29AC00E69CAE /* SimonsBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42A024AF29AB00E69CAE /* SimonsBasic.cpp */; };
@@ -429,6 +435,12 @@
 		503C1DD224FCD1BF00D91141 /* SnapshotViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotViewer.swift; sourceTree = "<group>"; };
 		503E198F20C42C6D007E91F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		504104412CA558AB0004860E /* Volume.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Volume.h; sourceTree = "<group>"; };
+		504104422CA67F650004860E /* TIA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TIA.h; sourceTree = "<group>"; };
+		504104432CA681E90004860E /* TIATypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TIATypes.h; sourceTree = "<group>"; };
+		504104442CA687300004860E /* TIA.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TIA.cpp; sourceTree = "<group>"; };
+		504104472CA687610004860E /* TIABase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TIABase.cpp; sourceTree = "<group>"; };
+		5041044A2CA6910F0004860E /* TIAComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TIAComponents.h; sourceTree = "<group>"; };
+		5041044B2CA6913E0004860E /* TIAComponents.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TIAComponents.cpp; sourceTree = "<group>"; };
 		504268AC24F0F76F006BB841 /* C64Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = C64Types.h; sourceTree = "<group>"; };
 		50441A872B93CE2600102A4D /* TiaraTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TiaraTypes.h; sourceTree = "<group>"; };
 		50441A8A2B9495BE00102A4D /* communication.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = communication.md; sourceTree = "<group>"; };
@@ -1229,6 +1241,12 @@
 			isa = PBXGroup;
 			children = (
 				5078BEB4264D735D00EDA161 /* CMakeLists.txt */,
+				504104432CA681E90004860E /* TIATypes.h */,
+				5041044A2CA6910F0004860E /* TIAComponents.h */,
+				504104472CA687610004860E /* TIABase.cpp */,
+				5041044B2CA6913E0004860E /* TIAComponents.cpp */,
+				504104422CA67F650004860E /* TIA.h */,
+				504104442CA687300004860E /* TIA.cpp */,
 				50DBB3D3264115B4006F45E6 /* BusTypes.h */,
 				50DAABD824F0108A005D426F /* VICIITypes.h */,
 				504C430C24AF29AC00E69CAE /* VICII.h */,
@@ -1785,6 +1803,7 @@
 				508C1E672C0B5F770097473C /* MonitorBase.cpp in Sources */,
 				50726F4C2961C9940031F2F5 /* Colors.cpp in Sources */,
 				50726F602961C9AC0031F2F5 /* VICIIDraw.cpp in Sources */,
+				504104452CA687370004860E /* TIA.cpp in Sources */,
 				508C1E732C0C59A20097473C /* PaddleBase.cpp in Sources */,
 				50A194942BDA709D0046849E /* CPUBase.cpp in Sources */,
 				50726FB52961CA290031F2F5 /* RetroShell.cpp in Sources */,
@@ -1834,6 +1853,7 @@
 				50726F4A2961C9940031F2F5 /* CPU.cpp in Sources */,
 				50A5B7D42C74E44C00D6DDAD /* RshServer.cpp in Sources */,
 				50726F472961C9940031F2F5 /* SubComponent.cpp in Sources */,
+				5041044D2CA691410004860E /* TIAComponents.cpp in Sources */,
 				50726FA92961CA1C0031F2F5 /* AnyFile.cpp in Sources */,
 				500C1C7A2965E7D300071AF3 /* PeddleDisassembler.cpp in Sources */,
 				50726F4F2961C9940031F2F5 /* CoreObject.cpp in Sources */,
@@ -1846,6 +1866,7 @@
 				50726F562961C99A0031F2F5 /* PeddleUtils.cpp in Sources */,
 				50FFB54E2B8262BA00042771 /* Serializable.cpp in Sources */,
 				50726FA12961CA0D0031F2F5 /* SimonsBasic.cpp in Sources */,
+				504104492CA68BBD0004860E /* TIABase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1892,6 +1913,7 @@
 				50BE4B6424E7F941008F39C9 /* NSControl.swift in Sources */,
 				50F5B6A22959C44E000457A0 /* Host.cpp in Sources */,
 				507A499C24C8D64700DBF984 /* InstrTableView.swift in Sources */,
+				504104482CA68BBD0004860E /* TIABase.cpp in Sources */,
 				5038CA9320B6C298000D9193 /* CIAPanel.swift in Sources */,
 				50BE4B6E24E7FBE1008F39C9 /* Datatypes.swift in Sources */,
 				5009CF3324C0B8EF00F674FF /* Preferences.swift in Sources */,
@@ -1945,6 +1967,7 @@
 				50726F2F295C27360031F2F5 /* EventPanel.swift in Sources */,
 				50B1A61D25A2368D00201A2C /* DeviceDatabase.swift in Sources */,
 				50A22A1D261871E600C9FB1E /* Layer.swift in Sources */,
+				5041044C2CA691410004860E /* TIAComponents.cpp in Sources */,
 				50ED5BF812DD99C000596417 /* Speedometer.swift in Sources */,
 				504C43AB24AF29AC00E69CAE /* CIA.cpp in Sources */,
 				50A5B7D32C74E44C00D6DDAD /* RshServer.cpp in Sources */,
@@ -1985,6 +2008,7 @@
 				50A194932BDA709D0046849E /* CPUBase.cpp in Sources */,
 				506F30472B7692180083EAEA /* Tiara.cpp in Sources */,
 				5018BFB324B48DD500551848 /* RendererSetup.swift in Sources */,
+				504104462CA687370004860E /* TIA.cpp in Sources */,
 				506F30422B74C1C70083EAEA /* Wakeable.cpp in Sources */,
 				506F303E2B7364270083EAEA /* Suspendable.cpp in Sources */,
 				504C437D24AF29AC00E69CAE /* CRTFile.cpp in Sources */,

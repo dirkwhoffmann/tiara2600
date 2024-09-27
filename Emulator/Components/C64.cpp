@@ -718,20 +718,13 @@ alwaysinline void C64::executeCycle()
 
     Cycle cycle = ++cpu.clock;
 
-    //
-    // First clock phase (o2 low)
-    //
-
     if (nextTrigger <= cycle) processEvents(cycle);
     (vic.*vic.vicfunc[rasterCycle])();
 
-
-    //
-    // Second clock phase (o2 high)
-    //
-
     cpu.execute<MOS_6510>();
-    if constexpr (execExp) { expansionport.execute(); }
+
+    tia.execute<false>();
+
 }
 
 void

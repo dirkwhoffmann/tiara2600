@@ -313,6 +313,12 @@ DebugConsole::initCommands(Command &root)
         dump(cia2, Category::Registers);
     });
 
+    root.add({"r", "tia"}, "TIA",
+             [this](Arguments& argv, long value) {
+
+        dump(tia, Category::Registers);
+    });
+
     root.add({"?"},
              "Inspect a component");
 
@@ -372,6 +378,13 @@ DebugConsole::initCommands(Command &root)
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
 
         dump(vic, { Category::Config, Category::State });
+    });
+
+    cmd = tia.shellName();
+    description = tia.description();
+    root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
+
+        dump(tia, { Category::Config, Category::State });
     });
 
     cmd = expansionPort.shellName();

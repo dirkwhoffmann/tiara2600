@@ -19,6 +19,7 @@
 // Components
 #include "Memory.h"
 #include "VICII.h"
+#include "TIA.h"
 #include "TOD.h"
 #include "CIA.h"
 #include "CPU.h"
@@ -123,6 +124,7 @@ public:
     CIA1 cia1 = CIA1(*this);
     CIA2 cia2 = CIA2(*this);
     VICII vic = VICII(*this);
+    TIA tia = TIA(*this);
 
     // Ports
     AudioPort audioPort = AudioPort(*this);

@@ -264,6 +264,13 @@ CommandConsole::initCommands(Command &root)
 
 
     //
+    // Components (TIA)
+    //
+
+    cmd = registerComponent(tia);
+
+
+    //
     // Components (DMA Debugger)
     //
 
