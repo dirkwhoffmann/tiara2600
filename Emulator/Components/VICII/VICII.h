@@ -1538,32 +1538,33 @@ private:
     
     // Writes a single color value into the screenbuffer
 #define COLORIZE(index,color) \
+assert(index < Texture::width); \
 emuTexturePtr[index] = rgbaTable[color];
-    
+
     // Sets a single frame pixel
 #define SET_FRAME_PIXEL(pixel,color) { \
 isize index = bufferoffset + pixel; \
-COLORIZE(index, color); \
-zBuffer[index] = DEPTH_BORDER; }
-    
+if (index < Texture::width) COLORIZE(index, color); \
+if (index < Texture::width) zBuffer[index] = DEPTH_BORDER; }
+
     // Sets a single foreground pixel
 #define SET_FG_PIXEL(pixel,color) { \
 isize index = bufferoffset + pixel; \
-COLORIZE(index,color) \
-zBuffer[index] = DEPTH_FG; }
+if (index < Texture::width) COLORIZE(index,color) \
+if (index < Texture::width) zBuffer[index] = DEPTH_FG; }
 
     // Sets a single background pixel
 #define SET_BG_PIXEL(pixel,color) { \
 isize index = bufferoffset + pixel; \
-COLORIZE(index,color) \
-zBuffer[index] = DEPTH_BG; }
-    
+if (index < Texture::width) COLORIZE(index,color) \
+if (index < Texture::width) zBuffer[index] = DEPTH_BG; }
+
     // Sets a single sprite pixel
 #define SET_SPRITE_PIXEL(sprite,pixel,color) { \
 isize index = bufferoffset + pixel; \
 if (u8 depth = spriteDepth(sprite); depth <= zBuffer[index]) { \
-if (isVisibleColumn) COLORIZE(index, color); \
-zBuffer[index] = depth | (zBuffer[index] & 0x10); \
+if (index < Texture::width) { if (isVisibleColumn) COLORIZE(index, color); } \
+if (index < Texture::width) { zBuffer[index] = depth | (zBuffer[index] & 0x10); } \
 } }
 
     

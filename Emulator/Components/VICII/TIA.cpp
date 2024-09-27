@@ -20,6 +20,13 @@ TIA::execute()
 {
     for (isize ccylce = 0; ccylce < 3; ccylce++) {
 
+        // Check for the "Start HBlank" signal
+        bool shb = hc.res;
+
+        // Advance the beam position
+        x++; if (shb && hc.phi2()) { x = 0; y++; }
+
+        
 
     }
 }

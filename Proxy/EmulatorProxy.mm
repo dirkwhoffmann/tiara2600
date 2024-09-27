@@ -397,6 +397,61 @@ using namespace tiara;
 
 
 //
+// TIA
+//
+
+@implementation TIAProxy
+
+- (TIAAPI *)tia
+{
+    return (TIAAPI *)obj;
+}
+
+- (TIATraits)traits
+{
+    return [self tia]->getTraits();
+}
+
+- (TIAConfig)config
+{
+    return [self tia]->getConfig();
+}
+
+- (TIAInfo)info
+{
+    return [self tia]->getInfo();
+}
+
+- (TIAInfo)cachedInfo
+{
+    return [self tia]->getCachedInfo();
+}
+
+- (NSColor *)color:(NSInteger)nr
+{
+    assert (0 <= nr && nr < 16);
+
+    u32 color = [self tia]->getColor((unsigned)nr);
+    u8 r = color & 0xFF;
+    u8 g = (color >> 8) & 0xFF;
+    u8 b = (color >> 16) & 0xFF;
+
+    return [NSColor colorWithCalibratedRed:(float)r/255.0
+                                     green:(float)g/255.0
+                                      blue:(float)b/255.0
+                                     alpha:1.0];
+}
+
+- (UInt32)rgbaColor:(NSInteger)nr palette:(Palette)palette
+{
+    assert (0 <= nr && nr < 16);
+    return [self tia]->getColor((unsigned)nr, palette);
+}
+
+@end
+
+
+//
 // VICII
 //
 
@@ -1082,6 +1137,7 @@ using namespace tiara;
 @synthesize remoteManager;
 @synthesize retroShell;
 @synthesize sid;
+@synthesize tia;
 @synthesize vic;
 @synthesize videoPort;
 
@@ -1108,6 +1164,7 @@ using namespace tiara;
     remoteManager = [[RemoteManagerProxy alloc] initWith:&emu->remoteManager emu:emu];
     retroShell = [[RetroShellProxy alloc] initWith:&emu->retroShell emu:emu];
     sid = [[SIDProxy alloc] initWith:&emu->sid emu:emu];
+    tia = [[TIAProxy alloc] initWith:&emu->tia emu:emu];
     vic = [[VICIIProxy alloc] initWith:&emu->vicii emu:emu];
     videoPort = [[VideoPortProxy alloc] initWith:&emu->videoPort emu:emu];
 

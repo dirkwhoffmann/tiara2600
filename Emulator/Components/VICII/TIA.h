@@ -29,19 +29,19 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
         }
     };
 
-    static constexpr TIATraits traits[3] = {
+    static constexpr TIATraits traits[1] = {
         {
-            // NTSC
-            .fps      = 60
-        },
-        {
-            // PAL
-            .fps      = 50
-        },
-        {
-            // SECAM
-            .fps      = 50
-        },
+            .revision       = TIA_NTSC,
+            .fps            = 60,
+
+            .width          = 226,
+            .height         = 312,
+            .hblankWidth    = 68,
+            .vblankHeight   = 40,
+
+            .visibleWidth   = 160,
+            .visibleHeight  = 192
+        }
     };
 
     Options options = {
@@ -51,7 +51,11 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
     };
 
     // Current configuration
-    TIAConfig config = { };
+    TIAConfig config{};
+
+    // Beam position
+    isize x{}, y{};
+
 
     // The horizontal counter
     DualPhaseCounter<56> hc { .phase = 1, .current = 56, .resl = false, .res = true };
@@ -69,7 +73,8 @@ public:
 
         CLONE(config)
 
-        // CLONE(...)
+        CLONE(x)
+        CLONE(y)
 
         return *this;
     }
@@ -83,9 +88,10 @@ public:
 
     template <class T> void serialize(T& worker) {
 
-        // worker
-        //
-        // << xxx;
+        worker
+
+        << x
+        << y;
 
         if (isResetter(worker)) return;
 
@@ -131,7 +137,16 @@ public:
     void checkOption(Option opt, i64 value) override;
     void setOption(Option opt, i64 value) override;
 
+    //
+    // Deriving chip properties
+    //
 
+public:
+
+    // Returns properties about the currently selected TIA chip
+    const TIATraits &getTraits() const { assert(config.revision == 0); return traits[config.revision]; }
+
+    
     //
     // Executing
     //

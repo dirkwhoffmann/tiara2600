@@ -164,6 +164,36 @@ struct CIAAPI : API {
 };
 
 
+/** TIA API
+ */
+struct TIAAPI : API {
+
+    class TIA *tia = nullptr;
+
+    /** @brief  Provides details about the currently selected TIA chip.
+     */
+    const TIATraits &getTraits() const;
+
+    /** @brief  Returns the component's current configuration.
+     */
+    const TIAConfig &getConfig() const;
+
+    /** @brief  Returns the component's current state.
+     */
+    const TIAInfo &getInfo() const;
+    const TIAInfo &getCachedInfo() const;
+
+
+    /** @brief  Returns the RGBA value of a color
+     */
+    u32 getColor(isize nr) const;
+
+    /** @brief  Returns the RGBA value of a color from a color palette.
+     */
+    u32 getColor(isize nr, Palette palette) const;
+};
+
+
 /** VICII API
  */
 struct VICIIAPI : API {
@@ -925,8 +955,8 @@ struct C64API : public API {
  * controlling the execution state, such as running or pausing the emulator, as
  * well as functions configuring the various components. The class contains
  * separate sub-APIs for the subcomponents of the emulator. For example, a
- * VICII API provides additional functions that interact directly with the
- * VICII graphics chip.
+ * TIA API provides additional functions that interact directly with the
+ * TIA chip.
  */
 class Tiara : API {
 
@@ -1253,6 +1283,7 @@ public:
     CPUAPI cpu;
     CIAAPI cia1, cia2;
     VICIIAPI vicii;
+    TIAAPI tia;
     SIDAPI sid;
     AudioPortAPI audioPort;
     VideoPortAPI videoPort;

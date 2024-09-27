@@ -105,7 +105,7 @@ extension ConfigurationController {
             // Create image data
             for n in 0 ... 15 {
                 let p = tiara.Palette(rawValue: palette)!
-                let rgba = c64.vic.rgbaColor(n, palette: p)
+                let rgba = c64.tia.rgbaColor(n, palette: p)
                 ptr[n] = rgba
             }
             

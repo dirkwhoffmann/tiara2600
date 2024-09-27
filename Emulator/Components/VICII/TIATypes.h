@@ -56,7 +56,22 @@ struct TIARevisionEnum : util::Reflection<TIARevisionEnum, TIARevision> {
 typedef struct
 {
     // Video standard
-    double fps;
+    TIARevision revision;
+
+    // Frame refresh rate
+    isize fps;
+    
+    // Total canvas size (including unvisible areas)
+    isize width;
+    isize height;
+
+    // Dimensions of the HBLANK and VBLANK areas
+    isize hblankWidth;
+    isize vblankHeight;
+
+    // Dimensions of the visible screen area
+    isize visibleWidth;
+    isize visibleHeight;
 }
 TIATraits;
 

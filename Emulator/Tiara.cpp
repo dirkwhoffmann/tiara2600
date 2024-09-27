@@ -67,6 +67,9 @@ Tiara::Tiara() {
     cia2.emu = emu;
     cia2.cia = &emu->main.cia2;
 
+    tia.emu = emu;
+    tia.tia = &emu->main.tia;
+
     vicii.emu = emu;
     vicii.vicii = &emu->main.vic;
 
@@ -596,6 +599,47 @@ CIAStats
 CIAAPI::getStats() const
 {
     return cia->getStats();
+}
+
+
+//
+// TIA
+//
+
+const TIATraits &
+TIAAPI::getTraits() const
+{
+    return tia->getTraits();
+}
+
+const TIAConfig &
+TIAAPI::getConfig() const
+{
+    return tia->getConfig();
+}
+
+const TIAInfo &
+TIAAPI::getInfo() const
+{
+    return tia->getInfo();
+}
+
+const TIAInfo &
+TIAAPI::getCachedInfo() const
+{
+    return tia->getCachedInfo();
+}
+
+u32
+TIAAPI::getColor(isize nr) const
+{
+    return 0; // tia->getColor(nr);
+}
+
+u32
+TIAAPI::getColor(isize nr, Palette palette) const
+{
+    return 0; // tia->getColor(nr, palette);
 }
 
 

@@ -34,6 +34,7 @@ using namespace tiara;
 @class RemoteManagerProxy;
 @class RetroShellProxy;
 @class SIDProxy;
+@class TIAProxy;
 @class VICIIProxy;
 @class VideoPortProxy;
 
@@ -105,6 +106,7 @@ using namespace tiara;
     RecorderProxy *recorder;
     RetroShellProxy *retroShell;
     SIDProxy *sid;
+    TIAProxy *tia;
     VICIIProxy *vic;
     VideoPortProxy *videoPort;
 }
@@ -125,7 +127,8 @@ using namespace tiara;
 @property (readonly, strong) RemoteManagerProxy *remoteManager;
 @property (readonly, strong) RetroShellProxy *retroShell;
 @property (readonly, strong) SIDProxy *sid;
-@property (readonly, strong) VICIIProxy *vic;
+@property (readonly, strong) TIAProxy *tia;
+@property (readonly, strong) VICIIProxy *vic __deprecated_msg("Use tia instead.");;
 @property (readonly, strong) VideoPortProxy *videoPort;
 
 - (void)dealloc;
@@ -337,6 +340,23 @@ struct GuardInfo {
 @property (readonly) VICIIInfo info;
 @property (readonly) VICIIInfo cachedInfo;
 - (SpriteInfo)getSpriteInfo:(NSInteger)sprite;
+
+- (NSColor *)color:(NSInteger)nr;
+- (UInt32)rgbaColor:(NSInteger)nr palette:(Palette)palette;
+
+@end
+
+
+//
+// TIA
+//
+
+@interface TIAProxy : SubComponentProxy { }
+
+@property (readonly) TIATraits traits;
+@property (readonly) TIAConfig config;
+@property (readonly) TIAInfo info;
+@property (readonly) TIAInfo cachedInfo;
 
 - (NSColor *)color:(NSInteger)nr;
 - (UInt32)rgbaColor:(NSInteger)nr palette:(Palette)palette;
