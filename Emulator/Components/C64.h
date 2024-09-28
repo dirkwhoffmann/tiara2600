@@ -120,7 +120,6 @@ public:
     Memory mem = Memory(*this);
     CPU cpu = CPU(MOS_6510, *this);
     CIA1 cia1 = CIA1(*this);
-    CIA2 cia2 = CIA2(*this);
     TIA tia = TIA(*this);
 
     // Ports
@@ -276,7 +275,6 @@ public:
         CLONE(mem)
         CLONE(cpu)
         CLONE(cia1)
-        CLONE(cia2)
         CLONE(tia)
         CLONE(audioPort)
         CLONE(videoPort)
@@ -510,10 +508,10 @@ public:
 private:
 
     // DEPRECATED: Invoked after executing the last cycle of a scanline
-    void endScanline();
+    // void endScanline();
 
     // DEPRECATED: Invoked after executing the last scanline of a frame
-    void endFrame();
+    // void endFrame();
 
     // Finishes up the current line
     // void eolHandler();

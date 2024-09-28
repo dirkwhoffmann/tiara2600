@@ -91,7 +91,6 @@ enum_long(SLOT)
 {
     // Primary slots
     SLOT_CIA1,                      // CIA 1 execution
-    SLOT_CIA2,                      // CIA 2 execution
     SLOT_SEC,                       // Enables secondary slots
 
     // Secondary slots
@@ -122,7 +121,6 @@ struct EventSlotEnum : util::Reflection<EventSlotEnum, EventSlot>
         switch (value) {
 
             case SLOT_CIA1:     return "CIA1";
-            case SLOT_CIA2:     return "CIA2";
             case SLOT_SEC:      return "SEC";
 
             case SLOT_TER:      return "TER";
@@ -292,7 +290,6 @@ typedef struct
 {
     Cycle cpuProgress;
     Cycle cia1Progress;
-    Cycle cia2Progress;
     i64 frame;
     long vpos;
     long hpos;

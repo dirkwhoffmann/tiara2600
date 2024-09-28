@@ -64,9 +64,6 @@ Tiara::Tiara() {
     cia1.emu = emu;
     cia1.cia = &emu->main.cia1;
 
-    cia2.emu = emu;
-    cia2.cia = &emu->main.cia2;
-
     tia.emu = emu;
     tia.tia = &emu->main.tia;
 

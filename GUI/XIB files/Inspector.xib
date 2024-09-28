@@ -66,7 +66,6 @@
                 <outlet property="cpuY" destination="GYy-Tv-mCA" id="hWs-di-r0R"/>
                 <outlet property="cpuZ" destination="FDg-Zv-NPQ" id="pHc-tL-3OQ"/>
                 <outlet property="evCia1Progress" destination="sbz-2T-iH8" id="eaF-8k-YIR"/>
-                <outlet property="evCia2Progress" destination="103-pS-OUT" id="BK5-Jn-0Pw"/>
                 <outlet property="evCpuProgress" destination="Ch7-St-52g" id="inm-3q-jjz"/>
                 <outlet property="evTableView" destination="igj-n2-UYG" id="9EN-Bz-pIm"/>
                 <outlet property="evVicProgress" destination="0Ps-Km-KKZ" id="Zif-yW-AsM"/>
@@ -1987,17 +1986,6 @@
                                             <view key="contentView" id="L89-JU-WbU">
                                                 <rect key="frame" x="4" y="5" width="189" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="103-pS-OUT">
-                                                        <rect key="frame" x="-2" y="7" width="193" height="17"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="123.123.123.123 " id="Nzd-dX-gfz">
-                                                            <font key="font" size="11" name="CourierNewPS-BoldMT"/>
-                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                </subviews>
                                             </view>
                                         </box>
                                         <box fixedFrame="YES" title="CIA 1 progress" translatesAutoresizingMaskIntoConstraints="NO" id="OZw-tt-XzG">
@@ -2024,7 +2012,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" drawsBackground="NO" id="Rfm-Nm-4LL">
                                                 <rect key="frame" x="1" y="1" width="786" height="299"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView wantsLayer="YES" focusRingType="exterior" verticalHuggingPriority="750" tag="1" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="15" headerView="15K-8g-xO5" id="igj-n2-UYG" userLabel="Primary Events" customClass="EventTableView" customModule="Tiara" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="786" height="271"/>

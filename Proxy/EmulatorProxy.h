@@ -93,7 +93,6 @@ using namespace tiara;
         
     AudioPortProxy *audioPort;
     CIAProxy *cia1;
-    CIAProxy *cia2;
     ControlPortProxy *port1;
     ControlPortProxy *port2;
     CPUProxy *cpu;

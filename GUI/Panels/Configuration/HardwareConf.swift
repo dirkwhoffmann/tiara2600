@@ -46,10 +46,6 @@ extension ConfigurationController {
         }
         */
 
-        // CIA
-        hwCiaModelPopup.selectItem(withTag: config.ciaRevision)
-        hwCiaTimerBBug.state = config.ciaTimerBBug ? .on : .off
-
         // Startup
         hwRamPatternPopup.selectItem(withTag: config.ramPattern)
 
@@ -60,11 +56,6 @@ extension ConfigurationController {
     @IBAction func hwVicRevAction(_ sender: NSPopUpButton!) {
         
         config.tiaRevision = sender.selectedTag()
-    }
-
-    @IBAction func hwCiaRevAction(_ sender: NSPopUpButton!) {
-        
-        config.ciaRevision = sender.selectedTag()
     }
 
     @IBAction func hwRamPatternAction(_ sender: NSPopUpButton!) {

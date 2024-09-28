@@ -140,11 +140,7 @@ CIA::serviceEvent(EventID id)
 void
 CIA::scheduleNextExecution()
 {
-    if (isCIA1()) {
-        c64.scheduleRel<SLOT_CIA1>(1, CIA_EXECUTE);
-    } else {
-        c64.scheduleRel<SLOT_CIA2>(1, CIA_EXECUTE);
-    }
+    c64.scheduleRel<SLOT_CIA1>(1, CIA_EXECUTE);
 }
 
 void
@@ -152,11 +148,7 @@ CIA::scheduleWakeUp()
 {
     auto event = isSleeping() ? CIA_WAKEUP : CIA_EXECUTE;
 
-    if (isCIA1()) {
-        c64.scheduleAbs<SLOT_CIA1>(wakeUpCycle, event);
-    } else {
-        c64.scheduleAbs<SLOT_CIA2>(wakeUpCycle, event);
-    }
+    c64.scheduleAbs<SLOT_CIA1>(wakeUpCycle, event);
 }
 
 void
@@ -662,128 +654,6 @@ CIA1::computePB() const
     result &= port1.getControlPort();
     
     return result;
-}
-
-
-//
-// CIA 2
-//
-
-void 
-CIA2::pullDownInterruptLine()
-{
-    cpu.pullDownNmiLine(INTSRC_CIA);
-}
-
-void 
-CIA2::releaseInterruptLine()
-{
-    cpu.releaseNmiLine(INTSRC_CIA);
-}
-
-//                        -------
-//              VA14 <--- | PA0 |
-//              VA15 <--- | PA1 |
-// User port (pin M) <--> | PA2 |
-//               ATN <--- | PA3 |
-//               CLK <--- | PA4 |
-//              DATA <--- | PA5 |
-//               CLK ---> | PA6 |
-//              DATA ---> | PA7 |
-//                        -------
-
-u8
-CIA2::portAinternal() const
-{
-    return PRA;
-}
-
-u8
-CIA2::portAexternal() const
-{
-    u8 result = 0x3F;
-    return result;
-}
-
-void
-CIA2::updatePA()
-{
-    PA = computePA();
-}
-
-u8
-CIA2::computePA() const
-{
-    return (portAinternal() & DDRA) | (portAexternal() & ~DDRA);
-}
-
-//                        -------
-// User port (pin C) <--> | PB0 |
-// User port (pin D) <--> | PB1 |
-// User port (pin E) <--> | PB2 |
-// User port (pin F) <--> | PB3 |
-// User port (pin H) <--> | PB4 |
-// User port (pin J) <--> | PB5 |
-// User port (pin K) <--> | PB6 |
-// User port (pin L) <--> | PB7 |
-//                        -------
-
-u8
-CIA2::portBinternal() const
-{
-    u8 result = PRB;
-    
-    // Check if timer A underflow shows up on PB6
-    if (GET_BIT(PB67TimerMode, 6))
-        REPLACE_BIT(result, 6, PB67TimerOut & (1 << 6));
-    
-    // Check if timer B underflow shows up on PB7
-    if (GET_BIT(PB67TimerMode, 7))
-        REPLACE_BIT(result, 7, PB67TimerOut & (1 << 7));
-    
-    return result;
-}
-
-u8
-CIA2::portBexternal() const
-{
-    return 0xFF;
-}
-
-void
-CIA2::updatePB()
-{
-    PB = computePB();
-}
-
-u8
-CIA2::computePB() const
-{
-    return 0;
-}
-
-void
-CIA2::pokePRA(u8 value)
-{
-    CIA::pokePRA(value);
-}
-
-void
-CIA2::pokePRB(u8 value)
-{
-    CIA::pokePRB(value);
-}
-
-void
-CIA2::pokeDDRA(u8 value)
-{
-    CIA::pokeDDRA(value);    
-}
-
-void
-CIA2::pulsePC()
-{
-    
 }
 
 }

@@ -13,22 +13,21 @@ extension tiara.EventSlot: CustomStringConvertible {
 
         switch self {
 
-        case ._CIA1:    return "CIA 1"
-        case ._CIA2:    return "CIA 2"
-        case ._SEC:     return "Next Secondary Event"
+        case .CIA1:    return "CIA 1"
+        case .SEC:     return "Next Secondary Event"
 
-        case ._TER:     return "Next Tertiary Event"
+        case .TER:     return "Next Tertiary Event"
 
-        case ._EXP:     return "Expansion Port"
-        case ._SNP:     return "Snapshots"
-        case ._RSH:     return "Retro Shell"
-        case ._KEY:     return "Auto Typing"
-        case ._SRV:     return "Server Daemon"
-        case ._DBG:     return "Debugger"
-        case ._ALA:     return "Alarms"
-        case ._INS:     return "Inspector"
+        case .EXP:     return "Expansion Port"
+        case .SNP:     return "Snapshots"
+        case .RSH:     return "Retro Shell"
+        case .KEY:     return "Auto Typing"
+        case .SRV:     return "Server Daemon"
+        case .DBG:     return "Debugger"
+        case .ALA:     return "Alarms"
+        case .INS:     return "Inspector"
 
-        case ._COUNT:   return "???"
+        case .COUNT:   return "???"
 
         default:        fatalError()
         }

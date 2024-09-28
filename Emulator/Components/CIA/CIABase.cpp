@@ -118,65 +118,19 @@ CIA::cacheStats(CIAStats &result) const
 i64
 CIA::getOption(Option option) const
 {
-    switch (option) {
-
-        case OPT_CIA_REVISION:      return config.revision;
-        case OPT_CIA_TIMER_B_BUG:   return config.timerBBug;
-        case OPT_CIA_IDLE_SLEEP:    return config.idleSleep;
-
-
-        default:
-            fatalError;
-    }
+    fatalError;
 }
 
 void
 CIA::checkOption(Option opt, i64 value)
 {
-    switch (opt) {
-
-        case OPT_CIA_REVISION:
-
-            if (!CIARevisionEnum::isValid(value)) {
-                throw Error(VC64ERROR_OPT_INV_ARG, CIARevisionEnum::keyList());
-            }
-            return;
-
-        case OPT_CIA_TIMER_B_BUG:
-        case OPT_CIA_IDLE_SLEEP:
-
-            return;
-
-        default:
-            throw Error(VC64ERROR_OPT_UNSUPPORTED);
-    }
+    throw Error(VC64ERROR_OPT_UNSUPPORTED);
 }
 
 void
 CIA::setOption(Option opt, i64 value)
 {
-    checkOption(opt, value);
-
-    switch (opt) {
-
-        case OPT_CIA_REVISION:
-
-            config.revision = (CIARevision)value;
-            return;
-
-        case OPT_CIA_TIMER_B_BUG:
-
-            config.timerBBug = value;
-            return;
-
-        case OPT_CIA_IDLE_SLEEP:
-
-            config.idleSleep = value;
-            return;
-
-        default:
-            fatalError;
-    }
+    fatalError;
 }
 
 }

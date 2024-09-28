@@ -49,7 +49,6 @@ C64::eventName(EventSlot slot, EventID id)
     switch (slot) {
 
         case SLOT_CIA1:
-        case SLOT_CIA2:
 
             switch (id) {
                 case EVENT_NONE:    return "none";
@@ -263,7 +262,6 @@ C64::operator << (SerResetter &worker)
 
     // Schedule initial events
     scheduleAbs<SLOT_CIA1>(cpu.clock, CIA_EXECUTE);
-    scheduleAbs<SLOT_CIA2>(cpu.clock, CIA_EXECUTE);
     scheduleRel<SLOT_SRV>(C64::sec(0.5), SRV_LAUNCH_DAEMON);
     if (insEvent) scheduleRel <SLOT_INS> (0, insEvent);
     scheduleNextSNPEvent();
@@ -730,7 +728,6 @@ C64::cacheInfo(C64Info &result) const
 
         result.cpuProgress = cpu.clock;
         result.cia1Progress = cia1.sleeping ? cia1.sleepCycle : cpu.clock;
-        result.cia2Progress = cia2.sleeping ? cia2.sleepCycle : cpu.clock;
         result.frame = frame;
         result.vpos = scanline;
         result.hpos = rasterCycle;
@@ -794,23 +791,11 @@ C64::executeOneCycle()
     clearFlag(RL::SINGLE_STEP);
 }
 
+/*
 void
 C64::endScanline()
 {
-    // cia1.tod.increment();
-    // cia2.tod.increment();
 
-    // vic.endScanline();
-    /*
-    rasterCycle = 1;
-    scanline++;
-    
-    if (scanline >= vic.getLinesPerFrame()) {
-        
-        scanline = 0;
-        endFrame();
-    }
-    */
 }
 
 void
@@ -824,7 +809,7 @@ C64::endFrame()
     port1.execute();
     port2.execute();
 }
-
+ */
 /*
 void
 C64::eolHandler()
@@ -873,9 +858,6 @@ C64::processEvents(Cycle cycle)
 
     if (isDue<SLOT_CIA1>(cycle)) {
         cia1.serviceEvent(eventid[SLOT_CIA1]);
-    }
-    if (isDue<SLOT_CIA2>(cycle)) {
-        cia2.serviceEvent(eventid[SLOT_CIA2]);
     }
 
     if (isDue<SLOT_SEC>(cycle)) {
@@ -944,7 +926,7 @@ C64::processINSEvent()
     if (mask & 1LL << C64Class)             { record(); }
     if (mask & 1LL << CPUClass)             { cpu.record(); }
     if (mask & 1LL << MemoryClass)          { mem.record(); }
-    if (mask & 1LL << CIAClass)             { cia1.record(); cia2.record(); }
+    if (mask & 1LL << CIAClass)             { cia1.record(); }
     if (mask & 1LL << TIAClass)             { tia.record(); }
 
     // Reschedule the event

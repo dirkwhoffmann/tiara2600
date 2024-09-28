@@ -91,10 +91,6 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_MON_DISALIGNMENT_H:        return numParser();
         case OPT_MON_DISALIGNMENT_V:        return numParser();
 
-        case OPT_CIA_REVISION:              return enumParser.template operator()<CIARevisionEnum>();
-        case OPT_CIA_TIMER_B_BUG:           return boolParser();
-        case OPT_CIA_IDLE_SLEEP:            return boolParser();
-
         case OPT_SID_SAMPLING:              return numParser(); // enumParser.template operator()<SamplingMethodEnum>();
 
         case OPT_AUD_VOL0:                  return numParser("%");

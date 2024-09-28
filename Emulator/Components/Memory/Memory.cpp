@@ -325,10 +325,10 @@ Memory::peekIO(u16 addr)
             // As a result, CIA's I/O memory repeats every 16 bytes.
             return cia1.peek(addr & 0x000F);
             
-        case 0xD: // CIA 2
+        case 0xD:
             
-            return cia2.peek(addr & 0x000F);
-            
+            return 0;
+
         case 0xE: // I/O space 1
             
             return expansionPort.peekIO1(addr);
@@ -415,10 +415,10 @@ Memory::spypeekIO(u16 addr) const
             // As a result, CIA's I/O memory repeats every 16 bytes.
             return cia1.spypeek(addr & 0x000F);
             
-        case 0xD: // CIA 2
+        case 0xD:
             
-            return cia2.spypeek(addr & 0x000F);
-            
+            return 0;
+
         case 0xE: // I/O space 1
             
             return expansionPort.spypeekIO1(addr);
@@ -556,9 +556,8 @@ Memory::pokeIO(u16 addr, u8 value)
             cia1.poke(addr & 0x000F, value);
             return;
             
-        case 0xD: // CIA 2
+        case 0xD:
             
-            cia2.poke(addr & 0x000F, value);
             return;
             
         case 0xE: // I/O space 1

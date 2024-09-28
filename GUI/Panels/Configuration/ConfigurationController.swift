@@ -58,10 +58,6 @@ class ConfigurationController: DialogController {
     @IBOutlet weak var hwVicModelPopup: NSPopUpButton!
     @IBOutlet weak var hwVicIcon: NSImageView!
     @IBOutlet weak var hwVicGrayDotBug: NSButton!
-    
-    // CIA
-    @IBOutlet weak var hwCiaModelPopup: NSPopUpButton!
-    @IBOutlet weak var hwCiaTimerBBug: NSButton!
 
     // Startup
     @IBOutlet weak var hwRamPatternPopup: NSPopUpButton!

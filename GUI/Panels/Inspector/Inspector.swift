@@ -281,7 +281,6 @@ class Inspector: DialogController {
     @IBOutlet weak var evCpuProgress: NSTextField!
     @IBOutlet weak var evVicProgress: NSTextField!
     @IBOutlet weak var evCia1Progress: NSTextField!
-    @IBOutlet weak var evCia2Progress: NSTextField!
     @IBOutlet weak var evTableView: EventTableView!
 
     // Cached state of all C64 components

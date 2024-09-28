@@ -1184,7 +1184,7 @@ public:
     C64API c64;
     MemoryAPI mem;
     CPUAPI cpu;
-    CIAAPI cia1, cia2;
+    CIAAPI cia1;
     TIAAPI tia;
     AudioPortAPI audioPort;
     VideoPortAPI videoPort;

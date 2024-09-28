@@ -583,9 +583,6 @@ extension DefaultsProxy {
         remove(.TIA_REVISION)
         remove(.TIA_POWER_SAVE)
 
-        remove(.CIA_REVISION)
-        remove(.CIA_TIMER_B_BUG)
-
         remove(.MEM_INIT_PATTERN)
     }
 }
@@ -603,9 +600,6 @@ extension Configuration {
             let defaults = EmulatorProxy.defaults!
 
             defaults.set(.TIA_REVISION, tiaRevision)
-
-            defaults.set(.CIA_REVISION, ciaRevision)
-            defaults.set(.CIA_TIMER_B_BUG, ciaTimerBBug)
 
             defaults.set(.MEM_INIT_PATTERN, ramPattern)
 
@@ -626,10 +620,6 @@ extension Configuration {
             let defaults = EmulatorProxy.defaults!
 
             tiaRevision = defaults.get(.TIA_REVISION)
-
-            ciaRevision = defaults.get(.CIA_REVISION)
-            ciaTimerBBug = defaults.get(.CIA_TIMER_B_BUG) != 0
-
             ramPattern = defaults.get(.MEM_INIT_PATTERN)
 
             emu.resume()

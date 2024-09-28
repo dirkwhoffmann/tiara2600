@@ -301,18 +301,6 @@ DebugConsole::initCommands(Command &root)
         dump(cia1, Category::Registers);
     });
 
-    root.add({"r", "cia2"},         "CIA2",
-             [this](Arguments& argv, long value) {
-
-        dump(cia2, Category::Registers);
-    });
-
-    root.add({"r", "vicii"},        "VICII",
-             [this](Arguments& argv, long value) {
-
-        dump(cia2, Category::Registers);
-    });
-
     root.add({"r", "tia"}, "TIA",
              [this](Arguments& argv, long value) {
 
@@ -364,13 +352,6 @@ DebugConsole::initCommands(Command &root)
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
 
         dump(cia1, { Category::Config, Category::State });
-    });
-
-    cmd = cia2.shellName();
-    description = cia2.description();
-    root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
-
-        dump(cia2, { Category::Config, Category::State });
     });
 
     cmd = tia.shellName();

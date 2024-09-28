@@ -31,16 +31,6 @@ class Configuration {
         set { emu?.set(.TIA_REVISION, value: newValue) }
     }
 
-    var ciaRevision: Int {
-        get { return emu?.get(.CIA_REVISION) ?? 0 }
-        set { emu?.set(.CIA_REVISION, value: newValue) }
-    }
-    
-    var ciaTimerBBug: Bool {
-        get { return emu?.get(.CIA_TIMER_B_BUG) != 0}
-        set { emu?.set(.CIA_TIMER_B_BUG, enable: newValue) }
-    }
-
     var ramPattern: Int {
         get { return emu?.get(.MEM_INIT_PATTERN) ?? 0 }
         set { emu?.set(.MEM_INIT_PATTERN, value: newValue) }

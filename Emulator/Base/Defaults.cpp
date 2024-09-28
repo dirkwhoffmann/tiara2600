@@ -35,10 +35,6 @@ Defaults::Defaults()
     setFallback(OPT_C64_SNAP_DELAY,             10);
     setFallback(OPT_C64_SNAP_COMPRESS,          true);
 
-    setFallback(OPT_CIA_REVISION,               MOS_6526);
-    setFallback(OPT_CIA_TIMER_B_BUG,            true);
-    setFallback(OPT_CIA_IDLE_SLEEP,             true);
-
     setFallback(OPT_TIA_REVISION,               TIA_NTSC);
     setFallback(OPT_TIA_POWER_SAVE,             true);
 

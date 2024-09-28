@@ -94,11 +94,6 @@ enum_long(OPT)
     OPT_MON_DISALIGNMENT_H,     ///< Horizontal cathode ray disalignment
     OPT_MON_DISALIGNMENT_V,     ///< Vertical cathode ray disalignment
 
-    // CIA
-    OPT_CIA_REVISION,           ///< Chip revision
-    OPT_CIA_TIMER_B_BUG,        ///< Emulate timer B bug
-    OPT_CIA_IDLE_SLEEP,         ///< Enter idle state while not in use
-
     // SID
     OPT_SID_SAMPLING,           ///< Audio sampling mode
 
@@ -217,10 +212,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_MON_DISALIGNMENT_H:    return "MON.DISALIGNMENT_H";
             case OPT_MON_DISALIGNMENT_V:    return "MON.DISALIGNMENT_V";
 
-            case OPT_CIA_REVISION:          return "CIA.REVISION";
-            case OPT_CIA_TIMER_B_BUG:       return "CIA.TIMER_B_BUG";
-            case OPT_CIA_IDLE_SLEEP:        return "CIA.IDLE_SLEEP";
-
             case OPT_SID_SAMPLING:          return "SID.SAMPLING";
 
             case OPT_AUD_VOL0:              return "AUD.VOL0";
@@ -325,10 +316,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_MON_DISALIGNMENT:      return "Cathode rays disalignment";
             case OPT_MON_DISALIGNMENT_H:    return "Horizontal cathode ray shift";
             case OPT_MON_DISALIGNMENT_V:    return "Vertical cathode ray shift";
-
-            case OPT_CIA_REVISION:          return "Chip revision";
-            case OPT_CIA_TIMER_B_BUG:       return "Emulate Timer-B bug";
-            case OPT_CIA_IDLE_SLEEP:        return "Enter idle state while not in use";
 
             case OPT_SID_SAMPLING:          return "Audio sampling rate";
             case OPT_AUD_VOL0:              return "Channel 0 volume";

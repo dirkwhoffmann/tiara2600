@@ -249,7 +249,6 @@ CommandConsole::initCommands(Command &root)
     //
 
     cmd = registerComponent(cia1);
-    cmd = registerComponent(cia2);
 
 
     //
