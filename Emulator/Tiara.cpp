@@ -70,12 +70,6 @@ Tiara::Tiara() {
     tia.emu = emu;
     tia.tia = &emu->main.tia;
 
-    vicii.emu = emu;
-    vicii.vicii = &emu->main.vic;
-
-    sid.emu = emu;
-    // sid.sidBridge = &emu->main.sidBridge;
-
     audioPort.emu = emu;
     audioPort.audioPort = &emu->main.audioPort;
 
@@ -640,66 +634,6 @@ u32
 TIAAPI::getColor(isize nr, Palette palette) const
 {
     return 0; // tia->getColor(nr, palette);
-}
-
-
-//
-// VICII
-//
-
-const VICIITraits &
-VICIIAPI::getTraits() const
-{
-    return vicii->getTraits();
-}
-
-const VICIIConfig &
-VICIIAPI::getConfig() const
-{
-    return vicii->getConfig();
-}
-
-const VICIIInfo &
-VICIIAPI::getInfo() const
-{
-    return vicii->getInfo();
-}
-
-const VICIIInfo &
-VICIIAPI::getCachedInfo() const
-{
-    return vicii->getCachedInfo();
-}
-
-SpriteInfo
-VICIIAPI::getSpriteInfo(isize nr) const
-{
-    return vicii->getSpriteInfo(nr);
-}
-
-u32
-VICIIAPI::getColor(isize nr) const
-{
-    return vicii->getColor(nr);
-}
-
-u32
-VICIIAPI::getColor(isize nr, Palette palette) const
-{
-    return vicii->getColor(nr, palette);
-}
-
-
-//
-// SID
-//
-
-
-float
-SIDAPI::draw(u32 *buffer, isize width, isize height,
-                         float maxAmp, u32 color, isize sid) const
-{
-    return 0;
 }
 
 

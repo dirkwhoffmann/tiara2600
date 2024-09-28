@@ -12,7 +12,7 @@
 
 #include "config.h"
 #include "DmaDebugger.h"
-#include "VICII.h"
+#include "TIA.h"
 #include "MsgQueue.h"
 
 namespace tiara {
@@ -109,8 +109,8 @@ DmaDebugger::setOption(Option opt, i64 value)
         case OPT_DMA_DEBUG_ENABLE:
 
             config.dmaDebug = value;
-            vic.resetDmaTextures();
-            vic.resetEmuTextures();
+            tia.resetDmaTextures();
+            tia.resetEmuTextures();
             msgQueue.put(MSG_DMA_DEBUG, value);
             return;
 

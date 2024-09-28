@@ -712,25 +712,6 @@ C64::fastForward(isize frames)
 }
 
 void
-C64::_isReady() const
-{
-    bool mega = hasMega65Rom(ROM_TYPE_BASIC) && hasMega65Rom(ROM_TYPE_KERNAL);
-    
-    if (!hasRom(ROM_TYPE_BASIC)) {
-        throw Error(VC64ERROR_ROM_BASIC_MISSING);
-    }
-    if (!hasRom(ROM_TYPE_CHAR)) {
-        throw Error(VC64ERROR_ROM_CHAR_MISSING);
-    }
-    if (!hasRom(ROM_TYPE_KERNAL) || FORCE_ROM_MISSING) {
-        throw Error(VC64ERROR_ROM_KERNAL_MISSING);
-    }
-    if (FORCE_MEGA64_MISMATCH || (mega && string(mega65BasicRev()) != string(mega65KernalRev()))) {
-        throw Error(VC64ERROR_ROM_MEGA65_MISMATCH);
-    }
-}
-
-void
 C64::_powerOn()
 {
     debug(RUN_DEBUG, "_powerOn\n");
@@ -878,10 +859,10 @@ C64::executeOneCycle()
 void
 C64::endScanline()
 {
-    cia1.tod.increment();
-    cia2.tod.increment();
+    // cia1.tod.increment();
+    // cia2.tod.increment();
 
-    vic.endScanline();
+    // vic.endScanline();
     rasterCycle = 1;
     scanline++;
     

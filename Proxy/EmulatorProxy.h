@@ -35,7 +35,6 @@ using namespace tiara;
 @class RetroShellProxy;
 @class SIDProxy;
 @class TIAProxy;
-@class VICIIProxy;
 @class VideoPortProxy;
 
 //
@@ -107,7 +106,6 @@ using namespace tiara;
     RetroShellProxy *retroShell;
     SIDProxy *sid;
     TIAProxy *tia;
-    VICIIProxy *vic;
     VideoPortProxy *videoPort;
 }
 
@@ -128,7 +126,6 @@ using namespace tiara;
 @property (readonly, strong) RetroShellProxy *retroShell;
 @property (readonly, strong) SIDProxy *sid;
 @property (readonly, strong) TIAProxy *tia;
-@property (readonly, strong) VICIIProxy *vic __deprecated_msg("Use tia instead.");;
 @property (readonly, strong) VideoPortProxy *videoPort;
 
 - (void)dealloc;
@@ -324,25 +321,6 @@ struct GuardInfo {
 - (NSString *)txtdump:(NSInteger)addr num:(NSInteger)num src:(MemoryType)src;
 
 - (void)drawHeatmap:(u32 *)buffer w:(NSInteger)w h:(NSInteger)h;
-
-@end
-
-
-//
-// VICII
-//
-
-
-@interface VICIIProxy : SubComponentProxy { }
-
-@property (readonly) VICIITraits traits;
-@property (readonly) VICIIConfig config;
-@property (readonly) VICIIInfo info;
-@property (readonly) VICIIInfo cachedInfo;
-- (SpriteInfo)getSpriteInfo:(NSInteger)sprite;
-
-- (NSColor *)color:(NSInteger)nr;
-- (UInt32)rgbaColor:(NSInteger)nr palette:(Palette)palette;
 
 @end
 

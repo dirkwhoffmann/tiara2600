@@ -194,59 +194,6 @@ struct TIAAPI : API {
 };
 
 
-/** VICII API
- */
-struct VICIIAPI : API {
-
-    class VICII *vicii = nullptr;
-
-    /** @brief  Provides details about the currently selected VICII revision.
-     */
-    const VICIITraits &getTraits() const;
-
-    /** @brief  Returns the component's current configuration.
-     */
-    const VICIIConfig &getConfig() const;
-
-    /** @brief  Returns the component's current state.
-     */
-    const VICIIInfo &getInfo() const;
-    const VICIIInfo &getCachedInfo() const;
-
-    /** @brief  Returns information about a sprite.
-     *  @param  nr   Number of the sprite (0 .. 7)
-     */
-    SpriteInfo getSpriteInfo(isize nr) const;
-
-    /** @brief  Returns the RGBA value of a color
-     */
-    u32 getColor(isize nr) const;
-
-    /** @brief  Returns the RGBA value of a color from a color palette.
-     */
-    u32 getColor(isize nr, Palette palette) const;
-
-};
-
-
-/** SID Public API
- */
-struct SIDAPI : API {
-
-    /// @}
-    /// @name Visualizing waveforms
-    /// @{
-
-    /** @brief  Draws a visual representation of the waveform.
-     *  The Mac app uses this function to visualize the contents of the
-     *  audio buffer in one of it's inspector panels. */
-    float draw(u32 *buffer, isize width, isize height,
-               float maxAmp, u32 color, isize sid = -1) const;
-    /// @}
-
-};
-
-
 /** Audio Port Public API
  */
 struct AudioPortAPI : API {
@@ -1282,9 +1229,7 @@ public:
     MemoryAPI mem;
     CPUAPI cpu;
     CIAAPI cia1, cia2;
-    VICIIAPI vicii;
     TIAAPI tia;
-    SIDAPI sid;
     AudioPortAPI audioPort;
     VideoPortAPI videoPort;
     DmaDebuggerAPI dmaDebugger;

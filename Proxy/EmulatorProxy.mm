@@ -452,66 +452,6 @@ using namespace tiara;
 
 
 //
-// VICII
-//
-
-@implementation VICIIProxy
-
-- (VICIIAPI *)vicii
-{
-    return (VICIIAPI *)obj;
-}
-
-- (VICIITraits)traits
-{
-    return [self vicii]->getTraits();
-}
-
-- (VICIIConfig)config
-{
-    return [self vicii]->getConfig();
-}
-
-- (VICIIInfo)info 
-{
-    return [self vicii]->getInfo();
-}
-
-- (VICIIInfo)cachedInfo
-{
-    return [self vicii]->getCachedInfo();
-}
-
-- (SpriteInfo)getSpriteInfo:(NSInteger)sprite
-{
-    return [self vicii]->getSpriteInfo((unsigned)sprite);
-}
-
-- (NSColor *)color:(NSInteger)nr
-{
-    assert (0 <= nr && nr < 16);
-    
-    u32 color = [self vicii]->getColor((unsigned)nr);
-    u8 r = color & 0xFF;
-    u8 g = (color >> 8) & 0xFF;
-    u8 b = (color >> 16) & 0xFF;
-    
-	return [NSColor colorWithCalibratedRed:(float)r/255.0
-                                     green:(float)g/255.0
-                                      blue:(float)b/255.0
-                                     alpha:1.0];
-}
-
-- (UInt32)rgbaColor:(NSInteger)nr palette:(Palette)palette
-{
-    assert (0 <= nr && nr < 16);
-    return [self vicii]->getColor((unsigned)nr, palette);
-}
-
-@end
-
-
-//
 // Dma Debugger
 //
 
@@ -525,44 +465,6 @@ using namespace tiara;
 - (DmaDebuggerConfig)getConfig
 {
     return [self debugger]->getConfig();
-}
-
-@end
-
-
-//
-// SID
-//
-
-@implementation SIDProxy
-
-- (SIDAPI *)bridge
-{
-    return (SIDAPI *)obj;
-}
-
-- (float)drawWaveform:(u32 *)buffer
-                    w:(NSInteger)w
-                    h:(NSInteger)h
-                scale:(float)s
-                color:(u32)c
-               source:(NSInteger)source
-{
-    return [self bridge]->draw(buffer, w, h, s, c, source);
-}
-
-- (float)drawWaveform:(u32 *)buffer
-                 size:(NSSize)size
-                scale:(float)s
-                color:(u32)c
-               source:(NSInteger)source
-{
-    return [self drawWaveform:buffer
-                            w:(NSInteger)size.width
-                            h:(NSInteger)size.height
-                        scale:s
-                        color:c
-                       source:source];
 }
 
 @end
@@ -1138,7 +1040,6 @@ using namespace tiara;
 @synthesize retroShell;
 @synthesize sid;
 @synthesize tia;
-@synthesize vic;
 @synthesize videoPort;
 
 - (instancetype) init
@@ -1163,9 +1064,7 @@ using namespace tiara;
     recorder = [[RecorderProxy alloc] initWith:&emu->recorder emu:emu];
     remoteManager = [[RemoteManagerProxy alloc] initWith:&emu->remoteManager emu:emu];
     retroShell = [[RetroShellProxy alloc] initWith:&emu->retroShell emu:emu];
-    sid = [[SIDProxy alloc] initWith:&emu->sid emu:emu];
     tia = [[TIAProxy alloc] initWith:&emu->tia emu:emu];
-    vic = [[VICIIProxy alloc] initWith:&emu->vicii emu:emu];
     videoPort = [[VideoPortProxy alloc] initWith:&emu->videoPort emu:emu];
 
     return self;

@@ -289,7 +289,7 @@ class Inspector: DialogController {
     var ciaInfo: tiara.CIAInfo!
     var ciaStats: tiara.CIAStats!
     var memInfo: tiara.MemInfo!
-    var vicInfo: tiara.VICIIInfo!
+    var tiaInfo: tiara.TIAInfo!
     var sprInfo: tiara.SpriteInfo!
     var eventInfo: tiara.C64Info!
     var isRunning = true
@@ -357,9 +357,9 @@ class Inspector: DialogController {
             switch id {
                 
             case "CPU": refreshCPU(count: count, full: full)
-            case "CIA": refreshCIA(count: count, full: full)
+            case "RIOT": refreshRIOT(count: count, full: full)
             case "Memory": refreshMemory(count: count, full: full)
-            case "VICII": refreshVIC(count: count, full: full)
+            case "TIA": refreshTIA(count: count, full: full)
             case "SID": refreshSID(count: count, full: full)
             case "Events": refreshEvents(count: count, full: full)
 
