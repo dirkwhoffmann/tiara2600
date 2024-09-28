@@ -22,7 +22,7 @@ protected:
 
     class AudioPort &audioPort;
     class C64 &c64;
-    class CIA1 &cia1;
+    class RIOT &riot;
     class ControlPort &port1;
     class ControlPort &port2;
     class CPU &cpu;

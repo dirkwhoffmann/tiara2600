@@ -143,24 +143,24 @@ struct CPUAPI : API {
 };
 
 
-/** CIA API
+/** RIOT API
  */
-struct CIAAPI : API {
+struct RIOTAPI : API {
 
-    class CIA *cia = nullptr;
+    class RIOT *riot = nullptr;
 
     /** @brief  Returns the component's current configuration.
      */
-    const CIAConfig &getConfig() const;
+    const RIOTConfig &getConfig() const;
 
     /** @brief  Returns the component's current state.
      */
-    const CIAInfo &getInfo() const;
-    const CIAInfo &getCachedInfo() const;
+    const RIOTInfo &getInfo() const;
+    const RIOTInfo &getCachedInfo() const;
 
     /** @brief  Returns statistical information about the components.
      */
-    CIAStats getStats() const;
+    RIOTStats getStats() const;
 };
 
 
@@ -769,8 +769,8 @@ struct C64API : public API {
 
     /** @brief  Sets the current auto-inspection mask
      *
-     *  @example The following call enables auto-inspections for the CIA chips
-     *  and the CPU: setAutoInspectionMask(1 << CIAClass | 1 << CPUClass);
+     *  @example The following call enables auto-inspections for the RIOT chip
+     *  and the CPU: setAutoInspectionMask(1 << RIOTClass | 1 << CPUClass);
      *
      *  @param  mask A bit mask indicating the components under inspection
      */
@@ -1184,7 +1184,7 @@ public:
     C64API c64;
     MemoryAPI mem;
     CPUAPI cpu;
-    CIAAPI cia1;
+    RIOTAPI riot;
     TIAAPI tia;
     AudioPortAPI audioPort;
     VideoPortAPI videoPort;

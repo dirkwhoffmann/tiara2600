@@ -19,8 +19,7 @@
 // Components
 #include "Memory.h"
 #include "TIA.h"
-#include "TOD.h"
-#include "CIA.h"
+#include "RIOT.h"
 #include "CPU.h"
 
 // Ports
@@ -119,7 +118,7 @@ public:
     // Components
     Memory mem = Memory(*this);
     CPU cpu = CPU(MOS_6510, *this);
-    CIA1 cia1 = CIA1(*this);
+    RIOT riot = RIOT(*this);
     TIA tia = TIA(*this);
 
     // Ports
@@ -274,7 +273,7 @@ public:
 
         CLONE(mem)
         CLONE(cpu)
-        CLONE(cia1)
+        CLONE(riot)
         CLONE(tia)
         CLONE(audioPort)
         CLONE(videoPort)

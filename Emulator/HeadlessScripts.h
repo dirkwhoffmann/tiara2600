@@ -88,14 +88,6 @@ static const char *smokeTestScript[] = {
     "memory set SAVE_ROMS true",
     "memory set SAVE_ROMS false",
 
-    "cia1",
-    "cia1 set REVISION MOS_6526",
-    "cia1 set REVISION MOS_8521",
-    "cia1 set TIMER_B_BUG true",
-    "cia1 set TIMER_B_BUG false",
-    "cia1 set IDLE_SLEEP true",
-    "cia1 set IDLE_SLEEP false",
-
     "dmadebugger",
     "dmadebugger open",
     "dmadebugger close",

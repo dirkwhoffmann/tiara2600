@@ -16,7 +16,7 @@
 #include "AudioPortTypes.h"
 #include "C64Types.h"
 #include "CartridgeTypes.h"
-#include "CIATypes.h"
+#include "RIOTTypes.h"
 #include "CmdQueueTypes.h"
 #include "ControlPortTypes.h"
 #include "CoreComponentTypes.h"

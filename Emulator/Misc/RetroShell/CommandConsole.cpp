@@ -245,10 +245,10 @@ CommandConsole::initCommands(Command &root)
 
 
     //
-    // Components (CIA)
+    // Components (RIOT)
     //
 
-    cmd = registerComponent(cia1);
+    cmd = registerComponent(riot);
 
 
     //

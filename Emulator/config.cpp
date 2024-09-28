@@ -37,16 +37,13 @@ debugflag IRQ_DEBUG       = 0;
 // Memory
 debugflag MEM_DEBUG       = 0;
 
-// CIAs
-debugflag CIA_DEBUG       = 0;
-debugflag CIAREG_DEBUG    = 0;
+// RIOT
+debugflag RIOT_DEBUG       = 0;
+debugflag RIOT_REG_DEBUG    = 0;
 
 // VICII
-debugflag VICII_DEBUG     = 0;
-debugflag VICII_REG_DEBUG = 0;
-debugflag VICII_SAFE_MODE = 0;
-debugflag VICII_STATS     = 0;
-debugflag RASTERIRQ_DEBUG = 0;
+debugflag TIA_DEBUG       = 0;
+debugflag TIA_REG_DEBUG   = 0;
 
 // SID
 debugflag SID_DEBUG       = 0;

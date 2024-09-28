@@ -319,12 +319,7 @@ Memory::peekIO(u16 addr)
             
             return 0;
 
-        case 0xC: // CIA 1
-            
-            // Only the lower 4 bits are used for adressing the CIA I/O space.
-            // As a result, CIA's I/O memory repeats every 16 bytes.
-            return cia1.peek(addr & 0x000F);
-            
+        case 0xC:
         case 0xD:
             
             return 0;
@@ -409,12 +404,7 @@ Memory::spypeekIO(u16 addr) const
         case 0xB: // Color Ram
             return spypeekColor(addr - 0xD800);
             
-        case 0xC: // CIA 1
-            
-            // Only the lower 4 bits are used for adressing the CIA I/O space.
-            // As a result, CIA's I/O memory repeats every 16 bytes.
-            return cia1.spypeek(addr & 0x000F);
-            
+        case 0xC:
         case 0xD:
             
             return 0;
@@ -549,13 +539,7 @@ Memory::pokeIO(u16 addr, u8 value)
             colorRam[addr - 0xD800] = (value & 0x0F) | (c64.random() & 0xF0);
             return;
             
-        case 0xC: // CIA 1
-            
-            // Only the lower 4 bits are used for adressing the CIA I/O space.
-            // As a result, CIA's I/O memory repeats every 16 bytes.
-            cia1.poke(addr & 0x000F, value);
-            return;
-            
+        case 0xC:
         case 0xD:
             
             return;

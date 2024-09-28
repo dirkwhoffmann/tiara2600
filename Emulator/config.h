@@ -115,16 +115,13 @@ extern debugflag IRQ_DEBUG;
 // Memory
 extern debugflag MEM_DEBUG;
 
-// CIAs
-extern debugflag CIA_DEBUG;
-extern debugflag CIAREG_DEBUG;
+// RIOT
+extern debugflag RIOT_DEBUG;
+extern debugflag RIOT_REG_DEBUG;
 
-// VICII
-extern debugflag VICII_DEBUG;
-extern debugflag VICII_REG_DEBUG;
-extern debugflag VICII_SAFE_MODE;
-extern debugflag VICII_STATS;
-extern debugflag RASTERIRQ_DEBUG;
+// TIA
+extern debugflag TIA_DEBUG;
+extern debugflag TIA_REG_DEBUG;
 
 // SID
 extern debugflag SID_DEBUG;

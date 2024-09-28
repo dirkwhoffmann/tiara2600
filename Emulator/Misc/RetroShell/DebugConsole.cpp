@@ -295,10 +295,10 @@ DebugConsole::initCommands(Command &root)
     root.add({"r"},
              "Show registers");
 
-    root.add({"r", "cia1"},         "CIA1",
+    root.add({"r", "riot"},         "RIOT",
              [this](Arguments& argv, long value) {
 
-        dump(cia1, Category::Registers);
+        dump(riot, Category::Registers);
     });
 
     root.add({"r", "tia"}, "TIA",
@@ -347,11 +347,11 @@ DebugConsole::initCommands(Command &root)
         dump(mem, { Category::Config, Category::State });
     });
 
-    cmd = cia1.shellName();
-    description = cia1.description();
+    cmd = riot.shellName();
+    description = riot.description();
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
 
-        dump(cia1, { Category::Config, Category::State });
+        dump(riot, { Category::Config, Category::State });
     });
 
     cmd = tia.shellName();

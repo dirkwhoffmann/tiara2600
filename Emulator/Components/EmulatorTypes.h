@@ -50,16 +50,13 @@ enum_long(DEBUG_FLAG)
     // Memory
     FLAG_MEM_DEBUG,         ///< Debug memory accesses
 
-    // CIAs
-    FLAG_CIA_DEBUG,         ///< Debug the Complex Interface Adapters
-    FLAG_CIAREG_DEBUG,      ///< Debug the CIA register accesses
+    // RIOT
+    FLAG_RIOT_DEBUG,         ///< Debug the RAM Input/Output Timer
+    FLAG_RIOT_REG_DEBUG,     ///< Debug the RIOT register accesses
 
-    // VICII
-    FLAG_VICII_DEBUG,       ///< Debug the Video Interface Controller
-    FLAG_VICII_REG_DEBUG,   ///< Debug VICII register accesses
-    FLAG_VICII_SAFE_MODE,   ///< Disable performance optimizations
-    FLAG_VICII_STATS,       ///< Collect statistical information
-    FLAG_RASTERIRQ_DEBUG,   ///< Debug raster interrupts
+    // TIA
+    FLAG_TIA_DEBUG,         ///< Debug the Television Interface Adapter
+    FLAG_TIA_REG_DEBUG,     ///< Debug TIA register accesses
 
     // SID
     FLAG_SID_DEBUG,         ///< Debug the Sound Interface Device
@@ -142,16 +139,13 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
                 // Memory
             case FLAG_MEM_DEBUG:                return "MEM_DEBUG";
 
-                // CIAs
-            case FLAG_CIA_DEBUG:                return "CIA_DEBUG";
-            case FLAG_CIAREG_DEBUG:             return "CIAREG_DEBUG";
+                // RIOT
+            case FLAG_RIOT_DEBUG:               return "RIOT_DEBUG";
+            case FLAG_RIOT_REG_DEBUG:           return "RIOT_REG_DEBUG";
 
-                // VICII
-            case FLAG_VICII_DEBUG:              return "VICII_DEBUG";
-            case FLAG_VICII_REG_DEBUG:          return "VICII_REG_DEBUG";
-            case FLAG_VICII_SAFE_MODE:          return "VICII_SAFE_MODE";
-            case FLAG_VICII_STATS:              return "VICII_STATS";
-            case FLAG_RASTERIRQ_DEBUG:          return "RASTERIRQ_DEBUG";
+                // TIA
+            case FLAG_TIA_DEBUG:                return "TIA_DEBUG";
+            case FLAG_TIA_REG_DEBUG:            return "TIA_REG_DEBUG";
 
                 // SID
             case FLAG_SID_DEBUG:                return "SID_DEBUG";
@@ -230,16 +224,13 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
                 // Memory
             case FLAG_MEM_DEBUG:                return "RAM and ROM";
 
-                // CIAs
-            case FLAG_CIA_DEBUG:                return "Complex Interface Adapter";
-            case FLAG_CIAREG_DEBUG:             return "CIA registers";
+                // RIOT
+            case FLAG_RIOT_DEBUG:               return "RAM Input/Output Timer";
+            case FLAG_RIOT_REG_DEBUG:           return "RIOT registers";
 
-                // VICII
-            case FLAG_VICII_DEBUG:              return "Video Interface Controller";
-            case FLAG_VICII_REG_DEBUG:          return "VICII registers";
-            case FLAG_VICII_SAFE_MODE:          return "Disable performance optimizations";
-            case FLAG_VICII_STATS:              return "Collect statistical information";
-            case FLAG_RASTERIRQ_DEBUG:          return "Raster interrupt";
+                // TIA
+            case FLAG_TIA_DEBUG:                return "Television Interface Adapter";
+            case FLAG_TIA_REG_DEBUG:            return "TIA registers";
 
                 // SID
             case FLAG_SID_DEBUG:                return "Sound Interface Device";

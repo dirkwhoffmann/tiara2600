@@ -168,7 +168,7 @@ public:
     
 public:
 
-    // Reads the port bits that show up in the CIA's data port registers
+    // Reads the port bits that show up in the RIOT's data port registers
     u8 getControlPort() const;
 
     // Triggers a gamepad event

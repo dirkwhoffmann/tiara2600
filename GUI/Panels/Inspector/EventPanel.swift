@@ -22,7 +22,6 @@ extension Inspector {
 
         evCpuProgress.stringValue = "\(eventInfo.cpuProgress) Cycles"
         evVicProgress.stringValue = "\(eventInfo.frame) Frames"
-        evCia1Progress.stringValue = "\(eventInfo.cia1Progress) Cycles"
 
         evTableView.refresh(count: count, full: full)
     }

@@ -27,7 +27,7 @@ C64::C64(class Emulator& ref, isize id) : CoreComponent(ref, id)
         &host,
         &mem,
         &cpu,
-        &cia1,
+        &riot,
         &audioPort,
         &videoPort,
         &port1,
@@ -102,8 +102,6 @@ C64::_dump(Category category, std::ostream& os) const
         os << dec(frame) << std::endl;
         os << tab("CPU progress");
         os << dec(cpu.clock) << " Cycles" << std::endl;
-        os << tab("CIA 1 progress");
-        os << dec(cia1.isSleeping() ? cia1.sleepCycle : cpu.clock) << " Cycles" << std::endl;
     }
 
     if (category == Category::Summary) {

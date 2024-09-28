@@ -348,14 +348,11 @@ Emulator::getDebugVariable(DebugFlag flag)
 
         case FLAG_MEM_DEBUG:        return MEM_DEBUG;
 
-        case FLAG_CIA_DEBUG:        return CIA_DEBUG;
-        case FLAG_CIAREG_DEBUG:     return CIAREG_DEBUG;
+        case FLAG_RIOT_DEBUG:       return RIOT_DEBUG;
+        case FLAG_RIOT_REG_DEBUG:   return RIOT_REG_DEBUG;
 
-        case FLAG_VICII_DEBUG:      return VICII_DEBUG;
-        case FLAG_VICII_REG_DEBUG:  return VICII_REG_DEBUG;
-        case FLAG_VICII_SAFE_MODE:  return VICII_SAFE_MODE;
-        case FLAG_VICII_STATS:      return VICII_STATS;
-        case FLAG_RASTERIRQ_DEBUG:  return RASTERIRQ_DEBUG;
+        case FLAG_TIA_DEBUG:        return TIA_DEBUG;
+        case FLAG_TIA_REG_DEBUG:    return TIA_REG_DEBUG;
 
         case FLAG_SID_DEBUG:        return SID_DEBUG;
         case FLAG_SID_EXEC:         return SID_EXEC;
@@ -435,14 +432,11 @@ Emulator::setDebugVariable(DebugFlag flag, bool val)
 
         case FLAG_MEM_DEBUG:        MEM_DEBUG       = val; break;
 
-        case FLAG_CIA_DEBUG:        CIA_DEBUG       = val; break;
-        case FLAG_CIAREG_DEBUG:     CIAREG_DEBUG    = val; break;
+        case FLAG_RIOT_DEBUG:       RIOT_DEBUG      = val; break;
+        case FLAG_RIOT_REG_DEBUG:   RIOT_REG_DEBUG  = val; break;
 
-        case FLAG_VICII_DEBUG:      VICII_DEBUG     = val; break;
-        case FLAG_VICII_REG_DEBUG:  VICII_REG_DEBUG = val; break;
-        case FLAG_VICII_SAFE_MODE:  VICII_SAFE_MODE = val; break;
-        case FLAG_VICII_STATS:      VICII_STATS     = val; break;
-        case FLAG_RASTERIRQ_DEBUG:  RASTERIRQ_DEBUG = val; break;
+        case FLAG_TIA_DEBUG:        TIA_DEBUG       = val; break;
+        case FLAG_TIA_REG_DEBUG:    TIA_REG_DEBUG   = val; break;
 
         case FLAG_SID_DEBUG:        SID_DEBUG       = val; break;
         case FLAG_SID_EXEC:         SID_EXEC        = val; break;

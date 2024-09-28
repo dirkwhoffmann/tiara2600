@@ -362,34 +362,34 @@ using namespace tiara;
 
 
 //
-// CIA
+// RIOT
 //
 
-@implementation CIAProxy
+@implementation RIOTProxy
 
-- (CIAAPI *)cia
+- (RIOTAPI *)riot
 {
-    return (CIAAPI *)obj;
+    return (RIOTAPI *)obj;
 }
 
-- (CIAConfig)config
+- (RIOTConfig)config
 {
-    return [self cia]->getConfig();
+    return [self riot]->getConfig();
 }
 
-- (CIAInfo)info
+- (RIOTInfo)info
 {
-    return [self cia]->getInfo();
+    return [self riot]->getInfo();
 }
 
-- (CIAInfo)cachedInfo
+- (RIOTInfo)cachedInfo
 {
-    return [self cia]->getCachedInfo();
+    return [self riot]->getCachedInfo();
 }
 
-- (CIAStats)stats
+- (RIOTStats)stats
 {
-    return [self cia]->getStats();
+    return [self riot]->getStats();
 }
 
 @end
@@ -942,7 +942,7 @@ using namespace tiara;
 
 @synthesize audioPort;
 @synthesize c64;
-@synthesize cia1;
+@synthesize riot;
 @synthesize cpu;
 @synthesize dmaDebugger;
 @synthesize expansionport;
@@ -966,7 +966,7 @@ using namespace tiara;
     // Create sub proxys
     audioPort = [[AudioPortProxy alloc] initWith:&emu->audioPort emu:emu];
     c64 = [[C64Proxy alloc] initWith:&emu->c64 emu:emu];
-    cia1 = [[CIAProxy alloc] initWith:&emu->cia1 emu:emu];
+    riot = [[RIOTProxy alloc] initWith:&emu->riot emu:emu];
     cpu = [[CPUProxy alloc] initWith:&emu->cpu emu:emu];
     dmaDebugger = [[DmaDebuggerProxy alloc] initWith:&emu->dmaDebugger];
     expansionport = [[ExpansionPortProxy alloc] initWith:&emu->expansionPort emu:emu];

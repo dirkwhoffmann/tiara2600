@@ -25,9 +25,6 @@ enum class Category
     Current,
     Debug,
     Defaults,
-    Disk,
-    Dma,
-    Layout,
     Properties,
     Registers,
     RunAhead,
@@ -35,7 +32,6 @@ enum class Category
     State,
     Stats,
     Summary,
-    Tod,
     Watchpoints
 };
 

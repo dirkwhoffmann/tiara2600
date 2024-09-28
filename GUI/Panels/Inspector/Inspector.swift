@@ -280,13 +280,12 @@ class Inspector: DialogController {
     // Events panel
     @IBOutlet weak var evCpuProgress: NSTextField!
     @IBOutlet weak var evVicProgress: NSTextField!
-    @IBOutlet weak var evCia1Progress: NSTextField!
     @IBOutlet weak var evTableView: EventTableView!
 
     // Cached state of all C64 components
     var cpuInfo: tiara.CPUInfo!
-    var ciaInfo: tiara.CIAInfo!
-    var ciaStats: tiara.CIAStats!
+    var riotInfo: tiara.RIOTInfo!
+    var riotStats: tiara.RIOTStats!
     var memInfo: tiara.MemInfo!
     var tiaInfo: tiara.TIAInfo!
     var eventInfo: tiara.C64Info!
@@ -515,7 +514,7 @@ extension Inspector: NSTabViewDelegate {
                 
             case "CPU":     c64?.autoInspectionMask = mask([.CPUClass])
             case "Memory":  c64?.autoInspectionMask = mask([.MemoryClass])
-            case "CIA":     c64?.autoInspectionMask = mask([.CIAClass])
+            case "RIOT":    c64?.autoInspectionMask = mask([.RIOTClass])
             case "TIA":     c64?.autoInspectionMask = mask([.TIAClass])
             case "SID":     c64?.autoInspectionMask = mask([.SIDClass])
             case "Events":  c64?.autoInspectionMask = mask([.C64Class])
