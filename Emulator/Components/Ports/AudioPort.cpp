@@ -134,13 +134,6 @@ AudioPort::copyMono(float *buffer, isize n)
 {
     {   SYNCHRONIZED
 
-        // Be silent when the recorder is running (fill with zeroes)
-        if (recorder.isRecording()) {
-
-            for (isize i = 0; i < n; i++) { *buffer++ = 0; }
-            return 0;
-        }
-
         // Check for buffer underflows
         if (auto cnt = count(); cnt < n) {
 
@@ -176,13 +169,6 @@ isize
 AudioPort::copyStereo(float *left, float *right, isize n)
 {
     {   SYNCHRONIZED
-
-        // Be silent when the recorder is running (fill with zeroes)
-        if (recorder.isRecording()) {
-
-            for (isize i = 0; i < n; i++) { *left++ = *right++ = 0; }
-            return 0;
-        }
 
         // Check for buffer underflows
         if (auto cnt = count(); cnt < n) {
@@ -221,14 +207,6 @@ isize
 AudioPort::copyInterleaved(float *buffer, isize n)
 {
     {   SYNCHRONIZED
-
-        // Be silent when the recorder is running (fill with zeroes)
-        if (recorder.isRecording()) {
-
-            // Fill with zeroes
-            for (isize i = 0; i < n; i++) { *buffer++ = 0; }
-            return 0;
-        }
 
         // Check for buffer underflows
         if (auto cnt = count(); cnt < n) {

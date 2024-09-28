@@ -823,7 +823,6 @@ C64::endFrame()
     expansionport.endOfFrame();
     port1.execute();
     port2.execute();
-    recorder.vsyncHandler();
 }
 
 /*

@@ -112,12 +112,6 @@ Defaults::Defaults()
 
     setFallback(OPT_PADDLE_ORIENTATION,         PADDLE_HORIZONTAL);
 
-    setFallback(OPT_REC_FRAME_RATE,             50);
-    setFallback(OPT_REC_BIT_RATE,               512);
-    setFallback(OPT_REC_SAMPLE_RATE,            44100);
-    setFallback(OPT_REC_ASPECT_X,               768);
-    setFallback(OPT_REC_ASPECT_Y,               702);
-
     setFallback(OPT_SRV_PORT,                   8081,                   { SERVER_RSH });
     setFallback(OPT_SRV_PROTOCOL,               SRVPROT_DEFAULT,        { SERVER_RSH });
     setFallback(OPT_SRV_AUTORUN,                false,                  { SERVER_RSH });

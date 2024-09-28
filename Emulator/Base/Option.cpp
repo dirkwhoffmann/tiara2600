@@ -121,12 +121,6 @@ OptionParser::create(Option opt, i64 arg)
 
         case OPT_PADDLE_ORIENTATION:        return enumParser.template operator()<PaddleOrientationEnum>();
 
-        case OPT_REC_FRAME_RATE:            return numParser(" fps");
-        case OPT_REC_BIT_RATE:              return numParser(" kBit");
-        case OPT_REC_SAMPLE_RATE:           return numParser(" Hz");
-        case OPT_REC_ASPECT_X:              return numParser();
-        case OPT_REC_ASPECT_Y:              return numParser();
-
         case OPT_SRV_PORT:                  return numParser();
         case OPT_SRV_PROTOCOL:              return enumParser.template operator()<ServerProtocolEnum>();
         case OPT_SRV_AUTORUN:               return boolParser();

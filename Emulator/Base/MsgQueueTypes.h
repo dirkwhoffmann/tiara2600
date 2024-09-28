@@ -87,11 +87,6 @@ enum_long(MSG_TYPE)
     MSG_SNAPSHOT_TAKEN,     ///< A snapshot has been taken (see OPT_C64_SNAP_AUTO)
     MSG_SNAPSHOT_RESTORED,  ///< A snapshot has been restored
 
-    // Screen recording
-    MSG_RECORDING_STARTED,  ///< The screen recorder has started
-    MSG_RECORDING_STOPPED,  ///< The screen recorder has stopped
-    MSG_RECORDING_ABORTED,  ///< Screen recording has been aborted
-
     // Debugging
     MSG_DMA_DEBUG,          ///< The DMA debugger has been started or stopped
 
@@ -168,10 +163,6 @@ struct MsgTypeEnum : util::Reflection<MsgTypeEnum, MsgType> {
 
             case MSG_SNAPSHOT_TAKEN:        return "SNAPSHOT_TAKEN";
             case MSG_SNAPSHOT_RESTORED:     return "SNAPSHOT_RESTORED";
-
-            case MSG_RECORDING_STARTED:     return "RECORDING_STARTED";
-            case MSG_RECORDING_STOPPED:     return "RECORDING_STOPPED";
-            case MSG_RECORDING_ABORTED:     return "RECORDING_ABORTED";
 
             case MSG_DMA_DEBUG:             return "DMA_DEBUG";
 

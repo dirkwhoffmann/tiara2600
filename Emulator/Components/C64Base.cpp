@@ -38,7 +38,6 @@ C64::C64(class Emulator& ref, isize id) : CoreComponent(ref, id)
         &dmaDebugger,
         &retroShell,
         &regressionTester,
-        &recorder,
         &tia
     };
 

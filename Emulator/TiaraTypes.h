@@ -32,7 +32,6 @@
 #include "MsgQueueTypes.h"
 #include "OptionTypes.h"
 #include "PaddleTypes.h"
-#include "RecorderTypes.h"
 #include "RemoteManagerTypes.h"
 #include "RemoteServerTypes.h"
 #include "RetroShellTypes.h"

@@ -217,7 +217,6 @@ Headless::reportSize()
     msg("     ExpansionPort : %zu bytes\n", sizeof(ExpansionPort));
     msg("        RetroShell : %zu bytes\n", sizeof(RetroShell));
     msg("  RegressionTester : %zu bytes\n", sizeof(RegressionTester));
-    msg("          Recorder : %zu bytes\n", sizeof(Recorder));
     msg("          MsgQueue : %zu bytes\n", sizeof(MsgQueue));
     msg("          CmdQueue : %zu bytes\n", sizeof(CmdQueue));
     msg("\n");

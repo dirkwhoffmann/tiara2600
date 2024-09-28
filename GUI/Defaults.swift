@@ -285,10 +285,6 @@ struct Keys {
         // Screenshots
         static let screenshotSource       = "General.ScreenshotSource"
         static let screenshotTarget       = "General.ScreenshotTarget"
-        
-        // Screen captures
-        static let ffmpegPath             = "General.ffmpegPath"
-        static let captureSource          = "General.Source"
 
         // Fullscreen
         static let keepAspectRatio        = "General.FullscreenKeepAspectRatio"
@@ -315,10 +311,6 @@ extension DefaultsProxy {
         register(Keys.Gen.screenshotSource, 0)
         register(Keys.Gen.screenshotTarget, NSBitmapImageRep.FileType.png.rawValue)
 
-        // Captures
-        register(Keys.Gen.ffmpegPath, "")
-        register(Keys.Gen.captureSource, 0)
-
         // Fullscreen
         register(Keys.Gen.keepAspectRatio, false)
         register(Keys.Gen.exitOnEsc, true)
@@ -338,9 +330,6 @@ extension DefaultsProxy {
 
                      Keys.Gen.screenshotSource,
                      Keys.Gen.screenshotTarget,
-
-                     Keys.Gen.ffmpegPath,
-                     Keys.Gen.captureSource,
 
                      Keys.Gen.keepAspectRatio,
                      Keys.Gen.exitOnEsc,
@@ -367,9 +356,6 @@ extension Preferences {
         defaults.set(Keys.Gen.screenshotSource, screenshotSource)
         defaults.set(Keys.Gen.screenshotTarget, screenshotTargetIntValue)
 
-        defaults.set(Keys.Gen.ffmpegPath, ffmpegPath)
-        defaults.set(Keys.Gen.captureSource, captureSource)
-
         defaults.set(Keys.Gen.keepAspectRatio, keepAspectRatio)
         defaults.set(Keys.Gen.exitOnEsc, exitOnEsc)
 
@@ -390,9 +376,6 @@ extension Preferences {
 
         screenshotSource = defaults.int(Keys.Gen.screenshotSource)
         screenshotTargetIntValue = defaults.int(Keys.Gen.screenshotTarget)
-
-        ffmpegPath = defaults.string(Keys.Gen.ffmpegPath)
-        captureSource = defaults.int(Keys.Gen.captureSource)
 
         keepAspectRatio = defaults.bool(Keys.Gen.keepAspectRatio)
         exitOnEsc = defaults.bool(Keys.Gen.exitOnEsc)

@@ -123,16 +123,6 @@ extension MediaFileProxy {
     }
 }
 
-extension RecorderProxy {
-
-    func startRecording(rect: NSRect) throws {
-
-        let exception = ExceptionWrapper()
-        startRecording(rect, exception: exception)
-        if exception.errorCode != .OK { throw VC64Error(exception) }
-    }
-}
-
 extension RemoteManagerProxy {
 
     var icon: NSImage? {

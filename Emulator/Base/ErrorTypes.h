@@ -70,9 +70,6 @@ enum_long(VC64ERROR_CODE)
     VC64ERROR_ROM_DRIVE_MISSING,    ///< No Floppy Drive Rom installed
     VC64ERROR_ROM_MEGA65_MISMATCH,  ///< MEGA65 Roms have different version numbers
 
-    // Recorder
-    VC64ERROR_REC_LAUNCH,           ///< Can't launch the screen recorder
-
     // Snapshots
     VC64ERROR_SNAP_TOO_OLD,         ///< Snapshot was created with an older version
     VC64ERROR_SNAP_TOO_NEW,         ///< Snapshot was created with a later version
@@ -172,8 +169,6 @@ struct ErrorCodeEnum : util::Reflection<ErrorCodeEnum, ErrorCode> {
             case VC64ERROR_ROM_KERNAL_MISSING:      return "ROM_KERNAL_MISSING";
             case VC64ERROR_ROM_DRIVE_MISSING:       return "ROM_DRIVE_MISSING";
             case VC64ERROR_ROM_MEGA65_MISMATCH:     return "ROM_MEGA65_MISMATCH";
-
-            case VC64ERROR_REC_LAUNCH:              return "REC_LAUNCH";
 
             case VC64ERROR_SNAP_TOO_OLD:            return "SNAP_TOO_OLD";
             case VC64ERROR_SNAP_TOO_NEW:            return "SNAP_TOO_NEW";

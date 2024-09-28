@@ -22,7 +22,6 @@
 #include "TOD.h"
 #include "CIA.h"
 #include "CPU.h"
-#include "Recorder.h"
 
 // Ports
 #include "AudioPort.h"
@@ -142,7 +141,6 @@ public:
     RetroShell retroShell = RetroShell(*this);
     RemoteManager remoteManager = RemoteManager(*this);
     RegressionTester regressionTester = RegressionTester(*this);
-    Recorder recorder = Recorder(*this);
 
 
     //
@@ -289,7 +287,6 @@ public:
         CLONE(dmaDebugger)
         CLONE(retroShell)
         CLONE(regressionTester)
-        CLONE(recorder)
 
         CLONE_ARRAY(trigger)
         CLONE_ARRAY(eventid)

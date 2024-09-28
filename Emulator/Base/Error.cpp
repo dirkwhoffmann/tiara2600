@@ -181,10 +181,6 @@ Error::Error(ErrorCode code, const string &s)
             description = "Mega65 Rom revisions do not match.";
             break;
 
-        case VC64ERROR_REC_LAUNCH:
-            description = s;
-            break;
-
         case VC64ERROR_SNAP_TOO_OLD:
             description = "The snapshot was created with an older version of Tiara";
             description += " and is incompatible with this release.";

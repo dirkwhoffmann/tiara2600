@@ -27,13 +27,6 @@ class PreferencesController: DialogController {
     @IBOutlet weak var genScreenshotSourcePopup: NSPopUpButton!
     @IBOutlet weak var genScreenshotTargetPopup: NSPopUpButton!
         
-    // Screen captures
-    @IBOutlet weak var genFFmpegPath: NSComboBox!
-    @IBOutlet weak var genSource: NSPopUpButton!
-    @IBOutlet weak var genAspectX: NSTextField!
-    @IBOutlet weak var genAspectY: NSTextField!
-    @IBOutlet weak var genBitRate: NSComboBox!
-    
     // Fullscreen
     @IBOutlet weak var genAspectRatioButton: NSButton!
     @IBOutlet weak var genExitOnEscButton: NSButton!

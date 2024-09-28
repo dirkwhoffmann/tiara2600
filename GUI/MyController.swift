@@ -411,18 +411,6 @@ extension MyController {
             refreshStatusBar()
             hideOrShowDriveMenus()
 
-        case .RECORDING_STARTED:
-            window?.backgroundColor = .recordingColor
-            refreshStatusBar()
-
-        case .RECORDING_STOPPED:
-            window?.backgroundColor = .windowBackgroundColor
-            refreshStatusBar()
-
-        case .RECORDING_ABORTED:
-            refreshStatusBar()
-            showAlert(.recorderAborted)
-
         case .DMA_DEBUG:
             if value != 0 { renderer.zoomTextureOut() } else { renderer.zoomTextureIn() }
 

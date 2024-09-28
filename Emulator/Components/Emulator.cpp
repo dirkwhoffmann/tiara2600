@@ -381,7 +381,6 @@ Emulator::getDebugVariable(DebugFlag flag)
         case FLAG_EXP_DEBUG:        return EXP_DEBUG;
         case FLAG_USR_DEBUG:        return USR_DEBUG;
 
-        case FLAG_REC_DEBUG:        return REC_DEBUG;
         case FLAG_REU_DEBUG:        return REU_DEBUG;
         case FLAG_SCK_DEBUG:        return SCK_DEBUG;
         case FLAG_SRV_DEBUG:        return SRV_DEBUG;
@@ -469,7 +468,6 @@ Emulator::setDebugVariable(DebugFlag flag, bool val)
         case FLAG_EXP_DEBUG:        EXP_DEBUG       = val; break;
         case FLAG_USR_DEBUG:        USR_DEBUG       = val; break;
 
-        case FLAG_REC_DEBUG:        REC_DEBUG       = val; break;
         case FLAG_REU_DEBUG:        REU_DEBUG       = val; break;
         case FLAG_SCK_DEBUG:        SCK_DEBUG       = val; break;
         case FLAG_SRV_DEBUG:        SRV_DEBUG       = val; break;

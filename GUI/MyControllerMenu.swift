@@ -18,7 +18,6 @@ extension MyController: NSMenuItemValidation {
             let info = emu.info
             let powered = info.powered
             let running = info.running
-            var recording: Bool { return emu.recorder.recording }
 
             func validateURLlist(_ list: [URL], image: NSImage) -> Bool {
 
@@ -38,11 +37,6 @@ extension MyController: NSMenuItemValidation {
             }
 
             switch item.action {
-
-                // Machine menu
-            case #selector(MyController.captureScreenAction(_:)):
-                item.title = recording ? "Stop Recording" : "Record Screen"
-                return true
 
                 // Edit menu
             case #selector(MyController.stopAndGoAction(_:)):
@@ -262,49 +256,6 @@ extension MyController: NSMenuItemValidation {
         screenshotBrowser?.showSheet()
     }
 
-    @IBAction func captureScreenAction(_ sender: Any!) {
-
-        if let emu = emu {
-
-            if emu.recorder.recording {
-
-                emu.recorder.stopRecording()
-                exportVideoAction(self)
-                return
-            }
-
-            if !emu.recorder.hasFFmpeg {
-
-                if pref.ffmpegPath != "" {
-                    showAlert(.noFFmpegFound(exec: pref.ffmpegPath))
-                } else {
-                    showAlert(.noFFmpegInstalled)
-                }
-                return
-            }
-
-            var rect: CGRect
-            if pref.captureSource == 0 {
-                rect = renderer.canvas.visible
-            } else {
-                rect = renderer.canvas.entire
-            }
-
-            do {
-                try emu.recorder.startRecording(rect: rect)
-            } catch {
-
-                showAlert(.cantRecord, error: error)
-            }
-        }
-    }
-    
-    @IBAction func exportVideoAction(_ sender: Any!) {
-
-        let exporter = VideoExporter(with: self, nibName: "VideoExporter")
-        exporter?.showSheet()
-    }
-    
     //
     // Action methods (Edit menu)
     //

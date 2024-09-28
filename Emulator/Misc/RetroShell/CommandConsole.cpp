@@ -479,13 +479,6 @@ CommandConsole::initCommands(Command &root)
 
         remoteManager.rshServer.disconnect();
     });
-
-
-    //
-    // Miscellaneous (Recorder)
-    //
-
-    cmd = registerComponent(recorder);
 }
 
 }

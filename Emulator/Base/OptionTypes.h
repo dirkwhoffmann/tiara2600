@@ -131,13 +131,6 @@ enum_long(OPT)
     // Paddles
     OPT_PADDLE_ORIENTATION,     ///< Paddle value mapping scheme
 
-    // Screen recorder
-    OPT_REC_FRAME_RATE,         ///< Frame rate of the recorded video
-    OPT_REC_BIT_RATE,           ///< Bit rate of the recorded video
-    OPT_REC_SAMPLE_RATE,        ///< Audio sample rate of the recorded video
-    OPT_REC_ASPECT_X,           ///< Numerator of the video's aspect ratio
-    OPT_REC_ASPECT_Y,           ///< Denumerator of the video's aspect ratio
-
     // Remote servers
     OPT_SRV_PORT,
     OPT_SRV_PROTOCOL,
@@ -254,12 +247,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
 
             case OPT_PADDLE_ORIENTATION:    return "PADDLE.ORIENTATION";
 
-            case OPT_REC_FRAME_RATE:        return "REC.FRAME_RATE";
-            case OPT_REC_BIT_RATE:          return "REC.BIT_RATE";
-            case OPT_REC_SAMPLE_RATE:       return "REC.SAMPLE_RATE";
-            case OPT_REC_ASPECT_X:          return "REC.ASPECT_X";
-            case OPT_REC_ASPECT_Y:          return "REC.ASPECT_Y";
-
             case OPT_SRV_PORT:              return "SRV.PORT";
             case OPT_SRV_PROTOCOL:          return "SRV.PROTOCOL";
             case OPT_SRV_AUTORUN:           return "SRV.AUTORUN";
@@ -367,12 +354,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_AUTOFIRE_DELAY:        return "Autofire delay in frames";
 
             case OPT_PADDLE_ORIENTATION:    return "Paddle value mapping scheme";
-
-            case OPT_REC_FRAME_RATE:        return "Frame rate of the recorded video";
-            case OPT_REC_BIT_RATE:          return "Bit rate of the recorded video";
-            case OPT_REC_SAMPLE_RATE:       return "Audio sample rate of the recorded video";
-            case OPT_REC_ASPECT_X:          return "Numerator of the video's aspect ratio";
-            case OPT_REC_ASPECT_Y:          return "Denumerator of the video's aspect ratio";
 
             case OPT_SRV_PORT:              return "Server port";
             case OPT_SRV_PROTOCOL:          return "Server protocol";

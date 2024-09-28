@@ -33,7 +33,6 @@ protected:
     class Memory &mem;
     class Monitor &monitor;
     class MsgQueue &msgQueue;
-    class Recorder &recorder;
     class RegressionTester &regressionTester;
     class RemoteManager &remoteManager;
     class RetroShell &retroShell;

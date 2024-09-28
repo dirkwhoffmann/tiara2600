@@ -90,7 +90,6 @@ enum_long(DEBUG_FLAG)
     FLAG_USR_DEBUG,         ///< User port
 
     // Other components
-    FLAG_REC_DEBUG,         ///< Debug the screen recorder
     FLAG_REU_DEBUG,         ///< Debug the REU memory expansion
     FLAG_SCK_DEBUG,         ///< Debug the socket interface
     FLAG_SRV_DEBUG,         ///< Debug the remote servers
@@ -183,7 +182,6 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
             case FLAG_USR_DEBUG:                return "USR_DEBUG";
 
                 // Other components
-            case FLAG_REC_DEBUG:                return "REC_DEBUG";
             case FLAG_REU_DEBUG:                return "REU_DEBUG";
             case FLAG_SCK_DEBUG:                return "SCK_DEBUG";
             case FLAG_SRV_DEBUG:                return "SRV_DEBUG";
@@ -271,7 +269,6 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
             case FLAG_USR_DEBUG:                return "User port";
 
                 // Other components
-            case FLAG_REC_DEBUG:                return "Screen recorder";
             case FLAG_REU_DEBUG:                return "REU memory expansion";
             case FLAG_SCK_DEBUG:                return "Sockets";
             case FLAG_SRV_DEBUG:                return "Remote servers";

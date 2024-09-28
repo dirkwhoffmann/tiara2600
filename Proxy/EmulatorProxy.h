@@ -30,7 +30,6 @@ using namespace tiara;
 @class MemoryProxy;
 @class PaddleProxy;
 @class MyController;
-@class RecorderProxy;
 @class RemoteManagerProxy;
 @class RetroShellProxy;
 @class SIDProxy;
@@ -102,7 +101,6 @@ using namespace tiara;
     ExpansionPortProxy *expansionport;
     MemoryProxy *mem;
     PaddleProxy *paddle;
-    RecorderProxy *recorder;
     RetroShellProxy *retroShell;
     SIDProxy *sid;
     TIAProxy *tia;
@@ -121,7 +119,6 @@ using namespace tiara;
 @property (readonly, strong) DmaDebuggerProxy *dmaDebugger;
 @property (readonly, strong) ExpansionPortProxy *expansionport;
 @property (readonly, strong) MemoryProxy *mem;
-@property (readonly, strong) RecorderProxy *recorder;
 @property (readonly, strong) RemoteManagerProxy *remoteManager;
 @property (readonly, strong) RetroShellProxy *retroShell;
 @property (readonly, strong) SIDProxy *sid;
@@ -442,28 +439,6 @@ struct GuardInfo {
 //
 
 @interface JoystickProxy : SubComponentProxy { }
-
-@end
-
-
-//
-// Recorder
-//
-
-@interface RecorderProxy : SubComponentProxy { }
-
-@property (readonly) RecorderConfig config;
-@property (readonly) RecorderInfo info;
-@property (readonly) RecorderInfo cachedInfo;
-
-@property NSString *path;
-- (NSString *)findFFmpeg:(NSInteger)nr;
-@property (readonly) BOOL hasFFmpeg;
-@property (readonly) BOOL recording;
-
-- (void)startRecording:(NSRect)rect exception:(ExceptionWrapper *)ex;
-- (void)stopRecording;
-- (BOOL)exportAs:(NSString *)path;
 
 @end
 
