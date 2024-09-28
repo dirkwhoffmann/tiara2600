@@ -416,73 +416,7 @@ C64::set(const string &opt, const string &value, const std::vector<isize> objids
 void
 C64::set(C64Model model)
 {
-    assert_enum(C64Model, model);
 
-    {   SUSPENDED
-
-        powerOff();
-        emulator.revertToFactorySettings();
-
-        switch(model) {
-
-            case C64_MODEL_PAL:
-
-                set(OPT_VICII_REVISION, VICII_PAL_6569_R3);
-                set(OPT_VICII_GRAY_DOT_BUG, false);
-                set(OPT_CIA_REVISION, MOS_6526);
-                set(OPT_CIA_TIMER_B_BUG, true);
-                set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
-                break;
-
-            case C64_MODEL_PAL_II:
-
-                set(OPT_VICII_REVISION, VICII_PAL_8565);
-                set(OPT_VICII_GRAY_DOT_BUG, true);
-                set(OPT_CIA_REVISION, MOS_8521);
-                set(OPT_CIA_TIMER_B_BUG, false);
-                set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
-                break;
-
-            case C64_MODEL_PAL_OLD:
-
-                set(OPT_VICII_REVISION, VICII_PAL_6569_R1);
-                set(OPT_VICII_GRAY_DOT_BUG, false);
-                set(OPT_CIA_REVISION, MOS_6526);
-                set(OPT_CIA_TIMER_B_BUG, true);
-                set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
-                break;
-
-            case C64_MODEL_NTSC:
-
-                set(OPT_VICII_REVISION, VICII_NTSC_6567);
-                set(OPT_VICII_GRAY_DOT_BUG, false);
-                set(OPT_CIA_REVISION, MOS_6526);
-                set(OPT_CIA_TIMER_B_BUG, false);
-                set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
-                break;
-
-            case C64_MODEL_NTSC_II:
-
-                set(OPT_VICII_REVISION, VICII_NTSC_8562);
-                set(OPT_VICII_GRAY_DOT_BUG, true);
-                set(OPT_CIA_REVISION, MOS_8521);
-                set(OPT_CIA_TIMER_B_BUG, true);
-                set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
-                break;
-
-            case C64_MODEL_NTSC_OLD:
-
-                set(OPT_VICII_REVISION, VICII_NTSC_6567_R56A);
-                set(OPT_VICII_GRAY_DOT_BUG, false);
-                set(OPT_CIA_REVISION, MOS_6526);
-                set(OPT_CIA_TIMER_B_BUG, false);
-                set(OPT_MEM_INIT_PATTERN, RAM_PATTERN_VICE);
-                break;
-
-            default:
-                fatalError;
-        }
-    }
 }
 
 Configurable *

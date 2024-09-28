@@ -200,12 +200,6 @@ class VICII final : public SubComponent, public Inspectable<VICIIInfo, VICIIStat
 
     Options options = {
 
-        OPT_VICII_REVISION,
-        OPT_VICII_POWER_SAVE,
-        OPT_VICII_GRAY_DOT_BUG,
-        OPT_VICII_HIDE_SPRITES,
-        OPT_VICII_SS_COLLISIONS,
-        OPT_VICII_SB_COLLISIONS
     };
 
     // Current configuration
@@ -223,7 +217,7 @@ class VICII final : public SubComponent, public Inspectable<VICIIInfo, VICIIStat
 public:
     
     // Subcomponents
-    DmaDebugger dmaDebugger;
+
 
     /* The VICII function table. Each entry in this table is a pointer to a
      * VICII method executed in a certain scanline cycle:
@@ -769,7 +763,6 @@ public:
 
     VICII& operator= (const VICII& other) {
 
-        CLONE(dmaDebugger)
 
         CLONE(reg)
         CLONE(rasterIrqLine)
@@ -984,7 +977,7 @@ public:
     void checkOption(Option opt, i64 value) override;
     void setOption(Option opt, i64 value) override;
 
-    bool dmaDebug() const { return dmaDebugger.config.dmaDebug; }
+    // bool dmaDebug() const { return dmaDebugger.config.dmaDebug; }
 
 private:
     

@@ -274,7 +274,7 @@ CommandConsole::initCommands(Command &root)
     // Components (DMA Debugger)
     //
 
-    cmd = registerComponent(vic.dmaDebugger);
+    cmd = registerComponent(dmaDebugger);
 
     root.add({cmd, "open"},
              "Opens the DMA debugger",

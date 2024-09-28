@@ -12,11 +12,7 @@ extension ConfigurationController {
     func refreshPerformanceTab() {
                                 
         // Power saving
-        comViciiPowerSave.state = config.viciiPowerSave ? .on : .off
-
-        // Collision detection
-        comSsCollisions.state = config.ssCollisions ? .on : .off
-        comSbCollisions.state = config.sbCollisions ? .on : .off
+        comViciiPowerSave.state = config.tiaPowerSave ? .on : .off
 
         // Warp
         comWarpMode.selectItem(withTag: config.warpMode)
@@ -43,21 +39,7 @@ extension ConfigurationController {
 
     @IBAction func comViciiPowerSaveAction(_ sender: NSButton!) {
         
-        config.viciiPowerSave = sender.state == .on
-    }
-
-    //
-    // Action methods (collision detection)
-    //
-
-    @IBAction func comSsCollisionsAction(_ sender: NSButton!) {
-        
-        config.ssCollisions = sender.state == .on
-    }
-
-    @IBAction func comSbCollisionsAction(_ sender: NSButton!) {
-        
-        config.sbCollisions = sender.state == .on
+        config.tiaPowerSave = sender.state == .on
     }
 
     //
@@ -106,6 +88,7 @@ extension ConfigurationController {
             config.applyPerformanceUserDefaults()
 
             // Override some options
+            /*
             switch sender.selectedTag() {
 
             case 1: // Accurate
@@ -123,6 +106,7 @@ extension ConfigurationController {
             default:
                 break
             }
+            */
 
             emu.resume()
         }

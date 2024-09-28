@@ -47,14 +47,6 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_TIA_REVISION:              return enumParser.template operator()<TIARevisionEnum>();
         case OPT_TIA_POWER_SAVE:            return boolParser();
 
-        case OPT_VICII_REVISION:            return enumParser.template operator()<VICIIRevisionEnum>();
-        case OPT_VICII_GRAY_DOT_BUG:        return boolParser();
-        case OPT_VICII_POWER_SAVE:          return boolParser();
-        case OPT_VICII_HIDE_SPRITES:        return boolParser();
-        case OPT_VICII_SS_COLLISIONS:       return boolParser();
-        case OPT_VICII_SB_COLLISIONS:       return boolParser();
-        case OPT_VICII_CUT_LAYERS:          return numParser();
-        case OPT_VICII_CUT_OPACITY:         return numParser("%");
         case OPT_DMA_DEBUG_ENABLE:          return boolParser();
         case OPT_DMA_DEBUG_MODE:            return enumParser.template operator()<DmaDisplayModeEnum>();
         case OPT_DMA_DEBUG_OPACITY:         return numParser("%");

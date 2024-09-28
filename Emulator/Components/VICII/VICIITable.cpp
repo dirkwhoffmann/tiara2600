@@ -69,7 +69,7 @@ VICII::updateVicFunctionTable()
 {    
     trace(VICII_DEBUG, "updateVicFunctionTable\n");
     
-    u16 flags = c64.getHeadless() ? HEADLESS_CYCLE : dmaDebug() ? DEBUG_CYCLE : 0;
+    u16 flags = 0;
     
     for (isize i = 1; i < 66; i++) {
 

@@ -29,6 +29,7 @@ protected:
     class CPU &cpu;
     class ExpansionPort &expansionPort;
     class Host &host;
+    class DmaDebugger &dmaDebugger;
     class Memory &mem;
     class Monitor &monitor;
     class MsgQueue &msgQueue;

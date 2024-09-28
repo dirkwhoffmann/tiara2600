@@ -36,10 +36,6 @@ DmaDebugger::getOption(Option option) const
         case OPT_DMA_DEBUG_ENABLE:      return config.dmaDebug;
         case OPT_DMA_DEBUG_MODE:        return config.dmaDisplayMode;
         case OPT_DMA_DEBUG_OPACITY:     return config.dmaOpacity;
-
-        case OPT_VICII_CUT_LAYERS:      return config.cutLayers;
-        case OPT_VICII_CUT_OPACITY:     return config.cutOpacity;
-
         case OPT_DMA_DEBUG_CHANNEL0:    return config.dmaChannel[0];
         case OPT_DMA_DEBUG_CHANNEL1:    return config.dmaChannel[1];
         case OPT_DMA_DEBUG_CHANNEL2:    return config.dmaChannel[2];
@@ -75,16 +71,12 @@ DmaDebugger::checkOption(Option opt, i64 value)
             return;
 
         case OPT_DMA_DEBUG_OPACITY:
-        case OPT_VICII_CUT_LAYERS:
-        case OPT_VICII_CUT_OPACITY:
-
         case OPT_DMA_DEBUG_CHANNEL0:
         case OPT_DMA_DEBUG_CHANNEL1:
         case OPT_DMA_DEBUG_CHANNEL2:
         case OPT_DMA_DEBUG_CHANNEL3:
         case OPT_DMA_DEBUG_CHANNEL4:
         case OPT_DMA_DEBUG_CHANNEL5:
-
         case OPT_DMA_DEBUG_COLOR0:
         case OPT_DMA_DEBUG_COLOR1:
         case OPT_DMA_DEBUG_COLOR2:
@@ -120,9 +112,6 @@ DmaDebugger::setOption(Option opt, i64 value)
             return;
 
         case OPT_DMA_DEBUG_OPACITY:     config.dmaOpacity = (u8)value; return;
-        case OPT_VICII_CUT_LAYERS:      config.cutLayers = (u16)value; return;
-        case OPT_VICII_CUT_OPACITY:     config.cutOpacity = (u8)value; return;
-
         case OPT_DMA_DEBUG_CHANNEL0:    config.dmaChannel[0] = value; return;
         case OPT_DMA_DEBUG_CHANNEL1:    config.dmaChannel[1] = value; return;
         case OPT_DMA_DEBUG_CHANNEL2:    config.dmaChannel[2] = value; return;

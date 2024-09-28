@@ -62,10 +62,6 @@ typedef struct
     u32 dmaColor[6];
     DmaDisplayMode dmaDisplayMode;
     u8 dmaOpacity;
-    
-    // Cutter
-    u16 cutLayers;
-    u8 cutOpacity;
 }
 DmaDebuggerConfig;
 

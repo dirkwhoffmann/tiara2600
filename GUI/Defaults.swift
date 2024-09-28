@@ -597,8 +597,8 @@ extension DefaultsProxy {
 
         debug(.defaults)
 
-        remove(.VICII_REVISION)
-        remove(.VICII_POWER_SAVE)
+        remove(.TIA_REVISION)
+        remove(.TIA_POWER_SAVE)
 
         remove(.CIA_REVISION)
         remove(.CIA_TIMER_B_BUG)
@@ -619,8 +619,7 @@ extension Configuration {
 
             let defaults = EmulatorProxy.defaults!
 
-            defaults.set(.VICII_REVISION, vicRevision)
-            defaults.set(.VICII_GRAY_DOT_BUG, vicGrayDotBug)
+            defaults.set(.TIA_REVISION, tiaRevision)
 
             defaults.set(.CIA_REVISION, ciaRevision)
             defaults.set(.CIA_TIMER_B_BUG, ciaTimerBBug)
@@ -643,8 +642,7 @@ extension Configuration {
 
             let defaults = EmulatorProxy.defaults!
 
-            vicRevision = defaults.get(.VICII_REVISION)
-            vicGrayDotBug = defaults.get(.VICII_GRAY_DOT_BUG) != 0
+            tiaRevision = defaults.get(.TIA_REVISION)
 
             ciaRevision = defaults.get(.CIA_REVISION)
             ciaTimerBBug = defaults.get(.CIA_TIMER_B_BUG) != 0
@@ -747,9 +745,7 @@ extension DefaultsProxy {
 
         debug(.defaults)
 
-        remove(.VICII_POWER_SAVE)
-        remove(.VICII_SS_COLLISIONS)
-        remove(.VICII_SB_COLLISIONS)
+        remove(.TIA_POWER_SAVE)
         remove(.C64_WARP_MODE)
         remove(.C64_WARP_BOOT)
         remove(.C64_SPEED_BOOST)
@@ -770,9 +766,7 @@ extension Configuration {
 
             let defaults = EmulatorProxy.defaults!
 
-            defaults.set(.VICII_POWER_SAVE, viciiPowerSave)
-            defaults.set(.VICII_SS_COLLISIONS, ssCollisions)
-            defaults.set(.VICII_SB_COLLISIONS, sbCollisions)
+            defaults.set(.TIA_POWER_SAVE, tiaPowerSave)
             defaults.set(.C64_WARP_MODE, warpMode)
             defaults.set(.C64_WARP_BOOT, warpBoot)
             defaults.set(.C64_SPEED_BOOST, speedBoost)
@@ -795,9 +789,7 @@ extension Configuration {
 
             let defaults = EmulatorProxy.defaults!
 
-            viciiPowerSave = defaults.get(.VICII_POWER_SAVE) != 0
-            ssCollisions = defaults.get(.VICII_SS_COLLISIONS) != 0
-            sbCollisions = defaults.get(.VICII_SB_COLLISIONS) != 0
+            tiaPowerSave = defaults.get(.TIA_POWER_SAVE) != 0
             warpMode = defaults.get(.C64_WARP_MODE)
             warpBoot = defaults.get(.C64_WARP_BOOT)
             speedBoost = defaults.get(.C64_SPEED_BOOST)

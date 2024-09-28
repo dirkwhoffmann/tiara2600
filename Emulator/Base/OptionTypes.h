@@ -46,16 +46,6 @@ enum_long(OPT)
     OPT_TIA_REVISION,           ///< Chip revision
     OPT_TIA_POWER_SAVE,         ///< Enable fast-paths
 
-    // VICII
-    OPT_VICII_REVISION,         ///< Chip revision
-    OPT_VICII_GRAY_DOT_BUG,     ///< Emulate gray-dot bug
-    OPT_VICII_POWER_SAVE,       ///< Enable fast-paths
-    OPT_VICII_HIDE_SPRITES,     ///< Hide some sprites
-    OPT_VICII_CUT_LAYERS,       ///< Cutout some graphics layers
-    OPT_VICII_CUT_OPACITY,      ///< Cutout opacity
-    OPT_VICII_SS_COLLISIONS,    ///< Check for sprite-sprite collisions
-    OPT_VICII_SB_COLLISIONS,    ///< Check for sprite-background collisions
-
     // DMA Debugger
     OPT_DMA_DEBUG_ENABLE,       ///< Global on/off switch for the DMA debugger
     OPT_DMA_DEBUG_MODE,         ///< DMA texture overlay mode
@@ -190,15 +180,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_TIA_REVISION:          return "TIA.REVISION";
             case OPT_TIA_POWER_SAVE:        return "TIA.POWER_SAVE";
 
-            case OPT_VICII_REVISION:        return "VICII.REVISION";
-            case OPT_VICII_GRAY_DOT_BUG:    return "VICII.GRAY_DOT_BUG";
-            case OPT_VICII_POWER_SAVE:      return "VICII.POWER_SAVE";
-            case OPT_VICII_HIDE_SPRITES:    return "VICII.HIDE_SPRITES";
-            case OPT_VICII_CUT_LAYERS:      return "VICII.CUT_LAYERS";
-            case OPT_VICII_CUT_OPACITY:     return "VICII.CUT_OPACITY";
-            case OPT_VICII_SS_COLLISIONS:   return "VICII.SS_COLLISIONS";
-            case OPT_VICII_SB_COLLISIONS:   return "VICII.SB_COLLISIONS";
-
             case OPT_DMA_DEBUG_ENABLE:      return "DMA_DEBUG.ENABLE";
             case OPT_DMA_DEBUG_MODE:        return "DMA_DEBUG.MODE";
             case OPT_DMA_DEBUG_OPACITY:     return "DMA_DEBUG.OPACITY";
@@ -313,15 +294,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
 
             case OPT_TIA_REVISION:          return "Video standard";
             case OPT_TIA_POWER_SAVE:        return "Take fast paths";
-
-            case OPT_VICII_REVISION:        return "Chip revision";
-            case OPT_VICII_GRAY_DOT_BUG:    return "Emulate gray-dot bug";
-            case OPT_VICII_POWER_SAVE:      return "Take fast paths";
-            case OPT_VICII_HIDE_SPRITES:    return "Hide sprites";
-            case OPT_VICII_CUT_LAYERS:      return "Cut out graphics layers";
-            case OPT_VICII_CUT_OPACITY:     return "Opacity";
-            case OPT_VICII_SS_COLLISIONS:   return "Sprite-sprite collisions";
-            case OPT_VICII_SB_COLLISIONS:   return "Sprite-background collisions";
 
             case OPT_DMA_DEBUG_ENABLE:      return "DMA Debugger";
             case OPT_DMA_DEBUG_MODE:        return "DMA Debugger style";

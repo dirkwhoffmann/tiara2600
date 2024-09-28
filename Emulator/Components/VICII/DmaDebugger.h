@@ -35,8 +35,6 @@ class DmaDebugger final : public SubComponent {
         OPT_DMA_DEBUG_ENABLE,
         OPT_DMA_DEBUG_MODE,
         OPT_DMA_DEBUG_OPACITY,
-        OPT_VICII_CUT_LAYERS,
-        OPT_VICII_CUT_OPACITY,
         OPT_DMA_DEBUG_CHANNEL0,
         OPT_DMA_DEBUG_CHANNEL1,
         OPT_DMA_DEBUG_CHANNEL2,
@@ -145,16 +143,6 @@ public:
     
     // Superimposes the debug output onto the current scanline
     void computeOverlay(u32 *emuTexture, u32 *dmaTexture);
-
-    
-    //
-    // Cutting layers
-    //
-    
-public:
-    
-    // Cuts out certain graphics layers
-    void cutLayers();
 };
 
 }

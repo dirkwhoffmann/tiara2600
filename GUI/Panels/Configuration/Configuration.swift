@@ -26,31 +26,11 @@ class Configuration {
     // Hardware
     //
     
-    var vicRevision: Int {
-        get { return emu?.get(.VICII_REVISION) ?? 0 }
-        set { emu?.set(.VICII_REVISION, value: newValue) }
+    var tiaRevision: Int {
+        get { return emu?.get(.TIA_REVISION) ?? 0 }
+        set { emu?.set(.TIA_REVISION, value: newValue) }
     }
 
-    var vicGrayDotBug: Bool {
-        get { return emu?.get(.VICII_GRAY_DOT_BUG) != 0 }
-        set { emu?.set(.VICII_GRAY_DOT_BUG, enable: newValue) }
-    }
-    
-    var vicHideSprites: Bool {
-        get { return emu?.get(.VICII_HIDE_SPRITES) != 0 }
-        set { emu?.set(.VICII_HIDE_SPRITES, enable: newValue) }
-    }
-        
-    var vicCutLayers: Int {
-        get { return emu?.get(.VICII_CUT_LAYERS) ?? 0 }
-        set { emu?.set(.VICII_CUT_LAYERS, value: newValue) }
-    }
-    
-    var vicCutOpacity: Int {
-        get { return emu?.get(.VICII_CUT_OPACITY) ?? 0 }
-        set { emu?.set(.VICII_CUT_OPACITY, value: newValue) }
-    }
-        
     var ciaRevision: Int {
         get { return emu?.get(.CIA_REVISION) ?? 0 }
         set { emu?.set(.CIA_REVISION, value: newValue) }
@@ -131,19 +111,9 @@ class Configuration {
     // Performance
     //
 
-    var viciiPowerSave: Bool {
-        get { return emu?.get(.VICII_POWER_SAVE) != 0 }
-        set { emu?.set(.VICII_POWER_SAVE, enable: newValue) }
-    }
-
-    var ssCollisions: Bool {
-        get { return emu?.get(.VICII_SS_COLLISIONS) != 0 }
-        set { emu?.set(.VICII_SS_COLLISIONS, enable: newValue) }
-    }
-
-    var sbCollisions: Bool {
-        get { return emu?.get(.VICII_SB_COLLISIONS) != 0 }
-        set { emu?.set(.VICII_SB_COLLISIONS, enable: newValue) }
+    var tiaPowerSave: Bool {
+        get { return emu?.get(.TIA_POWER_SAVE) != 0 }
+        set { emu?.set(.TIA_POWER_SAVE, enable: newValue) }
     }
 
     var warpMode: Int {

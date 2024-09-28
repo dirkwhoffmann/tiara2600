@@ -26,7 +26,7 @@ namespace tiara {
 #define SPR6 0x40
 #define SPR7 0x80
 
-VICII::VICII(C64 &ref) : SubComponent(ref), dmaDebugger(ref)
+VICII::VICII(C64 &ref) : SubComponent(ref)
 {    
     subComponents = std::vector<CoreComponent *> { &dmaDebugger };
 
@@ -872,9 +872,6 @@ VICII::endScanline()
     // Set vertical flipflop if condition was hit
     if (verticalFrameFFsetCond) setVerticalFrameFF(true);
     
-    // Cut out layers if requested
-    dmaDebugger.cutLayers();
-
     // Prepare buffers for the next line
     for (isize i = 0; i < Texture::width; i++) { zBuffer[i] = 0; }
 }

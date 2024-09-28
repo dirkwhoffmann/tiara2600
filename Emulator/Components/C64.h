@@ -140,6 +140,7 @@ public:
     MsgQueue msgQueue = MsgQueue();
 
     // Misc
+    DmaDebugger dmaDebugger = DmaDebugger(*this);
     RetroShell retroShell = RetroShell(*this);
     RemoteManager remoteManager = RemoteManager(*this);
     RegressionTester regressionTester = RegressionTester(*this);
@@ -287,6 +288,7 @@ public:
         CLONE(port2)
         CLONE(expansionport)
         CLONE(monitor)
+        CLONE(dmaDebugger)
         CLONE(retroShell)
         CLONE(regressionTester)
         CLONE(recorder)

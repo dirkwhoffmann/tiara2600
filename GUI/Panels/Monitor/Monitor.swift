@@ -87,35 +87,6 @@ class Monitor: DialogController {
             busChannelS.state = dma.dmaChannel.5 ? .on : .off
             busOpacity.integerValue = Int(dma.dmaOpacity)
             busDisplayMode.selectItem(withTag: dma.dmaDisplayMode.rawValue)
-
-            // Layer debugger
-            let layers = config.vicCutLayers
-            cutEnable.state = (layers & 0x1000) != 0 ? .on : .off
-            cutBackground.state = (layers & 0x800) != 0 ? .on : .off
-            cutForeground.state = (layers & 0x400) != 0 ? .on : .off
-            cutBackground.state = (layers & 0x200) != 0 ? .on : .off
-            cutSprites.state = (layers & 0x100) != 0 ? .on : .off
-            cutSprite7.state = (layers & 0x80) != 0 ? .on : .off
-            cutSprite6.state = (layers & 0x40) != 0 ? .on : .off
-            cutSprite5.state = (layers & 0x20) != 0 ? .on : .off
-            cutSprite4.state = (layers & 0x10) != 0 ? .on : .off
-            cutSprite3.state = (layers & 0x08) != 0 ? .on : .off
-            cutSprite2.state = (layers & 0x04) != 0 ? .on : .off
-            cutSprite1.state = (layers & 0x02) != 0 ? .on : .off
-            cutSprite0.state = (layers & 0x01) != 0 ? .on : .off
-            cutOpacity.integerValue = config.vicCutOpacity
-
-            cutSprite7.isEnabled = (layers & 0x100) != 0
-            cutSprite6.isEnabled = (layers & 0x100) != 0
-            cutSprite5.isEnabled = (layers & 0x100) != 0
-            cutSprite4.isEnabled = (layers & 0x100) != 0
-            cutSprite3.isEnabled = (layers & 0x100) != 0
-            cutSprite2.isEnabled = (layers & 0x100) != 0
-            cutSprite1.isEnabled = (layers & 0x100) != 0
-            cutSprite0.isEnabled = (layers & 0x100) != 0
-
-            // Sprites
-            hideSprites.state = config.vicHideSprites ? .on : .off
         }
     }
         
@@ -167,53 +138,5 @@ class Monitor: DialogController {
     @IBAction func busOpacityAction(_ sender: NSSlider!) {
         
         emu?.set(.DMA_DEBUG_OPACITY, value: sender.integerValue)
-    }
-    
-    @IBAction func hideSpritesAction(_ sender: NSButton!) {
-        
-        config.vicHideSprites = sender.state == .on
-    }
-    
-    @IBAction func cutOpacityAction(_ sender: NSSlider!) {
-        
-        config.vicCutOpacity = sender.integerValue
-    }
-    
-    func addLayer(_ mask: Int) {
-        config.vicCutLayers = config.vicCutLayers | mask
-    }
-    func removeLayer(_ mask: Int) {
-        config.vicCutLayers = config.vicCutLayers & ~mask
-    }
-
-    @IBAction func cutEnableAction(_ sender: NSButton!) {
-
-        if sender.state == .on { addLayer(0x1000) } else { removeLayer(0x1000) }
-    }
-    
-    @IBAction func cutBorderAction(_ sender: NSButton!) {
-    
-        if sender.state == .on { addLayer(0x800) } else { removeLayer(0x800) }
-    }
-
-    @IBAction func cutForegroundAction(_ sender: NSButton!) {
-    
-        if sender.state == .on { addLayer(0x400) } else { removeLayer(0x400) }
-    }
-
-    @IBAction func cutBackgroundAction(_ sender: NSButton!) {
-    
-        if sender.state == .on { addLayer(0x200) } else { removeLayer(0x200) }
-    }
-
-    @IBAction func cutSpritesAction(_ sender: NSButton!) {
-    
-        if sender.state == .on { addLayer(0x100) } else { removeLayer(0x100) }
-    }
-
-    @IBAction func cutSingleSpriteAction(_ sender: NSButton!) {
-    
-        let sprite = sender.tag
-        if sender.state == .on { addLayer(1 << sprite) } else { removeLayer(1 << sprite) }
     }
 }

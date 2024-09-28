@@ -42,15 +42,6 @@ Defaults::Defaults()
     setFallback(OPT_TIA_REVISION,               TIA_NTSC);
     setFallback(OPT_TIA_POWER_SAVE,             true);
 
-    setFallback(OPT_VICII_REVISION,             VICII_PAL_8565);
-    setFallback(OPT_VICII_POWER_SAVE,           true);
-    setFallback(OPT_VICII_GRAY_DOT_BUG,         true);
-    setFallback(OPT_VICII_HIDE_SPRITES,         false);
-    setFallback(OPT_VICII_SB_COLLISIONS,        true);
-    setFallback(OPT_VICII_SS_COLLISIONS,        true);
-    setFallback(OPT_VICII_CUT_LAYERS,           0xFF);
-    setFallback(OPT_VICII_CUT_OPACITY,          0xFF);
-
     setFallback(OPT_DMA_DEBUG_ENABLE,           false);
     setFallback(OPT_DMA_DEBUG_MODE,             DMA_DISPLAY_MODE_FG_LAYER);
     setFallback(OPT_DMA_DEBUG_OPACITY,          0x80);

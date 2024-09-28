@@ -204,89 +204,20 @@ VICII::getSpriteInfo(isize nr)
 i64
 VICII::getOption(Option option) const
 {
-    switch (option) {
 
-        case OPT_VICII_REVISION:        return config.awaiting;
-        case OPT_VICII_POWER_SAVE:      return config.powerSave;
-        case OPT_VICII_GRAY_DOT_BUG:    return config.grayDotBug;
-        case OPT_VICII_HIDE_SPRITES:    return config.hideSprites;
-        case OPT_VICII_SS_COLLISIONS:   return config.checkSSCollisions;
-        case OPT_VICII_SB_COLLISIONS:   return config.checkSBCollisions;
-
-        default:
-            fatalError;
-    }
+        fatalError;
 }
 
 void
 VICII::checkOption(Option opt, i64 value)
 {
-    switch (opt) {
 
-        case OPT_VICII_REVISION:
-
-            if (!VICIIRevisionEnum::isValid(value)) {
-                throw Error(VC64ERROR_OPT_INV_ARG, VICIIRevisionEnum::keyList());
-            }
-            return;
-
-        case OPT_VICII_POWER_SAVE:
-        case OPT_VICII_GRAY_DOT_BUG:
-        case OPT_VICII_HIDE_SPRITES:
-        case OPT_VICII_SS_COLLISIONS:
-        case OPT_VICII_SB_COLLISIONS:
-
-            return;
-
-        default:
-            throw Error(VC64ERROR_OPT_UNSUPPORTED);
-    }
 }
 
 void
 VICII::setOption(Option opt, i64 value)
 {
-    checkOption(opt, value);
-    
-    switch (opt) {
-
-        case OPT_VICII_REVISION:
-
-            config.awaiting = VICIIRevision(value);
-
-            // If the emulator is powered off, perform the change immediately
-            if (isPoweredOff()) updateRevision();
-
-            return;
-
-        case OPT_VICII_POWER_SAVE:
-
-            config.powerSave = bool(value);
-            return;
-
-        case OPT_VICII_GRAY_DOT_BUG:
-
-            config.grayDotBug = bool(value);
-            return;
-
-        case OPT_VICII_HIDE_SPRITES:
-
-            config.hideSprites = bool(value);
-            return;
-
-        case OPT_VICII_SS_COLLISIONS:
-
-            config.checkSSCollisions = bool(value);
-            return;
-
-        case OPT_VICII_SB_COLLISIONS:
-
-            config.checkSBCollisions = bool(value);
-            return;
-
-        default:
-            fatalError;
-    }
+ 
 }
 
 }

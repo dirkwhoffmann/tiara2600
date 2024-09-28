@@ -77,7 +77,7 @@ Tiara::Tiara() {
     videoPort.videoPort = &emu->main.videoPort;
 
     dmaDebugger.emu = emu;
-    dmaDebugger.dmaDebugger = &emu->main.vic.dmaDebugger;
+    dmaDebugger.dmaDebugger = &emu->main.dmaDebugger;
 
     controlPort1.emu = emu;
     controlPort1.controlPort = &emu->main.port1;

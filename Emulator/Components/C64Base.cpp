@@ -28,7 +28,6 @@ C64::C64(class Emulator& ref, isize id) : CoreComponent(ref, id)
         &mem,
         &cpu,
         &cia1, &cia2,
-        &vic,
         &audioPort,
         &videoPort,
         &port1,
@@ -36,6 +35,7 @@ C64::C64(class Emulator& ref, isize id) : CoreComponent(ref, id)
         &expansionport,
         &monitor,
         &remoteManager,
+        &dmaDebugger,
         &retroShell,
         &regressionTester,
         &recorder,
@@ -111,14 +111,14 @@ C64::_dump(Category category, std::ostream& os) const
 
     if (category == Category::Summary) {
 
-        auto vicRev = (VICIIRevision)emulator.get(OPT_VICII_REVISION);
+        auto tiaRev = (TIARevision)emulator.get(OPT_TIA_REVISION);
         auto cia1Rev = (CIARevision)cia1.getOption(OPT_CIA_REVISION);
         auto cia2Rev = (CIARevision)cia2.getOption(OPT_CIA_REVISION);
 
         os << tab("Model");
         os << (vic.pal() ? "PAL" : "NTSC") << std::endl;
-        os << tab("VICII");
-        os << VICIIRevisionEnum::key(vicRev) << std::endl;
+        os << tab("TIA");
+        os << TIARevisionEnum::key(tiaRev) << std::endl;
         os << tab("CIA 1");
         os << CIARevisionEnum::key(cia1Rev) << std::endl;
         os << tab("CIA 2");

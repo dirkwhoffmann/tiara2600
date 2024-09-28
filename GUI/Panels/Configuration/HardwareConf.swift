@@ -16,9 +16,10 @@ extension ConfigurationController {
     func refreshHardwareTab() {
                                 
         // VIC
-        hwVicModelPopup.selectItem(withTag: config.vicRevision)
-        
-        switch tiara.VICIIRevision(rawValue: config.vicRevision) {
+        hwVicModelPopup.selectItem(withTag: config.tiaRevision)
+
+        /*
+        switch tiara.TIARevision(rawValue: config.tiaRevision) {
 
         case .PAL_6569_R1, .PAL_6569_R3:
 
@@ -43,8 +44,8 @@ extension ConfigurationController {
         default:
             assert(false)
         }
-        hwVicGrayDotBug.state = config.vicGrayDotBug ? .on : .off
-        
+        */
+
         // CIA
         hwCiaModelPopup.selectItem(withTag: config.ciaRevision)
         hwCiaTimerBBug.state = config.ciaTimerBBug ? .on : .off
@@ -58,24 +59,14 @@ extension ConfigurationController {
     
     @IBAction func hwVicRevAction(_ sender: NSPopUpButton!) {
         
-        config.vicRevision = sender.selectedTag()
+        config.tiaRevision = sender.selectedTag()
     }
 
-    @IBAction func hwVicGrayDotBugAction(_ sender: NSButton!) {
-        
-        config.vicGrayDotBug = sender.state == .on
-    }
-    
     @IBAction func hwCiaRevAction(_ sender: NSPopUpButton!) {
         
         config.ciaRevision = sender.selectedTag()
     }
-    
-    @IBAction func hwCiaTimerBBugAction(_ sender: NSButton!) {
 
-        config.ciaTimerBBug = sender.state == .on
-    }
-                
     @IBAction func hwRamPatternAction(_ sender: NSPopUpButton!) {
         
         config.ramPattern = sender.selectedTag()
@@ -94,6 +85,7 @@ extension ConfigurationController {
             config.applyPeripheralsUserDefaults()
 
             // Override some options
+            /*
             switch sender.selectedTag() {
 
             case 0: // C64_PAL
@@ -135,6 +127,7 @@ extension ConfigurationController {
             default:
                 fatalError()
             }
+            */
 
             emu.resume()
         }
