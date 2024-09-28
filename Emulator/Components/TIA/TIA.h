@@ -202,6 +202,13 @@ public:
 
 
     //
+    // Managing colors
+    //
+
+    void updatePalette();
+
+
+    //
     // Working with textures
     //
 

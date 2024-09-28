@@ -208,10 +208,6 @@ public:
     virtual u16 readResetVector() override;
     virtual u8 readDasm(u16 addr) const override;
 
-    virtual void writePort(u8 val) override;
-    virtual void writePortDir(u8 val) override;
-    virtual u8 externalPortBits() const override;
-
     virtual void cpuDidJam() override;
     virtual void nmiWillTrigger() override;
     virtual void nmiDidTrigger() override;

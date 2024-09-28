@@ -206,7 +206,6 @@ class Canvas: Layer {
             // Update the GPU texture
             let w = Constants.texWidth
             let h = Constants.texHeight
-            //print("Replacing \(w) \(h)")
             emulatorTexture.replace(w: w, h: h, buffer: buffer)
         }
     }

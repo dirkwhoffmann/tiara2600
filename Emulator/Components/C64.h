@@ -18,7 +18,6 @@
 
 // Components
 #include "Memory.h"
-#include "VICII.h"
 #include "TIA.h"
 #include "TOD.h"
 #include "CIA.h"
@@ -47,7 +46,7 @@
 #include "Host.h"
 #include "RegressionTester.h"
 #include "RemoteManager.h"
-
+#include "DmaDebugger.h"
 #include "RetroShell.h"
 #include "RshServer.h"
 
@@ -123,7 +122,6 @@ public:
     CPU cpu = CPU(MOS_6510, *this);
     CIA1 cia1 = CIA1(*this);
     CIA2 cia2 = CIA2(*this);
-    VICII vic = VICII(*this);
     TIA tia = TIA(*this);
 
     // Ports
@@ -281,7 +279,7 @@ public:
         CLONE(cpu)
         CLONE(cia1)
         CLONE(cia2)
-        CLONE(vic)
+        CLONE(tia)
         CLONE(audioPort)
         CLONE(videoPort)
         CLONE(port1)

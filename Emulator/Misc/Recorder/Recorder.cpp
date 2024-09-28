@@ -170,7 +170,7 @@ Recorder::startRecording(isize x1, isize y1, isize x2, isize y2)
     SYNCHRONIZED
 
     // Override the frameRate by now (remove this later)
-    config.frameRate = vic.pal() ? 50 : 60;
+    config.frameRate = tia.getTraits().fps; //  vic.pal() ? 50 : 60;
     samplesPerFrame = config.sampleRate / config.frameRate;
 
     debug(REC_DEBUG, "startRecording(%ld,%ld,%ld,%ld)\n", x1, y1, x2, y2);
@@ -398,6 +398,7 @@ Recorder::prepare()
      * SID produce the correct number of sound samples per frame (882 for PAL
      * and 735 for NTSC).
      */
+    /*
     if (vic.pal()) {
         host.setOption(OPT_HOST_SAMPLE_RATE, i64(config.sampleRate * 50.125 / 50.0));
         samplesPerFrame = 882;
@@ -405,6 +406,7 @@ Recorder::prepare()
         host.setOption(OPT_HOST_SAMPLE_RATE, i64(config.sampleRate * 59.827 / 60.0));
         samplesPerFrame = 735;
     }
+    */
     
     // Start with a nearly empty buffer
     audioPort.clamp(1);

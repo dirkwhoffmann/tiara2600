@@ -29,58 +29,6 @@ CPU::CPU(CPURevision cpuModel, C64& ref) : CPU(ref)
 }
 
 void
-CPU::writePort(u8 val)
-{
-    Peddle::writePort(val);
-
-    // When writing to the port register, the last VICII byte appears
-    mem.ram[0x0001] = vic.getDataBusPhi1();
-
-    // Switch memory banks
-    mem.updatePeekPokeLookupTables();
-}
-
-void
-CPU::writePortDir(u8 val)
-{
-    auto port = reg.pport.data;
-    auto direction = reg.pport.direction;
-
-    // If bits 3, 6, or 7 are configured as outputs, they are not floating
-    if (GET_BIT(val, 3)) dischargeCycleBit3 = 0;
-    if (GET_BIT(val, 6)) dischargeCycleBit6 = 0;
-    if (GET_BIT(val, 7)) dischargeCycleBit7 = 0;
-
-    // If bits 3, 6, or 7 change from output to input, they become floating
-    if (FALLING_EDGE_BIT(direction, val, 3) && GET_BIT(port, 3) != 0)
-        dischargeCycleBit3 = UINT64_MAX;
-    if (FALLING_EDGE_BIT(direction, val, 6) && GET_BIT(port, 6) != 0)
-        dischargeCycleBit6 = cpu.clock + dischargeCyclesVICE;
-    if (FALLING_EDGE_BIT(direction, val, 7) && GET_BIT(port, 7) != 0)
-        dischargeCycleBit7 = cpu.clock + dischargeCyclesVICE;
-
-    // Update the port register
-    Peddle::writePortDir(val);
-
-    // When writing to the direction register, the last VICII byte appears
-    mem.ram[0x0000] = vic.getDataBusPhi1();
-
-    // Switch memory banks
-    mem.updatePeekPokeLookupTables();
-}
-
-u8
-CPU::externalPortBits() const
-{
-    u8 bit3 = (dischargeCycleBit3 > cpu.clock) ? 0x08 : 0x00;
-    u8 bit6 = (dischargeCycleBit6 > cpu.clock) ? 0x40 : 0x00;
-    u8 bit7 = (dischargeCycleBit7 > cpu.clock) ? 0x80 : 0x00;
-    u8 bit4 = 0x10;
-
-    return bit7 | bit6 | bit4 | bit3 | 0x07;
-}
-
-void
 CPU::cpuDidJam()
 {
     c64.signalJammed();

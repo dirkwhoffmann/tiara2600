@@ -25,6 +25,7 @@
 #include "ErrorTypes.h"
 #include "ExpansionPortTypes.h"
 #include "JoystickTypes.h"
+#include "DmaDebuggerTypes.h"
 #include "MediaFileTypes.h"
 #include "MemoryTypes.h"
 #include "MonitorTypes.h"
@@ -37,6 +38,5 @@
 #include "RetroShellTypes.h"
 #include "ThreadTypes.h"
 #include "TIATypes.h"
-#include "VICIITypes.h"
 
 #include "Constants.h"

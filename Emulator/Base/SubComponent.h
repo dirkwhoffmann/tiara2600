@@ -38,7 +38,6 @@ protected:
     class RemoteManager &remoteManager;
     class RetroShell &retroShell;
     class TIA &tia;
-    class VICII &vic;
     class VideoPort &videoPort;
 
 public:

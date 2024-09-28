@@ -290,7 +290,6 @@ class Inspector: DialogController {
     var ciaStats: tiara.CIAStats!
     var memInfo: tiara.MemInfo!
     var tiaInfo: tiara.TIAInfo!
-    var sprInfo: tiara.SpriteInfo!
     var eventInfo: tiara.C64Info!
     var isRunning = true
     
@@ -518,7 +517,7 @@ extension Inspector: NSTabViewDelegate {
             case "CPU":     c64?.autoInspectionMask = mask([.CPUClass])
             case "Memory":  c64?.autoInspectionMask = mask([.MemoryClass])
             case "CIA":     c64?.autoInspectionMask = mask([.CIAClass])
-            case "VICII":   c64?.autoInspectionMask = mask([.VICIIClass])
+            case "TIA":     c64?.autoInspectionMask = mask([.TIAClass])
             case "SID":     c64?.autoInspectionMask = mask([.SIDClass])
             case "Events":  c64?.autoInspectionMask = mask([.C64Class])
 

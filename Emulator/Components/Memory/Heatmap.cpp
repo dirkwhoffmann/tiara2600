@@ -13,7 +13,6 @@
 #include "config.h"
 #include "Heatmap.h"
 #include "Memory.h"
-#include "VICII.h"
 
 namespace tiara {
 

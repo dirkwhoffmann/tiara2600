@@ -250,8 +250,8 @@ Memory::peek(u16 addr, MemoryType source)
             
         case M_NONE:
             
-            return vic.getDataBusPhi1();
-            
+            return 0;
+
         default:
             fatalError;
     }
@@ -303,8 +303,8 @@ Memory::peekIO(u16 addr)
             
             // Only the lower 6 bits are used for adressing the VIC I/O space.
             // As a result, VICII's I/O memory repeats every 64 bytes.
-            return vic.peek(addr & 0x003F);
-            
+            return 0;
+
         case 0x4: // SID
         case 0x5: // SID
         case 0x6: // SID
@@ -317,8 +317,8 @@ Memory::peekIO(u16 addr)
         case 0xA: // Color RAM
         case 0xB: // Color RAM
             
-            return (colorRam[addr - 0xD800] & 0x0F) | (vic.getDataBusPhi1() & 0xF0);
-            
+            return 0;
+
         case 0xC: // CIA 1
             
             // Only the lower 4 bits are used for adressing the CIA I/O space.
@@ -394,8 +394,8 @@ Memory::spypeekIO(u16 addr) const
         case 0x2: // VICII
         case 0x3: // VICII
             
-            return vic.spypeek(addr & 0x003F);
-            
+            return 0;
+
         case 0x4: // SID
         case 0x5: // SID
         case 0x6: // SID
@@ -529,9 +529,6 @@ Memory::pokeIO(u16 addr, u8 value)
         case 0x2: // VICII
         case 0x3: // VICII
             
-            // Only the lower 6 bits are used for adressing the VICII I/O space.
-            // As a result, VICII's I/O memory repeats every 64 bytes.
-            vic.poke(addr & 0x003F, value);
             return;
             
         case 0x4: // SID

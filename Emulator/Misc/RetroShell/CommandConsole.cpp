@@ -106,10 +106,6 @@ CommandConsole::initCommands(Command &root)
 
         auto model = parseEnum <C64Model, C64ModelEnum> (argv[0]);
         regressionTester.prepare(c64, model);
-
-        // Pause the script to give the C64 some time to boot
-        c64.scheduleRel<SLOT_RSH>(3 * vic.getFrequency(), RSH_WAKEUP);
-        throw ScriptInterruption("");
     });
 
     root.add({"regression", "run"}, { Arg::path },
@@ -254,13 +250,6 @@ CommandConsole::initCommands(Command &root)
 
     cmd = registerComponent(cia1);
     cmd = registerComponent(cia2);
-
-
-    //
-    // Components (VICII)
-    //
-
-    cmd = registerComponent(vic);
 
 
     //

@@ -71,7 +71,6 @@ Memory::cacheInfo(MemInfo &result) const
         if (expansionPort.getExromLine()) result.bankMap |= 0x10;
 
         for (isize i = 0; i < 16; i++) result.peekSrc[i] = peekSrc[i];
-        for (isize i = 0; i < 16; i++) result.vicPeekSrc[i] = vic.memSrc[i];
     }
 }
 

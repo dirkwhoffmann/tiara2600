@@ -12,8 +12,6 @@
 
 #include "config.h"
 #include "TIA.h"
-
-#include "VICII.h"
 #include "C64.h"
 
 namespace tiara {
@@ -53,6 +51,12 @@ TIA::_trackOn()
 
 void
 TIA::_trackOff()
+{
+
+}
+
+void
+TIA::updatePalette()
 {
 
 }
@@ -165,8 +169,6 @@ template void TIA::execute<true>();
 void
 TIA::eofHandler()
 {
-    auto &dmaDebugger = vic.dmaDebugger;
-    
     // Only proceed if the current frame hasn't been executed in headless mode
     if (c64.getHeadless()) return;
 

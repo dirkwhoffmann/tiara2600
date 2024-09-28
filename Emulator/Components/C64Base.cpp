@@ -115,8 +115,6 @@ C64::_dump(Category category, std::ostream& os) const
         auto cia1Rev = (CIARevision)cia1.getOption(OPT_CIA_REVISION);
         auto cia2Rev = (CIARevision)cia2.getOption(OPT_CIA_REVISION);
 
-        os << tab("Model");
-        os << (vic.pal() ? "PAL" : "NTSC") << std::endl;
         os << tab("TIA");
         os << TIARevisionEnum::key(tiaRev) << std::endl;
         os << tab("CIA 1");

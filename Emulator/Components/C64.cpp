@@ -165,7 +165,7 @@ C64::eventName(EventSlot slot, EventID id)
                 case INS_CPU:       return "INS_CPU";
                 case INS_MEM:       return "INS_MEM";
                 case INS_CIA:       return "INS_CIA";
-                case INS_VICII:     return "INS_VICII";
+                case INS_TIA:       return "INS_TIA";
                 case INS_SID:       return "INS_SID";
                 case INS_EVENTS:    return "INS_EVENTS";
                 default:            return "*** INVALID ***";
@@ -275,13 +275,13 @@ C64::operator << (SerResetter &worker)
 double
 C64::nativeRefreshRate() const
 {
-    return vic.getFps();
+    return 60; // tia.getFps();
 }
 
 i64
 C64::nativeClockFrequency() const
 {
-    return vic.getFrequency();
+    return 1000000; // tia.getFrequency();
 }
 
 double
@@ -735,6 +735,9 @@ C64::cacheInfo(C64Info &result) const
         result.vpos = scanline;
         result.hpos = rasterCycle;
 
+        auto cyclesPerLine = 76; // TODO: Get from Traits
+        auto cyclesPerFrame = 76 * 312; // TODO: Get from Traits
+
         for (isize i = 0; i < SLOT_COUNT; i++) {
 
             auto cycle = trigger[i];
@@ -745,16 +748,17 @@ C64::cacheInfo(C64Info &result) const
             result.slotInfo[i].triggerRel = cycle - cpu.clock;
 
             // Compute clock at pos (0,0)
-            auto clock00 = cpu.clock - vic.getCyclesPerLine() * scanline - rasterCycle;
+            // auto clock00 = cpu.clock - vic.getCyclesPerLine() * scanline - rasterCycle;
+            auto clock00 = cpu.clock - cyclesPerLine * scanline - rasterCycle;
 
             // Compute the number of elapsed cycles since then
             auto diff = cycle - clock00;
 
             // Split into frame / line / cycle
-            result.slotInfo[i].frameRel = long(diff / vic.getCyclesPerFrame());
-            diff = diff % vic.getCyclesPerFrame();
-            result.slotInfo[i].vpos = long(diff / vic.getCyclesPerLine());
-            result.slotInfo[i].hpos = long(diff % vic.getCyclesPerLine());
+            result.slotInfo[i].frameRel = long(diff / cyclesPerFrame);
+            diff = diff % cyclesPerFrame;
+            result.slotInfo[i].vpos = long(diff / cyclesPerLine);
+            result.slotInfo[i].hpos = long(diff % cyclesPerLine);
 
             result.slotInfo[i].eventName = eventName(EventSlot(i), eventid[i]);
         }
@@ -797,6 +801,7 @@ C64::endScanline()
     // cia2.tod.increment();
 
     // vic.endScanline();
+    /*
     rasterCycle = 1;
     scanline++;
     
@@ -805,6 +810,7 @@ C64::endScanline()
         scanline = 0;
         endFrame();
     }
+    */
 }
 
 void
@@ -940,8 +946,8 @@ C64::processINSEvent()
     if (mask & 1LL << CPUClass)             { cpu.record(); }
     if (mask & 1LL << MemoryClass)          { mem.record(); }
     if (mask & 1LL << CIAClass)             { cia1.record(); cia2.record(); }
-    if (mask & 1LL << VICIIClass)           { vic.record(); }
-    
+    if (mask & 1LL << TIAClass)             { tia.record(); }
+
     // Reschedule the event
     rescheduleRel<SLOT_INS>(Cycle(inspectionInterval * PAL::CYCLES_PER_SECOND));
 }
@@ -996,9 +1002,6 @@ C64::loadSnapshot(const MediaFile &file)
                 // Restore the saved state
                 load(snapshot.getSnapshotData());
 
-                // Rectify the VICII function table (varies between PAL and NTSC)
-                vic.updateVicFunctionTable();
-
                 // Print some debug info if requested
                 if (SNP_DEBUG) dump(Category::State);
 
@@ -1016,7 +1019,7 @@ C64::loadSnapshot(const MediaFile &file)
         }
 
         // Inform the GUI
-        msgQueue.put(vic.pal() ? MSG_PAL : MSG_NTSC);
+        // msgQueue.put(vic.pal() ? MSG_PAL : MSG_NTSC);
         msgQueue.put(MSG_SNAPSHOT_RESTORED);
 
     } catch (...) {

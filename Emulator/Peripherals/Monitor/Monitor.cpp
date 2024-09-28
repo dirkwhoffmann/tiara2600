@@ -12,7 +12,7 @@
 
 #include "config.h"
 #include "Monitor.h"
-#include "VICII.h"
+#include "TIA.h"
 #include <cmath>
 
 namespace tiara {
@@ -23,6 +23,7 @@ namespace tiara {
  */
 
 // TODO: Turn into Lamda expression
+/*
 static double gammaCorrect(double value, double source, double target)
 {
     // Reverse gamma correction of source
@@ -35,6 +36,7 @@ static double gammaCorrect(double value, double source, double target)
 
     return std::round(value);
 }
+*/
 
 u32
 Monitor::getColor(isize nr, Palette palette)
@@ -58,6 +60,7 @@ Monitor::getColor(isize nr, Palette palette)
         LUMA_VICE(1260,630,1850), LUMA_VICE(1560,630,1850)
     };
 
+    /*
     double luma_vice_6569_r3[16] = {
 
         // Taken from VICE 3.2
@@ -109,8 +112,10 @@ Monitor::getColor(isize nr, Palette palette)
         LUMA_COLORES(15), LUMA_COLORES(24),
         LUMA_COLORES(15), LUMA_COLORES(20)
     };
+    */
 
-    double *luma;
+    double *luma = luma_vice_6569_r1;
+    /*
     switch(vic.getConfig().revision) {
 
         case VICII_PAL_6569_R1:
@@ -142,6 +147,7 @@ Monitor::getColor(isize nr, Palette palette)
         default:
             fatalError;
     }
+    */
 
     // Angles in the color plane
 #define ANGLE_PEPTO(x) (x * 22.5 * M_PI / 180.0)
@@ -239,12 +245,14 @@ Monitor::getColor(isize nr, Palette palette)
     b = std::clamp(b, 0.0, 255.0);
 
     // Apply Gamma correction for PAL models
+    /*
     if (vic.pal()) {
 
         r = gammaCorrect(r, 2.8, 2.2);
         g = gammaCorrect(g, 2.8, 2.2);
         b = gammaCorrect(b, 2.8, 2.2);
     }
+    */
 
     return LO_LO_HI_HI((u8)r, (u8)g, (u8)b, 0xFF);
 }

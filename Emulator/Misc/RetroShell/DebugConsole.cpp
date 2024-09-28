@@ -373,13 +373,6 @@ DebugConsole::initCommands(Command &root)
         dump(cia2, { Category::Config, Category::State });
     });
 
-    cmd = vic.shellName();
-    description = vic.description();
-    root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
-
-        dump(vic, { Category::Config, Category::State });
-    });
-
     cmd = tia.shellName();
     description = tia.description();
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {

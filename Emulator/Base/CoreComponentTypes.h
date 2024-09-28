@@ -35,7 +35,6 @@ enum_long(COMP_TYPE)
     TIAClass,
     TODClass,
     VIAClass,
-    VICIIClass,
 
     // Ports
     AudioPortClass,

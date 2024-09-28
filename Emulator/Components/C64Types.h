@@ -215,7 +215,7 @@ enum_i8(EventID)
     INS_CPU,
     INS_MEM,
     INS_CIA,
-    INS_VICII,
+    INS_TIA,
     INS_SID,
     INS_EVENTS,
     INS_EVENT_COUNT

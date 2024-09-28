@@ -36,7 +36,6 @@ regressionTester(ref.regressionTester),
 remoteManager(ref.remoteManager),
 retroShell(ref.retroShell),
 tia(ref.tia),
-vic(ref.vic),
 videoPort(ref.videoPort)
 {
 

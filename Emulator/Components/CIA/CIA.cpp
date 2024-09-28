@@ -645,9 +645,6 @@ void
 CIA1::updatePB()
 {
     PB = computePB();
-
-    // PB4 is connected to the VICII (LP pin)
-    vic.setLP(GET_BIT(PB, 4) != 0);    
 }
 
 u8
@@ -769,9 +766,6 @@ void
 CIA2::pokePRA(u8 value)
 {
     CIA::pokePRA(value);
-    
-    // PA0 (VA14) and PA1 (VA15) determine the memory bank seen by VICII
-    vic.switchBank(0xDD00);    
 }
 
 void
@@ -783,10 +777,7 @@ CIA2::pokePRB(u8 value)
 void
 CIA2::pokeDDRA(u8 value)
 {
-    CIA::pokeDDRA(value);
-    
-    // PA0 (VA14) and PA1 (VA15) determine the memory bank seen by VICII
-    vic.switchBank(0xDD02);
+    CIA::pokeDDRA(value);    
 }
 
 void

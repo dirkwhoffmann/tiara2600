@@ -66,25 +66,25 @@ ExpansionPort::peekIO1(u16 addr)
      *  Lesen von offenen Adressen liefert nämlich auf vielen C64 das zuletzt vom
      *  VIC gelesene Byte zurück!)" [C.B.]
      */
-    return cartridge ? cartridge->peekIO1(addr) : vic.getDataBusPhi1();
+    return cartridge ? cartridge->peekIO1(addr) : 0;
 }
 
 u8
 ExpansionPort::spypeekIO1(u16 addr) const
 {
-    return cartridge ? cartridge->spypeekIO1(addr) : vic.getDataBusPhi1();
+    return cartridge ? cartridge->spypeekIO1(addr) : 0;
 }
 
 u8
 ExpansionPort::peekIO2(u16 addr)
 {
-    return cartridge ? cartridge->peekIO2(addr) : vic.getDataBusPhi1();
+    return cartridge ? cartridge->peekIO2(addr) : 0;
 }
 
 u8
 ExpansionPort::spypeekIO2(u16 addr) const
 {
-    return cartridge ? cartridge->spypeekIO2(addr) : vic.getDataBusPhi1();
+    return cartridge ? cartridge->spypeekIO2(addr) : 0;
 }
 
 void
@@ -117,7 +117,6 @@ void
 ExpansionPort::setGameLine(bool value)
 {
     gameLine = value;
-    vic.setUltimax(!gameLine && exromLine);
     mem.updatePeekPokeLookupTables();
 }
 
@@ -125,7 +124,6 @@ void
 ExpansionPort::setExromLine(bool value)
 {
     exromLine = value;
-    vic.setUltimax(!gameLine && exromLine);
     mem.updatePeekPokeLookupTables();
 }
 
@@ -134,7 +132,6 @@ ExpansionPort::setGameAndExrom(bool game, bool exrom)
 {
     gameLine = game;
     exromLine = exrom;
-    vic.setUltimax(!gameLine && exromLine);
     mem.updatePeekPokeLookupTables();
 }
 

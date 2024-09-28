@@ -33,7 +33,7 @@ Thumbnail::take(const C64 &c64, isize dx, isize dy)
     isize yStart = PAL::FIRST_VISIBLE_LINE;
 
     width = i32(PAL::VISIBLE_PIXELS / dx);
-    height = i32(c64.vic.numVisibleLines() / dy);
+    height = 312 / dy; // TODO: FIXME i32(c64.vic.numVisibleLines() / dy);
 
     u32 *target = screen;
     u32 *source = (u32 *)c64.videoPort.getTexture();
