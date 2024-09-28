@@ -313,6 +313,7 @@ constexpr u32 BREAKPOINT    = (1 << 3);
 constexpr u32 WATCHPOINT    = (1 << 4);
 constexpr u32 CPU_JAM       = (1 << 5);
 constexpr u32 SINGLE_STEP   = (1 << 6);
+constexpr u32 SYNC_THREAD   = (1 << 7);
 }
 
 }

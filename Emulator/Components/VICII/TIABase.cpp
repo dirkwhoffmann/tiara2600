@@ -105,7 +105,7 @@ TIA::setOption(Option opt, i64 value)
             config.revision = TIARevision(value);
             return;
 
-        case OPT_VICII_POWER_SAVE:
+        case OPT_TIA_POWER_SAVE:
 
             config.powerSave = bool(value);
             return;

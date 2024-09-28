@@ -12,7 +12,7 @@
 
 #include "config.h"
 #include "VideoPort.h"
-#include "VICII.h"
+#include "TIA.h"
 
 namespace tiara {
 
@@ -27,14 +27,14 @@ VideoPort::getTexture() const
     if (isPoweredOff()) {
         return config.whiteNoise ? getNoiseTexture() : getBlankTexture();
     } else {
-        return vic.getTexture();
+        return tia.getTexture();
     }
 }
 
 u32 *
 VideoPort::getDmaTexture() const
 {
-    return vic.getDmaTexture();
+    return tia.getDmaTexture();
 }
 
 u32 *

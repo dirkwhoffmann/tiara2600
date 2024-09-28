@@ -484,10 +484,6 @@ private:
 
     // Emulates a frame
     void computeFrame();
-    void computeFrame(bool headless);
-    void computeFrameHeadless() { computeFrame(true); }
-    template <bool, bool, bool> void execute();
-    template <bool, bool, bool> alwaysinline void executeCycle();
     void processFlags();
 
     // Fast-forward the run-ahead instance
@@ -517,11 +513,17 @@ public:
 
 private:
 
-    // Invoked after executing the last cycle of a scanline
+    // DEPRECATED: Invoked after executing the last cycle of a scanline
     void endScanline();
 
-    // Invoked after executing the last scanline of a frame
+    // DEPRECATED: Invoked after executing the last scanline of a frame
     void endFrame();
+
+    // Finishes up the current line
+    // void eolHandler();
+
+    // Finishes up the current frame
+    void eofHandler();
 
 
     //

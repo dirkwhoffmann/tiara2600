@@ -21,6 +21,7 @@ namespace tiara {
 class DmaDebugger final : public SubComponent {
 
     friend class VICII;
+    friend class TIA;
     
     Descriptions descriptions = {{
 

@@ -25,8 +25,8 @@ extension Canvas {
         
         // let w = (emu?.vic.traits.cyclesPerLine ?? 0) * 8
         // let h = emu?.vic.traits.linesPerFrame ?? 0
-        let w = emu?.tia.traits.width ?? 0
-        let h = emu?.tia.traits.height ?? 0
+        let w = Constants.texWidth //  emu?.tia.traits.width ?? 0
+        let h = Constants.texHeight // emu?.tia.traits.height ?? 0
 
         return CGRect(x: 0, y: 0, width: w, height: h)
     }

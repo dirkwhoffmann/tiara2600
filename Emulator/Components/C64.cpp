@@ -627,88 +627,34 @@ C64::update(CmdQueue &queue)
 void
 C64::computeFrame()
 {
-    if (emulator.get(OPT_VICII_POWER_SAVE)) {
-        computeFrame(emulator.isWarping() && (frame & 7) != 0);
-    } else {
-        computeFrame(false);
+    flags = 0;
+
+    while (1) {
+
+        // Advance the cycle counter
+        Cycle cycle = ++cpu.clock;
+
+        // Process all pending events
+        if (nextTrigger <= cycle) processEvents(cycle);
+
+        // REMOVE
+        // (vic.*vic.vicfunc[rasterCycle])();
+
+        // Execute one CPU cycle
+        cpu.execute<MOS_6510>();
+
+        // Execute three TIA cycles
+        tia.execute<false>();
+
+        // Check if special action needs to be taken
+        if (flags) {
+
+            processFlags();
+
+            // Check if a frame has been completed
+            if (flags & RL::SYNC_THREAD) break;
+        }
     }
-}
-
-void 
-C64::computeFrame(bool headless)
-{
-    setHeadless(headless);
-
-    cpu.debugger.watchpointPC = -1;
-    cpu.debugger.breakpointPC = -1;
-
-    // Dispatch
-    switch (expansionport.needsAccurateEmulation() ? 1 : 0) {
-
-        case 0b000: execute <false, false, false> (); break;
-        case 0b001: execute <false, false, true>  (); break;
-        case 0b010: execute <false, true,  false> (); break;
-        case 0b011: execute <false, true,  true>  (); break;
-        case 0b100: execute <true,  false, false> (); break;
-        case 0b101: execute <true,  false, true>  (); break;
-        case 0b110: execute <true,  true,  false> (); break;
-        case 0b111: execute <true,  true,  true>  (); break;
-
-        default:
-            fatalError;
-    }
-}
-
-template <bool enable8, bool enable9, bool execExp> void
-C64::execute()
-{
-    auto lastCycle = vic.getCyclesPerLine();
-
-    try {
-
-        do {
-
-            // Run the emulator for the (rest of the) current scanline
-            for (; rasterCycle <= lastCycle; rasterCycle++) {
-
-                // Execute one cycle
-                executeCycle<enable8, enable9, execExp>();
-
-                // Process all pending flags
-                if (flags) processFlags();
-            }
-
-            // Finish the scanline
-            endScanline();
-
-        } while (scanline != 0);
-
-    } catch (StateChangeException &) {
-
-        // Finish the scanline if needed
-        if (++rasterCycle > lastCycle) endScanline();
-
-        // Rethrow the exception
-        throw;
-    }
-}
-
-template <bool enable8, bool enable9, bool execExp>
-alwaysinline void C64::executeCycle()
-{
-    //
-    // Run the emulator for one cycle
-    //
-
-    Cycle cycle = ++cpu.clock;
-
-    if (nextTrigger <= cycle) processEvents(cycle);
-    (vic.*vic.vicfunc[rasterCycle])();
-
-    cpu.execute<MOS_6510>();
-
-    tia.execute<false>();
-
 }
 
 void
@@ -951,12 +897,26 @@ C64::endFrame()
 {
     frame++;
     
-    vic.endFrame();
+    // vic.endFrame();
     mem.endFrame();
     expansionport.endOfFrame();
     port1.execute();
     port2.execute();
     recorder.vsyncHandler();
+}
+
+/*
+void
+C64::eolHandler()
+{
+
+}
+*/
+
+void
+C64::eofHandler()
+{
+    
 }
 
 void

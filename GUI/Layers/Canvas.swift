@@ -206,6 +206,7 @@ class Canvas: Layer {
             // Update the GPU texture
             let w = Constants.texWidth
             let h = Constants.texHeight
+            //print("Replacing \(w) \(h)")
             emulatorTexture.replace(w: w, h: h, buffer: buffer)
         }
     }
@@ -265,7 +266,8 @@ class Canvas: Layer {
     func setupFragmentShader(encoder: MTLRenderCommandEncoder) {
         
         // Setup textures
-        encoder.setFragmentTexture(scanlineTexture, index: 0)
+        encoder.setFragmentTexture(upscaledTexture, index: 0)
+        // encoder.setFragmentTexture(scanlineTexture, index: 0)
         encoder.setFragmentTexture(bloomTextureR, index: 1)
         encoder.setFragmentTexture(bloomTextureG, index: 2)
         encoder.setFragmentTexture(bloomTextureB, index: 3)
