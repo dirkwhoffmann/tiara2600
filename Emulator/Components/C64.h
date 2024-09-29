@@ -26,7 +26,6 @@
 #include "AudioPort.h"
 #include "VideoPort.h"
 #include "ControlPort.h"
-#include "ExpansionPort.h"
 
 // Peripherals
 #include "Monitor.h"
@@ -126,7 +125,9 @@ public:
     VideoPort videoPort = VideoPort(*this);
     ControlPort port1 = ControlPort(*this, PORT_1);
     ControlPort port2 = ControlPort(*this, PORT_2);
-    ExpansionPort expansionport = ExpansionPort(*this);
+
+    // Cartridge
+    Cartridge *cartridge = new Cartridge(*this);
 
     // Peripherals
     Monitor monitor = Monitor(*this);
@@ -279,7 +280,6 @@ public:
         CLONE(videoPort)
         CLONE(port1)
         CLONE(port2)
-        CLONE(expansionport)
         CLONE(monitor)
         CLONE(logicAnalyzer)
         CLONE(retroShell)

@@ -26,7 +26,6 @@ protected:
     class ControlPort &port1;
     class ControlPort &port2;
     class CPU &cpu;
-    class ExpansionPort &expansionPort;
     class Host &host;
     class LogicAnalyzer &logicAnalyzer;
     class Memory &mem;

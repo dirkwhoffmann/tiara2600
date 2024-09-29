@@ -361,12 +361,14 @@ DebugConsole::initCommands(Command &root)
         dump(tia, { Category::Config, Category::State });
     });
 
+    /*
     cmd = expansionPort.shellName();
     description = expansionPort.description();
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
 
         dump(expansionPort, { Category::Config, Category::State });
     });
+    */
 
     Command::currentGroup = "Peripherals";
 

@@ -75,13 +75,6 @@ enum_long(CMD_TYPE)
     // Joystick
     CMD_JOY_EVENT,              ///< Signal a joystick button event
 
-    // Cartridge
-    CMD_CRT_BUTTON_PRESS,       ///< Press a cartridge button
-    CMD_CRT_BUTTON_RELEASE,     ///< Release a cartridge button
-    CMD_CRT_SWITCH_LEFT,        ///< Pull the cartridge switch left
-    CMD_CRT_SWITCH_NEUTRAL,     ///< Put the cartridge switch in neutral position
-    CMD_CRT_SWITCH_RIGHT,       ///< Pull the cartridge switch right
-
     // RetroShell
     CMD_RSH_EXECUTE,            ///< Execute a script command
 
@@ -139,12 +132,6 @@ struct CmdTypeEnum : util::Reflection<CmdTypeEnum, CmdType> {
             case CMD_MOUSE_EVENT:           return "MOUSE_EVENT";
 
             case CMD_JOY_EVENT:             return "JOY_EVENT";
-
-            case CMD_CRT_BUTTON_PRESS:      return "CRT_BUTTON_PRESS";
-            case CMD_CRT_BUTTON_RELEASE:    return "CRT_BUTTON_RELEASE";
-            case CMD_CRT_SWITCH_LEFT:       return "CRT_SWITCH_LEFT";
-            case CMD_CRT_SWITCH_NEUTRAL:    return "CRT_SWITCH_NEUTRAL";
-            case CMD_CRT_SWITCH_RIGHT:      return "CRT_SWITCH_RIGHT";
 
             case CMD_RSH_EXECUTE:           return "RSH_EXECUTE";
 

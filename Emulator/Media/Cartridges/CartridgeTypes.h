@@ -23,27 +23,23 @@ namespace tiara {
 
 enum_long(CRT_TYPE)
 {
-    // Cartridges with a defined CRT ID (values must match)
-    CRT_NORMAL             = 0,
-    CRT_SIMONS_BASIC       = 4,
-
-    CRT_NONE
+    CRT_NONE,
+    CRT_NORMAL,
 };
 typedef CRT_TYPE CartridgeType;
 
 struct CartridgeTypeEnum : util::Reflection<CartridgeTypeEnum, CartridgeType> {
 
     static constexpr long minVal = 0;
-    static constexpr long maxVal = CRT_NONE;
+    static constexpr long maxVal = CRT_NORMAL;
 
     static const char *prefix() { return "CRT"; }
     static const char *_key(long value)
     {
         switch (value) {
 
-            case CRT_NORMAL:             return "NORMAL";
-            case CRT_SIMONS_BASIC:       return "SIMONS_BASIC";
             case CRT_NONE:               return "NONE";
+            case CRT_NORMAL:             return "NORMAL";
         }
         return "???";
     }
@@ -57,43 +53,13 @@ struct CartridgeTypeEnum : util::Reflection<CartridgeTypeEnum, CartridgeType> {
 typedef struct
 {
     CartridgeType type;
-    const char *title;
-
-    isize memory;
-    bool  battery;
-
-    isize buttons;
-    const char *button1;
-    const char *button2;
-
-    isize switches;
-    const char *switchLeft;
-    const char *switchNeutral;
-    const char *switchRight;
-
-    isize leds;
-
-    bool needsExecution;
 }
 CartridgeTraits;
 
 typedef struct
 {
-    CartridgeType type; // DEPRECATED
-    bool supported;
-    bool gameLineInCrtFile;
-    bool exromLineInCrtFile;
-    isize numPackets;
-    isize switchPos;
-    bool led;
+
 }
 CartridgeInfo;
-
-typedef struct
-{
-    u16 size;
-    u16 loadAddress;
-}
-CartridgeRomInfo;
 
 }

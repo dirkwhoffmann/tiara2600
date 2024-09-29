@@ -353,28 +353,24 @@ struct ControlPortAPI : API {
 };
 
 
-/** Expansion Port Public API
+/** Cartridge Public API
  */
-struct ExpansionPortAPI : API {
+struct CartridgeAPI : API {
 
-    class ExpansionPort *expansionPort = nullptr;
+    class Cartridge *cartridge = nullptr;
 
     /// @{
     /// @name Analyzing cartridges.
 
     /** @brief  Returns the traits of the current cartridge.
      */
-    CartridgeTraits getCartridgeTraits() const;
+    // CartridgeTraits getCartridgeTraits() const;
 
     /** @brief  Returns the state of the current cartridge.
      */
-    const CartridgeInfo &getInfo() const;
-    const CartridgeInfo &getCachedInfo() const;
+    // const CartridgeInfo &getInfo() const;
+    // const CartridgeInfo &getCachedInfo() const;
 
-    /** @brief  Returns the state of one of the cartridge ROM packets.
-     *  @param  nr      Number of the ROM packet.
-     */
-    CartridgeRomInfo getRomInfo(isize nr) const;
 
     /// @}
     /// @name Attaching and detaching cartridges.
@@ -387,10 +383,6 @@ struct ExpansionPortAPI : API {
     /** @brief  Attaches a cartridge to the expansion port.
      */
     void attachCartridge(const MediaFile &c, bool reset = true);
-
-    /** @brief  Detaches the currently plugged in cartridge
-     */
-    void detachCartridge();
 
     /// @}
 
@@ -1190,7 +1182,7 @@ public:
     VideoPortAPI videoPort;
     LogicAnalyzerAPI logicAnalyzer;
     ControlPortAPI controlPort1, controlPort2;
-    ExpansionPortAPI expansionPort;
+    CartridgeAPI cartridge;
     RemoteManagerAPI remoteManager;
     RetroShellAPI retroShell;
 };

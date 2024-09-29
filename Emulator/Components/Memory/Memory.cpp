@@ -198,20 +198,12 @@ void
 Memory::updatePeekPokeLookupTables()
 {
     // Read game line, exrom line, and processor port bits
-    u8 game  = expansionPort.getGameLine() ? 0x08 : 0x00;
-    u8 exrom = expansionPort.getExromLine() ? 0x10 : 0x00;
-    u8 index = (cpu.readPort() & 0x07) | exrom | game;
-    
-    // Set ultimax flag
-    c64.setUltimax(exrom && !game);
-    
+    u8 index = (cpu.readPort() & 0x07);
+        
     // Update table entries
     for (isize bank = 1; bank < 16; bank++) {
         peekSrc[bank] = pokeTarget[bank] = bankMap[index][bank];
     }
-    
-    // Call the Cartridge's delegation method
-    expansionPort.updatePeekPokeLookupTables();
 }
 
 u8
@@ -238,8 +230,8 @@ Memory::peek(u16 addr, MemoryType source)
         case M_CRTLO:
         case M_CRTHI:
             
-            return expansionPort.peek(addr);
-            
+            return 0;
+
         case M_PP:
             
             if (likely(addr >= 0x02)) {
@@ -325,12 +317,9 @@ Memory::peekIO(u16 addr)
             return 0;
 
         case 0xE: // I/O space 1
-            
-            return expansionPort.peekIO1(addr);
-            
         case 0xF: // I/O space 2
             
-            return expansionPort.peekIO2(addr);
+            return 0;
     }
     
     fatalError;
@@ -358,8 +347,8 @@ Memory::spypeek(u16 addr, MemoryType source) const
         case M_CRTLO:
         case M_CRTHI:
             
-            return expansionPort.spypeek(addr);
-            
+            return 0;
+
         case M_PP:
             
             if (addr >= 0x02) {
@@ -411,12 +400,12 @@ Memory::spypeekIO(u16 addr) const
 
         case 0xE: // I/O space 1
             
-            return expansionPort.spypeekIO1(addr);
-            
+            return 0;
+
         case 0xF: // I/O space 2
             
-            return expansionPort.spypeekIO2(addr);
-            
+            return 0;
+
         default:
             fatalError;
     }
@@ -451,8 +440,7 @@ Memory::poke(u16 addr, u8 value, MemoryType target)
             
         case M_CRTLO:
         case M_CRTHI:
-            
-            expansionPort.poke(addr, value);
+
             return;
             
         case M_PP:
@@ -545,13 +533,7 @@ Memory::pokeIO(u16 addr, u8 value)
             return;
             
         case 0xE: // I/O space 1
-            
-            expansionPort.pokeIO1(addr, value);
-            return;
-            
         case 0xF: // I/O space 2
-            
-            expansionPort.pokeIO2(addr, value);
             return;
     }
     

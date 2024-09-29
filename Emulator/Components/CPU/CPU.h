@@ -209,8 +209,6 @@ public:
     virtual u8 readDasm(u16 addr) const override;
 
     virtual void cpuDidJam() override;
-    virtual void nmiWillTrigger() override;
-    virtual void nmiDidTrigger() override;
     virtual void breakpointReached(u16 addr) const override;
     virtual void watchpointReached(u16 addr) const override;
     virtual void instructionLogged() const override;

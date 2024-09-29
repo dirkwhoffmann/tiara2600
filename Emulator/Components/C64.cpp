@@ -205,19 +205,7 @@ C64::prefix(isize level, const char *component, isize line) const
 void 
 C64::_didReset(bool hard)
 {
-    /* At this point, all components have executed their reset procedure. In
-     * the final step, we need to perform some post-reset actions we could not
-     * have performed before since they depend on the state of two
-     * interconnected components. In particular, we need to
-     *
-     *   (1) update the bank map, as it depends on the expansion port lines.
-     *   (2) rectify the program counter, as it depends on the memory contents,
-     */
-
-    // (1)
-    expansionport.resetCartConfig();
-
-    // (2)
+    // Initialize the program counter with the reset vector
     cpu.reg.pc = cpu.reg.pc0 = mem.resetVector();
 
     // Inform the GUI
@@ -523,15 +511,6 @@ C64::update(CmdQueue &queue)
                     case PORT_2: port2.processCommand(cmd); break;
                     default: fatalError;
                 }
-                break;
-
-            case CMD_CRT_BUTTON_PRESS:
-            case CMD_CRT_BUTTON_RELEASE:
-            case CMD_CRT_SWITCH_LEFT:
-            case CMD_CRT_SWITCH_NEUTRAL:
-            case CMD_CRT_SWITCH_RIGHT:
-
-                expansionport.processCommand(cmd);
                 break;
 
             case CMD_RSH_EXECUTE:
@@ -871,7 +850,7 @@ C64::processEvents(Cycle cycle)
             // Check tertiary slots
             //
             if (isDue<SLOT_EXP>(cycle)) {
-                expansionport.processEvent(eventid[SLOT_EXP]);
+                // expansionport.processEvent(eventid[SLOT_EXP]);
             }
             if (isDue<SLOT_SNP>(cycle)) {
                 processSNPEvent(eventid[SLOT_SNP]);

@@ -301,25 +301,6 @@ CommandConsole::initCommands(Command &root)
 
 
     //
-    // Ports (Expansion port)
-    //
-
-    cmd = registerComponent(expansionPort);
-
-    root.add({cmd, "attach"},
-             "Attaches a cartridge");
-
-    root.add({cmd, "attach", "cartridge"}, { Arg::path },
-             "Attaches a cartridge from a CRT file",
-             [this](Arguments& argv, long value) {
-
-        auto path = argv.front();
-        if (!util::fileExists(path)) throw Error(VC64ERROR_FILE_NOT_FOUND, path);
-        expansionPort.attachCartridge(path);
-    });
-
-
-    //
     // Peripherals
     //
 

@@ -90,8 +90,8 @@ Tiara::Tiara() {
     controlPort2.paddle.emu = emu;
     controlPort2.paddle.paddle = &emu->main.port2.paddle;
 
-    expansionPort.emu = emu;
-    expansionPort.expansionPort = &emu->main.expansionport;
+    cartridge.emu = emu;
+    // cartridge.cartridge = &emu->main.expansionport;
 
     remoteManager.emu = emu;
     remoteManager.remoteManager = &emu->main.remoteManager;
@@ -820,6 +820,7 @@ RetroShellAPI::setStream(std::ostream &os)
 // Expansion port
 //
 
+/*
 CartridgeTraits
 ExpansionPortAPI::getCartridgeTraits() const
 {
@@ -837,31 +838,19 @@ ExpansionPortAPI::getCachedInfo() const
 {
     return expansionPort->getCachedInfo();
 }
-
-CartridgeRomInfo
-ExpansionPortAPI::getRomInfo(isize nr) const
-{
-    return expansionPort->getRomInfo(nr);
-}
+*/
 
 void
-ExpansionPortAPI::attachCartridge(const std::filesystem::path &path, bool reset)
+CartridgeAPI::attachCartridge(const std::filesystem::path &path, bool reset)
 {
-    expansionPort->attachCartridge(path, reset);
+    // expansionPort->attachCartridge(path, reset);
     emu->markAsDirty();
 }
 
 void
-ExpansionPortAPI::attachCartridge(const MediaFile &c, bool reset)
+CartridgeAPI::attachCartridge(const MediaFile &c, bool reset)
 {
-    expansionPort->attachCartridge(c, reset);
-    emu->markAsDirty();
-}
-
-void
-ExpansionPortAPI::detachCartridge()
-{
-    expansionPort->detachCartridge();
+    // expansionPort->attachCartridge(c, reset);
     emu->markAsDirty();
 }
 

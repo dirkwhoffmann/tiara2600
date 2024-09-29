@@ -80,9 +80,10 @@ extension tiara.CartridgeType {
     var description: String {
         
         switch self {
-        case .NORMAL: return "Standard"
-        case .SIMONS_BASIC: return "Simons Basic"
-            
+
+        case .NONE:     return "None"
+        case .NORMAL:   return "Standard"
+
         default: return "CRT type \(self.rawValue) (Unknown)"
         }
     }

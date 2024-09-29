@@ -32,7 +32,6 @@ C64::C64(class Emulator& ref, isize id) : CoreComponent(ref, id)
         &videoPort,
         &port1,
         &port2,
-        &expansionport,
         &monitor,
         &remoteManager,
         &logicAnalyzer,

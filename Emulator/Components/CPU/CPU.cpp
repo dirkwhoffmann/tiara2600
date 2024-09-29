@@ -35,22 +35,6 @@ CPU::cpuDidJam()
 }
 
 void
-CPU::nmiWillTrigger()
-{
-    if (isC64CPU()) {
-        expansionPort.nmiWillTrigger();
-    }
-}
-
-void
-CPU::nmiDidTrigger()
-{
-    if (isC64CPU()) {
-        expansionPort.nmiDidTrigger();
-    }
-}
-
-void
 CPU::breakpointReached(u16 addr) const
 {
     c64.signalBreakpoint();

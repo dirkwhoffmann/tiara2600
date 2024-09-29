@@ -15,6 +15,7 @@
 
 namespace tiara {
 
+/*
 void
 SimonsBasic::_didReset(bool hard)
 {
@@ -44,5 +45,6 @@ SimonsBasic::pokeIO1(u16 addr, u8 value)
         expansionPort.setCartridgeMode(CRTMODE_16K);
     }
 }
+*/
 
 }

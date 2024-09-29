@@ -4,7 +4,6 @@ target_sources(tiaraCore PRIVATE
 
 Cartridge.cpp
 CartridgeBase.cpp
-CartridgeRom.cpp
 
 )
 
