@@ -107,27 +107,27 @@ class Configuration {
     }
 
     var warpMode: Int {
-        get { return emu?.get(.C64_WARP_MODE) ?? 0 }
-        set { emu?.set(.C64_WARP_MODE, value: newValue) }
+        get { return emu?.get(.ATARI_WARP_MODE) ?? 0 }
+        set { emu?.set(.ATARI_WARP_MODE, value: newValue) }
     }
 
     var warpBoot: Int {
-        get { return emu?.get(.C64_WARP_BOOT) ?? 0 }
-        set { emu?.set(.C64_WARP_BOOT, value: newValue) }
+        get { return emu?.get(.ATARI_WARP_BOOT) ?? 0 }
+        set { emu?.set(.ATARI_WARP_BOOT, value: newValue) }
     }
 
     var vsync: Bool {
-        get { return emu?.get(.C64_VSYNC) != 0 }
-        set { emu?.set(.C64_VSYNC, enable: newValue) }
+        get { return emu?.get(.ATARI_VSYNC) != 0 }
+        set { emu?.set(.ATARI_VSYNC, enable: newValue) }
     }
     var speedBoost: Int {
-        get { return emu?.get(.C64_SPEED_BOOST) ?? 0 }
-        set { emu?.set(.C64_SPEED_BOOST, value: newValue) }
+        get { return emu?.get(.ATARI_SPEED_BOOST) ?? 0 }
+        set { emu?.set(.ATARI_SPEED_BOOST, value: newValue) }
     }
 
     var runAhead: Int {
-        get { return emu?.get(.C64_RUN_AHEAD) ?? 0 }
-        set { emu?.set(.C64_RUN_AHEAD, value: newValue) }
+        get { return emu?.get(.ATARI_RUN_AHEAD) ?? 0 }
+        set { emu?.set(.ATARI_RUN_AHEAD, value: newValue) }
     }
 
     //

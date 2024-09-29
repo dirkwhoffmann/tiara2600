@@ -64,7 +64,7 @@ public:
     
 public:
 
-    ControlPort(C64 &ref, isize id);
+    ControlPort(Atari &ref, isize id);
 
     ControlPort& operator= (const ControlPort& other) {
 

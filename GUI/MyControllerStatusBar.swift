@@ -29,7 +29,7 @@ extension MyController {
             let running = c64state.running
             let tracking = c64state.tracking
             let warping = c64state.warping
-            let boost = emu.get(.C64_SPEED_BOOST)
+            let boost = emu.get(.ATARI_SPEED_BOOST)
 
             // Remote server icon
             refreshStatusBarServerIcon()
@@ -197,11 +197,11 @@ extension MyController {
         if value < 50 { value = 50 }
         if value > 200 { value = 200 }
 
-        emu?.set(.C64_SPEED_BOOST, value: value)
+        emu?.set(.ATARI_SPEED_BOOST, value: value)
     }
 
     @IBAction func speedResetAction(_ sender: Any!) {
 
-        emu?.set(.C64_SPEED_BOOST, value: 100)
+        emu?.set(.ATARI_SPEED_BOOST, value: 100)
     }
 }

@@ -19,7 +19,7 @@
 
 namespace tiara {
 
-Memory::Memory(C64 &ref) : SubComponent(ref)
+Memory::Memory(Atari &ref) : SubComponent(ref)
 {    		
     memset(rom, 0, sizeof(rom));
     

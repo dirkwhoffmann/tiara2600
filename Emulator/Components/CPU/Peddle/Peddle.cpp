@@ -15,7 +15,7 @@ MicroInstruction Peddle::actionFunc[256] = { };
 const char *Peddle::mnemonic[256] = { };
 AddressingMode Peddle::addressingMode[256] = { };
 
-Peddle::Peddle(C64 &ref) : SubComponent(ref)
+Peddle::Peddle(Atari &ref) : SubComponent(ref)
 {
     static isize counter = 0;
 

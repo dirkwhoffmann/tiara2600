@@ -20,7 +20,7 @@
 namespace tiara {
 
 void
-RegressionTester::prepare(C64 &c64, C64Model model)
+RegressionTester::prepare(Atari &c64, C64Model model)
 {
     // Only proceed if the /tmp folder exisits
     if (!util::fileExists(fs::path("/tmp"))) throw Error(VC64ERROR_DIR_NOT_FOUND, "/tmp");
@@ -53,7 +53,7 @@ RegressionTester::run(string path)
 }
 
 void
-RegressionTester::dumpTexture(C64 &c64, const std::filesystem::path &path)
+RegressionTester::dumpTexture(Atari &c64, const std::filesystem::path &path)
 {
     /* This function is used for automatic regression testing. It dumps the
      * visible portion of the texture into the /tmp directory and exits the
@@ -81,7 +81,7 @@ RegressionTester::dumpTexture(C64 &c64, const std::filesystem::path &path)
 }
 
 void
-RegressionTester::dumpTexture(C64 &c64, std::ostream& os)
+RegressionTester::dumpTexture(Atari &c64, std::ostream& os)
 {
     char grey2[3] = { 0x22, 0x22, 0x22 };
     char grey4[3] = { 0x44, 0x44, 0x44 };

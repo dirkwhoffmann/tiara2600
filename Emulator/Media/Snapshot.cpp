@@ -12,13 +12,13 @@
 
 #include "config.h"
 #include "Snapshot.h"
-#include "C64.h"
+#include "Atari.h"
 #include "IOUtils.h"
 
 namespace tiara {
 
 Thumbnail *
-Thumbnail::makeWithC64(const C64 &c64, isize dx, isize dy)
+Thumbnail::makeWithC64(const Atari &c64, isize dx, isize dy)
 {
     Thumbnail *screenshot = new Thumbnail();
     screenshot->take(c64, dx, dy);
@@ -27,7 +27,7 @@ Thumbnail::makeWithC64(const C64 &c64, isize dx, isize dy)
 }
 
 void
-Thumbnail::take(const C64 &c64, isize dx, isize dy)
+Thumbnail::take(const Atari &c64, isize dx, isize dy)
 {
     isize xStart = PAL::FIRST_VISIBLE_PIXEL;
     isize yStart = PAL::FIRST_VISIBLE_LINE;
@@ -87,7 +87,7 @@ Snapshot::Snapshot(isize capacity)
     header->compressed = false;
 }
 
-Snapshot::Snapshot(C64 &c64) : Snapshot(c64.size())
+Snapshot::Snapshot(Atari &c64) : Snapshot(c64.size())
 {
     takeScreenshot(c64);
 
@@ -172,7 +172,7 @@ Snapshot::isBeta() const
 }
 
 void
-Snapshot::takeScreenshot(C64 &c64)
+Snapshot::takeScreenshot(Atari &c64)
 {
     ((SnapshotHeader *)data.ptr)->screenshot.take(c64);
 }

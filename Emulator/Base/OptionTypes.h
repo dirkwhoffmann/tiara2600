@@ -31,16 +31,16 @@ enum_long(OPT)
     OPT_HOST_FRAMEBUF_HEIGHT,   ///< Current height of the emulator window
 
     // C64
-    OPT_C64_WARP_BOOT,          ///< Warp-boot time in seconds
-    OPT_C64_WARP_MODE,          ///< Warp activation mode
-    OPT_C64_VSYNC,              ///< Derive the frame rate to the VSYNC signal
-    OPT_C64_SPEED_BOOST,        ///< Speed adjustment in percent
-    OPT_C64_RUN_AHEAD,          ///< Number of run-ahead frames
+    OPT_ATARI_WARP_BOOT,          ///< Warp-boot time in seconds
+    OPT_ATARI_WARP_MODE,          ///< Warp activation mode
+    OPT_ATARI_VSYNC,              ///< Derive the frame rate to the VSYNC signal
+    OPT_ATARI_SPEED_BOOST,        ///< Speed adjustment in percent
+    OPT_ATARI_RUN_AHEAD,          ///< Number of run-ahead frames
 
     // Snapshots
-    OPT_C64_SNAP_AUTO,          ///< Automatically take a snapshots
-    OPT_C64_SNAP_DELAY,         ///< Delay between two snapshots in seconds
-    OPT_C64_SNAP_COMPRESS,      ///< Compress snapshot data
+    OPT_ATARI_SNAP_AUTO,          ///< Automatically take a snapshots
+    OPT_ATARI_SNAP_DELAY,         ///< Delay between two snapshots in seconds
+    OPT_ATARI_SNAP_COMPRESS,      ///< Compress snapshot data
 
     // TIA
     OPT_TIA_REVISION,           ///< Chip revision
@@ -155,15 +155,15 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_HOST_FRAMEBUF_WIDTH:   return "HOST.FRAMEBUF_WIDTH";
             case OPT_HOST_FRAMEBUF_HEIGHT:  return "HOST.FRAMEBUF_HEIGHT";
 
-            case OPT_C64_WARP_BOOT:         return "C64.WARP_BOOT";
-            case OPT_C64_WARP_MODE:         return "C64.WARP_MODE";
-            case OPT_C64_VSYNC:             return "C64.VSYNC";
-            case OPT_C64_SPEED_BOOST:       return "C64.SPEED_BOOST";
-            case OPT_C64_RUN_AHEAD:         return "C64.RUN_AHEAD";
+            case OPT_ATARI_WARP_BOOT:         return "C64.WARP_BOOT";
+            case OPT_ATARI_WARP_MODE:         return "C64.WARP_MODE";
+            case OPT_ATARI_VSYNC:             return "C64.VSYNC";
+            case OPT_ATARI_SPEED_BOOST:       return "C64.SPEED_BOOST";
+            case OPT_ATARI_RUN_AHEAD:         return "C64.RUN_AHEAD";
             
-            case OPT_C64_SNAP_AUTO:         return "C64.SNAP_AUTO";
-            case OPT_C64_SNAP_DELAY:        return "C64.SNAP_DELAY";
-            case OPT_C64_SNAP_COMPRESS:     return "C64.SNAP_COMPRESS";
+            case OPT_ATARI_SNAP_AUTO:         return "C64.SNAP_AUTO";
+            case OPT_ATARI_SNAP_DELAY:        return "C64.SNAP_DELAY";
+            case OPT_ATARI_SNAP_COMPRESS:     return "C64.SNAP_COMPRESS";
 
             case OPT_TIA_REVISION:          return "TIA.REVISION";
             case OPT_TIA_POWER_SAVE:        return "TIA.POWER_SAVE";
@@ -260,15 +260,15 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_HOST_FRAMEBUF_WIDTH:   return "Window width";
             case OPT_HOST_FRAMEBUF_HEIGHT:  return "Window height";
 
-            case OPT_C64_WARP_BOOT:         return "Warp-boot duration";
-            case OPT_C64_WARP_MODE:         return "Warp activation";
-            case OPT_C64_VSYNC:             return "VSYNC mode";
-            case OPT_C64_SPEED_BOOST:      return "Speed adjustment";
-            case OPT_C64_RUN_AHEAD:         return "Run-ahead frames";
+            case OPT_ATARI_WARP_BOOT:         return "Warp-boot duration";
+            case OPT_ATARI_WARP_MODE:         return "Warp activation";
+            case OPT_ATARI_VSYNC:             return "VSYNC mode";
+            case OPT_ATARI_SPEED_BOOST:      return "Speed adjustment";
+            case OPT_ATARI_RUN_AHEAD:         return "Run-ahead frames";
 
-            case OPT_C64_SNAP_AUTO:         return "Automatically take snapshots";
-            case OPT_C64_SNAP_DELAY:        return "Time span between two snapshots";
-            case OPT_C64_SNAP_COMPRESS:     return "Compress snapshot data";
+            case OPT_ATARI_SNAP_AUTO:         return "Automatically take snapshots";
+            case OPT_ATARI_SNAP_DELAY:        return "Time span between two snapshots";
+            case OPT_ATARI_SNAP_COMPRESS:     return "Compress snapshot data";
 
             case OPT_TIA_REVISION:          return "Video standard";
             case OPT_TIA_POWER_SAVE:        return "Take fast paths";

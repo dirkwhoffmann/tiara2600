@@ -42,7 +42,7 @@ class VideoPort final : public SubComponent {
 
 public:
 
-    VideoPort(C64 &ref);
+    VideoPort(Atari &ref);
     const Descriptions &getDescriptions() const override { return descriptions; }
 
     VideoPort& operator= (const VideoPort& other) {

@@ -86,7 +86,7 @@ public util::RingBuffer <SamplePair, 12288> {
 
 public:
 
-    AudioPort(C64 &ref) : SubComponent(ref) { };
+    AudioPort(Atari &ref) : SubComponent(ref) { };
 
     AudioPort& operator= (const AudioPort& other) {
 

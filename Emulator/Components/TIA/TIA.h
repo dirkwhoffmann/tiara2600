@@ -14,7 +14,7 @@
 
 #include "TIAComponents.h"
 #include "SubComponent.h"
-#include "C64Types.h"
+#include "AtariTypes.h"
 #include "Constants.h"
 
 namespace tiara {
@@ -118,7 +118,7 @@ private:
 
 public:
 
-    TIA(C64 &ref);
+    TIA(Atari &ref);
 
     TIA& operator= (const TIA& other) {
 

@@ -719,11 +719,11 @@ extension DefaultsProxy {
         debug(.defaults)
 
         remove(.TIA_POWER_SAVE)
-        remove(.C64_WARP_MODE)
-        remove(.C64_WARP_BOOT)
-        remove(.C64_SPEED_BOOST)
-        remove(.C64_VSYNC)
-        remove(.C64_RUN_AHEAD)
+        remove(.ATARI_WARP_MODE)
+        remove(.ATARI_WARP_BOOT)
+        remove(.ATARI_SPEED_BOOST)
+        remove(.ATARI_VSYNC)
+        remove(.ATARI_RUN_AHEAD)
     }
 }
 
@@ -740,11 +740,11 @@ extension Configuration {
             let defaults = EmulatorProxy.defaults!
 
             defaults.set(.TIA_POWER_SAVE, tiaPowerSave)
-            defaults.set(.C64_WARP_MODE, warpMode)
-            defaults.set(.C64_WARP_BOOT, warpBoot)
-            defaults.set(.C64_SPEED_BOOST, speedBoost)
-            defaults.set(.C64_VSYNC, vsync)
-            defaults.set(.C64_RUN_AHEAD, runAhead)
+            defaults.set(.ATARI_WARP_MODE, warpMode)
+            defaults.set(.ATARI_WARP_BOOT, warpBoot)
+            defaults.set(.ATARI_SPEED_BOOST, speedBoost)
+            defaults.set(.ATARI_VSYNC, vsync)
+            defaults.set(.ATARI_RUN_AHEAD, runAhead)
 
             defaults.save()
 
@@ -763,11 +763,11 @@ extension Configuration {
             let defaults = EmulatorProxy.defaults!
 
             tiaPowerSave = defaults.get(.TIA_POWER_SAVE) != 0
-            warpMode = defaults.get(.C64_WARP_MODE)
-            warpBoot = defaults.get(.C64_WARP_BOOT)
-            speedBoost = defaults.get(.C64_SPEED_BOOST)
-            vsync = defaults.get(.C64_VSYNC) != 0
-            runAhead = defaults.get(.C64_RUN_AHEAD)
+            warpMode = defaults.get(.ATARI_WARP_MODE)
+            warpBoot = defaults.get(.ATARI_WARP_BOOT)
+            speedBoost = defaults.get(.ATARI_SPEED_BOOST)
+            vsync = defaults.get(.ATARI_VSYNC) != 0
+            runAhead = defaults.get(.ATARI_RUN_AHEAD)
 
             emu.resume()
         }

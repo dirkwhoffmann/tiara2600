@@ -13,8 +13,8 @@
 
 #pragma once
 
+#include "AtariTypes.h"
 #include "AudioPortTypes.h"
-#include "C64Types.h"
 #include "CartridgeTypes.h"
 #include "RIOTTypes.h"
 #include "CmdQueueTypes.h"

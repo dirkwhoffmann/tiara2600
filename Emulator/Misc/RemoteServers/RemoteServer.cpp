@@ -17,7 +17,7 @@
 
 namespace tiara {
 
-RemoteServer::RemoteServer(C64 &ref) : SubComponent(ref)
+RemoteServer::RemoteServer(Atari &ref) : SubComponent(ref)
 {
 
 }

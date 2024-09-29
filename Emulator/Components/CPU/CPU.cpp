@@ -18,12 +18,12 @@
 
 namespace tiara {
 
-CPU::CPU(C64& ref) : Peddle(ref)
+CPU::CPU(Atari& ref) : Peddle(ref)
 {
 
 }
 
-CPU::CPU(CPURevision cpuModel, C64& ref) : CPU(ref)
+CPU::CPU(CPURevision cpuModel, Atari& ref) : CPU(ref)
 {
     setModel(cpuModel);
 }

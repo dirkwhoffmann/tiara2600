@@ -21,7 +21,7 @@ class References {
 protected:
 
     class AudioPort &audioPort;
-    class C64 &c64;
+    class Atari &c64;
     class RIOT &riot;
     class ControlPort &port1;
     class ControlPort &port2;
@@ -39,15 +39,15 @@ protected:
 
 public:
 
-    References(C64& ref);
+    References(Atari& ref);
 };
 
 class SubComponent : public CoreComponent, public References {
 
 public:
 
-    SubComponent(C64& ref);
-    SubComponent(C64& ref, isize id);
+    SubComponent(Atari& ref);
+    SubComponent(Atari& ref, isize id);
 
     void prefix(isize level, const char *component, isize line) const override;
 };

@@ -15,7 +15,7 @@
 
 #include "Reflection.h"
 #include "ThreadTypes.h"
-#include "C64Types.h"
+#include "AtariTypes.h"
 
 namespace tiara {
 

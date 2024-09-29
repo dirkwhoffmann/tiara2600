@@ -14,7 +14,7 @@
 #pragma once
 
 #include "Reflection.h"
-#include "C64Types.h"
+#include "AtariTypes.h"
 
 namespace tiara {
 

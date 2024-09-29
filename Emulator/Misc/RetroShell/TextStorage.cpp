@@ -12,7 +12,7 @@
 
 #include "config.h"
 #include "TextStorage.h"
-#include "C64.h"
+#include "Atari.h"
 
 namespace tiara {
 

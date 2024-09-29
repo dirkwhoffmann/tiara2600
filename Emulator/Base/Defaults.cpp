@@ -12,7 +12,7 @@
 
 #include "config.h"
 #include "Defaults.h"
-#include "C64.h"
+#include "Atari.h"
 #include "StringUtils.h"
 #include "IOUtils.h"
 
@@ -25,15 +25,15 @@ Defaults::Defaults()
     setFallback(OPT_HOST_FRAMEBUF_WIDTH,        0);
     setFallback(OPT_HOST_FRAMEBUF_HEIGHT,       0);
 
-    setFallback(OPT_C64_WARP_BOOT,              0);
-    setFallback(OPT_C64_WARP_MODE,              WARP_NEVER);
-    setFallback(OPT_C64_VSYNC,                  false);
-    setFallback(OPT_C64_SPEED_BOOST,            100);
-    setFallback(OPT_C64_RUN_AHEAD,              0);
+    setFallback(OPT_ATARI_WARP_BOOT,              0);
+    setFallback(OPT_ATARI_WARP_MODE,              WARP_NEVER);
+    setFallback(OPT_ATARI_VSYNC,                  false);
+    setFallback(OPT_ATARI_SPEED_BOOST,            100);
+    setFallback(OPT_ATARI_RUN_AHEAD,              0);
 
-    setFallback(OPT_C64_SNAP_AUTO,              false);
-    setFallback(OPT_C64_SNAP_DELAY,             10);
-    setFallback(OPT_C64_SNAP_COMPRESS,          true);
+    setFallback(OPT_ATARI_SNAP_AUTO,              false);
+    setFallback(OPT_ATARI_SNAP_DELAY,             10);
+    setFallback(OPT_ATARI_SNAP_COMPRESS,          true);
 
     setFallback(OPT_TIA_REVISION,               TIA_NTSC);
     setFallback(OPT_TIA_POWER_SAVE,             true);
@@ -266,7 +266,7 @@ Defaults::save(std::stringstream &stream)
         std::map <string, std::map <string, string>> groups;
 
         // Write header
-        stream << "# Tiara " << C64::build() << std::endl;
+        stream << "# Tiara " << Atari::build() << std::endl;
         stream << "# dirkwhoffmann.github.io/tiara2600" << std::endl;
         stream << std::endl;
 

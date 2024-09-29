@@ -17,7 +17,7 @@
 
 namespace tiara {
 
-class C64;
+class Atari;
 
 struct Thumbnail {
     
@@ -31,10 +31,10 @@ struct Thumbnail {
     time_t timestamp;
     
     // Factory methods
-    static Thumbnail *makeWithC64(const C64 &c64, isize dx = 1, isize dy = 1);
+    static Thumbnail *makeWithC64(const Atari &c64, isize dx = 1, isize dy = 1);
     
     // Takes a screenshot from the current texture
-    void take(const C64 &c64, isize dx = 1, isize dy = 1);
+    void take(const Atari &c64, isize dx = 1, isize dy = 1);
 };
 
 struct SnapshotHeader {
@@ -76,7 +76,7 @@ public:
     Snapshot(const fs::path &path) throws { init(path); }
     Snapshot(const u8 *buf, isize len) throws { init(buf, len); }
     Snapshot(isize capacity);
-    Snapshot(C64 &c64);
+    Snapshot(Atari &c64);
 
 
     //
@@ -120,7 +120,7 @@ public:
     u8 *getSnapshotData() const { return data.ptr + sizeof(SnapshotHeader); }
 
     // Records a screenshot
-    void takeScreenshot(C64 &c64);
+    void takeScreenshot(Atari &c64);
 
 
     //

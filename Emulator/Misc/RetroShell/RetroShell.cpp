@@ -19,7 +19,7 @@
 
 namespace tiara {
 
-RetroShell::RetroShell(C64& ref) : SubComponent(ref)
+RetroShell::RetroShell(Atari& ref) : SubComponent(ref)
 {
     subComponents = std::vector<CoreComponent *> {
 

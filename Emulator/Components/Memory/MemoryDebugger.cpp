@@ -12,7 +12,7 @@
 
 #include "config.h"
 #include "MemoryDebugger.h"
-#include "C64.h"
+#include "Atari.h"
 #include "IOUtils.h"
 
 namespace tiara {

@@ -174,7 +174,7 @@ protected:
 
 public:
 
-    Peddle(C64 &ref);
+    Peddle(Atari &ref);
     virtual ~Peddle() = default;
 
 

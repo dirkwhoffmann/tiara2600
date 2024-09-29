@@ -13,7 +13,7 @@
 #pragma once
 
 #include "MonitorTypes.h"
-#include "C64Types.h"
+#include "AtariTypes.h"
 #include "SubComponent.h"
 
 namespace tiara {
@@ -66,7 +66,7 @@ class Monitor final : public SubComponent {
 
 public:
 
-    Monitor(C64 &ref) : SubComponent(ref) { }
+    Monitor(Atari &ref) : SubComponent(ref) { }
 
     Monitor& operator= (const Monitor& other) {
 

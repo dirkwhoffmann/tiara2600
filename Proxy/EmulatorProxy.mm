@@ -810,12 +810,12 @@ using namespace tiara;
     return (C64API *)obj;
 }
 
-- (C64Info)info
+- (AtariInfo)info
 {
     return [self c64]->getInfo();
 }
 
-- (C64Info)cachedInfo
+- (AtariInfo)cachedInfo
 {
     return [self c64]->getCachedInfo();
 }

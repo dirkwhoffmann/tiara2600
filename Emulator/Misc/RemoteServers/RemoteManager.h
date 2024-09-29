@@ -46,7 +46,7 @@ public:
     
 public:
     
-    RemoteManager(C64& ref);
+    RemoteManager(Atari& ref);
     
     RemoteManager& operator= (const RemoteManager& other) {
 

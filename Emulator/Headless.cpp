@@ -14,7 +14,7 @@
 #include "config.h"
 #include "Headless.h"
 #include "HeadlessScripts.h"
-#include "C64.h"
+#include "Atari.h"
 #include "Script.h"
 #include "IOUtils.h"
 #include <chrono>
@@ -208,7 +208,7 @@ Headless::process(Message msg)
 void
 Headless::reportSize()
 {
-    msg("               C64 : %zu bytes\n", sizeof(C64));
+    msg("               C64 : %zu bytes\n", sizeof(Atari));
     msg("            Memory : %zu bytes\n", sizeof(Memory));
     msg("               CPU : %zu bytes\n", sizeof(CPU));
     msg("              RIOT : %zu bytes\n", sizeof(RIOT));

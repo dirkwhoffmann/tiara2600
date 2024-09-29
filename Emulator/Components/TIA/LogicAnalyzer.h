@@ -62,7 +62,7 @@ class LogicAnalyzer final : public SubComponent {
     
 public:
     
-    LogicAnalyzer(C64 &ref);
+    LogicAnalyzer(Atari &ref);
 
     LogicAnalyzer& operator= (const LogicAnalyzer& other) {
 

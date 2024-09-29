@@ -12,7 +12,7 @@
 
 #include "config.h"
 #include "Cartridge.h"
-#include "C64.h"
+#include "Atari.h"
 
 namespace tiara {
 
@@ -36,7 +36,7 @@ Cartridge::isSupportedType(CartridgeType type)
 }
 
 Cartridge *
-Cartridge::makeWithType(C64 &c64, CartridgeType type)
+Cartridge::makeWithType(Atari &c64, CartridgeType type)
 {
     Cartridge *cart;
 
@@ -55,7 +55,7 @@ Cartridge::makeWithType(C64 &c64, CartridgeType type)
 }
 
 Cartridge *
-Cartridge::makeWithFile(C64 &c64, const RomFile &file)
+Cartridge::makeWithFile(Atari &c64, const RomFile &file)
 {
     // Try to create the cartridge
     Cartridge *cart = makeWithType(c64, CRT_NORMAL);
@@ -64,7 +64,7 @@ Cartridge::makeWithFile(C64 &c64, const RomFile &file)
     return cart;
 }
 
-Cartridge::Cartridge(C64 &ref) : SubComponent(ref)
+Cartridge::Cartridge(Atari &ref) : SubComponent(ref)
 {
     trace(CRT_DEBUG, "Creating cartridge at address %p...\n", (void *)this);
 }

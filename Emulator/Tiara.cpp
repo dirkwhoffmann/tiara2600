@@ -39,13 +39,13 @@ API::isUserThread() const
 string
 Tiara::version()
 {
-    return C64::version();
+    return Atari::version();
 }
 
 string
 Tiara::build()
 {
-    return C64::build();
+    return Atari::build();
 }
 
 Tiara::Tiara() {
@@ -361,13 +361,13 @@ C64API::setAutoInspectionMask(u64 mask)
     c64->setAutoInspectionMask(mask);
 }
 
-const C64Info &
+const AtariInfo &
 C64API::getInfo() const
 {
     return c64->getInfo();
 }
 
-const C64Info &
+const AtariInfo &
 C64API::getCachedInfo() const
 {
     return c64->getCachedInfo();

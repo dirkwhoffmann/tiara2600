@@ -13,7 +13,7 @@
 #pragma once
 
 #include "RIOTTypes.h"
-#include "C64Types.h"
+#include "AtariTypes.h"
 #include "SubComponent.h"
 
 namespace tiara {
@@ -41,7 +41,7 @@ class RIOT : public SubComponent, public Inspectable<RIOTInfo, RIOTStats> {
 
 public:
 
-    RIOT(C64 &ref);
+    RIOT(Atari &ref);
 
     RIOT& operator= (const RIOT& other) {
 

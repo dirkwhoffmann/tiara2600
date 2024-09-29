@@ -16,7 +16,7 @@
 
 namespace tiara {
 
-LogicAnalyzer::LogicAnalyzer(C64 &ref) : SubComponent(ref)
+LogicAnalyzer::LogicAnalyzer(Atari &ref) : SubComponent(ref)
 {
 
 }

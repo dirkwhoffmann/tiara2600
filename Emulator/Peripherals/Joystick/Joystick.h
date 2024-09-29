@@ -13,7 +13,7 @@
 #pragma once
 
 #include "JoystickTypes.h"
-#include "C64Types.h"
+#include "AtariTypes.h"
 #include "SubComponent.h"
 
 namespace tiara {
@@ -72,7 +72,7 @@ class Joystick final : public SubComponent, public Inspectable<JoystickInfo> {
     
 public:
     
-    Joystick(C64 &ref, ControlPort& pref);
+    Joystick(Atari &ref, ControlPort& pref);
 
     Joystick& operator= (const Joystick& other) {
 

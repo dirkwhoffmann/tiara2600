@@ -75,7 +75,7 @@ private:
 
 public:
 
-    RetroShell(C64& ref);
+    RetroShell(Atari& ref);
     RetroShell& operator= (const RetroShell& other) { return *this; }
 
 

@@ -13,8 +13,8 @@
 		5002FA7F21C2653600DA4BBC /* GeneralPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002FA7E21C2653600DA4BBC /* GeneralPrefs.swift */; };
 		5002FA8121C2654B00DA4BBC /* ControlsPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5002FA8021C2654B00DA4BBC /* ControlsPrefs.swift */; };
 		50033829266E47B400D5456E /* CompatibilityConf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50033828266E47B400D5456E /* CompatibilityConf.swift */; };
-		500375062C23F26000979A1B /* C64Base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 500375052C23F26000979A1B /* C64Base.cpp */; };
-		500375072C23F26000979A1B /* C64Base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 500375052C23F26000979A1B /* C64Base.cpp */; };
+		500375062C23F26000979A1B /* AtariBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 500375052C23F26000979A1B /* AtariBase.cpp */; };
+		500375072C23F26000979A1B /* AtariBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 500375052C23F26000979A1B /* AtariBase.cpp */; };
 		5009CF3324C0B8EF00F674FF /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5009CF3224C0B8EF00F674FF /* Preferences.swift */; };
 		500C1C752965D10F00071AF3 /* StrWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 501C46BD2965C54200C4B27B /* StrWriter.cpp */; };
 		500C1C762965D11000071AF3 /* StrWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 501C46BD2965C54200C4B27B /* StrWriter.cpp */; };
@@ -72,7 +72,7 @@
 		504C438224AF29AC00E69CAE /* CoreObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42ED24AF29AB00E69CAE /* CoreObject.cpp */; };
 		504C438324AF29AC00E69CAE /* CoreComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42EE24AF29AB00E69CAE /* CoreComponent.cpp */; };
 		504C438524AF29AC00E69CAE /* MsgQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42F124AF29AB00E69CAE /* MsgQueue.cpp */; };
-		504C438724AF29AC00E69CAE /* C64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42F724AF29AB00E69CAE /* C64.cpp */; };
+		504C438724AF29AC00E69CAE /* Atari.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42F724AF29AB00E69CAE /* Atari.cpp */; };
 		504C43A224AF29AC00E69CAE /* ControlPort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C433E24AF29AC00E69CAE /* ControlPort.cpp */; };
 		504C43AB24AF29AC00E69CAE /* RIOT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C435824AF29AC00E69CAE /* RIOT.cpp */; };
 		505184DE24F23484002C6124 /* MyControllerSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505184DD24F23484002C6124 /* MyControllerSnapshots.swift */; };
@@ -113,7 +113,7 @@
 		50726F2B295B61C50031F2F5 /* DebugConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50726F2A295B61C50031F2F5 /* DebugConsole.cpp */; };
 		50726F2F295C27360031F2F5 /* EventPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50726F2E295C27360031F2F5 /* EventPanel.swift */; };
 		50726F31295C27470031F2F5 /* EventTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50726F30295C27470031F2F5 /* EventTableView.swift */; };
-		50726F3D2961C96B0031F2F5 /* C64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42F724AF29AB00E69CAE /* C64.cpp */; };
+		50726F3D2961C96B0031F2F5 /* Atari.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42F724AF29AB00E69CAE /* Atari.cpp */; };
 		50726F3E2961C97B0031F2F5 /* Chrono.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DD829E2614D47E00B84EB3 /* Chrono.cpp */; };
 		50726F3F2961C97B0031F2F5 /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B579B5281436F6001D8621 /* StringUtils.cpp */; };
 		50726F402961C97B0031F2F5 /* IOUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 500E34122615BF5E006A38DA /* IOUtils.cpp */; };
@@ -342,7 +342,7 @@
 		5002FA8021C2654B00DA4BBC /* ControlsPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsPrefs.swift; sourceTree = "<group>"; };
 		500333EC2620269D008445E4 /* JoystickTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JoystickTypes.h; sourceTree = "<group>"; };
 		50033828266E47B400D5456E /* CompatibilityConf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibilityConf.swift; sourceTree = "<group>"; };
-		500375052C23F26000979A1B /* C64Base.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = C64Base.cpp; sourceTree = "<group>"; };
+		500375052C23F26000979A1B /* AtariBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AtariBase.cpp; sourceTree = "<group>"; };
 		5007E1E026A70006000E7344 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		5009CF3224C0B8EF00F674FF /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		500C1C772965E7D300071AF3 /* PeddleDisassembler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PeddleDisassembler.cpp; sourceTree = "<group>"; };
@@ -400,7 +400,7 @@
 		504104472CA687610004860E /* TIABase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TIABase.cpp; sourceTree = "<group>"; };
 		5041044A2CA6910F0004860E /* TIAComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TIAComponents.h; sourceTree = "<group>"; };
 		5041044B2CA6913E0004860E /* TIAComponents.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TIAComponents.cpp; sourceTree = "<group>"; };
-		504268AC24F0F76F006BB841 /* C64Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = C64Types.h; sourceTree = "<group>"; };
+		504268AC24F0F76F006BB841 /* AtariTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AtariTypes.h; sourceTree = "<group>"; };
 		50441A872B93CE2600102A4D /* TiaraTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TiaraTypes.h; sourceTree = "<group>"; };
 		50441A8A2B9495BE00102A4D /* communication.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = communication.md; sourceTree = "<group>"; };
 		50441A8C2B9495BE00102A4D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -452,8 +452,8 @@
 		504C42F124AF29AB00E69CAE /* MsgQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MsgQueue.cpp; sourceTree = "<group>"; };
 		504C42F424AF29AB00E69CAE /* MsgQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgQueue.h; sourceTree = "<group>"; };
 		504C42F524AF29AB00E69CAE /* CoreComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreComponent.h; sourceTree = "<group>"; };
-		504C42F624AF29AB00E69CAE /* C64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C64.h; sourceTree = "<group>"; };
-		504C42F724AF29AB00E69CAE /* C64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = C64.cpp; sourceTree = "<group>"; };
+		504C42F624AF29AB00E69CAE /* Atari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Atari.h; sourceTree = "<group>"; };
+		504C42F724AF29AB00E69CAE /* Atari.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Atari.cpp; sourceTree = "<group>"; };
 		504C42F824AF29AB00E69CAE /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		504C433E24AF29AC00E69CAE /* ControlPort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ControlPort.cpp; sourceTree = "<group>"; };
 		504C434024AF29AC00E69CAE /* ControlPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlPort.h; sourceTree = "<group>"; };
@@ -1448,10 +1448,10 @@
 			isa = PBXGroup;
 			children = (
 				50E56AF629D48A0E00EBCE76 /* CMakeLists.txt */,
-				504268AC24F0F76F006BB841 /* C64Types.h */,
-				504C42F624AF29AB00E69CAE /* C64.h */,
-				500375052C23F26000979A1B /* C64Base.cpp */,
-				504C42F724AF29AB00E69CAE /* C64.cpp */,
+				504268AC24F0F76F006BB841 /* AtariTypes.h */,
+				504C42F624AF29AB00E69CAE /* Atari.h */,
+				500375052C23F26000979A1B /* AtariBase.cpp */,
+				504C42F724AF29AB00E69CAE /* Atari.cpp */,
 				506F30442B7578870083EAEA /* EmulatorTypes.h */,
 				506F30392B729CE80083EAEA /* Emulator.h */,
 				50A1948C2BDA6F490046849E /* EmulatorBase.cpp */,
@@ -1680,7 +1680,7 @@
 				50BD640F2C01FFEC007CD347 /* VideoPortBase.cpp in Sources */,
 				50726F5A2961C9AC0031F2F5 /* LogicAnalyzer.cpp in Sources */,
 				501C46BF2965C54200C4B27B /* StrWriter.h in Sources */,
-				500375072C23F26000979A1B /* C64Base.cpp in Sources */,
+				500375072C23F26000979A1B /* AtariBase.cpp in Sources */,
 				50726F442961C97B0031F2F5 /* MemUtils.cpp in Sources */,
 				50726F3E2961C97B0031F2F5 /* Chrono.cpp in Sources */,
 				5077AC692B5ACC5100EFAC85 /* config.cpp in Sources */,
@@ -1720,7 +1720,7 @@
 				50726FA92961CA1C0031F2F5 /* AnyFile.cpp in Sources */,
 				500C1C7A2965E7D300071AF3 /* PeddleDisassembler.cpp in Sources */,
 				50726F4F2961C9940031F2F5 /* CoreObject.cpp in Sources */,
-				50726F3D2961C96B0031F2F5 /* C64.cpp in Sources */,
+				50726F3D2961C96B0031F2F5 /* Atari.cpp in Sources */,
 				50BD640B2C01FADC007CD347 /* VideoPort.cpp in Sources */,
 				50A5B7D62C74E44C00D6DDAD /* Socket.cpp in Sources */,
 				506F30432B74C1C70083EAEA /* Wakeable.cpp in Sources */,
@@ -1746,7 +1746,7 @@
 				50D3091E24C5CE1A00B92563 /* MyControllerStatusBar.swift in Sources */,
 				501C46BE2965C54200C4B27B /* StrWriter.h in Sources */,
 				5036E0BA261AEF000048E66A /* RetroShell.cpp in Sources */,
-				504C438724AF29AC00E69CAE /* C64.cpp in Sources */,
+				504C438724AF29AC00E69CAE /* Atari.cpp in Sources */,
 				506A8A882B88D00200B95383 /* Configurable.cpp in Sources */,
 				50E5BF732BA81E710004712B /* Monitor.cpp in Sources */,
 				50769B8A24BB1B87006FE743 /* Configuration.swift in Sources */,
@@ -1888,7 +1888,7 @@
 				50B165AE25B06A03009B576D /* TextureToolbox.swift in Sources */,
 				50BB3E912B7A232800B2D87B /* Inspectable.cpp in Sources */,
 				506B13C224C1C40600814BB0 /* PreferencesController.swift in Sources */,
-				500375062C23F26000979A1B /* C64Base.cpp in Sources */,
+				500375062C23F26000979A1B /* AtariBase.cpp in Sources */,
 				50461BBE26B522450019CEDF /* Thread.cpp in Sources */,
 				507A49A024C8D66A00DBF984 /* GuardTableView.swift in Sources */,
 				50A5B7D12C74E44C00D6DDAD /* RemoteServer.cpp in Sources */,

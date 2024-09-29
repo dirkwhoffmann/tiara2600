@@ -22,7 +22,7 @@ namespace tiara {
 
 class CPU final : public Peddle, public Inspectable<CPUInfo> {
 
-    friend class C64;
+    friend class Atari;
 
     Descriptions descriptions = {{
 
@@ -72,8 +72,8 @@ public:
     
 public:
     
-    CPU(C64& ref);
-    CPU(CPURevision cpuModel, C64& ref);
+    CPU(Atari& ref);
+    CPU(CPURevision cpuModel, Atari& ref);
 
     bool isC64CPU() const { return cpuModel == MOS_6510; }
     bool isDriveCPU() const { return cpuModel == MOS_6502; }

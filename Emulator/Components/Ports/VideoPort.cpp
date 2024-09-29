@@ -16,7 +16,7 @@
 
 namespace tiara {
 
-VideoPort::VideoPort(C64 &ref) : SubComponent(ref)
+VideoPort::VideoPort(Atari &ref) : SubComponent(ref)
 {
 
 };

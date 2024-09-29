@@ -65,7 +65,7 @@ protected:
     
 public:
     
-    RemoteServer(C64& ref);
+    RemoteServer(Atari& ref);
     ~RemoteServer() { shutDownServer(); }
     void shutDownServer();
     

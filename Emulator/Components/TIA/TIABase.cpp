@@ -16,7 +16,7 @@
 
 namespace tiara {
 
-TIA::TIA(C64 &ref) : SubComponent(ref)
+TIA::TIA(Atari &ref) : SubComponent(ref)
 {
     // initFuncTable();
 }

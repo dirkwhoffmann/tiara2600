@@ -17,7 +17,7 @@
 
 namespace tiara {
 
-RIOT::RIOT(C64 &ref) : SubComponent(ref)
+RIOT::RIOT(Atari &ref) : SubComponent(ref)
 {
 
 }

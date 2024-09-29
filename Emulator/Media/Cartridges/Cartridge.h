@@ -64,8 +64,8 @@ public:
     static bool isSupportedType(CartridgeType type);
 
     // Factory methods
-    static Cartridge *makeWithType(C64 &c64, CartridgeType type) throws;
-    static Cartridge *makeWithFile(C64 &c64, const RomFile &file) throws;
+    static Cartridge *makeWithType(Atari &c64, CartridgeType type) throws;
+    static Cartridge *makeWithFile(Atari &c64, const RomFile &file) throws;
 
 
     //
@@ -74,7 +74,7 @@ public:
 
 public:
 
-    Cartridge(C64 &ref);
+    Cartridge(Atari &ref);
     ~Cartridge();
 
     virtual void init();

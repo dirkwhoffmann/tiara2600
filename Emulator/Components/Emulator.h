@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "C64.h"
+#include "Atari.h"
 #include "Defaults.h"
 #include "EmulatorTypes.h"
 #include "Host.h"
@@ -30,10 +30,10 @@ public Inspectable<EmulatorInfo, EmulatorStats> {
     friend class Tiara;
 
     // The virtual C64
-    C64 main = C64(*this, 0);
+    Atari main = Atari(*this, 0);
 
     // The run-ahead instance
-    C64 ahead = C64(*this, 1);
+    Atari ahead = Atari(*this, 1);
 
     // Indicates if the run-ahead instance needs to be updated
     bool isDirty = true;

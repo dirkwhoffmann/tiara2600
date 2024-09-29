@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "C64Types.h"
+#include "AtariTypes.h"
 #include "MsgQueue.h"
 #include "Thread.h"
 
@@ -64,7 +64,7 @@ static constexpr Cycle NEVER = INT64_MAX;
 static constexpr double inspectionInterval = 0.1;
 
 
-class C64 final : public CoreComponent, public Inspectable<C64Info> {
+class Atari final : public CoreComponent, public Inspectable<AtariInfo> {
 
     friend class Emulator;
 
@@ -85,20 +85,20 @@ class C64 final : public CoreComponent, public Inspectable<C64Info> {
 
     Options options = {
 
-        OPT_C64_WARP_BOOT,
-        OPT_C64_WARP_MODE,
-        OPT_C64_SPEED_BOOST,
-        OPT_C64_VSYNC,
-        OPT_C64_RUN_AHEAD,
-        OPT_C64_SNAP_AUTO,
-        OPT_C64_SNAP_DELAY,
-        OPT_C64_SNAP_COMPRESS
+        OPT_ATARI_WARP_BOOT,
+        OPT_ATARI_WARP_MODE,
+        OPT_ATARI_SPEED_BOOST,
+        OPT_ATARI_VSYNC,
+        OPT_ATARI_RUN_AHEAD,
+        OPT_ATARI_SNAP_AUTO,
+        OPT_ATARI_SNAP_DELAY,
+        OPT_ATARI_SNAP_COMPRESS
     };
     
 private:
 
     // The current configuration
-    C64Config config = {};
+    AtariConfig config = {};
 
     // Result of the latest inspection
     mutable EventSlotInfo slotInfo[SLOT_COUNT];
@@ -255,8 +255,8 @@ public:
 
 public:
 
-    C64(class Emulator& ref, isize id);
-    ~C64();
+    Atari(class Emulator& ref, isize id);
+    ~Atari();
 
 private:
 
@@ -269,7 +269,7 @@ private:
 
 public:
 
-    C64& operator= (const C64& other) {
+    Atari& operator= (const Atari& other) {
 
         CLONE(mem)
         CLONE(cpu)
@@ -375,7 +375,7 @@ private:
 public:
 
     // virtual void record() const override;
-    void cacheInfo(C64Info &result) const override;
+    void cacheInfo(AtariInfo &result) const override;
 
     u64 getAutoInspectionMask() const;
     void setAutoInspectionMask(u64 mask);
@@ -388,7 +388,7 @@ public:
 
 public:
 
-    const C64Config &getConfig() const { return config; }
+    const AtariConfig &getConfig() const { return config; }
     const Options &getOptions() const override { return options; }
     
     i64 getOption(Option opt) const override;

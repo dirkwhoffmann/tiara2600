@@ -227,8 +227,8 @@ using namespace tiara;
 
 @interface C64Proxy : SubComponentProxy { }
 
-@property (readonly) C64Info info;
-@property (readonly) C64Info cachedInfo;
+@property (readonly) AtariInfo info;
+@property (readonly) AtariInfo cachedInfo;
 - (EventSlotInfo)cachedSlotInfo:(NSInteger)slot;
 @property NSInteger autoInspectionMask;
 

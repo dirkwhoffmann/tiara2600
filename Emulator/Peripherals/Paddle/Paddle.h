@@ -14,7 +14,7 @@
 
 #include "PaddleTypes.h"
 #include "JoystickTypes.h"
-#include "C64Types.h"
+#include "AtariTypes.h"
 #include "SubComponent.h"
 
 namespace tiara {
@@ -89,7 +89,7 @@ class Paddle final : public SubComponent, public Inspectable<PaddleInfo> {
 
 public:
 
-    Paddle(C64 &ref, ControlPort& pref);
+    Paddle(Atari &ref, ControlPort& pref);
 
     Paddle& operator= (const Paddle& other) {
 

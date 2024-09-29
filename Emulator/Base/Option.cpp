@@ -34,15 +34,15 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_HOST_FRAMEBUF_WIDTH:       return numParser(" pixels");
         case OPT_HOST_FRAMEBUF_HEIGHT:      return numParser(" pixels");
 
-        case OPT_C64_WARP_MODE:             return enumParser.template operator()<WarpModeEnum>();
-        case OPT_C64_WARP_BOOT:             return numParser(" sec");
-        case OPT_C64_VSYNC:                 return boolParser();
-        case OPT_C64_SPEED_BOOST:           return numParser("%");
-        case OPT_C64_RUN_AHEAD:             return numParser(" frames");
+        case OPT_ATARI_WARP_MODE:             return enumParser.template operator()<WarpModeEnum>();
+        case OPT_ATARI_WARP_BOOT:             return numParser(" sec");
+        case OPT_ATARI_VSYNC:                 return boolParser();
+        case OPT_ATARI_SPEED_BOOST:           return numParser("%");
+        case OPT_ATARI_RUN_AHEAD:             return numParser(" frames");
 
-        case OPT_C64_SNAP_AUTO:             return boolParser();
-        case OPT_C64_SNAP_DELAY:            return numParser(" sec");
-        case OPT_C64_SNAP_COMPRESS:         return boolParser();
+        case OPT_ATARI_SNAP_AUTO:             return boolParser();
+        case OPT_ATARI_SNAP_DELAY:            return numParser(" sec");
+        case OPT_ATARI_SNAP_COMPRESS:         return boolParser();
 
         case OPT_TIA_REVISION:              return enumParser.template operator()<TIARevisionEnum>();
         case OPT_TIA_POWER_SAVE:            return boolParser();

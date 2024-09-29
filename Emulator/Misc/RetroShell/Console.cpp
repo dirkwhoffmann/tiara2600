@@ -838,7 +838,7 @@ Console::initCommands(Command &root)
              [this](Arguments& argv, long value) {
 
         auto seconds = parseNum(argv[0]);
-        c64.scheduleRel<SLOT_RSH>(C64::sec(seconds), RSH_WAKEUP);
+        c64.scheduleRel<SLOT_RSH>(Atari::sec(seconds), RSH_WAKEUP);
         throw ScriptInterruption();
     });
 

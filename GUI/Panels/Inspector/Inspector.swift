@@ -288,7 +288,7 @@ class Inspector: DialogController {
     var riotStats: tiara.RIOTStats!
     var memInfo: tiara.MemInfo!
     var tiaInfo: tiara.TIAInfo!
-    var eventInfo: tiara.C64Info!
+    var eventInfo: tiara.AtariInfo!
     var isRunning = true
     
     // Number format selection (hexadecimal or decimal)

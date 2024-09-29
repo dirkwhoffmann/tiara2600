@@ -12,7 +12,7 @@
 
 #include "config.h"
 #include "RshServer.h"
-#include "C64.h"
+#include "Atari.h"
 #include "RetroShell.h"
 #include "StringUtils.h"
 

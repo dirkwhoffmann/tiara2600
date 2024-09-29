@@ -11,14 +11,14 @@
 // -----------------------------------------------------------------------------
 
 #include "config.h"
-#include "C64.h"
+#include "Atari.h"
 #include "Option.h"
 #include "Emulator.h"
 #include "IOUtils.h"
 
 namespace tiara {
 
-C64::C64(class Emulator& ref, isize id) : CoreComponent(ref, id)
+Atari::Atari(class Emulator& ref, isize id) : CoreComponent(ref, id)
 {    
     trace(RUN_DEBUG, "Creating virtual C64\n");
 
@@ -44,7 +44,7 @@ C64::C64(class Emulator& ref, isize id) : CoreComponent(ref, id)
     cpu.setID(0);
 }
 
-C64::~C64()
+Atari::~Atari()
 {
     trace(RUN_DEBUG, "Destructing virtual C64\n");
 }
@@ -55,7 +55,7 @@ C64::~C64()
 //
 
 void
-C64::_dump(Category category, std::ostream& os) const
+Atari::_dump(Category category, std::ostream& os) const
 {
     using namespace util;
     auto append = [&](const string &s1, const string &s2) {
@@ -156,18 +156,18 @@ C64::_dump(Category category, std::ostream& os) const
 //
 
 i64
-C64::getOption(Option opt) const
+Atari::getOption(Option opt) const
 {
     switch (opt) {
 
-        case OPT_C64_WARP_BOOT:         return config.warpBoot;
-        case OPT_C64_WARP_MODE:         return config.warpMode;
-        case OPT_C64_SPEED_BOOST:      return config.speedBoost;
-        case OPT_C64_VSYNC:             return config.vsync;
-        case OPT_C64_RUN_AHEAD:         return config.runAhead;
-        case OPT_C64_SNAP_AUTO:         return config.snapshots;
-        case OPT_C64_SNAP_DELAY:        return config.snapshotDelay;
-        case OPT_C64_SNAP_COMPRESS:     return config.compressSnapshots;
+        case OPT_ATARI_WARP_BOOT:         return config.warpBoot;
+        case OPT_ATARI_WARP_MODE:         return config.warpMode;
+        case OPT_ATARI_SPEED_BOOST:      return config.speedBoost;
+        case OPT_ATARI_VSYNC:             return config.vsync;
+        case OPT_ATARI_RUN_AHEAD:         return config.runAhead;
+        case OPT_ATARI_SNAP_AUTO:         return config.snapshots;
+        case OPT_ATARI_SNAP_DELAY:        return config.snapshotDelay;
+        case OPT_ATARI_SNAP_COMPRESS:     return config.compressSnapshots;
 
         default:
             fatalError;
@@ -175,51 +175,51 @@ C64::getOption(Option opt) const
 }
 
 void
-C64::checkOption(Option opt, i64 value)
+Atari::checkOption(Option opt, i64 value)
 {
     switch (opt) {
 
-        case OPT_C64_WARP_BOOT:
+        case OPT_ATARI_WARP_BOOT:
 
             return;
 
-        case OPT_C64_WARP_MODE:
+        case OPT_ATARI_WARP_MODE:
 
             if (!WarpModeEnum::isValid(value)) {
                 throw Error(VC64ERROR_OPT_INV_ARG, WarpModeEnum::keyList());
             }
             return;
 
-        case OPT_C64_SPEED_BOOST:
+        case OPT_ATARI_SPEED_BOOST:
 
             if (value < 50 || value > 200) {
                 throw Error(VC64ERROR_OPT_INV_ARG, "50...200");
             }
             return;
 
-        case OPT_C64_VSYNC:
+        case OPT_ATARI_VSYNC:
 
             return;
 
-        case OPT_C64_RUN_AHEAD:
+        case OPT_ATARI_RUN_AHEAD:
 
             if (value < 0 || value > 12) {
                 throw Error(VC64ERROR_OPT_INV_ARG, "0...12");
             }
             return;
 
-        case OPT_C64_SNAP_AUTO:
+        case OPT_ATARI_SNAP_AUTO:
 
             return;
 
-        case OPT_C64_SNAP_DELAY:
+        case OPT_ATARI_SNAP_DELAY:
 
             if (value < 10 || value > 3600) {
                 throw Error(VC64ERROR_OPT_INV_ARG, "10...3600");
             }
             return;
 
-        case OPT_C64_SNAP_COMPRESS:
+        case OPT_ATARI_SNAP_COMPRESS:
 
             return;
 
@@ -229,51 +229,51 @@ C64::checkOption(Option opt, i64 value)
 }
 
 void
-C64::setOption(Option opt, i64 value)
+Atari::setOption(Option opt, i64 value)
 {
     checkOption(opt, value);
 
     switch (opt) {
 
-        case OPT_C64_WARP_BOOT:
+        case OPT_ATARI_WARP_BOOT:
 
             config.warpBoot = isize(value);
             return;
 
-        case OPT_C64_WARP_MODE:
+        case OPT_ATARI_WARP_MODE:
 
             config.warpMode = WarpMode(value);
             return;
 
-        case OPT_C64_VSYNC:
+        case OPT_ATARI_VSYNC:
 
             config.vsync = bool(value);
             return;
 
-        case OPT_C64_SPEED_BOOST:
+        case OPT_ATARI_SPEED_BOOST:
 
             config.speedBoost = isize(value);
             updateClockFrequency();
             return;
 
-        case OPT_C64_RUN_AHEAD:
+        case OPT_ATARI_RUN_AHEAD:
 
             config.runAhead = isize(value);
             return;
 
-        case OPT_C64_SNAP_AUTO:
+        case OPT_ATARI_SNAP_AUTO:
 
             config.snapshots = bool(value);
             scheduleNextSNPEvent();
             return;
 
-        case OPT_C64_SNAP_DELAY:
+        case OPT_ATARI_SNAP_DELAY:
 
             config.snapshotDelay = isize(value);
             scheduleNextSNPEvent();
             return;
 
-        case OPT_C64_SNAP_COMPRESS:
+        case OPT_ATARI_SNAP_COMPRESS:
 
             config.compressSnapshots = bool(value);
             return;

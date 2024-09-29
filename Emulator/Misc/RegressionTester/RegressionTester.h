@@ -14,12 +14,12 @@
 
 #include "RegressionTesterTypes.h"
 #include "SubComponent.h"
-#include "C64Types.h"
+#include "AtariTypes.h"
 #include <filesystem>
 
 namespace tiara {
 
-class C64;
+class Atari;
 
 class RegressionTester : public SubComponent {
 
@@ -115,17 +115,17 @@ public:
 public:
 
     // Reverts to factory settings
-    void prepare(C64 &c64, C64Model model);
+    void prepare(Atari &c64, C64Model model);
 
     // Runs a test case
     void run(string path);
 
     // Saves a screenshot and exits the emulator
-    void dumpTexture(C64 &c64, const std::filesystem::path &path);
+    void dumpTexture(Atari &c64, const std::filesystem::path &path);
 
 private:
 
-    void dumpTexture(C64 &c64, std::ostream& os);
+    void dumpTexture(Atari &c64, std::ostream& os);
 
 
     //

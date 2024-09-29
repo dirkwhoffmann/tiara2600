@@ -13,7 +13,7 @@
 #pragma once
 
 #include "AnyFile.h"
-#include "C64Types.h"
+#include "AtariTypes.h"
 #include "MemoryTypes.h"
 
 namespace tiara {

@@ -16,7 +16,7 @@
 
 namespace tiara {
 
-ControlPort::ControlPort(C64 &ref, isize id) : SubComponent(ref, id)
+ControlPort::ControlPort(Atari &ref, isize id) : SubComponent(ref, id)
 {
     assert(id == PORT_1 || id == PORT_2);
 

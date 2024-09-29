@@ -250,7 +250,7 @@ typedef struct
     //! Indicates whether snapshots should be stored in compressed form
     bool compressSnapshots;
 }
-C64Config;
+AtariConfig;
 
 typedef struct
 {
@@ -296,7 +296,7 @@ typedef struct
     // Events
     EventSlotInfo slotInfo[SLOT_COUNT];
 }
-C64Info;
+AtariInfo;
 
 typedef u32 RunLoopFlags;
 

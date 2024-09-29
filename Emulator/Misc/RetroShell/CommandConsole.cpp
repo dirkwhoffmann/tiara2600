@@ -49,7 +49,7 @@ CommandConsole::welcome()
 {
     storage << "Tiara RetroShell ";
     remoteManager.rshServer << "Tiara RetroShell Remote Server ";
-    *this << C64::build() << '\n';
+    *this << Atari::build() << '\n';
     *this << '\n';
     *this << "Copyright (C) Dirk W. Hoffmann. www.dirkwhoffmann.de" << '\n';
     *this << "https://github.com/dirkwhoffmann/tiara2600" << '\n';

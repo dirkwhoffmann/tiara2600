@@ -92,7 +92,7 @@ public:
 
 public:
 
-    Memory(C64 &ref);
+    Memory(Atari &ref);
 
     Memory& operator= (const Memory& other) {
 

@@ -17,7 +17,7 @@
 
 namespace tiara {
 
-Joystick::Joystick(C64& ref, ControlPort& pref) : SubComponent(ref, pref.objid), port(pref)
+Joystick::Joystick(Atari& ref, ControlPort& pref) : SubComponent(ref, pref.objid), port(pref)
 {
 };
 

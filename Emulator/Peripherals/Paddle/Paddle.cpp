@@ -17,7 +17,7 @@
 
 namespace tiara {
 
-Paddle::Paddle(C64& ref, ControlPort& pref) : SubComponent(ref, pref.objid), port(pref)
+Paddle::Paddle(Atari& ref, ControlPort& pref) : SubComponent(ref, pref.objid), port(pref)
 {
 };
 

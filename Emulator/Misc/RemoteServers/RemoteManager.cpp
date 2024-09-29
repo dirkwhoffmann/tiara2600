@@ -13,11 +13,11 @@
 #include "config.h"
 #include "RemoteManager.h"
 #include "IOUtils.h"
-#include "C64.h"
+#include "Atari.h"
 
 namespace tiara {
 
-RemoteManager::RemoteManager(C64& ref) : SubComponent(ref)
+RemoteManager::RemoteManager(Atari& ref) : SubComponent(ref)
 {
     subComponents = std::vector<CoreComponent *> {
         
@@ -103,7 +103,7 @@ RemoteManager::serviceServerEvent()
     }
 
     // Schedule next event
-    c64.scheduleInc <SLOT_SRV> (C64::sec(0.5), SRV_LAUNCH_DAEMON);
+    c64.scheduleInc <SLOT_SRV> (Atari::sec(0.5), SRV_LAUNCH_DAEMON);
 }
 
 }

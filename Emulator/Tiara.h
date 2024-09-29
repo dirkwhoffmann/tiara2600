@@ -693,15 +693,15 @@ public:
  */
 struct C64API : public API {
 
-    class C64 *c64 = nullptr;
+    class Atari *c64 = nullptr;
 
     /// @name Analyzing the emulator
     /// @{
 
     /** @brief  Returns the component's current state.
      */
-    const C64Info &getInfo() const;
-    const C64Info &getCachedInfo() const;
+    const AtariInfo &getInfo() const;
+    const AtariInfo &getCachedInfo() const;
 
     /** @brief  Returns information about one of the installed Roms
      *

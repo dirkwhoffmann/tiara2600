@@ -22,7 +22,7 @@
 namespace tiara {
 
 string
-C64::version()
+Atari::version()
 {
     string result;
 
@@ -34,7 +34,7 @@ C64::version()
 }
 
 string
-C64::build()
+Atari::build()
 {
     string db = debugBuild ? " [DEBUG BUILD]" : "";
 
@@ -42,7 +42,7 @@ C64::build()
 }
 
 const char *
-C64::eventName(EventSlot slot, EventID id)
+Atari::eventName(EventSlot slot, EventID id)
 {
     assert_enum(EventSlot, slot);
 
@@ -177,7 +177,7 @@ C64::eventName(EventSlot slot, EventID id)
 }
 
 void
-C64::prefix(isize level, const char *component, isize line) const
+Atari::prefix(isize level, const char *component, isize line) const
 {
     if (level) {
 
@@ -203,7 +203,7 @@ C64::prefix(isize level, const char *component, isize line) const
 }
 
 void 
-C64::_didReset(bool hard)
+Atari::_didReset(bool hard)
 {
     // Initialize the program counter with the reset vector
     cpu.reg.pc = cpu.reg.pc0 = mem.resetVector();
@@ -213,7 +213,7 @@ C64::_didReset(bool hard)
 }
 
 void
-C64::initialize()
+Atari::initialize()
 {
     auto load = [&](const fs::path &path) {
 
@@ -233,7 +233,7 @@ C64::initialize()
 }
 
 void
-C64::operator << (SerResetter &worker)
+Atari::operator << (SerResetter &worker)
 {
     auto insEvent = eventid[SLOT_INS];
 
@@ -250,7 +250,7 @@ C64::operator << (SerResetter &worker)
 
     // Schedule initial events
     scheduleAbs<SLOT_RIOT>(cpu.clock, CIA_EXECUTE);
-    scheduleRel<SLOT_SRV>(C64::sec(0.5), SRV_LAUNCH_DAEMON);
+    scheduleRel<SLOT_SRV>(Atari::sec(0.5), SRV_LAUNCH_DAEMON);
     if (insEvent) scheduleRel <SLOT_INS> (0, insEvent);
     scheduleNextSNPEvent();
 
@@ -259,19 +259,19 @@ C64::operator << (SerResetter &worker)
 }
 
 double
-C64::nativeRefreshRate() const
+Atari::nativeRefreshRate() const
 {
     return 60; // tia.getFps();
 }
 
 i64
-C64::nativeClockFrequency() const
+Atari::nativeClockFrequency() const
 {
     return 1000000; // tia.getFrequency();
 }
 
 double
-C64::refreshRate() const
+Atari::refreshRate() const
 {
     if (config.vsync) {
 
@@ -285,21 +285,21 @@ C64::refreshRate() const
 }
 
 i64
-C64::clockFrequency() const
+Atari::clockFrequency() const
 {
     auto boost = config.speedBoost ? config.speedBoost : 100;
     return nativeClockFrequency() * boost / 100;
 }
 
 void
-C64::updateClockFrequency()
+Atari::updateClockFrequency()
 {
     auto frequency = clockFrequency();
     durationOfOneCycle = 10000000000 / frequency;
 }
 
 void
-C64::exportConfig(const fs::path &path) const
+Atari::exportConfig(const fs::path &path) const
 {
     auto fs = std::ofstream(path, std::ofstream::binary);
 
@@ -311,9 +311,9 @@ C64::exportConfig(const fs::path &path) const
 }
 
 void
-C64::exportConfig(std::ostream &stream) const
+Atari::exportConfig(std::ostream &stream) const
 {
-    stream << "# Tiara " << C64::build() << "\n";
+    stream << "# Tiara " << Atari::build() << "\n";
     stream << "\n";
     stream << "c64 power off\n";
     stream << "\n";
@@ -322,7 +322,7 @@ C64::exportConfig(std::ostream &stream) const
 }
 
 i64
-C64::get(Option opt, isize objid) const
+Atari::get(Option opt, isize objid) const
 {
     debug(CNF_DEBUG, "get(%s, %ld)\n", OptionEnum::key(opt), objid);
 
@@ -332,7 +332,7 @@ C64::get(Option opt, isize objid) const
 }
 
 void
-C64::check(Option opt, i64 value, const std::vector<isize> objids)
+Atari::check(Option opt, i64 value, const std::vector<isize> objids)
 {
     value = overrideOption(opt, value);
 
@@ -359,7 +359,7 @@ C64::check(Option opt, i64 value, const std::vector<isize> objids)
 }
 
 void
-C64::set(Option opt, i64 value, const std::vector<isize> objids)
+Atari::set(Option opt, i64 value, const std::vector<isize> objids)
 {
     if (!isInitialized()) initialize();
 
@@ -388,38 +388,38 @@ C64::set(Option opt, i64 value, const std::vector<isize> objids)
 }
 
 void
-C64::set(Option opt, const string &value, const std::vector<isize> objids)
+Atari::set(Option opt, const string &value, const std::vector<isize> objids)
 {
     set(opt, OptionParser::parse(opt, value), objids);
 }
 
 void
-C64::set(const string &opt, const string &value, const std::vector<isize> objids)
+Atari::set(const string &opt, const string &value, const std::vector<isize> objids)
 {
     set(Option(util::parseEnum<OptionEnum>(opt)), value, objids);
 }
 
 void
-C64::set(C64Model model)
+Atari::set(C64Model model)
 {
 
 }
 
 Configurable *
-C64::routeOption(Option opt, isize objid)
+Atari::routeOption(Option opt, isize objid)
 {
     return CoreComponent::routeOption(opt, objid);
 }
 
 const Configurable *
-C64::routeOption(Option opt, isize objid) const
+Atari::routeOption(Option opt, isize objid) const
 {
-    auto result = const_cast<C64 *>(this)->routeOption(opt, objid);
+    auto result = const_cast<Atari *>(this)->routeOption(opt, objid);
     return const_cast<const Configurable *>(result);
 }
 
 i64
-C64::overrideOption(Option opt, i64 value) const
+Atari::overrideOption(Option opt, i64 value) const
 {
     static std::map<Option,i64> overrides = OVERRIDES;
 
@@ -433,7 +433,7 @@ C64::overrideOption(Option opt, i64 value) const
 }
 
 void
-C64::update(CmdQueue &queue)
+Atari::update(CmdQueue &queue)
 {
     Cmd cmd;
     bool cmdConfig = false;
@@ -536,7 +536,7 @@ C64::update(CmdQueue &queue)
 }
 
 void
-C64::computeFrame()
+Atari::computeFrame()
 {
     flags = 0;
 
@@ -569,7 +569,7 @@ C64::computeFrame()
 }
 
 void
-C64::processFlags()
+Atari::processFlags()
 {
     bool interrupt = false;
 
@@ -614,7 +614,7 @@ C64::processFlags()
 }
 
 void 
-C64::fastForward(isize frames)
+Atari::fastForward(isize frames)
 {
     auto target = frame + frames;
 
@@ -623,7 +623,7 @@ C64::fastForward(isize frames)
 }
 
 void
-C64::_powerOn()
+Atari::_powerOn()
 {
     debug(RUN_DEBUG, "_powerOn\n");
     
@@ -632,7 +632,7 @@ C64::_powerOn()
 }
 
 void
-C64::_powerOff()
+Atari::_powerOff()
 {
     debug(RUN_DEBUG, "_powerOff\n");
 
@@ -640,7 +640,7 @@ C64::_powerOff()
 }
 
 void
-C64::_run()
+Atari::_run()
 {
     debug(RUN_DEBUG, "_run\n");
     // assert(cpu.inFetchPhase());
@@ -649,7 +649,7 @@ C64::_run()
 }
 
 void
-C64::_pause()
+Atari::_pause()
 {
     debug(RUN_DEBUG, "_pause\n");
     // assert(cpu.inFetchPhase());
@@ -661,7 +661,7 @@ C64::_pause()
 }
 
 void
-C64::_halt()
+Atari::_halt()
 {
     debug(RUN_DEBUG, "_halt\n");
 
@@ -669,7 +669,7 @@ C64::_halt()
 }
 
 void
-C64::_warpOn()
+Atari::_warpOn()
 {
     debug(RUN_DEBUG, "_warpOn\n");
 
@@ -677,7 +677,7 @@ C64::_warpOn()
 }
 
 void
-C64::_warpOff()
+Atari::_warpOff()
 {
     debug(RUN_DEBUG, "_warpOff\n");
 
@@ -685,7 +685,7 @@ C64::_warpOff()
 }
 
 void
-C64::_trackOn()
+Atari::_trackOn()
 {
     debug(RUN_DEBUG, "_trackOn\n");
 
@@ -693,7 +693,7 @@ C64::_trackOn()
 }
 
 void
-C64::_trackOff()
+Atari::_trackOff()
 {
     debug(RUN_DEBUG, "_trackOff\n");
 
@@ -701,7 +701,7 @@ C64::_trackOff()
 }
 
 void
-C64::cacheInfo(C64Info &result) const
+Atari::cacheInfo(AtariInfo &result) const
 {
     {   SYNCHRONIZED
 
@@ -741,13 +741,13 @@ C64::cacheInfo(C64Info &result) const
 }
 
 u64
-C64::getAutoInspectionMask() const
+Atari::getAutoInspectionMask() const
 {
     return data[SLOT_INS];
 }
 
 void
-C64::setAutoInspectionMask(u64 mask)
+Atari::setAutoInspectionMask(u64 mask)
 {
     if (mask) {
 
@@ -762,7 +762,7 @@ C64::setAutoInspectionMask(u64 mask)
 }
 
 void
-C64::executeOneCycle()
+Atari::executeOneCycle()
 {
     setFlag(RL::SINGLE_STEP);
     computeFrame();
@@ -797,13 +797,13 @@ C64::eolHandler()
 */
 
 void
-C64::eofHandler()
+Atari::eofHandler()
 {
     
 }
 
 void
-C64::processCommand(const Cmd &cmd)
+Atari::processCommand(const Cmd &cmd)
 {
     switch (cmd.type) {
 
@@ -828,7 +828,7 @@ C64::processCommand(const Cmd &cmd)
 }
 
 void
-C64::processEvents(Cycle cycle)
+Atari::processEvents(Cycle cycle)
 {
     //
     // Check primary slots
@@ -896,7 +896,7 @@ C64::processEvents(Cycle cycle)
 }
 
 void
-C64::processINSEvent()
+Atari::processINSEvent()
 {
     u64 mask = data[SLOT_INS];
 
@@ -912,7 +912,7 @@ C64::processINSEvent()
 }
 
 void
-C64::setFlag(u32 flag)
+Atari::setFlag(u32 flag)
 {
     SYNCHRONIZED
 
@@ -920,7 +920,7 @@ C64::setFlag(u32 flag)
 }
 
 void
-C64::clearFlag(u32 flag)
+Atari::clearFlag(u32 flag)
 {
     SYNCHRONIZED
 
@@ -928,7 +928,7 @@ C64::clearFlag(u32 flag)
 }
 
 MediaFile *
-C64::takeSnapshot()
+Atari::takeSnapshot()
 {
     Snapshot *result;
 
@@ -942,7 +942,7 @@ C64::takeSnapshot()
 }
 
 void
-C64::loadSnapshot(const MediaFile &file)
+Atari::loadSnapshot(const MediaFile &file)
 {
     try {
 
@@ -988,7 +988,7 @@ C64::loadSnapshot(const MediaFile &file)
 }
 
 void
-C64::processSNPEvent(EventID eventId)
+Atari::processSNPEvent(EventID eventId)
 {
     // Check for the main instance (ignore the run-ahead instance)
     if (objid == 0) {
@@ -1002,26 +1002,26 @@ C64::processSNPEvent(EventID eventId)
 }
 
 void 
-C64::scheduleNextSNPEvent()
+Atari::scheduleNextSNPEvent()
 {
-    auto snapshots = emulator.get(OPT_C64_SNAP_AUTO);
-    auto delay = emulator.get(OPT_C64_SNAP_DELAY);
+    auto snapshots = emulator.get(OPT_ATARI_SNAP_AUTO);
+    auto delay = emulator.get(OPT_ATARI_SNAP_DELAY);
 
     if (snapshots) {
-        scheduleRel<SLOT_SNP>(C64::sec(double(delay)), SNP_TAKE);
+        scheduleRel<SLOT_SNP>(Atari::sec(double(delay)), SNP_TAKE);
     } else {
         cancel<SLOT_SNP>();
     }
 }
 
 void
-C64::attachCartridge(const fs::path &path) throws
+Atari::attachCartridge(const fs::path &path) throws
 {
     debug(true, "C64::attachCartrige (path = %s)", path.string().c_str());
 }
 
 void
-C64::attachCartridge(const MediaFile &file)
+Atari::attachCartridge(const MediaFile &file)
 {
     debug(true, "C64::attachCartrige");
 
@@ -1039,7 +1039,7 @@ C64::attachCartridge(const MediaFile &file)
 }
 
 void
-C64::detachCartridge()
+Atari::detachCartridge()
 {
     SUSPENDED
 
@@ -1048,14 +1048,14 @@ C64::detachCartridge()
 }
 
 void
-C64::saveCartridge(const fs::path &path)
+Atari::saveCartridge(const fs::path &path)
 {
     RomFile file(cartridge->rom);
     file.writeToFile(path);
 }
 
 RomTraits
-C64::getRomTraits(u64 fnv)
+Atari::getRomTraits(u64 fnv)
 {
     // Crawl through the Rom database
     for (auto &traits : roms) if (traits.fnv == fnv) return traits;
@@ -1069,7 +1069,7 @@ C64::getRomTraits(u64 fnv)
 }
 
 RomTraits
-C64::getRomTraits(RomType type) const
+Atari::getRomTraits(RomType type) const
 {
     RomTraits result = getRomTraits(romFNV64(type));
 
@@ -1110,7 +1110,7 @@ C64::getRomTraits(RomType type) const
 }
 
 u32
-C64::romCRC32(RomType type) const
+Atari::romCRC32(RomType type) const
 {
     if (!hasRom(type)) return 0;
     
@@ -1127,7 +1127,7 @@ C64::romCRC32(RomType type) const
 }
 
 u64
-C64::romFNV64(RomType type) const
+Atari::romFNV64(RomType type) const
 {
     if (!hasRom(type)) return 0;
     
@@ -1144,7 +1144,7 @@ C64::romFNV64(RomType type) const
 }
 
 bool
-C64::hasRom(RomType type) const
+Atari::hasRom(RomType type) const
 {
     switch (type) {
             
@@ -1170,7 +1170,7 @@ C64::hasRom(RomType type) const
 }
 
 bool
-C64::hasMega65Rom(RomType type) const
+Atari::hasMega65Rom(RomType type) const
 {
     switch (type) {
             
@@ -1196,7 +1196,7 @@ C64::hasMega65Rom(RomType type) const
 }
 
 const char *
-C64::mega65BasicRev() const
+Atari::mega65BasicRev() const
 {
     static char rev[17];
     rev[0] = 0;
@@ -1208,7 +1208,7 @@ C64::mega65BasicRev() const
 }
 
 const char *
-C64::mega65KernalRev() const
+Atari::mega65KernalRev() const
 {
     static char rev[17];
     rev[0] = 0;
@@ -1220,50 +1220,50 @@ C64::mega65KernalRev() const
 }
 
 void
-C64::loadRom(const fs::path &path)
+Atari::loadRom(const fs::path &path)
 {
     RomFile file(path);
     loadRom(file);
 }
 
 void
-C64::loadRom(const MediaFile &file)
+Atari::loadRom(const MediaFile &file)
 {
- 
+
 }
 
 void
-C64::deleteRom(RomType type)
+Atari::deleteRom(RomType type)
 {
 
 }
 
 void 
-C64::deleteRoms()
+Atari::deleteRoms()
 {
 
 }
 
 void
-C64::saveRom(RomType type, const fs::path &path)
+Atari::saveRom(RomType type, const fs::path &path)
 {
 
 }
 
 void 
-C64::installOpenRoms()
+Atari::installOpenRoms()
 {
 
 }
 
 void
-C64::installOpenRom(RomType type)
+Atari::installOpenRom(RomType type)
 {
 
 }
 
 void
-C64::flash(const MediaFile &file)
+Atari::flash(const MediaFile &file)
 {
     {   SUSPENDED
         
@@ -1284,7 +1284,7 @@ C64::flash(const MediaFile &file)
 }
 
 void
-C64::setAlarmAbs(Cycle trigger, i64 payload)
+Atari::setAlarmAbs(Cycle trigger, i64 payload)
 {
     {   SUSPENDED
 
@@ -1294,7 +1294,7 @@ C64::setAlarmAbs(Cycle trigger, i64 payload)
 }
 
 void
-C64::setAlarmRel(Cycle trigger, i64 payload)
+Atari::setAlarmRel(Cycle trigger, i64 payload)
 {
     {   SUSPENDED
 
@@ -1304,7 +1304,7 @@ C64::setAlarmRel(Cycle trigger, i64 payload)
 }
 
 void
-C64::processAlarmEvent()
+Atari::processAlarmEvent()
 {
     for (auto it = alarms.begin(); it != alarms.end(); ) {
 
@@ -1319,7 +1319,7 @@ C64::processAlarmEvent()
 }
 
 void
-C64::scheduleNextAlarm()
+Atari::scheduleNextAlarm()
 {
     Cycle trigger = INT64_MAX;
 
@@ -1335,13 +1335,13 @@ C64::scheduleNextAlarm()
 }
 
 u32
-C64::random()
+Atari::random()
 {
     return random(u32(cpu.clock));
 }
 
 u32
-C64::random(u32 seed)
+Atari::random(u32 seed)
 {
     // Parameters for the Linear Congruential Generator (LCG)
     u64 a = 1664525;
