@@ -15,6 +15,7 @@
 #include "AnyFile.h"
 #include "AtariTypes.h"
 #include "MemoryTypes.h"
+#include "CartridgeTypes.h"
 
 namespace tiara {
 
@@ -57,6 +58,14 @@ public:
     bool isCompatibleBuffer(const u8 *buf, isize len) override { return isCompatible(buf, len); }
     FileType type() const override { return FILETYPE_BIN; }
     void finalizeRead() override;
+
+
+    //
+    //
+    //
+
+    RomTraits traits() const;
+
 };
 
 }

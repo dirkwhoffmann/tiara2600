@@ -14,6 +14,7 @@
 #include "RomFile.h"
 #include "Atari.h"
 #include "IOUtils.h"
+#include "RomDatabase.h"
 
 namespace tiara {
 
@@ -47,6 +48,28 @@ void
 RomFile::finalizeRead()
 {
 
+}
+
+RomTraits
+RomFile::traits() const
+{
+    auto md5 = data.md5();
+
+    // Crawl through the database
+    for (auto &traits : roms) if (traits.md5 == md5) return traits;
+
+    return RomTraits {
+        
+        .md5            = md5,
+        .name           = "Unknown Cartridge",
+        .manufacturer   = "",
+        .type           = "",
+        .model          = "",
+        .format         = "",
+        .note           = "",
+        .left           = "",
+        .right          = ""
+    };
 }
 
 }

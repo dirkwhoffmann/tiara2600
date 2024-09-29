@@ -181,16 +181,18 @@ MemStats;
 
 typedef struct {
 
-    u64 fnv;
-    u32 crc;
-
-    const char *title;
-    const char *subtitle;
-    const char *revision;
-
-    RomVendor vendor;
-    RomType type;
-    bool patched;
+    string md5;
+    const char *name;
+    const char *manufacturer;
+    const char *type;
+    const char *model;
+    const char *format;
+    const char *note;
+    const char *left;
+    const char *right;
+    bool phosphor;
+    bool swapPorts;
+    bool swapPaddles;
 }
 RomTraits;
 

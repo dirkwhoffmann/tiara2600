@@ -1153,7 +1153,6 @@ public:
      */
     void set(Option opt, i64 value, long id);
 
-
     /** @brief  Exports the current configuration.
      *
      *  The current configuration is exported in form of a RetroShell script.

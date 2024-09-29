@@ -29,29 +29,6 @@ Memory::_dump(Category category, std::ostream& os) const
 
     if (category == Category::State) {
 
-        auto info = [&](const string &title, RomType type) {
-
-            auto traits = c64.getRomTraits(type);
-
-            os << tab(title) << (traits.crc ? "Installed" : "Not installed") << std::endl;
-
-            if (traits.crc) {
-
-                os << tab("Title") << traits.title << std::endl;
-                os << tab("Subtitle") << traits.subtitle << std::endl;
-                os << tab("Revision") << traits.revision << std::endl;
-                os << tab("CRC32") << hex(traits.crc) << std::endl;
-                os << tab("FNV64") << hex(traits.fnv) << std::endl;
-            }
-        };
-
-        info("Basic ROM", ROM_TYPE_BASIC);
-        os << std::endl;
-        info("Character ROM", ROM_TYPE_CHAR);
-        os << std::endl;
-        info("Kernal ROM", ROM_TYPE_KERNAL);
-        os << std::endl;
-        info("Drive ROM", ROM_TYPE_VC1541);
     }
 }
 

@@ -14,7 +14,6 @@
 #include "Emulator.h"
 #include "Checksum.h"
 #include "IOUtils.h"
-#include "RomDatabase.h"
 #include "OpenRoms.h"
 #include <algorithm>
 #include <queue>
@@ -1029,6 +1028,11 @@ Atari::attachCartridge(const MediaFile &file)
 
         const RomFile &romFile = dynamic_cast<const RomFile &>(file);
 
+        auto traits = romFile.traits();
+
+        printf("MD5 = %s\n", traits.md5.c_str());
+        printf("Name = %s\n", traits.name);
+
         // auto cart = Cartridge::makeWithFile(*this, romFile);
 
 
@@ -1057,56 +1061,13 @@ Atari::saveCartridge(const fs::path &path)
 RomTraits
 Atari::getRomTraits(u64 fnv)
 {
-    // Crawl through the Rom database
-    for (auto &traits : roms) if (traits.fnv == fnv) return traits;
-
-    return RomTraits {
-        .title = "Unknown ROM",
-        .subtitle = "",
-        .revision = "",
-        .vendor = ROM_VENDOR_OTHER
-    };
+    return RomTraits { };
 }
 
 RomTraits
 Atari::getRomTraits(RomType type) const
 {
-    RomTraits result = getRomTraits(romFNV64(type));
-
-    if (!result.fnv) result.fnv = romFNV64(type);
-    if (!result.crc) result.crc = romCRC32(type);
-
-    if (hasMega65Rom(type)) {
-
-        result.title = "M.E.G.A. C64 OpenROM";
-        result.vendor = ROM_VENDOR_MEGA65;
-        result.patched = false;
-
-        switch (type) {
-
-            case ROM_TYPE_BASIC:
-
-                result.subtitle = "Free Basic Replacement";
-                result.revision =  mega65BasicRev();
-                break;
-
-            case ROM_TYPE_CHAR:
-
-                result.subtitle = "Free Charset Replacement";
-                break;
-
-            case ROM_TYPE_KERNAL:
-
-                result.subtitle = "Free Kernal Replacement";
-                result.revision = mega65KernalRev();
-                break;
-
-            default:
-                fatalError;
-        }
-    }
-
-    return result;
+    return RomTraits { };
 }
 
 u32
@@ -1172,27 +1133,7 @@ Atari::hasRom(RomType type) const
 bool
 Atari::hasMega65Rom(RomType type) const
 {
-    switch (type) {
-            
-        case ROM_TYPE_BASIC:
-
-            return mem.rom[0xBF52] == 'O' && mem.rom[0xBF53] == 'R';
-
-        case ROM_TYPE_CHAR:
-
-            return getRomTraits(romFNV64(ROM_TYPE_CHAR)).vendor == ROM_VENDOR_MEGA65;
-
-        case ROM_TYPE_KERNAL:
-
-            return mem.rom[0xE4B9] == 'O' && mem.rom[0xE4BA] == 'R';
-
-        case ROM_TYPE_VC1541:
-
-            return false;
-
-        default:
-            fatalError;
-    }
+    return false;
 }
 
 const char *
