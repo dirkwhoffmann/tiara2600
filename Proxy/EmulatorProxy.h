@@ -22,7 +22,7 @@ using namespace tiara;
 @class ControlPortProxy;
 @class CPUProxy;
 @class DefaultsProxy;
-@class DmaDebuggerProxy;
+@class LogicAnalyzerProxy;
 @class ExpansionPortProxy;
 @class FileSystemProxy;
 @class JoystickProxy;
@@ -96,7 +96,7 @@ using namespace tiara;
     ControlPortProxy *port1;
     ControlPortProxy *port2;
     CPUProxy *cpu;
-    DmaDebuggerProxy *dmaDebugger;
+    LogicAnalyzerProxy *logicAnalyzer;
     ExpansionPortProxy *expansionport;
     MemoryProxy *mem;
     PaddleProxy *paddle;
@@ -114,7 +114,7 @@ using namespace tiara;
 @property (readonly, strong) ControlPortProxy *port1;
 @property (readonly, strong) ControlPortProxy *port2;
 @property (readonly, strong) CPUProxy *cpu;
-@property (readonly, strong) DmaDebuggerProxy *dmaDebugger;
+@property (readonly, strong) LogicAnalyzerProxy *logicAnalyzer;
 @property (readonly, strong) ExpansionPortProxy *expansionport;
 @property (readonly, strong) MemoryProxy *mem;
 @property (readonly, strong) RemoteManagerProxy *remoteManager;
@@ -338,12 +338,12 @@ struct GuardInfo {
 
 
 //
-// DmaDebugger
+// LogicAnalyzer
 //
 
-@interface DmaDebuggerProxy : SubComponentProxy { }
+@interface LogicAnalyzerProxy : SubComponentProxy { }
 
-- (DmaDebuggerConfig)getConfig;
+- (LogicAnalyzerConfig)getConfig;
 
 @end
 

@@ -11,18 +11,18 @@
 // -----------------------------------------------------------------------------
 
 #include "config.h"
-#include "DmaDebugger.h"
+#include "LogicAnalyzer.h"
 #include "Emulator.h"
 
 namespace tiara {
 
-DmaDebugger::DmaDebugger(C64 &ref) : SubComponent(ref)
+LogicAnalyzer::LogicAnalyzer(C64 &ref) : SubComponent(ref)
 {
 
 }
 
 void
-DmaDebugger::setDmaDebugColor(MemAccess type, GpuColor color)
+LogicAnalyzer::setDmaDebugColor(MemAccess type, GpuColor color)
 {
     assert_enum(MemAccess, type);
     
@@ -35,33 +35,13 @@ DmaDebugger::setDmaDebugColor(MemAccess type, GpuColor color)
 }
 
 void
-DmaDebugger::setDmaDebugColor(MemAccess type, RgbColor color)
+LogicAnalyzer::setDmaDebugColor(MemAccess type, RgbColor color)
 {
     setDmaDebugColor(type, GpuColor(color));
 }
 
-/*
 void
-DmaDebugger::visualizeDma(isize offset, u8 data, MemAccess type)
-{
-    visualizeDma((u32 *)vic.dmaTexturePtr + offset, data, type);
-}
-
-void
-DmaDebugger::visualizeDma(u32 *p, u8 data, MemAccess type)
-{
-    if (config.dmaChannel[type]) {
-        
-        p[3] = debugColor[type][data & 0b11]; data >>= 2;
-        p[2] = debugColor[type][data & 0b11]; data >>= 2;
-        p[1] = debugColor[type][data & 0b11]; data >>= 2;
-        p[0] = debugColor[type][data & 0b11];
-    }
-}
- */
-
-void
-DmaDebugger::computeOverlay(u32 *emuTexture, u32 *dmaTexture)
+LogicAnalyzer::computeOverlay(u32 *emuTexture, u32 *dmaTexture)
 {
     double weight = config.dmaOpacity / 255.0;
     

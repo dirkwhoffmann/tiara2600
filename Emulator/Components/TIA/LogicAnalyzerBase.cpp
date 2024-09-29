@@ -11,14 +11,14 @@
 // -----------------------------------------------------------------------------
 
 #include "config.h"
-#include "DmaDebugger.h"
+#include "LogicAnalyzer.h"
 #include "TIA.h"
 #include "MsgQueue.h"
 
 namespace tiara {
 
 void
-DmaDebugger::_dump(Category category, std::ostream& os) const
+LogicAnalyzer::_dump(Category category, std::ostream& os) const
 {
     using namespace util;
 
@@ -29,7 +29,7 @@ DmaDebugger::_dump(Category category, std::ostream& os) const
 }
 
 i64
-DmaDebugger::getOption(Option option) const
+LogicAnalyzer::getOption(Option option) const
 {
     switch (option) {
 
@@ -55,7 +55,7 @@ DmaDebugger::getOption(Option option) const
 }
 
 void
-DmaDebugger::checkOption(Option opt, i64 value)
+LogicAnalyzer::checkOption(Option opt, i64 value)
 {
     switch (opt) {
 
@@ -92,7 +92,7 @@ DmaDebugger::checkOption(Option opt, i64 value)
 }
 
 void
-DmaDebugger::setOption(Option opt, i64 value)
+LogicAnalyzer::setOption(Option opt, i64 value)
 {
     checkOption(opt, value);
 

@@ -88,7 +88,7 @@ enum_long(MSG_TYPE)
     MSG_SNAPSHOT_RESTORED,  ///< A snapshot has been restored
 
     // Debugging
-    MSG_DMA_DEBUG,          ///< The DMA debugger has been started or stopped
+    MSG_DMA_DEBUG,          ///< The logic Analyzer has been started or stopped
 
     // Scheduled alarms
     MSG_ALARM,              ///< A user-set alarm event has fired

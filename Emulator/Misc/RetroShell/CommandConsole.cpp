@@ -259,20 +259,20 @@ CommandConsole::initCommands(Command &root)
 
 
     //
-    // Components (DMA Debugger)
+    // Components (Logic Analyzer)
     //
 
-    cmd = registerComponent(dmaDebugger);
+    cmd = registerComponent(logicAnalyzer);
 
     root.add({cmd, "open"},
-             "Opens the DMA debugger",
+             "Opens the logic analyzer",
              [this](Arguments& argv, long value) {
 
         emulator.set(OPT_DMA_DEBUG_ENABLE, true);
     });
 
     root.add({cmd, "close"},
-             "Closes the DMA debugger",
+             "Closes the logic analyzer",
              [this](Arguments& argv, long value) {
 
         emulator.set(OPT_DMA_DEBUG_ENABLE, false);

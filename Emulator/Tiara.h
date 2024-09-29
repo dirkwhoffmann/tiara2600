@@ -274,15 +274,15 @@ struct VideoPortAPI : API {
 };
 
 
-/** DMA Debugger Public API
+/** Logic Analyzer Public API
  */
-struct DmaDebuggerAPI : API {
+struct LogicAnalyzerAPI : API {
 
-    class DmaDebugger *dmaDebugger = nullptr;
+    class LogicAnalyzer *logicAnalyzer = nullptr;
 
     /** @brief  Returns the component's current configuration
      */
-    const DmaDebuggerConfig &getConfig() const;
+    const LogicAnalyzerConfig &getConfig() const;
 
 };
 
@@ -1188,7 +1188,7 @@ public:
     TIAAPI tia;
     AudioPortAPI audioPort;
     VideoPortAPI videoPort;
-    DmaDebuggerAPI dmaDebugger;
+    LogicAnalyzerAPI logicAnalyzer;
     ControlPortAPI controlPort1, controlPort2;
     ExpansionPortAPI expansionPort;
     RemoteManagerAPI remoteManager;

@@ -21,7 +21,7 @@ namespace tiara {
 
 class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
 
-    friend class DmaDebugger;
+    friend class LogicAnalyzer;
     
     Descriptions descriptions = {
         {

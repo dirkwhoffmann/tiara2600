@@ -102,7 +102,7 @@ public:
     // Returns a pointer to the stable emulator texture
     u32 *getTexture() const;
 
-    // Returns a pointer to the stable DMA debugger texture
+    // Returns a pointer to the stable logic analyzer texture
     u32 *getDmaTexture() const;
 
 private:

@@ -35,7 +35,7 @@ C64::C64(class Emulator& ref, isize id) : CoreComponent(ref, id)
         &expansionport,
         &monitor,
         &remoteManager,
-        &dmaDebugger,
+        &logicAnalyzer,
         &retroShell,
         &regressionTester,
         &tia

@@ -12,22 +12,22 @@
 
 #pragma once
 
-#include "DmaDebuggerTypes.h"
+#include "LogicAnalyzerTypes.h"
 #include "SubComponent.h"
 #include "Colors.h"
 
 namespace tiara {
 
-class DmaDebugger final : public SubComponent {
+class LogicAnalyzer final : public SubComponent {
 
     friend class VICII;
     friend class TIA;
     
     Descriptions descriptions = {{
 
-        .name           = "DmaDebugger",
-        .description    = "Bus Monitor",
-        .shell          = "dmadebugger"
+        .name           = "LogicAnalyzer",
+        .description    = "Logic Analyzer",
+        .shell          = "logicanalyzer"
     }};
 
     Options options = {
@@ -50,7 +50,7 @@ class DmaDebugger final : public SubComponent {
     };
 
     // Current configuration
-    DmaDebuggerConfig config = { };
+    LogicAnalyzerConfig config = { };
     
     // Color lookup table. There are 6 colors with 4 different shades
     u32 debugColor[6][4];
@@ -62,9 +62,9 @@ class DmaDebugger final : public SubComponent {
     
 public:
     
-    DmaDebugger(C64 &ref);
+    LogicAnalyzer(C64 &ref);
 
-    DmaDebugger& operator= (const DmaDebugger& other) {
+    LogicAnalyzer& operator= (const LogicAnalyzer& other) {
 
         for (isize i = 0; i < 6; i++) CLONE_ARRAY(debugColor[i])
         CLONE(config)
@@ -116,7 +116,7 @@ private:
 
 public:
 
-    const DmaDebuggerConfig &getConfig() const { return config; }
+    const LogicAnalyzerConfig &getConfig() const { return config; }
     const Options &getOptions() const override { return options; }
     i64 getOption(Option opt) const override;
     void checkOption(Option opt, i64 value) override;

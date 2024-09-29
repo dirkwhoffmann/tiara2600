@@ -73,8 +73,8 @@ Tiara::Tiara() {
     videoPort.emu = emu;
     videoPort.videoPort = &emu->main.videoPort;
 
-    dmaDebugger.emu = emu;
-    dmaDebugger.dmaDebugger = &emu->main.dmaDebugger;
+    logicAnalyzer.emu = emu;
+    logicAnalyzer.logicAnalyzer = &emu->main.logicAnalyzer;
 
     controlPort1.emu = emu;
     controlPort1.controlPort = &emu->main.port1;
@@ -678,13 +678,13 @@ VideoPortAPI::getDmaTexture() const
 
 
 //
-// DMA Debugger
+// Logic Analyzer
 //
 
-const DmaDebuggerConfig &
-DmaDebuggerAPI::getConfig() const
+const LogicAnalyzerConfig &
+LogicAnalyzerAPI::getConfig() const
 {
-    return dmaDebugger->getConfig();
+    return logicAnalyzer->getConfig();
 }
 
 

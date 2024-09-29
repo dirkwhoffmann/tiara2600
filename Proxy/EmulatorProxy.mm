@@ -451,17 +451,17 @@ using namespace tiara;
 
 
 //
-// Dma Debugger
+// Logic Analyzer
 //
 
-@implementation DmaDebuggerProxy
+@implementation LogicAnalyzerProxy
 
-- (DmaDebuggerAPI *)debugger
+- (LogicAnalyzerAPI *)debugger
 {
-    return (DmaDebuggerAPI *)obj;
+    return (LogicAnalyzerAPI *)obj;
 }
 
-- (DmaDebuggerConfig)getConfig
+- (LogicAnalyzerConfig)getConfig
 {
     return [self debugger]->getConfig();
 }
@@ -944,7 +944,7 @@ using namespace tiara;
 @synthesize c64;
 @synthesize riot;
 @synthesize cpu;
-@synthesize dmaDebugger;
+@synthesize logicAnalyzer;
 @synthesize expansionport;
 @synthesize mem;
 @synthesize port1;
@@ -968,7 +968,7 @@ using namespace tiara;
     c64 = [[C64Proxy alloc] initWith:&emu->c64 emu:emu];
     riot = [[RIOTProxy alloc] initWith:&emu->riot emu:emu];
     cpu = [[CPUProxy alloc] initWith:&emu->cpu emu:emu];
-    dmaDebugger = [[DmaDebuggerProxy alloc] initWith:&emu->dmaDebugger];
+    logicAnalyzer = [[LogicAnalyzerProxy alloc] initWith:&emu->logicAnalyzer];
     expansionport = [[ExpansionPortProxy alloc] initWith:&emu->expansionPort emu:emu];
     mem = [[MemoryProxy alloc] initWith:&emu->mem emu:emu];
     port1 = [[ControlPortProxy alloc] initWith:&emu->controlPort1 emu:emu];

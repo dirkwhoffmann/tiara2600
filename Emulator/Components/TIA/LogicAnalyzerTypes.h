@@ -22,7 +22,7 @@ namespace tiara {
 // Enumerations
 //
 
-/// DMA debugger display mode
+/// Logic analyzer display mode
 enum_long(DMA_DISPLAY_MODE)
 {
     DMA_DISPLAY_MODE_FG_LAYER,          ///< Modulate the foreground layer
@@ -56,13 +56,12 @@ struct DmaDisplayModeEnum : util::Reflection<DmaDisplayModeEnum, DmaDisplayMode>
 
 typedef struct
 {
-    // DMA debugger
     bool dmaDebug;
     bool dmaChannel[6];
     u32 dmaColor[6];
     DmaDisplayMode dmaDisplayMode;
     u8 dmaOpacity;
 }
-DmaDebuggerConfig;
+LogicAnalyzerConfig;
 
 }

@@ -46,8 +46,8 @@ enum_long(OPT)
     OPT_TIA_REVISION,           ///< Chip revision
     OPT_TIA_POWER_SAVE,         ///< Enable fast-paths
 
-    // DMA Debugger
-    OPT_DMA_DEBUG_ENABLE,       ///< Global on/off switch for the DMA debugger
+    // Logic Analyzer
+    OPT_DMA_DEBUG_ENABLE,       ///< Global on/off switch for the logic analyzer
     OPT_DMA_DEBUG_MODE,         ///< DMA texture overlay mode
     OPT_DMA_DEBUG_OPACITY,      ///< DMA texture opacity
     OPT_DMA_DEBUG_CHANNEL0,     ///< Enable or disable channel 0
@@ -273,8 +273,8 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_TIA_REVISION:          return "Video standard";
             case OPT_TIA_POWER_SAVE:        return "Take fast paths";
 
-            case OPT_DMA_DEBUG_ENABLE:      return "DMA Debugger";
-            case OPT_DMA_DEBUG_MODE:        return "DMA Debugger style";
+            case OPT_DMA_DEBUG_ENABLE:      return "Logic analyzer";
+            case OPT_DMA_DEBUG_MODE:        return "Logic analyzer style";
             case OPT_DMA_DEBUG_OPACITY:     return "Opacity";
             case OPT_DMA_DEBUG_CHANNEL0:    return "Refresh cycles";
             case OPT_DMA_DEBUG_CHANNEL1:    return "Idle reads";

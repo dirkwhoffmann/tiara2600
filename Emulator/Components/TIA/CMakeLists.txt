@@ -11,7 +11,7 @@ VICIICycles.cpp
 VICIITable.cpp
 TIABase.cpp
 TIA.cpp
-DmaDebugger.cpp
-DmaDebuggerBase.cpp
+LogicAnalyzer.cpp
+LogicAnalyzerBase.cpp
 
 )

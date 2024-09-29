@@ -62,7 +62,7 @@ class Monitor: DialogController {
         print("Monitor: showWindow")
 
         // Update colors
-        if let dma = emu?.dmaDebugger.getConfig() {
+        if let dma = emu?.logicAnalyzer.getConfig() {
 
             busColorR.setColor(dma.dmaColor.0)
             busColorI.setColor(dma.dmaColor.1)
@@ -75,9 +75,9 @@ class Monitor: DialogController {
 
     func refresh() {
                 
-        if let dma = emu?.dmaDebugger.getConfig() {
+        if let dma = emu?.logicAnalyzer.getConfig() {
 
-            // DMA debugger
+            // Logic analyzer
             busDebug.state = dma.dmaDebug ? .on : .off
             busChannelR.state = dma.dmaChannel.0 ? .on : .off
             busChannelI.state = dma.dmaChannel.1 ? .on : .off

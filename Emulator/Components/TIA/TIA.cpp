@@ -172,9 +172,9 @@ TIA::eofHandler()
     // Only proceed if the current frame hasn't been executed in headless mode
     if (c64.getHeadless()) return;
 
-    // Run the DMA debugger if enabled
-    bool debug = dmaDebugger.config.dmaDebug;
-    if (debug) dmaDebugger.computeOverlay(emuTexture, dmaTexture);
+    // Run the logic Analyzer if enabled
+    bool debug = logicAnalyzer.config.dmaDebug;
+    if (debug) logicAnalyzer.computeOverlay(emuTexture, dmaTexture);
 
     // Switch texture buffers
     if (emuTexture == emuTexture1) {

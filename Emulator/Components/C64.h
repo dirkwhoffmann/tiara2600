@@ -44,7 +44,7 @@
 #include "Host.h"
 #include "RegressionTester.h"
 #include "RemoteManager.h"
-#include "DmaDebugger.h"
+#include "LogicAnalyzer.h"
 #include "RetroShell.h"
 #include "RshServer.h"
 
@@ -135,7 +135,7 @@ public:
     MsgQueue msgQueue = MsgQueue();
 
     // Misc
-    DmaDebugger dmaDebugger = DmaDebugger(*this);
+    LogicAnalyzer logicAnalyzer = LogicAnalyzer(*this);
     RetroShell retroShell = RetroShell(*this);
     RemoteManager remoteManager = RemoteManager(*this);
     RegressionTester regressionTester = RegressionTester(*this);
@@ -281,7 +281,7 @@ public:
         CLONE(port2)
         CLONE(expansionport)
         CLONE(monitor)
-        CLONE(dmaDebugger)
+        CLONE(logicAnalyzer)
         CLONE(retroShell)
         CLONE(regressionTester)
 

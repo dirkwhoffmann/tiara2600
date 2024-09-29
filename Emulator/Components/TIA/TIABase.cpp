@@ -18,8 +18,6 @@ namespace tiara {
 
 TIA::TIA(C64 &ref) : SubComponent(ref)
 {
-    // subComponents = std::vector<CoreComponent *> { &dmaDebugger };
-
     // initFuncTable();
 }
 

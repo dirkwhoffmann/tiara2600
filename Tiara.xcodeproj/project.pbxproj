@@ -142,7 +142,7 @@
 		50726F552961C99A0031F2F5 /* Peddle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50AA48B0292F8EC30084401D /* Peddle.cpp */; };
 		50726F562961C99A0031F2F5 /* PeddleUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509280CD2930A1B6006E1966 /* PeddleUtils.cpp */; };
 		50726F572961C9A10031F2F5 /* RIOT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C435824AF29AC00E69CAE /* RIOT.cpp */; };
-		50726F5A2961C9AC0031F2F5 /* DmaDebugger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB3CF2641101E006F45E6 /* DmaDebugger.cpp */; };
+		50726F5A2961C9AC0031F2F5 /* LogicAnalyzer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB3CF2641101E006F45E6 /* LogicAnalyzer.cpp */; };
 		50726F672961C9B80031F2F5 /* AudioPort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50549B47257D288E006FE39C /* AudioPort.cpp */; };
 		50726F742961C9D10031F2F5 /* Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42E124AF29AB00E69CAE /* Memory.cpp */; };
 		50726F7D2961C9E80031F2F5 /* Joystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5085D89B25B848940043B15C /* Joystick.cpp */; };
@@ -180,8 +180,8 @@
 		508C1E542C0B20610097473C /* ControlPortBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 508C1E522C0B20610097473C /* ControlPortBase.cpp */; };
 		508C1E562C0B20760097473C /* ExpansionPortBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 508C1E552C0B20760097473C /* ExpansionPortBase.cpp */; };
 		508C1E572C0B20760097473C /* ExpansionPortBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 508C1E552C0B20760097473C /* ExpansionPortBase.cpp */; };
-		508C1E5D2C0B31320097473C /* DmaDebuggerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 508C1E5C2C0B31320097473C /* DmaDebuggerBase.cpp */; };
-		508C1E5E2C0B31320097473C /* DmaDebuggerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 508C1E5C2C0B31320097473C /* DmaDebuggerBase.cpp */; };
+		508C1E5D2C0B31320097473C /* LogicAnalyzerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 508C1E5C2C0B31320097473C /* LogicAnalyzerBase.cpp */; };
+		508C1E5E2C0B31320097473C /* LogicAnalyzerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 508C1E5C2C0B31320097473C /* LogicAnalyzerBase.cpp */; };
 		508C1E662C0B5F770097473C /* MonitorBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 508C1E652C0B5F770097473C /* MonitorBase.cpp */; };
 		508C1E672C0B5F770097473C /* MonitorBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 508C1E652C0B5F770097473C /* MonitorBase.cpp */; };
 		508C1E692C0C507D0097473C /* CartridgeBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 508C1E682C0C507D0097473C /* CartridgeBase.cpp */; };
@@ -288,7 +288,7 @@
 		50D3092624C71AD300B92563 /* Monitor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50D3092524C71AD300B92563 /* Monitor.xib */; };
 		50D3092824C71B0A00B92563 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3092724C71B0A00B92563 /* Monitor.swift */; };
 		50D8421820A82CF500EB859A /* MetalViewEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D8421720A82CF500EB859A /* MetalViewEvents.swift */; };
-		50DBB3D12641101E006F45E6 /* DmaDebugger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB3CF2641101E006F45E6 /* DmaDebugger.cpp */; };
+		50DBB3D12641101E006F45E6 /* LogicAnalyzer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB3CF2641101E006F45E6 /* LogicAnalyzer.cpp */; };
 		50DBB44B2025CE5700489271 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB44A2025CE5700489271 /* Utils.swift */; };
 		50DD82A02614D47E00B84EB3 /* Chrono.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DD829E2614D47E00B84EB3 /* Chrono.cpp */; };
 		50DEAD8F2008E615008A8761 /* Shaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DEAD8E2008E615008A8761 /* Shaders.swift */; };
@@ -554,7 +554,7 @@
 		5085D89C25B848940043B15C /* Joystick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Joystick.h; sourceTree = "<group>"; };
 		508C1E522C0B20610097473C /* ControlPortBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ControlPortBase.cpp; sourceTree = "<group>"; };
 		508C1E552C0B20760097473C /* ExpansionPortBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ExpansionPortBase.cpp; sourceTree = "<group>"; };
-		508C1E5C2C0B31320097473C /* DmaDebuggerBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DmaDebuggerBase.cpp; sourceTree = "<group>"; };
+		508C1E5C2C0B31320097473C /* LogicAnalyzerBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LogicAnalyzerBase.cpp; sourceTree = "<group>"; };
 		508C1E652C0B5F770097473C /* MonitorBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MonitorBase.cpp; sourceTree = "<group>"; };
 		508C1E682C0C507D0097473C /* CartridgeBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CartridgeBase.cpp; sourceTree = "<group>"; };
 		508C1E6B2C0C58FF0097473C /* Paddle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Paddle.cpp; sourceTree = "<group>"; };
@@ -685,9 +685,9 @@
 		50D3092724C71B0A00B92563 /* Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
 		50D7DE812C5910E700A6CE94 /* Animated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Animated.h; sourceTree = "<group>"; };
 		50D8421720A82CF500EB859A /* MetalViewEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalViewEvents.swift; sourceTree = "<group>"; };
-		50DBB3CF2641101E006F45E6 /* DmaDebugger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DmaDebugger.cpp; sourceTree = "<group>"; };
-		50DBB3D02641101E006F45E6 /* DmaDebugger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DmaDebugger.h; sourceTree = "<group>"; };
-		50DBB3D22641107E006F45E6 /* DmaDebuggerTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DmaDebuggerTypes.h; sourceTree = "<group>"; };
+		50DBB3CF2641101E006F45E6 /* LogicAnalyzer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LogicAnalyzer.cpp; sourceTree = "<group>"; };
+		50DBB3D02641101E006F45E6 /* LogicAnalyzer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogicAnalyzer.h; sourceTree = "<group>"; };
+		50DBB3D22641107E006F45E6 /* LogicAnalyzerTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogicAnalyzerTypes.h; sourceTree = "<group>"; };
 		50DBB3D3264115B4006F45E6 /* BusTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusTypes.h; sourceTree = "<group>"; };
 		50DBB44A2025CE5700489271 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		50DD829E2614D47E00B84EB3 /* Chrono.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Chrono.cpp; sourceTree = "<group>"; };
@@ -1194,10 +1194,10 @@
 				504104422CA67F650004860E /* TIA.h */,
 				504104442CA687300004860E /* TIA.cpp */,
 				50DBB3D3264115B4006F45E6 /* BusTypes.h */,
-				50DBB3D22641107E006F45E6 /* DmaDebuggerTypes.h */,
-				50DBB3D02641101E006F45E6 /* DmaDebugger.h */,
-				508C1E5C2C0B31320097473C /* DmaDebuggerBase.cpp */,
-				50DBB3CF2641101E006F45E6 /* DmaDebugger.cpp */,
+				50DBB3D22641107E006F45E6 /* LogicAnalyzerTypes.h */,
+				50DBB3D02641101E006F45E6 /* LogicAnalyzer.h */,
+				508C1E5C2C0B31320097473C /* LogicAnalyzerBase.cpp */,
+				50DBB3CF2641101E006F45E6 /* LogicAnalyzer.cpp */,
 			);
 			path = TIA;
 			sourceTree = "<group>";
@@ -1715,7 +1715,7 @@
 				50A194942BDA709D0046849E /* CPUBase.cpp in Sources */,
 				50726FB52961CA290031F2F5 /* RetroShell.cpp in Sources */,
 				50BD640F2C01FFEC007CD347 /* VideoPortBase.cpp in Sources */,
-				50726F5A2961C9AC0031F2F5 /* DmaDebugger.cpp in Sources */,
+				50726F5A2961C9AC0031F2F5 /* LogicAnalyzer.cpp in Sources */,
 				501C46BF2965C54200C4B27B /* StrWriter.h in Sources */,
 				500375072C23F26000979A1B /* C64Base.cpp in Sources */,
 				50726F442961C97B0031F2F5 /* MemUtils.cpp in Sources */,
@@ -1751,7 +1751,7 @@
 				50726F412961C97B0031F2F5 /* Parser.cpp in Sources */,
 				508C1E542C0B20610097473C /* ControlPortBase.cpp in Sources */,
 				50BB3E9B2B7A50F600B2D87B /* Synchronizable.cpp in Sources */,
-				508C1E5E2C0B31320097473C /* DmaDebuggerBase.cpp in Sources */,
+				508C1E5E2C0B31320097473C /* LogicAnalyzerBase.cpp in Sources */,
 				50726F4A2961C9940031F2F5 /* CPU.cpp in Sources */,
 				50A5B7D42C74E44C00D6DDAD /* RshServer.cpp in Sources */,
 				50726F472961C9940031F2F5 /* SubComponent.cpp in Sources */,
@@ -1919,8 +1919,8 @@
 				5092A5B1200BC4B70037754D /* DragAndDrop.swift in Sources */,
 				504C438224AF29AC00E69CAE /* CoreObject.cpp in Sources */,
 				5098C57F2658E1F400E05EFC /* DragImageView.swift in Sources */,
-				50DBB3D12641101E006F45E6 /* DmaDebugger.cpp in Sources */,
-				508C1E5D2C0B31320097473C /* DmaDebuggerBase.cpp in Sources */,
+				50DBB3D12641101E006F45E6 /* LogicAnalyzer.cpp in Sources */,
+				508C1E5D2C0B31320097473C /* LogicAnalyzerBase.cpp in Sources */,
 				50DEAD8F2008E615008A8761 /* Shaders.swift in Sources */,
 				508C1E752C0C59BA0097473C /* JoystickBase.cpp in Sources */,
 				504C437024AF29AC00E69CAE /* Cartridge.cpp in Sources */,
