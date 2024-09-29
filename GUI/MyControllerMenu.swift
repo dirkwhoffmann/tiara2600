@@ -367,7 +367,7 @@ extension MyController: NSMenuItemValidation {
             if result == .OK, let url = openPanel.url {
 
                 do {
-                    try self.mm.addMedia(url: url, allowedTypes: [ .CRT ])
+                    try self.mm.addMedia(url: url, allowedTypes: [ .BIN ])
                 } catch {
                     self.showAlert(.cantAttach, error: error, async: true)
                 }
@@ -382,7 +382,7 @@ extension MyController: NSMenuItemValidation {
         if let url = MediaManager.getRecentlyAtachedCartridgeURL(slot) {
 
             do {
-                try self.mm.addMedia(url: url, allowedTypes: [ .CRT ])
+                try self.mm.addMedia(url: url, allowedTypes: [ .BIN ])
             } catch {
                 self.showAlert(.cantAttach, error: error, async: true)
             }

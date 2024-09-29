@@ -53,7 +53,8 @@ Thumbnail::take(const C64 &c64, isize dx, isize dy)
 bool
 Snapshot::isCompatible(const fs::path &path)
 {
-    return true;
+    auto s = util::uppercased(path.extension().string());
+    return s == ".TIARA";
 }
 
 bool

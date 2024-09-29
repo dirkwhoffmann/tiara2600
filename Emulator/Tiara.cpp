@@ -393,6 +393,37 @@ C64API::loadSnapshot(const MediaFile &snapshot)
 }
 
 void
+C64API::attachCartridge(const std::filesystem::path &path, bool reset)
+{
+    c64->attachCartridge(path);
+    emu->markAsDirty();
+}
+
+void
+C64API::attachCartridge(const MediaFile &c, bool reset)
+{
+    c64->attachCartridge(c);
+    emu->markAsDirty();
+}
+
+void
+C64API::detachCartridge()
+{
+    c64->detachCartridge();
+    emu->markAsDirty();
+}
+
+void
+C64API::saveCartridge(const std::filesystem::path &path)
+{
+    c64->saveCartridge(path);
+    emu->markAsDirty();
+}
+
+
+
+/*
+void
 C64API::loadRom(const fs::path &path)
 {
     c64->loadRom(path);
@@ -440,6 +471,7 @@ C64API::installOpenRoms()
     c64->installOpenRoms();
     emu->markAsDirty();
 }
+*/
 
 void
 C64API::flash(const MediaFile &file)
@@ -839,20 +871,6 @@ ExpansionPortAPI::getCachedInfo() const
     return expansionPort->getCachedInfo();
 }
 */
-
-void
-CartridgeAPI::attachCartridge(const std::filesystem::path &path, bool reset)
-{
-    // expansionPort->attachCartridge(path, reset);
-    emu->markAsDirty();
-}
-
-void
-CartridgeAPI::attachCartridge(const MediaFile &c, bool reset)
-{
-    // expansionPort->attachCartridge(c, reset);
-    emu->markAsDirty();
-}
 
 
 //

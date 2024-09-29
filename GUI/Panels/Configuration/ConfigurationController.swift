@@ -14,33 +14,15 @@ class ConfigurationController: DialogController {
     @IBOutlet weak var prefTabView: NSTabView!
     
     //
-    // Roms
+    // Cartridge
     //
-        
-    @IBOutlet weak var basicDropView: RomDropView!
-    @IBOutlet weak var basicTitle: NSTextField!
-    @IBOutlet weak var basicSubtitle: NSTextField!
-    @IBOutlet weak var basicSubsubtitle: NSTextField!
-    @IBOutlet weak var basicDeleteButton: NSButton!
-    
-    @IBOutlet weak var kernalDropView: RomDropView!
-    @IBOutlet weak var kernalTitle: NSTextField!
-    @IBOutlet weak var kernalSubtitle: NSTextField!
-    @IBOutlet weak var kernalSubsubtitle: NSTextField!
-    @IBOutlet weak var kernalDeleteButton: NSButton!
-    
-    @IBOutlet weak var charDropView: RomDropView!
-    @IBOutlet weak var charTitle: NSTextField!
-    @IBOutlet weak var charSubtitle: NSTextField!
-    @IBOutlet weak var charSubsubtitle: NSTextField!
-    @IBOutlet weak var charDeleteButton: NSButton!
-    
-    @IBOutlet weak var vc1541DropView: RomDropView!
-    @IBOutlet weak var vc1541Title: NSTextField!
-    @IBOutlet weak var vc1541Subtitle: NSTextField!
-    @IBOutlet weak var vc1541Subsubtitle: NSTextField!
-    @IBOutlet weak var vc1541DeleteButton: NSButton!
-    
+
+    @IBOutlet weak var cartDropView: RomDropView!
+    @IBOutlet weak var cartTitle: NSTextField!
+    @IBOutlet weak var cartSubtitle: NSTextField!
+    @IBOutlet weak var cartSubsubtitle: NSTextField!
+    @IBOutlet weak var cartDeleteButton: NSButton!
+
     @IBOutlet weak var romInstallButton: NSButton!
 
     @IBOutlet weak var romLockImage: NSButton!

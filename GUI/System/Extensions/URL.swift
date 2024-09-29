@@ -277,7 +277,8 @@ extension URL {
             return nil
         }
     }
-    
+
+    /*
     var c64FileType: tiara.FileType {
         
         switch pathExtension.lowercased() {
@@ -290,4 +291,5 @@ extension URL {
             
         }
     }
+    */
 }

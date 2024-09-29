@@ -1014,6 +1014,46 @@ C64::scheduleNextSNPEvent()
     }
 }
 
+void
+C64::attachCartridge(const fs::path &path) throws
+{
+    debug(true, "C64::attachCartrige (path = %s)", path.string().c_str());
+}
+
+void
+C64::attachCartridge(const MediaFile &file)
+{
+    debug(true, "C64::attachCartrige");
+
+    try {
+
+        const RomFile &romFile = dynamic_cast<const RomFile &>(file);
+
+        // auto cart = Cartridge::makeWithFile(*this, romFile);
+
+
+    } catch (...) {
+
+        throw Error(VC64ERROR_FILE_TYPE_MISMATCH);
+    }
+}
+
+void
+C64::detachCartridge()
+{
+    SUSPENDED
+
+    debug(true, "C64::detachCartrige");
+    cartridge = std::make_unique<Cartridge>(*this);
+}
+
+void
+C64::saveCartridge(const fs::path &path)
+{
+    RomFile file(cartridge->rom);
+    file.writeToFile(path);
+}
+
 RomTraits
 C64::getRomTraits(u64 fnv)
 {
@@ -1189,159 +1229,37 @@ C64::loadRom(const fs::path &path)
 void
 C64::loadRom(const MediaFile &file)
 {
-    switch (file.type()) {
-            
-        case FILETYPE_BASIC_ROM:
-            
-            file.flash(mem.rom, 0xA000);
-            debug(MEM_DEBUG, "Basic Rom flashed\n");
-            debug(MEM_DEBUG, "hasMega65Rom() = %d\n", hasMega65Rom(ROM_TYPE_BASIC));
-            debug(MEM_DEBUG, "mega65BasicRev() = %s\n", mega65BasicRev());
-            break;
-            
-        case FILETYPE_CHAR_ROM:
-            
-            file.flash(mem.rom, 0xD000);
-            debug(MEM_DEBUG, "Character Rom flashed\n");
-            break;
-            
-        case FILETYPE_KERNAL_ROM:
-            
-            file.flash(mem.rom, 0xE000);
-            debug(MEM_DEBUG, "Kernal Rom flashed\n");
-            debug(MEM_DEBUG, "hasMega65Rom() = %d\n", hasMega65Rom(ROM_TYPE_KERNAL));
-            debug(MEM_DEBUG, "mega65KernalRev() = %s\n", mega65KernalRev());
-            break;
-            
-        case FILETYPE_VC1541_ROM:
-            break;
-            
-        default:
-            
-            throw Error(VC64ERROR_FILE_TYPE_MISMATCH);
-    }
+ 
 }
 
 void
 C64::deleteRom(RomType type)
 {
-    {   SUSPENDED
 
-        switch (type) {
-
-            case ROM_TYPE_BASIC:
-
-                memset(mem.rom + 0xA000, 0, 0x2000);
-                break;
-
-            case ROM_TYPE_CHAR:
-
-                memset(mem.rom + 0xD000, 0, 0x1000);
-                break;
-
-            case ROM_TYPE_KERNAL:
-
-                memset(mem.rom + 0xE000, 0, 0x2000);
-                break;
-
-            case ROM_TYPE_VC1541:
-                break;
-
-            default:
-                fatalError;
-        }
-    }
 }
 
 void 
 C64::deleteRoms()
 {
-    {   SUSPENDED
 
-        deleteRom(ROM_TYPE_BASIC);
-        deleteRom(ROM_TYPE_KERNAL);
-        deleteRom(ROM_TYPE_CHAR);
-        deleteRom(ROM_TYPE_VC1541);
-    }
 }
 
 void
 C64::saveRom(RomType type, const fs::path &path)
 {
-    switch (type) {
-            
-        case ROM_TYPE_BASIC:
 
-            if (hasRom(ROM_TYPE_BASIC)) {
-                RomFile file(mem.rom + 0xA000, 0x2000);
-                file.writeToFile(path);
-            }
-            break;
-
-        case ROM_TYPE_CHAR:
-
-            if (hasRom(ROM_TYPE_CHAR)) {
-                RomFile file(mem.rom + 0xD000, 0x1000);
-                file.writeToFile(path);
-            }
-            break;
-
-        case ROM_TYPE_KERNAL:
-
-            if (hasRom(ROM_TYPE_KERNAL)) {
-                RomFile file(mem.rom + 0xE000, 0x2000);
-                file.writeToFile(path);
-            }
-            break;
-
-        case ROM_TYPE_VC1541:
-            break;
-            
-        default:
-            fatalError;
-    }
 }
 
 void 
 C64::installOpenRoms()
 {
-    {   SUSPENDED
 
-        installOpenRom(ROM_TYPE_BASIC);
-        installOpenRom(ROM_TYPE_KERNAL);
-        installOpenRom(ROM_TYPE_CHAR);
-    }
 }
 
 void
 C64::installOpenRom(RomType type)
 {
-    {   SUSPENDED
 
-        switch (type) {
-
-            case ROM_TYPE_BASIC:
-
-                assert(sizeof(basic_generic) == 0x2000);
-                memcpy(mem.rom + 0xA000, basic_generic, 0x2000);
-                break;
-
-            case ROM_TYPE_CHAR:
-
-                assert(sizeof(chargen_openroms) == 0x1000);
-                memcpy(mem.rom + 0xD000, chargen_openroms, 0x1000);
-                break;
-
-            case ROM_TYPE_KERNAL:
-
-                assert(sizeof(kernel_generic) == 0x2000);
-                memcpy(mem.rom + 0xE000, kernel_generic, 0x2000);
-                break;
-
-            default:
-                fatalError;
-        }
-    }
 }
 
 void
@@ -1351,21 +1269,9 @@ C64::flash(const MediaFile &file)
         
         switch (file.type()) {
                 
-            case FILETYPE_BASIC_ROM:
-                file.flash(mem.rom, 0xA000);
+            case FILETYPE_BIN:
                 break;
                 
-            case FILETYPE_CHAR_ROM:
-                file.flash(mem.rom, 0xD000);
-                break;
-                
-            case FILETYPE_KERNAL_ROM:
-                file.flash(mem.rom, 0xE000);
-                break;
-                
-            case FILETYPE_VC1541_ROM:
-                break;
-
             case FILETYPE_SNAPSHOT:
                 loadSnapshot(dynamic_cast<const Snapshot &>(file));
                 break;

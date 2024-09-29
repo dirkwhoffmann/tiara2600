@@ -65,7 +65,7 @@ class DropView: NSImageView {
 
 class RomDropView: DropView {
 
-    func performDrag(type: tiara.RomType, url: URL?) -> Bool {
+    func performDrag(url: URL?) -> Bool {
 
         guard let url = url?.unpacked else { return false }
 
@@ -85,44 +85,14 @@ class RomDropView: DropView {
             return false
         }
     }
-}
-
-class BasicRomDropView: RomDropView {
 
     override func acceptDragSource(url: URL) -> Bool {
-        return emu != nil && emu!.poweredOff && emu!.isRom(.BASIC, url: url)
-    }
-    
-    override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        return performDrag(type: .BASIC, url: sender.url)
-    }
-}
 
-class CharRomDropView: RomDropView {
-    override func acceptDragSource(url: URL) -> Bool {
-        return emu != nil && emu!.poweredOff && emu!.isRom(.CHAR, url: url)
+        return emu?.isRom(url) ?? false
     }
-    override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        return performDrag(type: .CHAR, url: sender.url)
-    }
-}
 
-class KernalRomDropView: RomDropView {
-
-    override func acceptDragSource(url: URL) -> Bool {
-        return emu != nil && emu!.poweredOff && emu!.isRom(.KERNAL, url: url)
-    }
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        return performDrag(type: .KERNAL, url: sender.url)
-    }
-}
 
-class Vc1541RomDropView: RomDropView {
-    
-    override func acceptDragSource(url: URL) -> Bool {
-        return emu != nil && emu!.poweredOff && emu!.isRom(.VC1541, url: url)
-    }
-    override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        return performDrag(type: .VC1541, url: sender.url)
+        return performDrag(url: sender.url)
     }
 }

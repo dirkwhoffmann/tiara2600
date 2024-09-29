@@ -173,7 +173,7 @@ extension MediaFileProxy {
      
         switch type {
      
-        case .CRT:
+        case .BIN:
             return NSImage(named: "cartridge")!
         
         default:

@@ -1209,42 +1209,32 @@ using namespace tiara;
     [self emu]->stepOver();
 }
 
-- (BOOL) isRom:(RomType)type url:(NSURL *)url
+- (BOOL) isRom:(NSURL *)url
 {
     auto fileType = MediaFile::type([url fileSystemRepresentation]);
-
-    return 
-    (fileType == FILETYPE_BASIC_ROM && type == ROM_TYPE_BASIC) ||
-    (fileType == FILETYPE_CHAR_ROM && type == ROM_TYPE_CHAR) ||
-    (fileType == FILETYPE_KERNAL_ROM && type == ROM_TYPE_KERNAL) ||
-    (fileType == FILETYPE_VC1541_ROM && type == ROM_TYPE_VC1541);
-}
-
-- (void)installOpenRoms
-{
-    [self emu]->c64.installOpenRoms();
+    return fileType == FILETYPE_BIN;
 }
 
 - (void) loadRom:(NSURL *)url exception:(ExceptionWrapper *)e
 {
-    try { [self emu]->c64.loadRom(string([url fileSystemRepresentation])); }
+    try { [self emu]->c64.attachCartridge(string([url fileSystemRepresentation])); }
     catch (Error &error) { [e save:error]; }
 }
 
 - (void) loadRom:(MediaFileProxy *)proxy
 {
-    [self emu]->c64.loadRom(*(MediaFile *)proxy->obj);
+    [self emu]->c64.attachCartridge(*(MediaFile *)proxy->obj);
 }
 
 - (void) saveRom:(RomType)type url:(NSURL *)url exception:(ExceptionWrapper *)e
 {
-    try { [self emu]->c64.saveRom(type, string([url fileSystemRepresentation])); }
-    catch (Error &error) { [e save:error]; }
+    // try { [self emu]->c64.saveRom(type, string([url fileSystemRepresentation])); }
+    // catch (Error &error) { [e save:error]; }
 }
 
 - (void) deleteRom:(RomType)type
 {
-    [self emu]->c64.deleteRom(type);
+    // [self emu]->c64.deleteRom(type);
 }
 
 - (void)flash:(MediaFileProxy *)proxy exception:(ExceptionWrapper *)ex

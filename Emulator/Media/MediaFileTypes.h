@@ -24,20 +24,16 @@ namespace tiara {
 enum_long(FILETYPE)
 {
     FILETYPE_UNKNOWN,
+    FILETYPE_BIN,
     FILETYPE_SNAPSHOT,
-    FILETYPE_SCRIPT,
-    FILETYPE_CRT,
-    FILETYPE_BASIC_ROM,
-    FILETYPE_CHAR_ROM,
-    FILETYPE_KERNAL_ROM,
-    FILETYPE_VC1541_ROM
+    FILETYPE_SCRIPT
 };
 typedef FILETYPE FileType;
 
 struct FileTypeEnum : util::Reflection<FileTypeEnum, FileType> {
 
     static constexpr long minVal = 0;
-    static constexpr long maxVal = FILETYPE_VC1541_ROM;
+    static constexpr long maxVal = FILETYPE_SCRIPT;
 
     static const char *prefix() { return "FILETYPE"; }
     static const char *_key(long value)
@@ -45,13 +41,9 @@ struct FileTypeEnum : util::Reflection<FileTypeEnum, FileType> {
         switch (value) {
 
             case FILETYPE_UNKNOWN:    return "UNKNOWN";
+            case FILETYPE_BIN:        return "BIN";
             case FILETYPE_SNAPSHOT:   return "SNAPSHOT";
             case FILETYPE_SCRIPT:     return "SCRIPT";
-            case FILETYPE_CRT:        return "CRT";
-            case FILETYPE_BASIC_ROM:  return "BASIC_ROM";
-            case FILETYPE_CHAR_ROM:   return "CHAR_ROM";
-            case FILETYPE_KERNAL_ROM: return "KERNAL_ROM";
-            case FILETYPE_VC1541_ROM: return "VC1541_ROM";
         }
         return "???";
     }

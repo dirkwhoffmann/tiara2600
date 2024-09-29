@@ -370,22 +370,6 @@ struct CartridgeAPI : API {
      */
     // const CartridgeInfo &getInfo() const;
     // const CartridgeInfo &getCachedInfo() const;
-
-
-    /// @}
-    /// @name Attaching and detaching cartridges.
-    /// @{
-
-    /** @brief  Attaches a cartridge to the expansion port.
-     */
-    void attachCartridge(const std::filesystem::path &path, bool reset = true);
-
-    /** @brief  Attaches a cartridge to the expansion port.
-     */
-    void attachCartridge(const MediaFile &c, bool reset = true);
-
-    /// @}
-
 };
 
 /** RemoteManager Public API
@@ -790,6 +774,32 @@ struct C64API : public API {
 
 
     /// @}
+    /// @name Attaching and detaching cartridges
+    /// @{
+
+    /** @brief  Attaches a cartridge to the expansion port.
+     */
+    void attachCartridge(const std::filesystem::path &path, bool reset = true);
+
+    /** @brief  Attaches a cartridge to the expansion port.
+     */
+    void attachCartridge(const MediaFile &file, bool reset = true);
+
+    /** @brief  Removes the current cartridge
+     */
+    void detachCartridge();
+
+    /** @brief  Saves the current cartridge to disk
+     *
+     *  @throw  VC64Error (VC64ERROR_FILE_CANT_WRITE)
+     */
+    void saveCartridge(const std::filesystem::path &path);
+
+    /// @}
+    ///
+    ///
+
+    /// @}
     /// @name Handling ROMs
     /// @{
 
@@ -799,35 +809,35 @@ struct C64API : public API {
      *  @throw  VC64Error (VC64ERROR_ROM_BASIC_MISSING)
      *          VC64Error (VC64ERROR_FILE_TYPE_MISMATCH)
      */
-    void loadRom(const fs::path &path);
+    // void loadRom(const fs::path &path);
 
     /** @brief  Loads a ROM, provided by a RomFile object
      */
-    void loadRom(const MediaFile &file);
+    // void loadRom(const MediaFile &file);
 
     /** @brief  Removes an installed ROM
      *          The ROM contents is overwritten with zeroes.
      */
-    void deleteRom(RomType type);
+    // void deleteRom(RomType type);
 
     /** @brief  Removes all installed ROMs including the floppy drive ROMs.
      *          The ROM contents is overwritten with zeroes.
      */
-    void deleteRoms();
+    // void deleteRoms();
 
     /** @brief  Saves a ROM to disk
      *
      *  @throw  VC64Error (VC64ERROR_FILE_CANT_WRITE)
      */
-    void saveRom(RomType rom, const std::filesystem::path &path);
+    // void saveRom(RomType rom, const std::filesystem::path &path);
 
     /** @brief  Installes a MEGA65 OpenRom
      */
-    void installOpenRom(RomType type);
+    // void installOpenRom(RomType type);
 
     /** @brief  Install all three MEGA65 OpenROMs
      */
-    void installOpenRoms();
+    // void installOpenRoms();
 
 
     /// @}

@@ -381,7 +381,8 @@ class Configuration {
         }
 
         debug(.defaults)
-        
+
+        /*
         if let emu = emu {
 
             emu.suspend()
@@ -391,21 +392,16 @@ class Configuration {
             load(UserDefaults.vc1541RomUrl, type: .VC1541_ROM)
             emu.resume()
         }
+        */
     }
 
     func saveRomUserDefaults() throws {
 
         debug(.defaults)
 
-        var url: URL?
+        // var url: URL?
 
-        func save(_ type: tiara.RomType) throws {
-
-            if url == nil { throw VC64Error(tiara.ErrorCode.FILE_CANT_WRITE) }
-            try? FileManager.default.removeItem(at: url!)
-            try emu?.saveRom(type, url: url!)
-        }
-
+        /*
         if let emu = emu {
 
             emu.suspend()
@@ -424,5 +420,6 @@ class Configuration {
 
             emu.resume()
         }
+        */
     }
 }

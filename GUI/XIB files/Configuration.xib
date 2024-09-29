@@ -21,16 +21,11 @@
                 <outlet property="audVol3" destination="nxr-7U-G2Z" id="qHR-Vi-GTJ"/>
                 <outlet property="audVolL" destination="O1Q-z8-zVP" id="iMl-Xc-rg4"/>
                 <outlet property="audVolR" destination="Hrp-8d-Rbm" id="i1V-rn-x1a"/>
-                <outlet property="basicDeleteButton" destination="nSa-0I-2sF" id="LaM-hr-eDI"/>
-                <outlet property="basicDropView" destination="rV9-BQ-AAx" id="gjn-vP-yXL"/>
-                <outlet property="basicSubsubtitle" destination="10b-BC-y6b" id="XWk-c0-wYf"/>
-                <outlet property="basicSubtitle" destination="Val-uF-mCs" id="VL7-B6-3sn"/>
-                <outlet property="basicTitle" destination="Mc6-g5-kfE" id="mxH-If-7eD"/>
-                <outlet property="charDeleteButton" destination="wF6-vA-6xk" id="nXM-a7-0pH"/>
-                <outlet property="charDropView" destination="I3M-ht-lkl" id="Hal-Hp-Zn2"/>
-                <outlet property="charSubsubtitle" destination="pJq-X4-x2y" id="dnt-HT-phH"/>
-                <outlet property="charSubtitle" destination="Pea-uJ-4G8" id="raO-PO-Cfy"/>
-                <outlet property="charTitle" destination="m0b-3R-CyB" id="sy5-3M-2iP"/>
+                <outlet property="cartDeleteButton" destination="wF6-vA-6xk" id="nXM-a7-0pH"/>
+                <outlet property="cartDropView" destination="I3M-ht-lkl" id="Hal-Hp-Zn2"/>
+                <outlet property="cartSubsubtitle" destination="pJq-X4-x2y" id="dnt-HT-phH"/>
+                <outlet property="cartSubtitle" destination="Pea-uJ-4G8" id="raO-PO-Cfy"/>
+                <outlet property="cartTitle" destination="m0b-3R-CyB" id="sy5-3M-2iP"/>
                 <outlet property="comPowerButton" destination="MaC-Tv-e4H" id="r0L-EC-VjG"/>
                 <outlet property="comSbCollisions" destination="bnG-rw-e1M" id="HG9-2I-s0C"/>
                 <outlet property="comSsCollisions" destination="qgS-di-RAL" id="dez-ar-RTx"/>
@@ -45,11 +40,6 @@
                 <outlet property="hwVicGrayDotBug" destination="Tgn-hC-LhH" id="755-yB-V5Y"/>
                 <outlet property="hwVicIcon" destination="WuF-5Y-4hm" id="iar-AO-rVd"/>
                 <outlet property="hwVicModelPopup" destination="ZQk-5s-Q3i" id="GTx-Ou-jHT"/>
-                <outlet property="kernalDeleteButton" destination="sT6-dg-rcI" id="FTx-AU-Gup"/>
-                <outlet property="kernalDropView" destination="khi-bK-T0V" id="eUE-h3-46V"/>
-                <outlet property="kernalSubsubtitle" destination="DhW-S3-d80" id="WI0-BK-0QC"/>
-                <outlet property="kernalSubtitle" destination="olG-Cx-dQe" id="lv4-Xh-rQf"/>
-                <outlet property="kernalTitle" destination="Ia2-ZC-hac" id="8Lh-Qv-742"/>
                 <outlet property="perAutofire" destination="aIW-XE-DMh" id="5Y9-Za-Eca"/>
                 <outlet property="perAutofireBullets" destination="YDZ-KB-MhG" id="eiB-bu-Trw"/>
                 <outlet property="perAutofireBulletsText" destination="Dk3-Pa-snc" id="mF8-km-cqI"/>
@@ -69,16 +59,8 @@
                 <outlet property="prfSpeedBoostInfo" destination="KOV-eH-3s2" id="85r-j2-FqP"/>
                 <outlet property="prfVSync" destination="FHx-4K-dGQ" id="t0q-RM-Yzd"/>
                 <outlet property="romInstallButton" destination="UjG-e3-b19" id="c56-L7-acn"/>
-                <outlet property="romLockImage" destination="eyT-7E-Fac" id="kDq-Pq-Z6g"/>
-                <outlet property="romLockSubText" destination="86M-pD-FbE" id="pD7-8q-j2Q"/>
-                <outlet property="romLockText" destination="Upv-e6-bJa" id="KIe-4I-7Yn"/>
                 <outlet property="romOkButton" destination="sYt-GY-XZQ" id="x48-u0-P2N"/>
                 <outlet property="romPowerButton" destination="7kO-E0-VCD" id="B6z-qV-8e8"/>
-                <outlet property="vc1541DeleteButton" destination="yeR-GI-m2K" id="7KY-FI-Qfv"/>
-                <outlet property="vc1541DropView" destination="A84-Oz-THd" id="dJE-QV-9gG"/>
-                <outlet property="vc1541Subsubtitle" destination="DMA-Yr-TF0" id="JyR-Rz-yQz"/>
-                <outlet property="vc1541Subtitle" destination="hMS-xE-H7T" id="0k1-GI-MJa"/>
-                <outlet property="vc1541Title" destination="L8b-1t-7Wh" id="XeF-qD-Bef"/>
                 <outlet property="vidBloomBrightnessSlider" destination="tcf-i4-M9e" id="APL-nV-hEu"/>
                 <outlet property="vidBloomPopUp" destination="J7V-We-wO2" id="Txv-g5-ha7"/>
                 <outlet property="vidBloomRadiusSlider" destination="VJ1-QU-G8y" id="Swh-1G-ZJ0"/>
@@ -131,78 +113,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
-                            <tabViewItem label="Roms" identifier="Roms" id="VwS-fe-RFZ">
+                            <tabViewItem label="Cartridge" identifier="Roms" id="VwS-fe-RFZ">
                                 <view key="view" id="4If-78-eR2">
                                     <rect key="frame" x="10" y="33" width="600" height="424"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <box fixedFrame="YES" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="f2q-90-M1c">
-                                            <rect key="frame" x="185" y="270" width="110" height="120"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                            <view key="contentView" id="ovl-ej-Vpb">
-                                                <rect key="frame" x="4" y="5" width="102" height="112"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rV9-BQ-AAx" customClass="BasicRomDropView" customModule="Tiara" customModuleProvider="target">
-                                                        <rect key="frame" x="4" y="7" width="96" height="96"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="rom_missing" id="sfp-hH-V8i"/>
-                                                        <connections>
-                                                            <outlet property="parent" destination="-2" id="aS0-Bp-t52"/>
-                                                        </connections>
-                                                    </imageView>
-                                                </subviews>
-                                            </view>
-                                        </box>
                                         <box fixedFrame="YES" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="6tf-5c-i12">
-                                            <rect key="frame" x="304" y="270" width="110" height="120"/>
+                                            <rect key="frame" x="59" y="190" width="199" height="187"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <view key="contentView" id="fLj-GD-6Pn">
-                                                <rect key="frame" x="4" y="5" width="102" height="112"/>
+                                                <rect key="frame" x="4" y="5" width="191" height="179"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I3M-ht-lkl" customClass="CharRomDropView" customModule="Tiara" customModuleProvider="target">
-                                                        <rect key="frame" x="4" y="7" width="96" height="96"/>
+                                                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I3M-ht-lkl" customClass="RomDropView" customModule="Tiara" customModuleProvider="target">
+                                                        <rect key="frame" x="29" y="20" width="133" height="137"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="rom_missing" id="C7w-XI-Fcn"/>
                                                         <connections>
                                                             <outlet property="parent" destination="-2" id="K85-b7-CHv"/>
-                                                        </connections>
-                                                    </imageView>
-                                                </subviews>
-                                            </view>
-                                        </box>
-                                        <box fixedFrame="YES" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="pn1-EH-xKV">
-                                            <rect key="frame" x="185" y="140" width="110" height="120"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                            <view key="contentView" id="sqX-vN-ugF">
-                                                <rect key="frame" x="4" y="5" width="102" height="112"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khi-bK-T0V" customClass="KernalRomDropView" customModule="Tiara" customModuleProvider="target">
-                                                        <rect key="frame" x="4" y="7" width="96" height="96"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="rom_missing" id="PQ2-ZS-A5x"/>
-                                                        <connections>
-                                                            <outlet property="parent" destination="-2" id="nbQ-5r-7aE"/>
-                                                        </connections>
-                                                    </imageView>
-                                                </subviews>
-                                            </view>
-                                        </box>
-                                        <box fixedFrame="YES" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="H7B-hN-jk9">
-                                            <rect key="frame" x="303" y="140" width="110" height="120"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                            <view key="contentView" id="E6X-96-GtX">
-                                                <rect key="frame" x="4" y="5" width="102" height="112"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A84-Oz-THd" customClass="Vc1541RomDropView" customModule="Tiara" customModuleProvider="target">
-                                                        <rect key="frame" x="4" y="7" width="96" height="96"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="rom_missing" id="1dK-yO-ib6"/>
-                                                        <connections>
-                                                            <outlet property="parent" destination="-2" id="dg5-yo-Myz"/>
                                                         </connections>
                                                     </imageView>
                                                 </subviews>
@@ -233,46 +161,8 @@ Gw
                                                 <action selector="powerAction:" target="-2" id="bIb-az-MKX"/>
                                             </connections>
                                         </button>
-                                        <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mc6-g5-kfE">
-                                            <rect key="frame" x="10" y="373" width="165" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Basic Rom" id="UBW-wf-S9Q">
-                                                <font key="font" metaFont="systemBold"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Val-uF-mCs">
-                                            <rect key="frame" x="10" y="354" width="164" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="small" selectable="YES" alignment="right" title="Required" id="cho-Vc-pkJ">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="10b-BC-y6b">
-                                            <rect key="frame" x="6" y="328" width="168" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="small" selectable="YES" sendsActionOnEndEditing="YES" alignment="right" title="Hash: 1020304050607080" id="hcZ-7l-wZp">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nSa-0I-2sF">
-                                            <rect key="frame" x="152" y="271" width="20.5" height="28"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="a6v-tc-VAW">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="romDeleteBasicAction:" target="-2" id="vN7-6j-Z9r"/>
-                                            </connections>
-                                        </button>
                                         <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pea-uJ-4G8">
-                                            <rect key="frame" x="424" y="354" width="169" height="17"/>
+                                            <rect key="frame" x="273" y="339" width="169" height="17"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" alignment="left" title="Required" id="dRj-0k-phn">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -281,7 +171,7 @@ Gw
                                             </textFieldCell>
                                         </textField>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pJq-X4-x2y">
-                                            <rect key="frame" x="424" y="328" width="169" height="18"/>
+                                            <rect key="frame" x="273" y="313" width="169" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="small" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Hash: 1020304050607080" id="V0T-0g-SdF">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -289,86 +179,10 @@ Gw
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wF6-vA-6xk">
-                                            <rect key="frame" x="426" y="271" width="20.5" height="28"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="uI4-ym-kRa">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="romDeleteCharAction:" target="-2" id="JP3-Ps-6JR"/>
-                                            </connections>
-                                        </button>
-                                        <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ia2-ZC-hac">
-                                            <rect key="frame" x="10" y="244" width="165" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Kernal Rom" id="aAc-vL-hta">
-                                                <font key="font" metaFont="systemBold"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="olG-Cx-dQe">
-                                            <rect key="frame" x="10" y="218" width="164" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="small" selectable="YES" alignment="right" title="Required" id="Mlr-qf-CyF">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DhW-S3-d80">
-                                            <rect key="frame" x="6" y="197" width="169" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="small" selectable="YES" sendsActionOnEndEditing="YES" alignment="right" title="Hash: 1020304050607080" id="R47-b2-Tim">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sT6-dg-rcI">
-                                            <rect key="frame" x="153" y="140" width="20.5" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="lf6-i6-pGt">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="romDeleteKernalAction:" target="-2" id="Cxe-vI-IAq"/>
-                                            </connections>
-                                        </button>
-                                        <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L8b-1t-7Wh">
-                                            <rect key="frame" x="424" y="244" width="169" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="VC1541 Rom" id="Kyw-39-LJh">
-                                                <font key="font" metaFont="systemBold"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DMA-Yr-TF0">
-                                            <rect key="frame" x="424" y="197" width="169" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="small" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Hash: 1020304050607080" id="5JD-2D-FFh">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hMS-xE-H7T">
-                                            <rect key="frame" x="424" y="223" width="169" height="19"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="small" selectable="YES" alignment="left" title="Optional" id="5GW-6C-o17">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0b-3R-CyB">
-                                            <rect key="frame" x="424" y="373" width="169" height="17"/>
+                                            <rect key="frame" x="273" y="358" width="169" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Character Rom" id="GKO-Q9-a3a">
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Cartridge" id="GKO-Q9-a3a">
                                                 <font key="font" metaFont="systemBold"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -393,46 +207,6 @@ Gw
                                             <rect key="frame" x="9" y="55" width="582" height="5"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         </box>
-                                        <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Upv-e6-bJa">
-                                            <rect key="frame" x="66" y="97" width="530" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Lorem ipsum dolor sit amet, consectetur adipisici elit" id="jSs-Nz-9DT">
-                                                <font key="font" metaFont="systemBold"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="86M-pD-FbE">
-                                            <rect key="frame" x="66" y="80" width="530" height="16"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Lorem ipsum dolor sit amet, consectetur adipisici elit" id="d8u-WQ-UI2">
-                                                <font key="font" metaFont="cellTitle"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eyT-7E-Fac">
-                                            <rect key="frame" x="12" y="73" width="48" height="48"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="lockIcon" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="qox-C1-uyr">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="unlockAction:" target="-2" id="mOh-nu-bDg"/>
-                                            </connections>
-                                        </button>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yeR-GI-m2K">
-                                            <rect key="frame" x="426" y="145" width="19.5" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="Cjv-qL-mSw">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="romDeleteVC1541Action:" target="-2" id="JHa-3l-aX1"/>
-                                            </connections>
-                                        </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sYt-GY-XZQ">
                                             <rect key="frame" x="515" y="10" width="82" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -445,6 +219,17 @@ DQ
                                             </buttonCell>
                                             <connections>
                                                 <action selector="okAction:" target="-2" id="lds-Ow-Mkf"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wF6-vA-6xk">
+                                            <rect key="frame" x="275" y="191" width="20.5" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="uI4-ym-kRa">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="cartDeleteAction:" target="-2" id="JP3-Ps-6JR"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -2462,10 +2247,9 @@ Gw
         <image name="devKeyset2Template" width="20" height="20"/>
         <image name="devMouseTemplate" width="20" height="20"/>
         <image name="devNoneTemplate" width="20" height="20"/>
-        <image name="lockIcon" width="121" height="171"/>
         <image name="mega65" width="399" height="347"/>
         <image name="pref_cia" width="514" height="514"/>
         <image name="pref_vicii_pal" width="514" height="516"/>
-        <image name="rom_missing" width="129" height="157"/>
+        <image name="rom_missing" width="515" height="624"/>
     </resources>
 </document>

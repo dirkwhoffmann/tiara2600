@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "rom_original.pdf",
+      "filename" : "cart_standard.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "rom_original2.pdf",
+      "filename" : "cart_standard 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

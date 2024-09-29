@@ -68,7 +68,7 @@ class DropZone: Layer {
 
         switch type {
 
-        case .CRT:
+        case .BIN:
             enabled = [false, false, false, true, false]
 
         default:

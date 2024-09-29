@@ -23,7 +23,6 @@ using namespace tiara;
 @class CPUProxy;
 @class DefaultsProxy;
 @class LogicAnalyzerProxy;
-@class ExpansionPortProxy;
 @class FileSystemProxy;
 @class JoystickProxy;
 @class MediaFileProxy;
@@ -182,9 +181,8 @@ using namespace tiara;
 - (void)put:(CmdType)type coord:(CoordCmd)cmd;
 - (void)put:(CmdType)type action:(GamePadCmd)cmd;
 
-- (BOOL)isRom:(RomType)type url:(NSURL *)url;
+- (BOOL)isRom:(NSURL *)url;
 
-- (void)installOpenRoms;
 - (void)loadRom:(NSURL *)url exception:(ExceptionWrapper *)ex;
 - (void)loadRom:(MediaFileProxy *)proxy;
 - (void)saveRom:(RomType)type url:(NSURL *)url exception:(ExceptionWrapper *)ex;

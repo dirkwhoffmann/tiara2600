@@ -41,16 +41,11 @@ extension tiara.FileType {
     }
 
     static var all: [tiara.FileType] {
-        return [
-            .SNAPSHOT, .SCRIPT,
-            .CRT,
-            .BASIC_ROM, .CHAR_ROM, .KERNAL_ROM, .VC1541_ROM
-        ]
+        return [ .SNAPSHOT, .SCRIPT, .BIN ]
     }
 
     static var draggable: [tiara.FileType] {
-
-        return [ .SNAPSHOT, .SCRIPT, .CRT ]
+        return [ .SNAPSHOT, .SCRIPT, .BIN ]
     }
 }
 

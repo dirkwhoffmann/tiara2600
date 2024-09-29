@@ -49,7 +49,7 @@ public:
     // ROM
     //
 
-protected:
+public:
 
     Buffer<u8> rom;
 

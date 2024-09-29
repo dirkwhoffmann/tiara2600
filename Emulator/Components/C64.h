@@ -126,7 +126,7 @@ public:
     ControlPort port2 = ControlPort(*this, PORT_2);
 
     // Cartridge
-    Cartridge *cartridge = new Cartridge(*this);
+    std::unique_ptr<Cartridge> cartridge = std::make_unique<Cartridge>(*this);
 
     // Peripherals
     Monitor monitor = Monitor(*this);
@@ -648,6 +648,23 @@ private:
 
     // Schedules the next snapshot event
     void scheduleNextSNPEvent();
+
+
+    //
+    // Handling cartridges
+    //
+
+public:
+
+    // Attaches a cartrige
+    void attachCartridge(const fs::path &path) throws;
+    void attachCartridge(const MediaFile &file);
+
+    // Detaches the current cartridge
+    void detachCartridge();
+
+    // Saves a Rom to disk
+    void saveCartridge(const fs::path &path) throws;
 
 
     //
