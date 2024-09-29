@@ -551,61 +551,6 @@ using namespace tiara;
 
 
 //
-// Expansion port
-//
-
-@implementation ExpansionPortProxy
-
-- (ExpansionPortAPI *)eport
-{
-    return (ExpansionPortAPI *)obj;
-}
-
-- (Tiara *)emu
-{
-    return (Tiara *)emu;
-}
-
-- (CartridgeTraits)traits
-{
-    return [self eport]->getCartridgeTraits();
-}
-
-- (CartridgeInfo)info
-{
-    return [self eport]->getInfo();
-}
-
-- (CartridgeInfo)cachedInfo
-{
-    return [self eport]->getCachedInfo();
-}
-
-- (CartridgeRomInfo)getRomInfo:(NSInteger)nr
-{
-    return [self eport]->getRomInfo(nr);
-}
-
-- (BOOL)cartridgeAttached
-{
-    return [self eport]->getCartridgeTraits().type != CRT_NONE;
-}
- 
-- (void)attachCartridge:(MediaFileProxy *)c reset:(BOOL)reset exception:(ExceptionWrapper *)ex
-{
-    try { [self eport]->attachCartridge(*(MediaFile *)c->obj, reset); }
-    catch (Error &err) { [ex save:err]; }
-}
-
-- (void)detachCartridge
-{
-    [self eport]->detachCartridge();
-}
-
-@end
-
-
-//
 // Paddle proxy
 //
 
@@ -945,7 +890,6 @@ using namespace tiara;
 @synthesize riot;
 @synthesize cpu;
 @synthesize logicAnalyzer;
-@synthesize expansionport;
 @synthesize mem;
 @synthesize port1;
 @synthesize port2;
@@ -969,7 +913,6 @@ using namespace tiara;
     riot = [[RIOTProxy alloc] initWith:&emu->riot emu:emu];
     cpu = [[CPUProxy alloc] initWith:&emu->cpu emu:emu];
     logicAnalyzer = [[LogicAnalyzerProxy alloc] initWith:&emu->logicAnalyzer];
-    expansionport = [[ExpansionPortProxy alloc] initWith:&emu->expansionPort emu:emu];
     mem = [[MemoryProxy alloc] initWith:&emu->mem emu:emu];
     port1 = [[ControlPortProxy alloc] initWith:&emu->controlPort1 emu:emu];
     port2 = [[ControlPortProxy alloc] initWith:&emu->controlPort2 emu:emu];

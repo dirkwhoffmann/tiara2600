@@ -102,16 +102,6 @@ extension EmulatorProxy {
         if exception.errorCode != .OK { throw VC64Error(exception) }
     }
 }
- 
-extension ExpansionPortProxy {
-    
-    func attachCartridge(_ proxy: MediaFileProxy, reset: Bool) throws {
-        
-        let exception = ExceptionWrapper()
-        attachCartridge(proxy, reset: reset, exception: exception)
-        if exception.errorCode != .OK { throw VC64Error(exception) }
-    }
-}
 
 extension MediaFileProxy {
     

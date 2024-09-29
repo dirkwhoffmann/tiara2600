@@ -206,7 +206,7 @@ class MediaManager {
             case .CRT:
 
                 debug(.media, "CRT")
-                try emu.expansionport.attachCartridge(proxy, reset: true)
+                // try emu.expansionport.attachCartridge(proxy, reset: true)
 
             case .SCRIPT:
 
@@ -233,7 +233,7 @@ class MediaManager {
             case .CRT:
 
                 debug(.media, "CRT")
-                try emu.expansionport.attachCartridge(proxy, reset: true)
+                // try emu.expansionport.attachCartridge(proxy, reset: true)
 
             case .SCRIPT:
 

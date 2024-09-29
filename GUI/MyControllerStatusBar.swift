@@ -31,8 +31,6 @@ extension MyController {
             let warping = c64state.warping
             let boost = emu.get(.C64_SPEED_BOOST)
 
-            let hasCrt = emu.expansionport.cartridgeAttached()
-
             // Remote server icon
             refreshStatusBarServerIcon()
 
@@ -50,9 +48,6 @@ extension MyController {
                 serverIcon: true,
                 trackIcon: tracking,
                 muteIcon: warping || muted,
-
-                crtIcon: hasCrt,
-
                 warpIcon: running,
                 activityType: running,
                 activityInfo: running,

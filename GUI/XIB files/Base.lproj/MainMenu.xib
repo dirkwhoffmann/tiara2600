@@ -312,8 +312,8 @@ CQ
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Expansion" id="6Nh-dL-Pbk" userLabel="Cartridge">
-                    <menu key="submenu" title="Expansion" id="ZzZ-hT-u7h">
+                <menuItem title="Cartridge" id="6Nh-dL-Pbk" userLabel="Cartridge">
+                    <menu key="submenu" title="Cartridge" id="ZzZ-hT-u7h">
                         <items>
                             <menuItem title="Attach Cartridge..." id="HQ0-7X-gN7">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -394,20 +394,6 @@ CQ
                                         </menuItem>
                                     </items>
                                 </menu>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="hdS-qK-f9s"/>
-                            <menuItem title="Detach Cartridge" id="d8T-Ms-VBm">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="detachCartridgeAction:" target="-1" id="cg8-3B-XuP"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="6wW-eK-Rtw"/>
-                            <menuItem title="Inspect Cartridge..." id="PJL-CH-jQ5">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="inspectCartridgeAction:" target="-1" id="vgd-oR-bce"/>
-                                </connections>
                             </menuItem>
                         </items>
                     </menu>

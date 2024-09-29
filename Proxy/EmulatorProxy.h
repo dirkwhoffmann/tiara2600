@@ -97,7 +97,6 @@ using namespace tiara;
     ControlPortProxy *port2;
     CPUProxy *cpu;
     LogicAnalyzerProxy *logicAnalyzer;
-    ExpansionPortProxy *expansionport;
     MemoryProxy *mem;
     PaddleProxy *paddle;
     RetroShellProxy *retroShell;
@@ -115,7 +114,6 @@ using namespace tiara;
 @property (readonly, strong) ControlPortProxy *port2;
 @property (readonly, strong) CPUProxy *cpu;
 @property (readonly, strong) LogicAnalyzerProxy *logicAnalyzer;
-@property (readonly, strong) ExpansionPortProxy *expansionport;
 @property (readonly, strong) MemoryProxy *mem;
 @property (readonly, strong) RemoteManagerProxy *remoteManager;
 @property (readonly, strong) RetroShellProxy *retroShell;
@@ -398,24 +396,6 @@ struct GuardInfo {
 
 @property (readonly) JoystickProxy *joystick;
 @property (readonly) PaddleProxy *paddle;
-
-@end
-
-
-//
-// ExpansionPort
-//
-
-@interface ExpansionPortProxy : SubComponentProxy { }
-
-@property (readonly) CartridgeTraits traits;
-@property (readonly) CartridgeInfo info;
-@property (readonly) CartridgeInfo cachedInfo;
-- (CartridgeRomInfo)getRomInfo:(NSInteger)nr;
-
-- (BOOL)cartridgeAttached;
-- (void)attachCartridge:(MediaFileProxy *)c reset:(BOOL)reset exception:(ExceptionWrapper *)ex;
-- (void)detachCartridge;
 
 @end
 

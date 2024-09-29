@@ -95,7 +95,6 @@ class MyController: NSWindowController, MessageReceiver {
     @IBOutlet weak var serverIcon: NSButton!
     @IBOutlet weak var trackIcon: NSButton!
     @IBOutlet weak var muteIcon: NSButton!
-    @IBOutlet weak var crtIcon: NSButton!
     
     @IBOutlet weak var warpIcon: NSButton!
     @IBOutlet weak var activityType: NSPopUpButton!
@@ -239,16 +238,6 @@ extension MyController {
 
             // Animate the inspector
             if inspector?.window?.isVisible == true { inspector!.continuousRefresh() }
-
-            // Update the cartridge LED
-            if emu?.expansionport.traits.leds ?? 0 > 0 {
-                let led = emu!.expansionport.info.led ? 1 : 0
-                if crtIcon.tag != led {
-                    crtIcon.tag = led
-                    crtIcon.image = NSImage(named: led == 1 ? "crtLedOnTemplate" : "crtTemplate")
-                    crtIcon.needsDisplay = true
-                }
-            }
         }
 
         // Do less times...

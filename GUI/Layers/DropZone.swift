@@ -65,7 +65,7 @@ class DropZone: Layer {
             inUse[0] = false
             inUse[1] = false
             inUse[2] = false
-            inUse[3] = emu.expansionport.cartridgeAttached()
+            inUse[3] = true
             inUse[4] = false
 
             switch type {

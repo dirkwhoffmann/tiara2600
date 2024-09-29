@@ -56,12 +56,6 @@ extension MyController: NSMenuItemValidation {
             case #selector(MyController.attachRecentCartridgeAction(_:)):
                 return validateURLlist(MediaManager.attachedCartridges, image: smallCart)
 
-            case #selector(MyController.detachCartridgeAction(_:)):
-                return emu.expansionport.cartridgeAttached()
-
-            case #selector(MyController.inspectCartridgeAction(_:)):
-                return emu.expansionport.cartridgeAttached()
-
             default:
                 return true
             }
@@ -392,24 +386,6 @@ extension MyController: NSMenuItemValidation {
             } catch {
                 self.showAlert(.cantAttach, error: error, async: true)
             }
-        }
-    }
-
-    @IBAction func detachCartridgeAction(_ sender: Any!) {
-
-        if let emu = emu {
-
-            emu.expansionport.detachCartridge()
-            emu.c64.hardReset()
-        }
-    }
-
-    @IBAction  func inspectCartridgeAction(_ sender: Any!) {
-
-        if let emu = emu {
-
-            let panel = CartridgeInspector(with: self, nibName: "CartridgeInspector")
-            panel?.show(expansionPort: emu.expansionport)
         }
     }
 
