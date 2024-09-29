@@ -37,7 +37,6 @@
 // Media files
 #include "Snapshot.h"
 #include "RomFile.h"
-#include "CRTFile.h"
 
 // Misc
 #include "Host.h"

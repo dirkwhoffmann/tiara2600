@@ -59,32 +59,29 @@ class DropZone: Layer {
     }
     
     private func setType(_ type: tiara.FileType) {
-    
-        if let emu = emu {
 
-            inUse[0] = false
-            inUse[1] = false
-            inUse[2] = false
-            inUse[3] = true
-            inUse[4] = false
+        inUse[0] = false
+        inUse[1] = false
+        inUse[2] = false
+        inUse[3] = true
+        inUse[4] = false
 
-            switch type {
+        switch type {
 
-            case .CRT:
-                enabled = [false, false, false, true, false]
+        case .CRT:
+            enabled = [false, false, false, true, false]
 
-            default:
-                enabled = [false, false, false, false, false]
-            }
-
-            for i in 0...4 {
-
-                zones[i].image = image(zone: i)
-            }
-
-            // Hide all drop zones if none is enabled
-            hideAll = !enabled[0] && !enabled[1] && !enabled[2] && !enabled[3] && !enabled[4]
+        default:
+            enabled = [false, false, false, false, false]
         }
+
+        for i in 0...4 {
+
+            zones[i].image = image(zone: i)
+        }
+
+        // Hide all drop zones if none is enabled
+        hideAll = !enabled[0] && !enabled[1] && !enabled[2] && !enabled[3] && !enabled[4]
     }
 
     func open(type: tiara.FileType, delay: Double) {

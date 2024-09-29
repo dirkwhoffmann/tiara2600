@@ -14,7 +14,7 @@
 
 #include "CartridgeTypes.h"
 #include "SubComponent.h"
-#include "CRTFile.h"
+#include "RomFile.h"
 
 namespace tiara {
 
@@ -65,7 +65,7 @@ public:
 
     // Factory methods
     static Cartridge *makeWithType(C64 &c64, CartridgeType type) throws;
-    static Cartridge *makeWithCRTFile(C64 &c64, const CRTFile &file) throws;
+    static Cartridge *makeWithFile(C64 &c64, const RomFile &file) throws;
 
 
     //

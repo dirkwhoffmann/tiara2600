@@ -15,7 +15,6 @@
 #include "Tiara.h"
 #include "StringUtils.h"
 #include "Checksum.h"
-#include "CRTFile.h"
 #include "RomFile.h"
 #include "Script.h"
 #include "Snapshot.h"
@@ -33,9 +32,6 @@ MediaFile::type(const fs::path &path)
 
     if (Script::isCompatible(path) &&
         Script::isCompatible(buffer)) return FILETYPE_SCRIPT;
-
-    if (CRTFile::isCompatible(path) &&
-        CRTFile::isCompatible(buffer)) return FILETYPE_CRT;
 
     if (RomFile::isCompatible(path)) {
         if (RomFile::isRomBuffer(ROM_TYPE_BASIC, buffer)) return FILETYPE_BASIC_ROM;
@@ -60,7 +56,6 @@ MediaFile::make(const fs::path &path, FileType type)
 
         case FILETYPE_SNAPSHOT:   return new Snapshot(path);
         case FILETYPE_SCRIPT:     return new Script(path);
-        case FILETYPE_CRT:        return new CRTFile(path);
         case FILETYPE_BASIC_ROM:  return new RomFile(path);
         case FILETYPE_CHAR_ROM:   return new RomFile(path);
         case FILETYPE_KERNAL_ROM: return new RomFile(path);
@@ -78,7 +73,6 @@ MediaFile::make(const u8 *buf, isize len, FileType type)
             
         case FILETYPE_SNAPSHOT:   return new Snapshot(buf, len);
         case FILETYPE_SCRIPT:     return new Script(buf, len);
-        case FILETYPE_CRT:        return new CRTFile(buf, len);
         case FILETYPE_BASIC_ROM:  return new RomFile(buf, len);
         case FILETYPE_CHAR_ROM:   return new RomFile(buf, len);
         case FILETYPE_KERNAL_ROM: return new RomFile(buf, len);

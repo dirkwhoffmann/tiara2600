@@ -67,7 +67,6 @@
 		504C437324AF29AC00E69CAE /* RomFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42C724AF29AB00E69CAE /* RomFile.cpp */; };
 		504C437924AF29AC00E69CAE /* Snapshot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42D524AF29AB00E69CAE /* Snapshot.cpp */; };
 		504C437A24AF29AC00E69CAE /* AnyFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42D624AF29AB00E69CAE /* AnyFile.cpp */; };
-		504C437D24AF29AC00E69CAE /* CRTFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42DA24AF29AB00E69CAE /* CRTFile.cpp */; };
 		504C437F24AF29AC00E69CAE /* Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42E124AF29AB00E69CAE /* Memory.cpp */; };
 		504C438024AF29AC00E69CAE /* CPU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42E924AF29AB00E69CAE /* CPU.cpp */; };
 		504C438224AF29AC00E69CAE /* CoreObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42ED24AF29AB00E69CAE /* CoreObject.cpp */; };
@@ -147,7 +146,6 @@
 		50726FA32961CA1C0031F2F5 /* RomFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42C724AF29AB00E69CAE /* RomFile.cpp */; };
 		50726FA92961CA1C0031F2F5 /* AnyFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42D624AF29AB00E69CAE /* AnyFile.cpp */; };
 		50726FAA2961CA1C0031F2F5 /* Snapshot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42D524AF29AB00E69CAE /* Snapshot.cpp */; };
-		50726FAD2961CA1C0031F2F5 /* CRTFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42DA24AF29AB00E69CAE /* CRTFile.cpp */; };
 		50726FAF2961CA1C0031F2F5 /* Script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50AE19372632B787005A5898 /* Script.cpp */; };
 		50726FB42961CA290031F2F5 /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5036E0B2261AEF000048E66A /* Command.cpp */; };
 		50726FB52961CA290031F2F5 /* RetroShell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5036E0B3261AEF000048E66A /* RetroShell.cpp */; };
@@ -438,11 +436,9 @@
 		504C42C424AF29AB00E69CAE /* Cartridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cartridge.h; sourceTree = "<group>"; };
 		504C42C724AF29AB00E69CAE /* RomFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RomFile.cpp; sourceTree = "<group>"; };
 		504C42CE24AF29AB00E69CAE /* AnyFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnyFile.h; sourceTree = "<group>"; };
-		504C42D324AF29AB00E69CAE /* CRTFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRTFile.h; sourceTree = "<group>"; };
 		504C42D524AF29AB00E69CAE /* Snapshot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Snapshot.cpp; sourceTree = "<group>"; };
 		504C42D624AF29AB00E69CAE /* AnyFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnyFile.cpp; sourceTree = "<group>"; };
 		504C42D724AF29AB00E69CAE /* RomFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RomFile.h; sourceTree = "<group>"; };
-		504C42DA24AF29AB00E69CAE /* CRTFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRTFile.cpp; sourceTree = "<group>"; };
 		504C42DD24AF29AB00E69CAE /* Snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snapshot.h; sourceTree = "<group>"; };
 		504C42E124AF29AB00E69CAE /* Memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Memory.cpp; sourceTree = "<group>"; };
 		504C42E424AF29AB00E69CAE /* Memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memory.h; sourceTree = "<group>"; };
@@ -1109,8 +1105,6 @@
 				50EAF52A2C7A5DC5005AC890 /* OpenRoms.h */,
 				504C42DD24AF29AB00E69CAE /* Snapshot.h */,
 				504C42D524AF29AB00E69CAE /* Snapshot.cpp */,
-				504C42D324AF29AB00E69CAE /* CRTFile.h */,
-				504C42DA24AF29AB00E69CAE /* CRTFile.cpp */,
 				50AE19382632B787005A5898 /* Script.h */,
 				50AE19372632B787005A5898 /* Script.cpp */,
 				504C428E24AF29AB00E69CAE /* Cartridges */,
@@ -1651,7 +1645,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50726FAD2961CA1C0031F2F5 /* CRTFile.cpp in Sources */,
 				50726FB62961CA290031F2F5 /* Console.cpp in Sources */,
 				50726F502961C9940031F2F5 /* CoreComponent.cpp in Sources */,
 				50A194A02BDA84710046849E /* MemoryBase.cpp in Sources */,
@@ -1866,7 +1859,6 @@
 				504104462CA687370004860E /* TIA.cpp in Sources */,
 				506F30422B74C1C70083EAEA /* Wakeable.cpp in Sources */,
 				506F303E2B7364270083EAEA /* Suspendable.cpp in Sources */,
-				504C437D24AF29AC00E69CAE /* CRTFile.cpp in Sources */,
 				50FFB54D2B8262BA00042771 /* Serializable.cpp in Sources */,
 				50D3092024C625B200B92563 /* ProxyExtensions.swift in Sources */,
 				50BE4B5824E7F80C008F39C9 /* FileManager.swift in Sources */,

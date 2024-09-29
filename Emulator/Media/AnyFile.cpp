@@ -14,7 +14,6 @@
 #include "AnyFile.h"
 #include "Checksum.h"
 #include "IOUtils.h"
-#include "CRTFile.h"
 #include "RomFile.h"
 #include "Script.h"
 #include "Snapshot.h"

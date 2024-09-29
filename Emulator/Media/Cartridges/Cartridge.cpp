@@ -47,7 +47,7 @@ Cartridge::makeWithType(C64 &c64, CartridgeType type)
         // case CRT_SIMONS_BASIC:      cart = new SimonsBasic(c64); break;
 
         default:
-            throw Error(VC64ERROR_CRT_UNSUPPORTED, CRTFile::cartridgeTypeName(type));
+            throw Error(VC64ERROR_CRT_UNSUPPORTED, std::to_string(type));
     }
 
     cart->init();
@@ -55,10 +55,10 @@ Cartridge::makeWithType(C64 &c64, CartridgeType type)
 }
 
 Cartridge *
-Cartridge::makeWithCRTFile(C64 &c64, const CRTFile &file)
+Cartridge::makeWithFile(C64 &c64, const RomFile &file)
 {
     // Try to create the cartridge
-    Cartridge *cart = makeWithType(c64, file.cartridgeType());
+    Cartridge *cart = makeWithType(c64, CRT_NORMAL);
 
     if (CRT_DEBUG) cart->dump(Category::State);
     return cart;
