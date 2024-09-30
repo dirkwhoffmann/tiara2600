@@ -52,8 +52,8 @@ Tiara::Tiara() {
 
     emu = new Emulator();
 
-    c64.emu = emu;
-    c64.c64 = &emu->main;
+    atari.emu = emu;
+    atari.c64 = &emu->main;
 
     mem.emu = emu;
     mem.mem = &emu->main.mem;
@@ -336,92 +336,92 @@ Tiara::put(const Cmd &cmd)
 //
 
 void
-C64API::hardReset()
+AtariAPI::hardReset()
 {
     emu->hardReset();
     emu->markAsDirty();
 }
 
 void
-C64API::softReset()
+AtariAPI::softReset()
 {
     emu->softReset();
     emu->markAsDirty();
 }
 
 u64
-C64API::getAutoInspectionMask() const
+AtariAPI::getAutoInspectionMask() const
 {
     return c64->getAutoInspectionMask();
 }
 
 void
-C64API::setAutoInspectionMask(u64 mask)
+AtariAPI::setAutoInspectionMask(u64 mask)
 {
     c64->setAutoInspectionMask(mask);
 }
 
 const AtariInfo &
-C64API::getInfo() const
+AtariAPI::getInfo() const
 {
     return c64->getInfo();
 }
 
 const AtariInfo &
-C64API::getCachedInfo() const
+AtariAPI::getCachedInfo() const
 {
     return c64->getCachedInfo();
 }
 
 RomTraits
-C64API::getRomTraits() const
+AtariAPI::getRomTraits() const
 {
-    return c64->cartridge->traits;
+    return c64->cart->traits;
 }
 
 MediaFile *
-C64API::takeSnapshot()
+AtariAPI::takeSnapshot()
 {
     return c64->takeSnapshot();
 }
 
 void
-C64API::loadSnapshot(const MediaFile &snapshot)
+AtariAPI::loadSnapshot(const MediaFile &snapshot)
 {
     c64->loadSnapshot(snapshot);
     emu->markAsDirty();
 }
 
 void
-C64API::attachCartridge(const std::filesystem::path &path, bool reset)
+AtariAPI::attachCartridge(const std::filesystem::path &path, bool reset)
 {
     c64->attachCartridge(path);
     emu->markAsDirty();
 }
 
 void
-C64API::attachCartridge(const MediaFile &c, bool reset)
+AtariAPI::attachCartridge(const MediaFile &c, bool reset)
 {
     c64->attachCartridge(c);
     emu->markAsDirty();
 }
 
 void
-C64API::detachCartridge()
+AtariAPI::detachCartridge()
 {
     c64->detachCartridge();
     emu->markAsDirty();
 }
 
 void
-C64API::setCartType(CartridgeType newType)
+AtariAPI::setCartType(CartridgeType newType)
 {
     c64->setCartType(newType);
     emu->markAsDirty();
 }
 
 void
-C64API::flash(const MediaFile &file)
+AtariAPI::flash(const MediaFile &file)
 {
     c64->flash(file);
     emu->markAsDirty();

@@ -16,7 +16,7 @@ using namespace tiara;
 
 @class AudioPortProxy;
 @class EmulatorProxy;
-@class C64Proxy;
+@class AtariProxy;
 @class RIOTProxy;
 @class Constants;
 @class ControlPortProxy;
@@ -107,7 +107,7 @@ using namespace tiara;
 @property (class, readonly, strong) DefaultsProxy *defaults;
 
 @property (readonly, strong) AudioPortProxy *audioPort;
-@property (readonly, strong) C64Proxy *c64;
+@property (readonly, strong) AtariProxy *atari;
 @property (readonly, strong) RIOTProxy *riot;
 @property (readonly, strong) ControlPortProxy *port1;
 @property (readonly, strong) ControlPortProxy *port2;
@@ -171,7 +171,6 @@ using namespace tiara;
 - (BOOL)set:(Option)opt id:(NSInteger)id enable:(BOOL)val;
 - (BOOL)set:(Option)opt drive:(NSInteger)id value:(NSInteger)val;
 - (BOOL)set:(Option)opt drive:(NSInteger)id enable:(BOOL)val;
-- (void)set:(C64Model)value;
 - (void)exportConfig:(NSURL *)url exception:(ExceptionWrapper *)ex;
 
 - (void)put:(CmdType)cmd;
@@ -223,7 +222,7 @@ using namespace tiara;
 // Atari
 //
 
-@interface C64Proxy : SubComponentProxy { }
+@interface AtariProxy : SubComponentProxy { }
 
 @property (readonly) AtariInfo info;
 @property (readonly) AtariInfo cachedInfo;
@@ -456,7 +455,7 @@ struct GuardInfo {
 + (instancetype)makeWithFile:(NSString *)path exception:(ExceptionWrapper *)ex;
 + (instancetype)makeWithFile:(NSString *)path type:(FileType)t exception:(ExceptionWrapper *)ex;
 + (instancetype)makeWithBuffer:(const void *)buf length:(NSInteger)len type:(FileType)t exception:(ExceptionWrapper *)ex;
-+ (instancetype)makeWithTiara:(EmulatorProxy *)c64proxy;
++ (instancetype)makeWithTiara:(EmulatorProxy *)proxy;
 
 @property (readonly) FileType type;
 @property (readonly) u64 fnv;

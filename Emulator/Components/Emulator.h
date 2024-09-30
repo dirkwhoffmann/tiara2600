@@ -29,7 +29,7 @@ public Inspectable<EmulatorInfo, EmulatorStats> {
     friend class API;
     friend class Tiara;
 
-    // The virtual C64
+    // The virtual Atari
     Atari main = Atari(*this, 0);
 
     // The run-ahead instance
@@ -112,7 +112,7 @@ public:
     void set(const string &opt, const string &value, const std::vector<isize> objids = { }) throws;
 
     // Configures the emulator to match a specific C64 model
-    void set(C64Model model);
+    [[deprecated]] void set(C64Model model);
 
     // Powers off and resets the emulator to it's initial state
     void revertToFactorySettings();

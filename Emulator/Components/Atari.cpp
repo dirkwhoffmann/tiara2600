@@ -1014,7 +1014,7 @@ Atari::attachCartridge(const MediaFile &file)
 
         const auto &romFile = dynamic_cast<const CartFile &>(file);
         auto newCartridge = Cartridge::makeWithFile(*this, romFile);
-        cartridge = std::move(newCartridge);
+        cart = std::move(newCartridge);
 
     } catch (...) {
 
@@ -1027,13 +1027,13 @@ Atari::detachCartridge()
 {
     SUSPENDED
 
-    cartridge = std::make_unique<Cartridge>(*this);
+    cart = std::make_unique<Cartridge>(*this);
 }
 
 void
 Atari::setCartType(CartridgeType newType)
 {
-    if (cartridge->traits.cartType != newType) {
+    if (cart->traits.cartType != newType) {
 
         SUSPENDED
 
@@ -1041,11 +1041,11 @@ Atari::setCartType(CartridgeType newType)
         auto newCart = Cartridge::makeWithType(*this, newType);
 
         // Copy traits of the current cartridge
-        newCart->traits = cartridge->traits;
+        newCart->traits = cart->traits;
         newCart->traits.cartType = newType;
 
         // Replace the existing cartridge
-        cartridge = std::move(newCart);
+        cart = std::move(newCart);
     }
 }
 

@@ -491,7 +491,7 @@ extension Inspector {
             // Leave debug mode
             emu.trackOff()
             emu.set(.MEM_HEATMAP, enable: false)
-            emu.c64.autoInspectionMask = 0
+            emu.atari.autoInspectionMask = 0
         }
     }
 }

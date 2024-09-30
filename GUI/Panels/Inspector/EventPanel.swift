@@ -12,7 +12,7 @@ extension Inspector {
     private func cacheEvents() {
 
         if let emu = emu {
-            eventInfo = emu.paused ? emu.c64.info : emu.c64.cachedInfo
+            eventInfo = emu.paused ? emu.atari.info : emu.atari.cachedInfo
         }
     }
 

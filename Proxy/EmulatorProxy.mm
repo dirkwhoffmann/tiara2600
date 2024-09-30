@@ -719,7 +719,7 @@ using namespace tiara;
 + (instancetype)makeWithTiara:(EmulatorProxy *)proxy
 {
     auto tiara = (Tiara *)proxy->obj;
-    return [self make:tiara->c64.takeSnapshot()];
+    return [self make:tiara->atari.takeSnapshot()];
 }
 
 - (FileType)type
@@ -803,11 +803,11 @@ using namespace tiara;
 // C64 proxy
 //
 
-@implementation C64Proxy
+@implementation AtariProxy
 
-- (C64API *)c64
+- (AtariAPI *)c64
 {
-    return (C64API *)obj;
+    return (AtariAPI *)obj;
 }
 
 - (AtariInfo)info
@@ -866,7 +866,7 @@ using namespace tiara;
 @implementation EmulatorProxy
 
 @synthesize audioPort;
-@synthesize c64;
+@synthesize atari;
 @synthesize riot;
 @synthesize cpu;
 @synthesize logicAnalyzer;
@@ -889,7 +889,7 @@ using namespace tiara;
 
     // Create sub proxys
     audioPort = [[AudioPortProxy alloc] initWith:&emu->audioPort emu:emu];
-    c64 = [[C64Proxy alloc] initWith:&emu->c64 emu:emu];
+    atari = [[AtariProxy alloc] initWith:&emu->atari emu:emu];
     riot = [[RIOTProxy alloc] initWith:&emu->riot emu:emu];
     cpu = [[CPUProxy alloc] initWith:&emu->cpu emu:emu];
     logicAnalyzer = [[LogicAnalyzerProxy alloc] initWith:&emu->logicAnalyzer];
@@ -1163,11 +1163,6 @@ using namespace tiara;
     }
 }
 
-- (void)set:(C64Model)model
-{
-    [self emu]->set(model);
-}
-
 - (void)exportConfig:(NSURL *)url exception:(ExceptionWrapper *)ex
 {
     try { [self emu]->exportConfig([url fileSystemRepresentation]); }
@@ -1197,18 +1192,18 @@ using namespace tiara;
 
 - (void) loadRom:(NSURL *)url exception:(ExceptionWrapper *)e
 {
-    try { [self emu]->c64.attachCartridge(string([url fileSystemRepresentation])); }
+    try { [self emu]->atari.attachCartridge(string([url fileSystemRepresentation])); }
     catch (Error &error) { [e save:error]; }
 }
 
 - (void) loadRom:(MediaFileProxy *)proxy
 {
-    [self emu]->c64.attachCartridge(*(MediaFile *)proxy->obj);
+    [self emu]->atari.attachCartridge(*(MediaFile *)proxy->obj);
 }
 
 - (void)flash:(MediaFileProxy *)proxy exception:(ExceptionWrapper *)ex
 {
-    try { [self emu]->c64.flash(*(MediaFile *)proxy->obj); }
+    try { [self emu]->atari.flash(*(MediaFile *)proxy->obj); }
     catch (Error &error) { [ex save:error]; }
 }
 

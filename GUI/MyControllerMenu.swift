@@ -195,7 +195,7 @@ extension MyController: NSMenuItemValidation {
     
     @IBAction func takeSnapshotAction(_ sender: Any!) {
 
-        if let snapshot = emu?.c64.takeSnapshot() {
+        if let snapshot = emu?.atari.takeSnapshot() {
 
             mydocument.snapshots.append(snapshot, size: snapshot.size)
             renderer.flash()
@@ -293,7 +293,7 @@ extension MyController: NSMenuItemValidation {
         if let emu = emu {
 
             renderer.rotateLeft()
-            emu.c64.hardReset()
+            emu.atari.hardReset()
             try? emu.run()
         }
     }
@@ -301,7 +301,7 @@ extension MyController: NSMenuItemValidation {
     @IBAction func softResetAction(_ sender: Any!) {
 
         if let emu = emu {
-            emu.c64.softReset()
+            emu.atari.softReset()
         }
     }
 

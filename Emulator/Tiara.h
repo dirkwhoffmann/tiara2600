@@ -691,7 +691,7 @@ public:
 
 /** C64 API
  */
-struct C64API : public API {
+struct AtariAPI : public API {
 
     class Atari *c64 = nullptr;
 
@@ -1154,7 +1154,7 @@ public:
     /** @brief  Custom APIs of subcomponents
      */
     static DefaultsAPI defaults;
-    C64API c64;
+    AtariAPI atari;
     MemoryAPI mem;
     CPUAPI cpu;
     RIOTAPI riot;

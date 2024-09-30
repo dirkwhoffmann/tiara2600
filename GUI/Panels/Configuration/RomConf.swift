@@ -26,7 +26,7 @@ extension ConfigurationController {
 
         if let emu = emu {
 
-            let traits = emu.c64.romTraits
+            let traits = emu.atari.romTraits
 
             let cartType = traits.cartType
             let hasCart = cartType != ._NONE

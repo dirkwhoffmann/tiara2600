@@ -125,7 +125,7 @@ public:
     ControlPort port2 = ControlPort(*this, PORT_2);
 
     // Cartridge
-    std::unique_ptr<Cartridge> cartridge = std::make_unique<Cartridge>(*this);
+    std::unique_ptr<Cartridge> cart = std::make_unique<Cartridge>(*this);
 
     // Peripherals
     Monitor monitor = Monitor(*this);
