@@ -153,10 +153,6 @@ Headless::runScript(const std::filesystem::path &path)
     // Create an emulator instance
     Tiara c64;
 
-    // Plug in the three MEGA65 OpenROMs
-    c64.c64.installOpenRoms();
-    c64.c64.deleteRom(ROM_TYPE_VC1541);
-
     // Redirect shell output to the console in verbose mode
     if (keys.find("verbose") != keys.end()) c64.retroShell.setStream(std::cout);
 
@@ -213,8 +209,7 @@ Headless::reportSize()
     msg("               CPU : %zu bytes\n", sizeof(CPU));
     msg("              RIOT : %zu bytes\n", sizeof(RIOT));
     msg("               TIA : %zu bytes\n", sizeof(TIA));
-    msg("       ControlPort : %zu bytes\n", sizeof(ControlPort));
-    msg("     ExpansionPort : %zu bytes\n", sizeof(ExpansionPort));
+    msg("       ControlPort : %zu bytes\n", sizeof(ControlPort)); 
     msg("        RetroShell : %zu bytes\n", sizeof(RetroShell));
     msg("  RegressionTester : %zu bytes\n", sizeof(RegressionTester));
     msg("          MsgQueue : %zu bytes\n", sizeof(MsgQueue));

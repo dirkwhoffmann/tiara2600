@@ -225,13 +225,6 @@ CommandConsole::initCommands(Command &root)
         mem.debugger.load(path, parseAddr(argv[1]));
     });
 
-    root.add({cmd, "load", "openroms"},
-             "Install MEGA65 OpenROMs",
-             [this](Arguments& argv, long value) {
-
-        c64.installOpenRoms();
-    });
-
     root.add({cmd, "save"},
              "Save memory contents to a file");
 

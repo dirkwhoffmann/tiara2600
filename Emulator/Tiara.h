@@ -813,30 +813,6 @@ struct C64API : public API {
      */
     // void loadRom(const MediaFile &file);
 
-    /** @brief  Removes an installed ROM
-     *          The ROM contents is overwritten with zeroes.
-     */
-    // void deleteRom(RomType type);
-
-    /** @brief  Removes all installed ROMs including the floppy drive ROMs.
-     *          The ROM contents is overwritten with zeroes.
-     */
-    // void deleteRoms();
-
-    /** @brief  Saves a ROM to disk
-     *
-     *  @throw  VC64Error (VC64ERROR_FILE_CANT_WRITE)
-     */
-    // void saveRom(RomType rom, const std::filesystem::path &path);
-
-    /** @brief  Installes a MEGA65 OpenRom
-     */
-    // void installOpenRom(RomType type);
-
-    /** @brief  Install all three MEGA65 OpenROMs
-     */
-    // void installOpenRoms();
-
 
     /// @}
     /// @name Handling media files

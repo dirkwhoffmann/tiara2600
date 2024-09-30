@@ -185,8 +185,6 @@ using namespace tiara;
 
 - (void)loadRom:(NSURL *)url exception:(ExceptionWrapper *)ex;
 - (void)loadRom:(MediaFileProxy *)proxy;
-- (void)saveRom:(RomType)type url:(NSURL *)url exception:(ExceptionWrapper *)ex;
-- (void)deleteRom:(RomType)type;
 
 - (void)flash:(MediaFileProxy *)container exception:(ExceptionWrapper *)ex;
 

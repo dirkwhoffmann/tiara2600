@@ -1206,17 +1206,6 @@ using namespace tiara;
     [self emu]->c64.attachCartridge(*(MediaFile *)proxy->obj);
 }
 
-- (void) saveRom:(RomType)type url:(NSURL *)url exception:(ExceptionWrapper *)e
-{
-    // try { [self emu]->c64.saveRom(type, string([url fileSystemRepresentation])); }
-    // catch (Error &error) { [e save:error]; }
-}
-
-- (void) deleteRom:(RomType)type
-{
-    // [self emu]->c64.deleteRom(type);
-}
-
 - (void)flash:(MediaFileProxy *)proxy exception:(ExceptionWrapper *)ex
 {
     try { [self emu]->c64.flash(*(MediaFile *)proxy->obj); }

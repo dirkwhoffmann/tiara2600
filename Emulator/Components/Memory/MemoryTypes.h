@@ -91,60 +91,6 @@ struct RamPatternEnum : util::Reflection<RamPatternEnum, RamPattern> {
     }
 };
 
-enum_long(ROM_TYPE)
-{
-    ROM_TYPE_BASIC,
-    ROM_TYPE_CHAR,
-    ROM_TYPE_KERNAL,
-    ROM_TYPE_VC1541
-};
-typedef ROM_TYPE RomType;
-
-struct RomTypeEnum : util::Reflection<RomTypeEnum, RomType> {
-
-    static constexpr long minVal = 0;
-    static constexpr long maxVal = ROM_TYPE_VC1541;
-
-    static const char *prefix() { return "ROM_TYPE"; }
-    static const char *_key(long value)
-    {
-        switch (value) {
-
-            case ROM_TYPE_BASIC:   return "BASIC";
-            case ROM_TYPE_CHAR:    return "CHAR";
-            case ROM_TYPE_KERNAL:  return "KERNAL";
-            case ROM_TYPE_VC1541:  return "VC1541";
-        }
-        return "???";
-    }
-};
-
-enum_long(ROM_VENDOR)
-{
-    ROM_VENDOR_COMMODORE,
-    ROM_VENDOR_MEGA65,
-    ROM_VENDOR_OTHER
-};
-typedef ROM_VENDOR RomVendor;
-
-struct RomVendorEnum : util::Reflection<RomVendorEnum, RomVendor> {
-
-    static constexpr long minVal = 0;
-    static constexpr long maxVal = ROM_VENDOR_OTHER;
-
-    static const char *prefix() { return "ROM_VENDOR"; }
-    static const char *_key(long value)
-    {
-        switch (value) {
-
-            case ROM_VENDOR_COMMODORE:  return "COMMODORE";
-            case ROM_VENDOR_MEGA65:     return "MEGA65";
-            case ROM_VENDOR_OTHER:      return "OTHER";
-        }
-        return "???";
-    }
-};
-
 
 //
 // Structures

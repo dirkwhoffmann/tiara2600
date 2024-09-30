@@ -436,41 +436,6 @@ C64API::loadRom(const MediaFile &file)
     c64->loadRom(file);
     emu->markAsDirty();
 }
-
-void 
-C64API::deleteRom(RomType type)
-{
-    c64->deleteRom(type);
-    emu->markAsDirty();
-}
-
-void 
-C64API::deleteRoms()
-{
-    c64->deleteRoms();
-    emu->markAsDirty();
-}
-
-void
-C64API::saveRom(RomType rom, const std::filesystem::path &path)
-{
-    c64->saveRom(rom, path);
-    emu->markAsDirty();
-}
-
-void
-C64API::installOpenRom(RomType type)
-{
-    c64->installOpenRom(type);
-    emu->markAsDirty();
-}
-
-void
-C64API::installOpenRoms()
-{
-    c64->installOpenRoms();
-    emu->markAsDirty();
-}
 */
 
 void

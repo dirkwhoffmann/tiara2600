@@ -23,7 +23,7 @@ bool
 RomFile::isCompatible(const fs::path &path)
 {
     auto s = util::uppercased(path.extension().string());
-    return s == ".BIN";
+    return s == ".BIN" || s == ".A26";
 }
 
 bool
@@ -36,12 +36,6 @@ bool
 RomFile::isCompatible(const Buffer<u8> &buf)
 {
     return isCompatible(buf.ptr, buf.size);
-}
-
-bool
-RomFile::isRomBuffer(RomType type, const u8 *buf, isize len)
-{
-    return true;
 }
 
 void
@@ -74,6 +68,7 @@ RomFile::traits() const
     for (auto &traits : roms) if (traits.md5 == md5) { result = traits; break; }
 
     // Replace null pointers by empty strings
+    /*
     if (!result.name) result.name = "";
     if (!result.manufacturer) result.manufacturer = "";
     if (!result.type) result.type = "";
@@ -82,6 +77,7 @@ RomFile::traits() const
     if (!result.note) result.note = "";
     if (!result.left) result.left = "";
     if (!result.right) result.right = "";
+    */
 
     return result;
 }
@@ -91,7 +87,7 @@ RomFile::cartridgeType() const
 {
     auto type = traits().type;
 
-    if (type == "") return CRT_NORMAL;
+    if (!type) return CRT_NORMAL;
 
     return CRT_NONE;
 }

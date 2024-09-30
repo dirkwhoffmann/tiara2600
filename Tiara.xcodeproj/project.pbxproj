@@ -691,7 +691,6 @@
 		50E9B92C201F299500065A89 /* MyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyController.swift; sourceTree = "<group>"; };
 		50E9B92E201FA92C00065A89 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		50EAF5292C7A101E005AC890 /* HeadlessScripts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadlessScripts.h; sourceTree = "<group>"; };
-		50EAF52A2C7A5DC5005AC890 /* OpenRoms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenRoms.h; sourceTree = "<group>"; };
 		50EAFFE924B2600D00024CD2 /* MyToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToolbar.swift; sourceTree = "<group>"; };
 		50ED5BF712DD99C000596417 /* Speedometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speedometer.swift; sourceTree = "<group>"; };
 		50EF22322815927D00440C4D /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
@@ -1092,7 +1091,6 @@
 				504C42D724AF29AB00E69CAE /* RomFile.h */,
 				504C42C724AF29AB00E69CAE /* RomFile.cpp */,
 				503C0C362B9A4AD400112B4B /* RomDatabase.h */,
-				50EAF52A2C7A5DC5005AC890 /* OpenRoms.h */,
 				504C42DD24AF29AB00E69CAE /* Snapshot.h */,
 				504C42D524AF29AB00E69CAE /* Snapshot.cpp */,
 				50AE19382632B787005A5898 /* Script.h */,

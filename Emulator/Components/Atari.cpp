@@ -14,7 +14,6 @@
 #include "Emulator.h"
 #include "Checksum.h"
 #include "IOUtils.h"
-#include "OpenRoms.h"
 #include <algorithm>
 #include <queue>
 
@@ -1052,108 +1051,6 @@ Atari::saveCartridge(const fs::path &path)
     file.writeToFile(path);
 }
 
-RomTraits
-Atari::getRomTraits(u64 fnv)
-{
-    return RomTraits { };
-}
-
-RomTraits
-Atari::getRomTraits(RomType type) const
-{
-    return RomTraits { };
-}
-
-u32
-Atari::romCRC32(RomType type) const
-{
-    if (!hasRom(type)) return 0;
-    
-    switch (type) {
-            
-        case ROM_TYPE_BASIC:  return util::crc32(mem.rom + 0xA000, 0x2000);
-        case ROM_TYPE_CHAR:   return util::crc32(mem.rom + 0xD000, 0x1000);
-        case ROM_TYPE_KERNAL: return util::crc32(mem.rom + 0xE000, 0x2000);
-        case ROM_TYPE_VC1541: return 0;
-
-        default:
-            fatalError;
-    }
-}
-
-u64
-Atari::romFNV64(RomType type) const
-{
-    if (!hasRom(type)) return 0;
-    
-    switch (type) {
-            
-        case ROM_TYPE_BASIC:  return util::fnv64(mem.rom + 0xA000, 0x2000);
-        case ROM_TYPE_CHAR:   return util::fnv64(mem.rom + 0xD000, 0x1000);
-        case ROM_TYPE_KERNAL: return util::fnv64(mem.rom + 0xE000, 0x2000);
-        case ROM_TYPE_VC1541: return 0;
-
-        default:
-            fatalError;
-    }
-}
-
-bool
-Atari::hasRom(RomType type) const
-{
-    switch (type) {
-            
-        case ROM_TYPE_BASIC:
-
-            return (mem.rom[0xA000] | mem.rom[0xA001]) != 0x00;
-
-        case ROM_TYPE_CHAR:
-
-            return (mem.rom[0xD000] | mem.rom[0xD001]) != 0x00;
-
-        case ROM_TYPE_KERNAL:
-
-            return (mem.rom[0xE000] | mem.rom[0xE001]) != 0x00;
-
-        case ROM_TYPE_VC1541:
-
-            return false;
-
-        default:
-            fatalError;
-    }
-}
-
-bool
-Atari::hasMega65Rom(RomType type) const
-{
-    return false;
-}
-
-const char *
-Atari::mega65BasicRev() const
-{
-    static char rev[17];
-    rev[0] = 0;
-    
-    if (hasMega65Rom(ROM_TYPE_BASIC)) std::memcpy(rev, &mem.rom[0xBF55], 16);
-    rev[16] = 0;
-    
-    return rev;
-}
-
-const char *
-Atari::mega65KernalRev() const
-{
-    static char rev[17];
-    rev[0] = 0;
-    
-    if (hasMega65Rom(ROM_TYPE_KERNAL)) std::memcpy(rev, &mem.rom[0xE4BC], 16);
-    rev[16] = 0;
-    
-    return rev;
-}
-
 void
 Atari::loadRom(const fs::path &path)
 {
@@ -1163,36 +1060,6 @@ Atari::loadRom(const fs::path &path)
 
 void
 Atari::loadRom(const MediaFile &file)
-{
-
-}
-
-void
-Atari::deleteRom(RomType type)
-{
-
-}
-
-void 
-Atari::deleteRoms()
-{
-
-}
-
-void
-Atari::saveRom(RomType type, const fs::path &path)
-{
-
-}
-
-void 
-Atari::installOpenRoms()
-{
-
-}
-
-void
-Atari::installOpenRom(RomType type)
 {
 
 }

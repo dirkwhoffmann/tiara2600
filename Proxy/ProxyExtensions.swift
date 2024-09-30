@@ -87,13 +87,6 @@ extension EmulatorProxy {
         exportConfig(url, exception: exception)
         if exception.errorCode != .OK { throw VC64Error(exception) }
     }
-
-    func saveRom(_ type: tiara.RomType, url: URL) throws {
-
-        let exception = ExceptionWrapper()
-        saveRom(type, url: url, exception: exception)
-        if exception.errorCode != .OK { throw VC64Error(exception) }
-    }
      
     func flash(_ proxy: MediaFileProxy) throws {
 

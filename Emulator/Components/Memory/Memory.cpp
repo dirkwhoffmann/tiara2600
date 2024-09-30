@@ -542,27 +542,21 @@ Memory::pokeIO(u16 addr, u8 value)
 
 u16
 Memory::nmiVector() const {
-    
-    if (peekSrc[0xF] != M_KERNAL || c64.hasRom(ROM_TYPE_KERNAL)) {
-        return LO_HI(spypeek(0xFFFA), spypeek(0xFFFB));
-    } else {
-        return 0xFE43;
-    }
+
+    return 0xFE43;
 }
 
 u16
 Memory::irqVector() const {
-    
-    if (peekSrc[0xF] != M_KERNAL || c64.hasRom(ROM_TYPE_KERNAL)) {
-        return LO_HI(spypeek(0xFFFE), spypeek(0xFFFF));
-    } else {
-        return 0xFF48;
-    }
+
+    return 0xFF48;
 }
 
 u16
 Memory::resetVector() {
 
+    return 0xFCE2;
+    /*
     updatePeekPokeLookupTables();
     
     if (peekSrc[0xF] != M_KERNAL || c64.hasRom(ROM_TYPE_KERNAL)) {
@@ -570,6 +564,7 @@ Memory::resetVector() {
     } else {
         return 0xFCE2;
     }
+    */
 }
 
 string

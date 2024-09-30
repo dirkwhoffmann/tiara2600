@@ -670,20 +670,6 @@ public:
     // Handling Roms
     //
 
-public:
-
-    // Queries ROM information
-    static RomTraits getRomTraits(u64 fnv);
-    RomTraits getRomTraits(RomType type) const;
-
-    // Computes a Rom checksum
-    u32 romCRC32(RomType type) const;
-    u64 romFNV64(RomType type) const;
-
-    // Checks if a certain Rom is present
-    bool hasRom(RomType type) const;
-    bool hasMega65Rom(RomType type) const;
-
 private:
 
     // Returns a revision string if a Mega65 Rom is installed
@@ -697,15 +683,7 @@ public:
     void loadRom(const MediaFile &file);
 
     // Erases an installed Rom or all Roms
-    void deleteRom(RomType type);
     void deleteRoms();
-
-    // Saves a Rom to disk
-    void saveRom(RomType rom, const fs::path &path) throws;
-
-    // Installs an OpenROM or all three of them
-    void installOpenRom(RomType type);
-    void installOpenRoms();
 
     
     //
