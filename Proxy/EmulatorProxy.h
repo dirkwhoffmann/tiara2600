@@ -186,6 +186,7 @@ using namespace tiara;
 - (void)attachCart:(MediaFileProxy *)proxy;
 - (void)detachCart;
 - (void)setCartType:(CartridgeType)newType;
+- (void)revertCartType;
 
 - (void)flash:(MediaFileProxy *)container exception:(ExceptionWrapper *)ex;
 

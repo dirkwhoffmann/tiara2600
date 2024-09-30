@@ -52,11 +52,12 @@ Cartridge::makeWithType(Atari &c64, CartridgeType type)
 std::unique_ptr<Cartridge>
 Cartridge::makeWithFile(Atari &c64, const CartFile &file)
 {
-    // Try to create the cartridge
+    // Create the cartridge
     auto cart = makeWithType(c64, file.traits.cartType);
 
-    // Copy traits
+    // Copy traits and other information
     cart->traits = file.traits;
+    cart->predictedCartType = file.traits.cartType;
 
     if (CRT_DEBUG) cart->dump(Category::State);
     return cart;

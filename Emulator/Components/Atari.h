@@ -665,6 +665,9 @@ public:
     // Changed the current cartridge type
     void setCartType(CartridgeType newType);
 
+    // Reverts to the predicted cartridge type
+    void revertCartType();
+
 
     //
     // Handling Roms

@@ -55,6 +55,9 @@ public:
 
     Buffer<u8> rom;
 
+    // The predicted type (as provided by the CartFile)
+    CartridgeType predictedCartType{};
+
 
     //
     // Class methods

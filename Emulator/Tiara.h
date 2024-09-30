@@ -689,11 +689,11 @@ public:
 };
 
 
-/** C64 API
+/** Atari API
  */
 struct AtariAPI : public API {
 
-    class Atari *c64 = nullptr;
+    class Atari *atari = nullptr;
 
     /// @name Analyzing the emulator
     /// @{
@@ -708,7 +708,7 @@ struct AtariAPI : public API {
     RomTraits getRomTraits() const;
 
     /// @}
-    /// @name Resetting the C64
+    /// @name Resetting the Atari
     /// @{
 
     /** @brief  Performs a hard reset
@@ -790,6 +790,11 @@ struct AtariAPI : public API {
     /** @brief  Changes the cartridge type
      */
     void setCartType(CartridgeType newType);
+
+    /** @brief  Reverts the type to the one originally provided by the CartFile
+     */
+    void revertCartType();
+
 
     /// @}
     ///

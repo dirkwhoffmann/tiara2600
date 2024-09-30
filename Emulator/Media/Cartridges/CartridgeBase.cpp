@@ -27,7 +27,8 @@ Cartridge::_dump(Category category, std::ostream& os) const
 
     if (category == Category::State) {
 
-        os << tab("Cartridge type") << CartridgeTypeEnum::key(traits.cartType) << std::endl;
+        os << tab("Cartridge type") << CartridgeTypeEnum::key(traits.cartType);
+        os << " (" << CartridgeTypeEnum::key(predictedCartType) << ")" << std::endl;
         os << tab("Cartridge class") << objectName() << std::endl;
         os << tab("MD5") << str(traits.md5) << std::endl;
         os << tab("Name") << str(traits.name) << std::endl;

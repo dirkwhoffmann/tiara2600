@@ -1211,6 +1211,11 @@ using namespace tiara;
     [self emu]->atari.setCartType(newType);
 }
 
+- (void)revertCartType
+{
+    [self emu]->atari.revertCartType();
+}
+
 - (void)flash:(MediaFileProxy *)proxy exception:(ExceptionWrapper *)ex
 {
     try { [self emu]->atari.flash(*(MediaFile *)proxy->obj); }

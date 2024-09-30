@@ -48,6 +48,7 @@ extension ConfigurationController {
 
             // Icons
             cartDropView.image = hasCart ? romDefault : romMissing
+            cartDeleteButton.isHidden = !hasCart
 
             // Labels
             if hasCart {
@@ -92,7 +93,13 @@ extension ConfigurationController {
         refresh()
     }
 
-    @IBAction func romDefaultsAction(_ sender: NSButton!) {
+    @IBAction func cartRevertTypeAction(_ sender: NSPopUpButton!) {
+
+        emu?.revertCartType()
+        refresh()
+    }
+
+    @IBAction func cartDefaultsAction(_ sender: NSButton!) {
         
         do {
 

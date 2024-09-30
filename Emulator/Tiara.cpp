@@ -53,7 +53,7 @@ Tiara::Tiara() {
     emu = new Emulator();
 
     atari.emu = emu;
-    atari.c64 = &emu->main;
+    atari.atari = &emu->main;
 
     mem.emu = emu;
     mem.mem = &emu->main.mem;
@@ -345,78 +345,85 @@ AtariAPI::softReset()
 u64
 AtariAPI::getAutoInspectionMask() const
 {
-    return c64->getAutoInspectionMask();
+    return atari->getAutoInspectionMask();
 }
 
 void
 AtariAPI::setAutoInspectionMask(u64 mask)
 {
-    c64->setAutoInspectionMask(mask);
+    atari->setAutoInspectionMask(mask);
 }
 
 const AtariInfo &
 AtariAPI::getInfo() const
 {
-    return c64->getInfo();
+    return atari->getInfo();
 }
 
 const AtariInfo &
 AtariAPI::getCachedInfo() const
 {
-    return c64->getCachedInfo();
+    return atari->getCachedInfo();
 }
 
 RomTraits
 AtariAPI::getRomTraits() const
 {
-    return c64->cart->traits;
+    return atari->cart->traits;
 }
 
 MediaFile *
 AtariAPI::takeSnapshot()
 {
-    return c64->takeSnapshot();
+    return atari->takeSnapshot();
 }
 
 void
 AtariAPI::loadSnapshot(const MediaFile &snapshot)
 {
-    c64->loadSnapshot(snapshot);
+    atari->loadSnapshot(snapshot);
     emu->markAsDirty();
 }
 
 void
 AtariAPI::attachCart(const std::filesystem::path &path, bool reset)
 {
-    c64->attachCartridge(path);
+    atari->attachCartridge(path);
     emu->markAsDirty();
 }
 
 void
 AtariAPI::attachCart(const MediaFile &c, bool reset)
 {
-    c64->attachCartridge(c);
+    atari->attachCartridge(c);
     emu->markAsDirty();
 }
 
 void
 AtariAPI::detachCart()
 {
-    c64->detachCartridge();
+    atari->detachCartridge();
     emu->markAsDirty();
 }
 
 void
 AtariAPI::setCartType(CartridgeType newType)
 {
-    c64->setCartType(newType);
+    atari->setCartType(newType);
+    emu->markAsDirty();
+}
+
+void
+AtariAPI::revertCartType()
+{
+    atari->revertCartType();
     emu->markAsDirty();
 }
 
 void
 AtariAPI::flash(const MediaFile &file)
 {
-    c64->flash(file);
+    atari->flash(file);
     emu->markAsDirty();
 }
 

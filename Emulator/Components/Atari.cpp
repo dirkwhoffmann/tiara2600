@@ -1033,6 +1033,8 @@ Atari::detachCartridge()
 void
 Atari::setCartType(CartridgeType newType)
 {
+    debug(CRT_DEBUG, "Setting cartridge type to %s\n", CartridgeTypeEnum::key(newType));
+
     if (cart->traits.cartType != newType) {
 
         SUSPENDED
@@ -1040,8 +1042,11 @@ Atari::setCartType(CartridgeType newType)
         // Create a new cartridge of the proper subclass
         auto newCart = Cartridge::makeWithType(*this, newType);
 
-        // Copy traits of the current cartridge
+        // Preserve information from the existing cartridge
         newCart->traits = cart->traits;
+        newCart->predictedCartType = cart->predictedCartType;
+
+        // Set the new type
         newCart->traits.cartType = newType;
 
         // Replace the existing cartridge
@@ -1050,6 +1055,13 @@ Atari::setCartType(CartridgeType newType)
         printf("New cart type assigned\n");
     }
 }
+
+void
+Atari::revertCartType()
+{
+    setCartType(cart->predictedCartType);
+}
+
 
 /*
 void
