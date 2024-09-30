@@ -63,7 +63,7 @@ debugflag FS_DEBUG        = 0;
 debugflag PAR_DEBUG       = 0;
 
 // Media
-debugflag CRT_DEBUG       = 0;
+debugflag CRT_DEBUG       = 1;
 debugflag FILE_DEBUG      = 0;
 
 // Peripherals

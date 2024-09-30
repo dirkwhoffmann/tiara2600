@@ -24,7 +24,7 @@ namespace tiara {
 enum_long(FILETYPE)
 {
     FILETYPE_UNKNOWN,
-    FILETYPE_BIN,
+    FILETYPE_CART,
     FILETYPE_SNAPSHOT,
     FILETYPE_SCRIPT
 };
@@ -41,7 +41,7 @@ struct FileTypeEnum : util::Reflection<FileTypeEnum, FileType> {
         switch (value) {
 
             case FILETYPE_UNKNOWN:    return "UNKNOWN";
-            case FILETYPE_BIN:        return "BIN";
+            case FILETYPE_CART:        return "BIN";
             case FILETYPE_SNAPSHOT:   return "SNAPSHOT";
             case FILETYPE_SCRIPT:     return "SCRIPT";
         }

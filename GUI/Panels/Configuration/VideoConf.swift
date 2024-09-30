@@ -9,7 +9,7 @@
 
 extension ConfigurationController {
     
-    func awakeVideoPrefsFromNib() {
+    func awakeVideoPanelFromNib() {
         
         // Check for available upscalers
         let upscalers = parent.renderer.ressourceManager.upscalerGallery

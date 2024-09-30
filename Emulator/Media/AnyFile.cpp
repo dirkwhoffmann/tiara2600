@@ -14,7 +14,7 @@
 #include "AnyFile.h"
 #include "Checksum.h"
 #include "IOUtils.h"
-#include "RomFile.h"
+#include "CartFile.h"
 #include "Script.h"
 #include "Snapshot.h"
 

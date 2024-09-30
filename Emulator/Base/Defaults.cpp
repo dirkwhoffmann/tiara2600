@@ -115,11 +115,6 @@ Defaults::Defaults()
 
     setFallback(OPT_DBG_DEBUGCART,              0);
     setFallback(OPT_DBG_WATCHDOG,               0);
-
-    setFallback("BASIC_PATH", "");
-    setFallback("CHAR_PATH", "");
-    setFallback("KERNAL_PATH", "");
-    setFallback("VC1541_PATH", "");
 }
 
 void

@@ -1192,7 +1192,7 @@ using namespace tiara;
 - (BOOL) isRom:(NSURL *)url
 {
     auto fileType = MediaFile::type([url fileSystemRepresentation]);
-    return fileType == FILETYPE_BIN;
+    return fileType == FILETYPE_CART;
 }
 
 - (void) loadRom:(NSURL *)url exception:(ExceptionWrapper *)e

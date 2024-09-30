@@ -6,7 +6,7 @@ MediaFile.cpp
 AnyFile.cpp
 
 CRTFile.cpp
-RomFile.cpp
+CartFile.cpp
 Script.cpp
 Snapshot.cpp
 

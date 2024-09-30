@@ -414,29 +414,11 @@ C64API::detachCartridge()
 }
 
 void
-C64API::saveCartridge(const std::filesystem::path &path)
+C64API::setCartType(CartridgeType newType)
 {
-    c64->saveCartridge(path);
+    c64->setCartType(newType);
     emu->markAsDirty();
 }
-
-
-
-/*
-void
-C64API::loadRom(const fs::path &path)
-{
-    c64->loadRom(path);
-    emu->markAsDirty();
-}
-
-void 
-C64API::loadRom(const MediaFile &file)
-{
-    c64->loadRom(file);
-    emu->markAsDirty();
-}
-*/
 
 void
 C64API::flash(const MediaFile &file)

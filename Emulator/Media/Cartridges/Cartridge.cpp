@@ -23,8 +23,7 @@ Cartridge::isSupportedType(CartridgeType type)
 
     switch (type) {
 
-        case CRT_NONE:
-        case CRT_NORMAL:
+        case CART_4K:
 
             return true;
             
@@ -42,8 +41,8 @@ Cartridge::makeWithType(Atari &c64, CartridgeType type)
 
     switch (type) {
 
-        case CRT_NONE:              cart = std::make_unique<Cartridge>(c64); break;
-        case CRT_NORMAL:            cart = std::make_unique<StdCartridge>(c64); break;
+        case CART_NONE:          cart = std::make_unique<Cartridge>(c64); break;
+        case CART_4K:            cart = std::make_unique<StdCartridge>(c64); break;
 
         default:
             throw Error(VC64ERROR_CRT_UNSUPPORTED, std::to_string(type));
@@ -54,13 +53,13 @@ Cartridge::makeWithType(Atari &c64, CartridgeType type)
 }
 
 std::unique_ptr<Cartridge>
-Cartridge::makeWithFile(Atari &c64, const RomFile &file)
+Cartridge::makeWithFile(Atari &c64, const CartFile &file)
 {
     // Try to create the cartridge
-    auto cart = makeWithType(c64, file.cartridgeType());
+    auto cart = makeWithType(c64, file.traits.cartType);
 
     // Copy traits
-    cart->traits = file.traits();
+    cart->traits = file.traits;
 
     if (CRT_DEBUG) cart->dump(Category::State);
     return cart;

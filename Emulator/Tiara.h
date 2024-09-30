@@ -787,11 +787,9 @@ struct C64API : public API {
      */
     void detachCartridge();
 
-    /** @brief  Saves the current cartridge to disk
-     *
-     *  @throw  VC64Error (VC64ERROR_FILE_CANT_WRITE)
+    /** @brief  Changes the cartridge type
      */
-    void saveCartridge(const std::filesystem::path &path);
+    void setCartType(CartridgeType newType);
 
     /// @}
     ///
@@ -809,7 +807,7 @@ struct C64API : public API {
      */
     // void loadRom(const fs::path &path);
 
-    /** @brief  Loads a ROM, provided by a RomFile object
+    /** @brief  Loads a ROM, provided by a CartFile object
      */
     // void loadRom(const MediaFile &file);
 

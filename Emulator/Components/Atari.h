@@ -35,7 +35,7 @@
 
 // Media files
 #include "Snapshot.h"
-#include "RomFile.h"
+#include "CartFile.h"
 
 // Misc
 #include "Host.h"
@@ -662,8 +662,8 @@ public:
     // Detaches the current cartridge
     void detachCartridge();
 
-    // Saves a Rom to disk
-    void saveCartridge(const fs::path &path) throws;
+    // Changed the current cartridge type
+    void setCartType(CartridgeType newType);
 
 
     //
@@ -673,17 +673,17 @@ public:
 private:
 
     // Returns a revision string if a Mega65 Rom is installed
-    const char *mega65BasicRev() const;
-    const char *mega65KernalRev() const;
+    // const char *mega65BasicRev() const;
+    // const char *mega65KernalRev() const;
 
 public:
 
     // Installs a Rom
-    void loadRom(const fs::path &path) throws;
-    void loadRom(const MediaFile &file);
+    [[deprecated]] void loadRom(const fs::path &path) throws;
+    [[deprecated]] void loadRom(const MediaFile &file);
 
     // Erases an installed Rom or all Roms
-    void deleteRoms();
+    [[deprecated]] void deleteRoms();
 
     
     //

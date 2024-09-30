@@ -21,10 +21,11 @@
                 <outlet property="audVol3" destination="nxr-7U-G2Z" id="qHR-Vi-GTJ"/>
                 <outlet property="audVolL" destination="O1Q-z8-zVP" id="iMl-Xc-rg4"/>
                 <outlet property="audVolR" destination="Hrp-8d-Rbm" id="i1V-rn-x1a"/>
+                <outlet property="cartCartType" destination="ybE-C9-Edd" id="7nO-WC-V3e"/>
                 <outlet property="cartDeleteButton" destination="wF6-vA-6xk" id="nXM-a7-0pH"/>
                 <outlet property="cartDropView" destination="I3M-ht-lkl" id="Hal-Hp-Zn2"/>
-                <outlet property="cartHash" destination="pJq-X4-x2y" id="dnt-HT-phH"/>
                 <outlet property="cartManufacturer" destination="Pea-uJ-4G8" id="raO-PO-Cfy"/>
+                <outlet property="cartModel" destination="pJq-X4-x2y" id="dnt-HT-phH"/>
                 <outlet property="cartName" destination="m0b-3R-CyB" id="sy5-3M-2iP"/>
                 <outlet property="comPowerButton" destination="MaC-Tv-e4H" id="r0L-EC-VjG"/>
                 <outlet property="comSbCollisions" destination="bnG-rw-e1M" id="HG9-2I-s0C"/>
@@ -150,6 +151,10 @@ Gw
                                             <rect key="frame" x="9" y="55" width="582" height="5"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         </box>
+                                        <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="vQY-cY-PdH">
+                                            <rect key="frame" x="240" y="363" width="351" height="5"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        </box>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sYt-GY-XZQ">
                                             <rect key="frame" x="515" y="10" width="82" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -194,7 +199,7 @@ DQ
                                             </connections>
                                         </popUpButton>
                                         <box fixedFrame="YES" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="6tf-5c-i12">
-                                            <rect key="frame" x="6" y="111" width="223" height="259"/>
+                                            <rect key="frame" x="6" y="128" width="223" height="259"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <view key="contentView" id="fLj-GD-6Pn">
                                                 <rect key="frame" x="4" y="5" width="215" height="251"/>
@@ -212,25 +217,34 @@ DQ
                                             </view>
                                         </box>
                                         <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pea-uJ-4G8">
-                                            <rect key="frame" x="238" y="332" width="354" height="17"/>
+                                            <rect key="frame" x="238" y="342" width="354" height="17"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="small" selectable="YES" alignment="left" title="Required" id="dRj-0k-phn">
+                                            <textFieldCell key="cell" controlSize="small" selectable="YES" alignment="left" title="Ipsum lorem" id="dRj-0k-phn">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Akr-0s-Bni">
+                                            <rect key="frame" x="238" y="237" width="354" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" controlSize="small" selectable="YES" alignment="left" title="Ipsum lorem" id="0lI-Bq-hhL">
                                                 <font key="font" metaFont="message" size="11"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pJq-X4-x2y">
-                                            <rect key="frame" x="238" y="306" width="354" height="18"/>
+                                            <rect key="frame" x="238" y="324" width="354" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" controlSize="small" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Hash: 1020304050607080" id="V0T-0g-SdF">
+                                            <textFieldCell key="cell" controlSize="small" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Ipsum lorem" id="V0T-0g-SdF">
                                                 <font key="font" metaFont="message" size="11"/>
                                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0b-3R-CyB">
-                                            <rect key="frame" x="238" y="351" width="354" height="17"/>
+                                            <rect key="frame" x="238" y="368" width="354" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Cartridge" id="GKO-Q9-a3a">
                                                 <font key="font" metaFont="systemBold"/>
@@ -238,8 +252,20 @@ DQ
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ybE-C9-Edd" userLabel="System">
+                                            <rect key="frame" x="35" y="98" width="195" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="kkv-wy-RTo" userLabel="System">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" id="vez-Mb-UAZ"/>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <action selector="hwVicRevAction:" target="-2" id="FhQ-ka-ijR"/>
+                                            </connections>
+                                        </popUpButton>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wF6-vA-6xk">
-                                            <rect key="frame" x="234" y="112" width="20.5" height="28"/>
+                                            <rect key="frame" x="9" y="99" width="20.5" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSTouchBarDeleteTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="uI4-ym-kRa">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

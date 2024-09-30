@@ -64,7 +64,7 @@
 		50461BBE26B522450019CEDF /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50461BBC26B522450019CEDF /* Thread.cpp */; };
 		504C436124AF29AC00E69CAE /* StdCartridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42A024AF29AB00E69CAE /* StdCartridge.cpp */; };
 		504C437024AF29AC00E69CAE /* Cartridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42C024AF29AB00E69CAE /* Cartridge.cpp */; };
-		504C437324AF29AC00E69CAE /* RomFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42C724AF29AB00E69CAE /* RomFile.cpp */; };
+		504C437324AF29AC00E69CAE /* CartFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42C724AF29AB00E69CAE /* CartFile.cpp */; };
 		504C437924AF29AC00E69CAE /* Snapshot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42D524AF29AB00E69CAE /* Snapshot.cpp */; };
 		504C437A24AF29AC00E69CAE /* AnyFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42D624AF29AB00E69CAE /* AnyFile.cpp */; };
 		504C437F24AF29AC00E69CAE /* Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42E124AF29AB00E69CAE /* Memory.cpp */; };
@@ -143,7 +143,7 @@
 		50726F7D2961C9E80031F2F5 /* Joystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5085D89B25B848940043B15C /* Joystick.cpp */; };
 		50726F842961C9F10031F2F5 /* Cartridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42C024AF29AB00E69CAE /* Cartridge.cpp */; };
 		50726FA12961CA0D0031F2F5 /* StdCartridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42A024AF29AB00E69CAE /* StdCartridge.cpp */; };
-		50726FA32961CA1C0031F2F5 /* RomFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42C724AF29AB00E69CAE /* RomFile.cpp */; };
+		50726FA32961CA1C0031F2F5 /* CartFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42C724AF29AB00E69CAE /* CartFile.cpp */; };
 		50726FA92961CA1C0031F2F5 /* AnyFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42D624AF29AB00E69CAE /* AnyFile.cpp */; };
 		50726FAA2961CA1C0031F2F5 /* Snapshot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42D524AF29AB00E69CAE /* Snapshot.cpp */; };
 		50726FAF2961CA1C0031F2F5 /* Script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50AE19372632B787005A5898 /* Script.cpp */; };
@@ -434,11 +434,11 @@
 		504C42A024AF29AB00E69CAE /* StdCartridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StdCartridge.cpp; sourceTree = "<group>"; };
 		504C42C024AF29AB00E69CAE /* Cartridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cartridge.cpp; sourceTree = "<group>"; };
 		504C42C424AF29AB00E69CAE /* Cartridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cartridge.h; sourceTree = "<group>"; };
-		504C42C724AF29AB00E69CAE /* RomFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RomFile.cpp; sourceTree = "<group>"; };
+		504C42C724AF29AB00E69CAE /* CartFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CartFile.cpp; sourceTree = "<group>"; };
 		504C42CE24AF29AB00E69CAE /* AnyFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnyFile.h; sourceTree = "<group>"; };
 		504C42D524AF29AB00E69CAE /* Snapshot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Snapshot.cpp; sourceTree = "<group>"; };
 		504C42D624AF29AB00E69CAE /* AnyFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnyFile.cpp; sourceTree = "<group>"; };
-		504C42D724AF29AB00E69CAE /* RomFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RomFile.h; sourceTree = "<group>"; };
+		504C42D724AF29AB00E69CAE /* CartFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartFile.h; sourceTree = "<group>"; };
 		504C42DD24AF29AB00E69CAE /* Snapshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snapshot.h; sourceTree = "<group>"; };
 		504C42E124AF29AB00E69CAE /* Memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Memory.cpp; sourceTree = "<group>"; };
 		504C42E424AF29AB00E69CAE /* Memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memory.h; sourceTree = "<group>"; };
@@ -1088,8 +1088,8 @@
 				5026118D259CACB60066E754 /* PETName.h */,
 				504C42CE24AF29AB00E69CAE /* AnyFile.h */,
 				504C42D624AF29AB00E69CAE /* AnyFile.cpp */,
-				504C42D724AF29AB00E69CAE /* RomFile.h */,
-				504C42C724AF29AB00E69CAE /* RomFile.cpp */,
+				504C42D724AF29AB00E69CAE /* CartFile.h */,
+				504C42C724AF29AB00E69CAE /* CartFile.cpp */,
 				503C0C362B9A4AD400112B4B /* RomDatabase.h */,
 				504C42DD24AF29AB00E69CAE /* Snapshot.h */,
 				504C42D524AF29AB00E69CAE /* Snapshot.cpp */,
@@ -1692,7 +1692,7 @@
 				508C1E6A2C0C507D0097473C /* CartridgeBase.cpp in Sources */,
 				50A1947F2BDA597A0046849E /* RIOTBase.cpp in Sources */,
 				50B98B4B2BFDF5FC00FA1EC6 /* AudioPortBase.cpp in Sources */,
-				50726FA32961CA1C0031F2F5 /* RomFile.cpp in Sources */,
+				50726FA32961CA1C0031F2F5 /* CartFile.cpp in Sources */,
 				50726FBA2961CA2F0031F2F5 /* RegressionTester.cpp in Sources */,
 				50E17E222B8B26AC0029747D /* Option.cpp in Sources */,
 				50EFB0C52C18D6200013B73C /* Dumpable.cpp in Sources */,
@@ -1816,7 +1816,7 @@
 				50BB3E9A2B7A50F600B2D87B /* Synchronizable.cpp in Sources */,
 				500E34142615BF5E006A38DA /* IOUtils.cpp in Sources */,
 				50B7E26C2813F8C400A405A3 /* TextStorage.cpp in Sources */,
-				504C437324AF29AC00E69CAE /* RomFile.cpp in Sources */,
+				504C437324AF29AC00E69CAE /* CartFile.cpp in Sources */,
 				50E9B92F201FA92C00065A89 /* Alerts.swift in Sources */,
 				506D3DD020224BF4009742CF /* MyDocument.swift in Sources */,
 				5036E0BB261AEF000048E66A /* CommandConsole.cpp in Sources */,

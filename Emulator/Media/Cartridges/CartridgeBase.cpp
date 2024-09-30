@@ -24,6 +24,19 @@ Cartridge::_dump(Category category, std::ostream& os) const
 
     if (category == Category::State) {
 
+        os << tab("Cartridge type") << CartridgeTypeEnum::key(traits.cartType) << std::endl;
+        os << tab("MD5") << traits.md5 << std::endl;
+        os << tab("Name") << traits.name << std::endl;
+        os << tab("Manufacturer") << traits.manufacturer << std::endl;
+        os << tab("Type") << traits.type << std::endl;
+        os << tab("Model") << traits.model << std::endl;
+        os << tab("Format") << traits.format << std::endl;
+        os << tab("Note") << traits.note << std::endl;
+        os << tab("Left") << traits.left << std::endl;
+        os << tab("Right") << traits.right << std::endl;
+        os << tab("Phosphor") << bol(traits.phosphor) << std::endl;
+        os << tab("SwapPorts") << bol(traits.swapPorts) << std::endl;
+        os << tab("SwapPaddles") << bol(traits.swapPaddles) << std::endl;
     }
 }
 

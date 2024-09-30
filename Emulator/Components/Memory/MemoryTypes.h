@@ -125,21 +125,4 @@ typedef struct
 }
 MemStats;
 
-typedef struct {
-
-    string md5;
-    const char *name;
-    const char *manufacturer;
-    const char *type;
-    const char *model;
-    const char *format;
-    const char *note;
-    const char *left;
-    const char *right;
-    bool phosphor;
-    bool swapPorts;
-    bool swapPaddles;
-}
-RomTraits;
-
 }

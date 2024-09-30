@@ -91,7 +91,6 @@ extension MyController: NSMenuItemValidation {
 
         // Reset settings
         defaults.removeAll()
-        defaults.resetSearchPaths()
         defaults.save()
 
         // Apply new settings
@@ -367,7 +366,7 @@ extension MyController: NSMenuItemValidation {
             if result == .OK, let url = openPanel.url {
 
                 do {
-                    try self.mm.addMedia(url: url, allowedTypes: [ .BIN ])
+                    try self.mm.addMedia(url: url, allowedTypes: [ .CART ])
                 } catch {
                     self.showAlert(.cantAttach, error: error, async: true)
                 }
@@ -382,7 +381,7 @@ extension MyController: NSMenuItemValidation {
         if let url = MediaManager.getRecentlyAtachedCartridgeURL(slot) {
 
             do {
-                try self.mm.addMedia(url: url, allowedTypes: [ .BIN ])
+                try self.mm.addMedia(url: url, allowedTypes: [ .CART ])
             } catch {
                 self.showAlert(.cantAttach, error: error, async: true)
             }

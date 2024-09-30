@@ -14,7 +14,7 @@
 
 #include "CartridgeTypes.h"
 #include "SubComponent.h"
-#include "RomFile.h"
+#include "CartFile.h"
 
 namespace tiara {
 
@@ -28,9 +28,7 @@ class Cartridge : public SubComponent, public Inspectable<CartridgeInfo> {
         .shell          = "cartridge"
     }};
 
-    Options options = {
-
-    };
+    Options options{};
 
 public:
 
@@ -57,7 +55,7 @@ public:
 
     // Factory methods
     static std::unique_ptr<Cartridge> makeWithType(Atari &c64, CartridgeType type) throws;
-    static std::unique_ptr<Cartridge> makeWithFile(Atari &c64, const RomFile &file) throws;
+    static std::unique_ptr<Cartridge> makeWithFile(Atari &c64, const CartFile &file) throws;
 
 
     //
@@ -155,11 +153,8 @@ public:
 
 public:
 
-    // Returns the cartridge type
-    virtual CartridgeType getCartridgeType() const { return CRT_NONE; }
-
     // Checks whether this cartridge is supported by the emulator yet
-    // bool isSupported() const { return isSupportedType(getCartridgeType()); }
+    virtual bool isSupported() const { return traits.cartType == CART_NONE; }
 
 
     //

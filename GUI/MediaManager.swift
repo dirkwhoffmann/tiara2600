@@ -136,8 +136,8 @@ class MediaManager {
                 case .SCRIPT:
                     return try MediaFileProxy.make(with: newUrl, type: .SCRIPT)
 
-                case .BIN:
-                    return try MediaFileProxy.make(with: newUrl, type: .BIN)
+                case .CART:
+                    return try MediaFileProxy.make(with: newUrl, type: .CART)
 
                 default:
                     fatalError()
@@ -176,7 +176,7 @@ class MediaManager {
             case .SNAPSHOT:
                 document.snapshots.append(file, size: file.size)
 
-            case .BIN:
+            case .CART:
                 MediaManager.noteNewRecentlyAtachedCartridgeURL(url)
 
             default:
@@ -203,9 +203,9 @@ class MediaManager {
                 try emu.flash(proxy)
                 debug(.media, "Snapshot flashed")
 
-            case .BIN:
+            case .CART:
 
-                debug(.media, "BIN")
+                debug(.media, "CART")
                 // try emu.expansionport.attachCartridge(proxy, reset: true)
 
             case .SCRIPT:
@@ -230,9 +230,9 @@ class MediaManager {
                 debug(.media, "Snapshot")
                 try emu.flash(proxy)
 
-            case .BIN:
+            case .CART:
 
-                debug(.media, "BIN")
+                debug(.media, "CART")
                 // try emu.expansionport.attachCartridge(proxy, reset: true)
 
             case .SCRIPT:

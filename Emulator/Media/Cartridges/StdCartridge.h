@@ -22,12 +22,7 @@ public:
 
     using Cartridge::Cartridge;
 
-    virtual CartridgeType getCartridgeType() const override { return CRT_NORMAL; }
-
-private:
-
-    // void _didReset(bool hard) override;
-
+    virtual bool isSupported() const override { return true; }
 };
 
 }

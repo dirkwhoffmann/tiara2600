@@ -9,90 +9,55 @@
 
 extension ConfigurationController {
 
+    func awakeCartPanelFromNib() {
+
+        let first = tiara.CartridgeType._0840.rawValue
+        let last = tiara.CartridgeType._X07.rawValue
+
+        for i in first ... last {
+
+            let item = tiara.CartridgeType(rawValue: i)
+            cartCartType.addItem(withTitle: item!.description)
+            cartCartType.lastItem!.tag = i
+        }
+    }
+
     func refreshRomTab() {
 
         if let emu = emu {
 
             let traits = emu.c64.romTraits
+
+            let cartType = traits.cartType
+            let hasCart = cartType != ._NONE
+            let hasKnownCart = hasCart && cartType != ._UNKNOWN
             let name = traits.name != nil ? String(cString: traits.name) : ""
             let manufacturer = traits.manufacturer != nil ? String(cString: traits.manufacturer) : ""
-
-            let hasCart = name != ""
-
-            /*
-            let basicRom = emu.c64.basicRom
-            let charRom = emu.c64.charRom
-            let kernalRom = emu.c64.kernalRom
-            let vc1541Rom = emu.c64.vc1541Rom
-
-            let poweredOff         = emu.poweredOff
-
-            let hasChar            = charRom.crc != 0
-            let hasCommodoreChar   = charRom.vendor == .COMMODORE
-            let hasMega65Char      = charRom.vendor == .MEGA65
-            let hasPatchedChar     = charRom.patched
-            */
+            let model = traits.model != nil ? String(cString: traits.model) : ""
+            let hash = traits.md5 != nil ? String(cString: traits.md5) : ""
+            let supported = cartType == ._4K
 
             let romMissing = NSImage(named: "rom_missing")
-            let romStandard = NSImage(named: "rom_original")
-            /*
-            let romMega    = NSImage(named: "rom_mega65")
-            let romPatched = NSImage(named: "rom_patched")
-            let romUnknown = NSImage(named: "rom_unknown")
-            */
+            let romDefault = NSImage(named: "rom_original")
 
             // Icons
-            cartDropView.image = hasCart ? romStandard : romMissing
+            cartDropView.image = hasCart ? romDefault : romMissing
 
-            /*
-            kernalDropView.image =
-            hasMega65Kernal    ? romMega :
-            hasCommodoreKernal ? romOrig :
-            hasPatchedKernal   ? romPatched :
-            hasKernal          ? romUnknown : romMissing
-            */
-
+            // Labels
             if hasCart {
 
                 cartName.stringValue = name
                 cartManufacturer.stringValue = manufacturer
+                cartModel.stringValue = model
+                cartCartType.stringValue = cartType.description
 
             } else {
 
                 cartName.stringValue = "No cartridge"
                 cartManufacturer.stringValue = "Use drag and drop to attach a cartridge"
-                cartHash.stringValue = ""
+                cartModel.stringValue = ""
+                cartCartType.stringValue = ""
             }
-
-            // Titles and subtitles
-            /*
-            basicTitle.stringValue = hasBasic ? String(cString: basicRom.title) : "Basic Rom"
-            basicSubtitle.stringValue = hasBasic ? String(cString: basicRom.subtitle) : "Required"
-            basicSubsubtitle.stringValue = String(cString: basicRom.revision)
-
-            cartTitle.stringValue = hasChar ? String(cString: charRom.title) : "Character Rom"
-            cartSubtitle.stringValue = hasChar ? String(cString: charRom.subtitle) : "Required"
-            cartSubsubtitle.stringValue = String(cString: charRom.revision)
-
-            kernalTitle.stringValue = hasKernal ? String(cString: kernalRom.title) : "Kernal Rom"
-            kernalSubtitle.stringValue = hasKernal ? String(cString: kernalRom.subtitle) : "Required"
-            kernalSubsubtitle.stringValue = String(cString: kernalRom.revision)
-
-            vc1541Title.stringValue = hasVC1541 ? String(cString: vc1541Rom.title) : "VC1541 Rom"
-            vc1541Subtitle.stringValue = hasVC1541 ? String(cString: vc1541Rom.subtitle) : "Optional"
-            vc1541Subsubtitle.stringValue = String(cString: vc1541Rom.revision)
-            */
-
-            // Hide some controls
-            /*
-            basicDeleteButton.isHidden = !hasBasic
-            cartDeleteButton.isHidden = !hasChar
-            kernalDeleteButton.isHidden = !hasKernal
-            vc1541DeleteButton.isHidden = !hasVC1541
-            */
-
-            // Boot button
-            // romPowerButton.isHidden = !bootable
         }
     }
 

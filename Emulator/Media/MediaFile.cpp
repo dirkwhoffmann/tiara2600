@@ -15,7 +15,7 @@
 #include "Tiara.h"
 #include "StringUtils.h"
 #include "Checksum.h"
-#include "RomFile.h"
+#include "CartFile.h"
 #include "Script.h"
 #include "Snapshot.h"
 
@@ -27,8 +27,8 @@ MediaFile::type(const fs::path &path)
     Buffer<u8> buffer(path);
     if (buffer.empty()) return FILETYPE_UNKNOWN;
 
-    if (RomFile::isCompatible(path) &&
-        RomFile::isCompatible(buffer)) { printf("FILETYPE BIN"); return FILETYPE_BIN; }
+    if (CartFile::isCompatible(path) &&
+        CartFile::isCompatible(buffer)) { printf("FILETYPE BIN"); return FILETYPE_CART; }
 
     if (Snapshot::isCompatible(path) &&
         Snapshot::isCompatible(buffer)) return FILETYPE_SNAPSHOT;
@@ -50,7 +50,7 @@ MediaFile::make(const fs::path &path, FileType type)
 {
     switch (type) {
 
-        case FILETYPE_BIN:        return new RomFile(path);
+        case FILETYPE_CART:        return new CartFile(path);
         case FILETYPE_SNAPSHOT:   return new Snapshot(path);
         case FILETYPE_SCRIPT:     return new Script(path);
 
@@ -64,7 +64,7 @@ MediaFile::make(const u8 *buf, isize len, FileType type)
 {
     switch (type) {
             
-        case FILETYPE_BIN:        return new RomFile(buf, len);
+        // case FILETYPE_CART:        return new CartFile(buf, len);
         case FILETYPE_SNAPSHOT:   return new Snapshot(buf, len);
         case FILETYPE_SCRIPT:     return new Script(buf, len);
             

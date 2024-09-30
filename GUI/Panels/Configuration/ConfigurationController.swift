@@ -20,7 +20,9 @@ class ConfigurationController: DialogController {
     @IBOutlet weak var cartDropView: RomDropView!
     @IBOutlet weak var cartName: NSTextField!
     @IBOutlet weak var cartManufacturer: NSTextField!
-    @IBOutlet weak var cartHash: NSTextField!
+    @IBOutlet weak var cartModel: NSTextField!
+    @IBOutlet weak var cartType: NSTextField!
+    @IBOutlet weak var cartCartType: NSPopUpButton!
     @IBOutlet weak var cartDeleteButton: NSButton!
 
     @IBOutlet weak var romInstallButton: NSButton!
@@ -186,9 +188,9 @@ class ConfigurationController: DialogController {
     }
     
     override func awakeFromNib() {
-    
-        awakeVideoPrefsFromNib()
-        awakeHardwarePrefsFromNib()
+
+        awakeCartPanelFromNib()
+        awakeVideoPanelFromNib()
         refresh()
     }
     

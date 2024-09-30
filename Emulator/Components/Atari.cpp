@@ -213,20 +213,6 @@ Atari::_didReset(bool hard)
 void
 Atari::initialize()
 {
-    auto load = [&](const fs::path &path) {
-
-        msg("Trying to load Rom from %s...\n", path.string().c_str());
-
-        try { loadRom(path); } catch (std::exception& e) {
-            warn("Error: %s\n", e.what());
-        }
-    };
-
-    if (auto path = Emulator::defaults.getRaw("BASIC_PATH");  path != "") load(path);
-    if (auto path = Emulator::defaults.getRaw("CHAR_PATH");   path != "") load(path);
-    if (auto path = Emulator::defaults.getRaw("KERNAL_PATH"); path != "") load(path);
-    if (auto path = Emulator::defaults.getRaw("VC1541_PATH"); path != "") load(path);
-
     CoreComponent::initialize();
 }
 
@@ -1015,17 +1001,18 @@ Atari::scheduleNextSNPEvent()
 void
 Atari::attachCartridge(const fs::path &path) throws
 {
-    debug(true, "C64::attachCartrige (path = %s)", path.string().c_str());
+    CartFile file(path);
+    attachCartridge(file);
 }
 
 void
 Atari::attachCartridge(const MediaFile &file)
 {
-    debug(true, "C64::attachCartrige");
+    SUSPENDED
 
     try {
 
-        const auto &romFile = dynamic_cast<const RomFile &>(file);
+        const auto &romFile = dynamic_cast<const CartFile &>(file);
         auto newCartridge = Cartridge::makeWithFile(*this, romFile);
         cartridge = std::move(newCartridge);
 
@@ -1040,21 +1027,41 @@ Atari::detachCartridge()
 {
     SUSPENDED
 
-    debug(true, "C64::detachCartrige");
     cartridge = std::make_unique<Cartridge>(*this);
 }
 
 void
+Atari::setCartType(CartridgeType newType)
+{
+    if (cartridge->traits.cartType != newType) {
+
+        SUSPENDED
+
+        // Create a new cartridge of the proper subclass
+        auto newCart = Cartridge::makeWithType(*this, newType);
+
+        // Copy traits of the current cartridge
+        newCart->traits = cartridge->traits;
+        newCart->traits.cartType = newType;
+
+        // Replace the existing cartridge
+        cartridge = std::move(newCart);
+    }
+}
+
+/*
+void
 Atari::saveCartridge(const fs::path &path)
 {
-    RomFile file(cartridge->rom);
+    CartFile file(cartridge->rom);
     file.writeToFile(path);
 }
+*/
 
 void
 Atari::loadRom(const fs::path &path)
 {
-    RomFile file(path);
+    CartFile file(path);
     loadRom(file);
 }
 
@@ -1071,7 +1078,7 @@ Atari::flash(const MediaFile &file)
         
         switch (file.type()) {
                 
-            case FILETYPE_BIN:
+            case FILETYPE_CART:
                 break;
                 
             case FILETYPE_SNAPSHOT:
