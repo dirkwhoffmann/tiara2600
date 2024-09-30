@@ -182,8 +182,10 @@ using namespace tiara;
 
 - (BOOL)isRom:(NSURL *)url;
 
-- (void)loadRom:(NSURL *)url exception:(ExceptionWrapper *)ex;
-- (void)loadRom:(MediaFileProxy *)proxy;
+- (void)attachCart:(NSURL *)url exception:(ExceptionWrapper *)ex;
+- (void)attachCart:(MediaFileProxy *)proxy;
+- (void)detachCart;
+- (void)setCartType:(CartridgeType)newType;
 
 - (void)flash:(MediaFileProxy *)container exception:(ExceptionWrapper *)ex;
 

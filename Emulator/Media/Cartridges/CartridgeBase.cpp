@@ -22,18 +22,22 @@ Cartridge::_dump(Category category, std::ostream& os) const
 {
     using namespace util;
 
+    // auto str = [&](const char *s) { return string("\"") + s + string("\""); };
+    auto str = [&](const char *s) { return string(s); };
+
     if (category == Category::State) {
 
         os << tab("Cartridge type") << CartridgeTypeEnum::key(traits.cartType) << std::endl;
-        os << tab("MD5") << traits.md5 << std::endl;
-        os << tab("Name") << traits.name << std::endl;
-        os << tab("Manufacturer") << traits.manufacturer << std::endl;
-        os << tab("Type") << traits.type << std::endl;
-        os << tab("Model") << traits.model << std::endl;
-        os << tab("Format") << traits.format << std::endl;
-        os << tab("Note") << traits.note << std::endl;
-        os << tab("Left") << traits.left << std::endl;
-        os << tab("Right") << traits.right << std::endl;
+        os << tab("Cartridge class") << objectName() << std::endl;
+        os << tab("MD5") << str(traits.md5) << std::endl;
+        os << tab("Name") << str(traits.name) << std::endl;
+        os << tab("Manufacturer") << str(traits.manufacturer) << std::endl;
+        os << tab("Type") << str(traits.type) << std::endl;
+        os << tab("Model") << str(traits.model) << std::endl;
+        os << tab("Format") << str(traits.format) << std::endl;
+        os << tab("Note") << str(traits.note) << std::endl;
+        os << tab("Left") << str(traits.left) << std::endl;
+        os << tab("Right") << str(traits.right) << std::endl;
         os << tab("Phosphor") << bol(traits.phosphor) << std::endl;
         os << tab("SwapPorts") << bol(traits.swapPorts) << std::endl;
         os << tab("SwapPaddles") << bol(traits.swapPaddles) << std::endl;

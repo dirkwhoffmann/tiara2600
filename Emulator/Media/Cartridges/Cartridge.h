@@ -32,7 +32,19 @@ class Cartridge : public SubComponent, public Inspectable<CartridgeInfo> {
 
 public:
 
-    RomTraits traits{};
+    RomTraits traits{
+
+        .cartType       = CART_NONE,
+        .md5            = "",
+        .name           = "",
+        .manufacturer   = "",
+        .type           = "",
+        .model          = "",
+        .format         = "",
+        .note           = "",
+        .left           = "",
+        .right          = ""
+    };
 
 
     //

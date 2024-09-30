@@ -18,6 +18,23 @@ namespace tiara {
 
 class StdCartridge final : public Cartridge {
 
+    Descriptions descriptions = {{
+
+        .type           = CartridgeClass,
+        .name           = "StdCartridge",
+        .description    = "StdCartridge",
+        .shell          = "stdcartridge"
+    }};
+
+
+    //
+    // Methods from CoreComponent
+    //
+
+public:
+
+    const Descriptions &getDescriptions() const override { return descriptions; }
+
 public:
 
     using Cartridge::Cartridge;

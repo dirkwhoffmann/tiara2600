@@ -777,15 +777,15 @@ struct AtariAPI : public API {
 
     /** @brief  Attaches a cartridge to the expansion port.
      */
-    void attachCartridge(const std::filesystem::path &path, bool reset = true);
+    void attachCart(const std::filesystem::path &path, bool reset = true);
 
     /** @brief  Attaches a cartridge to the expansion port.
      */
-    void attachCartridge(const MediaFile &file, bool reset = true);
+    void attachCart(const MediaFile &file, bool reset = true);
 
     /** @brief  Removes the current cartridge
      */
-    void detachCartridge();
+    void detachCart();
 
     /** @brief  Changes the cartridge type
      */
@@ -1093,12 +1093,6 @@ public:
      *  an additional parameter to uniquely determine the configured component.
      */
     i64 get(Option option, long id) const;
-
-    /** Configures the emulator to match a specific C64 model
-     *
-     *  @param model    The C64 model to emulate
-     */
-    void set(C64Model model);
 
     /** @brief  Configures a component.
      *

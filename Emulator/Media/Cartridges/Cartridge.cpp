@@ -41,11 +41,8 @@ Cartridge::makeWithType(Atari &c64, CartridgeType type)
 
     switch (type) {
 
-        case CART_NONE:          cart = std::make_unique<Cartridge>(c64); break;
-        case CART_4K:            cart = std::make_unique<StdCartridge>(c64); break;
-
-        default:
-            throw Error(VC64ERROR_CRT_UNSUPPORTED, std::to_string(type));
+        case CART_4K:           cart = std::make_unique<StdCartridge>(c64); break;
+        default:                cart = std::make_unique<Cartridge>(c64); break;
     }
 
     cart->init();

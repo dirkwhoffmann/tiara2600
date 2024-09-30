@@ -1046,6 +1046,8 @@ Atari::setCartType(CartridgeType newType)
 
         // Replace the existing cartridge
         cart = std::move(newCart);
+
+        printf("New cart type assigned\n");
     }
 }
 

@@ -375,7 +375,7 @@ class Configuration {
 
             if url != nil {
                 if let file = try? MediaFileProxy.make(with: url!) {
-                    if file.type == type { emu?.loadRom(file) }
+                    if file.type == type { emu?.attachCart(file) }
                 }
             }
         }

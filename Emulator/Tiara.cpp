@@ -290,13 +290,6 @@ Tiara::get(Option option, long id) const
 }
 
 void
-Tiara::set(C64Model model)
-{
-    emu->set(model);
-    emu->markAsDirty();
-}
-
-void
 Tiara::set(Option opt, i64 value) throws
 {
     emu->check(opt, value);
@@ -393,21 +386,21 @@ AtariAPI::loadSnapshot(const MediaFile &snapshot)
 }
 
 void
-AtariAPI::attachCartridge(const std::filesystem::path &path, bool reset)
+AtariAPI::attachCart(const std::filesystem::path &path, bool reset)
 {
     c64->attachCartridge(path);
     emu->markAsDirty();
 }
 
 void
-AtariAPI::attachCartridge(const MediaFile &c, bool reset)
+AtariAPI::attachCart(const MediaFile &c, bool reset)
 {
     c64->attachCartridge(c);
     emu->markAsDirty();
 }
 
 void
-AtariAPI::detachCartridge()
+AtariAPI::detachCart()
 {
     c64->detachCartridge();
     emu->markAsDirty();

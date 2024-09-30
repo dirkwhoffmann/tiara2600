@@ -361,14 +361,12 @@ DebugConsole::initCommands(Command &root)
         dump(tia, { Category::Config, Category::State });
     });
 
-    /*
-    cmd = expansionPort.shellName();
-    description = expansionPort.description();
+    cmd = c64.cart->shellName();
+    description = c64.cart->description();
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
 
-        dump(expansionPort, { Category::Config, Category::State });
+        dump(*c64.cart, { Category::Config, Category::State });
     });
-    */
 
     Command::currentGroup = "Peripherals";
 

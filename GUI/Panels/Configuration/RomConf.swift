@@ -24,6 +24,12 @@ extension ConfigurationController {
 
     func refreshRomTab() {
 
+        func validCartType(type: tiara.CartridgeType) -> Bool {
+
+            return type.rawValue >= tiara.CartridgeType._0840.rawValue &&
+            type.rawValue <= tiara.CartridgeType._X07.rawValue
+        }
+
         if let emu = emu {
 
             let traits = emu.atari.romTraits
@@ -58,6 +64,15 @@ extension ConfigurationController {
                 cartModel.stringValue = ""
                 cartCartType.stringValue = ""
             }
+
+            // PopUps
+            cartCartType.isHidden = !hasCart
+            if validCartType(type: traits.cartType) {
+                cartCartType.selectItem(withTag: traits.cartType.rawValue)
+                cartCartType.isEnabled = true
+            } else {
+                cartCartType.isEnabled = false
+            }
         }
     }
 
@@ -67,6 +82,14 @@ extension ConfigurationController {
 
     @IBAction func cartDeleteAction(_ sender: Any!) {
 
+        emu?.detachCart()
+        refresh()
+    }
+
+    @IBAction func cartSetTypeAction(_ sender: NSPopUpButton!) {
+
+        emu?.setCartType(tiara.CartridgeType(rawValue: sender.selectedTag())!)
+        refresh()
     }
 
     @IBAction func romDefaultsAction(_ sender: NSButton!) {
