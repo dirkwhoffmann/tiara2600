@@ -18,9 +18,9 @@ class ConfigurationController: DialogController {
     //
 
     @IBOutlet weak var cartDropView: RomDropView!
-    @IBOutlet weak var cartTitle: NSTextField!
-    @IBOutlet weak var cartSubtitle: NSTextField!
-    @IBOutlet weak var cartSubsubtitle: NSTextField!
+    @IBOutlet weak var cartName: NSTextField!
+    @IBOutlet weak var cartManufacturer: NSTextField!
+    @IBOutlet weak var cartHash: NSTextField!
     @IBOutlet weak var cartDeleteButton: NSButton!
 
     @IBOutlet weak var romInstallButton: NSButton!

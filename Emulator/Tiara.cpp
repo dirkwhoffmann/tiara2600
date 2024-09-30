@@ -374,9 +374,9 @@ C64API::getCachedInfo() const
 }
 
 RomTraits
-C64API::getRomTraits(RomType type) const
+C64API::getRomTraits() const
 {
-    return c64->getRomTraits(type);
+    return c64->cartridge->traits;
 }
 
 MediaFile *

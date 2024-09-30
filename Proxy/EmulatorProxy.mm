@@ -836,29 +836,9 @@ using namespace tiara;
     return [self c64]->getCachedInfo().slotInfo[slot];
 }
 
-- (RomTraits)getRomTraits:(RomType)type
+- (RomTraits)romTraits
 {
-    return [self c64]->getRomTraits(type);
-}
-
-- (RomTraits)basicRom
-{
-    return [self getRomTraits:ROM_TYPE_BASIC];
-}
-
-- (RomTraits)charRom
-{
-    return [self getRomTraits:ROM_TYPE_CHAR];
-}
-
-- (RomTraits)kernalRom
-{
-    return [self getRomTraits:ROM_TYPE_KERNAL];
-}
-
-- (RomTraits)vc1541Rom
-{
-    return [self getRomTraits:ROM_TYPE_VC1541];
+    return [self c64]->getRomTraits();
 }
 
 - (void)hardReset

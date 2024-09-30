@@ -66,6 +66,7 @@ public:
 
     RomTraits traits() const;
 
+    CartridgeType cartridgeType() const;
 };
 
 }

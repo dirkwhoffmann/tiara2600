@@ -16,37 +16,18 @@
 
 namespace tiara {
 
-/*
-class SimonsBasic final : public Cartridge {
-
-    CartridgeTraits traits = {
-
-        .type       = CRT_SIMONS_BASIC,
-        .title      = "Simons Basic",
-    };
-
-    virtual const CartridgeTraits &getCartridgeTraits() const override { return traits; }
+class StdCartridge final : public Cartridge {
 
 public:
 
     using Cartridge::Cartridge;
 
+    virtual CartridgeType getCartridgeType() const override { return CRT_NORMAL; }
+
 private:
 
-    void _didReset(bool hard) override;
+    // void _didReset(bool hard) override;
 
-
-    //
-    // Accessing cartridge memory
-    //
-
-public:
-
-    u8 peekIO1(u16 addr) override;
-    u8 spypeekIO1(u16 addr) const override;
-    void pokeIO1(u16 addr, u8 value) override;
 };
-
-*/
 
 }

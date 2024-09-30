@@ -34,15 +34,7 @@ class Cartridge : public SubComponent, public Inspectable<CartridgeInfo> {
 
 public:
 
-    virtual const CartridgeTraits &getCartridgeTraits() const {
-
-        static CartridgeTraits traits = {
-
-            .type       = CRT_NORMAL,
-        };
-
-        return traits;
-    }
+    RomTraits traits{};
 
 
     //
@@ -64,8 +56,8 @@ public:
     static bool isSupportedType(CartridgeType type);
 
     // Factory methods
-    static Cartridge *makeWithType(Atari &c64, CartridgeType type) throws;
-    static Cartridge *makeWithFile(Atari &c64, const RomFile &file) throws;
+    static std::unique_ptr<Cartridge> makeWithType(Atari &c64, CartridgeType type) throws;
+    static std::unique_ptr<Cartridge> makeWithFile(Atari &c64, const RomFile &file) throws;
 
 
     //
@@ -164,10 +156,10 @@ public:
 public:
 
     // Returns the cartridge type
-    virtual CartridgeType getCartridgeType() const { return getCartridgeTraits().type; }
+    virtual CartridgeType getCartridgeType() const { return CRT_NONE; }
 
     // Checks whether this cartridge is supported by the emulator yet
-    bool isSupported() const { return isSupportedType(getCartridgeType()); }
+    // bool isSupported() const { return isSupportedType(getCartridgeType()); }
 
 
     //

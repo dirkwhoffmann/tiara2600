@@ -12,5 +12,4 @@
 
 #pragma once
 
-#include "Cartridge.h"
-#include "SimonsBasic.h"
+#include "StdCartridge.h"

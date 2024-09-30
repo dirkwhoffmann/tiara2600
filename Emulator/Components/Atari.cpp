@@ -1026,15 +1026,9 @@ Atari::attachCartridge(const MediaFile &file)
 
     try {
 
-        const RomFile &romFile = dynamic_cast<const RomFile &>(file);
-
-        auto traits = romFile.traits();
-
-        printf("MD5 = %s\n", traits.md5.c_str());
-        printf("Name = %s\n", traits.name);
-
-        // auto cart = Cartridge::makeWithFile(*this, romFile);
-
+        const auto &romFile = dynamic_cast<const RomFile &>(file);
+        auto newCartridge = Cartridge::makeWithFile(*this, romFile);
+        cartridge = std::move(newCartridge);
 
     } catch (...) {
 

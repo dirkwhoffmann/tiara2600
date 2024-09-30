@@ -222,7 +222,7 @@ using namespace tiara;
 
 
 //
-// C64
+// Atari
 //
 
 @interface C64Proxy : SubComponentProxy { }
@@ -231,12 +231,7 @@ using namespace tiara;
 @property (readonly) AtariInfo cachedInfo;
 - (EventSlotInfo)cachedSlotInfo:(NSInteger)slot;
 @property NSInteger autoInspectionMask;
-
-- (RomTraits)getRomTraits:(RomType)type;
-@property (readonly) RomTraits basicRom;
-@property (readonly) RomTraits charRom;
-@property (readonly) RomTraits kernalRom;
-@property (readonly) RomTraits vc1541Rom;
+@property (readonly) RomTraits romTraits;
 
 - (void)hardReset;
 - (void)softReset;

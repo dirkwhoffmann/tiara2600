@@ -703,11 +703,9 @@ struct C64API : public API {
     const AtariInfo &getInfo() const;
     const AtariInfo &getCachedInfo() const;
 
-    /** @brief  Returns information about one of the installed Roms
-     *
-     *  @param  type    The ROM type
+    /** @brief  Returns information about the plugged in cartridge
      */
-    RomTraits getRomTraits(RomType type) const;
+    RomTraits getRomTraits() const;
 
     /// @}
     /// @name Resetting the C64

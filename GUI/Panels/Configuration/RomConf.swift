@@ -11,8 +11,13 @@ extension ConfigurationController {
 
     func refreshRomTab() {
 
-        // if let emu = emu {
-        if emu != nil {
+        if let emu = emu {
+
+            let traits = emu.c64.romTraits
+            let name = traits.name != nil ? String(cString: traits.name) : ""
+            let manufacturer = traits.manufacturer != nil ? String(cString: traits.manufacturer) : ""
+
+            let hasCart = name != ""
 
             /*
             let basicRom = emu.c64.basicRom
@@ -29,15 +34,15 @@ extension ConfigurationController {
             */
 
             let romMissing = NSImage(named: "rom_missing")
+            let romStandard = NSImage(named: "rom_original")
             /*
-            let romOrig    = NSImage(named: "rom_original")
             let romMega    = NSImage(named: "rom_mega65")
             let romPatched = NSImage(named: "rom_patched")
             let romUnknown = NSImage(named: "rom_unknown")
             */
 
             // Icons
-            cartDropView.image = romMissing
+            cartDropView.image = hasCart ? romStandard : romMissing
 
             /*
             kernalDropView.image =
@@ -45,8 +50,22 @@ extension ConfigurationController {
             hasCommodoreKernal ? romOrig :
             hasPatchedKernal   ? romPatched :
             hasKernal          ? romUnknown : romMissing
+            */
+
+            if hasCart {
+
+                cartName.stringValue = name
+                cartManufacturer.stringValue = manufacturer
+
+            } else {
+
+                cartName.stringValue = "No cartridge"
+                cartManufacturer.stringValue = "Use drag and drop to attach a cartridge"
+                cartHash.stringValue = ""
+            }
 
             // Titles and subtitles
+            /*
             basicTitle.stringValue = hasBasic ? String(cString: basicRom.title) : "Basic Rom"
             basicSubtitle.stringValue = hasBasic ? String(cString: basicRom.subtitle) : "Required"
             basicSubsubtitle.stringValue = String(cString: basicRom.revision)

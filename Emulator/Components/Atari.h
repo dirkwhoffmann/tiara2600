@@ -31,8 +31,7 @@
 #include "Monitor.h"
 
 // Cartridges
-#include "Cartridge.h"
-#include "CustomCartridges.h"
+#include "Cartridges.h"
 
 // Media files
 #include "Snapshot.h"

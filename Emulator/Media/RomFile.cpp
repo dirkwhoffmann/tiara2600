@@ -55,13 +55,11 @@ RomFile::traits() const
 {
     auto md5 = data.md5();
 
-    // Crawl through the database
-    for (auto &traits : roms) if (traits.md5 == md5) return traits;
+    RomTraits result {
 
-    return RomTraits {
-        
         .md5            = md5,
         .name           = "Unknown Cartridge",
+        /*
         .manufacturer   = "",
         .type           = "",
         .model          = "",
@@ -69,7 +67,33 @@ RomFile::traits() const
         .note           = "",
         .left           = "",
         .right          = ""
+        */
     };
+
+    // Crawl through the database
+    for (auto &traits : roms) if (traits.md5 == md5) { result = traits; break; }
+
+    // Replace null pointers by empty strings
+    if (!result.name) result.name = "";
+    if (!result.manufacturer) result.manufacturer = "";
+    if (!result.type) result.type = "";
+    if (!result.model) result.model = "";
+    if (!result.format) result.format = "";
+    if (!result.note) result.note = "";
+    if (!result.left) result.left = "";
+    if (!result.right) result.right = "";
+
+    return result;
+}
+
+CartridgeType
+RomFile::cartridgeType() const
+{
+    auto type = traits().type;
+
+    if (type == "") return CRT_NORMAL;
+
+    return CRT_NONE;
 }
 
 }

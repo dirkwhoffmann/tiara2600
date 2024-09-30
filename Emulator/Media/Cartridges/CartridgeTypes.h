@@ -24,7 +24,7 @@ namespace tiara {
 enum_long(CRT_TYPE)
 {
     CRT_NONE,
-    CRT_NORMAL,
+    CRT_NORMAL
 };
 typedef CRT_TYPE CartridgeType;
 
