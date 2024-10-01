@@ -29,11 +29,13 @@ Thumbnail::makeWithC64(const Atari &c64, isize dx, isize dy)
 void
 Thumbnail::take(const Atari &c64, isize dx, isize dy)
 {
-    isize xStart = PAL::FIRST_VISIBLE_PIXEL;
-    isize yStart = PAL::FIRST_VISIBLE_LINE;
+    auto &traits = c64.tia.getTraits();
 
-    width = i32(PAL::VISIBLE_PIXELS / dx);
-    height = 312 / dy; // TODO: FIXME i32(c64.vic.numVisibleLines() / dy);
+    isize xStart = traits.hblankWidth;
+    isize yStart = traits.vblankHeight;
+    
+    width = i32(traits.visibleWidth / dx);
+    height = i32(traits.visibleHeight / dy);
 
     u32 *target = screen;
     u32 *source = (u32 *)c64.videoPort.getTexture();

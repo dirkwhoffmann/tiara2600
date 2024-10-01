@@ -58,9 +58,10 @@ typedef struct
     // Video standard
     TIARevision revision;
 
-    // Frame refresh rate
+    // Clock frequency and frame refresh rate
+    isize cpuFrequency;
     isize fps;
-    
+
     // Total canvas size (including unvisible areas)
     isize width;
     isize height;

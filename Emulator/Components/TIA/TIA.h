@@ -32,18 +32,45 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
         }
     };
 
-    static constexpr TIATraits traits[1] = {
+    static constexpr TIATraits traits[3] = {
         {
             .revision       = TIA_NTSC,
-            .fps            = 60,
 
-            .width          = 228,
-            .height         = 312,
-            .hblankWidth    = 68,
-            .vblankHeight   = 40,
+            .cpuFrequency   = NTSC::CPU_CLOCK_FREQUENCY,
+            .fps            = NTSC::FPS,
 
-            .visibleWidth   = 160,
-            .visibleHeight  = 192
+            .width          = NTSC::WIDTH,
+            .height         = NTSC::HEIGHT,
+            .hblankWidth    = NTSC::FIRST_VISIBLE_PIXEL,
+            .vblankHeight   = NTSC::FIRST_VISIBLE_LINE,
+            .visibleWidth   = NTSC::VISIBLE_WIDTH,
+            .visibleHeight  = NTSC::VISIBLE_HEIGHT
+        },
+        {
+            .revision       = TIA_PAL,
+
+            .cpuFrequency   = PAL::CPU_CLOCK_FREQUENCY,
+            .fps            = PAL::FPS,
+
+            .width          = PAL::WIDTH,
+            .height         = PAL::HEIGHT,
+            .hblankWidth    = PAL::FIRST_VISIBLE_PIXEL,
+            .vblankHeight   = PAL::FIRST_VISIBLE_LINE,
+            .visibleWidth   = PAL::VISIBLE_WIDTH,
+            .visibleHeight  = PAL::VISIBLE_HEIGHT
+        },
+        {
+            .revision       = TIA_SECAM,
+
+            .cpuFrequency   = PAL::CPU_CLOCK_FREQUENCY,
+            .fps            = PAL::FPS,
+
+            .width          = PAL::WIDTH,
+            .height         = PAL::HEIGHT,
+            .hblankWidth    = PAL::FIRST_VISIBLE_PIXEL,
+            .vblankHeight   = PAL::FIRST_VISIBLE_LINE,
+            .visibleWidth   = PAL::VISIBLE_WIDTH,
+            .visibleHeight  = PAL::VISIBLE_HEIGHT
         }
     };
 
@@ -198,8 +225,11 @@ public:
 public:
 
     // Returns properties about the currently selected TIA chip
-    const TIATraits &getTraits() const { assert(config.revision == 0); return traits[config.revision]; }
+    const TIATraits &getTraits() const { return traits[config.revision]; }
 
+    // Returns the number of cycles per frame
+    isize tiaCyclesPerFrame() const { return traits[config.revision].height * TIA_CYCLES_PER_LINE; }
+    isize cpuCyclesPerFrame() const { return traits[config.revision].height * CPU_CYCLES_PER_LINE; }
 
     //
     // Managing colors

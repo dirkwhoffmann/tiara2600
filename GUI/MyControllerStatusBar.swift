@@ -123,7 +123,7 @@ extension MyController {
 
             case 0:
                 let mhz = speedometer.mhz
-                activityBar.maxValue = 20
+                activityBar.maxValue = 24
                 activityBar.doubleValue = 10 * mhz
                 activityInfo.stringValue = String(format: "%.2f MHz", mhz)
                 setColor(color: [.systemRed, .systemYellow, .systemGreen, .systemYellow, .systemRed])

@@ -245,13 +245,13 @@ Atari::operator << (SerResetter &worker)
 double
 Atari::nativeRefreshRate() const
 {
-    return 60; // tia.getFps();
+    return tia.getTraits().fps;
 }
 
 i64
 Atari::nativeClockFrequency() const
 {
-    return 1000000; // tia.getFrequency();
+    return tia.getTraits().cpuFrequency;
 }
 
 double
@@ -694,8 +694,9 @@ Atari::cacheInfo(AtariInfo &result) const
         result.vpos = scanline;
         result.hpos = rasterCycle;
 
-        auto cyclesPerLine = 76; // TODO: Get from Traits
-        auto cyclesPerFrame = 76 * 312; // TODO: Get from Traits
+        // auto &traits = tia.getTraits();
+        auto cyclesPerLine = CPU_CYCLES_PER_LINE;
+        auto cyclesPerFrame = tia.cpuCyclesPerFrame();
 
         for (isize i = 0; i < SLOT_COUNT; i++) {
 
@@ -707,7 +708,6 @@ Atari::cacheInfo(AtariInfo &result) const
             result.slotInfo[i].triggerRel = cycle - cpu.clock;
 
             // Compute clock at pos (0,0)
-            // auto clock00 = cpu.clock - vic.getCyclesPerLine() * scanline - rasterCycle;
             auto clock00 = cpu.clock - cyclesPerLine * scanline - rasterCycle;
 
             // Compute the number of elapsed cycles since then
@@ -892,7 +892,7 @@ Atari::processINSEvent()
     if (mask & 1LL << TIAClass)             { tia.record(); }
 
     // Reschedule the event
-    rescheduleRel<SLOT_INS>(Cycle(inspectionInterval * PAL::CYCLES_PER_SECOND));
+    rescheduleRel<SLOT_INS>(Cycle(inspectionInterval * PAL::CPU_CYCLES_PER_SEC));
 }
 
 void

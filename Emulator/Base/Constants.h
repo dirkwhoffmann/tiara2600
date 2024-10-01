@@ -19,27 +19,57 @@
  */
 namespace tiara {
 
-/** PAL related constants
- */
+static const long TIA_CYCLES_PER_LINE   = 228;
+static const long CPU_CYCLES_PER_LINE   = 76;
+
+static const long FIRST_VISIBLE_PIXEL   = 68;
+static const long FIRST_VISIBLE_LINE    = 40;
+static const long VISIBLE_WIDTH         = 160;
+
+namespace NTSC {
+
+static const long FPS                   = 50;
+
+static const long TIA_CLOCK_FREQUENCY   = 3579545;   ///< Color clock frequency in Hz
+static const long TIA_CYCLES_PER_SEC    = TIA_CLOCK_FREQUENCY;
+
+static const long CPU_CLOCK_FREQUENCY   = 1193182;   ///< Color clock divided by three
+static const long CPU_CYCLES_PER_SEC    = CPU_CLOCK_FREQUENCY;
+
+static const long TIA_CYCLES_PER_LINE   = tiara::TIA_CYCLES_PER_LINE;
+static const long CPU_CYCLES_PER_LINE   = tiara::CPU_CYCLES_PER_LINE;
+
+static const long WIDTH                 = tiara::TIA_CYCLES_PER_LINE;
+static const long HEIGHT                = 262;
+static const long FIRST_VISIBLE_PIXEL   = tiara::FIRST_VISIBLE_PIXEL;
+static const long FIRST_VISIBLE_LINE    = tiara::FIRST_VISIBLE_LINE;
+static const long VISIBLE_WIDTH         = tiara::VISIBLE_WIDTH;
+static const long VISIBLE_HEIGHT        = 192;
+
+}
 namespace PAL {
 
-// Clock frequencies
-static const long CLOCK_FREQUENCY       = 985249;   ///< Clock frequency in Hz
-static const long CYCLES_PER_SECOND     = CLOCK_FREQUENCY;  ///< CPU cycles per seconds
+static const long FPS                   = 60;
 
-// Aspect ratios
-static const double ASPECT_RATIO        = 0.9365;   ///< Pixel aspect ratio
+static const long TIA_CLOCK_FREQUENCY   = 3546894;   ///< Color clock frequency in Hz
+static const long TIA_CYCLES_PER_SEC    = TIA_CLOCK_FREQUENCY;
 
-// Horizontal parameters (measured in cycles)
-static const long HBLANK_CYCLES_LEFT    = 13;       ///< Left HBLANK width in cycles
-static const long BORDER_CYCLES_LEFT    = 4;        ///< Left border width in cycles
-static const long CANVAS_CYCLES         = 40;       ///< Main canvas width in cycles
-static const long BORDER_CYCLES_RIGHT   = 4;        ///< Right border width in cycles
-static const long HBLANK_CYCLES_RIGHT   = 2;        ///< Right HBLANK width in cycles
+static const long CPU_CLOCK_FREQUENCY   = 1182298;   ///< Color clock divided by three
+static const long CPU_CYCLES_PER_SEC    = CPU_CLOCK_FREQUENCY;
 
-// Derived values
-static const long PAL_CYCLES_PER_LINE   = 63;       ///< 13 + 4 + 40 + 4 + 2
+static const long TIA_CYCLES_PER_LINE   = tiara::TIA_CYCLES_PER_LINE;
+static const long CPU_CYCLES_PER_LINE   = tiara::CPU_CYCLES_PER_LINE;
 
+static const long WIDTH                 = tiara::TIA_CYCLES_PER_LINE;
+static const long HEIGHT                = 312;
+static const long FIRST_VISIBLE_PIXEL   = tiara::FIRST_VISIBLE_PIXEL;
+static const long FIRST_VISIBLE_LINE    = tiara::FIRST_VISIBLE_LINE;
+static const long VISIBLE_WIDTH         = tiara::VISIBLE_WIDTH;
+static const long VISIBLE_HEIGHT        = 228;
+
+}
+
+/*
 // Horizontal parameters (measured in pixels)
 static const long HBLANK_PIXELS_LEFT    = 104;      ///< Left HBLANK width in pixels
 static const long BORDER_PIXELS_LEFT    = 32;       ///< Left border width in pixels
@@ -55,11 +85,12 @@ static const long PIXELS_PER_LINE       = 504;      ///< 104 + 32 + 320 + 32 + 1
 
 // Vertical parameters
 static const long FIRST_VISIBLE_LINE    = 16;       ///< First line after VBLANK
+*/
 
-}
 
 /** NTSC related constants
  */
+/*
 namespace NTSC {
 
 // Clock frequency in Hz
@@ -96,6 +127,7 @@ static const long PIXELS_PER_LINE       = 520;      ///< 104 + 32 + 320 + 32 + 3
 static const long FIRST_VISIBLE_LINE    = 16;       ///< First line after VBLANK
 
 }
+*/
 
 /** Emulator texture parameters
  */
