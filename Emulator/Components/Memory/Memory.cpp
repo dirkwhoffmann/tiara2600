@@ -128,6 +128,7 @@ Memory::peek(u16 addr, MemoryType source)
     }
 }
 
+/*
 u8
 Memory::peekStack(u8 sp)
 {
@@ -135,6 +136,7 @@ Memory::peekStack(u8 sp)
 
     return ram[sp & 0x7F];
 }
+*/
 
 u8
 Memory::spypeek(u16 addr, MemoryType source) const

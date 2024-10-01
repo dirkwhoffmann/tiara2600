@@ -44,9 +44,9 @@ DebugConsole::getPrompt()
     std::stringstream ss;
 
     ss << "(";
-    ss << std::right << std::setw(0) << std::dec << isize(c64.scanline);
+    ss << std::right << std::setw(0) << std::dec << isize(c64.tia.getY());
     ss << ",";
-    ss << std::right << std::setw(0) << std::dec << isize(c64.rasterCycle);
+    ss << std::right << std::setw(0) << std::dec << isize(c64.tia.getX());
     ss << ") $";
     ss << std::right << std::setw(4) << std::hex << isize(cpu.getPC0());
     ss << ": ";

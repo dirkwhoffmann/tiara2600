@@ -82,23 +82,19 @@ enum_long(DEBUG_FLAG)
     FLAG_SRV_DEBUG,         ///< Debug the remote servers
 
     //! Forced error condition
-    FLAG_FORCE_ROM_MISSING,
-    FLAG_FORCE_MEGA64_MISMATCH,
     FLAG_FORCE_SNAP_TOO_OLD,
     FLAG_FORCE_SNAP_TOO_NEW,
     FLAG_FORCE_SNAP_IS_BETA,
     FLAG_FORCE_SNAP_CORRUPTED,
     FLAG_FORCE_CRT_UNKNOWN,
     FLAG_FORCE_CRT_UNSUPPORTED,
-    FLAG_FORCE_RECORDING_ERROR,
-    FLAG_FORCE_NO_FFMPEG
 };
 typedef DEBUG_FLAG DebugFlag;
 
 struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
 {
     static constexpr long minVal = 0;
-    static constexpr long maxVal = FLAG_FORCE_NO_FFMPEG;
+    static constexpr long maxVal = FLAG_FORCE_CRT_UNSUPPORTED;
 
     static const char *prefix() { return "FLAG"; }
     static const char *_key(long value)
@@ -161,16 +157,12 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
             case FLAG_SRV_DEBUG:                return "SRV_DEBUG";
 
                 // Forced error conditions
-            case FLAG_FORCE_ROM_MISSING:        return "FORCE_ROM_MISSING";
-            case FLAG_FORCE_MEGA64_MISMATCH:    return "FORCE_MEGA64_MISMATCH";
             case FLAG_FORCE_SNAP_TOO_OLD:       return "FORCE_SNAP_TOO_OLD";
             case FLAG_FORCE_SNAP_TOO_NEW:       return "FORCE_SNAP_TOO_NEW";
             case FLAG_FORCE_SNAP_IS_BETA:       return "FORCE_SNAP_IS_BETA";
             case FLAG_FORCE_SNAP_CORRUPTED:     return "FORCE_SNAP_CORRUPTE";
             case FLAG_FORCE_CRT_UNKNOWN:        return "FORCE_CRT_UNKNOWN";
             case FLAG_FORCE_CRT_UNSUPPORTED:    return "FORCE_CRT_UNSUPPORTED";
-            case FLAG_FORCE_RECORDING_ERROR:    return "FORCE_RECORDING_ERROR";
-            case FLAG_FORCE_NO_FFMPEG:          return "FORCE_NO_FFMPEG";
         }
         return "???";
     }
@@ -235,16 +227,12 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
             case FLAG_SRV_DEBUG:                return "Remote servers";
 
                 // Forced error conditions
-            case FLAG_FORCE_ROM_MISSING:        return "";
-            case FLAG_FORCE_MEGA64_MISMATCH:    return "";
             case FLAG_FORCE_SNAP_TOO_OLD:       return "";
             case FLAG_FORCE_SNAP_TOO_NEW:       return "";
             case FLAG_FORCE_SNAP_IS_BETA:       return "";
             case FLAG_FORCE_SNAP_CORRUPTED:     return "";
             case FLAG_FORCE_CRT_UNKNOWN:        return "";
             case FLAG_FORCE_CRT_UNSUPPORTED:    return "";
-            case FLAG_FORCE_RECORDING_ERROR:    return "";
-            case FLAG_FORCE_NO_FFMPEG:          return "";
         }
         return "???";
     }

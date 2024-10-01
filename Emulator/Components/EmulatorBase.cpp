@@ -43,7 +43,7 @@ Emulator::_dump(Category category, std::ostream& os) const
         os << tab("Frame");
         os << dec(main.frame) << std::endl;
         os << tab("Beam");
-        os << "(" << dec(main.scanline) << "," << dec(main.rasterCycle) << ")" << std::endl;
+        os << "(" << dec(main.tia.getY()) << "," << dec(main.tia.getX()) << ")" << std::endl;
         os << tab("Cycle");
         os << dec(main.cpu.clock) << std::endl << std::endl;
 
@@ -54,7 +54,7 @@ Emulator::_dump(Category category, std::ostream& os) const
         os << tab("Frame");
         os << dec(ahead.frame) << std::endl;
         os << tab("Beam");
-        os << " (" << dec(ahead.scanline) << "," << dec(ahead.rasterCycle) << ")" << std::endl;
+        os << " (" << dec(ahead.tia.getY()) << "," << dec(ahead.tia.getX()) << ")" << std::endl;
         os << tab("Cycle");
         os << dec(ahead.cpu.clock) << std::endl;
     }

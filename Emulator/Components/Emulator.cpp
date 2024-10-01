@@ -367,16 +367,12 @@ Emulator::getDebugVariable(DebugFlag flag)
         case FLAG_SCK_DEBUG:        return SCK_DEBUG;
         case FLAG_SRV_DEBUG:        return SRV_DEBUG;
 
-        case FLAG_FORCE_ROM_MISSING:        return FORCE_ROM_MISSING;
-        case FLAG_FORCE_MEGA64_MISMATCH:    return FORCE_MEGA64_MISMATCH;
         case FLAG_FORCE_SNAP_TOO_OLD:       return FORCE_SNAP_TOO_OLD;
         case FLAG_FORCE_SNAP_TOO_NEW:       return FORCE_SNAP_TOO_NEW;
         case FLAG_FORCE_SNAP_IS_BETA:       return FORCE_SNAP_IS_BETA;
         case FLAG_FORCE_SNAP_CORRUPTED:     return FORCE_SNAP_CORRUPTED;
         case FLAG_FORCE_CRT_UNKNOWN:        return FORCE_CRT_UNKNOWN;
         case FLAG_FORCE_CRT_UNSUPPORTED:    return FORCE_CRT_UNSUPPORTED;
-        case FLAG_FORCE_RECORDING_ERROR:    return FORCE_RECORDING_ERROR;
-        case FLAG_FORCE_NO_FFMPEG:          return FORCE_NO_FFMPEG;
 
         default:
             throw Error(VC64ERROR_OPT_UNSUPPORTED,
@@ -442,16 +438,12 @@ Emulator::setDebugVariable(DebugFlag flag, bool val)
         case FLAG_SCK_DEBUG:        SCK_DEBUG       = val; break;
         case FLAG_SRV_DEBUG:        SRV_DEBUG       = val; break;
 
-        case FLAG_FORCE_ROM_MISSING:        FORCE_ROM_MISSING = val; break;
-        case FLAG_FORCE_MEGA64_MISMATCH:    FORCE_MEGA64_MISMATCH = val; break;
         case FLAG_FORCE_SNAP_TOO_OLD:       FORCE_SNAP_TOO_OLD = val; break;
         case FLAG_FORCE_SNAP_TOO_NEW:       FORCE_SNAP_TOO_NEW = val; break;
         case FLAG_FORCE_SNAP_IS_BETA:       FORCE_SNAP_IS_BETA = val; break;
         case FLAG_FORCE_SNAP_CORRUPTED:     FORCE_SNAP_CORRUPTED = val; break;
         case FLAG_FORCE_CRT_UNKNOWN:        FORCE_CRT_UNKNOWN = val; break;
         case FLAG_FORCE_CRT_UNSUPPORTED:    FORCE_CRT_UNSUPPORTED = val; break;
-        case FLAG_FORCE_RECORDING_ERROR:    FORCE_RECORDING_ERROR = val; break;
-        case FLAG_FORCE_NO_FFMPEG:          FORCE_NO_FFMPEG = val; break;
 
         default:
             throw Error(VC64ERROR_OPT_UNSUPPORTED,

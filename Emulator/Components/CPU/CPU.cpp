@@ -272,37 +272,19 @@ CPU::setEnableAllWatchpoints(bool value)
 u8
 CPU::read(u16 addr)
 {
-    switch (id) {
-
-        case 0: return mem.peek(addr);
-
-        default:
-            fatalError;
-    }
+    return mem.peek(addr);
 }
 
 void
 CPU::write(u16 addr, u8 val)
 {
-    switch (id) {
-
-        case 0: mem.poke(addr, val); break;
-
-        default:
-            fatalError;
-    }
+    mem.poke(addr, val);
 }
 
 u8
 CPU::readDasm(u16 addr) const
 {
-    switch (id) {
-
-        case 0: return mem.spypeek(addr);
-
-        default:
-            fatalError;
-    }
+    return mem.spypeek(addr);
 }
 
 u16

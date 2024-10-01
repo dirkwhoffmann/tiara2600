@@ -183,7 +183,7 @@ Atari::prefix(isize level, const char *component, isize line) const
 
         if (level >= 3) {
 
-            fprintf(stderr, "[%lld] (%3d,%3d) ", frame, scanline, rasterCycle);
+            fprintf(stderr, "[%lld] (%3ld,%3ld) ", frame, tia.getY(), tia.getX());
         }
         if (level >= 4) {
 
@@ -239,7 +239,6 @@ Atari::operator << (SerResetter &worker)
     scheduleNextSNPEvent();
 
     flags = 0;
-    rasterCycle = 1;
 }
 
 double
@@ -685,8 +684,8 @@ Atari::cacheInfo(AtariInfo &result) const
 
         result.cpuProgress = cpu.clock;
         result.frame = frame;
-        result.vpos = scanline;
-        result.hpos = rasterCycle;
+        // result.vpos = scanline;
+        // result.hpos = rasterCycle;
 
         // auto &traits = tia.getTraits();
         auto cyclesPerLine = CPU_CYCLES_PER_LINE;
@@ -702,7 +701,7 @@ Atari::cacheInfo(AtariInfo &result) const
             result.slotInfo[i].triggerRel = cycle - cpu.clock;
 
             // Compute clock at pos (0,0)
-            auto clock00 = cpu.clock - cyclesPerLine * scanline - rasterCycle;
+            auto clock00 = cpu.clock - cyclesPerLine * tia.getY() - tia.getX();
 
             // Compute the number of elapsed cycles since then
             auto diff = cycle - clock00;

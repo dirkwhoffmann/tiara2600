@@ -185,6 +185,20 @@ private:
 
 
     //
+    // Buses
+    //
+
+    // Address bus
+    u16 addrBus;
+
+    // Data bus
+    u8 dataBus;
+
+    /// Read/write line (0 = write)
+    bool rw;
+
+    
+    //
     // State
     //
 
@@ -194,19 +208,12 @@ public:
     u64 frame = 0;
 
     // The currently drawn scanline (first scanline = 0)
-    u16 scanline = 0;
+    [[deprecated]] u16 scanline = 0;
 
     // The currently executed scanline cycle (first cylce = 1)
-    u8 rasterCycle = 1;
+    [[deprecated]] u8 rasterCycle = 1;
 
 private:
-
-    /* Indicates whether C64 is running in ultimax mode. Ultimax mode can be
-     * enabled by external cartridges by pulling game line low and keeping
-     * exrom line high. In ultimax mode, most of the C64's RAM and ROM is
-     * invisible.
-     */
-    bool ultimax = false;
 
     /* Indicates if headless mode is activated. If yes, the pixel drawing code
      * is skipped. Headless mode is used to accelerate warp mode and to speed
@@ -288,9 +295,6 @@ public:
         CLONE_ARRAY(data)
         CLONE(nextTrigger)
         CLONE(frame)
-        CLONE(scanline)
-        CLONE(rasterCycle)
-        CLONE(ultimax)
 
         CLONE(durationOfOneCycle)
 
@@ -315,10 +319,7 @@ public:
         << eventid
         << data
         << nextTrigger
-        << frame
-        << scanline
-        << rasterCycle
-        << ultimax;
+        << frame;
 
         if (isResetter(worker)) return;
 
@@ -436,11 +437,6 @@ public: // private
     //
 
 public:
-
-
-    // Ultimax mode
-    bool getUltimax() const { return ultimax; }
-    void setUltimax(bool b) { ultimax = b; }
 
     // Headless mode
     bool getHeadless() const { return headless; }

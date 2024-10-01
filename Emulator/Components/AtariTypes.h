@@ -257,8 +257,8 @@ typedef struct
 {
     Cycle cpuProgress;
     i64 frame;
-    long vpos;
-    long hpos;
+    // long vpos;
+    // long hpos;
 
     // Events
     EventSlotInfo slotInfo[SLOT_COUNT];

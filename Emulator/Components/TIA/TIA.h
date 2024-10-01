@@ -231,9 +231,22 @@ public:
     isize tiaCyclesPerFrame() const { return traits[config.revision].height * TIA_CYCLES_PER_LINE; }
     isize cpuCyclesPerFrame() const { return traits[config.revision].height * CPU_CYCLES_PER_LINE; }
 
+
+    //
+    // Querying state
+    //
+
+public:
+
+    isize getX() const { return x; }
+    isize getY() const { return y; }
+
+
     //
     // Managing colors
     //
+
+public:
 
     void updatePalette();
 
@@ -242,6 +255,8 @@ public:
     // Working with textures
     //
 
+public:
+    
     // Returns pointers to the stable textures
     u32 *getTexture() const;
     u32 *getDmaTexture() const;

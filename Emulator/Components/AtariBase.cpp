@@ -93,10 +93,6 @@ Atari::_dump(Category category, std::ostream& os) const
         os << (str.empty() ? "-" : str) << std::endl;
         os << std::endl;
 
-        os << tab("Ultimax mode");
-        os << bol(getUltimax()) << std::endl;
-        os << std::endl;
-
         os << tab("Frame");
         os << dec(frame) << std::endl;
         os << tab("CPU progress");
