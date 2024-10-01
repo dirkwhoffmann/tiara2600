@@ -54,7 +54,6 @@ Memory::getOption(Option option) const
 
         case OPT_MEM_INIT_PATTERN:  return config.ramPattern;
         case OPT_MEM_HEATMAP:       return config.heatmap;
-        case OPT_MEM_SAVE_ROMS:     return config.saveRoms;
 
         default:
             fatalError;
@@ -74,7 +73,6 @@ Memory::checkOption(Option opt, i64 value)
             return;
 
         case OPT_MEM_HEATMAP:
-        case OPT_MEM_SAVE_ROMS:
 
             return;
 
@@ -98,11 +96,6 @@ Memory::setOption(Option opt, i64 value)
         case OPT_MEM_HEATMAP:
 
             config.heatmap = (bool)value;
-            return;
-
-        case OPT_MEM_SAVE_ROMS:
-
-            config.saveRoms = (bool)value;
             return;
 
         default:

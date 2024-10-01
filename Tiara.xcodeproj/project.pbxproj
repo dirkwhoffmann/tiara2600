@@ -1159,7 +1159,7 @@
 			path = TIA;
 			sourceTree = "<group>";
 		};
-		504C435224AF29AC00E69CAE /* CIA */ = {
+		504C435224AF29AC00E69CAE /* RIOT */ = {
 			isa = PBXGroup;
 			children = (
 				5078BEB2264D734600EDA161 /* CMakeLists.txt */,
@@ -1168,7 +1168,7 @@
 				50A1947D2BDA597A0046849E /* RIOTBase.cpp */,
 				504C435824AF29AC00E69CAE /* RIOT.cpp */,
 			);
-			path = CIA;
+			path = RIOT;
 			sourceTree = "<group>";
 		};
 		5051A1501B8842F100CBFB5A /* Sounds */ = {
@@ -1446,7 +1446,7 @@
 				506F30382B729CE80083EAEA /* Emulator.cpp */,
 				50ACF4DC256EB451003B5690 /* Ports */,
 				504C42E524AF29AB00E69CAE /* CPU */,
-				504C435224AF29AC00E69CAE /* CIA */,
+				504C435224AF29AC00E69CAE /* RIOT */,
 				504C430424AF29AB00E69CAE /* TIA */,
 				504C42E024AF29AB00E69CAE /* Memory */,
 			);

@@ -185,9 +185,9 @@ CommandConsole::initCommands(Command &root)
 
     root.add({cmd, "init"}, { C64ModelEnum::argList() },
              "Initialize the emulator with factory defaults",
-             [this](Arguments& argv, long value) {
+             [](Arguments& argv, long value) {
 
-        emulator.set(parseEnum<C64Model, C64ModelEnum>(argv[0]));
+        // emulator.set(parseEnum<C64Model, C64ModelEnum>(argv[0]));
     });
 
     root.add({cmd, "diff"},

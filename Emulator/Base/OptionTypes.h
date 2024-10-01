@@ -112,7 +112,6 @@ enum_long(OPT)
     // Memory
     OPT_MEM_INIT_PATTERN,       ///< Ram initialization pattern
     OPT_MEM_HEATMAP,            ///< Memory heatmap
-    OPT_MEM_SAVE_ROMS,          ///< Save Roms in snapshots
 
     // Mouse
     OPT_MOUSE_SHAKE_DETECT,     ///< Detect a shaking mouse
@@ -227,7 +226,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
 
             case OPT_MEM_INIT_PATTERN:      return "MEM.INIT_PATTERN";
             case OPT_MEM_HEATMAP:           return "MEM.HEATMAP";
-            case OPT_MEM_SAVE_ROMS:         return "MEM.SAVE_ROMS";
 
             case OPT_MOUSE_SHAKE_DETECT:    return "MOUSE.SHAKE_DETECTION";
 
@@ -331,7 +329,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
 
             case OPT_MEM_INIT_PATTERN:      return "Memory start-up pattern";
             case OPT_MEM_HEATMAP:           return "Heatmap";
-            case OPT_MEM_SAVE_ROMS:         return "Save ROMs in snapshots";
 
             case OPT_MOUSE_SHAKE_DETECT:    return "Detect a shaked mouse";
 

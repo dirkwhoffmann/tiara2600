@@ -106,7 +106,6 @@ OptionParser::create(Option opt, i64 arg)
 
         case OPT_MEM_INIT_PATTERN:          return enumParser.template operator()<RamPatternEnum>();
         case OPT_MEM_HEATMAP:               return boolParser();
-        case OPT_MEM_SAVE_ROMS:             return boolParser();
 
         case OPT_MOUSE_SHAKE_DETECT:        return boolParser();
 

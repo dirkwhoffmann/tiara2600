@@ -29,7 +29,7 @@ RegressionTester::prepare(Atari &c64, C64Model model)
     if (host.tmp() != "/tmp") throw Error(VC64ERROR_DIR_ACCESS_DENIED, "/tmp");
 
     // Initialize the emulator according to the specified model
-    emulator.set(model);
+    // emulator.set(model);
 
     // Make sure we run with high emulation accuracy
     // emulator.set(OPT_VICII_POWER_SAVE, false);

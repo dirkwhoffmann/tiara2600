@@ -35,11 +35,10 @@ class Memory final : public SubComponent, public Inspectable<MemInfo, MemStats> 
 
         OPT_MEM_INIT_PATTERN,
         OPT_MEM_HEATMAP,
-        OPT_MEM_SAVE_ROMS
     };
 
     // Current configuration
-    MemConfig config = { };
+    MemConfig config{};
 
 public:
 
@@ -57,21 +56,6 @@ public:
 
     // Random Access Memory
     u8 ram[65536];
-
-    /* Color RAM
-     * The color RAM is located in the I/O space, starting at $D800 and ending
-     * at $DBFF. Only the lower four bits are accessible, the upper four bits
-     * are open and can show any value.
-     */
-    u8 colorRam[1024];
-
-    // Read Only Memory
-    /* Only specific memory cells are valid ROM locations. In total, the C64
-     * has three ROMs that are located at different addresses. Note, that the
-     * ROMs do not span over the whole 64KB range. Therefore, only some
-     * addresses are valid ROM addresses.
-     */
-    u8 rom[65536];
 
     // Peek source lookup table
     MemoryType peekSrc[16];
@@ -97,8 +81,6 @@ public:
     Memory& operator= (const Memory& other) {
 
         CLONE_ARRAY(ram)
-        CLONE_ARRAY(rom)
-        CLONE_ARRAY(colorRam)
 
         CLONE_ARRAY(peekSrc)
         CLONE_ARRAY(pokeTarget)
@@ -122,8 +104,7 @@ public:
 
         worker
 
-        << ram
-        << colorRam;
+        << ram;
 
         if (isResetter(worker)) return;
 
@@ -132,7 +113,6 @@ public:
         << peekSrc
         << pokeTarget
 
-        << config.saveRoms
         << config.ramPattern;
 
     }
@@ -218,7 +198,6 @@ public:
     u8 spypeek(u16 addr, MemoryType source) const;
     u8 spypeek(u16 addr) const { return spypeek(addr, peekSrc[addr >> 12]); }
     u8 spypeekIO(u16 addr) const;
-    u8 spypeekColor(u16 addr) const;
 
     // Writing a value into memory
     void poke(u16 addr, u8 value, MemoryType target);

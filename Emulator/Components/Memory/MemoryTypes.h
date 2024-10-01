@@ -99,7 +99,6 @@ struct RamPatternEnum : util::Reflection<RamPatternEnum, RamPattern> {
 typedef struct
 {
     RamPattern ramPattern;
-    bool saveRoms;
     bool heatmap; 
 }
 MemConfig;

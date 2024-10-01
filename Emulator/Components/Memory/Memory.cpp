@@ -20,9 +20,7 @@
 namespace tiara {
 
 Memory::Memory(Atari &ref) : SubComponent(ref)
-{    		
-    memset(rom, 0, sizeof(rom));
-    
+{
     /* Memory bank map
      *
      * If x == (EXROM, GAME, CHAREN, HIRAM, LORAM) then
@@ -107,14 +105,6 @@ Memory::_didReset(bool hard)
 
         // Erase RAM
         eraseWithPattern(config.ramPattern);
-        
-        // Initialize color RAM with random numbers
-        u32 seed = 0;
-        for (isize i = 0; i < isizeof(colorRam); i++) {
-            
-            seed = c64.random(seed);
-            colorRam[i] = u8(seed);
-        }
     }
 }
 
@@ -122,21 +112,18 @@ void
 Memory::operator << (SerCounter &worker)
 {
     serialize(worker);
-    if (config.saveRoms) worker << rom;
 }
 
 void 
 Memory::operator << (SerReader &worker)
 {
     serialize(worker);
-    if (config.saveRoms) worker << rom;
 }
 
 void 
 Memory::operator << (SerWriter &worker)
 {
     serialize(worker);
-    if (config.saveRoms) worker << rom;
 }
 
 void
@@ -221,8 +208,8 @@ Memory::peek(u16 addr, MemoryType source)
         case M_CHAR:
         case M_KERNAL:
             
-            return rom[addr];
-            
+            return 0;
+
         case M_IO:
             
             return peekIO(addr);
@@ -338,8 +325,8 @@ Memory::spypeek(u16 addr, MemoryType source) const
         case M_CHAR:
         case M_KERNAL:
             
-            return rom[addr];
-            
+            return 0;
+
         case M_IO:
             
             return spypeekIO(addr);
@@ -391,8 +378,8 @@ Memory::spypeekIO(u16 addr) const
         case 0x9: // Color Ram
         case 0xA: // Color Ram
         case 0xB: // Color Ram
-            return spypeekColor(addr - 0xD800);
-            
+            return 0;
+
         case 0xC:
         case 0xD:
             
@@ -409,13 +396,6 @@ Memory::spypeekIO(u16 addr) const
         default:
             fatalError;
     }
-}
-
-u8
-Memory::spypeekColor(u16 addr) const
-{
-    assert(addr <= 0x400);
-    return colorRam[addr];
 }
 
 void
@@ -500,44 +480,7 @@ Memory::pokeIO(u16 addr, u8 value)
  
     if (config.heatmap) stats.writes[addr]++;
 
-    switch ((addr >> 8) & 0xF) {
-            
-        case 0x0: // VICII
-        case 0x1: // VICII
-        case 0x2: // VICII
-        case 0x3: // VICII
-            
-            return;
-            
-        case 0x4: // SID
-        case 0x5: // SID
-        case 0x6: // SID
-
-            return;
-
-        case 0x7: // SID
-
-            return;
-            
-        case 0x8: // Color RAM
-        case 0x9: // Color RAM
-        case 0xA: // Color RAM
-        case 0xB: // Color RAM
-            
-            colorRam[addr - 0xD800] = (value & 0x0F) | (c64.random() & 0xF0);
-            return;
-            
-        case 0xC:
-        case 0xD:
-            
-            return;
-            
-        case 0xE: // I/O space 1
-        case 0xF: // I/O space 2
-            return;
-    }
-    
-    fatalError;
+    return;
 }
 
 u16
