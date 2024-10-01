@@ -11,7 +11,7 @@ struct MemColors {
 
     static let unmapped = NSColor.gray
     static let tia      = NSColor(r: 0xFF, g: 0xFF, b: 0x99, a: 0xFF)
-    static let riot     = NSColor(r: 0xCC, g: 0x99, b: 0xFF, a: 0xFF)
+    static let pia     = NSColor(r: 0xCC, g: 0x99, b: 0xFF, a: 0xFF)
     static let ram      = NSColor(r: 0x99, g: 0xFF, b: 0x99, a: 0xFF)
     static let cart     = NSColor(r: 0x99, g: 0xCC, b: 0xFF, a: 0xFF)
 }
@@ -100,7 +100,7 @@ extension Inspector {
         memLayoutButton.image   = memLayoutImage
         memTIAButton.image     = NSImage(color: MemColors.tia, size: size)
         memRamButton.image    = NSImage(color: MemColors.ram, size: size)
-        memRiotButton.image  = NSImage(color: MemColors.riot, size: size)
+        memPIAButton.image  = NSImage(color: MemColors.pia, size: size)
         memCartButton.image   = NSImage(color: MemColors.cart, size: size)
     }
     
@@ -154,9 +154,9 @@ extension Inspector {
         jumpTo(type: [.RAM])
     }
 
-    @IBAction func memRIOTAction(_ sender: NSButton!) {
+    @IBAction func memPIAAction(_ sender: NSButton!) {
 
-        jumpTo(type: [.RIOT])
+        jumpTo(type: [.PIA])
     }
 
     @IBAction func memCartAction(_ sender: NSButton!) {
@@ -207,9 +207,9 @@ extension Inspector {
 
             switch bankType[bank] {
             case .NONE: color = MemColors.unmapped
-            case .TIA: color = MemColors.tia
-            case .RAM: color = MemColors.ram
-            case .RIOT: color = MemColors.riot
+            case .TIA:  color = MemColors.tia
+            case .RAM:  color = MemColors.ram
+            case .PIA:  color = MemColors.pia
             case .CART: color = MemColors.cart
             default: color = MemColors.unmapped
             }

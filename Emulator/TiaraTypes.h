@@ -16,7 +16,7 @@
 #include "AtariTypes.h"
 #include "AudioPortTypes.h"
 #include "CartridgeTypes.h"
-#include "RIOTTypes.h"
+#include "PIATypes.h"
 #include "CmdQueueTypes.h"
 #include "ControlPortTypes.h"
 #include "CoreComponentTypes.h"

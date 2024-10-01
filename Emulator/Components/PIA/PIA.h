@@ -12,27 +12,27 @@
 
 #pragma once
 
-#include "RIOTTypes.h"
+#include "PIATypes.h"
 #include "AtariTypes.h"
 #include "SubComponent.h"
 
 namespace tiara {
 
-class RIOT : public SubComponent, public Inspectable<RIOTInfo, RIOTStats> {
+class PIA : public SubComponent, public Inspectable<PIAInfo, PIAStats> {
 
     friend class TOD;
     friend class ParCable;
 
     Descriptions descriptions = {{
 
-        .type           = RIOTClass,
-        .name           = "RIOT",
-        .description    = "6532 RAM Input/Output Timer",
-        .shell          = "riot"
+        .type           = PIAClass,
+        .name           = "PIA",
+        .description    = "Peripheral Interface Adapter",
+        .shell          = "pia"
     }};
 
     Options options{ };
-    RIOTConfig config = { };
+    PIAConfig config = { };
 
 
     //
@@ -41,9 +41,9 @@ class RIOT : public SubComponent, public Inspectable<RIOTInfo, RIOTStats> {
 
 public:
 
-    RIOT(Atari &ref);
+    PIA(Atari &ref);
 
-    RIOT& operator= (const RIOT& other) {
+    PIA& operator= (const PIA& other) {
 
         return *this;
     }
@@ -83,8 +83,8 @@ private:
 
 public:
 
-    void cacheInfo(RIOTInfo &result) const override;
-    void cacheStats(RIOTStats &result) const override;
+    void cacheInfo(PIAInfo &result) const override;
+    void cacheStats(PIAStats &result) const override;
 
 
     //
@@ -93,7 +93,7 @@ public:
 
 public:
 
-    const RIOTConfig &getConfig() const { return config; }
+    const PIAConfig &getConfig() const { return config; }
     const Options &getOptions() const override { return options; }
     i64 getOption(Option opt) const override;
     void checkOption(Option opt, i64 value) override;

@@ -27,7 +27,7 @@ Atari::Atari(class Emulator& ref, isize id) : CoreComponent(ref, id)
         &host,
         &mem,
         &cpu,
-        &riot,
+        &pia,
         &audioPort,
         &videoPort,
         &port1,

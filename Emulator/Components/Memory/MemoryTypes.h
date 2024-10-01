@@ -27,8 +27,8 @@ constexpr u16 TIA_MATCH  = 0b0000'0000'0000'0000;
 constexpr u16 RAM_MASK   = 0b0001'0010'1000'0000;
 constexpr u16 RAM_MATCH  = 0b0000'0000'1000'0000;
 
-constexpr u16 RIOT_MASK  = 0b0001'0010'1000'0000;
-constexpr u16 RIOT_MATCH = 0b0000'0010'1000'0000;
+constexpr u16 PIA_MASK   = 0b0001'0010'1000'0000;
+constexpr u16 PIA_MATCH  = 0b0000'0010'1000'0000;
 
 constexpr u16 CART_MASK  = 0b0001'0000'0000'0000;
 constexpr u16 CART_MATCH = 0b0001'0000'0000'0000;
@@ -42,8 +42,8 @@ constexpr u16 CART_MATCH = 0b0001'0000'0000'0000;
 enum_long(M_TYPE)
 {
     M_NONE,         ///< Unmapped
-    M_TIA,          ///< Custom IC
-    M_RIOT,         ///< Custom IC
+    M_TIA,          ///< Television Interface Adapter
+    M_PIA,          ///< Peripheral Interface Adapter
     M_RAM,          ///< RAM
     M_CART          ///< Cartridge
 };
@@ -61,7 +61,7 @@ struct MemoryTypeEnum : util::Reflection<MemoryTypeEnum, MemoryType> {
 
             case M_NONE:    return "NONE";
             case M_TIA:     return "TIA";
-            case M_RIOT:    return "RIOT";
+            case M_PIA:     return "PIA";
             case M_RAM:     return "RAM";
             case M_CART:    return "CART";
         }

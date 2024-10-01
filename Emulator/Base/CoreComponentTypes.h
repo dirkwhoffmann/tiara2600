@@ -29,12 +29,10 @@ enum_long(COMP_TYPE)
     HostClass,
     MemoryClass,
     PIAClass,
-    RIOTClass,
     SIDClass,
     SIDBridgeClass,
     TIAClass,
     TODClass,
-    VIAClass,
 
     // Ports
     AudioPortClass,

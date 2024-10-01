@@ -11,22 +11,22 @@
 // -----------------------------------------------------------------------------
 
 #include "config.h"
-#include "RIOT.h"
+#include "PIA.h"
 #include "Emulator.h"
 #include "IOUtils.h"
 
 namespace tiara {
 
 template <bool debug> void
-RIOT::execute()
+PIA::execute()
 {
 
 }
-template void RIOT::execute<false>();
-template void RIOT::execute<true>();
+template void PIA::execute<false>();
+template void PIA::execute<true>();
 
 void
-RIOT::eofHandler()
+PIA::eofHandler()
 {
 
 }

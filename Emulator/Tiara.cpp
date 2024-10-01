@@ -61,8 +61,8 @@ Tiara::Tiara() {
     cpu.emu = emu;
     cpu.cpu = &emu->main.cpu;
 
-    riot.emu = emu;
-    riot.riot = &emu->main.riot;
+    pia.emu = emu;
+    pia.pia = &emu->main.pia;
 
     tia.emu = emu;
     tia.tia = &emu->main.tia;
@@ -541,31 +541,31 @@ MemoryAPI::drawHeatmap(u32 *buffer, isize width, isize height) const
 
 
 //
-// RIOT
+// PIA
 //
 
-const RIOTConfig &
-RIOTAPI::getConfig() const
+const PIAConfig &
+PIAAPI::getConfig() const
 {
-    return riot->getConfig();
+    return pia->getConfig();
 }
 
-const RIOTInfo &
-RIOTAPI::getInfo() const
+const PIAInfo &
+PIAAPI::getInfo() const
 {
-    return riot->getInfo();
+    return pia->getInfo();
 }
 
-const RIOTInfo &
-RIOTAPI::getCachedInfo() const
+const PIAInfo &
+PIAAPI::getCachedInfo() const
 {
-    return riot->getCachedInfo();
+    return pia->getCachedInfo();
 }
 
-RIOTStats
-RIOTAPI::getStats() const
+PIAStats
+PIAAPI::getStats() const
 {
-    return riot->getStats();
+    return pia->getStats();
 }
 
 

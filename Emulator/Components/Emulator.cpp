@@ -342,8 +342,8 @@ Emulator::getDebugVariable(DebugFlag flag)
 
         case FLAG_MEM_DEBUG:        return MEM_DEBUG;
 
-        case FLAG_RIOT_DEBUG:       return RIOT_DEBUG;
-        case FLAG_RIOT_REG_DEBUG:   return RIOT_REG_DEBUG;
+        case FLAG_PIA_DEBUG:        return PIA_DEBUG;
+        case FLAG_PIA_REG_DEBUG:    return PIA_REG_DEBUG;
 
         case FLAG_TIA_DEBUG:        return TIA_DEBUG;
         case FLAG_TIA_REG_DEBUG:    return TIA_REG_DEBUG;
@@ -353,15 +353,6 @@ Emulator::getDebugVariable(DebugFlag flag)
         case FLAG_SIDREG_DEBUG:     return SIDREG_DEBUG;
         case FLAG_AUDBUF_DEBUG:     return AUDBUF_DEBUG;
         case FLAG_AUDVOL_DEBUG:     return AUDVOL_DEBUG;
-
-        case FLAG_VIA_DEBUG:        return VIA_DEBUG;
-        case FLAG_PIA_DEBUG:        return PIA_DEBUG;
-        case FLAG_SER_DEBUG:        return SER_DEBUG;
-        case FLAG_DSK_DEBUG:        return DSK_DEBUG;
-        case FLAG_DSKCHG_DEBUG:     return DSKCHG_DEBUG;
-        case FLAG_GCR_DEBUG:        return GCR_DEBUG;
-        case FLAG_FS_DEBUG:         return FS_DEBUG;
-        case FLAG_PAR_DEBUG:        return PAR_DEBUG;
 
         case FLAG_CRT_DEBUG:        return CRT_DEBUG;
         case FLAG_FILE_DEBUG:       return FILE_DEBUG;
@@ -426,8 +417,8 @@ Emulator::setDebugVariable(DebugFlag flag, bool val)
 
         case FLAG_MEM_DEBUG:        MEM_DEBUG       = val; break;
 
-        case FLAG_RIOT_DEBUG:       RIOT_DEBUG      = val; break;
-        case FLAG_RIOT_REG_DEBUG:   RIOT_REG_DEBUG  = val; break;
+        case FLAG_PIA_DEBUG:       PIA_DEBUG        = val; break;
+        case FLAG_PIA_REG_DEBUG:   PIA_REG_DEBUG    = val; break;
 
         case FLAG_TIA_DEBUG:        TIA_DEBUG       = val; break;
         case FLAG_TIA_REG_DEBUG:    TIA_REG_DEBUG   = val; break;
@@ -437,15 +428,6 @@ Emulator::setDebugVariable(DebugFlag flag, bool val)
         case FLAG_SIDREG_DEBUG:     SIDREG_DEBUG    = val; break;
         case FLAG_AUDBUF_DEBUG:     AUDBUF_DEBUG    = val; break;
         case FLAG_AUDVOL_DEBUG:     AUDVOL_DEBUG    = val; break;
-
-        case FLAG_VIA_DEBUG:        VIA_DEBUG       = val; break;
-        case FLAG_PIA_DEBUG:        PIA_DEBUG       = val; break;
-        case FLAG_SER_DEBUG:        SER_DEBUG       = val; break;
-        case FLAG_DSK_DEBUG:        DSK_DEBUG       = val; break;
-        case FLAG_DSKCHG_DEBUG:     DSKCHG_DEBUG    = val; break;
-        case FLAG_GCR_DEBUG:        GCR_DEBUG       = val; break;
-        case FLAG_FS_DEBUG:         FS_DEBUG        = val; break;
-        case FLAG_PAR_DEBUG:        PAR_DEBUG       = val; break;
 
         case FLAG_CRT_DEBUG:        CRT_DEBUG       = val; break;
         case FLAG_FILE_DEBUG:       FILE_DEBUG      = val; break;

@@ -9,7 +9,7 @@
 
 extension Inspector {
         
-    private func cacheRIOT() {
+    private func cachePIA() {
 
         /*
         if let emu = emu {
@@ -22,9 +22,9 @@ extension Inspector {
         */
     }
 
-    func refreshRIOT(count: Int = 0, full: Bool = false) {
+    func refreshPIA(count: Int = 0, full: Bool = false) {
 
-        cacheRIOT()
+        cachePIA()
 
         /*
         if full {

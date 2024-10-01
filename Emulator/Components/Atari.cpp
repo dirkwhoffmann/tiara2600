@@ -46,7 +46,7 @@ Atari::eventName(EventSlot slot, EventID id)
 
     switch (slot) {
 
-        case SLOT_RIOT:
+        case SLOT_PIA:
 
             switch (id) {
                 case EVENT_NONE:    return "none";
@@ -161,8 +161,8 @@ Atari::eventName(EventSlot slot, EventID id)
                 case INS_C64:       return "INS_C64";
                 case INS_CPU:       return "INS_CPU";
                 case INS_MEM:       return "INS_MEM";
-                case INS_RIOT:      return "INS_RIOT";
                 case INS_TIA:       return "INS_TIA";
+                case INS_PIA:       return "INS_PIA";
                 case INS_SID:       return "INS_SID";
                 case INS_EVENTS:    return "INS_EVENTS";
                 default:            return "*** INVALID ***";
@@ -233,7 +233,7 @@ Atari::operator << (SerResetter &worker)
     }
 
     // Schedule initial events
-    scheduleAbs<SLOT_RIOT>(cpu.clock, CIA_EXECUTE);
+    scheduleAbs<SLOT_PIA>(cpu.clock, CIA_EXECUTE);
     scheduleRel<SLOT_SRV>(Atari::sec(0.5), SRV_LAUNCH_DAEMON);
     if (insEvent) scheduleRel <SLOT_INS> (0, insEvent);
     scheduleNextSNPEvent();
@@ -812,7 +812,7 @@ Atari::processEvents(Cycle cycle)
     // Check primary slots
     //
 
-    if (isDue<SLOT_RIOT>(cycle)) {
+    if (isDue<SLOT_PIA>(cycle)) {
 
     }
 
@@ -882,7 +882,7 @@ Atari::processINSEvent()
     if (mask & 1LL << C64Class)             { record(); }
     if (mask & 1LL << CPUClass)             { cpu.record(); }
     if (mask & 1LL << MemoryClass)          { mem.record(); }
-    if (mask & 1LL << RIOTClass)            { riot.record(); }
+    if (mask & 1LL << PIAClass)             { pia.record(); }
     if (mask & 1LL << TIAClass)             { tia.record(); }
 
     // Reschedule the event

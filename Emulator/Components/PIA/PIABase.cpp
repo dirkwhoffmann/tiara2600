@@ -11,25 +11,25 @@
 // -----------------------------------------------------------------------------
 
 #include "config.h"
-#include "RIOT.h"
+#include "PIA.h"
 #include "CPU.h"
 #include "IOUtils.h"
 
 namespace tiara {
 
-RIOT::RIOT(Atari &ref) : SubComponent(ref)
+PIA::PIA(Atari &ref) : SubComponent(ref)
 {
 
 }
 
 void
-RIOT::_didReset(bool hard)
+PIA::_didReset(bool hard)
 {
 
 }
 
 void
-RIOT::_dump(Category category, std::ostream& os) const
+PIA::_dump(Category category, std::ostream& os) const
 {
     using namespace util;
 
@@ -79,7 +79,7 @@ RIOT::_dump(Category category, std::ostream& os) const
 }
 
 void
-RIOT::cacheInfo(RIOTInfo &result) const
+PIA::cacheInfo(PIAInfo &result) const
 {
     /*
     result.portA.port = computePA();
@@ -93,25 +93,25 @@ RIOT::cacheInfo(RIOTInfo &result) const
 }
 
 void
-RIOT::cacheStats(RIOTStats &result) const
+PIA::cacheStats(PIAStats &result) const
 {
 
 }
 
 i64
-RIOT::getOption(Option option) const
+PIA::getOption(Option option) const
 {
     fatalError;
 }
 
 void
-RIOT::checkOption(Option opt, i64 value)
+PIA::checkOption(Option opt, i64 value)
 {
     throw Error(VC64ERROR_OPT_UNSUPPORTED);
 }
 
 void
-RIOT::setOption(Option opt, i64 value)
+PIA::setOption(Option opt, i64 value)
 {
     fatalError;
 }

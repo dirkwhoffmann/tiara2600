@@ -211,10 +211,10 @@ CommandConsole::initCommands(Command &root)
 
 
     //
-    // Components (RIOT)
+    // Components (PIA)
     //
 
-    cmd = registerComponent(riot);
+    cmd = registerComponent(pia);
 
 
     //

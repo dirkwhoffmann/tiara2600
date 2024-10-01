@@ -26,7 +26,7 @@ struct Void { };
  *  the caller. All components record two different kinds of information:
  *  Infos and statistics. Infos comprise the values of important variables that
  *  are used internally by the component. Examples of statistical information
- *  are the average RIOT activity or the current fill level of the audio buffer.
+ *  are the average PIA activity or the current fill level of the audio buffer.
  */
 template <typename T1, typename T2 = Void>
 class Inspectable {

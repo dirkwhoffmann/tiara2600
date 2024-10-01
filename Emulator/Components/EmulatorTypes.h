@@ -50,13 +50,13 @@ enum_long(DEBUG_FLAG)
     // Memory
     FLAG_MEM_DEBUG,         ///< Debug memory accesses
 
-    // RIOT
-    FLAG_RIOT_DEBUG,         ///< Debug the RAM Input/Output Timer
-    FLAG_RIOT_REG_DEBUG,     ///< Debug the RIOT register accesses
-
     // TIA
     FLAG_TIA_DEBUG,         ///< Debug the Television Interface Adapter
     FLAG_TIA_REG_DEBUG,     ///< Debug TIA register accesses
+
+    // PIA
+    FLAG_PIA_DEBUG,         ///< Debug the RAM Input/Output Timer
+    FLAG_PIA_REG_DEBUG,     ///< Debug the PIA register accesses
 
     // SID
     FLAG_SID_DEBUG,         ///< Debug the Sound Interface Device
@@ -64,16 +64,6 @@ enum_long(DEBUG_FLAG)
     FLAG_SIDREG_DEBUG,      ///< Debug SID register accesses
     FLAG_AUDBUF_DEBUG,      ///< Debug the audio buffers
     FLAG_AUDVOL_DEBUG,      ///< Debug the audio volumes
-
-    // Drive
-    FLAG_VIA_DEBUG,         ///< Debug the Versatile Interface Adapter
-    FLAG_PIA_DEBUG,         ///< Debug the Peripheral Interface Adapter
-    FLAG_SER_DEBUG,         ///< Debug the serial port (IEC bus)
-    FLAG_DSK_DEBUG,         ///< Debug the disk controller execution
-    FLAG_DSKCHG_DEBUG,      ///< Debug the disk change procedure
-    FLAG_GCR_DEBUG,         ///< Debug the GCR encoder and decoder
-    FLAG_FS_DEBUG,          ///< Debug files system related code
-    FLAG_PAR_DEBUG,         ///< Debug the parallel drive cable
 
     // Media
     FLAG_CRT_DEBUG,         ///< Debug cartridges
@@ -139,13 +129,13 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
                 // Memory
             case FLAG_MEM_DEBUG:                return "MEM_DEBUG";
 
-                // RIOT
-            case FLAG_RIOT_DEBUG:               return "RIOT_DEBUG";
-            case FLAG_RIOT_REG_DEBUG:           return "RIOT_REG_DEBUG";
-
                 // TIA
             case FLAG_TIA_DEBUG:                return "TIA_DEBUG";
             case FLAG_TIA_REG_DEBUG:            return "TIA_REG_DEBUG";
+
+                // PIA
+            case FLAG_PIA_DEBUG:               return "PIA_DEBUG";
+            case FLAG_PIA_REG_DEBUG:           return "PIA_REG_DEBUG";
 
                 // SID
             case FLAG_SID_DEBUG:                return "SID_DEBUG";
@@ -153,16 +143,6 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
             case FLAG_SIDREG_DEBUG:             return "SIDREG_DEBUG";
             case FLAG_AUDBUF_DEBUG:             return "AUDBUF_DEBUG";
             case FLAG_AUDVOL_DEBUG:             return "AUDVOL_DEBUG";
-
-                // Drive
-            case FLAG_VIA_DEBUG:                return "VIA_DEBUG";
-            case FLAG_PIA_DEBUG:                return "PIA_DEBUG";
-            case FLAG_SER_DEBUG:                return "SER_DEBUG";
-            case FLAG_DSK_DEBUG:                return "DSK_DEBUG";
-            case FLAG_DSKCHG_DEBUG:             return "DSKCHG_DEBUG";
-            case FLAG_GCR_DEBUG:                return "GCR_DEBUG";
-            case FLAG_FS_DEBUG:                 return "FS_DEBUG";
-            case FLAG_PAR_DEBUG:                return "PAR_DEBUG";
 
                 // Media
             case FLAG_CRT_DEBUG:                return "CRT_DEBUG";
@@ -224,9 +204,9 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
                 // Memory
             case FLAG_MEM_DEBUG:                return "RAM and ROM";
 
-                // RIOT
-            case FLAG_RIOT_DEBUG:               return "RAM Input/Output Timer";
-            case FLAG_RIOT_REG_DEBUG:           return "RIOT registers";
+                // PIA
+            case FLAG_PIA_DEBUG:                return "Peripheral Interface Adapter";
+            case FLAG_PIA_REG_DEBUG:            return "PIA registers";
 
                 // TIA
             case FLAG_TIA_DEBUG:                return "Television Interface Adapter";
@@ -237,16 +217,6 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
             case FLAG_SID_EXEC:                 return "Sound Interface Device (Execution)";
             case FLAG_SIDREG_DEBUG:             return "Sound Interface Device (Registers)";
             case FLAG_AUDBUF_DEBUG:             return "Audio buffers";
-
-                // Drive
-            case FLAG_VIA_DEBUG:                return "Versatile Interface Adapter";
-            case FLAG_PIA_DEBUG:                return "Peripheral Interface Adapter";
-            case FLAG_SER_DEBUG:                return "Serial port (IEC bus)";
-            case FLAG_DSK_DEBUG:                return "Disk controller execution";
-            case FLAG_DSKCHG_DEBUG:             return "Disk change procedure";
-            case FLAG_GCR_DEBUG:                return "Disk encoding / decoding";
-            case FLAG_FS_DEBUG:                 return "File System Classes";
-            case FLAG_PAR_DEBUG:                return "Parallel cable";
 
                 // Media
             case FLAG_CRT_DEBUG:                return "Cartridges";

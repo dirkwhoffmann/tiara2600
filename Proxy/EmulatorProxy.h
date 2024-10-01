@@ -17,7 +17,7 @@ using namespace tiara;
 @class AudioPortProxy;
 @class EmulatorProxy;
 @class AtariProxy;
-@class RIOTProxy;
+@class PIAProxy;
 @class Constants;
 @class ControlPortProxy;
 @class CPUProxy;
@@ -91,7 +91,7 @@ using namespace tiara;
 @interface EmulatorProxy : Proxy {
         
     AudioPortProxy *audioPort;
-    RIOTProxy *riot;
+    PIAProxy *pia;
     ControlPortProxy *port1;
     ControlPortProxy *port2;
     CPUProxy *cpu;
@@ -108,7 +108,7 @@ using namespace tiara;
 
 @property (readonly, strong) AudioPortProxy *audioPort;
 @property (readonly, strong) AtariProxy *atari;
-@property (readonly, strong) RIOTProxy *riot;
+@property (readonly, strong) PIAProxy *pia;
 @property (readonly, strong) ControlPortProxy *port1;
 @property (readonly, strong) ControlPortProxy *port2;
 @property (readonly, strong) CPUProxy *cpu;
@@ -280,15 +280,15 @@ struct GuardInfo {
 
 
 //
-// RIOT
+// PIA
 //
 
-@interface RIOTProxy : SubComponentProxy { }
+@interface PIAProxy : SubComponentProxy { }
 
-@property (readonly) RIOTConfig config;
-@property (readonly) RIOTInfo info;
-@property (readonly) RIOTInfo cachedInfo;
-@property (readonly) RIOTStats stats;
+@property (readonly) PIAConfig config;
+@property (readonly) PIAInfo info;
+@property (readonly) PIAInfo cachedInfo;
+@property (readonly) PIAStats stats;
 
 @end
 

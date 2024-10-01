@@ -11,8 +11,8 @@ EmulatorBase.cpp
 )
 
 add_subdirectory(CPU)
-add_subdirectory(RIOT)
+add_subdirectory(TIA)
+add_subdirectory(PIA)
 add_subdirectory(Ports)
 add_subdirectory(Memory)
 add_subdirectory(SID)
-add_subdirectory(TIA)

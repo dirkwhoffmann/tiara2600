@@ -74,7 +74,7 @@ class Inspector: DialogController {
     @IBOutlet weak var memLayoutButton: NSButton!
     @IBOutlet weak var memLayoutSlider: NSSlider!
     @IBOutlet weak var memRamButton: NSButton!
-    @IBOutlet weak var memRiotButton: NSButton!
+    @IBOutlet weak var memPIAButton: NSButton!
     @IBOutlet weak var memCartButton: NSButton!
     @IBOutlet weak var memTIAButton: NSButton!
     @IBOutlet weak var memSearchField: NSSearchField!
@@ -87,7 +87,7 @@ class Inspector: DialogController {
     var layoutIsDirty = true
     var nextLayoutRefresh = 0
 
-    // RIOT panel
+    // PIA panel
     @IBOutlet weak var ciaPRA: NSTextField!
     @IBOutlet weak var ciaPRAbinary: NSTextField!
     @IBOutlet weak var ciaDDRA: NSTextField!
@@ -273,8 +273,8 @@ class Inspector: DialogController {
 
     // Cached state of all C64 components
     var cpuInfo: tiara.CPUInfo!
-    var riotInfo: tiara.RIOTInfo!
-    var riotStats: tiara.RIOTStats!
+    var piaInfo: tiara.PIAInfo!
+    var piaStats: tiara.PIAStats!
     var memInfo: tiara.MemInfo!
     var tiaInfo: tiara.TIAInfo!
     var eventInfo: tiara.AtariInfo!
@@ -343,7 +343,7 @@ class Inspector: DialogController {
             switch id {
                 
             case "CPU": refreshCPU(count: count, full: full)
-            case "RIOT": refreshRIOT(count: count, full: full)
+            case "PIA": refreshPIA(count: count, full: full)
             case "Memory": refreshMemory(count: count, full: full)
             case "TIA": refreshTIA(count: count, full: full)
             case "SID": refreshSID(count: count, full: full)
@@ -503,7 +503,7 @@ extension Inspector: NSTabViewDelegate {
                 
             case "CPU":     c64?.autoInspectionMask = mask([.CPUClass])
             case "Memory":  c64?.autoInspectionMask = mask([.MemoryClass])
-            case "RIOT":    c64?.autoInspectionMask = mask([.RIOTClass])
+            case "PIA":     c64?.autoInspectionMask = mask([.PIAClass])
             case "TIA":     c64?.autoInspectionMask = mask([.TIAClass])
             case "SID":     c64?.autoInspectionMask = mask([.SIDClass])
             case "Events":  c64?.autoInspectionMask = mask([.C64Class])

@@ -37,13 +37,13 @@ debugflag IRQ_DEBUG       = 0;
 // Memory
 debugflag MEM_DEBUG       = 0;
 
-// RIOT
-debugflag RIOT_DEBUG       = 0;
-debugflag RIOT_REG_DEBUG    = 0;
-
-// VICII
+// TIA
 debugflag TIA_DEBUG       = 0;
 debugflag TIA_REG_DEBUG   = 0;
+
+// PIA
+debugflag PIA_DEBUG       = 0;
+debugflag PIA_REG_DEBUG   = 0;
 
 // SID
 debugflag SID_DEBUG       = 0;
@@ -51,16 +51,6 @@ debugflag SID_EXEC        = 0;
 debugflag SIDREG_DEBUG    = 0;
 debugflag AUDBUF_DEBUG    = 0;
 debugflag AUDVOL_DEBUG    = 0;
-
-// Drive
-debugflag VIA_DEBUG       = 0;
-debugflag PIA_DEBUG       = 0;
-debugflag SER_DEBUG       = 0;
-debugflag DSK_DEBUG       = 0;
-debugflag DSKCHG_DEBUG    = 0;
-debugflag GCR_DEBUG       = 0;
-debugflag FS_DEBUG        = 0;
-debugflag PAR_DEBUG       = 0;
 
 // Media
 debugflag CRT_DEBUG       = 1;

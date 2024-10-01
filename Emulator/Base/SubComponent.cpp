@@ -20,7 +20,7 @@ References::References(Atari& ref) :
 
 audioPort(ref.audioPort),
 c64(ref),
-riot(ref.riot),
+pia(ref.pia),
 port1(ref.port1),
 port2(ref.port2),
 cpu(ref.cpu),

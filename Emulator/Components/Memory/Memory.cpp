@@ -23,9 +23,9 @@ Memory::Memory(Atari &ref) : SubComponent(ref)
 {
     auto decode = [&](u16 addr) {
 
-        if ((addr & TIA_MASK)  == TIA_MATCH)  return M_TIA;
-        if ((addr & RAM_MASK)  == RAM_MATCH)  return M_RAM;
-        if ((addr & RIOT_MASK) == RIOT_MATCH) return M_RIOT;
+        if ((addr & TIA_MASK) == TIA_MATCH) return M_TIA;
+        if ((addr & RAM_MASK) == RAM_MATCH) return M_RAM;
+        if ((addr & PIA_MASK) == PIA_MATCH) return M_PIA;
 
         return M_CART;
     };
@@ -115,7 +115,7 @@ Memory::peek(u16 addr, MemoryType source)
 
             return 0; // TODO
 
-        case M_RIOT:
+        case M_PIA:
 
             return 0; // TODO
 
@@ -151,7 +151,7 @@ Memory::spypeek(u16 addr, MemoryType source) const
 
             return 0; // TODO
 
-        case M_RIOT:
+        case M_PIA:
 
             return 0; // TODO
 
@@ -182,7 +182,7 @@ Memory::poke(u16 addr, u8 value, MemoryType target)
 
             return;
             
-        case M_RIOT: // TODO
+        case M_PIA: // TODO
 
             return;
 

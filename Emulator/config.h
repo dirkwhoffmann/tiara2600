@@ -115,13 +115,13 @@ extern debugflag IRQ_DEBUG;
 // Memory
 extern debugflag MEM_DEBUG;
 
-// RIOT
-extern debugflag RIOT_DEBUG;
-extern debugflag RIOT_REG_DEBUG;
-
 // TIA
 extern debugflag TIA_DEBUG;
 extern debugflag TIA_REG_DEBUG;
+
+// PIA
+extern debugflag PIA_DEBUG;
+extern debugflag PIA_REG_DEBUG;
 
 // SID
 extern debugflag SID_DEBUG;
@@ -129,16 +129,6 @@ extern debugflag SID_EXEC;
 extern debugflag SIDREG_DEBUG;
 extern debugflag AUDBUF_DEBUG;
 extern debugflag AUDVOL_DEBUG;
-
-// Drive
-extern debugflag VIA_DEBUG;
-extern debugflag PIA_DEBUG;
-extern debugflag SER_DEBUG;
-extern debugflag DSK_DEBUG;
-extern debugflag DSKCHG_DEBUG;
-extern debugflag GCR_DEBUG;
-extern debugflag FS_DEBUG;
-extern debugflag PAR_DEBUG;
 
 // Media
 extern debugflag CRT_DEBUG;

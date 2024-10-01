@@ -74,7 +74,7 @@
 		504C438524AF29AC00E69CAE /* MsgQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42F124AF29AB00E69CAE /* MsgQueue.cpp */; };
 		504C438724AF29AC00E69CAE /* Atari.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42F724AF29AB00E69CAE /* Atari.cpp */; };
 		504C43A224AF29AC00E69CAE /* ControlPort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C433E24AF29AC00E69CAE /* ControlPort.cpp */; };
-		504C43AB24AF29AC00E69CAE /* RIOT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C435824AF29AC00E69CAE /* RIOT.cpp */; };
+		504C43AB24AF29AC00E69CAE /* PIA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C435824AF29AC00E69CAE /* PIA.cpp */; };
 		505184DE24F23484002C6124 /* MyControllerSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505184DD24F23484002C6124 /* MyControllerSnapshots.swift */; };
 		505184E024F23CB6002C6124 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505184DF24F23CB6002C6124 /* Storage.swift */; };
 		5051A1521B88438800CBFB5A /* 1541_track_change_0.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 5051A1511B88438800CBFB5A /* 1541_track_change_0.aiff */; };
@@ -136,7 +136,7 @@
 		50726F542961C99A0031F2F5 /* PeddleDebugger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50995F2824DBCDE400F40713 /* PeddleDebugger.cpp */; };
 		50726F552961C99A0031F2F5 /* Peddle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50AA48B0292F8EC30084401D /* Peddle.cpp */; };
 		50726F562961C99A0031F2F5 /* PeddleUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509280CD2930A1B6006E1966 /* PeddleUtils.cpp */; };
-		50726F572961C9A10031F2F5 /* RIOT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C435824AF29AC00E69CAE /* RIOT.cpp */; };
+		50726F572961C9A10031F2F5 /* PIA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C435824AF29AC00E69CAE /* PIA.cpp */; };
 		50726F5A2961C9AC0031F2F5 /* LogicAnalyzer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB3CF2641101E006F45E6 /* LogicAnalyzer.cpp */; };
 		50726F672961C9B80031F2F5 /* AudioPort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50549B47257D288E006FE39C /* AudioPort.cpp */; };
 		50726F742961C9D10031F2F5 /* Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504C42E124AF29AB00E69CAE /* Memory.cpp */; };
@@ -193,8 +193,8 @@
 		50A0B48D24C1CAEB00FF0B0B /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50A0B48C24C1CAEB00FF0B0B /* Preferences.xib */; };
 		50A0E0210A8F33120067714C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A0E0200A8F33120067714C /* IOKit.framework */; };
 		50A0E0250A8F332A0067714C /* System.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A0E0240A8F332A0067714C /* System.framework */; };
-		50A1947E2BDA597A0046849E /* RIOTBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50A1947D2BDA597A0046849E /* RIOTBase.cpp */; };
-		50A1947F2BDA597A0046849E /* RIOTBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50A1947D2BDA597A0046849E /* RIOTBase.cpp */; };
+		50A1947E2BDA597A0046849E /* PIABase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50A1947D2BDA597A0046849E /* PIABase.cpp */; };
+		50A1947F2BDA597A0046849E /* PIABase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50A1947D2BDA597A0046849E /* PIABase.cpp */; };
 		50A1948D2BDA6F490046849E /* EmulatorBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50A1948C2BDA6F490046849E /* EmulatorBase.cpp */; };
 		50A1948E2BDA6F490046849E /* EmulatorBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50A1948C2BDA6F490046849E /* EmulatorBase.cpp */; };
 		50A194932BDA709D0046849E /* CPUBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50A194922BDA709D0046849E /* CPUBase.cpp */; };
@@ -457,8 +457,8 @@
 		504C42F824AF29AB00E69CAE /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		504C433E24AF29AC00E69CAE /* ControlPort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ControlPort.cpp; sourceTree = "<group>"; };
 		504C434024AF29AC00E69CAE /* ControlPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlPort.h; sourceTree = "<group>"; };
-		504C435324AF29AC00E69CAE /* RIOT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIOT.h; sourceTree = "<group>"; };
-		504C435824AF29AC00E69CAE /* RIOT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RIOT.cpp; sourceTree = "<group>"; };
+		504C435324AF29AC00E69CAE /* PIA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIA.h; sourceTree = "<group>"; };
+		504C435824AF29AC00E69CAE /* PIA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PIA.cpp; sourceTree = "<group>"; };
 		505184DD24F23484002C6124 /* MyControllerSnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyControllerSnapshots.swift; sourceTree = "<group>"; };
 		505184DF24F23CB6002C6124 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		5051A1511B88438800CBFB5A /* 1541_track_change_0.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = 1541_track_change_0.aiff; sourceTree = "<group>"; };
@@ -558,7 +558,7 @@
 		50A0B48C24C1CAEB00FF0B0B /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		50A0E0200A8F33120067714C /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
 		50A0E0240A8F332A0067714C /* System.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = System.framework; path = /System/Library/Frameworks/System.framework; sourceTree = "<absolute>"; };
-		50A1947D2BDA597A0046849E /* RIOTBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RIOTBase.cpp; sourceTree = "<group>"; };
+		50A1947D2BDA597A0046849E /* PIABase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PIABase.cpp; sourceTree = "<group>"; };
 		50A1948C2BDA6F490046849E /* EmulatorBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EmulatorBase.cpp; sourceTree = "<group>"; };
 		50A194922BDA709D0046849E /* CPUBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CPUBase.cpp; sourceTree = "<group>"; };
 		50A1949E2BDA84710046849E /* MemoryBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryBase.cpp; sourceTree = "<group>"; };
@@ -686,7 +686,7 @@
 		50E5FFB3227964FA0025C73D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		50E5FFB4227964FA0025C73D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MyDocument.xib; sourceTree = "<group>"; };
 		50E806BE25A1C2B800F08732 /* Reflection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reflection.h; sourceTree = "<group>"; };
-		50E806BF25A1C93B00F08732 /* RIOTTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RIOTTypes.h; sourceTree = "<group>"; };
+		50E806BF25A1C93B00F08732 /* PIATypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PIATypes.h; sourceTree = "<group>"; };
 		50E806C025A1DE9200F08732 /* MsgQueueTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgQueueTypes.h; sourceTree = "<group>"; };
 		50E9B92C201F299500065A89 /* MyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyController.swift; sourceTree = "<group>"; };
 		50E9B92E201FA92C00065A89 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
@@ -1159,16 +1159,16 @@
 			path = TIA;
 			sourceTree = "<group>";
 		};
-		504C435224AF29AC00E69CAE /* RIOT */ = {
+		504C435224AF29AC00E69CAE /* PIA */ = {
 			isa = PBXGroup;
 			children = (
 				5078BEB2264D734600EDA161 /* CMakeLists.txt */,
-				50E806BF25A1C93B00F08732 /* RIOTTypes.h */,
-				504C435324AF29AC00E69CAE /* RIOT.h */,
-				50A1947D2BDA597A0046849E /* RIOTBase.cpp */,
-				504C435824AF29AC00E69CAE /* RIOT.cpp */,
+				50E806BF25A1C93B00F08732 /* PIATypes.h */,
+				504C435324AF29AC00E69CAE /* PIA.h */,
+				50A1947D2BDA597A0046849E /* PIABase.cpp */,
+				504C435824AF29AC00E69CAE /* PIA.cpp */,
 			);
-			path = RIOT;
+			path = PIA;
 			sourceTree = "<group>";
 		};
 		5051A1501B8842F100CBFB5A /* Sounds */ = {
@@ -1446,7 +1446,7 @@
 				506F30382B729CE80083EAEA /* Emulator.cpp */,
 				50ACF4DC256EB451003B5690 /* Ports */,
 				504C42E524AF29AB00E69CAE /* CPU */,
-				504C435224AF29AC00E69CAE /* RIOT */,
+				504C435224AF29AC00E69CAE /* PIA */,
 				504C430424AF29AB00E69CAE /* TIA */,
 				504C42E024AF29AB00E69CAE /* Memory */,
 			);
@@ -1655,7 +1655,7 @@
 				50726F452961C97B0031F2F5 /* Buffer.cpp in Sources */,
 				50726F4B2961C9940031F2F5 /* Thread.cpp in Sources */,
 				50726F402961C97B0031F2F5 /* IOUtils.cpp in Sources */,
-				50726F572961C9A10031F2F5 /* RIOT.cpp in Sources */,
+				50726F572961C9A10031F2F5 /* PIA.cpp in Sources */,
 				50726F3F2961C97B0031F2F5 /* StringUtils.cpp in Sources */,
 				50726FBD2961CA5A0031F2F5 /* Headless.cpp in Sources */,
 				50726FAF2961CA1C0031F2F5 /* Script.cpp in Sources */,
@@ -1690,7 +1690,7 @@
 				50A5B7D02C74E44C00D6DDAD /* RemoteManager.cpp in Sources */,
 				50BB3E922B7A232800B2D87B /* Inspectable.cpp in Sources */,
 				508C1E6A2C0C507D0097473C /* CartridgeBase.cpp in Sources */,
-				50A1947F2BDA597A0046849E /* RIOTBase.cpp in Sources */,
+				50A1947F2BDA597A0046849E /* PIABase.cpp in Sources */,
 				50B98B4B2BFDF5FC00FA1EC6 /* AudioPortBase.cpp in Sources */,
 				50726FA32961CA1C0031F2F5 /* CartFile.cpp in Sources */,
 				50726FBA2961CA2F0031F2F5 /* RegressionTester.cpp in Sources */,
@@ -1809,7 +1809,7 @@
 				50A22A1D261871E600C9FB1E /* Layer.swift in Sources */,
 				5041044C2CA691410004860E /* TIAComponents.cpp in Sources */,
 				50ED5BF812DD99C000596417 /* Speedometer.swift in Sources */,
-				504C43AB24AF29AC00E69CAE /* RIOT.cpp in Sources */,
+				504C43AB24AF29AC00E69CAE /* PIA.cpp in Sources */,
 				50A5B7D32C74E44C00D6DDAD /* RshServer.cpp in Sources */,
 				503C1DD324FCD1BF00D91141 /* SnapshotViewer.swift in Sources */,
 				50BE4B6024E7F8A1008F39C9 /* Date.swift in Sources */,
@@ -1826,7 +1826,7 @@
 				50B98B4A2BFDF5FC00FA1EC6 /* AudioPortBase.cpp in Sources */,
 				50A22A2F2618845800C9FB1E /* TextureRect.swift in Sources */,
 				506D54CC2032255A0026D8B4 /* RomDropView.swift in Sources */,
-				50A1947E2BDA597A0046849E /* RIOTBase.cpp in Sources */,
+				50A1947E2BDA597A0046849E /* PIABase.cpp in Sources */,
 				505D492821C155DD00A7C575 /* RomConf.swift in Sources */,
 				50BE4B5A24E7F81B008F39C9 /* NSColor.swift in Sources */,
 				50BE4B5524E7F77F008F39C9 /* URL.swift in Sources */,

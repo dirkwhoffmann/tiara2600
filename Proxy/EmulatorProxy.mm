@@ -362,34 +362,34 @@ using namespace tiara;
 
 
 //
-// RIOT
+// PIA
 //
 
-@implementation RIOTProxy
+@implementation PIAProxy
 
-- (RIOTAPI *)riot
+- (PIAAPI *)pia
 {
-    return (RIOTAPI *)obj;
+    return (PIAAPI *)obj;
 }
 
-- (RIOTConfig)config
+- (PIAConfig)config
 {
-    return [self riot]->getConfig();
+    return [self pia]->getConfig();
 }
 
-- (RIOTInfo)info
+- (PIAInfo)info
 {
-    return [self riot]->getInfo();
+    return [self pia]->getInfo();
 }
 
-- (RIOTInfo)cachedInfo
+- (PIAInfo)cachedInfo
 {
-    return [self riot]->getCachedInfo();
+    return [self pia]->getCachedInfo();
 }
 
-- (RIOTStats)stats
+- (PIAStats)stats
 {
-    return [self riot]->getStats();
+    return [self pia]->getStats();
 }
 
 @end
@@ -867,7 +867,7 @@ using namespace tiara;
 
 @synthesize audioPort;
 @synthesize atari;
-@synthesize riot;
+@synthesize pia;
 @synthesize cpu;
 @synthesize logicAnalyzer;
 @synthesize mem;
@@ -890,7 +890,7 @@ using namespace tiara;
     // Create sub proxys
     audioPort = [[AudioPortProxy alloc] initWith:&emu->audioPort emu:emu];
     atari = [[AtariProxy alloc] initWith:&emu->atari emu:emu];
-    riot = [[RIOTProxy alloc] initWith:&emu->riot emu:emu];
+    pia = [[PIAProxy alloc] initWith:&emu->pia emu:emu];
     cpu = [[CPUProxy alloc] initWith:&emu->cpu emu:emu];
     logicAnalyzer = [[LogicAnalyzerProxy alloc] initWith:&emu->logicAnalyzer];
     mem = [[MemoryProxy alloc] initWith:&emu->mem emu:emu];

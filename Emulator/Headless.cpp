@@ -207,9 +207,9 @@ Headless::reportSize()
     msg("               C64 : %zu bytes\n", sizeof(Atari));
     msg("            Memory : %zu bytes\n", sizeof(Memory));
     msg("               CPU : %zu bytes\n", sizeof(CPU));
-    msg("              RIOT : %zu bytes\n", sizeof(RIOT));
     msg("               TIA : %zu bytes\n", sizeof(TIA));
-    msg("       ControlPort : %zu bytes\n", sizeof(ControlPort)); 
+    msg("               PIA : %zu bytes\n", sizeof(PIA));
+    msg("       ControlPort : %zu bytes\n", sizeof(ControlPort));
     msg("        RetroShell : %zu bytes\n", sizeof(RetroShell));
     msg("  RegressionTester : %zu bytes\n", sizeof(RegressionTester));
     msg("          MsgQueue : %zu bytes\n", sizeof(MsgQueue));

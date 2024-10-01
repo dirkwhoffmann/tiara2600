@@ -61,7 +61,7 @@ extension BankTableView: NSTableViewDataSource {
                 
             case .NONE:   return "Unmapped"
             case .TIA:    return "TIA"
-            case .RIOT:   return "RIOT"
+            case .PIA:    return "PIA"
             case .RAM:    return "RAM"
             case .CART:   return "Cart"
             default:      return "???"

@@ -57,7 +57,7 @@ struct WarpModeEnum : util::Reflection<WarpModeEnum, WarpMode>
 enum_long(SLOT)
 {
     // Primary slots
-    SLOT_RIOT,                      // RIOT
+    SLOT_PIA,                      // PIA
     SLOT_SEC,                       // Enables secondary slots
 
     // Secondary slots
@@ -87,7 +87,7 @@ struct EventSlotEnum : util::Reflection<EventSlotEnum, EventSlot>
     {
         switch (value) {
 
-            case SLOT_RIOT:     return "RIOT";
+            case SLOT_PIA:      return "PIA";
             case SLOT_SEC:      return "SEC";
 
             case SLOT_TER:      return "TER";
@@ -179,8 +179,8 @@ enum_i8(EventID)
     INS_C64             = 1,
     INS_CPU,
     INS_MEM,
-    INS_RIOT,
     INS_TIA,
+    INS_PIA,
     INS_SID,
     INS_EVENTS,
     INS_EVENT_COUNT

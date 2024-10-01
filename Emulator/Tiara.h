@@ -143,24 +143,24 @@ struct CPUAPI : API {
 };
 
 
-/** RIOT API
+/** PIA API
  */
-struct RIOTAPI : API {
+struct PIAAPI : API {
 
-    class RIOT *riot = nullptr;
+    class PIA *pia = nullptr;
 
     /** @brief  Returns the component's current configuration.
      */
-    const RIOTConfig &getConfig() const;
+    const PIAConfig &getConfig() const;
 
     /** @brief  Returns the component's current state.
      */
-    const RIOTInfo &getInfo() const;
-    const RIOTInfo &getCachedInfo() const;
+    const PIAInfo &getInfo() const;
+    const PIAInfo &getCachedInfo() const;
 
     /** @brief  Returns statistical information about the components.
      */
-    RIOTStats getStats() const;
+    PIAStats getStats() const;
 };
 
 
@@ -743,8 +743,8 @@ struct AtariAPI : public API {
 
     /** @brief  Sets the current auto-inspection mask
      *
-     *  @example The following call enables auto-inspections for the RIOT chip
-     *  and the CPU: setAutoInspectionMask(1 << RIOTClass | 1 << CPUClass);
+     *  @example The following call enables auto-inspections for the PIA chip
+     *  and the CPU: setAutoInspectionMask(1 << PIAClass | 1 << CPUClass);
      *
      *  @param  mask A bit mask indicating the components under inspection
      */
@@ -1156,7 +1156,7 @@ public:
     AtariAPI atari;
     MemoryAPI mem;
     CPUAPI cpu;
-    RIOTAPI riot;
+    PIAAPI pia;
     TIAAPI tia;
     AudioPortAPI audioPort;
     VideoPortAPI videoPort;

@@ -123,18 +123,18 @@ typedef struct
 {
 
 }
-RIOTConfig;
+PIAConfig;
 
 typedef struct
 {
 
 }
-RIOTInfo;
+PIAInfo;
 
 typedef struct
 {
 
 }
-RIOTStats;
+PIAStats;
 
 }

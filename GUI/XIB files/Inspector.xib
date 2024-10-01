@@ -75,8 +75,8 @@
                 <outlet property="memHeatmapView" destination="dAH-DN-gCk" id="qkq-3r-PSg"/>
                 <outlet property="memLayoutButton" destination="6tr-9n-qjd" id="LYC-dS-AG7"/>
                 <outlet property="memLayoutSlider" destination="KId-J0-ozd" id="lt4-AV-YVc"/>
+                <outlet property="memPIAButton" destination="Gjg-Kg-9ZH" id="dqV-It-zrv"/>
                 <outlet property="memRamButton" destination="v9o-Z3-NZy" id="pbw-Iu-S4P"/>
-                <outlet property="memRiotButton" destination="Gjg-Kg-9ZH" id="dqV-It-zrv"/>
                 <outlet property="memSearchField" destination="oqV-f6-ndp" id="Ycg-Xf-avt"/>
                 <outlet property="memTIAButton" destination="z8f-ER-Hx8" id="f3x-rt-pqh"/>
                 <outlet property="memTab" destination="2Ti-8L-feC" id="Acg-5g-LLQ"/>
@@ -885,7 +885,7 @@
                                     </subviews>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="RIOT" identifier="" id="AVf-0Q-szC">
+                            <tabViewItem label="PIA" identifier="" id="AVf-0Q-szC">
                                 <view key="view" id="s5e-91-3c1">
                                     <rect key="frame" x="10" y="33" width="822" height="382"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1511,13 +1511,13 @@
                                                             <font key="font" metaFont="message" size="11"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="memRIOTAction:" target="-2" id="Bzb-03-n7t"/>
+                                                            <action selector="memPIAAction:" target="-2" id="vt1-8P-v9L"/>
                                                         </connections>
                                                     </button>
                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="es0-Rj-oC7">
-                                                        <rect key="frame" x="428" y="13" width="30" height="14"/>
+                                                        <rect key="frame" x="428" y="13" width="22" height="14"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="RIOT" id="7Nw-Ol-EGw">
+                                                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="PIA" id="7Nw-Ol-EGw">
                                                             <font key="font" metaFont="message" size="11"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
