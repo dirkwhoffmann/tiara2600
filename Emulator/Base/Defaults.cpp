@@ -95,7 +95,7 @@ Defaults::Defaults()
 
     setFallback(OPT_SID_SAMPLING,               0);
 
-    setFallback(OPT_MEM_INIT_PATTERN,           RAM_PATTERN_VICE);
+    setFallback(OPT_MEM_INIT_PATTERN,           RAM_PATTERN_ZEROES);
     setFallback(OPT_MEM_HEATMAP,                false);
     
     setFallback(OPT_MOUSE_SHAKE_DETECT,         true);

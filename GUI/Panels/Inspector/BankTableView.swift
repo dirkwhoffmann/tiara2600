@@ -49,7 +49,7 @@ class BankTableView: NSTableView, NSTableViewDelegate {
 
 extension BankTableView: NSTableViewDataSource {
     
-    func numberOfRows(in tableView: NSTableView) -> Int { return 16; }
+    func numberOfRows(in tableView: NSTableView) -> Int { return 64; }
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
@@ -60,14 +60,10 @@ extension BankTableView: NSTableViewDataSource {
             switch inspector.bankType[row] {
                 
             case .NONE:   return "Unmapped"
-            case .RAM:    return "Ram"
-            case .PP:     return "Ram"
-            case .BASIC:  return "Basic Rom"
-            case .CHAR:   return "Character Rom"
-            case .KERNAL: return "Kernal Rom"
-            case .IO:     return "IO"
-            case .CRTLO:  return "Cartridge Lo"
-            case .CRTHI:  return "Cartridge Hi"
+            case .TIA:    return "TIA"
+            case .RIOT:   return "RIOT"
+            case .RAM:    return "RAM"
+            case .CART:   return "Cart"
             default:      return "???"
             }
 

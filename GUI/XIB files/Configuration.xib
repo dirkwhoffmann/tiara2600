@@ -942,9 +942,6 @@ Gw
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
-                                            <connections>
-                                                <action selector="comSsCollisionsAction:" target="-2" id="qgk-fZ-ldm"/>
-                                            </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bnG-rw-e1M">
                                             <rect key="frame" x="332" y="332" width="243" height="18"/>
@@ -953,9 +950,6 @@ Gw
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
-                                            <connections>
-                                                <action selector="comSbCollisionsAction:" target="-2" id="exI-gv-cre"/>
-                                            </connections>
                                         </button>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KOV-eH-3s2">
                                             <rect key="frame" x="244" y="160" width="54" height="20"/>

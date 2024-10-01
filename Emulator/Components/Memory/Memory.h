@@ -45,23 +45,12 @@ public:
     // Subcomponents
     MemoryDebugger debugger = MemoryDebugger(c64);
 
-    /* C64 bank mapping
-     *
-     *     BankMap[index][range] where
-     *
-     *             index = (EXROM, GAME, CHAREN, HIRAM, LORAM)
-     *             range = upper four bits of address
-     */
-    MemoryType bankMap[32][16];
+    // Address decoding table
+    MemoryType peekSrc[64];
+    MemoryType pokeTarget[64];
 
     // Random Access Memory
-    u8 ram[65536];
-
-    // Peek source lookup table
-    MemoryType peekSrc[16];
-
-    // Poke target lookup table
-    MemoryType pokeTarget[16];
+    u8 ram[128];
 
     // Indicates if watchpoints should be checked
     bool checkWatchpoints = false;
@@ -169,48 +158,35 @@ public:
     // Erases the RAM with the provided init pattern
     void eraseWithPattern(RamPattern pattern);
 
-    /* Updates the peek and poke lookup tables. The lookup values depend on
-     * three processor port bits and the cartridge exrom and game lines.
-     */
-    void updatePeekPokeLookupTables();
-
     // Returns the current peek source of the specified memory address
-    MemoryType getPeekSource(u16 addr) { return peekSrc[addr >> 12]; }
+    MemoryType getPeekSource(u16 addr) { return peekSrc[(addr & 0x1FFF) >> 7]; }
 
     // Returns the current poke target of the specified memory address
-    MemoryType getPokeTarget(u16 addr) { return pokeTarget[addr >> 12]; }
+    MemoryType getPokeTarget(u16 addr) { return pokeTarget[(addr & 0x1FFF) >> 7]; }
 
     // Reads a value from memory
     u8 peek(u16 addr, MemoryType source);
-    u8 peek(u16 addr, bool gameLine, bool exromLine);
-    u8 peek(u16 addr) { return peek(addr, peekSrc[addr >> 12]); }
-    u8 peekZP(u8 addr);
+    u8 peek(u16 addr) { return peek(addr, peekSrc[(addr & 0x1FFF) >> 7]); }
+    u8 peekZP(u8 addr) { return peek(u16(addr)); }
     u8 peekStack(u8 sp);
-    u8 peekIO(u16 addr);
 
     // Reads a value from memory and discards the result (idle access)
     void peekIdle(u16 addr) { (void)peek(addr); }
     void peekZPIdle(u8 addr) { (void)peekZP(addr); }
     void peekStackIdle(u8 sp) { (void)peekStack(sp); }
-    void peekIOIdle(u16 addr) { (void)peekIO(addr); }
 
     // Reads a value from memory without side effects
     u8 spypeek(u16 addr, MemoryType source) const;
-    u8 spypeek(u16 addr) const { return spypeek(addr, peekSrc[addr >> 12]); }
-    u8 spypeekIO(u16 addr) const;
+    u8 spypeek(u16 addr) const { return spypeek(addr, peekSrc[(addr & 0x1FFF) >> 7]); }
 
     // Writing a value into memory
     void poke(u16 addr, u8 value, MemoryType target);
-    void poke(u16 addr, u8 value, bool gameLine, bool exromLine);
-    void poke(u16 addr, u8 value) { poke(addr, value, pokeTarget[addr >> 12]); }
-    void pokeZP(u8 addr, u8 value);
+    void poke(u16 addr, u8 value) { poke(addr, value, pokeTarget[(addr & 0x1FFF) >> 7]); }
+    void pokeZP(u8 addr, u8 value) { poke(addr, value); }
     void pokeStack(u8 sp, u8 value);
-    void pokeIO(u16 addr, u8 value);
 
     // Reads a vector address from memory
-    u16 nmiVector() const;
-    u16 irqVector() const;
-    u16 resetVector();
+    u16 resetVector() const;
 
     // Returns a string representations for a portion of memory
     string memdump(u16 addr, isize num, bool hex, isize pads, MemoryType src) const;

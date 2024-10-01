@@ -74,22 +74,12 @@ class Inspector: DialogController {
     @IBOutlet weak var memLayoutButton: NSButton!
     @IBOutlet weak var memLayoutSlider: NSSlider!
     @IBOutlet weak var memRamButton: NSButton!
-    @IBOutlet weak var memKernalButton: NSButton!
-    @IBOutlet weak var memBasicButton: NSButton!
-    @IBOutlet weak var memCharButton: NSButton!
-    @IBOutlet weak var memPPButton: NSButton!
-    @IBOutlet weak var memIOButton: NSButton!
-    @IBOutlet weak var memCartLoButton: NSButton!
-    @IBOutlet weak var memCartHiButton: NSButton!
+    @IBOutlet weak var memRiotButton: NSButton!
+    @IBOutlet weak var memCartButton: NSButton!
+    @IBOutlet weak var memTIAButton: NSButton!
     @IBOutlet weak var memSearchField: NSSearchField!
     @IBOutlet weak var memBankTableView: BankTableView!
     @IBOutlet weak var memTableView: MemTableView!
-    @IBOutlet weak var memExrom: NSButton!
-    @IBOutlet weak var memGame: NSButton!
-    @IBOutlet weak var memCharen: NSButton!
-    @IBOutlet weak var memHiram: NSButton!
-    @IBOutlet weak var memLoram: NSButton!
-    @IBOutlet weak var memSource: NSPopUpButton!
     @IBOutlet weak var memHeatmapView: HeatmapView!
 
     var bankType: [Int: tiara.MemoryType] = [:]
@@ -97,8 +87,7 @@ class Inspector: DialogController {
     var layoutIsDirty = true
     var nextLayoutRefresh = 0
 
-    // CIA panel
-    @IBOutlet weak var ciaSelector: NSSegmentedControl!
+    // RIOT panel
     @IBOutlet weak var ciaPRA: NSTextField!
     @IBOutlet weak var ciaPRAbinary: NSTextField!
     @IBOutlet weak var ciaDDRA: NSTextField!

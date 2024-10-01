@@ -21,80 +21,17 @@ namespace tiara {
 
 Memory::Memory(Atari &ref) : SubComponent(ref)
 {
-    /* Memory bank map
-     *
-     * If x == (EXROM, GAME, CHAREN, HIRAM, LORAM) then
-     *
-     *   map[x][0] == mapping for range $1000 - $7FFF
-     *   map[x][1] == mapping for range $8000 - $9FFF
-     *   map[x][2] == mapping for range $A000 - $BFFF
-     *   map[x][3] == mapping for range $C000 - $CFFF
-     *   map[x][4] == mapping for range $D000 - $DFFF
-     *   map[x][5] == mapping for range $E000 - $FFFF
-     */
-    MemoryType map[32][6] = {
-        
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_RAM,  M_RAM    },
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_RAM,  M_RAM    },
-        { M_RAM,  M_RAM,   M_CRTHI, M_RAM,  M_CHAR, M_KERNAL },
-        { M_RAM,  M_CRTLO, M_CRTHI, M_RAM,  M_CHAR, M_KERNAL },
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_RAM,  M_RAM    },
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_IO,   M_RAM    },
-        { M_RAM,  M_RAM,   M_CRTHI, M_RAM,  M_IO,   M_KERNAL },
-        { M_RAM,  M_CRTLO, M_CRTHI, M_RAM,  M_IO,   M_KERNAL },
-        
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_RAM,  M_RAM    },
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_CHAR, M_RAM    },
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_CHAR, M_KERNAL },
-        { M_RAM,  M_CRTLO, M_BASIC, M_RAM,  M_CHAR, M_KERNAL },
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_RAM,  M_RAM    },
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_IO,   M_RAM    },
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_IO,   M_KERNAL },
-        { M_RAM,  M_CRTLO, M_BASIC, M_RAM,  M_IO,   M_KERNAL },
-        
-        { M_NONE, M_CRTLO, M_NONE,  M_NONE, M_IO,   M_CRTHI  },
-        { M_NONE, M_CRTLO, M_NONE,  M_NONE, M_IO,   M_CRTHI  },
-        { M_NONE, M_CRTLO, M_NONE,  M_NONE, M_IO,   M_CRTHI  },
-        { M_NONE, M_CRTLO, M_NONE,  M_NONE, M_IO,   M_CRTHI  },
-        { M_NONE, M_CRTLO, M_NONE,  M_NONE, M_IO,   M_CRTHI  },
-        { M_NONE, M_CRTLO, M_NONE,  M_NONE, M_IO,   M_CRTHI  },
-        { M_NONE, M_CRTLO, M_NONE,  M_NONE, M_IO,   M_CRTHI  },
-        { M_NONE, M_CRTLO, M_NONE,  M_NONE, M_IO,   M_CRTHI  },
-        
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_RAM,  M_RAM    },
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_CHAR, M_RAM    },
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_CHAR, M_KERNAL },
-        { M_RAM,  M_RAM,   M_BASIC, M_RAM,  M_CHAR, M_KERNAL },
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_RAM,  M_RAM    },
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_IO,   M_RAM    },
-        { M_RAM,  M_RAM,   M_RAM,   M_RAM,  M_IO,   M_KERNAL },
-        { M_RAM,  M_RAM,   M_BASIC, M_RAM,  M_IO,   M_KERNAL }
+    auto decode = [&](u16 addr) {
+
+        if ((addr & TIA_MASK)  == TIA_MATCH)  return M_TIA;
+        if ((addr & RAM_MASK)  == RAM_MATCH)  return M_RAM;
+        if ((addr & RIOT_MASK) == RIOT_MATCH) return M_RIOT;
+
+        return M_CART;
     };
-    
-    for (isize i = 0; i < 32; i++) {
-        
-        bankMap[i][0x0] = M_PP;
-        bankMap[i][0x1] = map[i][0];
-        bankMap[i][0x2] = map[i][0];
-        bankMap[i][0x3] = map[i][0];
-        bankMap[i][0x4] = map[i][0];
-        bankMap[i][0x5] = map[i][0];
-        bankMap[i][0x6] = map[i][0];
-        bankMap[i][0x7] = map[i][0];
-        bankMap[i][0x8] = map[i][1];
-        bankMap[i][0x9] = map[i][1];
-        bankMap[i][0xA] = map[i][2];
-        bankMap[i][0xB] = map[i][2];
-        bankMap[i][0xC] = map[i][3];
-        bankMap[i][0xD] = map[i][4];
-        bankMap[i][0xE] = map[i][5];
-        bankMap[i][0xF] = map[i][5];
-    }
-    
-    // Initialize peekSource and pokeTarket tables
-    peekSrc[0x0] = pokeTarget[0x0] = M_PP;
-    for (isize i = 0x1; i <= 0xF; i++) {
-        peekSrc[i] = pokeTarget[i] = M_RAM;
+
+    for (isize i = 0; i < 64; i++) {
+        peekSrc[i] = pokeTarget[i] = decode(u16(i << 7));
     }
 }
 
@@ -130,27 +67,7 @@ void
 Memory::eraseWithPattern(RamPattern pattern)
 {
     switch (pattern) {
-            
-        case RAM_PATTERN_VICE:
-            
-            // $00 $00 $FF $FF $FF $FF $00 $00 ...
-            for (isize i = 0; i < isizeof(ram); i++)
-                ram[i] = (i & 0x6) == 0x2 || (i & 0x6) == 0x4 ? 0xFF : 0x00;
-            
-            // In addition, the 2nd and 3rd 16K bank are inverted
-            for (isize i = 0; i < isizeof(ram); i++)
-                ram[i] ^= (i & 0x4000) ? 0xFF : 0x00;
-            
-            break;
-            
-        case RAM_PATTERN_CCS:
-            
-            // (64 x $FF) (64 x $00) ...
-            for (isize i = 0; i < isizeof(ram); i++)
-                ram[i] = (i & 0x40) ? 0x00 : 0xFF;
-            
-            break;
-            
+                        
         case RAM_PATTERN_ZEROES:
             
             for (isize i = 0; i < isizeof(ram); i++)
@@ -181,80 +98,33 @@ Memory::eraseWithPattern(RamPattern pattern)
     }
 }
 
-void 
-Memory::updatePeekPokeLookupTables()
-{
-    // Read game line, exrom line, and processor port bits
-    u8 index = (cpu.readPort() & 0x07);
-        
-    // Update table entries
-    for (isize bank = 1; bank < 16; bank++) {
-        peekSrc[bank] = pokeTarget[bank] = bankMap[index][bank];
-    }
-}
-
 u8
 Memory::peek(u16 addr, MemoryType source)
 {
+    addr &= 0x1FFF; // TODO: REMOVE
+
     if (config.heatmap) stats.reads[addr]++;
 
     switch(source) {
             
         case M_RAM:
             
-            return ram[addr];
+            return ram[addr & 0x7F];
             
-        case M_BASIC:
-        case M_CHAR:
-        case M_KERNAL:
-            
-            return 0;
+        case M_TIA:
 
-        case M_IO:
-            
-            return peekIO(addr);
-            
-        case M_CRTLO:
-        case M_CRTHI:
-            
-            return 0;
+            return 0; // TODO
 
-        case M_PP:
-            
-            if (likely(addr >= 0x02)) {
-                return ram[addr];
-            } else {
-                return addr ? cpu.readPort() : cpu.readPortDir();
-            }
-            
-        case M_NONE:
-            
-            return 0;
+        case M_RIOT:
+
+            return 0; // TODO
+
+        case M_CART:
+
+            return 0; // TODO
 
         default:
             fatalError;
-    }
-}
-
-u8
-Memory::peek(u16 addr, bool gameLine, bool exromLine)
-{
-    u8 game  = gameLine ? 0x08 : 0x00;
-    u8 exrom = exromLine ? 0x10 : 0x00;
-    u8 index = (cpu.readPort() & 0x07) | exrom | game;
-    
-    return peek(addr, bankMap[index][addr >> 12]);
-}
-
-u8
-Memory::peekZP(u8 addr)
-{
-    if (config.heatmap) stats.reads[addr]++;
-
-    if (likely(addr >= 0x02)) {
-        return ram[addr];
-    } else {
-        return addr ? cpu.readPort() : cpu.readPortDir();
     }
 }
 
@@ -263,135 +133,31 @@ Memory::peekStack(u8 sp)
 {
     if (config.heatmap) stats.reads[sp]++;
 
-    return ram[0x100 + sp];
-}
-
-u8
-Memory::peekIO(u16 addr)
-{
-    assert(addr >= 0xD000 && addr <= 0xDFFF);
-    
-    if (config.heatmap) stats.reads[addr]++;
-
-    switch ((addr >> 8) & 0xF) {
-            
-        case 0x0: // VICII
-        case 0x1: // VICII
-        case 0x2: // VICII
-        case 0x3: // VICII
-            
-            // Only the lower 6 bits are used for adressing the VIC I/O space.
-            // As a result, VICII's I/O memory repeats every 64 bytes.
-            return 0;
-
-        case 0x4: // SID
-        case 0x5: // SID
-        case 0x6: // SID
-        case 0x7: // SID
-            
-            return 0;
-
-        case 0x8: // Color RAM
-        case 0x9: // Color RAM
-        case 0xA: // Color RAM
-        case 0xB: // Color RAM
-            
-            return 0;
-
-        case 0xC:
-        case 0xD:
-            
-            return 0;
-
-        case 0xE: // I/O space 1
-        case 0xF: // I/O space 2
-            
-            return 0;
-    }
-    
-    fatalError;
+    return ram[sp & 0x7F];
 }
 
 u8
 Memory::spypeek(u16 addr, MemoryType source) const
 {
+    addr &= 0x1FFF; // TODO: REMOVE
+
     switch(source) {
             
         case M_RAM:
-            
-            return ram[addr];
-            
-        case M_BASIC:
-        case M_CHAR:
-        case M_KERNAL:
-            
-            return 0;
 
-        case M_IO:
-            
-            return spypeekIO(addr);
-            
-        case M_CRTLO:
-        case M_CRTHI:
-            
-            return 0;
+            return ram[addr & 0x7F];
 
-        case M_PP:
-            
-            if (addr >= 0x02) {
-                return ram[addr];
-            } else {
-                return addr ? cpu.readPort() : cpu.readPortDir();
-            }
-            
-        case M_NONE:
-            
-            return ram[addr];
-            
-        default:
-            fatal("Invalid mem source: %ld\n", source);
-    }
-}
+        case M_TIA:
 
-u8
-Memory::spypeekIO(u16 addr) const
-{
-    assert(addr >= 0xD000 && addr <= 0xDFFF);
-    
-    switch ((addr >> 8) & 0xF) {
-            
-        case 0x0: // VICII
-        case 0x1: // VICII
-        case 0x2: // VICII
-        case 0x3: // VICII
-            
-            return 0;
+            return 0; // TODO
 
-        case 0x4: // SID
-        case 0x5: // SID
-        case 0x6: // SID
-        case 0x7: // SID
-            
-            return 0;
+        case M_RIOT:
 
-        case 0x8: // Color Ram
-        case 0x9: // Color Ram
-        case 0xA: // Color Ram
-        case 0xB: // Color Ram
-            return 0;
+            return 0; // TODO
 
-        case 0xC:
-        case 0xD:
-            
-            return 0;
+        case M_CART:
 
-        case 0xE: // I/O space 1
-            
-            return 0;
-
-        case 0xF: // I/O space 2
-            
-            return 0;
+            return 0; // TODO
 
         default:
             fatalError;
@@ -401,67 +167,31 @@ Memory::spypeekIO(u16 addr) const
 void
 Memory::poke(u16 addr, u8 value, MemoryType target)
 {
+    addr &= 0x1FFF; // TODO: REMOVE
+
     if (config.heatmap) stats.writes[addr]++;
 
     switch(target) {
             
         case M_RAM:
-        case M_BASIC:
-        case M_CHAR:
-        case M_KERNAL:
-            
-            ram[addr] = value;
+
+            ram[addr & 0x7F] = value;
             return;
             
-        case M_IO:
-            
-            pokeIO(addr, value);
-            return;
-            
-        case M_CRTLO:
-        case M_CRTHI:
+        case M_TIA: // TODO
 
             return;
             
-        case M_PP:
-            
-            if (likely(addr >= 0x02)) {
-                ram[addr] = value;
-            } else {
-                addr ? cpu.writePort(value) : cpu.writePortDir(value);
-            }
+        case M_RIOT: // TODO
+
             return;
-            
-        case M_NONE:
-            
-            return;
-            
+
+        case M_CART:
+
+            return;  // TODO
+
         default:
             fatalError;
-    }
-}
-
-void
-Memory::poke(u16 addr, u8 value, bool gameLine, bool exromLine)
-{
-    u8 game  = gameLine ? 0x08 : 0x00;
-    u8 exrom = exromLine ? 0x10 : 0x00;
-    u8 index = (cpu.readPort() & 0x07) | exrom | game;
-    
-    poke(addr, value, bankMap[index][addr >> 12]);
-}
-
-void
-Memory::pokeZP(u8 addr, u8 value)
-{
-    if (config.heatmap) stats.writes[addr]++;
-
-    if (likely(addr >= 0x02)) {
-        ram[addr] = value;
-    } else if (addr == 0x00) {
-        cpu.writePortDir(value);
-    } else {
-        cpu.writePort(value);
     }
 }
 
@@ -470,44 +200,13 @@ Memory::pokeStack(u8 sp, u8 value)
 {
     if (config.heatmap) stats.writes[sp]++;
 
-    ram[0x100 + sp] = value;
+    ram[sp & 0x7F] = value;
 }
 
-void
-Memory::pokeIO(u16 addr, u8 value)
+u16
+Memory::resetVector() const
 {
-    assert(addr >= 0xD000 && addr <= 0xDFFF);
- 
-    if (config.heatmap) stats.writes[addr]++;
-
-    return;
-}
-
-u16
-Memory::nmiVector() const {
-
-    return 0xFE43;
-}
-
-u16
-Memory::irqVector() const {
-
-    return 0xFF48;
-}
-
-u16
-Memory::resetVector() {
-
     return 0xFCE2;
-    /*
-    updatePeekPokeLookupTables();
-    
-    if (peekSrc[0xF] != M_KERNAL || c64.hasRom(ROM_TYPE_KERNAL)) {
-        return LO_HI(spypeek(0xFFFC), spypeek(0xFFFD));
-    } else {
-        return 0xFCE2;
-    }
-    */
 }
 
 string

@@ -42,12 +42,12 @@ extension MemTableView: NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        return 4096 / 16 // Bank size divided by bytes per row
+        return 128 / 16 // Bank size divided by bytes per row
     }
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
-        let base = inspector.displayedBank * 4096
+        let base = inspector.displayedBank * 128
         let addr = UInt16(base + 16 * row)
         
         switch tableColumn?.identifier.rawValue {

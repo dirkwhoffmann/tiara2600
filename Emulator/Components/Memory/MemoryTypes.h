@@ -18,6 +18,23 @@
 namespace tiara {
 
 //
+// Constants
+//
+
+constexpr u16 TIA_MASK   = 0b0001'0000'1000'0000;
+constexpr u16 TIA_MATCH  = 0b0000'0000'0000'0000;
+
+constexpr u16 RAM_MASK   = 0b0001'0010'1000'0000;
+constexpr u16 RAM_MATCH  = 0b0000'0000'1000'0000;
+
+constexpr u16 RIOT_MASK  = 0b0001'0010'1000'0000;
+constexpr u16 RIOT_MATCH = 0b0000'0010'1000'0000;
+
+constexpr u16 CART_MASK  = 0b0001'0000'0000'0000;
+constexpr u16 CART_MATCH = 0b0001'0000'0000'0000;
+
+
+//
 // Enumerations
 //
 
@@ -25,14 +42,10 @@ namespace tiara {
 enum_long(M_TYPE)
 {
     M_NONE,         ///< Unmapped
-    M_RAM,          ///< Ram
-    M_CHAR,         ///< Character Rom
-    M_KERNAL,       ///< Kernal Rom
-    M_BASIC,        ///< Basic Rom
-    M_IO,           ///< IO space
-    M_CRTLO,        ///< Cartridge Rom (low bank)
-    M_CRTHI,        ///< Cartridge Rom (high bank)
-    M_PP,           ///< Processor port
+    M_TIA,          ///< Custom IC
+    M_RIOT,         ///< Custom IC
+    M_RAM,          ///< RAM
+    M_CART          ///< Cartridge
 };
 typedef M_TYPE MemoryType;
 
@@ -47,14 +60,10 @@ struct MemoryTypeEnum : util::Reflection<MemoryTypeEnum, MemoryType> {
         switch (value) {
 
             case M_NONE:    return "NONE";
+            case M_TIA:     return "TIA";
+            case M_RIOT:    return "RIOT";
             case M_RAM:     return "RAM";
-            case M_CHAR:    return "CHAR";
-            case M_KERNAL:  return "KERNAL";
-            case M_BASIC:   return "BASIC";
-            case M_IO:      return "IO";
-            case M_CRTLO:   return "CRTLO";
-            case M_CRTHI:   return "CRTHI";
-            case M_PP:      return "PP";
+            case M_CART:    return "CART";
         }
         return "???";
     }
@@ -63,8 +72,6 @@ struct MemoryTypeEnum : util::Reflection<MemoryTypeEnum, MemoryType> {
 /// Ram startup pattern
 enum_long(RAM_PATTERN)
 {
-    RAM_PATTERN_VICE,       ///< Pattern used by the VICE emulator
-    RAM_PATTERN_CCS,        ///< Pattern used by the CCS emulator
     RAM_PATTERN_ZEROES,     ///< Initialize with all zeroes
     RAM_PATTERN_ONES,       ///< Initialize with all ones
     RAM_PATTERN_RANDOM      ///< Initialize with pseudo-random values
@@ -81,8 +88,6 @@ struct RamPatternEnum : util::Reflection<RamPatternEnum, RamPattern> {
     {
         switch (value) {
 
-            case RAM_PATTERN_VICE:   return "VICE";
-            case RAM_PATTERN_CCS:    return "CCS";
             case RAM_PATTERN_ZEROES: return "ZEROES";
             case RAM_PATTERN_ONES:   return "ONES";
             case RAM_PATTERN_RANDOM: return "RANDOM";
@@ -105,15 +110,10 @@ MemConfig;
 
 typedef struct
 {
-    bool exrom;
-    bool game;
-    bool loram;
-    bool hiram;
-    bool charen;
     u8   bankMap;
 
-    MemoryType peekSrc[16];
-    MemoryType vicPeekSrc[16];
+    MemoryType peekSrc[32];
+    MemoryType vicPeekSrc[32];
 }
 MemInfo;
 

@@ -37,13 +37,7 @@ Memory::cacheInfo(MemInfo &result) const
 {
     {   SYNCHRONIZED
 
-        result.loram = cpu.getLoram();
-        result.hiram = cpu.getHiram();
-        result.charen = cpu.getCharen();
-
-        result.bankMap = cpu.readPort();
-
-        for (isize i = 0; i < 16; i++) result.peekSrc[i] = peekSrc[i];
+        for (isize i = 0; i < 32; i++) result.peekSrc[i] = peekSrc[i];
     }
 }
 

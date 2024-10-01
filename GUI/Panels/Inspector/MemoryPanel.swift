@@ -10,14 +10,10 @@
 struct MemColors {
 
     static let unmapped = NSColor.gray
-    static let pp       = NSColor(r: 0xFF, g: 0xFF, b: 0xFF, a: 0xFF)
+    static let tia      = NSColor(r: 0xFF, g: 0xFF, b: 0x99, a: 0xFF)
+    static let riot     = NSColor(r: 0xCC, g: 0x99, b: 0xFF, a: 0xFF)
     static let ram      = NSColor(r: 0x99, g: 0xFF, b: 0x99, a: 0xFF)
-    static let cartlo   = NSColor(r: 0xCC, g: 0x99, b: 0xFF, a: 0xFF)
-    static let carthi   = NSColor(r: 0xFF, g: 0x99, b: 0xFF, a: 0xFF)
-    static let kernal   = NSColor(r: 0x99, g: 0xCC, b: 0xFF, a: 0xFF)
-    static let basic    = NSColor(r: 0xFF, g: 0x99, b: 0x99, a: 0xFF)
-    static let char     = NSColor(r: 0xFF, g: 0xFF, b: 0x99, a: 0xFF)
-    static let io       = NSColor(r: 0x99, g: 0xFF, b: 0xFF, a: 0xFF)
+    static let cart     = NSColor(r: 0x99, g: 0xCC, b: 0xFF, a: 0xFF)
 }
 
 extension Inspector {
@@ -25,67 +21,42 @@ extension Inspector {
     var mem: MemoryProxy? { return emu?.mem }
 
     private func updateBankMap() {
-    
-        switch memSource.selectedTag() {
-            
-        case 0: // Visible bank (CPU)
-            
-            bankType[0x0] = memInfo.peekSrc.0
-            bankType[0x1] = memInfo.peekSrc.1
-            bankType[0x2] = memInfo.peekSrc.2
-            bankType[0x3] = memInfo.peekSrc.3
-            bankType[0x4] = memInfo.peekSrc.4
-            bankType[0x5] = memInfo.peekSrc.5
-            bankType[0x6] = memInfo.peekSrc.6
-            bankType[0x7] = memInfo.peekSrc.7
-            bankType[0x8] = memInfo.peekSrc.8
-            bankType[0x9] = memInfo.peekSrc.9
-            bankType[0xA] = memInfo.peekSrc.10
-            bankType[0xB] = memInfo.peekSrc.11
-            bankType[0xC] = memInfo.peekSrc.12
-            bankType[0xD] = memInfo.peekSrc.13
-            bankType[0xE] = memInfo.peekSrc.14
-            bankType[0xF] = memInfo.peekSrc.15
-            
-        case 1: // Visible bank (VIC)
-            
-            bankType[0x0] = memInfo.vicPeekSrc.0
-            bankType[0x1] = memInfo.vicPeekSrc.1
-            bankType[0x2] = memInfo.vicPeekSrc.2
-            bankType[0x3] = memInfo.vicPeekSrc.3
-            bankType[0x4] = memInfo.vicPeekSrc.4
-            bankType[0x5] = memInfo.vicPeekSrc.5
-            bankType[0x6] = memInfo.vicPeekSrc.6
-            bankType[0x7] = memInfo.vicPeekSrc.7
-            bankType[0x8] = memInfo.vicPeekSrc.8
-            bankType[0x9] = memInfo.vicPeekSrc.9
-            bankType[0xA] = memInfo.vicPeekSrc.10
-            bankType[0xB] = memInfo.vicPeekSrc.11
-            bankType[0xC] = memInfo.vicPeekSrc.12
-            bankType[0xD] = memInfo.vicPeekSrc.13
-            bankType[0xE] = memInfo.vicPeekSrc.14
-            bankType[0xF] = memInfo.vicPeekSrc.15
-            
-        case 2: // RAM
-            
-            for i in 0...15 { bankType[i] = .RAM }
-            
-        case 3: // ROM
-            
-            for i in 0...15 { bankType[i] = .NONE }
-            bankType[0xA] = .BASIC
-            bankType[0xB] = .BASIC
-            bankType[0xD] = .CHAR
-            bankType[0xE] = .KERNAL
-            bankType[0xF] = .KERNAL
-            
-        case 4: // IO
 
-            for i in 0...15 { bankType[i] = .NONE }
-            bankType[0xD] = .IO
-            
-        default:
-            fatalError()
+        bankType[0x00] = memInfo.peekSrc.0
+        bankType[0x01] = memInfo.peekSrc.1
+        bankType[0x02] = memInfo.peekSrc.2
+        bankType[0x03] = memInfo.peekSrc.3
+        bankType[0x04] = memInfo.peekSrc.4
+        bankType[0x05] = memInfo.peekSrc.5
+        bankType[0x06] = memInfo.peekSrc.6
+        bankType[0x07] = memInfo.peekSrc.7
+        bankType[0x08] = memInfo.peekSrc.8
+        bankType[0x09] = memInfo.peekSrc.9
+        bankType[0x0A] = memInfo.peekSrc.10
+        bankType[0x0B] = memInfo.peekSrc.11
+        bankType[0x0C] = memInfo.peekSrc.12
+        bankType[0x0D] = memInfo.peekSrc.13
+        bankType[0x0E] = memInfo.peekSrc.14
+        bankType[0x0F] = memInfo.peekSrc.15
+        bankType[0x10] = memInfo.peekSrc.16
+        bankType[0x11] = memInfo.peekSrc.17
+        bankType[0x12] = memInfo.peekSrc.18
+        bankType[0x13] = memInfo.peekSrc.19
+        bankType[0x14] = memInfo.peekSrc.20
+        bankType[0x15] = memInfo.peekSrc.21
+        bankType[0x16] = memInfo.peekSrc.22
+        bankType[0x17] = memInfo.peekSrc.23
+        bankType[0x18] = memInfo.peekSrc.24
+        bankType[0x19] = memInfo.peekSrc.25
+        bankType[0x1A] = memInfo.peekSrc.26
+        bankType[0x1B] = memInfo.peekSrc.27
+        bankType[0x1C] = memInfo.peekSrc.28
+        bankType[0x1D] = memInfo.peekSrc.29
+        bankType[0x1E] = memInfo.peekSrc.30
+        bankType[0x1F] = memInfo.peekSrc.31
+
+        for i in 0x20 ... 0x3F {
+            bankType[i] = .CART
         }
     }
     
@@ -113,13 +84,7 @@ extension Inspector {
             layoutIsDirty = false
             nextLayoutRefresh = count + 10
         }
-            
-        memExrom.state = memInfo.exrom ? .on : .off
-        memGame.state = memInfo.game ? .on : .off
-        memCharen.state = memInfo.charen ? .on : .off
-        memHiram.state = memInfo.hiram ? .on : .off
-        memLoram.state = memInfo.loram ? .on : .off
-        
+
         memBankTableView.refresh(count: count, full: full)
         memTableView.refresh(count: count, full: full)
         
@@ -133,14 +98,10 @@ extension Inspector {
         let size = NSSize(width: 16, height: 16)
         
         memLayoutButton.image   = memLayoutImage
+        memTIAButton.image     = NSImage(color: MemColors.tia, size: size)
         memRamButton.image    = NSImage(color: MemColors.ram, size: size)
-        memKernalButton.image = NSImage(color: MemColors.kernal, size: size)
-        memBasicButton.image  = NSImage(color: MemColors.basic, size: size)
-        memCharButton.image   = NSImage(color: MemColors.char, size: size)
-        memPPButton.image     = NSImage(color: MemColors.pp, size: size)
-        memIOButton.image     = NSImage(color: MemColors.io, size: size)
-        memCartLoButton.image = NSImage(color: MemColors.cartlo, size: size)
-        memCartHiButton.image = NSImage(color: MemColors.carthi, size: size)
+        memRiotButton.image  = NSImage(color: MemColors.riot, size: size)
+        memCartButton.image   = NSImage(color: MemColors.cart, size: size)
     }
     
     @IBAction func memSourceAction(_ sender: NSPopUpButton!) {
@@ -152,9 +113,11 @@ extension Inspector {
     func jumpTo(addr: Int) {
                 
         if addr >= 0 && addr <= 0xFFFF {
+
+            let bank = (addr & 0x3FFF) >> 7
+            let row  = (addr & 0x7F) >> 4
             
-            jumpTo(bank: addr >> 12)
-            let row = (addr & 0xFFF) / 16
+            jumpTo(bank: bank)
             memTableView.scrollRowToVisible(row)
             memTableView.selectRowIndexes([row], byExtendingSelection: false)
         }
@@ -162,7 +125,7 @@ extension Inspector {
 
     func jumpTo(type: [tiara.MemoryType]) {
 
-        for i in 0...15 where type.contains(bankType[i]!) {
+        for i in 0...63 where type.contains(bankType[i]!) {
             jumpTo(bank: i)
             return
         }
@@ -170,8 +133,8 @@ extension Inspector {
 
     func jumpTo(bank nr: Int) {
                 
-        if nr >= 0 && nr <= 15 {
-            
+        if nr >= 0 && nr <= 63 {
+
             displayedBank = nr
             memLayoutSlider.integerValue = nr
             memTableView.scrollRowToVisible(0)
@@ -181,49 +144,29 @@ extension Inspector {
         }
     }
         
-    @IBAction func memPPAction(_ sender: NSButton!) {
+    @IBAction func memTIAAction(_ sender: NSButton!) {
 
-        jumpTo(type: [.PP])
+        jumpTo(type: [.TIA])
     }
 
     @IBAction func memRamAction(_ sender: NSButton!) {
 
-        jumpTo(type: [.PP, .RAM])
+        jumpTo(type: [.RAM])
     }
 
-    @IBAction func memBasicAction(_ sender: NSButton!) {
+    @IBAction func memRIOTAction(_ sender: NSButton!) {
 
-        jumpTo(type: [.BASIC])
+        jumpTo(type: [.RIOT])
     }
 
-    @IBAction func memCharAction(_ sender: NSButton!) {
+    @IBAction func memCartAction(_ sender: NSButton!) {
 
-        jumpTo(type: [.CHAR])
+        jumpTo(type: [.CART])
     }
 
-    @IBAction func memKernalAction(_ sender: NSButton!) {
-
-        jumpTo(type: [.KERNAL])
-    }
-
-    @IBAction func memIOAction(_ sender: NSButton!) {
-
-        jumpTo(type: [.IO])
-    }
-
-    @IBAction func memCrtLoAction(_ sender: NSButton!) {
-
-        jumpTo(type: [.CRTLO])
-    }
-
-    @IBAction func memCrtHiAction(_ sender: NSButton!) {
-
-        jumpTo(type: [.CRTHI])
-    }
-    
     @IBAction func memSliderAction(_ sender: NSSlider!) {
 
-        jumpTo(bank: min(sender.integerValue, 15))
+        jumpTo(bank: min(sender.integerValue, 63))
     }
 
     @IBAction func memSearchAction(_ sender: NSTextField!) {
@@ -254,7 +197,7 @@ extension Inspector {
         let mask = calloc(cap, MemoryLayout<UInt32>.size)!
         let ptr = mask.bindMemory(to: UInt32.self, capacity: cap)
         let c = 3
-        let banks = 16
+        let banks = 64
         let dx = width / banks
 
         // Create image data
@@ -264,14 +207,10 @@ extension Inspector {
 
             switch bankType[bank] {
             case .NONE: color = MemColors.unmapped
-            case .PP: color = MemColors.ram
+            case .TIA: color = MemColors.tia
             case .RAM: color = MemColors.ram
-            case .BASIC: color = MemColors.basic
-            case .CHAR: color = MemColors.char
-            case .KERNAL: color = MemColors.kernal
-            case .IO: color = MemColors.io
-            case .CRTLO: color = MemColors.cartlo
-            case .CRTHI: color = MemColors.carthi
+            case .RIOT: color = MemColors.riot
+            case .CART: color = MemColors.cart
             default: color = MemColors.unmapped
             }
 
@@ -288,19 +227,6 @@ extension Inspector {
             }
         }
 
-        // Mark the processor port area
-        if bankType[0] == .PP {
-            let ciColor = CIColor(color: MemColors.pp)!
-            for y in 0..<height {
-                let r = Int(ciColor.red * CGFloat(255 - y*c))
-                let g = Int(ciColor.green * CGFloat(255 - y*c))
-                let b = Int(ciColor.blue * CGFloat(255 - y*c))
-                let a = Int(ciColor.alpha * CGFloat(255))
-                let abgr = UInt32(r | g << 8 | b << 16 | a << 24)
-                ptr[width*y] = abgr
-            }
-        }
-        
         // Create image
         let image = NSImage.make(data: mask, rect: size)
         let resizedImage = image?.resizeSharp(width: 512, height: 16)
