@@ -20,7 +20,7 @@
 namespace tiara {
 
 void
-RegressionTester::prepare(Atari &c64, C64Model model)
+RegressionTester::prepare(Atari &atari)
 {
     // Only proceed if the /tmp folder exisits
     if (!util::fileExists(fs::path("/tmp"))) throw Error(VC64ERROR_DIR_NOT_FOUND, "/tmp");

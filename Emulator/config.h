@@ -17,15 +17,15 @@
 //
 
 // Version number
-#define VER_MAJOR 5
-#define VER_MINOR 1
-#define VER_SUBMINOR 0
-#define VER_BETA 2
+#define VER_MAJOR 0
+#define VER_MINOR 0
+#define VER_SUBMINOR 1
+#define VER_BETA 1
 
 // Snapshot version number
-#define SNP_MAJOR 5
-#define SNP_MINOR 1
-#define SNP_SUBMINOR 0
+#define SNP_MAJOR 0
+#define SNP_MINOR 0
+#define SNP_SUBMINOR 1
 #define SNP_BETA 2
 
 // Uncomment these settings in a release build

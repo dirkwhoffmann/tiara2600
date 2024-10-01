@@ -100,12 +100,12 @@ CommandConsole::initCommands(Command &root)
 
     // root.add({"regression"}, debugBuild ? "Runs the regression tester" : "");
 
-    root.add({"regression", "setup"}, { C64ModelEnum::argList() },
+    root.add({"regression", "setup"},
              "Initialize the test environment",
              [this](Arguments& argv, long value) {
 
-        auto model = parseEnum <C64Model, C64ModelEnum> (argv[0]);
-        regressionTester.prepare(c64, model);
+        // auto model = parseEnum <C64Model, C64ModelEnum> (argv[0]);
+        regressionTester.prepare(c64);
     });
 
     root.add({"regression", "run"}, { Arg::path },
@@ -183,7 +183,7 @@ CommandConsole::initCommands(Command &root)
         c64.hardReset();
     });
 
-    root.add({cmd, "init"}, { C64ModelEnum::argList() },
+    root.add({cmd, "init"},
              "Initialize the emulator with factory defaults",
              [](Arguments& argv, long value) {
 

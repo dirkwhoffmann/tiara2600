@@ -383,12 +383,6 @@ Atari::set(const string &opt, const string &value, const std::vector<isize> obji
     set(Option(util::parseEnum<OptionEnum>(opt)), value, objids);
 }
 
-void
-Atari::set(C64Model model)
-{
-
-}
-
 Configurable *
 Atari::routeOption(Option opt, isize objid)
 {

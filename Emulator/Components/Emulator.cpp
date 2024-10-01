@@ -184,12 +184,6 @@ Emulator::set(const string &opt, const string &value, const std::vector<isize> o
 }
 
 void
-Emulator::set(C64Model model)
-{
-    main.set(model);
-}
-
-void
 Emulator::update()
 {
     // Switch warp mode on or off

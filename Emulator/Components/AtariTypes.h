@@ -28,39 +28,6 @@ typedef i64 Cycle;
 // Enumerations
 //
 
-/// C64 model
-enum_long(C64_MODEL)
-{
-    C64_MODEL_PAL,      ///< C64 (PAL)
-    C64_MODEL_PAL_II,   ///< C64 II (PAL)
-    C64_MODEL_PAL_OLD,  ///< Early C64 (PAL)
-    C64_MODEL_NTSC,     ///< C64 (NTSC)
-    C64_MODEL_NTSC_II,  ///< C64 II (NTSC)
-    C64_MODEL_NTSC_OLD  ///< Early C64 (NTSC)
-};
-typedef C64_MODEL C64Model;
-
-struct C64ModelEnum : util::Reflection<C64ModelEnum, C64Model> {
-
-    static constexpr long minVal = 0;
-    static constexpr long maxVal = C64_MODEL_NTSC_OLD;
-
-    static const char *prefix() { return "C64_MODEL"; }
-    static const char *_key(long value)
-    {
-        switch (value) {
-
-            case C64_MODEL_PAL:       return "PAL";
-            case C64_MODEL_PAL_II:    return "PAL_II";
-            case C64_MODEL_PAL_OLD:   return "PAL_OLD";
-            case C64_MODEL_NTSC:      return "NTSC";
-            case C64_MODEL_NTSC_II:   return "NTSC_II";
-            case C64_MODEL_NTSC_OLD:  return "NTSC_OLD";
-        }
-        return "???";
-    }
-};
-
 enum_long(WARP_MODE)
 {
     WARP_AUTO,

@@ -115,7 +115,7 @@ public:
 public:
 
     // Reverts to factory settings
-    void prepare(Atari &c64, C64Model model);
+    void prepare(Atari &atari);
 
     // Runs a test case
     void run(string path);
