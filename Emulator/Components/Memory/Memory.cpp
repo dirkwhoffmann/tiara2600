@@ -27,7 +27,7 @@ Memory::Memory(Atari &ref) : SubComponent(ref)
         if ((addr & RAM_MASK) == RAM_MATCH) return M_RAM;
         if ((addr & PIA_MASK) == PIA_MATCH) return M_PIA;
 
-        return M_CART;
+        return M_CRT;
     };
 
     for (isize i = 0; i < 64; i++) {
@@ -101,7 +101,7 @@ Memory::eraseWithPattern(RamPattern pattern)
 u8
 Memory::peek(u16 addr, MemoryType source)
 {
-    addr &= 0x1FFF; // TODO: REMOVE
+    assert(addr <= 0x1FFF);
 
     if (config.heatmap) stats.reads[addr]++;
 
@@ -109,57 +109,40 @@ Memory::peek(u16 addr, MemoryType source)
             
         case M_RAM:
             
-            return ram[addr & 0x7F];
-            
+            cpu.concludeRead(ram[addr & 0x7F]);
+            return 0;
+
         case M_TIA:
 
-            return 0; // TODO
+            cpu.concludeRead(0);
+            return 0;
 
         case M_PIA:
 
-            return 0; // TODO
+            cpu.concludeRead(0);
+            return 0;
 
-        case M_CART:
+        case M_CRT:
 
-            return 0; // TODO
+            cpu.concludeRead(0);
+            return 0;
 
         default:
             fatalError;
     }
 }
 
-/*
-u8
-Memory::peekStack(u8 sp)
-{
-    if (config.heatmap) stats.reads[sp]++;
-
-    return ram[sp & 0x7F];
-}
-*/
-
 u8
 Memory::spypeek(u16 addr, MemoryType source) const
 {
-    addr &= 0x1FFF; // TODO: REMOVE
+    assert(addr <= 0x1FFF);
 
     switch(source) {
-            
-        case M_RAM:
 
-            return ram[addr & 0x7F];
-
-        case M_TIA:
-
-            return 0; // TODO
-
+        case M_TIA: return tia.spypeek(addr);
         case M_PIA:
-
-            return 0; // TODO
-
-        case M_CART:
-
-            return 0; // TODO
+        case M_RAM: return pia.spypeek(addr);
+        case M_CRT: return atari.cart->spypeek(addr);
 
         default:
             fatalError;
@@ -169,7 +152,7 @@ Memory::spypeek(u16 addr, MemoryType source) const
 void
 Memory::poke(u16 addr, u8 value, MemoryType target)
 {
-    addr &= 0x1FFF; // TODO: REMOVE
+    assert(addr <= 0x1FFF);
 
     if (config.heatmap) stats.writes[addr]++;
 
@@ -188,21 +171,13 @@ Memory::poke(u16 addr, u8 value, MemoryType target)
 
             return;
 
-        case M_CART:
+        case M_CRT:
 
             return;  // TODO
 
         default:
             fatalError;
     }
-}
-
-void
-Memory::pokeStack(u8 sp, u8 value)
-{
-    if (config.heatmap) stats.writes[sp]++;
-
-    ram[sp & 0x7F] = value;
 }
 
 u16

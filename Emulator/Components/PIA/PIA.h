@@ -34,6 +34,9 @@ class PIA : public SubComponent, public Inspectable<PIAInfo, PIAStats> {
     Options options{ };
     PIAConfig config = { };
 
+    // Random Access Memory
+    u8 ram[128];
+
 
     //
     // Initializing
@@ -44,6 +47,8 @@ public:
     PIA(Atari &ref);
 
     PIA& operator= (const PIA& other) {
+
+        CLONE_ARRAY(ram);
 
         return *this;
     }
@@ -58,6 +63,10 @@ public:
     template <class T>
     void serialize(T& worker)
     {
+        worker
+
+        << ram;
+
         if (isResetter(worker)) return;
 
     } SERIALIZERS(serialize);
@@ -98,6 +107,13 @@ public:
     i64 getOption(Option opt) const override;
     void checkOption(Option opt, i64 value) override;
     void setOption(Option opt, i64 value) override;
+
+
+    //
+    // Accessing registers and memory
+    //
+
+    u8 spypeek(u16 addr);
 
 
     //

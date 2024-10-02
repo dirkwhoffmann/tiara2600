@@ -44,9 +44,9 @@ DebugConsole::getPrompt()
     std::stringstream ss;
 
     ss << "(";
-    ss << std::right << std::setw(0) << std::dec << isize(c64.tia.getY());
+    ss << std::right << std::setw(0) << std::dec << isize(atari.tia.getY());
     ss << ",";
-    ss << std::right << std::setw(0) << std::dec << isize(c64.tia.getX());
+    ss << std::right << std::setw(0) << std::dec << isize(atari.tia.getX());
     ss << ") $";
     ss << std::right << std::setw(4) << std::hex << isize(cpu.getPC0());
     ss << ": ";
@@ -326,11 +326,11 @@ DebugConsole::initCommands(Command &root)
         dump(emulator, Category::RunAhead);
     });
 
-    auto cmd = c64.shellName();
-    auto description = c64.description();
+    auto cmd = atari.shellName();
+    auto description = atari.description();
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
 
-        dump(c64, { Category::Config, Category::State });
+        dump(atari, { Category::Config, Category::State });
     });
 
     cmd = cpu.shellName();
@@ -361,11 +361,11 @@ DebugConsole::initCommands(Command &root)
         dump(tia, { Category::Config, Category::State });
     });
 
-    cmd = c64.cart->shellName();
-    description = c64.cart->description();
+    cmd = atari.cart->shellName();
+    description = atari.cart->description();
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
 
-        dump(*c64.cart, { Category::Config, Category::State });
+        dump(*atari.cart, { Category::Config, Category::State });
     });
 
     Command::currentGroup = "Peripherals";
@@ -425,7 +425,7 @@ DebugConsole::initCommands(Command &root)
              "Displays checksum of various components",
              [this](Arguments& argv, long value) {
 
-        dump(c64, Category::Checksums);
+        dump(atari, Category::Checksums);
     });
 
     root.add({"debug"}, "Debug variables");

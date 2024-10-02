@@ -529,7 +529,7 @@ Atari::computeFrame()
         // (vic.*vic.vicfunc[rasterCycle])();
 
         // Execute one CPU cycle
-        cpu.execute<MOS_6510>();
+        cpu.execute<MOS_6507>();
 
         // Execute three TIA cycles
         tia.execute<false>();

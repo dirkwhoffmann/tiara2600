@@ -105,7 +105,7 @@ CommandConsole::initCommands(Command &root)
              [this](Arguments& argv, long value) {
 
         // auto model = parseEnum <C64Model, C64ModelEnum> (argv[0]);
-        regressionTester.prepare(c64);
+        regressionTester.prepare(atari);
     });
 
     root.add({"regression", "run"}, { Arg::path },
@@ -146,7 +146,7 @@ CommandConsole::initCommands(Command &root)
              "Save a screenshot and exits the emulator",
              [this](Arguments& argv, long value) {
 
-        regressionTester.dumpTexture(c64, argv.front());
+        regressionTester.dumpTexture(atari, argv.front());
     });
 
 
@@ -160,7 +160,7 @@ CommandConsole::initCommands(Command &root)
     // Components (C64)
     //
 
-    cmd = registerComponent(c64);
+    cmd = registerComponent(atari);
 
     root.add({cmd, "defaults"},
              "Display the user defaults storage",
@@ -173,14 +173,14 @@ CommandConsole::initCommands(Command &root)
              "Switch the C64 on or off",
              [this](Arguments& argv, long value) {
 
-        parseOnOff(argv[0]) ? c64.emulator.run() : c64.emulator.powerOff();
+        parseOnOff(argv[0]) ? atari.emulator.run() : atari.emulator.powerOff();
     });
 
     root.add({cmd, "reset"},
              "Perform a hard reset",
              [this](Arguments& argv, long value) {
 
-        c64.hardReset();
+        atari.hardReset();
     });
 
     root.add({cmd, "init"},
@@ -195,7 +195,7 @@ CommandConsole::initCommands(Command &root)
              [this](Arguments& argv, long value) {
 
         std::stringstream ss;
-        c64.exportDiff(ss);
+        atari.exportDiff(ss);
         printf("ss = %s\n", ss.str().c_str());
         retroShell << ss << '\n';
     });
@@ -293,7 +293,7 @@ CommandConsole::initCommands(Command &root)
                  "Presses the joystick button",
                  [this](Arguments& argv, long value) {
 
-            auto &port = (value == PORT_1) ? c64.port1 : c64.port2;
+            auto &port = (value == PORT_1) ? atari.port1 : atari.port2;
             port.joystick.trigger(PRESS_FIRE);
 
         }, i);
@@ -302,7 +302,7 @@ CommandConsole::initCommands(Command &root)
                  "Releases a joystick button",
                  [this](Arguments& argv, long value) {
 
-            auto &port = (value == PORT_1) ? c64.port1 : c64.port2;
+            auto &port = (value == PORT_1) ? atari.port1 : atari.port2;
             port.joystick.trigger(RELEASE_FIRE);
 
         }, i);
@@ -314,7 +314,7 @@ CommandConsole::initCommands(Command &root)
                  "Pulls the joystick left",
                  [this](Arguments& argv, long value) {
 
-            auto &port = (value == PORT_1) ? c64.port1 : c64.port2;
+            auto &port = (value == PORT_1) ? atari.port1 : atari.port2;
             port.joystick.trigger(PULL_LEFT);
 
         }, i);
@@ -323,7 +323,7 @@ CommandConsole::initCommands(Command &root)
                  "Pulls the joystick right",
                  [this](Arguments& argv, long value) {
 
-            auto &port = (value == PORT_1) ? c64.port1 : c64.port2;
+            auto &port = (value == PORT_1) ? atari.port1 : atari.port2;
             port.joystick.trigger(PULL_RIGHT);
 
         }, i);
@@ -332,7 +332,7 @@ CommandConsole::initCommands(Command &root)
                  "Pulls the joystick up",
                  [this](Arguments& argv, long value) {
 
-            auto &port = (value == PORT_1) ? c64.port1 : c64.port2;
+            auto &port = (value == PORT_1) ? atari.port1 : atari.port2;
             port.joystick.trigger(PULL_UP);
 
         }, i);
@@ -341,7 +341,7 @@ CommandConsole::initCommands(Command &root)
                  "Pulls the joystick down",
                  [this](Arguments& argv, long value) {
 
-            auto &port = (value == PORT_1) ? c64.port1 : c64.port2;
+            auto &port = (value == PORT_1) ? atari.port1 : atari.port2;
             port.joystick.trigger(PULL_DOWN);
 
         }, i);
@@ -353,7 +353,7 @@ CommandConsole::initCommands(Command &root)
                  "Releases the x-axis",
                  [this](Arguments& argv, long value) {
 
-            auto &port = (value == PORT_1) ? c64.port1 : c64.port2;
+            auto &port = (value == PORT_1) ? atari.port1 : atari.port2;
             port.joystick.trigger(RELEASE_X);
 
         }, i);
@@ -362,7 +362,7 @@ CommandConsole::initCommands(Command &root)
                  "Releases the y-axis",
                  [this](Arguments& argv, long value) {
 
-            auto &port = (value == PORT_1) ? c64.port1 : c64.port2;
+            auto &port = (value == PORT_1) ? atari.port1 : atari.port2;
             port.joystick.trigger(RELEASE_Y);
 
         }, i);

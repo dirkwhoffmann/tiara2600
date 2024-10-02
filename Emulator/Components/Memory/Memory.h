@@ -43,7 +43,7 @@ class Memory final : public SubComponent, public Inspectable<MemInfo, MemStats> 
 public:
 
     // Subcomponents
-    MemoryDebugger debugger = MemoryDebugger(c64);
+    MemoryDebugger debugger = MemoryDebugger(atari);
 
     // Address decoding table
     MemoryType peekSrc[64];
@@ -167,13 +167,6 @@ public:
     // Reads a value from memory
     u8 peek(u16 addr, MemoryType source);
     u8 peek(u16 addr) { return peek(addr, peekSrc[(addr & 0x1FFF) >> 7]); }
-    // u8 peekZP(u8 addr) { return peek(u16(addr)); }
-    // u8 peekStack(u8 sp);
-
-    // Reads a value from memory and discards the result (idle access)
-    void peekIdle(u16 addr) { (void)peek(addr); }
-    // void peekZPIdle(u8 addr) { (void)peekZP(addr); }
-    // void peekStackIdle(u8 sp) { (void)peekStack(sp); }
 
     // Reads a value from memory without side effects
     u8 spypeek(u16 addr, MemoryType source) const;
@@ -182,8 +175,6 @@ public:
     // Writing a value into memory
     void poke(u16 addr, u8 value, MemoryType target);
     void poke(u16 addr, u8 value) { poke(addr, value, pokeTarget[(addr & 0x1FFF) >> 7]); }
-    void pokeZP(u8 addr, u8 value) { poke(addr, value); }
-    void pokeStack(u8 sp, u8 value);
 
     // Reads a vector address from memory
     u16 resetVector() const;

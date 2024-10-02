@@ -171,6 +171,14 @@ public:
     // Checks whether this cartridge is supported by the emulator yet
     virtual bool isSupported() const { return traits.cartType == CART_NONE; }
 
+    //
+    // Accessing memory
+    //
+
+public:
+
+    virtual u8 spypeek(u16 addr) { return 0; }
+
 
     //
     // Execution

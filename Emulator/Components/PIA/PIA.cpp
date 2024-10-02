@@ -17,6 +17,20 @@
 
 namespace tiara {
 
+u8
+PIA::spypeek(u16 addr)
+{
+    if ((addr & RAM_MASK) == RAM_MATCH) {
+
+        return ram[addr & 0x7F];
+    }
+    switch (PIARegister(addr)) {
+
+        default:
+            return 0;
+    }
+}
+
 template <bool debug> void
 PIA::execute()
 {

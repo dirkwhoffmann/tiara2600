@@ -21,7 +21,7 @@ class References {
 protected:
 
     class AudioPort &audioPort;
-    class Atari &c64;
+    class Atari &atari;
     class PIA &pia;
     class ControlPort &port1;
     class ControlPort &port2;

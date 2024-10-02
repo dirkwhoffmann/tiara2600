@@ -45,7 +45,7 @@ enum_long(M_TYPE)
     M_TIA,          ///< Television Interface Adapter
     M_PIA,          ///< Peripheral Interface Adapter
     M_RAM,          ///< RAM
-    M_CART          ///< Cartridge
+    M_CRT          ///< Cartridge
 };
 typedef M_TYPE MemoryType;
 
@@ -63,7 +63,7 @@ struct MemoryTypeEnum : util::Reflection<MemoryTypeEnum, MemoryType> {
             case M_TIA:     return "TIA";
             case M_PIA:     return "PIA";
             case M_RAM:     return "RAM";
-            case M_CART:    return "CART";
+            case M_CRT:    return "CART";
         }
         return "???";
     }

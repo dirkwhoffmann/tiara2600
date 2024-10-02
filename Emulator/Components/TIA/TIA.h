@@ -270,6 +270,16 @@ public:
     void drawPixel(isize x, isize y, u32 color);
     void drawDebugPixel(isize x, isize y, u32 color);
 
+
+    //
+    // Accessing registers and memory
+    //
+
+public:
+
+    u8 spypeek(u16 addr);
+
+
     //
     // Executing
     //

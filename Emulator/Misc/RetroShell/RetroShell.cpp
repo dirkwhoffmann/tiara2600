@@ -139,7 +139,7 @@ RetroShell::abortScript()
         if (!commands.empty()) {
 
             commands.clear();
-            c64.cancel<SLOT_RSH>();
+            atari.cancel<SLOT_RSH>();
         }
     }
 }
@@ -312,7 +312,7 @@ void
 RetroShell::serviceEvent()
 {
     emulator.put(Cmd(CMD_RSH_EXECUTE));
-    c64.cancel<SLOT_RSH>();
+    atari.cancel<SLOT_RSH>();
 }
 
 }

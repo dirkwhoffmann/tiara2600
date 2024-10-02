@@ -167,7 +167,7 @@ Console::printState()
 
     cpu.debugger.dumpLogBuffer(ss, 8);
     ss << "\n";
-    c64.dump(Category::Current, ss);
+    atari.dump(Category::Current, ss);
     ss << "\n";
     cpu.disassembler.disassembleRange(ss, cpu.getPC0(), 8);
     ss << "\n";
@@ -838,7 +838,7 @@ Console::initCommands(Command &root)
              [this](Arguments& argv, long value) {
 
         auto seconds = parseNum(argv[0]);
-        c64.scheduleRel<SLOT_RSH>(Atari::sec(seconds), RSH_WAKEUP);
+        atari.scheduleRel<SLOT_RSH>(Atari::sec(seconds), RSH_WAKEUP);
         throw ScriptInterruption();
     });
 

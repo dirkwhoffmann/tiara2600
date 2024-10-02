@@ -99,14 +99,14 @@ Joystick::eofHandler()
 {
     if (isAutofiring()) {
 
-        if (i64(c64.frame) == nextAutofireFrame) {
+        if (i64(atari.frame) == nextAutofireFrame) {
 
             debug(JOY_DEBUG, "Autofire press\n");
             button = true;
             nextAutofireReleaseFrame = nextAutofireFrame + config.autofireDelay;
         }
 
-        if (i64(c64.frame) == nextAutofireReleaseFrame) {
+        if (i64(atari.frame) == nextAutofireReleaseFrame) {
 
             debug(JOY_DEBUG, "Autofire release\n");
             button = false;
@@ -143,7 +143,7 @@ Joystick::startAutofire()
     button = true;
 
     // Schedule the release event
-    nextAutofireReleaseFrame = c64.frame + config.autofireDelay;
+    nextAutofireReleaseFrame = atari.frame + config.autofireDelay;
 }
 
 void

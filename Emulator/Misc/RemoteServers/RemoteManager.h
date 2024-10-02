@@ -34,7 +34,7 @@ class RemoteManager : public SubComponent, public Inspectable<RemoteManagerInfo>
 public:
     
     // The remote servers
-    RshServer rshServer = RshServer(c64);
+    RshServer rshServer = RshServer(atari);
 
     // Convenience wrapper
     std::vector <RemoteServer *> servers = { &rshServer };

@@ -126,6 +126,16 @@ TIA::drawDebugPixel(isize x, isize y, u32 color)
     dmaTexture[y * Texture::width + x] = color;
 }
 
+u8
+TIA::spypeek(u16 addr)
+{
+    switch (TIARegister(addr)) {
+
+        default:
+            return 0;
+    }
+}
+
 template <bool debug> void
 TIA::execute()
 {
@@ -145,7 +155,7 @@ TIA::execute()
 
             y = 0;
             eofHandler();
-            c64.setFlag(RL::SYNC_THREAD);
+            atari.setFlag(RL::SYNC_THREAD);
         }
 
         // For now: Visualize the counter in the logic analyzer
@@ -170,7 +180,7 @@ void
 TIA::eofHandler()
 {
     // Only proceed if the current frame hasn't been executed in headless mode
-    if (c64.getHeadless()) return;
+    if (atari.getHeadless()) return;
 
     // Run the logic Analyzer if enabled
     bool debug = logicAnalyzer.config.dmaDebug;

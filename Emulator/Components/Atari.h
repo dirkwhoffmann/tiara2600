@@ -114,7 +114,7 @@ public:
 
     // Components
     Memory mem = Memory(*this);
-    CPU cpu = CPU(MOS_6510, *this);
+    CPU cpu = CPU(MOS_6507, *this);
     PIA pia = PIA(*this);
     TIA tia = TIA(*this);
 

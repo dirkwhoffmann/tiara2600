@@ -135,11 +135,11 @@ RegressionTester::setWatchdog(Cycle cycle)
     if (cycle == 0) {
 
         // Disable the watchdog
-        c64.cancel<SLOT_DBG>();
+        atari.cancel<SLOT_DBG>();
         return;
     }
 
-    c64.scheduleRel<SLOT_DBG>(cycle, DBG_WATCHDOG);
+    atari.scheduleRel<SLOT_DBG>(cycle, DBG_WATCHDOG);
 }
 
 }

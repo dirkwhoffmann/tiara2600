@@ -159,7 +159,7 @@ CPU::_didReset(bool hard)
     Peddle::reset();
 
     // Enable or disable CPU debugging
-    c64.emulator.isTracking() ? debugger.enableLogging() : debugger.disableLogging();
+    atari.emulator.isTracking() ? debugger.enableLogging() : debugger.disableLogging();
 
     assert(levelDetector.isClear());
     assert(edgeDetector.isClear());

@@ -56,7 +56,7 @@ extension Inspector {
         bankType[0x1F] = memInfo.peekSrc.31
 
         for i in 0x20 ... 0x3F {
-            bankType[i] = .CART
+            bankType[i] = .CRT
         }
     }
     
@@ -161,7 +161,7 @@ extension Inspector {
 
     @IBAction func memCartAction(_ sender: NSButton!) {
 
-        jumpTo(type: [.CART])
+        jumpTo(type: [.CRT])
     }
 
     @IBAction func memSliderAction(_ sender: NSSlider!) {
@@ -210,7 +210,7 @@ extension Inspector {
             case .TIA:  color = MemColors.tia
             case .RAM:  color = MemColors.ram
             case .PIA:  color = MemColors.pia
-            case .CART: color = MemColors.cart
+            case .CRT: color = MemColors.cart
             default: color = MemColors.unmapped
             }
 

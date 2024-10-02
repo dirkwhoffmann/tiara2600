@@ -15,36 +15,22 @@
 
 namespace tiara {
 
-/*
-void
-SimonsBasic::_didReset(bool hard)
-{
-    bankIn(0);
-    bankIn(1);
-}
-
 u8
-SimonsBasic::peekIO1(u16 addr)
+StdCartridge::spypeek(u16 addr)
 {
-    if (addr == 0xDE00) {
-        expansionPort.setCartridgeMode(CRTMODE_8K);
-    }
-    return Cartridge::peekIO1(addr);
-}
-
-u8
-SimonsBasic::spypeekIO1(u16 addr) const
-{
-    return Cartridge::spypeekIO1(addr);
+    return rom[addr % rom.size];
 }
 
 void
-SimonsBasic::pokeIO1(u16 addr, u8 value)
+StdCartridge::execute()
 {
-    if (addr == 0xDE00) {
-        expansionPort.setCartridgeMode(CRTMODE_16K);
-    }
+
 }
-*/
+
+void
+StdCartridge::endOfFrame()
+{
+
+}
 
 }

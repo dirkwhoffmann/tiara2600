@@ -31,19 +31,19 @@ CPU::CPU(CPURevision cpuModel, Atari& ref) : CPU(ref)
 void
 CPU::cpuDidJam()
 {
-    c64.signalJammed();
+    atari.signalJammed();
 }
 
 void
 CPU::breakpointReached(u16 addr) const
 {
-    c64.signalBreakpoint();
+    atari.signalBreakpoint();
 }
 
 void
 CPU::watchpointReached(u16 addr) const
 {
-    c64.signalWatchpoint();
+    atari.signalWatchpoint();
 }
 
 void

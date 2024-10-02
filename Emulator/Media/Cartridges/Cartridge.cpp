@@ -55,7 +55,8 @@ Cartridge::makeWithFile(Atari &c64, const CartFile &file)
     // Create the cartridge
     auto cart = makeWithType(c64, file.traits.cartType);
 
-    // Copy traits and other information
+    // Copy file contents
+    cart->rom = file.data;
     cart->traits = file.traits;
     cart->predictedCartType = file.traits.cartType;
 

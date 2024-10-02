@@ -19,7 +19,7 @@ namespace tiara {
 References::References(Atari& ref) :
 
 audioPort(ref.audioPort),
-c64(ref),
+atari(ref),
 pia(ref.pia),
 port1(ref.port1),
 port2(ref.port2),
@@ -44,7 +44,7 @@ SubComponent::SubComponent(Atari& ref, isize id) : CoreComponent(ref.emulator, i
 void
 SubComponent::prefix(isize level, const char *component, isize line) const
 {
-    c64.prefix(level, component, line);
+    atari.prefix(level, component, line);
 }
 
 }

@@ -54,8 +54,8 @@ class ControlPort final : public SubComponent {
 
 public:
 
-    Joystick joystick = Joystick(c64, *this);
-    Paddle paddle = Paddle(c64, *this);
+    Joystick joystick = Joystick(atari, *this);
+    Paddle paddle = Paddle(atari, *this);
 
 
     //

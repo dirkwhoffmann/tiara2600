@@ -40,6 +40,10 @@ public:
     using Cartridge::Cartridge;
 
     virtual bool isSupported() const override { return true; }
+
+    virtual u8 spypeek(u16 addr) override;
+    virtual void execute() override;
+    virtual void endOfFrame() override;
 };
 
 }

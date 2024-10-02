@@ -95,7 +95,7 @@ RemoteManager::numErroneous() const
 void
 RemoteManager::serviceServerEvent()
 {
-    assert(c64.eventid[SLOT_SRV] == SRV_LAUNCH_DAEMON);
+    assert(atari.eventid[SLOT_SRV] == SRV_LAUNCH_DAEMON);
 
     // Run the launch daemon
     if (rshServer.config.autoRun) {
@@ -103,7 +103,7 @@ RemoteManager::serviceServerEvent()
     }
 
     // Schedule next event
-    c64.scheduleInc <SLOT_SRV> (Atari::sec(0.5), SRV_LAUNCH_DAEMON);
+    atari.scheduleInc <SLOT_SRV> (Atari::sec(0.5), SRV_LAUNCH_DAEMON);
 }
 
 }
