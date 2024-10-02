@@ -10,44 +10,54 @@
 import Foundation
 
 class DropZone: Layer {
- 
+
+    static let unconnected = 0.92
+    static let unselected = 0.92
+    static let selected = 0.92
+
     var window: NSWindow { return controller.window! }
     var contentView: NSView { return window.contentView! }
     var metal: MetalView { return controller.metal! }
     var mydocument: MyDocument { return controller.mydocument! }
     var mm: MediaManager { return controller.mm }
 
+    let numZones = 5
+
+    /*
     var zones = [ NSImageView(), NSImageView(),
                   NSImageView(), NSImageView(),
                   NSImageView() ]
-
-    var ul = [ NSPoint(x: 0, y: 0), NSPoint(x: 0, y: 0),
-               NSPoint(x: 0, y: 0), NSPoint(x: 0, y: 0),
-               NSPoint(x: 0, y: 0) ]
-
-    var lr = [ NSPoint(x: 0, y: 0), NSPoint(x: 0, y: 0),
-               NSPoint(x: 0, y: 0), NSPoint(x: 0, y: 0),
-               NSPoint(x: 0, y: 0) ]
-    
-    static let unconnected = 0.92
-    static let unselected = 0.92
-    static let selected = 0.92
-    
+    */
+    var zones: [NSImageView]
+    var ul: [NSPoint]
+    var lr: [NSPoint]
+    var enabled: [Bool]
+    var inUse: [Bool]
+    var inside: [Bool]
+    var currentAlpha: [Double]
+    var targetAlpha: [Double]
+    var maxAlpha: [Double]
     var hideAll = false
-    var enabled = [false, false, false, false, false]
-    var inUse = [false, false, false, false, false ]
-    var inside = [false, false, false, false, false ]
-    var currentAlpha = [0.0, 0.0, 0.0, 0.0, 0.0 ]
-    var targetAlpha = [unselected, unselected, unselected, unselected, unselected]
-    var maxAlpha = [0.0, 0.0, 0.0, 0.0, 0.0]
-    
+
     //
     // Initializing
     //
     
     override init(renderer: Renderer) {
 
-        for i in 0...4 { zones[i].unregisterDraggedTypes() }
+        ul = [NSPoint](repeating: NSPoint(x: 0, y: 0), count: numZones)
+        lr = [NSPoint](repeating: NSPoint(x: 0, y: 0), count: numZones)
+        enabled = [Bool](repeating: false, count: numZones)
+        inUse = [Bool](repeating: false, count: numZones)
+        inside = [Bool](repeating: false, count: numZones)
+        currentAlpha = [Double](repeating: 0.0, count: numZones)
+        targetAlpha = [Double](repeating: DropZone.unselected, count: numZones)
+        maxAlpha = [Double](repeating: 0.0, count: numZones)
+
+        zones = [NSImageView]()
+        zones.reserveCapacity(numZones)
+        for _ in 0..<numZones { zones.append(NSImageView()) }
+        for i in 0..<numZones { zones[i].unregisterDraggedTypes() }
         super.init(renderer: renderer)
         resize()
     }

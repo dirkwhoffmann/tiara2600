@@ -177,7 +177,7 @@ public:
     void poke(u16 addr, u8 value) { poke(addr, value, pokeTarget[(addr & 0x1FFF) >> 7]); }
 
     // Reads a vector address from memory
-    u16 resetVector() const;
+    // u16 resetVector() const;
 
     // Returns a string representations for a portion of memory
     string memdump(u16 addr, isize num, bool hex, isize pads, MemoryType src) const;

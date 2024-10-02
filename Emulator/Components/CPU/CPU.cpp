@@ -290,7 +290,7 @@ CPU::readDasm(u16 addr) const
 u16
 CPU::readResetVector()
 {
-    return mem.resetVector();
+    return LO_HI(atari.cart->spypeek(0xFFFC), atari.cart->spypeek(0xFFFD));
 }
 
 #if PEDDLE_SIMPLE_MEMORY_API == false

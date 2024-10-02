@@ -135,7 +135,7 @@ Memory::peek(u16 addr, MemoryType source)
 u8
 Memory::spypeek(u16 addr, MemoryType source) const
 {
-    assert(addr <= 0x1FFF);
+    addr &= 0x1FFF;
 
     switch(source) {
 
@@ -178,12 +178,6 @@ Memory::poke(u16 addr, u8 value, MemoryType target)
         default:
             fatalError;
     }
-}
-
-u16
-Memory::resetVector() const
-{
-    return 0xFCE2;
 }
 
 string

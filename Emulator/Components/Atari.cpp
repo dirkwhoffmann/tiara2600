@@ -203,8 +203,10 @@ Atari::prefix(isize level, const char *component, isize line) const
 void 
 Atari::_didReset(bool hard)
 {
+    printf("Reset vector = %x\n", cpu.readResetVector());
+    
     // Initialize the program counter with the reset vector
-    cpu.reg.pc = cpu.reg.pc0 = mem.resetVector();
+    cpu.reg.pc = cpu.reg.pc0 = cpu.readResetVector();
 
     // Inform the GUI
     msgQueue.put(MSG_RESET);
