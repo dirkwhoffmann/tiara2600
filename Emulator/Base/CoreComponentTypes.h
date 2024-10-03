@@ -24,7 +24,7 @@ enum_long(COMP_TYPE)
     GenericClass,
 
     // Components
-    C64Class,
+    AtariClass,
     CPUClass,
     HostClass,
     MemoryClass,

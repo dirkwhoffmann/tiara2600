@@ -506,7 +506,7 @@ extension Inspector: NSTabViewDelegate {
             case "PIA":     c64?.autoInspectionMask = mask([.PIAClass])
             case "TIA":     c64?.autoInspectionMask = mask([.TIAClass])
             case "SID":     c64?.autoInspectionMask = mask([.SIDClass])
-            case "Events":  c64?.autoInspectionMask = mask([.C64Class])
+            case "Events":  c64?.autoInspectionMask = mask([.AtariClass])
 
             default:
                 break

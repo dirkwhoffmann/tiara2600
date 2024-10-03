@@ -18,7 +18,6 @@ class MediaManager {
         static let protect     = Option(rawValue: 1 << 2)
         static let reset       = Option(rawValue: 1 << 3)
         static let autostart   = Option(rawValue: 1 << 4)
-        static let flash       = Option(rawValue: 1 << 5)
     }
 
     // References to other objects
@@ -185,9 +184,7 @@ class MediaManager {
         }
 
         // Process file
-        if options.contains(.flash) {
-            try flashMedia(proxy: file, options: options)
-        }
+        try addMedia(proxy: file, options: options)
     }
 
     func addMedia(proxy: MediaFileProxy,
@@ -206,7 +203,7 @@ class MediaManager {
             case .CART:
 
                 debug(.media, "CART")
-                // try emu.expansionport.attachCartridge(proxy, reset: true)
+                emu.attachCart(proxy, reset: true)
 
             case .SCRIPT:
 
@@ -219,6 +216,7 @@ class MediaManager {
         }
     }
 
+    /*
     func flashMedia(proxy: MediaFileProxy, options: [Option] = []) throws {
 
         if let emu = emu {
@@ -245,6 +243,7 @@ class MediaManager {
             }
         }
     }
+    */
 
     //
     // Exporting

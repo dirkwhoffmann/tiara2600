@@ -28,7 +28,7 @@ MediaFile::type(const fs::path &path)
     if (buffer.empty()) return FILETYPE_UNKNOWN;
 
     if (CartFile::isCompatible(path) &&
-        CartFile::isCompatible(buffer)) { printf("FILETYPE BIN"); return FILETYPE_CART; }
+        CartFile::isCompatible(buffer)) { return FILETYPE_CART; }
 
     if (Snapshot::isCompatible(path) &&
         Snapshot::isCompatible(buffer)) return FILETYPE_SNAPSHOT;

@@ -72,7 +72,7 @@ class RomDropView: DropView {
         do {
 
             let rom = try MediaFileProxy.make(with: url)
-            emu?.attachCart(rom)
+            emu?.attachCart(rom, reset: true)
 
             return true
 

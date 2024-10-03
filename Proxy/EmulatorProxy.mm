@@ -1190,15 +1190,15 @@ using namespace tiara;
     return fileType == FILETYPE_CART;
 }
 
-- (void) attachCart:(NSURL *)url exception:(ExceptionWrapper *)e
+- (void) attachCart:(NSURL *)url reset:(BOOL)reset exception:(ExceptionWrapper *)e
 {
-    try { [self emu]->atari.attachCart(string([url fileSystemRepresentation])); }
+    try { [self emu]->atari.attachCart(string([url fileSystemRepresentation]), reset); }
     catch (Error &error) { [e save:error]; }
 }
 
-- (void) attachCart:(MediaFileProxy *)proxy
+- (void) attachCart:(MediaFileProxy *)proxy reset:(BOOL)reset
 {
-    [self emu]->atari.attachCart(*(MediaFile *)proxy->obj);
+    [self emu]->atari.attachCart(*(MediaFile *)proxy->obj, reset);
 }
 
 - (void)detachCart

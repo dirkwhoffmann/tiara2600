@@ -104,7 +104,6 @@ CommandConsole::initCommands(Command &root)
              "Initialize the test environment",
              [this](Arguments& argv, long value) {
 
-        // auto model = parseEnum <C64Model, C64ModelEnum> (argv[0]);
         regressionTester.prepare(atari);
     });
 
@@ -157,7 +156,7 @@ CommandConsole::initCommands(Command &root)
     Command::currentGroup = "Components";
 
     //
-    // Components (C64)
+    // Components (Atari)
     //
 
     cmd = registerComponent(atari);
@@ -170,7 +169,7 @@ CommandConsole::initCommands(Command &root)
     });
 
     root.add({cmd, "power"}, { Arg::onoff },
-             "Switch the C64 on or off",
+             "Switch the A2600 on or off",
              [this](Arguments& argv, long value) {
 
         parseOnOff(argv[0]) ? atari.emulator.run() : atari.emulator.powerOff();
@@ -219,6 +218,12 @@ CommandConsole::initCommands(Command &root)
 
     //
     // Components (TIA)
+    //
+
+    cmd = registerComponent(tia);
+
+    //
+    // Components (Cartridge)
     //
 
     cmd = registerComponent(tia);

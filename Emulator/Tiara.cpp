@@ -388,14 +388,14 @@ AtariAPI::loadSnapshot(const MediaFile &snapshot)
 void
 AtariAPI::attachCart(const std::filesystem::path &path, bool reset)
 {
-    atari->attachCartridge(path);
+    atari->attachCartridge(path, reset);
     emu->markAsDirty();
 }
 
 void
 AtariAPI::attachCart(const MediaFile &c, bool reset)
 {
-    atari->attachCartridge(c);
+    atari->attachCartridge(c, reset);
     emu->markAsDirty();
 }
 

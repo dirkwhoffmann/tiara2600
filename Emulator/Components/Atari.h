@@ -69,15 +69,15 @@ class Atari final : public CoreComponent, public Inspectable<AtariInfo> {
 
     Descriptions descriptions = {
         {
-            .type           = C64Class,
-            .name           = "C64",
-            .description    = "Commodore 64",
-            .shell          = "c64"
+            .type           = AtariClass,
+            .name           = "Atari",
+            .description    = "Atari 2600",
+            .shell          = "atari"
         },
         {
-            .type           = C64Class,
-            .name           = "C64[run-ahead]",
-            .description    = "Commodore 64",
+            .type           = AtariClass,
+            .name           = "Atari[run-ahead]",
+            .description    = "Atari 2600",
             .shell          = ""
         }
     };
@@ -419,9 +419,6 @@ public:
     void set(Option opt, const string &value, const std::vector<isize> objids = { }) throws;
     void set(const string &opt, const string &value, const std::vector<isize> objids = { }) throws;
 
-    // Configures the emulator to match a specific C64 model
-    // void set(C64Model model);
-
 public: // private
 
     // Returns the target component for an option
@@ -652,8 +649,8 @@ private:
 public:
 
     // Attaches a cartrige
-    void attachCartridge(const fs::path &path) throws;
-    void attachCartridge(const MediaFile &file);
+    void attachCartridge(const fs::path &path, bool reset = true) throws;
+    void attachCartridge(const MediaFile &file, bool reset = true);
 
     // Detaches the current cartridge
     void detachCartridge();

@@ -109,7 +109,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-&quot;expansion attach reu 512&quot;"
+            argument = "-&quot;break at $1000&quot;"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument

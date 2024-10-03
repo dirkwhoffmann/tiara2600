@@ -41,7 +41,7 @@ struct FileTypeEnum : util::Reflection<FileTypeEnum, FileType> {
         switch (value) {
 
             case FILETYPE_UNKNOWN:    return "UNKNOWN";
-            case FILETYPE_CART:        return "BIN";
+            case FILETYPE_CART:       return "CART";
             case FILETYPE_SNAPSHOT:   return "SNAPSHOT";
             case FILETYPE_SCRIPT:     return "SCRIPT";
         }

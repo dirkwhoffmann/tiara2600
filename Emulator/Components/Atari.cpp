@@ -880,7 +880,7 @@ Atari::processINSEvent()
     u64 mask = data[SLOT_INS];
 
     // Analyze bit mask
-    if (mask & 1LL << C64Class)             { record(); }
+    if (mask & 1LL << AtariClass)             { record(); }
     if (mask & 1LL << CPUClass)             { cpu.record(); }
     if (mask & 1LL << MemoryClass)          { mem.record(); }
     if (mask & 1LL << PIAClass)             { pia.record(); }
@@ -994,14 +994,14 @@ Atari::scheduleNextSNPEvent()
 }
 
 void
-Atari::attachCartridge(const fs::path &path) throws
+Atari::attachCartridge(const fs::path &path, bool reset) throws
 {
     CartFile file(path);
-    attachCartridge(file);
+    attachCartridge(file, reset);
 }
 
 void
-Atari::attachCartridge(const MediaFile &file)
+Atari::attachCartridge(const MediaFile &file, bool reset)
 {
     SUSPENDED
 
@@ -1010,6 +1010,8 @@ Atari::attachCartridge(const MediaFile &file)
         const auto &romFile = dynamic_cast<const CartFile &>(file);
         auto newCartridge = Cartridge::makeWithFile(*this, romFile);
         cart = std::move(newCartridge);
+
+        if (reset) hardReset();
 
     } catch (...) {
 

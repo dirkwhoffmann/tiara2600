@@ -21,13 +21,8 @@ class DropZone: Layer {
     var mydocument: MyDocument { return controller.mydocument! }
     var mm: MediaManager { return controller.mm }
 
-    let numZones = 5
+    let numZones = 1
 
-    /*
-    var zones = [ NSImageView(), NSImageView(),
-                  NSImageView(), NSImageView(),
-                  NSImageView() ]
-    */
     var zones: [NSImageView]
     var ul: [NSPoint]
     var lr: [NSPoint]
@@ -70,28 +65,22 @@ class DropZone: Layer {
     
     private func setType(_ type: tiara.FileType) {
 
-        inUse[0] = false
-        inUse[1] = false
-        inUse[2] = false
-        inUse[3] = true
-        inUse[4] = false
+        inUse[0] = true
 
         switch type {
 
         case .CART:
-            enabled = [false, false, false, true, false]
+            enabled[0] = true
 
         default:
-            enabled = [false, false, false, false, false]
+            enabled[0] = false
         }
 
-        for i in 0...4 {
-
-            zones[i].image = image(zone: i)
-        }
+        for i in 0..<numZones { zones[i].image = image(zone: i) }
 
         // Hide all drop zones if none is enabled
-        hideAll = !enabled[0] && !enabled[1] && !enabled[2] && !enabled[3] && !enabled[4]
+        hideAll = true
+        for i in 0..<numZones where enabled[i] { hideAll = false }
     }
 
     func open(type: tiara.FileType, delay: Double) {
@@ -109,7 +98,7 @@ class DropZone: Layer {
     
     func isInside(_ sender: NSDraggingInfo, zone i: Int) -> Bool {
 
-        assert(i >= 0 && i <= 4)
+        assert(i >= 0 && i < numZones)
 
         let x = sender.draggingLocation.x
         let y = sender.draggingLocation.y
@@ -121,8 +110,8 @@ class DropZone: Layer {
                    
         if hideAll { return }
         
-        for i in 0...4 {
-        
+        for i in 0..<numZones {
+
             if !enabled[i] {
                 targetAlpha[i] = DropZone.unconnected
                 continue
@@ -150,8 +139,8 @@ class DropZone: Layer {
                 
         if hideAll { return }
         
-        for i in 0...4 {
-            
+        for i in 0..<numZones {
+
             maxAlpha[i] = Double(alpha.current)
         
             if alpha.current > 0 && zones[i].superview == nil {
@@ -176,11 +165,7 @@ class DropZone: Layer {
 
                 switch n {
 
-                case 0: break
-                case 1: break
-                case 2: try mm.addMedia(url: url, allowedTypes: [type], options: [.flash])
-                case 3: try mm.addMedia(url: url, allowedTypes: [type])
-                case 4: try mm.addMedia(url: url, allowedTypes: [type])
+                case 0: try mm.addMedia(url: url, allowedTypes: [type])
 
                 default:
                     fatalError()
@@ -213,7 +198,7 @@ class DropZone: Layer {
 
     func updateAlpha() {
             
-        for i in 0...4 {
+        for i in 0..<numZones {
 
             let current = currentAlpha[i]
             var delta = 0.0
@@ -239,10 +224,11 @@ class DropZone: Layer {
         let h = w * 1.2
         let y = size.height + origin.y - 24 - h * CGFloat(alpha.current)
         let margin = w / 8
+        let totalw = Double(numZones) * w + (Double(numZones) - 1) * margin
 
-        var x = midx - 2.5 * w - 2 * margin
+        var x = midx - (totalw / 2)
 
-        for i in 0...4 {
+        for i in 0..<numZones {
 
             ul[i] = CGPoint(x: x, y: y)
             lr[i] = CGPoint(x: ul[i].x + w, y: ul[i].y + h)

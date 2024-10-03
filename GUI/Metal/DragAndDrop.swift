@@ -108,10 +108,10 @@ public extension MetalView {
         // Only proceed if a draggable type is given
         if !tiara.FileType.draggable.contains(type) { return false }
 
-        // Check all drop zones
+        // Check drop zones
         var zone: Int?
-        for i in 0...4 where renderer.dropZone.isInside(sender, zone: i) {
-            
+        for i in 0...0 where renderer.dropZone.isInside(sender, zone: i) {
+
             if renderer.dropZone.enabled[i] {
                 zone = i
             } else {
