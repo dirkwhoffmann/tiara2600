@@ -72,6 +72,7 @@ typedef struct
     u8 irq;
     u8 nmi;
     bool rdy;
+    bool jam;
 
     long next;
 

@@ -145,6 +145,7 @@ CPU::cacheInfo(CPUInfo &result) const
         result.irq = irqLine;
         result.nmi = nmiLine;
         result.rdy = rdyLine;
+        result.jam = next == JAM || next == JAM_2;
 
         result.next = next;
         
