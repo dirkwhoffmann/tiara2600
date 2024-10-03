@@ -705,7 +705,7 @@ struct AtariAPI : public API {
 
     /** @brief  Returns information about the plugged in cartridge
      */
-    RomTraits getRomTraits() const;
+    CartTraits getCartTraits() const;
 
     /// @}
     /// @name Resetting the Atari
@@ -786,10 +786,6 @@ struct AtariAPI : public API {
     /** @brief  Removes the current cartridge
      */
     void detachCart();
-
-    /** @brief  Changes the cartridge type
-     */
-    void setCartType(CartridgeType newType);
 
     /** @brief  Reverts the type to the one originally provided by the CartFile
      */

@@ -361,11 +361,11 @@ DebugConsole::initCommands(Command &root)
         dump(tia, { Category::Config, Category::State });
     });
 
-    cmd = atari.cart->shellName();
-    description = atari.cart->description();
+    cmd = cartPort.shellName();
+    description = cartPort.description();
     root.add({"?", cmd}, description, [this](Arguments& argv, long value) {
 
-        dump(*atari.cart, { Category::Config, Category::State });
+        dump(cartPort, { Category::Config, Category::State });
     });
 
     Command::currentGroup = "Peripherals";

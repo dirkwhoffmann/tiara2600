@@ -23,6 +23,7 @@ protected:
     class AudioPort &audioPort;
     class Atari &atari;
     class PIA &pia;
+    class CartPort &cartPort;
     class ControlPort &port1;
     class ControlPort &port2;
     class CPU &cpu;

@@ -53,7 +53,7 @@ debugflag AUDBUF_DEBUG    = 0;
 debugflag AUDVOL_DEBUG    = 0;
 
 // Media
-debugflag CRT_DEBUG       = 1;
+debugflag CART_DEBUG      = 1;
 debugflag FILE_DEBUG      = 0;
 
 // Peripherals

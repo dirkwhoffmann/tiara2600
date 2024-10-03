@@ -13,6 +13,7 @@
 #include "config.h"
 #include "PeddleConfig.h"
 #include "CPU.h"
+#include "CartPort.h"
 #include "Emulator.h"
 #include "IOUtils.h"
 
@@ -290,7 +291,7 @@ CPU::readDasm(u16 addr) const
 u16
 CPU::readResetVector()
 {
-    return LO_HI(atari.cart->spypeek(0xFFFC), atari.cart->spypeek(0xFFFD));
+    return cartPort.resetVector();
 }
 
 #if PEDDLE_SIMPLE_MEMORY_API == false

@@ -23,7 +23,7 @@ namespace tiara {
 #define MEGA65      ROM_VENDOR_MEGA65
 #define OTHER       ROM_VENDOR_OTHER
 
-static std::vector<RomTraits> roms = {
+static std::vector<CartTraits> roms = {
     {
         .md5          = "000509d1ed2b8d30a9d94be1b3b5febb",
         .manufacturer = "Greg Zumwalt",

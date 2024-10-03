@@ -287,6 +287,10 @@
 		50E17E222B8B26AC0029747D /* Option.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E17E1F2B8B26AC0029747D /* Option.cpp */; };
 		50E5BF732BA81E710004712B /* Monitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E5BF712BA81E710004712B /* Monitor.cpp */; };
 		50E5BF742BA81E710004712B /* Monitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E5BF712BA81E710004712B /* Monitor.cpp */; };
+		50E83D482CAE750D00308A1C /* CartPort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E83D472CAE750600308A1C /* CartPort.cpp */; };
+		50E83D492CAE750D00308A1C /* CartPort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E83D472CAE750600308A1C /* CartPort.cpp */; };
+		50E83D4C2CAE752700308A1C /* CartPortBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E83D4B2CAE752200308A1C /* CartPortBase.cpp */; };
+		50E83D4D2CAE752700308A1C /* CartPortBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E83D4B2CAE752200308A1C /* CartPortBase.cpp */; };
 		50E9B92D201F299500065A89 /* MyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9B92C201F299500065A89 /* MyController.swift */; };
 		50E9B92F201FA92C00065A89 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9B92E201FA92C00065A89 /* Alerts.swift */; };
 		50EAFFEA24B2600D00024CD2 /* MyToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EAFFE924B2600D00024CD2 /* MyToolbar.swift */; };
@@ -688,6 +692,10 @@
 		50E806BE25A1C2B800F08732 /* Reflection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reflection.h; sourceTree = "<group>"; };
 		50E806BF25A1C93B00F08732 /* PIATypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PIATypes.h; sourceTree = "<group>"; };
 		50E806C025A1DE9200F08732 /* MsgQueueTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgQueueTypes.h; sourceTree = "<group>"; };
+		50E83D462CAE74F900308A1C /* CartPort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartPort.h; sourceTree = "<group>"; };
+		50E83D472CAE750600308A1C /* CartPort.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CartPort.cpp; sourceTree = "<group>"; };
+		50E83D4A2CAE751800308A1C /* CartPortTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartPortTypes.h; sourceTree = "<group>"; };
+		50E83D4B2CAE752200308A1C /* CartPortBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CartPortBase.cpp; sourceTree = "<group>"; };
 		50E9B92C201F299500065A89 /* MyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyController.swift; sourceTree = "<group>"; };
 		50E9B92E201FA92C00065A89 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		50EAF5292C7A101E005AC890 /* HeadlessScripts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadlessScripts.h; sourceTree = "<group>"; };
@@ -1388,6 +1396,10 @@
 			isa = PBXGroup;
 			children = (
 				5078BEAE264D731600EDA161 /* CMakeLists.txt */,
+				50E83D4A2CAE751800308A1C /* CartPortTypes.h */,
+				50E83D462CAE74F900308A1C /* CartPort.h */,
+				50E83D4B2CAE752200308A1C /* CartPortBase.cpp */,
+				50E83D472CAE750600308A1C /* CartPort.cpp */,
 				50B98B482BFDC67E00FA1EC6 /* AudioPortTypes.h */,
 				50549B48257D288E006FE39C /* AudioPort.h */,
 				50B98B492BFDF5FC00FA1EC6 /* AudioPortBase.cpp */,
@@ -1654,6 +1666,7 @@
 				50726F462961C9940031F2F5 /* Error.cpp in Sources */,
 				50726F452961C97B0031F2F5 /* Buffer.cpp in Sources */,
 				50726F4B2961C9940031F2F5 /* Thread.cpp in Sources */,
+				50E83D4C2CAE752700308A1C /* CartPortBase.cpp in Sources */,
 				50726F402961C97B0031F2F5 /* IOUtils.cpp in Sources */,
 				50726F572961C9A10031F2F5 /* PIA.cpp in Sources */,
 				50726F3F2961C97B0031F2F5 /* StringUtils.cpp in Sources */,
@@ -1688,6 +1701,7 @@
 				50726F492961C9940031F2F5 /* MsgQueue.cpp in Sources */,
 				50CCC8022C117ACF0047ED17 /* MediaFile.cpp in Sources */,
 				50A5B7D02C74E44C00D6DDAD /* RemoteManager.cpp in Sources */,
+				50E83D482CAE750D00308A1C /* CartPort.cpp in Sources */,
 				50BB3E922B7A232800B2D87B /* Inspectable.cpp in Sources */,
 				508C1E6A2C0C507D0097473C /* CartridgeBase.cpp in Sources */,
 				50A1947F2BDA597A0046849E /* PIABase.cpp in Sources */,
@@ -1764,6 +1778,7 @@
 				5009CF3324C0B8EF00F674FF /* Preferences.swift in Sources */,
 				50726F31295C27470031F2F5 /* EventTableView.swift in Sources */,
 				5002FA7B21C2650600DA4BBC /* HardwareConf.swift in Sources */,
+				50E83D492CAE750D00308A1C /* CartPort.cpp in Sources */,
 				50A22A252618723200C9FB1E /* Canvas.swift in Sources */,
 				5055D5B42615886E005D3DA6 /* Error.cpp in Sources */,
 				5002FA8121C2654B00DA4BBC /* ControlsPrefs.swift in Sources */,
@@ -1903,6 +1918,7 @@
 				50653EFC1EF8F347008AA1F2 /* KeyboardController.swift in Sources */,
 				50BE4B6C24E7FB9E008F39C9 /* CGImage.swift in Sources */,
 				50B1A61F25A2386F00201A2C /* HIDExtensions.swift in Sources */,
+				50E83D4D2CAE752700308A1C /* CartPortBase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

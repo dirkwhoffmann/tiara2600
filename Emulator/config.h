@@ -131,7 +131,7 @@ extern debugflag AUDBUF_DEBUG;
 extern debugflag AUDVOL_DEBUG;
 
 // Media
-extern debugflag CRT_DEBUG;
+extern debugflag CART_DEBUG;
 extern debugflag FILE_DEBUG;
 
 // Peripherals

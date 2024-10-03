@@ -63,8 +63,8 @@ enum_long(OPT)
     OPT_DMA_DEBUG_COLOR4,       ///< Color for channel 4
     OPT_DMA_DEBUG_COLOR5,       ///< Color for channel 5
 
-    // Expansion port
-    OPT_EXP_REU_SPEED,          ///< Transfer speed of the RAM Extension Unit
+    // Cartridge port
+    OPT_CART_TYPE,              ///< Type of the plugged-in cartridge
 
     // Video port
     OPT_VID_WHITE_NOISE,        ///< Generate white-noise when switched off
@@ -154,15 +154,15 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_HOST_FRAMEBUF_WIDTH:   return "HOST.FRAMEBUF_WIDTH";
             case OPT_HOST_FRAMEBUF_HEIGHT:  return "HOST.FRAMEBUF_HEIGHT";
 
-            case OPT_ATARI_WARP_BOOT:         return "C64.WARP_BOOT";
-            case OPT_ATARI_WARP_MODE:         return "C64.WARP_MODE";
-            case OPT_ATARI_VSYNC:             return "C64.VSYNC";
-            case OPT_ATARI_SPEED_BOOST:       return "C64.SPEED_BOOST";
-            case OPT_ATARI_RUN_AHEAD:         return "C64.RUN_AHEAD";
+            case OPT_ATARI_WARP_BOOT:       return "C64.WARP_BOOT";
+            case OPT_ATARI_WARP_MODE:       return "C64.WARP_MODE";
+            case OPT_ATARI_VSYNC:           return "C64.VSYNC";
+            case OPT_ATARI_SPEED_BOOST:     return "C64.SPEED_BOOST";
+            case OPT_ATARI_RUN_AHEAD:       return "C64.RUN_AHEAD";
             
-            case OPT_ATARI_SNAP_AUTO:         return "C64.SNAP_AUTO";
-            case OPT_ATARI_SNAP_DELAY:        return "C64.SNAP_DELAY";
-            case OPT_ATARI_SNAP_COMPRESS:     return "C64.SNAP_COMPRESS";
+            case OPT_ATARI_SNAP_AUTO:       return "C64.SNAP_AUTO";
+            case OPT_ATARI_SNAP_DELAY:      return "C64.SNAP_DELAY";
+            case OPT_ATARI_SNAP_COMPRESS:   return "C64.SNAP_COMPRESS";
 
             case OPT_TIA_REVISION:          return "TIA.REVISION";
             case OPT_TIA_POWER_SAVE:        return "TIA.POWER_SAVE";
@@ -183,7 +183,7 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_DMA_DEBUG_COLOR4:      return "DMA_DEBUG.COLOR4";
             case OPT_DMA_DEBUG_COLOR5:      return "DMA_DEBUG.COLOR5";
 
-            case OPT_EXP_REU_SPEED:         return "EXP.REU_SPEED";
+            case OPT_CART_TYPE:             return "CART.TYPE";
 
             case OPT_VID_WHITE_NOISE:       return "VID.WHITE_NOISE";
 
@@ -258,15 +258,15 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_HOST_FRAMEBUF_WIDTH:   return "Window width";
             case OPT_HOST_FRAMEBUF_HEIGHT:  return "Window height";
 
-            case OPT_ATARI_WARP_BOOT:         return "Warp-boot duration";
-            case OPT_ATARI_WARP_MODE:         return "Warp activation";
-            case OPT_ATARI_VSYNC:             return "VSYNC mode";
+            case OPT_ATARI_WARP_BOOT:       return "Warp-boot duration";
+            case OPT_ATARI_WARP_MODE:       return "Warp activation";
+            case OPT_ATARI_VSYNC:           return "VSYNC mode";
             case OPT_ATARI_SPEED_BOOST:      return "Speed adjustment";
-            case OPT_ATARI_RUN_AHEAD:         return "Run-ahead frames";
+            case OPT_ATARI_RUN_AHEAD:       return "Run-ahead frames";
 
-            case OPT_ATARI_SNAP_AUTO:         return "Automatically take snapshots";
-            case OPT_ATARI_SNAP_DELAY:        return "Time span between two snapshots";
-            case OPT_ATARI_SNAP_COMPRESS:     return "Compress snapshot data";
+            case OPT_ATARI_SNAP_AUTO:       return "Automatically take snapshots";
+            case OPT_ATARI_SNAP_DELAY:      return "Time span between two snapshots";
+            case OPT_ATARI_SNAP_COMPRESS:   return "Compress snapshot data";
 
             case OPT_TIA_REVISION:          return "Video standard";
             case OPT_TIA_POWER_SAVE:        return "Take fast paths";
@@ -287,7 +287,7 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_DMA_DEBUG_COLOR4:      return "Color of channel 4";
             case OPT_DMA_DEBUG_COLOR5:      return "Color of channel 5";
 
-            case OPT_EXP_REU_SPEED:         return "REU transfer speed";
+            case OPT_CART_TYPE:             return "Cartridge type";
 
             case OPT_VID_WHITE_NOISE:       return "White noise";
 

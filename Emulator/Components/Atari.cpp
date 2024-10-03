@@ -993,6 +993,7 @@ Atari::scheduleNextSNPEvent()
     }
 }
 
+/*
 void
 Atari::attachCartridge(const fs::path &path, bool reset) throws
 {
@@ -1028,9 +1029,9 @@ Atari::detachCartridge()
 }
 
 void
-Atari::setCartType(CartridgeType newType)
+Atari::setCartType(CartType newType)
 {
-    debug(CRT_DEBUG, "Setting cartridge type to %s\n", CartridgeTypeEnum::key(newType));
+    debug(CRT_DEBUG, "Setting cartridge type to %s\n", CartTypeEnum::key(newType));
 
     if (cart->traits.cartType != newType) {
 
@@ -1057,15 +1058,6 @@ void
 Atari::revertCartType()
 {
     setCartType(cart->predictedCartType);
-}
-
-
-/*
-void
-Atari::saveCartridge(const fs::path &path)
-{
-    CartFile file(cartridge->rom);
-    file.writeToFile(path);
 }
 */
 

@@ -22,13 +22,13 @@ namespace tiara {
 
 class CartFile : public AnyFile {
 
-    static std::map<string, CartridgeType> ext2type;
+    static std::map<string, CartType> ext2type;
 
 public:
 
     char md5[129];
 
-    RomTraits traits = {
+    CartTraits traits = {
 
         .md5            = md5,
         .name           = "",
@@ -82,7 +82,7 @@ public:
     //
 
     void predictTraits();
-    CartridgeType predictType() const;
+    CartType predictType() const;
 
 };
 

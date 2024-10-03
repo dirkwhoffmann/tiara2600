@@ -142,7 +142,7 @@ Memory::spypeek(u16 addr, MemoryType source) const
         case M_TIA: return tia.spypeek(addr);
         case M_PIA:
         case M_RAM: return pia.spypeek(addr);
-        case M_CRT: return atari.cart->spypeek(addr);
+        case M_CRT: return cartPort.cart->spypeek(addr);
 
         default:
             fatalError;

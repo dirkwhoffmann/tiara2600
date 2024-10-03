@@ -836,9 +836,9 @@ using namespace tiara;
     return [self c64]->getCachedInfo().slotInfo[slot];
 }
 
-- (RomTraits)romTraits
+- (CartTraits)romTraits
 {
-    return [self c64]->getRomTraits();
+    return [self c64]->getCartTraits();
 }
 
 - (void)hardReset
@@ -1204,11 +1204,6 @@ using namespace tiara;
 - (void)detachCart
 {
     [self emu]->atari.detachCart();
-}
-
-- (void)setCartType:(CartridgeType)newType
-{
-    [self emu]->atari.setCartType(newType);
 }
 
 - (void)revertCartType

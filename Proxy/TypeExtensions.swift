@@ -34,7 +34,7 @@ extension tiara.EventSlot: CustomStringConvertible {
     }
 }
 
-extension tiara.CartridgeType {
+extension tiara.CartType {
 
     var description: String {
 

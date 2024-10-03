@@ -29,25 +29,22 @@ enum_long(COMP_TYPE)
     HostClass,
     MemoryClass,
     PIAClass,
-    SIDClass,
-    SIDBridgeClass,
+    // SIDClass,
+    // SIDBridgeClass,
     TIAClass,
     TODClass,
 
     // Ports
+    CartPortClass,
     AudioPortClass,
     ControlPortClass,
-    ExpansionPortClass,
     VideoPortClass,
 
     // Peripherals
     CartridgeClass,
-    DriveClass,
-    DriveMemoryClass,
     JoystickClass,
     MonitorClass,
     MouseClass,
-    PaddleClass,
-    ParCableClass
+    PaddleClass
 };
 typedef COMP_TYPE CType;

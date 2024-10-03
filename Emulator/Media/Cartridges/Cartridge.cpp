@@ -17,7 +17,7 @@
 namespace tiara {
 
 bool
-Cartridge::isSupportedType(CartridgeType type)
+Cartridge::isSupportedType(CartType type)
 {
     if (FORCE_CRT_UNSUPPORTED) return false;
 
@@ -35,7 +35,7 @@ Cartridge::isSupportedType(CartridgeType type)
 }
 
 std::unique_ptr<Cartridge>
-Cartridge::makeWithType(Atari &c64, CartridgeType type)
+Cartridge::makeWithType(Atari &c64, CartType type)
 {
     std::unique_ptr<Cartridge> cart;
 
@@ -50,28 +50,28 @@ Cartridge::makeWithType(Atari &c64, CartridgeType type)
 }
 
 std::unique_ptr<Cartridge>
-Cartridge::makeWithFile(Atari &c64, const CartFile &file)
+Cartridge::makeWithFile(Atari &atari, const CartFile &file)
 {
-    // Create the cartridge
-    auto cart = makeWithType(c64, file.traits.cartType);
+    // Create a new cartridge with the proper subclass
+    auto newCart = makeWithType(atari, file.traits.cartType);
 
     // Copy file contents
-    cart->rom = file.data;
-    cart->traits = file.traits;
-    cart->predictedCartType = file.traits.cartType;
+    newCart->rom = file.data;
+    newCart->traits = file.traits;
+    newCart->predictedCartType = file.traits.cartType;
 
-    if (CRT_DEBUG) cart->dump(Category::State);
-    return cart;
+    if (CART_DEBUG) newCart->dump(Category::State);
+    return newCart;
 }
 
 Cartridge::Cartridge(Atari &ref) : SubComponent(ref)
 {
-    trace(CRT_DEBUG, "Creating cartridge at address %p...\n", (void *)this);
+    trace(CART_DEBUG, "Creating cartridge at address %p...\n", (void *)this);
 }
 
 Cartridge::~Cartridge()
 {
-    trace(CRT_DEBUG, "Releasing cartridge...\n");
+    trace(CART_DEBUG, "Releasing cartridge...\n");
     dealloc();
 }
 
@@ -84,7 +84,7 @@ Cartridge::dealloc()
 void
 Cartridge::init()
 {
-    trace(CRT_DEBUG, "Initializing cartridge...\n");
+    trace(CART_DEBUG, "Initializing cartridge...\n");
 }
 
 void 

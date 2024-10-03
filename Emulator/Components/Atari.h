@@ -23,6 +23,7 @@
 #include "CPU.h"
 
 // Ports
+#include "CartPort.h"
 #include "AudioPort.h"
 #include "VideoPort.h"
 #include "ControlPort.h"
@@ -119,13 +120,11 @@ public:
     TIA tia = TIA(*this);
 
     // Ports
+    CartPort cartPort = CartPort(*this);
     AudioPort audioPort = AudioPort(*this);
     VideoPort videoPort = VideoPort(*this);
     ControlPort port1 = ControlPort(*this, PORT_1);
     ControlPort port2 = ControlPort(*this, PORT_2);
-
-    // Cartridge
-    std::unique_ptr<Cartridge> cart = std::make_unique<Cartridge>(*this);
 
     // Peripherals
     Monitor monitor = Monitor(*this);
@@ -648,6 +647,7 @@ private:
 
 public:
 
+    /*
     // Attaches a cartrige
     void attachCartridge(const fs::path &path, bool reset = true) throws;
     void attachCartridge(const MediaFile &file, bool reset = true);
@@ -656,10 +656,11 @@ public:
     void detachCartridge();
 
     // Changed the current cartridge type
-    void setCartType(CartridgeType newType);
+    void setCartType(CartType newType);
 
     // Reverts to the predicted cartridge type
     void revertCartType();
+    */
 
 
     //

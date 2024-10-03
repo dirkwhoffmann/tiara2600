@@ -366,10 +366,10 @@ AtariAPI::getCachedInfo() const
     return atari->getCachedInfo();
 }
 
-RomTraits
-AtariAPI::getRomTraits() const
+CartTraits
+AtariAPI::getCartTraits() const
 {
-    return atari->cart->traits;
+    return atari->cartPort.cart->traits;
 }
 
 MediaFile *
@@ -388,35 +388,28 @@ AtariAPI::loadSnapshot(const MediaFile &snapshot)
 void
 AtariAPI::attachCart(const std::filesystem::path &path, bool reset)
 {
-    atari->attachCartridge(path, reset);
+    atari->cartPort.attachCartridge(path, reset);
     emu->markAsDirty();
 }
 
 void
 AtariAPI::attachCart(const MediaFile &c, bool reset)
 {
-    atari->attachCartridge(c, reset);
+    atari->cartPort.attachCartridge(c, reset);
     emu->markAsDirty();
 }
 
 void
 AtariAPI::detachCart()
 {
-    atari->detachCartridge();
-    emu->markAsDirty();
-}
-
-void
-AtariAPI::setCartType(CartridgeType newType)
-{
-    atari->setCartType(newType);
+    atari->cartPort.detachCartridge();
     emu->markAsDirty();
 }
 
 void
 AtariAPI::revertCartType()
 {
-    atari->revertCartType();
+    atari->cartPort.revertCartType();
     emu->markAsDirty();
 }
 

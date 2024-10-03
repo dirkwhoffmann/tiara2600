@@ -27,7 +27,7 @@ class LogicAnalyzer final : public SubComponent {
 
         .name           = "LogicAnalyzer",
         .description    = "Logic Analyzer",
-        .shell          = "logicanalyzer"
+        .shell          = "la"
     }};
 
     Options options = {

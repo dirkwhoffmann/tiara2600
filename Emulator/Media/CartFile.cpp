@@ -18,7 +18,7 @@
 
 namespace tiara {
 
-std::map<string, CartridgeType>
+std::map<string, CartType>
 CartFile::ext2type = {
 
     { ".BIN"   , CART_UNKNOWN },
@@ -150,10 +150,10 @@ CartFile::predictTraits()
     if (!traits.cartType) traits.cartType = predictType();
 }
 
-CartridgeType
+CartType
 CartFile::predictType() const
 {
-    CartridgeType result = CART_UNKNOWN;
+    CartType result = CART_UNKNOWN;
 
     // Get the type from the file extension if possible
     auto extension = util::uppercased(path.extension().string());

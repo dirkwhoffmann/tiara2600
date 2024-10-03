@@ -81,9 +81,9 @@ enum_long(CART_TYPE)
 
     CART_UNKNOWN
 };
-typedef CART_TYPE CartridgeType;
+typedef CART_TYPE CartType;
 
-struct CartridgeTypeEnum : util::Reflection<CartridgeTypeEnum, CartridgeType> {
+struct CartTypeEnum : util::Reflection<CartTypeEnum, CartType> {
 
     static constexpr long minVal = 0;
     static constexpr long maxVal = CART_UNKNOWN;
@@ -160,7 +160,7 @@ struct CartridgeTypeEnum : util::Reflection<CartridgeTypeEnum, CartridgeType> {
 
 typedef struct {
 
-    CartridgeType cartType;
+    CartType cartType;
     const char *md5;
     const char *name;
     const char *manufacturer;
@@ -174,7 +174,7 @@ typedef struct {
     bool swapPorts;
     bool swapPaddles;
 }
-RomTraits;
+CartTraits;
 
 /*
 typedef struct

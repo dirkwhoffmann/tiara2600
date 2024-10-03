@@ -20,6 +20,8 @@ namespace tiara {
 
 class Cartridge : public SubComponent, public Inspectable<CartridgeInfo> {
 
+    friend class CartPort;
+
     Descriptions descriptions = {{
 
         .type           = CartridgeClass,
@@ -32,7 +34,7 @@ class Cartridge : public SubComponent, public Inspectable<CartridgeInfo> {
 
 public:
 
-    RomTraits traits{
+    CartTraits traits {
 
         .cartType       = CART_NONE,
         .md5            = "",
@@ -56,7 +58,7 @@ public:
     Buffer<u8> rom;
 
     // The predicted type (as provided by the CartFile)
-    CartridgeType predictedCartType{};
+    CartType predictedCartType{};
 
 
     //
@@ -66,10 +68,10 @@ public:
 public:
 
     // Checks whether this cartridge is a supported by the emulator
-    static bool isSupportedType(CartridgeType type);
+    static bool isSupportedType(CartType type);
 
     // Factory methods
-    static std::unique_ptr<Cartridge> makeWithType(Atari &c64, CartridgeType type) throws;
+    static std::unique_ptr<Cartridge> makeWithType(Atari &c64, CartType type) throws;
     static std::unique_ptr<Cartridge> makeWithFile(Atari &c64, const CartFile &file) throws;
 
 

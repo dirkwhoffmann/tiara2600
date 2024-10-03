@@ -354,7 +354,7 @@ Emulator::getDebugVariable(DebugFlag flag)
         case FLAG_AUDBUF_DEBUG:     return AUDBUF_DEBUG;
         case FLAG_AUDVOL_DEBUG:     return AUDVOL_DEBUG;
 
-        case FLAG_CRT_DEBUG:        return CRT_DEBUG;
+        case FLAG_CRT_DEBUG:        return CART_DEBUG;
         case FLAG_FILE_DEBUG:       return FILE_DEBUG;
 
         case FLAG_JOY_DEBUG:        return JOY_DEBUG;
@@ -425,7 +425,7 @@ Emulator::setDebugVariable(DebugFlag flag, bool val)
         case FLAG_AUDBUF_DEBUG:     AUDBUF_DEBUG    = val; break;
         case FLAG_AUDVOL_DEBUG:     AUDVOL_DEBUG    = val; break;
 
-        case FLAG_CRT_DEBUG:        CRT_DEBUG       = val; break;
+        case FLAG_CRT_DEBUG:        CART_DEBUG       = val; break;
         case FLAG_FILE_DEBUG:       FILE_DEBUG      = val; break;
 
         case FLAG_JOY_DEBUG:        JOY_DEBUG       = val; break;

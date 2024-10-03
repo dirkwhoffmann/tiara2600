@@ -185,7 +185,6 @@ using namespace tiara;
 - (void)attachCart:(NSURL *)url reset:(BOOL)reset exception:(ExceptionWrapper *)ex;
 - (void)attachCart:(MediaFileProxy *)proxy reset:(BOOL)reset;
 - (void)detachCart;
-- (void)setCartType:(CartridgeType)newType;
 - (void)revertCartType;
 
 - (void)flash:(MediaFileProxy *)container exception:(ExceptionWrapper *)ex;
@@ -231,7 +230,7 @@ using namespace tiara;
 @property (readonly) AtariInfo cachedInfo;
 - (EventSlotInfo)cachedSlotInfo:(NSInteger)slot;
 @property NSInteger autoInspectionMask;
-@property (readonly) RomTraits romTraits;
+@property (readonly) CartTraits romTraits;
 
 - (void)hardReset;
 - (void)softReset;

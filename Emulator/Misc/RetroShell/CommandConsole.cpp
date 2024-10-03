@@ -226,7 +226,7 @@ CommandConsole::initCommands(Command &root)
     // Components (Cartridge)
     //
 
-    cmd = registerComponent(tia);
+    cmd = registerComponent(cartPort);
 
 
     //

@@ -11,12 +11,12 @@ extension ConfigurationController {
 
     func awakeCartPanelFromNib() {
 
-        let first = tiara.CartridgeType._0840.rawValue
-        let last = tiara.CartridgeType._X07.rawValue
+        let first = tiara.CartType._0840.rawValue
+        let last = tiara.CartType._X07.rawValue
 
         for i in first ... last {
 
-            let item = tiara.CartridgeType(rawValue: i)
+            let item = tiara.CartType(rawValue: i)
             cartCartType.addItem(withTitle: item!.description)
             cartCartType.lastItem!.tag = i
         }
@@ -24,10 +24,10 @@ extension ConfigurationController {
 
     func refreshRomTab() {
 
-        func validCartType(type: tiara.CartridgeType) -> Bool {
+        func validCartType(type: tiara.CartType) -> Bool {
 
-            return type.rawValue >= tiara.CartridgeType._0840.rawValue &&
-            type.rawValue <= tiara.CartridgeType._X07.rawValue
+            return type.rawValue >= tiara.CartType._0840.rawValue &&
+            type.rawValue <= tiara.CartType._X07.rawValue
         }
 
         if let emu = emu {
@@ -89,7 +89,7 @@ extension ConfigurationController {
 
     @IBAction func cartSetTypeAction(_ sender: NSPopUpButton!) {
 
-        emu?.setCartType(tiara.CartridgeType(rawValue: sender.selectedTag())!)
+        emu?.set(.CART_TYPE, value: sender.selectedTag())
         refresh()
     }
 
