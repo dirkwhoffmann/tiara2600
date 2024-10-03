@@ -228,7 +228,21 @@ CommandConsole::initCommands(Command &root)
 
     cmd = registerComponent(cartPort);
 
+    root.add({cmd, "attach"}, { Arg::path },
+             "Attaches a new cartridge",
+             [this](Arguments& argv, long value) {
 
+        cartPort.attachCartridge(argv.front());
+    });
+
+    root.add({cmd, "detach"},
+             "Detaches the current cartridge",
+             [this](Arguments& argv, long value) {
+
+        cartPort.detachCartridge();
+    });
+
+    
     //
     // Components (Logic Analyzer)
     //

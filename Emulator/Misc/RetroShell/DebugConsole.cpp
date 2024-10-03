@@ -48,7 +48,7 @@ DebugConsole::getPrompt()
     ss << ",";
     ss << std::right << std::setw(0) << std::dec << isize(atari.tia.getX());
     ss << ") $";
-    ss << std::right << std::setw(4) << std::hex << isize(cpu.getPC0());
+    ss << std::right << std::setw(4) << std::hex << std::setfill('0') << isize(cpu.getPC0());
     ss << ": ";
 
     return ss.str();
