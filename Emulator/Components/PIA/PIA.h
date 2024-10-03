@@ -39,6 +39,20 @@ class PIA : public SubComponent, public Inspectable<PIAInfo, PIAStats> {
 
 
     //
+    // Chip interface
+    //
+
+    public:
+
+    // Chip Select (1 = selected)
+    bool cs;
+    bool csram;
+
+    // Read-write (1 = read)
+    bool rw;
+
+
+    //
     // Initializing
     //
 

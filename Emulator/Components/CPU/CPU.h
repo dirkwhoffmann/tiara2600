@@ -75,10 +75,7 @@ public:
     CPU(Atari& ref);
     CPU(CPURevision cpuModel, Atari& ref);
 
-    bool isC64CPU() const { return cpuModel == MOS_6510; }
-    bool isDriveCPU() const { return cpuModel == MOS_6502; }
-
-    void setID(isize id) { this->id = id; }
+    // void setID(isize id) { this->id = id; }
 
     CPU& operator= (const CPU& other) {
 

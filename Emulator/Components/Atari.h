@@ -187,6 +187,8 @@ private:
     // Buses
     //
 
+public:
+    
     // Address bus
     u16 addrBus;
 

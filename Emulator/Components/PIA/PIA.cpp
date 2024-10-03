@@ -34,7 +34,30 @@ PIA::spypeek(u16 addr)
 template <bool debug> void
 PIA::execute()
 {
+    if (cs) {
 
+        auto addr = atari.addrBus & 0x7F;
+        auto data = atari.dataBus;
+
+        if (csram) {
+
+            if (rw) {
+                cpu.concludeRead(ram[addr]);
+            } else {
+                ram[addr] = data;
+            }
+
+        } else {
+
+            if (rw) {
+                cpu.concludeRead(0);
+            } else {
+
+            }
+        }
+        
+        cs = 0;
+    }
 }
 template void PIA::execute<false>();
 template void PIA::execute<true>();

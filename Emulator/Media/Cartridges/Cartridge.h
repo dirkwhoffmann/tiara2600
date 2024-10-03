@@ -62,6 +62,19 @@ public:
 
 
     //
+    // Interface
+    //
+
+public:
+
+    // Chip Select (1 = selected)
+    bool cs;
+
+    // Read-write (1 = read)
+    bool rw;
+
+
+    //
     // Class methods
     //
 
@@ -187,10 +200,10 @@ public:
     //
 
     //
-    virtual void execute() { };
+    virtual void execute();
 
     //
-    virtual void endOfFrame() { };
+    virtual void endOfFrame();
 };
 
 }

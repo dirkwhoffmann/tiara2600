@@ -33,7 +33,7 @@ Peddle::concludeRead(u8 x)
 {
     switch (pendingRead) {
 
-        case Async::IR:     reg.ir = x; break;
+        case Async::IR:     reg.ir = x; next = actionFunc[x]; break;
         case Async::ADL:    reg.adl = x; break;
         case Async::ADH:    reg.adh = x; break;
         case Async::IDL:    reg.idl = x; break;
@@ -44,6 +44,23 @@ Peddle::concludeRead(u8 x)
         case Async::A:      loadA(x); break;
         default:            break;
     }
+
+    switch (pendingRead) {
+
+        case Async::IDLE:   trace(true, "Async::IDLE\n"); break;
+        case Async::IR:     trace(true, "Async::IR (%x)\n", reg.ir); break;
+        case Async::ADL:    trace(true, "Async::ADL (%x)\n", reg.adl); break;
+        case Async::ADH:    trace(true, "Async::ADH (%x)\n", reg.adh); break;
+        case Async::IDL:    trace(true, "Async::IDL (%x)\n", reg.idl); break;
+        case Async::D:      trace(true, "Async::D (%x)\n", reg.d); break;
+        case Async::PCL:    trace(true, "Async::PCL (%x)\n", reg.pc); break;
+        case Async::PCH:    trace(true, "Async::PCH (%x)\n", reg.pc); break;
+        case Async::P:      trace(true, "Async::P \n"); break;
+        case Async::A:      trace(true, "Async::A (%x)\n", reg.a); break;
+        default:            break;
+    }
+
+    pendingRead = Async::IDLE;
 }
 
 #else
@@ -337,9 +354,11 @@ Peddle::reset()
 
     reg = { };
     reg.pport.data = 0xFF;
-    reg.pc = reg.pc0 = readResetVector();
     setB(1);
     setI(1);
+
+    reg.pc = reg.pc0 = readResetVector() & addrMask<C>();
+    printf("Setting PC to %x (PC0: %x)\n", reg.pc, reg.pc0);
 
     debugger.reset();
 }
@@ -390,7 +409,9 @@ Peddle::execute()
             }
 
             // Execute the Fetch phase
+            printf("FETCH_IR... %x %x\n", reg.pc0, reg.pc);
             FETCH_IR
+            printf("FETCH_IR done... %x %x\n", reg.pc0, reg.pc);
             next = actionFunc[reg.ir];
             return;
             
@@ -2230,7 +2251,7 @@ Peddle::execute()
             //              - - - 1 - -
 
         case SEI:
-            
+
             POLL_IRQ
             setI(1);
             [[fallthrough]];
@@ -3182,6 +3203,8 @@ Peddle::finishInstruction()
 
 template <CPURevision C> void
 Peddle::done() {
+
+    trace(true, "::done\n");
 
     if (flags) {
 

@@ -40,9 +40,6 @@ Atari::Atari(class Emulator& ref, isize id) : CoreComponent(ref, id)
         &regressionTester,
         &tia
     };
-
-    // Assign a unique ID to the CPU
-    cpu.setID(0);
 }
 
 Atari::~Atari()

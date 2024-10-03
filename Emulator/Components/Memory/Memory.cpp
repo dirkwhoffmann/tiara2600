@@ -66,6 +66,7 @@ Memory::operator << (SerWriter &worker)
 void
 Memory::eraseWithPattern(RamPattern pattern)
 {
+    /*
     switch (pattern) {
                         
         case RAM_PATTERN_ZEROES:
@@ -96,40 +97,32 @@ Memory::eraseWithPattern(RamPattern pattern)
         default:
             fatalError;
     }
+    */
 }
 
 u8
 Memory::peek(u16 addr, MemoryType source)
 {
+    printf("Peek(%x) (%s)\n", addr, MemoryTypeEnum::key(source));
+
     assert(addr <= 0x1FFF);
 
     if (config.heatmap) stats.reads[addr]++;
 
+    atari.addrBus = addr;
+    
     switch(source) {
             
-        case M_RAM:
-            
-            cpu.concludeRead(ram[addr & 0x7F]);
-            return 0;
-
-        case M_TIA:
-
-            cpu.concludeRead(0);
-            return 0;
-
-        case M_PIA:
-
-            cpu.concludeRead(0);
-            return 0;
-
-        case M_CRT:
-
-            cpu.concludeRead(0);
-            return 0;
+        case M_TIA:     tia.cs = 1; tia.rw = 1; break;
+        case M_PIA:     pia.cs = 1; pia.csram = 0; pia.rw = 1; break;
+        case M_RAM:     pia.cs = 1; pia.csram = 1; pia.rw = 1; break;
+        case M_CRT:     cartPort.cart->cs = 1; cartPort.cart->rw = 1; break;
 
         default:
             fatalError;
     }
+
+    return 0;
 }
 
 u8
@@ -157,23 +150,11 @@ Memory::poke(u16 addr, u8 value, MemoryType target)
     if (config.heatmap) stats.writes[addr]++;
 
     switch(target) {
-            
-        case M_RAM:
 
-            ram[addr & 0x7F] = value;
-            return;
-            
-        case M_TIA: // TODO
-
-            return;
-            
-        case M_PIA: // TODO
-
-            return;
-
-        case M_CRT:
-
-            return;  // TODO
+        case M_TIA:     tia.cs = 1; tia.rw = 0; break;
+        case M_PIA:     pia.cs = 1; pia.csram = 0; pia.rw = 0; break;
+        case M_RAM:     pia.cs = 1; pia.csram = 1; pia.rw = 0; break;
+        case M_CRT:     cartPort.cart->cs = 1; cartPort.cart->rw = 0; break;
 
         default:
             fatalError;

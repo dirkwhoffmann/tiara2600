@@ -24,7 +24,17 @@ StdCartridge::spypeek(u16 addr)
 void
 StdCartridge::execute()
 {
+    if (cs) {
 
+        if (rw) {
+
+            auto addr = atari.addrBus & 0xFFF;
+            printf("Reading from %x -> %x \n", atari.addrBus, rom[addr]);
+            cpu.concludeRead(rom[addr]);
+        }
+
+        cs = 0;
+    }
 }
 
 void

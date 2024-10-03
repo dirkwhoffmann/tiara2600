@@ -93,4 +93,25 @@ Cartridge::cacheInfo(CartridgeInfo &result) const
 
 }
 
+void
+Cartridge::execute()
+{
+    if (cs) {
+
+        if (rw) {
+
+            // Emulate a floating bus?
+            cpu.concludeRead(0);
+        }
+
+        cs = 0;
+    }
+}
+
+void
+Cartridge::endOfFrame()
+{
+
+}
+
 }

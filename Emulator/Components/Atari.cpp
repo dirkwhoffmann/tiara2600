@@ -205,9 +205,6 @@ Atari::_didReset(bool hard)
 {
     printf("Reset vector = %x\n", cpu.readResetVector());
     
-    // Initialize the program counter with the reset vector
-    cpu.reg.pc = cpu.reg.pc0 = cpu.readResetVector();
-
     // Inform the GUI
     msgQueue.put(MSG_RESET);
 }
@@ -517,8 +514,6 @@ Atari::update(CmdQueue &queue)
 void
 Atari::computeFrame()
 {
-    flags = 0;
-
     while (1) {
 
         // Advance the cycle counter
@@ -535,6 +530,9 @@ Atari::computeFrame()
 
         // Execute three TIA cycles
         tia.execute<false>();
+
+        // Execute the cartridge
+        cartPort.cart->execute();
 
         // Check if special action needs to be taken
         if (flags) {
@@ -581,7 +579,7 @@ Atari::processFlags()
 
     if (flags & RL::SINGLE_STEP) {
 
-        if ((!stepTo.has_value() && cpu.inFetchPhase()) || *stepTo == cpu.getPC0()) {
+        if ((!stepTo.has_value() && cpu.inFetchPhase()) || stepTo == cpu.getPC0()) {
 
             clearFlag(RL::SINGLE_STEP);
             msgQueue.put(MSG_STEP);
@@ -622,7 +620,6 @@ void
 Atari::_run()
 {
     debug(RUN_DEBUG, "_run\n");
-    // assert(cpu.inFetchPhase());
 
     msgQueue.put(MSG_RUN);
 }
@@ -631,7 +628,6 @@ void
 Atari::_pause()
 {
     debug(RUN_DEBUG, "_pause\n");
-    // assert(cpu.inFetchPhase());
 
     // Clear pending runloop flags
     flags = 0;

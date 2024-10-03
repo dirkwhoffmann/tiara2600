@@ -50,7 +50,7 @@ public:
     MemoryType pokeTarget[64];
 
     // Random Access Memory
-    u8 ram[128];
+    // u8 ram[128];
 
     // Indicates if watchpoints should be checked
     bool checkWatchpoints = false;
@@ -68,8 +68,6 @@ public:
     Memory(Atari &ref);
 
     Memory& operator= (const Memory& other) {
-
-        CLONE_ARRAY(ram)
 
         CLONE_ARRAY(peekSrc)
         CLONE_ARRAY(pokeTarget)
@@ -91,9 +89,9 @@ public:
     {
         if (isSoftResetter(worker)) return;
 
-        worker
+        // worker
 
-        << ram;
+        // << ram;
 
         if (isResetter(worker)) return;
 

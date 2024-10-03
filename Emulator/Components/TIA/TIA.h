@@ -88,7 +88,20 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
 
 
     //
-    // Hardware components
+    // Chip interface
+    //
+
+public:
+
+    // Chip Select (1 = selected)
+    bool cs;
+
+    // Read-write (1 = read)
+    bool rw;
+
+
+    //
+    // Internal components
     //
 
 private:

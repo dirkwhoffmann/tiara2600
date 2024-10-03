@@ -161,6 +161,7 @@ CPU::_didReset(bool hard)
     // Enable or disable CPU debugging
     atari.emulator.isTracking() ? debugger.enableLogging() : debugger.disableLogging();
 
+    debug(true, "_didReset %d\n", atari.emulator.isTracking());
     assert(levelDetector.isClear());
     assert(edgeDetector.isClear());
 }
@@ -168,9 +169,6 @@ CPU::_didReset(bool hard)
 void
 CPU::_trackOn()
 {
-    // We only allow the C64 CPU to enter track mode
-    if (!isC64CPU()) return;
-
     debugger.enableLogging();
 }
 
