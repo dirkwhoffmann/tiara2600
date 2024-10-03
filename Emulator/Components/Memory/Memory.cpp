@@ -112,11 +112,17 @@ Memory::peek(u16 addr, MemoryType source)
     atari.addrBus = addr;
     
     switch(source) {
-            
+
+        case M_TIA:     return tia.peek(addr);
+        case M_PIA:
+        case M_RAM:     return pia.peek(addr);
+        case M_CRT:     return cartPort.cart->peek(addr);
+            /*
         case M_TIA:     tia.cs = 1; tia.rw = 1; break;
         case M_PIA:     pia.cs = 1; pia.csram = 0; pia.rw = 1; break;
         case M_RAM:     pia.cs = 1; pia.csram = 1; pia.rw = 1; break;
         case M_CRT:     cartPort.cart->cs = 1; cartPort.cart->rw = 1; break;
+             */
 
         default:
             fatalError;
@@ -148,6 +154,9 @@ Memory::poke(u16 addr, u8 value, MemoryType target)
     assert(addr <= 0x1FFF);
 
     if (config.heatmap) stats.writes[addr]++;
+
+    atari.addrBus = addr;
+    atari.dataBus = value;
 
     switch(target) {
 

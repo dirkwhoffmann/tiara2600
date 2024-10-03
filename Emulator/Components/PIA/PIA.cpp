@@ -18,7 +18,13 @@
 namespace tiara {
 
 u8
-PIA::spypeek(u16 addr)
+PIA::peek(u16 addr)
+{
+    return spypeek(addr);
+}
+
+u8
+PIA::spypeek(u16 addr) const
 {
     if ((addr & RAM_MASK) == RAM_MATCH) {
 
@@ -44,6 +50,7 @@ PIA::execute()
             if (rw) {
                 cpu.concludeRead(ram[addr]);
             } else {
+                printf("RAM: Writing %x to %x\n", data, addr);
                 ram[addr] = data;
             }
 

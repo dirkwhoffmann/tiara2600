@@ -75,6 +75,8 @@ Peddle::concludeRead(u8 x)
 #define LATCH_P(x) setPWithoutB(x)
 #define LATCH_A(x) loadA(x)
 
+void Peddle::concludeRead(u8 x) { }
+
 #endif
 
 #define FETCH_IR \
@@ -409,9 +411,7 @@ Peddle::execute()
             }
 
             // Execute the Fetch phase
-            printf("FETCH_IR... %x %x\n", reg.pc0, reg.pc);
             FETCH_IR
-            printf("FETCH_IR done... %x %x\n", reg.pc0, reg.pc);
             next = actionFunc[reg.ir];
             return;
             

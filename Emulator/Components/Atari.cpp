@@ -525,13 +525,10 @@ Atari::computeFrame()
         // REMOVE
         // (vic.*vic.vicfunc[rasterCycle])();
 
-        // Execute one CPU cycle
+        // Execute components
         cpu.execute<MOS_6507>();
-
-        // Execute three TIA cycles
+        pia.execute<false>();
         tia.execute<false>();
-
-        // Execute the cartridge
         cartPort.cart->execute();
 
         // Check if special action needs to be taken

@@ -127,7 +127,8 @@ public:
     // Accessing registers and memory
     //
 
-    u8 spypeek(u16 addr);
+    u8 peek(u16 addr);
+    u8 spypeek(u16 addr) const;
 
 
     //

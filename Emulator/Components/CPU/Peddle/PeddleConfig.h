@@ -66,4 +66,4 @@
  * asynchronous read mode, as the values read from certain chip registers can
  * only be decided after the CPU has completed its current cycle.
  */
-#define PEDDLE_ASYNC_READS true
+#define PEDDLE_ASYNC_READS false
