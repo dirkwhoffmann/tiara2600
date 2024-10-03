@@ -202,9 +202,7 @@ Atari::prefix(isize level, const char *component, isize line) const
 
 void 
 Atari::_didReset(bool hard)
-{
-    printf("Reset vector = %x\n", cpu.readResetVector());
-    
+{    
     // Inform the GUI
     msgQueue.put(MSG_RESET);
 }
@@ -522,9 +520,6 @@ Atari::computeFrame()
         // Process all pending events
         if (nextTrigger <= cycle) processEvents(cycle);
 
-        // REMOVE
-        // (vic.*vic.vicfunc[rasterCycle])();
-
         // Execute components
         cpu.execute<MOS_6507>();
         pia.execute<false>();
@@ -540,6 +535,11 @@ Atari::computeFrame()
             if (flags & RL::SYNC_THREAD) break;
         }
     }
+
+    flags = 0;
+
+    // REMOVE ASAP: Force one cycle per frame
+    // flags |= RL::SYNC_THREAD;
 }
 
 void

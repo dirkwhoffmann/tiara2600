@@ -117,11 +117,11 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-&quot;break at $1004&quot;"
+            argument = "-&quot;break at $1001&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-&quot;break at $1001&quot;"
+            argument = "-&quot;break at $1032&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

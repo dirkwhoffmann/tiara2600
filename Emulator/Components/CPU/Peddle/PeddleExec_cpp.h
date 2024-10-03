@@ -3204,8 +3204,6 @@ Peddle::finishInstruction()
 template <CPURevision C> void
 Peddle::done() {
 
-    trace(true, "::done\n");
-
     if (flags) {
 
         if (flags & CPU_LOG_INSTRUCTION) {
@@ -3214,7 +3212,7 @@ Peddle::done() {
             instructionLogged();
         }
 
-        if ((flags & CPU_CHECK_BP) && debugger.breakpointMatches(reg.pc)) {
+        if ((flags & CPU_CHECK_BP) && debugger.breakpointMatches(reg.pc & addrMask<C>())) {
 
             breakpointReached(reg.pc);
         }

@@ -50,7 +50,6 @@ PIA::execute()
             if (rw) {
                 cpu.concludeRead(ram[addr]);
             } else {
-                printf("RAM: Writing %x to %x\n", data, addr);
                 ram[addr] = data;
             }
 

@@ -56,6 +56,8 @@ Guards::guardNr(long nr) const
 Guard *
 Guards::guardAt(u32 addr) const
 {
+    addr &= cpu.addrMask();
+
     for (int i = 0; i < count; i++) {
         if (guards[i].addr == addr) return &guards[i];
     }
@@ -66,6 +68,8 @@ Guards::guardAt(u32 addr) const
 void
 Guards::setAt(u32 addr, long skip)
 {
+    addr &= cpu.addrMask();
+
     if (isSetAt(addr)) return;
 
     if (count >= capacity) {
@@ -94,6 +98,8 @@ Guards::remove(long nr)
 void
 Guards::removeAt(u32 addr)
 {
+    addr &= cpu.addrMask();
+
     for (int i = 0; i < count; i++) {
 
         if (guards[i].addr == addr) {
@@ -109,6 +115,8 @@ Guards::removeAt(u32 addr)
 void
 Guards::moveTo(long nr, u32 newAddr)
 {
+    newAddr &= cpu.addrMask();
+
     if (nr >= count || isSetAt(newAddr)) return;
     guards[nr].moveTo(newAddr);
 }
@@ -123,6 +131,8 @@ Guards::isEnabled(long nr) const
 bool
 Guards::isEnabledAt(u32 addr) const
 {
+    addr &= cpu.addrMask();
+
     Guard *guard = guardAt(addr);
     return guard != nullptr && guard->enabled;
 }
@@ -137,6 +147,8 @@ Guards::isDisabled(long nr) const
 bool
 Guards::isDisabledAt(u32 addr) const
 {
+    addr &= cpu.addrMask();
+
     Guard *guard = guardAt(addr);
     return guard != nullptr && !guard->enabled;
 }
@@ -150,6 +162,8 @@ Guards::setEnable(long nr, bool val)
 void
 Guards::setEnableAt(u32 addr, bool val)
 {
+    addr &= cpu.addrMask();
+
     Guard *guard = guardAt(addr);
     if (guard) guard->enabled = val;
 }
@@ -173,6 +187,8 @@ Guards::ignore(long nr, long count)
 bool
 Guards::eval(u32 addr)
 {
+    addr &= cpu.addrMask();
+
     for (int i = 0; i < count; i++)
         if (guards[i].eval(addr)) return true;
 
@@ -246,6 +262,8 @@ Debugger::breakpointMatches(u32 addr)
 bool
 Debugger::watchpointMatches(u32 addr)
 {
+    addr &= cpu.addrMask();
+
     if (!watchpoints.eval(addr)) return false;
     
     watchpointPC = cpu.reg.pc0;

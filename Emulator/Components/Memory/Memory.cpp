@@ -103,7 +103,7 @@ Memory::eraseWithPattern(RamPattern pattern)
 u8
 Memory::peek(u16 addr, MemoryType source)
 {
-    printf("Peek(%x) (%s)\n", addr, MemoryTypeEnum::key(source));
+    // printf("Peek(%x) (%s)\n", addr, MemoryTypeEnum::key(source));
 
     assert(addr <= 0x1FFF);
 
