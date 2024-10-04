@@ -253,14 +253,14 @@ CommandConsole::initCommands(Command &root)
              "Opens the logic analyzer",
              [this](Arguments& argv, long value) {
 
-        emulator.set(OPT_DMA_DEBUG_ENABLE, true);
+        emulator.set(OPT_LA_ENABLE, true);
     });
 
     root.add({cmd, "close"},
              "Closes the logic analyzer",
              [this](Arguments& argv, long value) {
 
-        emulator.set(OPT_DMA_DEBUG_ENABLE, false);
+        emulator.set(OPT_LA_ENABLE, false);
     });
 
 

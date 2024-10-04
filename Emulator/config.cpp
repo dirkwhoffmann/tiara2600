@@ -39,7 +39,7 @@ debugflag MEM_DEBUG       = 0;
 
 // TIA
 debugflag TIA_DEBUG       = 0;
-debugflag TIA_REG_DEBUG   = 1;
+debugflag TIA_REG_DEBUG   = 0;
 
 // PIA
 debugflag PIA_DEBUG       = 0;

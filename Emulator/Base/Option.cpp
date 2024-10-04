@@ -34,34 +34,26 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_HOST_FRAMEBUF_WIDTH:       return numParser(" pixels");
         case OPT_HOST_FRAMEBUF_HEIGHT:      return numParser(" pixels");
 
-        case OPT_ATARI_WARP_MODE:             return enumParser.template operator()<WarpModeEnum>();
-        case OPT_ATARI_WARP_BOOT:             return numParser(" sec");
-        case OPT_ATARI_VSYNC:                 return boolParser();
-        case OPT_ATARI_SPEED_BOOST:           return numParser("%");
-        case OPT_ATARI_RUN_AHEAD:             return numParser(" frames");
+        case OPT_ATARI_WARP_MODE:           return enumParser.template operator()<WarpModeEnum>();
+        case OPT_ATARI_WARP_BOOT:           return numParser(" sec");
+        case OPT_ATARI_VSYNC:               return boolParser();
+        case OPT_ATARI_SPEED_BOOST:         return numParser("%");
+        case OPT_ATARI_RUN_AHEAD:           return numParser(" frames");
 
-        case OPT_ATARI_SNAP_AUTO:             return boolParser();
-        case OPT_ATARI_SNAP_DELAY:            return numParser(" sec");
-        case OPT_ATARI_SNAP_COMPRESS:         return boolParser();
+        case OPT_ATARI_SNAP_AUTO:           return boolParser();
+        case OPT_ATARI_SNAP_DELAY:          return numParser(" sec");
+        case OPT_ATARI_SNAP_COMPRESS:       return boolParser();
 
         case OPT_TIA_REVISION:              return enumParser.template operator()<TIARevisionEnum>();
         case OPT_TIA_POWER_SAVE:            return boolParser();
 
-        case OPT_DMA_DEBUG_ENABLE:          return boolParser();
-        case OPT_DMA_DEBUG_MODE:            return enumParser.template operator()<DmaDisplayModeEnum>();
-        case OPT_DMA_DEBUG_OPACITY:         return numParser("%");
-        case OPT_DMA_DEBUG_CHANNEL0:        return boolParser();
-        case OPT_DMA_DEBUG_CHANNEL1:        return boolParser();
-        case OPT_DMA_DEBUG_CHANNEL2:        return boolParser();
-        case OPT_DMA_DEBUG_CHANNEL3:        return boolParser();
-        case OPT_DMA_DEBUG_CHANNEL4:        return boolParser();
-        case OPT_DMA_DEBUG_CHANNEL5:        return boolParser();
-        case OPT_DMA_DEBUG_COLOR0:          return numParser();
-        case OPT_DMA_DEBUG_COLOR1:          return numParser();
-        case OPT_DMA_DEBUG_COLOR2:          return numParser();
-        case OPT_DMA_DEBUG_COLOR3:          return numParser();
-        case OPT_DMA_DEBUG_COLOR4:          return numParser();
-        case OPT_DMA_DEBUG_COLOR5:          return numParser();
+        case OPT_LA_ENABLE:                 return boolParser();
+        case OPT_LA_MODE:                   return enumParser.template operator()<LaDisplayModeEnum>();
+        case OPT_LA_OPACITY:                return numParser("%");
+        case OPT_LA_CHANNEL0:               return enumParser.template operator()<ProbeEnum>();
+        case OPT_LA_CHANNEL1:               return enumParser.template operator()<ProbeEnum>();
+        case OPT_LA_CHANNEL2:               return enumParser.template operator()<ProbeEnum>();
+        case OPT_LA_CHANNEL3:               return enumParser.template operator()<ProbeEnum>();
 
         case OPT_CART_TYPE:                 return enumParser.template operator()<CartTypeEnum>();
 

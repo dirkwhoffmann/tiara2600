@@ -14,7 +14,6 @@
 #pragma once
 
 #include "Reflection.h"
-#include "BusTypes.h"
 
 namespace tiara {
 
@@ -22,28 +21,61 @@ namespace tiara {
 // Enumerations
 //
 
-/// Logic analyzer display mode
-enum_long(DMA_DISPLAY_MODE)
+/// Logic analyzer probes
+enum_long(PROBE)
 {
-    DMA_DISPLAY_MODE_FG_LAYER,          ///< Modulate the foreground layer
-    DMA_DISPLAY_MODE_BG_LAYER,          ///< Modulate the background layer
-    DMA_DISPLAY_MODE_ODD_EVEN_LAYERS    ///< Modulate both layers
+    PROBE_NONE,                         ///< Unconnected
+    PROBE_PHI1,                         ///< PHI1 (Horizontal counter)
+    PROBE_PHI2,                         ///< PHI2 (Horizontal counter)
+    PROBE_RDY,                          ///< Ready signal
+    PROBE_VSYNC,                        ///< Vertical Sync
+    PROBE_VBLANK,                       ///< Vertical Blank
 };
-typedef DMA_DISPLAY_MODE DmaDisplayMode;
+typedef PROBE Probe;
 
-struct DmaDisplayModeEnum : util::Reflection<DmaDisplayModeEnum, DmaDisplayMode> {
+struct ProbeEnum : util::Reflection<ProbeEnum, Probe> {
+
+    static constexpr long minVal = 0;
+    static constexpr long maxVal = PROBE_VBLANK;
+
+    static const char *prefix() { return "PROBE"; }
+    static const char *_key(long value)
+    {
+        switch (value) {
+
+            case PROBE_NONE:    return "NONE";
+            case PROBE_PHI1:    return "PHI1";
+            case PROBE_PHI2:    return "PHI2";
+            case PROBE_RDY:     return "RDY";
+            case PROBE_VSYNC:   return "VSYNC";
+            case PROBE_VBLANK:  return "VBLANK";
+        }
+        return "???";
+    }
+};
+
+/// Logic analyzer display mode
+enum_long(LA_DISPLAY_MODE)
+{
+    LA_DISPLAY_MODE_FG_LAYER,           ///< Modulate the foreground layer
+    LA_DISPLAY_MODE_BG_LAYER,           ///< Modulate the background layer
+    LA_DISPLAY_MODE_ODD_EVEN_LAYERS     ///< Modulate both layers
+};
+typedef LA_DISPLAY_MODE LaDisplayMode;
+
+struct LaDisplayModeEnum : util::Reflection<LaDisplayModeEnum, LaDisplayMode> {
     
     static constexpr long minVal = 0;
-    static constexpr long maxVal = DMA_DISPLAY_MODE_ODD_EVEN_LAYERS;
+    static constexpr long maxVal = LA_DISPLAY_MODE_ODD_EVEN_LAYERS;
     
-    static const char *prefix() { return "DMA_DISPLAY_MODE"; }
+    static const char *prefix() { return "LA_DISPLAY_MODE"; }
     static const char *_key(long value)
     {
         switch (value) {
                 
-            case DMA_DISPLAY_MODE_FG_LAYER:         return "FG_LAYER";
-            case DMA_DISPLAY_MODE_BG_LAYER:         return "BG_LAYER";
-            case DMA_DISPLAY_MODE_ODD_EVEN_LAYERS:  return "ODD_EVEN_LAYERS";
+            case LA_DISPLAY_MODE_FG_LAYER:         return "FG_LAYER";
+            case LA_DISPLAY_MODE_BG_LAYER:         return "BG_LAYER";
+            case LA_DISPLAY_MODE_ODD_EVEN_LAYERS:  return "ODD_EVEN_LAYERS";
         }
         return "???";
     }
@@ -56,11 +88,9 @@ struct DmaDisplayModeEnum : util::Reflection<DmaDisplayModeEnum, DmaDisplayMode>
 
 typedef struct
 {
-    bool dmaDebug;
-    bool dmaChannel[6];
-    u32 dmaColor[6];
-    DmaDisplayMode dmaDisplayMode;
-    u8 dmaOpacity;
+    bool enable;
+    LaDisplayMode displayMode;
+    u8 opacity;
 }
 LogicAnalyzerConfig;
 

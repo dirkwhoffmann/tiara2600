@@ -11,25 +11,21 @@ class Monitor: DialogController {
     
     var config: Configuration { return parent.config }
     
-    // Bus debugger
-    @IBOutlet weak var busDebug: NSButton!
-    @IBOutlet weak var busChannelR: NSButton!
-    @IBOutlet weak var busChannelI: NSButton!
-    @IBOutlet weak var busChannelC: NSButton!
-    @IBOutlet weak var busChannelG: NSButton!
-    @IBOutlet weak var busChannelP: NSButton!
-    @IBOutlet weak var busChannelS: NSButton!
-    
-    @IBOutlet weak var busColorR: NSColorWell!
-    @IBOutlet weak var busColorI: NSColorWell!
-    @IBOutlet weak var busColorC: NSColorWell!
-    @IBOutlet weak var busColorG: NSColorWell!
-    @IBOutlet weak var busColorP: NSColorWell!
-    @IBOutlet weak var busColorS: NSColorWell!
+    // Logic Analyzer
+    @IBOutlet weak var laEnable: NSButton!
+    @IBOutlet weak var laChannel0: NSPopUpButton!
+    @IBOutlet weak var laChannel1: NSPopUpButton!
+    @IBOutlet weak var laChannel2: NSPopUpButton!
+    @IBOutlet weak var laChannel3: NSPopUpButton!
 
-    @IBOutlet weak var busOpacity: NSSlider!
-    @IBOutlet weak var busDisplayMode: NSPopUpButton!
-        
+    @IBOutlet weak var laColor0: NSColorWell!
+    @IBOutlet weak var laColor1: NSColorWell!
+    @IBOutlet weak var laColor2: NSColorWell!
+    @IBOutlet weak var laColor3: NSColorWell!
+
+    @IBOutlet weak var laOpacity: NSSlider!
+    @IBOutlet weak var laDisplayMode: NSPopUpButton!
+
     // Stencils
     @IBOutlet weak var cutEnable: NSButton!
     @IBOutlet weak var cutBorder: NSButton!
@@ -57,36 +53,62 @@ class Monitor: DialogController {
     
     override func showWindow(_ sender: Any?) {
 
+        func initPopup(button: NSPopUpButton) {
+
+            func add(_ title: String) {
+
+                button.addItem(withTitle: title)
+                button.lastItem!.tag = button.numberOfItems - 1
+            }
+
+            add("Unconnected")
+            add("PHI1")
+            add("PHI2")
+            add("RDY")
+            add("VSYNC")
+            add("VBLANK")
+        }
+
         super.showWindow(self)
 
         print("Monitor: showWindow")
 
-        // Update colors
-        if let dma = emu?.logicAnalyzer.getConfig() {
+        // Initialize colors
+        let palette: [NSColor] = [
 
-            busColorR.setColor(dma.dmaColor.0)
-            busColorI.setColor(dma.dmaColor.1)
-            busColorC.setColor(dma.dmaColor.2)
-            busColorG.setColor(dma.dmaColor.3)
-            busColorP.setColor(dma.dmaColor.4)
-            busColorS.setColor(dma.dmaColor.5)
-        }
+            NSColor.blue,
+            NSColor.red,
+            NSColor.green,
+            NSColor.yellow
+        ]
+        laColor0.color = palette[0]
+        laColor1.color = palette[1]
+        laColor2.color = palette[2]
+        laColor3.color = palette[3]
+
+        // Initialize PopUpButtons
+        initPopup(button: laChannel0)
+        initPopup(button: laChannel1)
+        initPopup(button: laChannel2)
+        initPopup(button: laChannel3)
+
+        for i in 0..<4 { emu?.logicAnalyzer.setColor(i, color: palette[i]) }
+
+        refresh()
     }
 
     func refresh() {
                 
-        if let dma = emu?.logicAnalyzer.getConfig() {
+        if let la = emu?.logicAnalyzer.getConfig() {
 
             // Logic analyzer
-            busDebug.state = dma.dmaDebug ? .on : .off
-            busChannelR.state = dma.dmaChannel.0 ? .on : .off
-            busChannelI.state = dma.dmaChannel.1 ? .on : .off
-            busChannelC.state = dma.dmaChannel.2 ? .on : .off
-            busChannelG.state = dma.dmaChannel.3 ? .on : .off
-            busChannelP.state = dma.dmaChannel.4 ? .on : .off
-            busChannelS.state = dma.dmaChannel.5 ? .on : .off
-            busOpacity.integerValue = Int(dma.dmaOpacity)
-            busDisplayMode.selectItem(withTag: dma.dmaDisplayMode.rawValue)
+            laEnable.state = la.enable ? .on : .off
+            laChannel0.selectItem(withTag: emu!.get(.LA_CHANNEL0))
+            laChannel1.selectItem(withTag: emu!.get(.LA_CHANNEL1))
+            laChannel2.selectItem(withTag: emu!.get(.LA_CHANNEL2))
+            laChannel3.selectItem(withTag: emu!.get(.LA_CHANNEL3))
+            laOpacity.integerValue = Int(la.opacity)
+            laDisplayMode.selectItem(withTag: la.displayMode.rawValue)
         }
     }
         
@@ -94,49 +116,35 @@ class Monitor: DialogController {
     // Action methods
     //
     
-    @IBAction func busDebugAction(_ sender: NSButton!) {
+    @IBAction func laEnableAction(_ sender: NSButton!) {
 
-        emu?.set(.DMA_DEBUG_ENABLE, enable: sender.state == .on)
+        emu?.set(.LA_ENABLE, enable: sender.state == .on)
     }
 
-    @IBAction func busColorAction(_ sender: NSColorWell!) {
-        
-        let r = Int((sender.color.redComponent * 255.0).rounded())
-        let g = Int((sender.color.greenComponent * 255.0).rounded())
-        let b = Int((sender.color.blueComponent * 255.0).rounded())
-        let bgr = (b << 16) | (g << 8) | (r << 0)
+    @IBAction func laColorAction(_ sender: NSColorWell!) {
 
+        emu?.logicAnalyzer.setColor(sender.tag, color: sender.color)
+    }
+
+    @IBAction func laChannelAction(_ sender: NSPopUpButton!) {
+
+        print("tag = \(sender.tag) selectedTag = \(sender.selectedTag())")
         switch sender.tag {
-        case 0:  emu?.set(.DMA_DEBUG_COLOR0, value: bgr)
-        case 1:  emu?.set(.DMA_DEBUG_COLOR1, value: bgr)
-        case 2:  emu?.set(.DMA_DEBUG_COLOR2, value: bgr)
-        case 3:  emu?.set(.DMA_DEBUG_COLOR3, value: bgr)
-        case 4:  emu?.set(.DMA_DEBUG_COLOR4, value: bgr)
-        case 5:  emu?.set(.DMA_DEBUG_COLOR5, value: bgr)
+        case 0:  emu?.set(.LA_CHANNEL0, value: sender.selectedTag())
+        case 1:  emu?.set(.LA_CHANNEL1, value: sender.selectedTag())
+        case 2:  emu?.set(.LA_CHANNEL2, value: sender.selectedTag())
+        case 3:  emu?.set(.LA_CHANNEL3, value: sender.selectedTag())
         default: break
         }
     }
 
-    @IBAction func busChannelAction(_ sender: NSButton!) {
+    @IBAction func laDisplayModeAction(_ sender: NSPopUpButton!) {
 
-        switch sender.tag {
-        case 0:  emu?.set(.DMA_DEBUG_CHANNEL0, enable: sender.state == .on)
-        case 1:  emu?.set(.DMA_DEBUG_CHANNEL1, enable: sender.state == .on)
-        case 2:  emu?.set(.DMA_DEBUG_CHANNEL2, enable: sender.state == .on)
-        case 3:  emu?.set(.DMA_DEBUG_CHANNEL3, enable: sender.state == .on)
-        case 4:  emu?.set(.DMA_DEBUG_CHANNEL4, enable: sender.state == .on)
-        case 5:  emu?.set(.DMA_DEBUG_CHANNEL5, enable: sender.state == .on)
-        default: break
-        }
-    }
-
-    @IBAction func busDisplayModeAction(_ sender: NSPopUpButton!) {
-        
-        emu?.set(.DMA_DEBUG_MODE, value: sender.selectedTag())
+        emu?.set(.LA_MODE, value: sender.selectedTag())
     }
     
-    @IBAction func busOpacityAction(_ sender: NSSlider!) {
-        
-        emu?.set(.DMA_DEBUG_OPACITY, value: sender.integerValue)
+    @IBAction func laOpacityAction(_ sender: NSSlider!) {
+
+        emu?.set(.LA_OPACITY, value: sender.integerValue)
     }
 }

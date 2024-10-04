@@ -659,6 +659,12 @@ LogicAnalyzerAPI::getConfig() const
     return logicAnalyzer->getConfig();
 }
 
+void
+LogicAnalyzerAPI::setColor(isize channel, u32 abgr)
+{
+    logicAnalyzer->setColor(channel, abgr);
+}
+
 
 //
 // Joystick

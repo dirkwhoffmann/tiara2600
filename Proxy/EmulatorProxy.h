@@ -335,6 +335,8 @@ struct GuardInfo {
 
 - (LogicAnalyzerConfig)getConfig;
 
+- (void)setColor:(NSInteger)channel color:(NSColor *)color;
+
 @end
 
 

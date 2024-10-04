@@ -22,7 +22,10 @@ class LogicAnalyzer final : public SubComponent {
 
     friend class VICII;
     friend class TIA;
-    
+
+    // Number of logic analyzer channels
+    static constexpr isize cnt = 4;
+
     Descriptions descriptions = {{
 
         .name           = "LogicAnalyzer",
@@ -32,28 +35,23 @@ class LogicAnalyzer final : public SubComponent {
 
     Options options = {
 
-        OPT_DMA_DEBUG_ENABLE,
-        OPT_DMA_DEBUG_MODE,
-        OPT_DMA_DEBUG_OPACITY,
-        OPT_DMA_DEBUG_CHANNEL0,
-        OPT_DMA_DEBUG_CHANNEL1,
-        OPT_DMA_DEBUG_CHANNEL2,
-        OPT_DMA_DEBUG_CHANNEL3,
-        OPT_DMA_DEBUG_CHANNEL4,
-        OPT_DMA_DEBUG_CHANNEL5,
-        OPT_DMA_DEBUG_COLOR0,
-        OPT_DMA_DEBUG_COLOR1,
-        OPT_DMA_DEBUG_COLOR2,
-        OPT_DMA_DEBUG_COLOR3,
-        OPT_DMA_DEBUG_COLOR4,
-        OPT_DMA_DEBUG_COLOR5
+        OPT_LA_ENABLE,
+        OPT_LA_MODE,
+        OPT_LA_OPACITY,
+        OPT_LA_CHANNEL0,
+        OPT_LA_CHANNEL1,
+        OPT_LA_CHANNEL2,
+        OPT_LA_CHANNEL3
     };
 
     // Current configuration
     LogicAnalyzerConfig config = { };
-    
-    // Color lookup table. There are 6 colors with 4 different shades
-    u32 debugColor[6][4];
+
+    // Observed signals
+    Probe probe[cnt];
+
+    // Color lookup table (4 different shades for each color)
+    u32 color[4][cnt];
 
     
     //
@@ -66,7 +64,12 @@ public:
 
     LogicAnalyzer& operator= (const LogicAnalyzer& other) {
 
-        for (isize i = 0; i < 6; i++) CLONE_ARRAY(debugColor[i])
+        CLONE_ARRAY(probe)
+        CLONE_ARRAY(color[0])
+        CLONE_ARRAY(color[1])
+        CLONE_ARRAY(color[2])
+        CLONE_ARRAY(color[3])
+
         CLONE(config)
 
         return *this;
@@ -86,13 +89,12 @@ public:
 
         worker
 
-        << debugColor
+        << probe
+        << color
 
-        << config.dmaDebug
-        << config.dmaChannel
-        << config.dmaColor
-        << config.dmaDisplayMode
-        << config.dmaOpacity;
+        << config.enable
+        << config.displayMode
+        << config.opacity;
 
     } SERIALIZERS(serialize);
 
@@ -126,9 +128,10 @@ public:
     //
     // Managing colors
     //
-    
-    void setDmaDebugColor(MemAccess type, GpuColor color);
-    void setDmaDebugColor(MemAccess type, RgbColor color);
+
+    void setColor(isize channel, GpuColor color);
+    void setColor(isize channel, RgbColor color);
+    void setColor(isize channel, u32 abgr);
 
     
     //

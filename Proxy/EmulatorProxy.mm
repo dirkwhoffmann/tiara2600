@@ -456,14 +456,24 @@ using namespace tiara;
 
 @implementation LogicAnalyzerProxy
 
-- (LogicAnalyzerAPI *)debugger
+- (LogicAnalyzerAPI *)la
 {
     return (LogicAnalyzerAPI *)obj;
 }
 
 - (LogicAnalyzerConfig)getConfig
 {
-    return [self debugger]->getConfig();
+    return [self la]->getConfig();
+}
+
+- (void)setColor:(NSInteger)channel color:(NSColor *)color
+{
+    auto r = NSInteger(color.redComponent * 255.0);
+    auto g = NSInteger(color.greenComponent * 255.0);
+    auto b = NSInteger(color.blueComponent * 255.0);
+    auto abgr = (0xFF << 24) | (b << 16) | (g << 8) | (r << 0);
+
+    [self la]->setColor(channel, u32(abgr));
 }
 
 @end

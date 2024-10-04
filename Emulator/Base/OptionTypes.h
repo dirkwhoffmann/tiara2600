@@ -31,37 +31,29 @@ enum_long(OPT)
     OPT_HOST_FRAMEBUF_HEIGHT,   ///< Current height of the emulator window
 
     // C64
-    OPT_ATARI_WARP_BOOT,          ///< Warp-boot time in seconds
-    OPT_ATARI_WARP_MODE,          ///< Warp activation mode
-    OPT_ATARI_VSYNC,              ///< Derive the frame rate to the VSYNC signal
-    OPT_ATARI_SPEED_BOOST,        ///< Speed adjustment in percent
-    OPT_ATARI_RUN_AHEAD,          ///< Number of run-ahead frames
+    OPT_ATARI_WARP_BOOT,        ///< Warp-boot time in seconds
+    OPT_ATARI_WARP_MODE,        ///< Warp activation mode
+    OPT_ATARI_VSYNC,            ///< Derive the frame rate to the VSYNC signal
+    OPT_ATARI_SPEED_BOOST,      ///< Speed adjustment in percent
+    OPT_ATARI_RUN_AHEAD,        ///< Number of run-ahead frames
 
     // Snapshots
-    OPT_ATARI_SNAP_AUTO,          ///< Automatically take a snapshots
-    OPT_ATARI_SNAP_DELAY,         ///< Delay between two snapshots in seconds
-    OPT_ATARI_SNAP_COMPRESS,      ///< Compress snapshot data
+    OPT_ATARI_SNAP_AUTO,        ///< Automatically take a snapshots
+    OPT_ATARI_SNAP_DELAY,       ///< Delay between two snapshots in seconds
+    OPT_ATARI_SNAP_COMPRESS,    ///< Compress snapshot data
 
     // TIA
     OPT_TIA_REVISION,           ///< Chip revision
     OPT_TIA_POWER_SAVE,         ///< Enable fast-paths
 
     // Logic Analyzer
-    OPT_DMA_DEBUG_ENABLE,       ///< Global on/off switch for the logic analyzer
-    OPT_DMA_DEBUG_MODE,         ///< DMA texture overlay mode
-    OPT_DMA_DEBUG_OPACITY,      ///< DMA texture opacity
-    OPT_DMA_DEBUG_CHANNEL0,     ///< Enable or disable channel 0
-    OPT_DMA_DEBUG_CHANNEL1,     ///< Enable or disable channel 1
-    OPT_DMA_DEBUG_CHANNEL2,     ///< Enable or disable channel 2
-    OPT_DMA_DEBUG_CHANNEL3,     ///< Enable or disable channel 3
-    OPT_DMA_DEBUG_CHANNEL4,     ///< Enable or disable channel 4
-    OPT_DMA_DEBUG_CHANNEL5,     ///< Enable or disable channel 5
-    OPT_DMA_DEBUG_COLOR0,       ///< Color for channel 0
-    OPT_DMA_DEBUG_COLOR1,       ///< Color for channel 1
-    OPT_DMA_DEBUG_COLOR2,       ///< Color for channel 2
-    OPT_DMA_DEBUG_COLOR3,       ///< Color for channel 3
-    OPT_DMA_DEBUG_COLOR4,       ///< Color for channel 4
-    OPT_DMA_DEBUG_COLOR5,       ///< Color for channel 5
+    OPT_LA_ENABLE,              ///< Global on/off switch of the logic analyzer
+    OPT_LA_MODE,                ///< Visual style (overlay mode)
+    OPT_LA_OPACITY,             ///< Texture opacity
+    OPT_LA_CHANNEL0,            ///< Probe on channel 0
+    OPT_LA_CHANNEL1,            ///< Probe on channel 1
+    OPT_LA_CHANNEL2,            ///< Probe on channel 2
+    OPT_LA_CHANNEL3,            ///< Probe on channel 3
 
     // Cartridge port
     OPT_CART_TYPE,              ///< Type of the plugged-in cartridge
@@ -167,21 +159,13 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_TIA_REVISION:          return "TIA.REVISION";
             case OPT_TIA_POWER_SAVE:        return "TIA.POWER_SAVE";
 
-            case OPT_DMA_DEBUG_ENABLE:      return "DMA_DEBUG.ENABLE";
-            case OPT_DMA_DEBUG_MODE:        return "DMA_DEBUG.MODE";
-            case OPT_DMA_DEBUG_OPACITY:     return "DMA_DEBUG.OPACITY";
-            case OPT_DMA_DEBUG_CHANNEL0:    return "DMA_DEBUG.CHANNEL0";
-            case OPT_DMA_DEBUG_CHANNEL1:    return "DMA_DEBUG.CHANNEL1";
-            case OPT_DMA_DEBUG_CHANNEL2:    return "DMA_DEBUG.CHANNEL2";
-            case OPT_DMA_DEBUG_CHANNEL3:    return "DMA_DEBUG.CHANNEL3";
-            case OPT_DMA_DEBUG_CHANNEL4:    return "DMA_DEBUG.CHANNEL4";
-            case OPT_DMA_DEBUG_CHANNEL5:    return "DMA_DEBUG.CHANNEL5";
-            case OPT_DMA_DEBUG_COLOR0:      return "DMA_DEBUG.COLOR0";
-            case OPT_DMA_DEBUG_COLOR1:      return "DMA_DEBUG.COLOR1";
-            case OPT_DMA_DEBUG_COLOR2:      return "DMA_DEBUG.COLOR2";
-            case OPT_DMA_DEBUG_COLOR3:      return "DMA_DEBUG.COLOR3";
-            case OPT_DMA_DEBUG_COLOR4:      return "DMA_DEBUG.COLOR4";
-            case OPT_DMA_DEBUG_COLOR5:      return "DMA_DEBUG.COLOR5";
+            case OPT_LA_ENABLE:             return "LA.ENABLE";
+            case OPT_LA_MODE:               return "LA.MODE";
+            case OPT_LA_OPACITY:            return "LA.OPACITY";
+            case OPT_LA_CHANNEL0:           return "LA.CHANNEL0";
+            case OPT_LA_CHANNEL1:           return "LA.CHANNEL1";
+            case OPT_LA_CHANNEL2:           return "LA.CHANNEL2";
+            case OPT_LA_CHANNEL3:           return "LA.CHANNEL3";
 
             case OPT_CART_TYPE:             return "CART.TYPE";
 
@@ -271,21 +255,13 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_TIA_REVISION:          return "Video standard";
             case OPT_TIA_POWER_SAVE:        return "Take fast paths";
 
-            case OPT_DMA_DEBUG_ENABLE:      return "Logic analyzer";
-            case OPT_DMA_DEBUG_MODE:        return "Logic analyzer style";
-            case OPT_DMA_DEBUG_OPACITY:     return "Opacity";
-            case OPT_DMA_DEBUG_CHANNEL0:    return "Refresh cycles";
-            case OPT_DMA_DEBUG_CHANNEL1:    return "Idle reads";
-            case OPT_DMA_DEBUG_CHANNEL2:    return "Character accesses";
-            case OPT_DMA_DEBUG_CHANNEL3:    return "Graphics accesses";
-            case OPT_DMA_DEBUG_CHANNEL4:    return "Sprite-pointer accesses";
-            case OPT_DMA_DEBUG_CHANNEL5:    return "Sprite-data accesses";
-            case OPT_DMA_DEBUG_COLOR0:      return "Color of channel 0";
-            case OPT_DMA_DEBUG_COLOR1:      return "Color of channel 1";
-            case OPT_DMA_DEBUG_COLOR2:      return "Color of channel 2";
-            case OPT_DMA_DEBUG_COLOR3:      return "Color of channel 3";
-            case OPT_DMA_DEBUG_COLOR4:      return "Color of channel 4";
-            case OPT_DMA_DEBUG_COLOR5:      return "Color of channel 5";
+            case OPT_LA_ENABLE:             return "Logic analyzer";
+            case OPT_LA_MODE:               return "Logic analyzer visual style";
+            case OPT_LA_OPACITY:            return "Overlay opacity";
+            case OPT_LA_CHANNEL0:           return "Channel 0 probe";
+            case OPT_LA_CHANNEL1:           return "Channel 1 probe";
+            case OPT_LA_CHANNEL2:           return "Channel 2 probe";
+            case OPT_LA_CHANNEL3:           return "Channel 3 probe";
 
             case OPT_CART_TYPE:             return "Cartridge type";
 

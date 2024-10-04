@@ -201,11 +201,11 @@ TIA::execute()
 
     // RDY logic
     if (strobe == TIA_WSYNC && rdy) {
-        trace(true, "RDY down\n");
+        // trace(true, "RDY down\n");
         rdy = false; cpu.pullDownRdyLine();
     }
     if (shb && !rdy) {
-        trace(true, "RDY up\n");
+        // trace(true, "RDY up\n");
         rdy = true; cpu.releaseRdyLine();
     }
 
@@ -239,7 +239,7 @@ TIA::eofHandler()
     if (atari.getHeadless()) return;
 
     // Run the logic Analyzer if enabled
-    bool debug = logicAnalyzer.config.dmaDebug;
+    bool debug = logicAnalyzer.config.enable;
     if (debug) logicAnalyzer.computeOverlay(emuTexture, dmaTexture);
 
     // Switch texture buffers

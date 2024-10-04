@@ -22,32 +22,38 @@ LogicAnalyzer::LogicAnalyzer(Atari &ref) : SubComponent(ref)
 }
 
 void
-LogicAnalyzer::setDmaDebugColor(MemAccess type, GpuColor color)
+LogicAnalyzer::setColor(isize channel, GpuColor gpuColor)
 {
-    assert_enum(MemAccess, type);
-    
-    config.dmaColor[type] = color.abgr;
+    assert(channel < cnt);
 
-    debugColor[type][0] = color.shade(0.3).abgr;
-    debugColor[type][1] = color.shade(0.1).abgr;
-    debugColor[type][2] = color.tint(0.1).abgr;
-    debugColor[type][3] = color.tint(0.3).abgr;
+    color[0][channel] = gpuColor.shade(0.3).abgr;
+    color[1][channel] = gpuColor.shade(0.1).abgr;
+    color[2][channel] = gpuColor.tint(0.1).abgr;
+    color[3][channel] = gpuColor.tint(0.3).abgr;
 }
 
 void
-LogicAnalyzer::setDmaDebugColor(MemAccess type, RgbColor color)
+LogicAnalyzer::setColor(isize channel, RgbColor color)
 {
-    setDmaDebugColor(type, GpuColor(color));
+    setColor(channel, GpuColor(color));
+}
+
+void
+LogicAnalyzer::setColor(isize channel, u32 abgr)
+{
+    // abgr &= 0x00FFFFFF;
+    // abgr |= 0xFF000000;
+    setColor(channel, GpuColor(abgr));
 }
 
 void
 LogicAnalyzer::computeOverlay(u32 *emuTexture, u32 *dmaTexture)
 {
-    double weight = config.dmaOpacity / 255.0;
+    double weight = config.opacity / 255.0;
     
-    switch (config.dmaDisplayMode) {
+    switch (config.displayMode) {
 
-        case DMA_DISPLAY_MODE_FG_LAYER:
+        case LA_DISPLAY_MODE_FG_LAYER:
 
             for (isize y = 0; y < Texture::height; y++) {
 
@@ -66,8 +72,8 @@ LogicAnalyzer::computeOverlay(u32 *emuTexture, u32 *dmaTexture)
             }
             break;
 
-        case DMA_DISPLAY_MODE_BG_LAYER:
-            
+        case LA_DISPLAY_MODE_BG_LAYER:
+
             for (isize y = 0; y < Texture::height; y++) {
 
                 u32 *emu = emuTexture + (y * Texture::width);
@@ -86,8 +92,8 @@ LogicAnalyzer::computeOverlay(u32 *emuTexture, u32 *dmaTexture)
             }
             break;
 
-        case DMA_DISPLAY_MODE_ODD_EVEN_LAYERS:
-            
+        case LA_DISPLAY_MODE_ODD_EVEN_LAYERS:
+
             for (isize y = 0; y < Texture::height; y++) {
 
                 u32 *emu = emuTexture + (y * Texture::width);

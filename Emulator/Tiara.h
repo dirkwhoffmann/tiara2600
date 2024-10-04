@@ -284,6 +284,9 @@ struct LogicAnalyzerAPI : API {
      */
     const LogicAnalyzerConfig &getConfig() const;
 
+    /** @brief Sets the display color
+     */
+    void setColor(isize channel, u32 abgr);
 };
 
 
