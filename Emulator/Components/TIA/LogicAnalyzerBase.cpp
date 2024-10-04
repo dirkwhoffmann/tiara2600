@@ -34,12 +34,16 @@ LogicAnalyzer::getOption(Option option) const
     switch (option) {
 
         case OPT_LA_ENABLE:     return (i64)config.enable;
+        case OPT_LA_ENABLE0:    return (i64)channel[0];
+        case OPT_LA_ENABLE1:    return (i64)channel[1];
+        case OPT_LA_ENABLE2:    return (i64)channel[2];
+        case OPT_LA_ENABLE3:    return (i64)channel[3];
+        case OPT_LA_PROBE0:     return (i64)probe[0];
+        case OPT_LA_PROBE1:     return (i64)probe[1];
+        case OPT_LA_PROBE2:     return (i64)probe[2];
+        case OPT_LA_PROBE3:     return (i64)probe[3];
         case OPT_LA_MODE:       return (i64)config.displayMode;
         case OPT_LA_OPACITY:    return (i64)config.opacity;
-        case OPT_LA_CHANNEL0:   return (i64)probe[0];
-        case OPT_LA_CHANNEL1:   return (i64)probe[1];
-        case OPT_LA_CHANNEL2:   return (i64)probe[2];
-        case OPT_LA_CHANNEL3:   return (i64)probe[3];
 
         default:
             fatalError;
@@ -52,7 +56,21 @@ LogicAnalyzer::checkOption(Option opt, i64 value)
     switch (opt) {
 
         case OPT_LA_ENABLE:
+        case OPT_LA_ENABLE0:
+        case OPT_LA_ENABLE1:
+        case OPT_LA_ENABLE2:
+        case OPT_LA_ENABLE3:
 
+            return;
+
+        case OPT_LA_PROBE0:
+        case OPT_LA_PROBE1:
+        case OPT_LA_PROBE2:
+        case OPT_LA_PROBE3:
+
+            if (!ProbeEnum::isValid(value)) {
+                throw Error(VC64ERROR_OPT_INV_ARG, ProbeEnum::keyList());
+            }
             return;
 
         case OPT_LA_MODE:
@@ -63,10 +81,6 @@ LogicAnalyzer::checkOption(Option opt, i64 value)
             return;
 
         case OPT_LA_OPACITY:
-        case OPT_LA_CHANNEL0:
-        case OPT_LA_CHANNEL1:
-        case OPT_LA_CHANNEL2:
-        case OPT_LA_CHANNEL3:
 
             return;
 
@@ -88,18 +102,27 @@ LogicAnalyzer::setOption(Option opt, i64 value)
             tia.resetDmaTextures();
             tia.resetEmuTextures();
             msgQueue.put(MSG_DMA_DEBUG, value);
-            return;
+            break;
+
+        case OPT_LA_ENABLE0:     channel[0] = (bool)value; break;
+        case OPT_LA_ENABLE1:     channel[1] = (bool)value; break;
+        case OPT_LA_ENABLE2:     channel[2] = (bool)value; break;
+        case OPT_LA_ENABLE3:     channel[3] = (bool)value; break;
+
+        case OPT_LA_PROBE0:     probe[0] = (Probe)value; break;
+        case OPT_LA_PROBE1:     probe[1] = (Probe)value; break;
+        case OPT_LA_PROBE2:     probe[2] = (Probe)value; break;
+        case OPT_LA_PROBE3:     probe[3] = (Probe)value; break;
 
         case OPT_LA_MODE:
 
             config.displayMode = (LaDisplayMode)value;
-            return;
+            break;
 
-        case OPT_LA_OPACITY:     config.opacity = (u8)value; return;
-        case OPT_LA_CHANNEL0:    probe[0] = (Probe)value; return;
-        case OPT_LA_CHANNEL1:    probe[1] = (Probe)value; return;
-        case OPT_LA_CHANNEL2:    probe[2] = (Probe)value; return;
-        case OPT_LA_CHANNEL3:    probe[3] = (Probe)value; return;
+        case OPT_LA_OPACITY:
+
+            config.opacity = (u8)value;
+            break;
 
         default:
             fatalError;

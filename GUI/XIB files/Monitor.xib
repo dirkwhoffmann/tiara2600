@@ -8,17 +8,21 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Monitor" customModule="Tiara" customModuleProvider="target">
             <connections>
-                <outlet property="laChannel0" destination="sia-jN-LH7" id="Cfl-cl-4ti"/>
-                <outlet property="laChannel1" destination="a6a-Do-vAv" id="Bk4-Tb-zL7"/>
-                <outlet property="laChannel2" destination="8JZ-Ek-Huy" id="KRK-Fs-Ogw"/>
-                <outlet property="laChannel3" destination="aI2-IB-WIS" id="kup-QP-Vad"/>
                 <outlet property="laColor0" destination="P1V-P5-GfH" id="ktN-fj-ROW"/>
                 <outlet property="laColor1" destination="gWw-fl-wE5" id="Rol-OS-lX2"/>
                 <outlet property="laColor2" destination="rhh-2z-4fm" id="YiT-9a-UM5"/>
                 <outlet property="laColor3" destination="oKZ-2a-bGE" id="Mb5-1M-J32"/>
                 <outlet property="laDisplayMode" destination="InU-Id-HrG" id="oyk-ZP-TVl"/>
                 <outlet property="laEnable" destination="m0i-R7-c8i" id="EUX-5e-Qhr"/>
+                <outlet property="laEnable0" destination="GD1-6r-Ghn" id="FgO-w3-y9r"/>
+                <outlet property="laEnable1" destination="1Nj-P0-fYQ" id="RYa-fa-eKz"/>
+                <outlet property="laEnable2" destination="Ldg-nj-jr8" id="nmD-Zn-LiS"/>
+                <outlet property="laEnable3" destination="tUj-YA-NlN" id="HmU-od-Lgr"/>
                 <outlet property="laOpacity" destination="TLp-7k-J8u" id="XTD-z5-mHl"/>
+                <outlet property="laProbe0" destination="sia-jN-LH7" id="Cfl-cl-4ti"/>
+                <outlet property="laProbe1" destination="a6a-Do-vAv" id="KvN-lJ-akA"/>
+                <outlet property="laProbe2" destination="8JZ-Ek-Huy" id="H5s-xM-28n"/>
+                <outlet property="laProbe3" destination="aI2-IB-WIS" id="tKa-PG-mtS"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="Psk-RA-Owv"/>
             </connections>
         </customObject>
@@ -34,10 +38,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box fixedFrame="YES" title="Logic Analyzer" translatesAutoresizingMaskIntoConstraints="NO" id="ka1-cX-7gc">
-                        <rect key="frame" x="17" y="139" width="356" height="259"/>
+                        <rect key="frame" x="17" y="139" width="414" height="259"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="IOt-oi-MVe">
-                            <rect key="frame" x="4" y="5" width="348" height="239"/>
+                            <rect key="frame" x="4" y="5" width="406" height="239"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0i-R7-c8i">
@@ -51,148 +55,8 @@
                                         <action selector="laEnableAction:" target="-2" id="mRM-Yb-mJK"/>
                                     </connections>
                                 </button>
-                                <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TLp-7k-J8u">
-                                    <rect key="frame" x="19" y="21" width="13" height="164"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="255" doubleValue="128" tickMarkPosition="right" sliderType="linear" id="kFq-LQ-Ky6"/>
-                                    <connections>
-                                        <action selector="laOpacityAction:" target="-2" id="9uG-Ue-qsQ"/>
-                                    </connections>
-                                </slider>
-                                <colorWell fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-fl-wE5">
-                                    <rect key="frame" x="277" y="129" width="44" height="23"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <connections>
-                                        <action selector="busColorAction:" target="-2" id="BMH-eW-kj8"/>
-                                    </connections>
-                                </colorWell>
-                                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P1V-P5-GfH">
-                                    <rect key="frame" x="277" y="163" width="44" height="23"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <connections>
-                                        <action selector="busColorAction:" target="-2" id="ihV-Pn-Iqe"/>
-                                    </connections>
-                                </colorWell>
-                                <colorWell fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="rhh-2z-4fm">
-                                    <rect key="frame" x="277" y="94" width="44" height="23"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <connections>
-                                        <action selector="busColorAction:" target="-2" id="Ukq-IO-eBc"/>
-                                    </connections>
-                                </colorWell>
-                                <colorWell fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="oKZ-2a-bGE">
-                                    <rect key="frame" x="277" y="57" width="44" height="23"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <connections>
-                                        <action selector="busColorAction:" target="-2" id="mKV-TX-03F"/>
-                                    </connections>
-                                </colorWell>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TTe-jw-tqd">
-                                    <rect key="frame" x="52" y="167" width="69" height="16"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Channel 0:" id="Eq0-Cs-YXs">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qBi-j9-OAf">
-                                    <rect key="frame" x="52" y="134" width="67" height="16"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Channel 1:" id="ffV-Tl-uah">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jUf-7T-LTT">
-                                    <rect key="frame" x="52" y="99" width="69" height="16"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Channel 2:" id="36a-JI-VF1">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sia-jN-LH7">
-                                    <rect key="frame" x="124" y="160" width="152" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <popUpButtonCell key="cell" type="push" title="Unconnected" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="IRn-xn-nlE" id="0ov-YF-6A9">
-                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
-                                        <menu key="menu" id="eqG-qa-TWn">
-                                            <items>
-                                                <menuItem title="Unconnected" state="on" id="IRn-xn-nlE"/>
-                                            </items>
-                                        </menu>
-                                    </popUpButtonCell>
-                                    <connections>
-                                        <action selector="laChannelAction:" target="-2" id="rUD-C3-LyO"/>
-                                    </connections>
-                                </popUpButton>
-                                <popUpButton tag="1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-Do-vAv">
-                                    <rect key="frame" x="124" y="126" width="152" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <popUpButtonCell key="cell" type="push" title="Unconnected" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="1EA-iI-A4b" id="rcc-7y-eoD">
-                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
-                                        <menu key="menu" id="zae-QO-4T3">
-                                            <items>
-                                                <menuItem title="Unconnected" state="on" id="1EA-iI-A4b"/>
-                                            </items>
-                                        </menu>
-                                    </popUpButtonCell>
-                                    <connections>
-                                        <action selector="laChannelAction:" target="-2" id="ySU-r9-msU"/>
-                                    </connections>
-                                </popUpButton>
-                                <popUpButton tag="2" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8JZ-Ek-Huy">
-                                    <rect key="frame" x="124" y="92" width="152" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <popUpButtonCell key="cell" type="push" title="Unconnected" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="TUG-V6-emX" id="D8f-LP-jmI">
-                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
-                                        <menu key="menu" id="jIn-TN-xHB">
-                                            <items>
-                                                <menuItem title="Unconnected" state="on" id="TUG-V6-emX"/>
-                                            </items>
-                                        </menu>
-                                    </popUpButtonCell>
-                                    <connections>
-                                        <action selector="laChannelAction:" target="-2" id="OEs-kq-Du2"/>
-                                    </connections>
-                                </popUpButton>
-                                <popUpButton tag="3" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aI2-IB-WIS">
-                                    <rect key="frame" x="124" y="54" width="152" height="25"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <popUpButtonCell key="cell" type="push" title="Unconnected" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="cwc-lW-CSA" id="OOe-Mg-ZgE">
-                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
-                                        <menu key="menu" id="yFy-9z-ueY">
-                                            <items>
-                                                <menuItem title="Unconnected" state="on" id="cwc-lW-CSA"/>
-                                            </items>
-                                        </menu>
-                                    </popUpButtonCell>
-                                    <connections>
-                                        <action selector="laChannelAction:" target="-2" id="5ph-4t-Em0"/>
-                                    </connections>
-                                </popUpButton>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="umW-cb-59E">
-                                    <rect key="frame" x="52" y="62" width="69" height="16"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Channel 3:" id="Z0w-Hr-Rlx">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="InU-Id-HrG">
-                                    <rect key="frame" x="54" y="20" width="264" height="18"/>
+                                    <rect key="frame" x="47" y="20" width="285" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <popUpButtonCell key="cell" type="roundRect" title="Modulate foreground" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="wsE-VL-FyL" id="Z8q-RU-Wiv">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -209,6 +73,190 @@
                                         <action selector="laDisplayModeAction:" target="-2" id="Wjb-dl-5Do"/>
                                     </connections>
                                 </popUpButton>
+                                <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TLp-7k-J8u">
+                                    <rect key="frame" x="19" y="21" width="13" height="164"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="255" doubleValue="128" tickMarkPosition="right" sliderType="linear" id="kFq-LQ-Ky6"/>
+                                    <connections>
+                                        <action selector="laOpacityAction:" target="-2" id="9uG-Ue-qsQ"/>
+                                    </connections>
+                                </slider>
+                                <colorWell fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-fl-wE5">
+                                    <rect key="frame" x="291" y="129" width="44" height="23"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="busColorAction:" target="-2" id="BMH-eW-kj8"/>
+                                    </connections>
+                                </colorWell>
+                                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P1V-P5-GfH">
+                                    <rect key="frame" x="291" y="163" width="44" height="23"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="busColorAction:" target="-2" id="ihV-Pn-Iqe"/>
+                                    </connections>
+                                </colorWell>
+                                <colorWell fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="rhh-2z-4fm">
+                                    <rect key="frame" x="291" y="94" width="44" height="23"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="busColorAction:" target="-2" id="Ukq-IO-eBc"/>
+                                    </connections>
+                                </colorWell>
+                                <colorWell fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="oKZ-2a-bGE">
+                                    <rect key="frame" x="291" y="57" width="44" height="23"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="busColorAction:" target="-2" id="mKV-TX-03F"/>
+                                    </connections>
+                                </colorWell>
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TTe-jw-tqd">
+                                    <rect key="frame" x="66" y="167" width="69" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Channel 0:" id="Eq0-Cs-YXs">
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qBi-j9-OAf">
+                                    <rect key="frame" x="66" y="134" width="67" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Channel 1:" id="ffV-Tl-uah">
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jUf-7T-LTT">
+                                    <rect key="frame" x="66" y="99" width="69" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Channel 2:" id="36a-JI-VF1">
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sia-jN-LH7">
+                                    <rect key="frame" x="138" y="160" width="152" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <popUpButtonCell key="cell" type="push" title="Unconnected" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="IRn-xn-nlE" id="0ov-YF-6A9">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" id="eqG-qa-TWn">
+                                            <items>
+                                                <menuItem title="Unconnected" state="on" id="IRn-xn-nlE"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="laProbeAction:" target="-2" id="rUD-C3-LyO"/>
+                                    </connections>
+                                </popUpButton>
+                                <popUpButton tag="1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-Do-vAv">
+                                    <rect key="frame" x="138" y="126" width="152" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <popUpButtonCell key="cell" type="push" title="Unconnected" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="1EA-iI-A4b" id="rcc-7y-eoD">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" id="zae-QO-4T3">
+                                            <items>
+                                                <menuItem title="Unconnected" state="on" id="1EA-iI-A4b"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="laProbeAction:" target="-2" id="Gwo-wA-LgH"/>
+                                    </connections>
+                                </popUpButton>
+                                <popUpButton tag="2" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8JZ-Ek-Huy">
+                                    <rect key="frame" x="138" y="92" width="152" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <popUpButtonCell key="cell" type="push" title="Unconnected" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="TUG-V6-emX" id="D8f-LP-jmI">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" id="jIn-TN-xHB">
+                                            <items>
+                                                <menuItem title="Unconnected" state="on" id="TUG-V6-emX"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="laProbeAction:" target="-2" id="OEs-kq-Du2"/>
+                                    </connections>
+                                </popUpButton>
+                                <popUpButton tag="3" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aI2-IB-WIS">
+                                    <rect key="frame" x="138" y="54" width="152" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <popUpButtonCell key="cell" type="push" title="Unconnected" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="cwc-lW-CSA" id="OOe-Mg-ZgE">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" id="yFy-9z-ueY">
+                                            <items>
+                                                <menuItem title="Unconnected" state="on" id="cwc-lW-CSA"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="laProbeAction:" target="-2" id="5ph-4t-Em0"/>
+                                    </connections>
+                                </popUpButton>
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="umW-cb-59E">
+                                    <rect key="frame" x="66" y="62" width="69" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Channel 3:" id="Z0w-Hr-Rlx">
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GD1-6r-Ghn">
+                                    <rect key="frame" x="45" y="166" width="18" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="syJ-Xl-6nK">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="laChannelAction:" target="-2" id="dM0-6X-RqD"/>
+                                    </connections>
+                                </button>
+                                <button tag="1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Nj-P0-fYQ">
+                                    <rect key="frame" x="45" y="131" width="18" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="q2Q-3t-vwZ">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="laChannelAction:" target="-2" id="BUd-3x-rQj"/>
+                                    </connections>
+                                </button>
+                                <button tag="2" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ldg-nj-jr8">
+                                    <rect key="frame" x="45" y="96" width="18" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LRn-t0-74G">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="laChannelAction:" target="-2" id="iiB-2F-ZIX"/>
+                                    </connections>
+                                </button>
+                                <button tag="3" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tUj-YA-NlN">
+                                    <rect key="frame" x="45" y="60" width="18" height="18"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="fk6-b3-XaM">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="laChannelAction:" target="-2" id="gL8-be-FZd"/>
+                                    </connections>
+                                </button>
                             </subviews>
                         </view>
                     </box>

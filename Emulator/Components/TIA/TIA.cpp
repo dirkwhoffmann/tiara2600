@@ -217,17 +217,11 @@ TIA::execute()
         atari.setFlag(RL::SYNC_THREAD);
     }
 
-    // For now: Visualize the counter in the logic analyzer
     assert(x < Texture::width);
     assert(y < Texture::height);
-    /*
-     *p =
-     hc.phase == 0 ? 0xFF444444 :
-     hc.phase == 1 ? 0xFF888888 :
-     hc.phase == 2 ? 0xFFAAAAAA : 0xFFFFFFFF;
-     */
-    if (hc.phi1()) drawDebugPixel(x, y, 0xFF0000FF);
-    if (hc.phi2()) drawDebugPixel(x, y, 0xFF00FFFF);
+
+    // Run the logic analyzer
+    logicAnalyzer.recordSignals();
 
     x++;
 }

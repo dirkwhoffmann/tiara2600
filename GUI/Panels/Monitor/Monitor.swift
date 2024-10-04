@@ -13,10 +13,15 @@ class Monitor: DialogController {
     
     // Logic Analyzer
     @IBOutlet weak var laEnable: NSButton!
-    @IBOutlet weak var laChannel0: NSPopUpButton!
-    @IBOutlet weak var laChannel1: NSPopUpButton!
-    @IBOutlet weak var laChannel2: NSPopUpButton!
-    @IBOutlet weak var laChannel3: NSPopUpButton!
+    @IBOutlet weak var laEnable0: NSButton!
+    @IBOutlet weak var laEnable1: NSButton!
+    @IBOutlet weak var laEnable2: NSButton!
+    @IBOutlet weak var laEnable3: NSButton!
+
+    @IBOutlet weak var laProbe0: NSPopUpButton!
+    @IBOutlet weak var laProbe1: NSPopUpButton!
+    @IBOutlet weak var laProbe2: NSPopUpButton!
+    @IBOutlet weak var laProbe3: NSPopUpButton!
 
     @IBOutlet weak var laColor0: NSColorWell!
     @IBOutlet weak var laColor1: NSColorWell!
@@ -46,12 +51,6 @@ class Monitor: DialogController {
     @IBOutlet weak var hideSprites: NSButton!
 
     override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        refresh()
-    }
-    
-    override func showWindow(_ sender: Any?) {
 
         func initPopup(button: NSPopUpButton) {
 
@@ -69,9 +68,7 @@ class Monitor: DialogController {
             add("VBLANK")
         }
 
-        super.showWindow(self)
-
-        print("Monitor: showWindow")
+        super.awakeFromNib()
 
         // Initialize colors
         let palette: [NSColor] = [
@@ -87,26 +84,39 @@ class Monitor: DialogController {
         laColor3.color = palette[3]
 
         // Initialize PopUpButtons
-        initPopup(button: laChannel0)
-        initPopup(button: laChannel1)
-        initPopup(button: laChannel2)
-        initPopup(button: laChannel3)
+        initPopup(button: laProbe0)
+        initPopup(button: laProbe1)
+        initPopup(button: laProbe2)
+        initPopup(button: laProbe3)
 
         for i in 0..<4 { emu?.logicAnalyzer.setColor(i, color: palette[i]) }
 
         refresh()
     }
+    
+    override func showWindow(_ sender: Any?) {
+
+        super.showWindow(self)
+
+        print("Monitor: showWindow")
+    }
 
     func refresh() {
-                
+
+        print("Refresh")
+
         if let la = emu?.logicAnalyzer.getConfig() {
 
             // Logic analyzer
             laEnable.state = la.enable ? .on : .off
-            laChannel0.selectItem(withTag: emu!.get(.LA_CHANNEL0))
-            laChannel1.selectItem(withTag: emu!.get(.LA_CHANNEL1))
-            laChannel2.selectItem(withTag: emu!.get(.LA_CHANNEL2))
-            laChannel3.selectItem(withTag: emu!.get(.LA_CHANNEL3))
+            laEnable0.state = emu!.get(.LA_ENABLE0) != 0 ? .on : .off
+            laEnable1.state = emu!.get(.LA_ENABLE1) != 0 ? .on : .off
+            laEnable2.state = emu!.get(.LA_ENABLE2) != 0 ? .on : .off
+            laEnable3.state = emu!.get(.LA_ENABLE3) != 0 ? .on : .off
+            laProbe0.selectItem(withTag: emu!.get(.LA_PROBE0))
+            laProbe1.selectItem(withTag: emu!.get(.LA_PROBE1))
+            laProbe2.selectItem(withTag: emu!.get(.LA_PROBE2))
+            laProbe3.selectItem(withTag: emu!.get(.LA_PROBE3))
             laOpacity.integerValue = Int(la.opacity)
             laDisplayMode.selectItem(withTag: la.displayMode.rawValue)
         }
@@ -126,14 +136,24 @@ class Monitor: DialogController {
         emu?.logicAnalyzer.setColor(sender.tag, color: sender.color)
     }
 
-    @IBAction func laChannelAction(_ sender: NSPopUpButton!) {
+    @IBAction func laChannelAction(_ sender: NSButton!) {
 
-        print("tag = \(sender.tag) selectedTag = \(sender.selectedTag())")
         switch sender.tag {
-        case 0:  emu?.set(.LA_CHANNEL0, value: sender.selectedTag())
-        case 1:  emu?.set(.LA_CHANNEL1, value: sender.selectedTag())
-        case 2:  emu?.set(.LA_CHANNEL2, value: sender.selectedTag())
-        case 3:  emu?.set(.LA_CHANNEL3, value: sender.selectedTag())
+        case 0:  emu?.set(.LA_ENABLE0, enable: sender.state == .on)
+        case 1:  emu?.set(.LA_ENABLE1, enable: sender.state == .on)
+        case 2:  emu?.set(.LA_ENABLE2, enable: sender.state == .on)
+        case 3:  emu?.set(.LA_ENABLE3, enable: sender.state == .on)
+        default: break
+        }
+    }
+
+    @IBAction func laProbeAction(_ sender: NSPopUpButton!) {
+
+        switch sender.tag {
+        case 0:  emu?.set(.LA_PROBE0, value: sender.selectedTag())
+        case 1:  emu?.set(.LA_PROBE1, value: sender.selectedTag())
+        case 2:  emu?.set(.LA_PROBE2, value: sender.selectedTag())
+        case 3:  emu?.set(.LA_PROBE3, value: sender.selectedTag())
         default: break
         }
     }

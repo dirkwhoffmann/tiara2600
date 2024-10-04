@@ -48,12 +48,16 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_TIA_POWER_SAVE:            return boolParser();
 
         case OPT_LA_ENABLE:                 return boolParser();
+        case OPT_LA_ENABLE0:                return boolParser();
+        case OPT_LA_ENABLE1:                return boolParser();
+        case OPT_LA_ENABLE2:                return boolParser();
+        case OPT_LA_ENABLE3:                return boolParser();
+        case OPT_LA_PROBE0:                 return enumParser.template operator()<ProbeEnum>();
+        case OPT_LA_PROBE1:                 return enumParser.template operator()<ProbeEnum>();
+        case OPT_LA_PROBE2:                 return enumParser.template operator()<ProbeEnum>();
+        case OPT_LA_PROBE3:                 return enumParser.template operator()<ProbeEnum>();
         case OPT_LA_MODE:                   return enumParser.template operator()<LaDisplayModeEnum>();
         case OPT_LA_OPACITY:                return numParser("%");
-        case OPT_LA_CHANNEL0:               return enumParser.template operator()<ProbeEnum>();
-        case OPT_LA_CHANNEL1:               return enumParser.template operator()<ProbeEnum>();
-        case OPT_LA_CHANNEL2:               return enumParser.template operator()<ProbeEnum>();
-        case OPT_LA_CHANNEL3:               return enumParser.template operator()<ProbeEnum>();
 
         case OPT_CART_TYPE:                 return enumParser.template operator()<CartTypeEnum>();
 

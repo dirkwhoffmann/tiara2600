@@ -39,12 +39,16 @@ Defaults::Defaults()
     setFallback(OPT_TIA_POWER_SAVE,             true);
 
     setFallback(OPT_LA_ENABLE,                  false);
+    setFallback(OPT_LA_ENABLE0,                 true);
+    setFallback(OPT_LA_ENABLE1,                 true);
+    setFallback(OPT_LA_ENABLE2,                 true);
+    setFallback(OPT_LA_ENABLE3,                 true);
+    setFallback(OPT_LA_PROBE0,                  PROBE_NONE);
+    setFallback(OPT_LA_PROBE1,                  PROBE_NONE);
+    setFallback(OPT_LA_PROBE2,                  PROBE_PHI1);
+    setFallback(OPT_LA_PROBE3,                  PROBE_NONE);
     setFallback(OPT_LA_MODE,                    LA_DISPLAY_MODE_FG_LAYER);
     setFallback(OPT_LA_OPACITY,                 0x80);
-    setFallback(OPT_LA_CHANNEL0,                PROBE_NONE);
-    setFallback(OPT_LA_CHANNEL1,                PROBE_NONE);
-    setFallback(OPT_LA_CHANNEL2,                PROBE_PHI1);
-    setFallback(OPT_LA_CHANNEL3,                PROBE_NONE);
 
     setFallback(OPT_CART_TYPE,                  CART_NONE);
 

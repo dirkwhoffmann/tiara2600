@@ -36,16 +36,23 @@ class LogicAnalyzer final : public SubComponent {
     Options options = {
 
         OPT_LA_ENABLE,
+        OPT_LA_ENABLE0,
+        OPT_LA_ENABLE1,
+        OPT_LA_ENABLE2,
+        OPT_LA_ENABLE3,
+        OPT_LA_PROBE0,
+        OPT_LA_PROBE1,
+        OPT_LA_PROBE2,
+        OPT_LA_PROBE3,
         OPT_LA_MODE,
-        OPT_LA_OPACITY,
-        OPT_LA_CHANNEL0,
-        OPT_LA_CHANNEL1,
-        OPT_LA_CHANNEL2,
-        OPT_LA_CHANNEL3
+        OPT_LA_OPACITY
     };
 
     // Current configuration
     LogicAnalyzerConfig config = { };
+
+    // Enabled channels
+    bool channel[cnt];
 
     // Observed signals
     Probe probe[cnt];
@@ -140,10 +147,9 @@ public:
     
 public:
     
-    // Visualizes a memory access by drawing into the DMA debuger texture
-    // void visualizeDma(isize offset, u8 data, MemAccess type);
-    // void visualizeDma(u32 *ptr, u8 data, MemAccess type);
-    
+    // Reads the selected probes
+    void recordSignals();
+
     // Superimposes the debug output onto the current scanline
     void computeOverlay(u32 *emuTexture, u32 *dmaTexture);
 };

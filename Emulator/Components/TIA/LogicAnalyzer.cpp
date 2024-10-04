@@ -47,6 +47,53 @@ LogicAnalyzer::setColor(isize channel, u32 abgr)
 }
 
 void
+LogicAnalyzer::recordSignals()
+{
+    auto *p = tia.dmaTexture + tia.y * Texture::width + tia.x;
+
+    for (isize i = cnt - 1; i >= 0; i--) {
+
+        if (channel[i]) {
+
+            switch (probe[i]) {
+
+                case PROBE_NONE:
+
+                    break;
+
+                case PROBE_PHI1:
+
+                    if (tia.hc.phi1()) *p = color[0][i];
+                    break;
+
+                case PROBE_PHI2:
+
+                    if (tia.hc.phi2()) *p = color[0][i];
+                    break;
+
+                case PROBE_RDY:
+
+                    if (tia.rdy) *p = color[0][i];
+                    break;
+
+                case PROBE_VSYNC:
+
+                    if (tia.vs) *p = color[0][i];
+                    break;
+
+                case PROBE_VBLANK:
+
+                    if (tia.vb) *p = color[0][i];
+                    break;
+
+                default:
+                    fatalError;
+            }
+        }
+    }
+}
+
+void
 LogicAnalyzer::computeOverlay(u32 *emuTexture, u32 *dmaTexture)
 {
     double weight = config.opacity / 255.0;
