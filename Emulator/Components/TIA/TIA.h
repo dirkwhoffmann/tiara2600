@@ -94,10 +94,10 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
 public:
 
     // Chip Select (1 = selected)
-    bool cs;
+    bool cs{};
 
     // Read-write (1 = read)
-    bool rw;
+    bool rw{};
 
 
     //
@@ -106,8 +106,22 @@ public:
 
 private:
 
+    // VSYNC and VBLANK latches
+    bool vs{};
+    bool vb{};
+
+    // RDY latch (controls the CPU's RDY input)
+    bool rdy{};
+
     // The horizontal counter
     DualPhaseCounter<56> hc { .phase = 1, .current = 56, .resl = false, .res = true };
+
+
+    //
+    // Signals
+    //
+
+    TIARegister strobe = TIA_VOID;
 
 
     //
@@ -231,6 +245,7 @@ public:
     void checkOption(Option opt, i64 value) override;
     void setOption(Option opt, i64 value) override;
 
+
     //
     // Deriving chip properties
     //
@@ -293,7 +308,9 @@ public:
     u8 peek(u16 addr);
     u8 spypeek(u16 addr) const;
 
+    void poke(TIARegister reg, u8 val, Cycle delay = 0);
 
+    
     //
     // Executing
     //
@@ -302,6 +319,7 @@ public:
 
     // Executes three color clock cycles
     template <bool> void execute();
+    template <bool, isize> void execute();
 
     // End-of-frame handler
     void eofHandler();

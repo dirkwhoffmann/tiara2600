@@ -288,14 +288,14 @@ protected:
 public:
 
     // Pulls down a line
-    void pullDownNmiLine(u8 mask);
-    void pullDownIrqLine(u8 mask);
-    void pullDownRdyLine(u8 mask);
+    void pullDownNmiLine(u8 mask = 1);
+    void pullDownIrqLine(u8 mask = 1);
+    void pullDownRdyLine(u8 mask = 1);
 
     // Releases a line
-    void releaseNmiLine(u8 mask);
-    void releaseIrqLine(u8 mask);
-    void releaseRdyLine(u8 mask);
+    void releaseNmiLine(u8 mask = 1);
+    void releaseIrqLine(u8 mask = 1);
+    void releaseRdyLine(u8 mask = 1);
 
     // Checks the status of a line
     u8 getNmiLine() const { return nmiLine; }

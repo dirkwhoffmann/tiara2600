@@ -181,6 +181,7 @@ struct TIARegisterEnum : util::Reflection<TIARegisterEnum, TIARegister> {
             case TIA_VDELBL:    return "VDELBL";
             case TIA_RESMP0:    return "RESMP0";
             case TIA_RESMP1:    return "RESMP1";
+            case TIA_HMOVE:     return "HMOVE";
             case TIA_HMCLR:     return "HMCLR";
             case TIA_CXCLR:     return "CXCLR";
 

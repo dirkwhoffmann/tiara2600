@@ -37,6 +37,23 @@ PIA::spypeek(u16 addr) const
     }
 }
 
+void
+PIA::poke(PIARegister reg, u8 val, Cycle delay)
+{
+    if (delay) {
+
+        assert(!atari.hasEvent<SLOT_REG>());
+        atari.scheduleRel<SLOT_REG>(delay, REG_WRITE_PIA, HI_LO(reg, val));
+        return;
+    }
+
+    switch(reg) {
+
+        default:
+            debug(true, "Write to PIA register %s not handled yet\n", PIARegisterEnum::key(reg));
+    }
+}
+
 template <bool debug> void
 PIA::execute()
 {

@@ -35,6 +35,12 @@ TIA::_didReset(bool hard)
         // Reset counters
         hc = { .phase = 1, .current = 56, .resl = false, .res = true };
 
+        // Reset latches
+        rdy = true;
+
+        // Reset signals
+        strobe = TIA_VOID;
+
         // Reset the screen buffers
         resetEmuTextures();
         resetDmaTextures();
@@ -142,45 +148,89 @@ TIA::spypeek(u16 addr) const
     }
 }
 
+void
+TIA::poke(TIARegister reg, u8 val, Cycle delay)
+{
+    if (delay) {
+
+        debug(TIA_REG_DEBUG, "%s = %02X (in %lld cycles)\n", TIARegisterEnum::key(reg), val, delay);
+
+        assert(!atari.hasEvent<SLOT_REG>());
+        atari.scheduleRel<SLOT_REG>(delay, REG_WRITE_TIA, HI_LO(reg, val));
+        return;
+    }
+
+    debug(TIA_REG_DEBUG, "%s = %02X\n", TIARegisterEnum::key(reg), val);
+
+    switch(reg) {
+
+        case TIA_WSYNC: strobe = TIA_WSYNC; break;
+
+        default:
+
+            debug(TIA_REG_DEBUG,
+                  "Ignoring write to TIA register %s\n", TIARegisterEnum::key(reg));
+    }
+}
+
 template <bool debug> void
 TIA::execute()
 {
-    for (isize ccylce = 0; ccylce < 3; ccylce++) {
-
-        // Clock the horizontal counter
-        hc.execute(true, false);
-
-        // Check for the "Start HBlank" signal
-        bool shb = hc.res;
-
-        // Advance the beam position
-        if (shb && hc.phi2()) { x = 0; y++; }
-
-        // Remove later
-        if (y == Texture::height) {
-
-            y = 0;
-            eofHandler();
-            atari.setFlag(RL::SYNC_THREAD);
-        }
-
-        // For now: Visualize the counter in the logic analyzer
-        assert(x < Texture::width);
-        assert(y < Texture::height);
-        /*
-        *p =
-        hc.phase == 0 ? 0xFF444444 :
-        hc.phase == 1 ? 0xFF888888 :
-        hc.phase == 2 ? 0xFFAAAAAA : 0xFFFFFFFF;
-        */
-        if (hc.phi1()) drawDebugPixel(x, y, 0xFF0000FF);
-        if (hc.phi2()) drawDebugPixel(x, y, 0xFF00FFFF);
-
-        x++;
-    }
+    // Emulate three color cycles
+    execute <debug, 0> ();
+    execute <debug, 1> ();
+    execute <debug, 2> ();
 }
 template void TIA::execute<false>();
 template void TIA::execute<true>();
+
+template <bool debug, isize cycle> void
+TIA::execute()
+{
+    //
+    if constexpr (cycle == 2) { strobe = TIA_VOID; }
+
+    // Clock the horizontal counter
+    hc.execute(true, false);
+
+    // Check for the "Start HBlank" signal
+    bool shb = hc.res;
+
+    // Advance the beam position
+    if (shb && hc.phi2()) { x = 0; y++; }
+
+    // RDY logic
+    if (strobe == TIA_WSYNC && rdy) {
+        trace(true, "RDY down\n");
+        rdy = false; cpu.pullDownRdyLine();
+    }
+    if (shb && !rdy) {
+        trace(true, "RDY up\n");
+        rdy = true; cpu.releaseRdyLine();
+    }
+
+    // Remove later
+    if (y == Texture::height) {
+
+        y = 0;
+        eofHandler();
+        atari.setFlag(RL::SYNC_THREAD);
+    }
+
+    // For now: Visualize the counter in the logic analyzer
+    assert(x < Texture::width);
+    assert(y < Texture::height);
+    /*
+     *p =
+     hc.phase == 0 ? 0xFF444444 :
+     hc.phase == 1 ? 0xFF888888 :
+     hc.phase == 2 ? 0xFFAAAAAA : 0xFFFFFFFF;
+     */
+    if (hc.phi1()) drawDebugPixel(x, y, 0xFF0000FF);
+    if (hc.phi2()) drawDebugPixel(x, y, 0xFF00FFFF);
+
+    x++;
+}
 
 void
 TIA::eofHandler()

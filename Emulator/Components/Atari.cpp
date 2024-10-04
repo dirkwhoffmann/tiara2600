@@ -56,6 +56,16 @@ Atari::eventName(EventSlot slot, EventID id)
             }
             break;
 
+        case SLOT_REG:
+
+            switch (id) {
+                case EVENT_NONE:    return "none";
+                case REG_WRITE_TIA: return "REG_WRITE_TIA";
+                case REG_WRITE_PIA: return "REG_WRITE_PIA";
+                default:            return "*** INVALID ***";
+            }
+            break;
+            
         case SLOT_SEC:
 
             switch (id) {
@@ -806,6 +816,9 @@ Atari::processEvents(Cycle cycle)
     // Check primary slots
     //
 
+    if (isDue<SLOT_REG>(cycle)) {
+        processREGEvent();
+    }
     if (isDue<SLOT_PIA>(cycle)) {
 
     }
@@ -868,12 +881,30 @@ Atari::processEvents(Cycle cycle)
 }
 
 void
+Atari::processREGEvent()
+{
+    auto hi = HI_BYTE(data[SLOT_REG]);
+    auto lo = LO_BYTE(data[SLOT_REG]);
+
+    switch (eventid[SLOT_REG]) {
+
+        case REG_WRITE_TIA: tia.poke(TIARegister(hi), lo); break;
+        case REG_WRITE_PIA: pia.poke(PIARegister(hi), lo); break;
+
+        default:
+            fatalError;
+    }
+    
+    cancel<SLOT_REG>();
+}
+
+void
 Atari::processINSEvent()
 {
     u64 mask = data[SLOT_INS];
 
     // Analyze bit mask
-    if (mask & 1LL << AtariClass)             { record(); }
+    if (mask & 1LL << AtariClass)           { record(); }
     if (mask & 1LL << CPUClass)             { cpu.record(); }
     if (mask & 1LL << MemoryClass)          { mem.record(); }
     if (mask & 1LL << PIAClass)             { pia.record(); }

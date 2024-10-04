@@ -130,6 +130,8 @@ public:
     u8 peek(u16 addr);
     u8 spypeek(u16 addr) const;
 
+    void poke(PIARegister reg, u8 val, Cycle delay = 0);
+
 
     //
     // Executing

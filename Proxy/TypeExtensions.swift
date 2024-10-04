@@ -13,7 +13,8 @@ extension tiara.EventSlot: CustomStringConvertible {
 
         switch self {
 
-        case .PIA:    return "CIA 1"
+        case .REG:     return "Registers"
+        case .PIA:     return "PIA"
         case .SEC:     return "Next Secondary Event"
 
         case .TER:     return "Next Tertiary Event"

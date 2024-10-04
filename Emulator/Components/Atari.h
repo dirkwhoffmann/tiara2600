@@ -618,6 +618,9 @@ public:
 
 private:
 
+    // Processes a register event
+    void processREGEvent();
+
     // Services an inspection event
     void processINSEvent();
 

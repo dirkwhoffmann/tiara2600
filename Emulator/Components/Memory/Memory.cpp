@@ -160,7 +160,25 @@ Memory::poke(u16 addr, u8 value, MemoryType target)
 
     switch(target) {
 
-        case M_TIA:     tia.cs = 1; tia.rw = 0; break;
+        // case M_TIA:     tia.cs = 1; tia.rw = 0; break;
+
+        case M_TIA:
+        {
+            auto reg = TIARegister(addr & 0x3F);
+
+            switch (reg) {
+
+                case TIA_WSYNC:
+
+                    tia.poke(reg, value, 1); break;
+
+                default:
+
+                    tia.poke(reg, value, 0);
+            }
+            break;
+        }
+
         case M_PIA:     pia.cs = 1; pia.csram = 0; pia.rw = 0; break;
         case M_RAM:     pia.cs = 1; pia.csram = 1; pia.rw = 0; break;
         case M_CRT:     cartPort.cart->cs = 1; cartPort.cart->rw = 0; break;

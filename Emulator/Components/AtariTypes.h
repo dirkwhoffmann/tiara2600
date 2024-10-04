@@ -57,7 +57,8 @@ struct WarpModeEnum : util::Reflection<WarpModeEnum, WarpMode>
 enum_long(SLOT)
 {
     // Primary slots
-    SLOT_PIA,                      // PIA
+    SLOT_REG,                       // Register change
+    SLOT_PIA,                       // PIA
     SLOT_SEC,                       // Enables secondary slots
 
     // Secondary slots
@@ -87,6 +88,7 @@ struct EventSlotEnum : util::Reflection<EventSlotEnum, EventSlot>
     {
         switch (value) {
 
+            case SLOT_REG:      return "REG";
             case SLOT_PIA:      return "PIA";
             case SLOT_SEC:      return "SEC";
 
@@ -114,6 +116,11 @@ enum_i8(EventID)
     // Events in the primary event table
     //
 
+    // REG slot
+    REG_WRITE_TIA       = 1,
+    REG_WRITE_PIA,
+    REG_EVENT_COUNT,
+    
     // CIA slots
     CIA_EXECUTE         = 1,
     CIA_WAKEUP,

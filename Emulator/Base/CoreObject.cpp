@@ -17,7 +17,7 @@
 namespace tiara {
 
 isize
-CoreObject::verbosity = 2;
+CoreObject::verbosity = 5;
 
 void
 CoreObject::prefix(isize level, const char *component, isize line) const
