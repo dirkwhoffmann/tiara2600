@@ -24,7 +24,6 @@ namespace tiara {
 /// Logic analyzer probes
 enum_long(PROBE)
 {
-    PROBE_NONE,                         ///< Unconnected
     PROBE_PHI1,                         ///< PHI1 (Horizontal counter)
     PROBE_PHI2,                         ///< PHI2 (Horizontal counter)
     PROBE_RDY,                          ///< Ready signal
@@ -43,7 +42,6 @@ struct ProbeEnum : util::Reflection<ProbeEnum, Probe> {
     {
         switch (value) {
 
-            case PROBE_NONE:    return "NONE";
             case PROBE_PHI1:    return "PHI1";
             case PROBE_PHI2:    return "PHI2";
             case PROBE_RDY:     return "RDY";

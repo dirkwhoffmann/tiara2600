@@ -36,10 +36,10 @@ class LogicAnalyzer final : public SubComponent {
     Options options = {
 
         OPT_LA_ENABLE,
-        OPT_LA_ENABLE0,
-        OPT_LA_ENABLE1,
-        OPT_LA_ENABLE2,
-        OPT_LA_ENABLE3,
+        OPT_LA_CHANNEL0,
+        OPT_LA_CHANNEL1,
+        OPT_LA_CHANNEL2,
+        OPT_LA_CHANNEL3,
         OPT_LA_PROBE0,
         OPT_LA_PROBE1,
         OPT_LA_PROBE2,
@@ -49,7 +49,7 @@ class LogicAnalyzer final : public SubComponent {
     };
 
     // Current configuration
-    LogicAnalyzerConfig config = { };
+    LogicAnalyzerConfig config{};
 
     // Enabled channels
     bool channel[cnt];

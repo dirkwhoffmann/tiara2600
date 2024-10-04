@@ -60,7 +60,7 @@ class Monitor: DialogController {
                 button.lastItem!.tag = button.numberOfItems - 1
             }
 
-            add("Unconnected")
+            button.removeAllItems()
             add("PHI1")
             add("PHI2")
             add("RDY")
@@ -97,22 +97,18 @@ class Monitor: DialogController {
     override func showWindow(_ sender: Any?) {
 
         super.showWindow(self)
-
-        print("Monitor: showWindow")
     }
 
     func refresh() {
-
-        print("Refresh")
 
         if let la = emu?.logicAnalyzer.getConfig() {
 
             // Logic analyzer
             laEnable.state = la.enable ? .on : .off
-            laEnable0.state = emu!.get(.LA_ENABLE0) != 0 ? .on : .off
-            laEnable1.state = emu!.get(.LA_ENABLE1) != 0 ? .on : .off
-            laEnable2.state = emu!.get(.LA_ENABLE2) != 0 ? .on : .off
-            laEnable3.state = emu!.get(.LA_ENABLE3) != 0 ? .on : .off
+            laEnable0.state = emu!.get(.LA_CHANNEL0) != 0 ? .on : .off
+            laEnable1.state = emu!.get(.LA_CHANNEL1) != 0 ? .on : .off
+            laEnable2.state = emu!.get(.LA_CHANNEL2) != 0 ? .on : .off
+            laEnable3.state = emu!.get(.LA_CHANNEL3) != 0 ? .on : .off
             laProbe0.selectItem(withTag: emu!.get(.LA_PROBE0))
             laProbe1.selectItem(withTag: emu!.get(.LA_PROBE1))
             laProbe2.selectItem(withTag: emu!.get(.LA_PROBE2))
@@ -139,10 +135,10 @@ class Monitor: DialogController {
     @IBAction func laChannelAction(_ sender: NSButton!) {
 
         switch sender.tag {
-        case 0:  emu?.set(.LA_ENABLE0, enable: sender.state == .on)
-        case 1:  emu?.set(.LA_ENABLE1, enable: sender.state == .on)
-        case 2:  emu?.set(.LA_ENABLE2, enable: sender.state == .on)
-        case 3:  emu?.set(.LA_ENABLE3, enable: sender.state == .on)
+        case 0:  emu?.set(.LA_CHANNEL0, enable: sender.state == .on)
+        case 1:  emu?.set(.LA_CHANNEL1, enable: sender.state == .on)
+        case 2:  emu?.set(.LA_CHANNEL2, enable: sender.state == .on)
+        case 3:  emu?.set(.LA_CHANNEL3, enable: sender.state == .on)
         default: break
         }
     }

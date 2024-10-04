@@ -25,28 +25,28 @@ Defaults::Defaults()
     setFallback(OPT_HOST_FRAMEBUF_WIDTH,        0);
     setFallback(OPT_HOST_FRAMEBUF_HEIGHT,       0);
 
-    setFallback(OPT_ATARI_WARP_BOOT,              0);
-    setFallback(OPT_ATARI_WARP_MODE,              WARP_NEVER);
-    setFallback(OPT_ATARI_VSYNC,                  false);
-    setFallback(OPT_ATARI_SPEED_BOOST,            100);
-    setFallback(OPT_ATARI_RUN_AHEAD,              0);
+    setFallback(OPT_ATARI_WARP_BOOT,            0);
+    setFallback(OPT_ATARI_WARP_MODE,            WARP_NEVER);
+    setFallback(OPT_ATARI_VSYNC,                false);
+    setFallback(OPT_ATARI_SPEED_BOOST,          100);
+    setFallback(OPT_ATARI_RUN_AHEAD,            0);
 
-    setFallback(OPT_ATARI_SNAP_AUTO,              false);
-    setFallback(OPT_ATARI_SNAP_DELAY,             10);
-    setFallback(OPT_ATARI_SNAP_COMPRESS,          true);
+    setFallback(OPT_ATARI_SNAP_AUTO,            false);
+    setFallback(OPT_ATARI_SNAP_DELAY,           10);
+    setFallback(OPT_ATARI_SNAP_COMPRESS,        true);
 
     setFallback(OPT_TIA_REVISION,               TIA_NTSC);
     setFallback(OPT_TIA_POWER_SAVE,             true);
 
     setFallback(OPT_LA_ENABLE,                  false);
-    setFallback(OPT_LA_ENABLE0,                 true);
-    setFallback(OPT_LA_ENABLE1,                 true);
-    setFallback(OPT_LA_ENABLE2,                 true);
-    setFallback(OPT_LA_ENABLE3,                 true);
-    setFallback(OPT_LA_PROBE0,                  PROBE_NONE);
-    setFallback(OPT_LA_PROBE1,                  PROBE_NONE);
-    setFallback(OPT_LA_PROBE2,                  PROBE_PHI1);
-    setFallback(OPT_LA_PROBE3,                  PROBE_NONE);
+    setFallback(OPT_LA_CHANNEL0,                false);
+    setFallback(OPT_LA_CHANNEL1,                false);
+    setFallback(OPT_LA_CHANNEL2,                false);
+    setFallback(OPT_LA_CHANNEL3,                false);
+    setFallback(OPT_LA_PROBE0,                  PROBE_PHI1);
+    setFallback(OPT_LA_PROBE1,                  PROBE_PHI2);
+    setFallback(OPT_LA_PROBE2,                  PROBE_RDY);
+    setFallback(OPT_LA_PROBE3,                  PROBE_VSYNC);
     setFallback(OPT_LA_MODE,                    LA_DISPLAY_MODE_FG_LAYER);
     setFallback(OPT_LA_OPACITY,                 0x80);
 

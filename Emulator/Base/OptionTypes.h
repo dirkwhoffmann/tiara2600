@@ -48,10 +48,10 @@ enum_long(OPT)
 
     // Logic Analyzer
     OPT_LA_ENABLE,              ///< Global on/off switch of the logic analyzer
-    OPT_LA_ENABLE0,             ///< Enable channel 0
-    OPT_LA_ENABLE1,             ///< Enable channel 1
-    OPT_LA_ENABLE2,             ///< Enable channel 2
-    OPT_LA_ENABLE3,             ///< Enable channel 3
+    OPT_LA_CHANNEL0,             ///< Enable channel 0
+    OPT_LA_CHANNEL1,             ///< Enable channel 1
+    OPT_LA_CHANNEL2,             ///< Enable channel 2
+    OPT_LA_CHANNEL3,             ///< Enable channel 3
     OPT_LA_PROBE0,              ///< Probe on channel 0
     OPT_LA_PROBE1,              ///< Probe on channel 1
     OPT_LA_PROBE2,              ///< Probe on channel 2
@@ -164,10 +164,10 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_TIA_POWER_SAVE:        return "TIA.POWER_SAVE";
 
             case OPT_LA_ENABLE:             return "LA.ENABLE";
-            case OPT_LA_ENABLE0:            return "LA.ENABLE0";
-            case OPT_LA_ENABLE1:            return "LA.ENABLE1";
-            case OPT_LA_ENABLE2:            return "LA.ENABLE2";
-            case OPT_LA_ENABLE3:            return "LA.ENABLE3";
+            case OPT_LA_CHANNEL0:           return "LA.CHANNEL0";
+            case OPT_LA_CHANNEL1:           return "LA.CHANNEL1";
+            case OPT_LA_CHANNEL2:           return "LA.CHANNEL2";
+            case OPT_LA_CHANNEL3:           return "LA.CHANNEL3";
             case OPT_LA_PROBE0:             return "LA.PROBE0";
             case OPT_LA_PROBE1:             return "LA.PROBE1";
             case OPT_LA_PROBE2:             return "LA.PROBE2";
@@ -264,10 +264,10 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_TIA_POWER_SAVE:        return "Take fast paths";
 
             case OPT_LA_ENABLE:             return "Logic analyzer";
-            case OPT_LA_ENABLE0:            return "Channel 0 enable";
-            case OPT_LA_ENABLE1:            return "Channel 1 enable";
-            case OPT_LA_ENABLE2:            return "Channel 2 enable";
-            case OPT_LA_ENABLE3:            return "Channel 3 enable";
+            case OPT_LA_CHANNEL0:            return "Channel 0 enable";
+            case OPT_LA_CHANNEL1:            return "Channel 1 enable";
+            case OPT_LA_CHANNEL2:            return "Channel 2 enable";
+            case OPT_LA_CHANNEL3:            return "Channel 3 enable";
             case OPT_LA_PROBE0:             return "Channel 0 probe";
             case OPT_LA_PROBE1:             return "Channel 1 probe";
             case OPT_LA_PROBE2:             return "Channel 2 probe";

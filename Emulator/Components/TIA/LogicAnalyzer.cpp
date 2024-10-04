@@ -57,10 +57,6 @@ LogicAnalyzer::recordSignals()
 
             switch (probe[i]) {
 
-                case PROBE_NONE:
-
-                    break;
-
                 case PROBE_PHI1:
 
                     if (tia.hc.phi1()) *p = color[0][i];
@@ -73,7 +69,7 @@ LogicAnalyzer::recordSignals()
 
                 case PROBE_RDY:
 
-                    if (tia.rdy) *p = color[0][i];
+                    if (!tia.rdy) *p = color[0][i];
                     break;
 
                 case PROBE_VSYNC:

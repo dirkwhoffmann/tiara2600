@@ -86,7 +86,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
-                                        <action selector="busColorAction:" target="-2" id="BMH-eW-kj8"/>
+                                        <action selector="laColorAction:" target="-2" id="zhR-U5-n2Z"/>
                                     </connections>
                                 </colorWell>
                                 <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P1V-P5-GfH">
@@ -94,7 +94,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
-                                        <action selector="busColorAction:" target="-2" id="ihV-Pn-Iqe"/>
+                                        <action selector="laColorAction:" target="-2" id="oor-6V-08C"/>
                                     </connections>
                                 </colorWell>
                                 <colorWell fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="rhh-2z-4fm">
@@ -102,7 +102,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
-                                        <action selector="busColorAction:" target="-2" id="Ukq-IO-eBc"/>
+                                        <action selector="laColorAction:" target="-2" id="gGx-c4-3pS"/>
                                     </connections>
                                 </colorWell>
                                 <colorWell fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="oKZ-2a-bGE">
@@ -110,7 +110,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
-                                        <action selector="busColorAction:" target="-2" id="mKV-TX-03F"/>
+                                        <action selector="laColorAction:" target="-2" id="du1-kN-TuZ"/>
                                     </connections>
                                 </colorWell>
                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TTe-jw-tqd">
@@ -143,12 +143,12 @@
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sia-jN-LH7">
                                     <rect key="frame" x="138" y="160" width="152" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <popUpButtonCell key="cell" type="push" title="Unconnected" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="IRn-xn-nlE" id="0ov-YF-6A9">
+                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="IRn-xn-nlE" id="0ov-YF-6A9">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
                                         <menu key="menu" id="eqG-qa-TWn">
                                             <items>
-                                                <menuItem title="Unconnected" state="on" id="IRn-xn-nlE"/>
+                                                <menuItem state="on" id="IRn-xn-nlE"/>
                                             </items>
                                         </menu>
                                     </popUpButtonCell>
@@ -159,12 +159,12 @@
                                 <popUpButton tag="1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-Do-vAv">
                                     <rect key="frame" x="138" y="126" width="152" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <popUpButtonCell key="cell" type="push" title="Unconnected" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="1EA-iI-A4b" id="rcc-7y-eoD">
+                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="1EA-iI-A4b" id="rcc-7y-eoD">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
                                         <menu key="menu" id="zae-QO-4T3">
                                             <items>
-                                                <menuItem title="Unconnected" state="on" id="1EA-iI-A4b"/>
+                                                <menuItem state="on" id="1EA-iI-A4b"/>
                                             </items>
                                         </menu>
                                     </popUpButtonCell>
@@ -175,12 +175,12 @@
                                 <popUpButton tag="2" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8JZ-Ek-Huy">
                                     <rect key="frame" x="138" y="92" width="152" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <popUpButtonCell key="cell" type="push" title="Unconnected" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="TUG-V6-emX" id="D8f-LP-jmI">
+                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="TUG-V6-emX" id="D8f-LP-jmI">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
                                         <menu key="menu" id="jIn-TN-xHB">
                                             <items>
-                                                <menuItem title="Unconnected" state="on" id="TUG-V6-emX"/>
+                                                <menuItem state="on" id="TUG-V6-emX"/>
                                             </items>
                                         </menu>
                                     </popUpButtonCell>
@@ -191,12 +191,12 @@
                                 <popUpButton tag="3" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aI2-IB-WIS">
                                     <rect key="frame" x="138" y="54" width="152" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <popUpButtonCell key="cell" type="push" title="Unconnected" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="cwc-lW-CSA" id="OOe-Mg-ZgE">
+                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="cwc-lW-CSA" id="OOe-Mg-ZgE">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
                                         <menu key="menu" id="yFy-9z-ueY">
                                             <items>
-                                                <menuItem title="Unconnected" state="on" id="cwc-lW-CSA"/>
+                                                <menuItem state="on" id="cwc-lW-CSA"/>
                                             </items>
                                         </menu>
                                     </popUpButtonCell>
