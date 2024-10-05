@@ -9,9 +9,14 @@ import Cocoa
 
 class LogicView: NSView {
 
-    var initialized = false
-
+    let sigColor = NSColor(r: 0x55, g: 0x83, b: 0xAC)
+    let box = NSBox()
     let arr = (0...230).map( {_ in Int.random(in: 0...1) })
+
+    let mono = NSFont.monospacedSystemFont(ofSize: 10, weight: .bold)
+    let system = NSFont.systemFont(ofSize: 8)
+
+    var context: CGContext!
 
     override func awakeFromNib() {
 
@@ -19,25 +24,18 @@ class LogicView: NSView {
 
     func clear(context: CGContext?) {
 
-        // NSColor.darkGray.setFill()
-        NSColor.windowBackgroundColor.setFill()
+        box.fillColor.setFill()
+        // NSColor.windowBackgroundColor.setFill()
         bounds.fill()
 
         let dx = bounds.width / 228
         for i in 0..<228 {
 
-            drawText(in: context,
-                     text: "\(i)",
+            drawText(text: "\(i)",
                      at: CGPoint(x: CGFloat(i) * dx + (dx / 2), y: bounds.height - 15),
+                     font: system,
                      color: NSColor.secondaryLabelColor)
         }
-
-        // initialized = true
-
-        // rect.origin.y = rect.midY
-        // rect.size.height = rect.height - 15
-        // NSColor.yellow.setFill()
-        // rect.fill()
     }
 
     override func draw(_ dirtyRect: NSRect) {
@@ -45,20 +43,22 @@ class LogicView: NSView {
         // print("draw")
         super.draw(dirtyRect)
 
-        let context = NSGraphicsContext.current?.cgContext
+        context = NSGraphicsContext.current?.cgContext
 
         clear(context: context)
-        drawSignal(context: context, color: NSColor.cyan)
+        drawSignal(color: sigColor)
     }
 
-    func drawText(in context: CGContext?, text: String, at point: CGPoint, color: NSColor) {
+    func drawText(text: String, at point: CGPoint, font: NSFont, color: NSColor) {
 
         // Save the current graphics state
         context?.saveGState()
 
         // Set up the attributes
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: NSFont.systemFont(ofSize: 10),
+            // .font: NSFont.boldSystemFont(ofSize: 10),
+            // .font: NSFont.monospacedSystemFont(ofSize: 10, weight: .bold),
+            .font: font,
             .foregroundColor: color
         ]
 
@@ -74,24 +74,25 @@ class LogicView: NSView {
         context?.restoreGState()
     }
 
-    func drawSignal(context: CGContext?, color: NSColor) {
+    func drawSignal(color: NSColor) {
 
         let w = bounds.size.width / 228
-        let margin = bounds.size.height / 4
+        let bottomMargin = CGFloat(10)
+        let h = CGFloat(24)
+        // let margin = bounds.size.height / 4
 
         for i in 0..<228 {
 
-            let r = CGRect(x: CGFloat(i) * w, y: margin, width: w, height: bounds.size.height - 2 * margin)
+            let r = CGRect(x: CGFloat(i) * w, y: bottomMargin, width: w, height: h)
             drawSegment(rect: r,
-                        context: context,
                         v: [arr[i], arr[i+1], arr[i+2]],
                         color: color)
 
             // let txt = arr[i+1] == 0 ? "VDELP0" : "WSYNC"
             let txt = "\(arr[i+1])"
-            drawText(in: context,
-                     text: txt,
-                     at: CGPoint(x: CGFloat(i) * w + (w / 2), y: bounds.size.height / 2.0),
+            drawText(text: txt,
+                     at: CGPoint(x: CGFloat(i) * w + (w / 2), y: bottomMargin + (h / 2)),
+                     font: mono,
                      color: NSColor.labelColor)
         }
     }
@@ -105,7 +106,7 @@ class LogicView: NSView {
         return rect
     }
 
-    func drawSegment(rect: CGRect, context: CGContext?, v: [Int], color: NSColor) {
+    func drawSegment(rect: CGRect, v: [Int], color: NSColor) {
 
         let path = CGMutablePath()
 
@@ -144,11 +145,11 @@ class LogicView: NSView {
         path.addLine(to: p7)
         path.addLine(to: p8)
 
-        context?.setLineWidth(2.0)
-        context?.setStrokeColor(color.cgColor)
+        context.setLineWidth(2.0)
+        context.setStrokeColor(color.cgColor)
 
-        context?.addPath(path)
-        context?.drawPath(using: .stroke)
+        context.addPath(path)
+        context.drawPath(using: .stroke)
     }
 
 }

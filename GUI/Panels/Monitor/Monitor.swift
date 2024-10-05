@@ -75,8 +75,8 @@ class Monitor: DialogController {
 
         for i in 0..<4 { emu?.logicAnalyzer.setColor(i, color: palette[i]) }
 
-        trace0.needsDisplay = true
-        
+        // trace0.needsDisplay = true
+
         refresh()
     }
     
