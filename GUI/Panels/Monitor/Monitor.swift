@@ -90,7 +90,7 @@ class Monitor: DialogController {
         if let la = emu?.logicAnalyzer.getConfig() {
 
             // Logic analyzer
-            laEnable.state = la.enable ? .on : .off
+            // laEnable.state = la.enable ? .on : .off
             laEnable0.state = emu!.get(.LA_CHANNEL0) != 0 ? .on : .off
             laEnable1.state = emu!.get(.LA_CHANNEL1) != 0 ? .on : .off
             laEnable2.state = emu!.get(.LA_CHANNEL2) != 0 ? .on : .off
