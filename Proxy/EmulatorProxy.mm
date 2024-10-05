@@ -476,6 +476,11 @@ using namespace tiara;
     [self la]->setColor(channel, u32(abgr));
 }
 
+- (const RecordedSignals *)getData:(NSInteger)line
+{
+    return [self la]->getData(line);
+}
+
 @end
 
 

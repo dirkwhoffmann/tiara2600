@@ -287,6 +287,10 @@ struct LogicAnalyzerAPI : API {
     /** @brief Sets the display color
      */
     void setColor(isize channel, u32 abgr);
+
+    /** @brief Returns the recorded data for a particular line
+     */
+    const RecordedSignals *getData(isize line) const;
 };
 
 

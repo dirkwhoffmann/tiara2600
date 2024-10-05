@@ -9,9 +9,15 @@ import Cocoa
 
 class LogicView: NSView {
 
+    @IBOutlet weak var monitor: Monitor!
+    var emu: EmulatorProxy? { return monitor.emu }
+
+    let line = 0
+    let probe: tiara.Probe = .PHI1
+
     let sigColor = NSColor(r: 0x55, g: 0x83, b: 0xAC)
     let box = NSBox()
-    let arr = (0...230).map( {_ in Int.random(in: 0...1) })
+    var arr = (0...230).map( {_ in Int.random(in: 0...1) })
 
     let mono = NSFont.monospacedSystemFont(ofSize: 10, weight: .bold)
     let system = NSFont.systemFont(ofSize: 8)
@@ -20,6 +26,31 @@ class LogicView: NSView {
 
     override func awakeFromNib() {
 
+    }
+
+    func update() {
+
+        updateData()
+    }
+
+    func updateData() {
+
+        if let values = emu?.logicAnalyzer.getData(line) {
+
+            switch probe {
+
+            case .ADDR_BUS: for i in 0..<228 { arr[i] = Int(values.pointee.addrBus) }
+            case .DATA_BUS: for i in 0..<228 { arr[i] = Int(values.pointee.dataBus) }
+            case .PHI1:     for i in 0..<228 { arr[i] = values.pointee.phi1 ? 1 : 0 }
+            case .PHI2:     for i in 0..<228 { arr[i] = values.pointee.phi2 ? 1 : 0 }
+            case .RDY:      for i in 0..<228 { arr[i] = values.pointee.rdy ? 1 : 0 }
+            case .VSYNC:    for i in 0..<228 { arr[i] = values.pointee.vsync ? 1 : 0 }
+            case .VBLANK:   for i in 0..<228 { arr[i] = values.pointee.vblank ? 1 : 0 }
+
+            default:
+                break
+            }
+        }
     }
 
     func clear(context: CGContext?) {

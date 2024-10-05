@@ -665,6 +665,12 @@ LogicAnalyzerAPI::setColor(isize channel, u32 abgr)
     logicAnalyzer->setColor(channel, abgr);
 }
 
+const RecordedSignals *
+LogicAnalyzerAPI::getData(isize line) const
+{
+    return logicAnalyzer->getData(line);
+}
+
 
 //
 // Joystick

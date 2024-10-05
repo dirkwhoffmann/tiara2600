@@ -21,6 +21,13 @@ LogicAnalyzer::LogicAnalyzer(Atari &ref) : SubComponent(ref)
 
 }
 
+const RecordedSignals *
+LogicAnalyzer::getData(isize line) const
+{
+    assert(line < Texture::height);
+    return data[line];
+}
+
 void
 LogicAnalyzer::setColor(isize channel, GpuColor gpuColor)
 {
@@ -49,6 +56,19 @@ LogicAnalyzer::setColor(isize channel, u32 abgr)
 void
 LogicAnalyzer::recordSignals()
 {
+    auto x = tia.x;
+    auto y = tia.y;
+
+    // Record signals
+    data[y][x].addrBus = atari.addrBus;
+    data[y][x].dataBus = atari.dataBus;
+    data[y][x].phi1 = tia.hc.phi1();
+    data[y][x].phi2 = tia.hc.phi2();
+    data[y][x].rdy = tia.rdy;
+    data[y][x].vsync = tia.vs;
+    data[y][x].vblank = tia.vb;
+
+    // Update the overlay texture
     auto *p = tia.dmaTexture + tia.y * Texture::width + tia.x;
 
     for (isize i = cnt - 1; i >= 0; i--) {
@@ -57,29 +77,34 @@ LogicAnalyzer::recordSignals()
 
             switch (probe[i]) {
 
+                case PROBE_ADDR_BUS:
+                case PROBE_DATA_BUS:
+
+                    break;
+
                 case PROBE_PHI1:
 
-                    if (tia.hc.phi1()) *p = color[0][i];
+                    if (data[y][x].phi1) *p = color[0][i];
                     break;
 
                 case PROBE_PHI2:
 
-                    if (tia.hc.phi2()) *p = color[0][i];
+                    if (data[y][x].phi2) *p = color[0][i];
                     break;
 
                 case PROBE_RDY:
 
-                    if (!tia.rdy) *p = color[0][i];
+                    if (data[y][x].rdy) *p = color[0][i];
                     break;
 
                 case PROBE_VSYNC:
 
-                    if (tia.vs) *p = color[0][i];
+                    if (data[y][x].vsync) *p = color[0][i];
                     break;
 
                 case PROBE_VBLANK:
 
-                    if (tia.vb) *p = color[0][i];
+                    if (data[y][x].vblank) *p = color[0][i];
                     break;
 
                 default:
@@ -155,6 +180,13 @@ LogicAnalyzer::computeOverlay(u32 *emuTexture, u32 *dmaTexture)
         default:
             fatalError;
     }
+}
+
+void
+LogicAnalyzer::eofHandler()
+{
+
+    memset(data, 0, sizeof data);
 }
 
 }

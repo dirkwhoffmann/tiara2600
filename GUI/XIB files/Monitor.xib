@@ -278,32 +278,23 @@
                             <action selector="laChannelAction:" target="-2" id="BUd-3x-rQj"/>
                         </connections>
                     </button>
-                    <box fixedFrame="YES" title="Beam" translatesAutoresizingMaskIntoConstraints="NO" id="bk9-GF-kqf">
+                    <box fixedFrame="YES" title="Control" translatesAutoresizingMaskIntoConstraints="NO" id="bk9-GF-kqf">
                         <rect key="frame" x="15" y="311" width="408" height="75"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="wpo-An-VrP">
                             <rect key="frame" x="4" y="5" width="400" height="55"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7W4-Ye-iDp">
-                                    <rect key="frame" x="11" y="19" width="37" height="16"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" title="X: 42" id="QXS-xQ-z13">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mGW-YN-iYx">
-                                    <rect key="frame" x="158" y="18" width="80" height="18"/>
+                                    <rect key="frame" x="158" y="18" width="162" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="check" title="Break at " bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="a6T-tO-XPL">
+                                    <buttonCell key="cell" type="check" title="Stop at beam location " bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="a6T-tO-XPL">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                 </button>
                                 <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c3N-oC-KL9">
-                                    <rect key="frame" x="238" y="16" width="30" height="21"/>
+                                    <rect key="frame" x="317" y="16" width="30" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="124" drawsBackground="YES" id="AGZ-nb-iqV">
                                         <font key="font" metaFont="system"/>
@@ -312,7 +303,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BlH-nc-yGa">
-                                    <rect key="frame" x="284" y="16" width="33" height="21"/>
+                                    <rect key="frame" x="361" y="16" width="33" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="154" drawsBackground="YES" id="vFx-6S-7Lq">
                                         <font key="font" metaFont="system"/>
@@ -321,7 +312,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oja-Gs-KvB">
-                                    <rect key="frame" x="272" y="20" width="8" height="16"/>
+                                    <rect key="frame" x="350" y="20" width="8" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="/" id="u8p-d0-HCZ">
                                         <font key="font" metaFont="system"/>
@@ -329,15 +320,37 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gwl-z0-Whh">
-                                    <rect key="frame" x="61" y="19" width="42" height="16"/>
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Dw-r4-UW6">
+                                    <rect key="frame" x="35" y="19" width="58" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Y: 142" id="bKP-BM-EeX">
-                                        <font key="font" usesAppearanceFont="YES"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="View line" id="7Bh-Ck-bhf">
+                                        <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
+                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H7b-QO-4Oo">
+                                    <rect key="frame" x="97" y="16" width="30" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="124" drawsBackground="YES" id="gms-XS-Glo">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9O5-RR-WK8">
+                                    <rect key="frame" x="126" y="12" width="21" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="AAj-nk-4Dw"/>
+                                </stepper>
+                                <button toolTip="Run / Pause" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sb2-a1-lm9">
+                                    <rect key="frame" x="5" y="12" width="28" height="28"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="NSTouchBarOpenInBrowserTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="jxG-2U-tvd">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
                             </subviews>
                         </view>
                     </box>
@@ -471,4 +484,7 @@
             <point key="canvasLocation" x="126" y="371"/>
         </button>
     </objects>
+    <resources>
+        <image name="NSTouchBarOpenInBrowserTemplate" width="20" height="20"/>
+    </resources>
 </document>

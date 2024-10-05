@@ -15,6 +15,7 @@
 #include "LogicAnalyzerTypes.h"
 #include "SubComponent.h"
 #include "Colors.h"
+#include "Constants.h"
 
 namespace tiara {
 
@@ -50,6 +51,9 @@ class LogicAnalyzer final : public SubComponent {
 
     // Current configuration
     LogicAnalyzerConfig config{};
+
+    // Data buffer
+    RecordedSignals data[Texture::height][Texture::width];
 
     // Enabled channels
     bool channel[cnt];
@@ -133,6 +137,13 @@ public:
 
 
     //
+    // Accessing data
+    //
+
+    const RecordedSignals *getData(isize line) const;
+
+
+    //
     // Managing colors
     //
 
@@ -152,6 +163,14 @@ public:
 
     // Superimposes the debug output onto the current scanline
     void computeOverlay(u32 *emuTexture, u32 *dmaTexture);
+
+
+    //
+    // Handlers
+    //
+
+    // End-of-frame handler
+    void eofHandler();
 };
 
 }

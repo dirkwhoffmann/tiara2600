@@ -24,6 +24,8 @@ namespace tiara {
 /// Logic analyzer probes
 enum_long(PROBE)
 {
+    PROBE_ADDR_BUS,                     ///< Address bus
+    PROBE_DATA_BUS,                     ///< Data bus
     PROBE_PHI1,                         ///< PHI1 (Horizontal counter)
     PROBE_PHI2,                         ///< PHI2 (Horizontal counter)
     PROBE_RDY,                          ///< Ready signal
@@ -42,11 +44,13 @@ struct ProbeEnum : util::Reflection<ProbeEnum, Probe> {
     {
         switch (value) {
 
-            case PROBE_PHI1:    return "PHI1";
-            case PROBE_PHI2:    return "PHI2";
-            case PROBE_RDY:     return "RDY";
-            case PROBE_VSYNC:   return "VSYNC";
-            case PROBE_VBLANK:  return "VBLANK";
+            case PROBE_ADDR_BUS:    return "ADDR_BUS";
+            case PROBE_DATA_BUS:    return "DATA_BUS";
+            case PROBE_PHI1:        return "PHI1";
+            case PROBE_PHI2:        return "PHI2";
+            case PROBE_RDY:         return "RDY";
+            case PROBE_VSYNC:       return "VSYNC";
+            case PROBE_VBLANK:      return "VBLANK";
         }
         return "???";
     }
@@ -91,5 +95,17 @@ typedef struct
     u8 opacity;
 }
 LogicAnalyzerConfig;
+
+typedef struct
+{
+    u16 addrBus;
+    u8 dataBus;
+    bool phi1;
+    bool phi2;
+    bool rdy;
+    bool vsync;
+    bool vblank;
+}
+RecordedSignals;
 
 }

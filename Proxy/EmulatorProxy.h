@@ -336,6 +336,8 @@ struct GuardInfo {
 - (LogicAnalyzerConfig)getConfig;
 
 - (void)setColor:(NSInteger)channel color:(NSColor *)color;
+- (const RecordedSignals *)getData:(NSInteger)line;
+
 
 @end
 
