@@ -7,7 +7,7 @@
 // See https://www.gnu.org for license information
 // -----------------------------------------------------------------------------
 
-class Monitor: DialogController {
+class LogicAnalyzer: DialogController {
     
     var config: Configuration { return parent.config }
     
@@ -28,11 +28,15 @@ class Monitor: DialogController {
     @IBOutlet weak var laColor2: NSColorWell!
     @IBOutlet weak var laColor3: NSColorWell!
 
+    @IBOutlet weak var trace0: LogicView!
+    @IBOutlet weak var trace1: LogicView!
+    @IBOutlet weak var trace2: LogicView!
+    @IBOutlet weak var trace3: LogicView!
+
     @IBOutlet weak var laOpacity: NSSlider!
     @IBOutlet weak var laDisplayMode: NSPopUpButton!
 
-    // Experimental
-    @IBOutlet weak var trace0: LogicView!
+    var line = 0
 
     override func awakeFromNib() {
 
@@ -107,11 +111,19 @@ class Monitor: DialogController {
     //
     // Action methods
     //
-    
+
+    @IBAction func updateLineAction(_ sender: NSButton!) {
+
+        line = Int(emu?.tia.info.posy ?? 0)
+        refresh()
+    }
+
+    /*
     @IBAction func laEnableAction(_ sender: NSButton!) {
 
         emu?.set(.LA_ENABLE, enable: sender.state == .on)
     }
+    */
 
     @IBAction func laColorAction(_ sender: NSColorWell!) {
 

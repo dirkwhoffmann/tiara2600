@@ -28,7 +28,7 @@ class MyController: NSWindowController, MessageReceiver {
     var inspector: Inspector?
     
     // Monitor panel of this emulator instance
-    var monitor: Monitor?
+    var monitor: LogicAnalyzer?
     
     // Configuration panel of this emulator instance
     var configurator: ConfigurationController?

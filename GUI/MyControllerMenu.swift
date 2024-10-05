@@ -179,7 +179,7 @@ extension MyController: NSMenuItemValidation {
     @IBAction func monitorAction(_ sender: Any!) {
         
         if monitor == nil {
-            monitor = Monitor(with: self, nibName: "Monitor")
+            monitor = LogicAnalyzer(with: self, nibName: "LogicAnalyzer")
         }
         monitor?.showWindow(self)
     }

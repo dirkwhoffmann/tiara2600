@@ -9,10 +9,10 @@ import Cocoa
 
 class LogicView: NSView {
 
-    @IBOutlet weak var monitor: Monitor!
-    var emu: EmulatorProxy? { return monitor.emu }
+    @IBOutlet weak var analyzer: LogicAnalyzer!
+    var emu: EmulatorProxy? { return analyzer.emu }
+    var line: Int { return analyzer.line }
 
-    let line = 0
     let probe: tiara.Probe = .PHI1
 
     let sigColor = NSColor(r: 0x55, g: 0x83, b: 0xAC)

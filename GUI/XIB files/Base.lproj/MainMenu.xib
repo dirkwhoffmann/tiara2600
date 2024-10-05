@@ -121,7 +121,7 @@
                                     <action selector="inspectorAction:" target="-1" id="tpP-z8-bBt"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Monitor..." id="02W-sT-jHS">
+                            <menuItem title="Logic Analyzer..." id="02W-sT-jHS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="monitorAction:" target="-1" id="PAk-Ig-aX3"/>

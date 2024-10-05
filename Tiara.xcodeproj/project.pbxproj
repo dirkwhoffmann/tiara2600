@@ -276,8 +276,8 @@
 		50D3092024C625B200B92563 /* ProxyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3091F24C625B200B92563 /* ProxyExtensions.swift */; };
 		50D3092224C714A200B92563 /* Inspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50D3092124C714A200B92563 /* Inspector.xib */; };
 		50D3092424C7152700B92563 /* Inspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3092324C7152700B92563 /* Inspector.swift */; };
-		50D3092624C71AD300B92563 /* Monitor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50D3092524C71AD300B92563 /* Monitor.xib */; };
-		50D3092824C71B0A00B92563 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3092724C71B0A00B92563 /* Monitor.swift */; };
+		50D3092624C71AD300B92563 /* LogicAnalyzer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50D3092524C71AD300B92563 /* LogicAnalyzer.xib */; };
+		50D3092824C71B0A00B92563 /* LogicAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3092724C71B0A00B92563 /* LogicAnalyzer.swift */; };
 		50D8421820A82CF500EB859A /* MetalViewEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D8421720A82CF500EB859A /* MetalViewEvents.swift */; };
 		50DBB3D12641101E006F45E6 /* LogicAnalyzer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB3CF2641101E006F45E6 /* LogicAnalyzer.cpp */; };
 		50DBB44B2025CE5700489271 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB44A2025CE5700489271 /* Utils.swift */; };
@@ -667,8 +667,8 @@
 		50D3091F24C625B200B92563 /* ProxyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyExtensions.swift; sourceTree = "<group>"; };
 		50D3092124C714A200B92563 /* Inspector.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Inspector.xib; sourceTree = "<group>"; };
 		50D3092324C7152700B92563 /* Inspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inspector.swift; sourceTree = "<group>"; };
-		50D3092524C71AD300B92563 /* Monitor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Monitor.xib; sourceTree = "<group>"; };
-		50D3092724C71B0A00B92563 /* Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
+		50D3092524C71AD300B92563 /* LogicAnalyzer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogicAnalyzer.xib; sourceTree = "<group>"; };
+		50D3092724C71B0A00B92563 /* LogicAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicAnalyzer.swift; sourceTree = "<group>"; };
 		50D7DE812C5910E700A6CE94 /* Animated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Animated.h; sourceTree = "<group>"; };
 		50D8421720A82CF500EB859A /* MetalViewEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalViewEvents.swift; sourceTree = "<group>"; };
 		50DBB3CF2641101E006F45E6 /* LogicAnalyzer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LogicAnalyzer.cpp; sourceTree = "<group>"; };
@@ -810,7 +810,7 @@
 			children = (
 				50763276202989D300575110 /* DialogController.swift */,
 				5098C57E2658E1F400E05EFC /* DragImageView.swift */,
-				50CD36992817BA6600E40BFC /* Monitor */,
+				50CD36992817BA6600E40BFC /* LogicAnalyzer */,
 				50157EF92825B0EC000E9DDD /* Inspector */,
 				50769B8824BB1B38006FE743 /* Preferences */,
 				50769B8724BB1A7A006FE743 /* Configuration */,
@@ -1425,7 +1425,7 @@
 				50A0B48C24C1CAEB00FF0B0B /* Preferences.xib */,
 				506A724721C033EF00DA0AC3 /* Configuration.xib */,
 				50D3092124C714A200B92563 /* Inspector.xib */,
-				50D3092524C71AD300B92563 /* Monitor.xib */,
+				50D3092524C71AD300B92563 /* LogicAnalyzer.xib */,
 				503C1DD024FC10F400D91141 /* SnapshotViewer.xib */,
 				507E7A9D24FB864E00AB433C /* ScreenshotViewer.xib */,
 				500F7CC5281EAB64003F1A7C /* DiskCreator.xib */,
@@ -1436,13 +1436,13 @@
 			path = "XIB files";
 			sourceTree = "<group>";
 		};
-		50CD36992817BA6600E40BFC /* Monitor */ = {
+		50CD36992817BA6600E40BFC /* LogicAnalyzer */ = {
 			isa = PBXGroup;
 			children = (
-				50D3092724C71B0A00B92563 /* Monitor.swift */,
+				50D3092724C71B0A00B92563 /* LogicAnalyzer.swift */,
 				50E83D502CB0579E00308A1C /* LogicView.swift */,
 			);
-			path = Monitor;
+			path = LogicAnalyzer;
 			sourceTree = "<group>";
 		};
 		50E56AF529D489EA00EBCE76 /* Components */ = {
@@ -1591,7 +1591,7 @@
 				503E199020C42C6D007E91F1 /* Assets.xcassets in Resources */,
 				503C1DD124FC10F400D91141 /* SnapshotViewer.xib in Resources */,
 				50A0B48D24C1CAEB00FF0B0B /* Preferences.xib in Resources */,
-				50D3092624C71AD300B92563 /* Monitor.xib in Resources */,
+				50D3092624C71AD300B92563 /* LogicAnalyzer.xib in Resources */,
 				50A5B7CE2C74E44C00D6DDAD /* CMakeLists.txt in Resources */,
 				500F7CC6281EAB64003F1A7C /* DiskCreator.xib in Resources */,
 				5098C57D2658D4DC00E05EFC /* VideoExporter.xib in Resources */,
@@ -1856,7 +1856,7 @@
 				50A1949F2BDA84710046849E /* MemoryBase.cpp in Sources */,
 				505F8FE92582435E0066ACE4 /* PeripheralsConf.swift in Sources */,
 				508C1E692C0C507D0097473C /* CartridgeBase.cpp in Sources */,
-				50D3092824C71B0A00B92563 /* Monitor.swift in Sources */,
+				50D3092824C71B0A00B92563 /* LogicAnalyzer.swift in Sources */,
 				50A194932BDA709D0046849E /* CPUBase.cpp in Sources */,
 				506F30472B7692180083EAEA /* Tiara.cpp in Sources */,
 				5018BFB324B48DD500551848 /* RendererSetup.swift in Sources */,
