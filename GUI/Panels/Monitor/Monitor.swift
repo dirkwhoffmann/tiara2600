@@ -31,24 +31,8 @@ class Monitor: DialogController {
     @IBOutlet weak var laOpacity: NSSlider!
     @IBOutlet weak var laDisplayMode: NSPopUpButton!
 
-    // Stencils
-    @IBOutlet weak var cutEnable: NSButton!
-    @IBOutlet weak var cutBorder: NSButton!
-    @IBOutlet weak var cutForeground: NSButton!
-    @IBOutlet weak var cutBackground: NSButton!
-    @IBOutlet weak var cutSprites: NSButton!
-    @IBOutlet weak var cutSprite0: NSButton!
-    @IBOutlet weak var cutSprite1: NSButton!
-    @IBOutlet weak var cutSprite2: NSButton!
-    @IBOutlet weak var cutSprite3: NSButton!
-    @IBOutlet weak var cutSprite4: NSButton!
-    @IBOutlet weak var cutSprite5: NSButton!
-    @IBOutlet weak var cutSprite6: NSButton!
-    @IBOutlet weak var cutSprite7: NSButton!
-    @IBOutlet weak var cutOpacity: NSSlider!
-    
-    // Sprites
-    @IBOutlet weak var hideSprites: NSButton!
+    // Experimental
+    @IBOutlet weak var trace0: LogicView!
 
     override func awakeFromNib() {
 
@@ -91,6 +75,8 @@ class Monitor: DialogController {
 
         for i in 0..<4 { emu?.logicAnalyzer.setColor(i, color: palette[i]) }
 
+        trace0.needsDisplay = true
+        
         refresh()
     }
     

@@ -291,6 +291,7 @@
 		50E83D492CAE750D00308A1C /* CartPort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E83D472CAE750600308A1C /* CartPort.cpp */; };
 		50E83D4C2CAE752700308A1C /* CartPortBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E83D4B2CAE752200308A1C /* CartPortBase.cpp */; };
 		50E83D4D2CAE752700308A1C /* CartPortBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E83D4B2CAE752200308A1C /* CartPortBase.cpp */; };
+		50E83D512CB0579E00308A1C /* LogicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E83D502CB0579E00308A1C /* LogicView.swift */; };
 		50E9B92D201F299500065A89 /* MyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9B92C201F299500065A89 /* MyController.swift */; };
 		50E9B92F201FA92C00065A89 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9B92E201FA92C00065A89 /* Alerts.swift */; };
 		50EAFFEA24B2600D00024CD2 /* MyToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EAFFE924B2600D00024CD2 /* MyToolbar.swift */; };
@@ -695,6 +696,7 @@
 		50E83D472CAE750600308A1C /* CartPort.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CartPort.cpp; sourceTree = "<group>"; };
 		50E83D4A2CAE751800308A1C /* CartPortTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CartPortTypes.h; sourceTree = "<group>"; };
 		50E83D4B2CAE752200308A1C /* CartPortBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CartPortBase.cpp; sourceTree = "<group>"; };
+		50E83D502CB0579E00308A1C /* LogicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicView.swift; sourceTree = "<group>"; };
 		50E9B92C201F299500065A89 /* MyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyController.swift; sourceTree = "<group>"; };
 		50E9B92E201FA92C00065A89 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		50EAF5292C7A101E005AC890 /* HeadlessScripts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadlessScripts.h; sourceTree = "<group>"; };
@@ -1438,6 +1440,7 @@
 			isa = PBXGroup;
 			children = (
 				50D3092724C71B0A00B92563 /* Monitor.swift */,
+				50E83D502CB0579E00308A1C /* LogicView.swift */,
 			);
 			path = Monitor;
 			sourceTree = "<group>";
@@ -1857,6 +1860,7 @@
 				50A194932BDA709D0046849E /* CPUBase.cpp in Sources */,
 				506F30472B7692180083EAEA /* Tiara.cpp in Sources */,
 				5018BFB324B48DD500551848 /* RendererSetup.swift in Sources */,
+				50E83D512CB0579E00308A1C /* LogicView.swift in Sources */,
 				504104462CA687370004860E /* TIA.cpp in Sources */,
 				506F30422B74C1C70083EAEA /* Wakeable.cpp in Sources */,
 				506F303E2B7364270083EAEA /* Suspendable.cpp in Sources */,
