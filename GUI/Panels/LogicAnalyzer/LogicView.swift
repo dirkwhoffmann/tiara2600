@@ -23,7 +23,7 @@ class LogicView: NSView {
     // The probed signal
     var probe: [tiara.Probe] = [ .ADDR_BUS, .DATA_BUS, .PHI1, .PHI2 ]
 
-    // Bit-width of the probed signal (e.g., 8 for data bus, 1 for RDY)
+    // Bit-width of the probed signals (e.g., 8 for data bus, 1 for RDY)
     var bitWidth: [Int] = [ 16, 8, 1, 1 ]
 
     // The recorded data
@@ -36,7 +36,6 @@ class LogicView: NSView {
     // Fonts and colors
     let box = NSBox()
     var signalColor = [ NSColor.white, NSColor.white, NSColor.white, NSColor.white ]
-    // let mono = NSFont.monospacedSystemFont(ofSize: 10, weight: .bold)
     let mono = NSFont.monospacedSystemFont(ofSize: 10, weight: .regular)
     let system = NSFont.systemFont(ofSize: 8)
 
@@ -90,12 +89,14 @@ class LogicView: NSView {
     func clear() {
 
         box.fillColor.setFill()
-        // NSColor.windowBackgroundColor.setFill()
-        // bounds.fill()
+        // NSColor.controlBackgroundColor.setFill()
+        bounds.fill()
 
+        /*
         let startPoint = CGPoint(x: 0.0, y: bounds.minY)
         let endPoint = CGPoint(x: 0, y: bounds.maxY)
         context.drawLinearGradient(gradient!, start: startPoint, end: endPoint, options: [])
+        */
 
         let path = CGMutablePath()
         let dx = bounds.width / 228
@@ -132,21 +133,20 @@ class LogicView: NSView {
 
     override func draw(_ dirtyRect: NSRect) {
 
-        // print("draw")
-        super.draw(dirtyRect)
+        let dy = CGFloat(36)
 
+        super.draw(dirtyRect)
         context = NSGraphicsContext.current?.cgContext
-        // print("context = \(context)")
 
         clear()
         drawMarkers(in: NSRect(x: bounds.minX,
-                               y: bounds.maxY - 32,
+                               y: bounds.maxY - dy,
                                width: bounds.width,
-                               height: 32))
+                               height: 24))
         for i in 0...3 {
 
             let rect = NSRect(x: bounds.minX,
-                              y: bounds.maxY - CGFloat(i + 1) * 36 - 32,
+                              y: bounds.maxY - CGFloat(i + 2) * dy,
                               width: bounds.width,
                               height: 24)
             drawSignal(in: rect, channel: i)
@@ -230,10 +230,10 @@ class LogicView: NSView {
          *          p1                  p4
          */
 
-        let p1 = CGPoint(x: x1, y: v[0] ? y1 : y2)
-        let p2 = CGPoint(x: x1, y: v[1] ? y1 : y2)
-        let p3 = CGPoint(x: x2, y: v[1] ? y1 : y2)
-        let p4 = CGPoint(x: x2, y: v[2] ? y1 : y2)
+        let p1 = CGPoint(x: x1, y: v[0] ? y2 : y1)
+        let p2 = CGPoint(x: x1, y: v[1] ? y2 : y1)
+        let p3 = CGPoint(x: x2, y: v[1] ? y2 : y1)
+        let p4 = CGPoint(x: x2, y: v[2] ? y2 : y1)
 
         path.move(to: p1)
         path.addLine(to: p2)

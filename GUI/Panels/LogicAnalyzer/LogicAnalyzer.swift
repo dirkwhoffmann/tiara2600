@@ -12,7 +12,10 @@ class LogicAnalyzer: DialogController {
     var config: Configuration { return parent.config }
     
     // Logic Analyzer
-    @IBOutlet weak var laEnable: NSButton!
+    @IBOutlet weak var laLineField: NSTextField!
+    @IBOutlet weak var laLineButton: NSButton!
+    @IBOutlet weak var laLineStepper: NSStepper!
+
     @IBOutlet weak var laEnable0: NSButton!
     @IBOutlet weak var laEnable1: NSButton!
     @IBOutlet weak var laEnable2: NSButton!
@@ -28,6 +31,7 @@ class LogicAnalyzer: DialogController {
     @IBOutlet weak var laColor2: NSColorWell!
     @IBOutlet weak var laColor3: NSColorWell!
 
+    @IBOutlet weak var scrollView: NSScrollView!
     @IBOutlet weak var trace0: LogicView!
 
     @IBOutlet weak var laOpacity: NSSlider!
@@ -36,7 +40,24 @@ class LogicAnalyzer: DialogController {
     // Indicates if the panel needs to be updated
     var isDirty = false
 
-    var line = 4
+    // The displayed scanline
+    var line = 0 {
+        didSet {
+            print("line = \(line)")
+            laLineField.integerValue = line
+            laLineStepper.integerValue = line
+        }
+    }
+
+    // Zoom level
+    var zoom = 1.0 {
+        didSet {
+            let w = scrollView.frame.size.width * CGFloat(zoom)
+            let h = scrollView.frame.size.height
+            print("w = \(w) zoom = \(zoom)")
+            trace0.setFrameSize(NSSize(width: w, height: h))
+        }
+    }
 
     override func awakeFromNib() {
 
@@ -56,6 +77,8 @@ class LogicAnalyzer: DialogController {
             add("RDY")
             add("VSYNC")
             add("VBLANK")
+
+            zoom = 15
         }
 
         super.awakeFromNib()
@@ -106,6 +129,9 @@ class LogicAnalyzer: DialogController {
 
         if window?.isVisible == false { return }
 
+        // laLineField.integerValue = line
+        // laLineStepper.integerValue = line
+
         if let la = emu?.logicAnalyzer.getConfig() {
 
             let probe0 = emu!.get(.LA_PROBE0)
@@ -135,27 +161,22 @@ class LogicAnalyzer: DialogController {
     // Action methods
     //
 
-    @IBAction func updateLineAction(_ sender: NSButton!) {
+    @IBAction func lineAction(_ sender: NSTextField!) {
 
-        line = Int(emu?.tia.info.posy ?? 0)
+        line = sender.integerValue
         refresh()
     }
 
-    @IBAction func laColorAction(_ sender: NSColorWell!) {
+    @IBAction func lineStepperAction(_ sender: NSStepper!) {
 
-        emu?.logicAnalyzer.setColor(sender.tag, color: sender.color)
-        trace0.signalColor[sender.tag] = sender.color
+        line = sender.integerValue
+        refresh()
     }
 
-    @IBAction func laChannelAction(_ sender: NSButton!) {
+    @IBAction func autoLineAction(_ sender: NSButton!) {
 
-        switch sender.tag {
-        case 0:  emu?.set(.LA_CHANNEL0, enable: sender.state == .on)
-        case 1:  emu?.set(.LA_CHANNEL1, enable: sender.state == .on)
-        case 2:  emu?.set(.LA_CHANNEL2, enable: sender.state == .on)
-        case 3:  emu?.set(.LA_CHANNEL3, enable: sender.state == .on)
-        default: break
-        }
+        line = Int(emu?.tia.info.posy ?? 0)
+        refresh()
     }
 
     @IBAction func laProbeAction(_ sender: NSPopUpButton!) {
@@ -169,6 +190,27 @@ class LogicAnalyzer: DialogController {
         case 3:  emu?.set(.LA_PROBE3, value: tag)
         default: break
         }
+    }
+
+    @IBAction func laColorAction(_ sender: NSColorWell!) {
+
+        emu?.logicAnalyzer.setColor(sender.tag, color: sender.color)
+        trace0.signalColor[sender.tag] = sender.color
+    }
+
+    @IBAction func zoomInAction(_ sender: NSButton!) {
+
+        if zoom < 21 { zoom += 1 }
+    }
+
+    @IBAction func zoomOutAction(_ sender: NSButton!) {
+
+        if zoom > 1 { zoom -= 1 }
+    }
+
+    @IBAction func zoomSliderAction(_ sender: NSSlider!) {
+
+        zoom = sender.doubleValue
     }
 
     @IBAction func laDisplayModeAction(_ sender: NSPopUpButton!) {
