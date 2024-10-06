@@ -29,23 +29,9 @@ class LogicAnalyzer: DialogController {
     @IBOutlet weak var laColor3: NSColorWell!
 
     @IBOutlet weak var trace0: LogicView!
-    @IBOutlet weak var trace1: LogicView!
-    @IBOutlet weak var trace2: LogicView!
-    @IBOutlet weak var trace3: LogicView!
 
     @IBOutlet weak var laOpacity: NSSlider!
     @IBOutlet weak var laDisplayMode: NSPopUpButton!
-
-    func trace(_ nr: Int) -> LogicView? {
-
-        switch nr {
-        case 0: return trace0
-        case 1: return trace1
-        case 2: return trace2
-        case 3: return trace3
-        default: return nil
-        }
-    }
 
     // Indicates if the panel needs to be updated
     var isDirty = false
@@ -82,10 +68,10 @@ class LogicAnalyzer: DialogController {
             NSColor.green,
             NSColor.yellow
         ]
-        laColor0.color = palette[0]; trace0.signalColor = palette[0]
-        laColor1.color = palette[1]; trace1.signalColor = palette[1]
-        laColor2.color = palette[2]; trace2.signalColor = palette[2]
-        laColor3.color = palette[3]; trace3.signalColor = palette[3]
+        laColor0.color = palette[0]; trace0.signalColor[0] = palette[0]
+        laColor1.color = palette[1]; trace0.signalColor[1] = palette[1]
+        laColor2.color = palette[2]; trace0.signalColor[2] = palette[2]
+        laColor3.color = palette[3]; trace0.signalColor[3] = palette[3]
 
         // Initialize PopUpButtons
         initPopup(button: laProbe0)
@@ -127,10 +113,6 @@ class LogicAnalyzer: DialogController {
             let probe2 = emu!.get(.LA_PROBE2)
             let probe3 = emu!.get(.LA_PROBE3)
 
-            laEnable0.state = emu!.get(.LA_CHANNEL0) != 0 ? .on : .off
-            laEnable1.state = emu!.get(.LA_CHANNEL1) != 0 ? .on : .off
-            laEnable2.state = emu!.get(.LA_CHANNEL2) != 0 ? .on : .off
-            laEnable3.state = emu!.get(.LA_CHANNEL3) != 0 ? .on : .off
             laProbe0.selectItem(withTag: probe0)
             laProbe1.selectItem(withTag: probe1)
             laProbe2.selectItem(withTag: probe2)
@@ -138,16 +120,13 @@ class LogicAnalyzer: DialogController {
             laOpacity.integerValue = Int(la.opacity)
             laDisplayMode.selectItem(withTag: la.displayMode.rawValue)
 
-            trace0.probe = tiara.Probe(rawValue: probe0)!
-            trace1.probe = tiara.Probe(rawValue: probe1)!
-            trace2.probe = tiara.Probe(rawValue: probe2)!
-            trace3.probe = tiara.Probe(rawValue: probe3)!
+            trace0.probe[0] = tiara.Probe(rawValue: probe0)!
+            trace0.probe[1] = tiara.Probe(rawValue: probe1)!
+            trace0.probe[2] = tiara.Probe(rawValue: probe2)!
+            trace0.probe[3] = tiara.Probe(rawValue: probe3)!
         }
 
         trace0.update()
-        trace1.update()
-        trace2.update()
-        trace3.update()
 
         isDirty = false
     }
@@ -165,7 +144,7 @@ class LogicAnalyzer: DialogController {
     @IBAction func laColorAction(_ sender: NSColorWell!) {
 
         emu?.logicAnalyzer.setColor(sender.tag, color: sender.color)
-        trace(sender.tag)?.signalColor = sender.color
+        trace0.signalColor[sender.tag] = sender.color
     }
 
     @IBAction func laChannelAction(_ sender: NSButton!) {
