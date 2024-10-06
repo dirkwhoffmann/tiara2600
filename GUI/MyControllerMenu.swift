@@ -178,10 +178,10 @@ extension MyController: NSMenuItemValidation {
     
     @IBAction func monitorAction(_ sender: Any!) {
         
-        if monitor == nil {
-            monitor = LogicAnalyzer(with: self, nibName: "LogicAnalyzer")
+        if analyzer == nil {
+            analyzer = LogicAnalyzer(with: self, nibName: "LogicAnalyzer")
         }
-        monitor?.showWindow(self)
+        analyzer?.showWindow(self)
     }
     
     @IBAction func consoleAction(_ sender: Any!) {

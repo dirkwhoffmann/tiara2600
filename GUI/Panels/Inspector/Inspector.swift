@@ -284,7 +284,7 @@ class Inspector: DialogController {
     var fmt12: MyFormatter { return hex ? fmt12x : fmt12d }
     var fmt16: MyFormatter { return hex ? fmt16x : fmt16d }
 
-    // Used to determine the items to be refreshed
+    // Refresh counter
     var refreshCnt = 0
         
     override func showWindow(_ sender: Any?) {

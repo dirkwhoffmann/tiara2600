@@ -70,9 +70,9 @@ extension MyController: NSWindowDelegate {
         inspector?.close()
         inspector?.join()
 
-        debug(.shutdown, "Close the monitor...")
-        monitor?.close()
-        monitor?.join()
+        debug(.shutdown, "Close the analyzer...")
+        analyzer?.close()
+        analyzer?.join()
 
         debug(.shutdown, "Stop the renderer...")
         renderer.halt()

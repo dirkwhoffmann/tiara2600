@@ -27,8 +27,8 @@ class MyController: NSWindowController, MessageReceiver {
     // Inspector panel of this emulator instance
     var inspector: Inspector?
     
-    // Monitor panel of this emulator instance
-    var monitor: LogicAnalyzer?
+    // Logic analyzer panel of this emulator instance
+    var analyzer: LogicAnalyzer?
     
     // Configuration panel of this emulator instance
     var configurator: ConfigurationController?
@@ -240,6 +240,12 @@ extension MyController {
             if inspector?.window?.isVisible == true { inspector!.continuousRefresh() }
         }
 
+        if frames % 8 == 0 {
+
+            // Animate the logic analyzer
+            if analyzer?.window?.isVisible == true { analyzer!.continuousRefresh() }
+        }
+
         // Do less times...
         if (frames % 16) == 0 {
             
@@ -275,7 +281,7 @@ extension MyController {
 
         case .CONFIG:
             inspector?.fullRefresh()
-            monitor?.refresh()
+            analyzer?.refresh()
             configurator?.refresh()
             refreshStatusBar()
 
