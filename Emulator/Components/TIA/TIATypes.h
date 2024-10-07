@@ -258,8 +258,8 @@ TIAConfig;
 typedef struct
 {
     // Counters
-    u16 posx;
-    u16 posy;
+    isize posx;
+    isize posy;
 }
 TIAInfo;
 

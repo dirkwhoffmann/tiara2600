@@ -7,8 +7,6 @@
 // See https://www.gnu.org for license information
 // -----------------------------------------------------------------------------
 
-// import Cocoa
-
 class LogicView: NSView {
 
     // Reference to the logic analyzer this view is embedded in
@@ -28,6 +26,9 @@ class LogicView: NSView {
 
     // The recorded data
     var data = Array(repeating: Array(repeating: 0, count: 230), count: 4)
+
+    // Number formatter
+    let formatter = LogicViewFormatter()
 
     // The graphics context used for drawing
     var context: CGContext!
@@ -173,8 +174,7 @@ class LogicView: NSView {
             } else {
                 drawSegment(in: r, v: [prev, curr, next], color: signalColor[channel])
             }
-            let txt = "\(curr)"
-            drawText(text: txt,
+            drawText(text: formatter.string(from: curr, bitWidth: bitWidth[channel]),
                      at: CGPoint(x: CGFloat(i) * w + (w / 2), y: rect.midY),
                      font: mono,
                      color: NSColor.labelColor)

@@ -1189,6 +1189,11 @@ using namespace tiara;
     [self emu]->wakeUp();
 }
 
+- (void)stepCycle
+{
+    [self emu]->stepCycle();
+}
+
 - (void)stepInto
 {
     [self emu]->stepInto();
@@ -1197,6 +1202,11 @@ using namespace tiara;
 - (void)stepOver
 {
     [self emu]->stepOver();
+}
+
+- (void)finishFrame
+{
+    [self emu]->finishFrame();
 }
 
 - (BOOL) isRom:(NSURL *)url

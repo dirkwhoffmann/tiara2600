@@ -375,7 +375,6 @@ private:
 
 public:
 
-    // virtual void record() const override;
     void cacheInfo(AtariInfo &result) const override;
 
     u64 getAutoInspectionMask() const;
@@ -469,7 +468,7 @@ private:
 
     // Emulates a frame
     void computeFrame();
-    void processFlags();
+    // void processFlags();
 
     // Fast-forward the run-ahead instance
     void fastForward(isize frames);
@@ -494,7 +493,7 @@ public:
     void signalStop() { setFlag(RL::STOP); }
 
     // Executes a single clock cycle.
-    void executeOneCycle();
+    // void executeOneCycle();
 
 private:
 

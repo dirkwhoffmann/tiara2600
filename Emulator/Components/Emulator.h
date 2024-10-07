@@ -167,8 +167,10 @@ public:
 
     void hardReset();
     void softReset();
+    void stepCycle();
     void stepInto();
     void stepOver();
+    void finishFrame();
 
 
     //

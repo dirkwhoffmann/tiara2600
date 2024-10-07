@@ -283,6 +283,9 @@
 		50DBB44B2025CE5700489271 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBB44A2025CE5700489271 /* Utils.swift */; };
 		50DD82A02614D47E00B84EB3 /* Chrono.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50DD829E2614D47E00B84EB3 /* Chrono.cpp */; };
 		50DEAD8F2008E615008A8761 /* Shaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DEAD8E2008E615008A8761 /* Shaders.swift */; };
+		50E046AA2CB3B7AD0035BE47 /* LogicViewFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E046A92CB3B7A70035BE47 /* LogicViewFormatter.swift */; };
+		50E046AD2CB3C8500035BE47 /* GuardList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E046AC2CB3C84C0035BE47 /* GuardList.cpp */; };
+		50E046AE2CB3C8500035BE47 /* GuardList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E046AC2CB3C84C0035BE47 /* GuardList.cpp */; };
 		50E17E212B8B26AC0029747D /* Option.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E17E1F2B8B26AC0029747D /* Option.cpp */; };
 		50E17E222B8B26AC0029747D /* Option.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E17E1F2B8B26AC0029747D /* Option.cpp */; };
 		50E5BF732BA81E710004712B /* Monitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E5BF712BA81E710004712B /* Monitor.cpp */; };
@@ -678,6 +681,10 @@
 		50DD829E2614D47E00B84EB3 /* Chrono.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Chrono.cpp; sourceTree = "<group>"; };
 		50DD829F2614D47E00B84EB3 /* Chrono.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chrono.h; sourceTree = "<group>"; };
 		50DEAD8E2008E615008A8761 /* Shaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shaders.swift; sourceTree = "<group>"; };
+		50E046A92CB3B7A70035BE47 /* LogicViewFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicViewFormatter.swift; sourceTree = "<group>"; };
+		50E046AB2CB3C8440035BE47 /* GuardList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuardList.h; sourceTree = "<group>"; };
+		50E046AC2CB3C84C0035BE47 /* GuardList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GuardList.cpp; sourceTree = "<group>"; };
+		50E046AF2CB3C8520035BE47 /* GuardListTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuardListTypes.h; sourceTree = "<group>"; };
 		50E17E1F2B8B26AC0029747D /* Option.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Option.cpp; sourceTree = "<group>"; };
 		50E17E232B8B26D70029747D /* Option.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Option.h; sourceTree = "<group>"; };
 		50E17E242B8B26EB0029747D /* OptionTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptionTypes.h; sourceTree = "<group>"; };
@@ -1346,6 +1353,9 @@
 				50CFF5652C2589DF00A47ECC /* HostTypes.h */,
 				50F5B6A12959C44E000457A0 /* Host.h */,
 				50F5B6A02959C44E000457A0 /* Host.cpp */,
+				50E046AF2CB3C8520035BE47 /* GuardListTypes.h */,
+				50E046AC2CB3C84C0035BE47 /* GuardList.cpp */,
+				50E046AB2CB3C8440035BE47 /* GuardList.h */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1441,6 +1451,7 @@
 			children = (
 				50D3092724C71B0A00B92563 /* LogicAnalyzer.swift */,
 				50E83D502CB0579E00308A1C /* LogicView.swift */,
+				50E046A92CB3B7A70035BE47 /* LogicViewFormatter.swift */,
 			);
 			path = LogicAnalyzer;
 			sourceTree = "<group>";
@@ -1709,6 +1720,7 @@
 				50B98B4B2BFDF5FC00FA1EC6 /* AudioPortBase.cpp in Sources */,
 				50726FA32961CA1C0031F2F5 /* CartFile.cpp in Sources */,
 				50726FBA2961CA2F0031F2F5 /* RegressionTester.cpp in Sources */,
+				50E046AD2CB3C8500035BE47 /* GuardList.cpp in Sources */,
 				50E17E222B8B26AC0029747D /* Option.cpp in Sources */,
 				50EFB0C52C18D6200013B73C /* Dumpable.cpp in Sources */,
 				50726F482961C9940031F2F5 /* Defaults.cpp in Sources */,
@@ -1787,6 +1799,7 @@
 				500EA6C724B09037009AA7D7 /* SubComponent.cpp in Sources */,
 				50157EEB28256035000E9DDD /* Config.swift in Sources */,
 				501B80C325B1702500C90284 /* MyDocumentController.swift in Sources */,
+				50E046AA2CB3B7AD0035BE47 /* LogicViewFormatter.swift in Sources */,
 				50CCC8012C117ACF0047ED17 /* MediaFile.cpp in Sources */,
 				504C438324AF29AC00E69CAE /* CoreComponent.cpp in Sources */,
 				50E9B92D201F299500065A89 /* MyController.swift in Sources */,
@@ -1839,6 +1852,7 @@
 				50CCC30A256FAC870052619A /* Concurrency.cpp in Sources */,
 				5002FA7F21C2653600DA4BBC /* GeneralPrefs.swift in Sources */,
 				50133B97200D4EED00167227 /* MetalView.swift in Sources */,
+				50E046AE2CB3C8500035BE47 /* GuardList.cpp in Sources */,
 				50B98B4A2BFDF5FC00FA1EC6 /* AudioPortBase.cpp in Sources */,
 				50A22A2F2618845800C9FB1E /* TextureRect.swift in Sources */,
 				506D54CC2032255A0026D8B4 /* RomDropView.swift in Sources */,

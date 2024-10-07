@@ -1008,6 +1008,8 @@ public:
     /// @name Single-stepping
     /// @{
 
+    void stepCycle();
+
     /** @brief  Steps a single instruction
      *
      *  If the emulator is paused, calling this functions steps the CPU for
@@ -1037,6 +1039,8 @@ public:
      *  location.
      */
     void stepOver();
+
+    void finishFrame();
 
 
     /// @}

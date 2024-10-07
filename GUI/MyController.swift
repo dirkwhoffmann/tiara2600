@@ -71,9 +71,7 @@ class MyController: NSWindowController, MessageReceiver {
     
     // Small disk icon to be shown in NSMenuItems
     static let iconSize = CGSize(width: 16, height: 16)
-    var smallDisk = NSImage(named: "diskTemplate")!.resize(size: iconSize)
-    var smallTape = NSImage(named: "tapeTemplate")!.resize(size: iconSize)
-    var smallCart = NSImage(named: "crtTemplate")!.resize(size: iconSize)
+    var smallCart = NSImage(named: "cartTemplate")!.resize(size: iconSize)
 
     // Indicates if the window is in background
     var inBackground = false
@@ -305,19 +303,23 @@ extension MyController {
             jammed = false
             toolbar.updateToolbar()
             inspector?.run()
+            analyzer?.run()
             refreshStatusBar()
 
         case .PAUSE:
             toolbar.updateToolbar()
             inspector?.pause()
+            analyzer?.pause()
             refreshStatusBar()
 
         case .STEP:
             needsSaving = true
             inspector?.step()
+            analyzer?.step()
 
         case .RESET:
             inspector?.reset()
+            analyzer?.reset()
 
         case .SHUTDOWN:
             shutDown()

@@ -156,8 +156,10 @@ using namespace tiara;
 - (void)trackOff;
 - (void)trackOff:(NSInteger)source;
 
+- (void)stepCycle;
 - (void)stepInto;
 - (void)stepOver;
+- (void)finishFrame;
 
 - (void)launch:(const void *)listener function:(Callback *)func;
 - (void)wakeUp;

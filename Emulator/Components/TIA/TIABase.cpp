@@ -24,8 +24,8 @@ TIA::TIA(Atari &ref) : SubComponent(ref)
 void
 TIA::cacheInfo(TIAInfo &result) const
 {
-    result.posx = 0;
-    result.posy = 0;
+    result.posx = x;
+    result.posy = y;
 }
 
 void

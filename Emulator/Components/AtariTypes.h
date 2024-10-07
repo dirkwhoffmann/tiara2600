@@ -276,14 +276,16 @@ typedef u32 RunLoopFlags;
 
 namespace RL {
 
-constexpr u32 STOP          = (1 << 0);
-constexpr u32 WARP_ON       = (1 << 1);
-constexpr u32 WARP_OFF      = (1 << 2);
-constexpr u32 BREAKPOINT    = (1 << 3);
-constexpr u32 WATCHPOINT    = (1 << 4);
-constexpr u32 CPU_JAM       = (1 << 5);
-constexpr u32 SINGLE_STEP   = (1 << 6);
-constexpr u32 SYNC_THREAD   = (1 << 7);
+constexpr u32 STOP              = (1 << 0);
+constexpr u32 WARP_ON           = (1 << 1);
+constexpr u32 WARP_OFF          = (1 << 2);
+constexpr u32 BREAKPOINT        = (1 << 3);
+constexpr u32 WATCHPOINT        = (1 << 4);
+constexpr u32 CPU_JAM           = (1 << 5);
+constexpr u32 STEP_CYCLE        = (1 << 6);
+constexpr u32 STEP_INSTRUCTION  = (1 << 7);
+constexpr u32 FINISH_FRAME      = (1 << 8);
+constexpr u32 SYNC_THREAD       = (1 << 9);
 }
 
 }

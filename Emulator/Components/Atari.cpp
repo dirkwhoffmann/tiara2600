@@ -536,65 +536,76 @@ Atari::computeFrame()
         tia.execute<false>();
         cartPort.cart->execute();
 
-        // Check if special action needs to be taken
+        // Process pending actions
         if (flags) {
 
-            processFlags();
+            bool sync = false;
+            bool pause = false;
 
-            // Check if a frame has been completed
-            if (flags & RL::SYNC_THREAD) break;
+            if (flags & RL::BREAKPOINT) {
+
+                msgQueue.put(MSG_BREAKPOINT_REACHED, CpuMsg {u16(cpu.debugger.breakpointPC)});
+                pause = true;
+            }
+
+            if (flags & RL::WATCHPOINT) {
+
+                msgQueue.put(MSG_WATCHPOINT_REACHED, CpuMsg {u16(cpu.debugger.watchpointPC)});
+                pause = true;
+            }
+
+            if (flags & RL::STOP) {
+
+                pause = true;
+            }
+
+            if (flags & RL::CPU_JAM) {
+
+                msgQueue.put(MSG_CPU_JAMMED);
+                pause = true;
+            }
+
+            if (flags & RL::STEP_CYCLE) {
+
+                msgQueue.put(MSG_STEP);
+                pause = true;
+            }
+
+            if (flags & RL::STEP_INSTRUCTION) {
+
+                printf("RL::STEP_INSTRUCTION\n");
+
+                if (cpu.inFetchPhase()) {
+
+                    printf("cpu.inFetchPhase\n");
+                    if (!stepTo.has_value() || stepTo == cpu.getPC0()) {
+
+                        printf("HIT\n");
+
+                        clearFlag(RL::STEP_INSTRUCTION);
+                        msgQueue.put(MSG_STEP);
+                        pause = true;
+                    }
+                }
+            }
+
+            if (flags & RL::SYNC_THREAD) {
+
+                sync = true;
+
+                if (flags & RL::FINISH_FRAME) {
+
+                    clearFlag(RL::STEP_INSTRUCTION);
+                    pause = true;
+                }
+            }
+
+            flags &= RL::STEP_INSTRUCTION | RL::FINISH_FRAME;
+
+            if (pause) throw StateChangeException(STATE_PAUSED);
+            if (sync) break;
         }
     }
-
-    flags = 0;
-
-    // REMOVE ASAP: Force one cycle per frame
-    // flags |= RL::SYNC_THREAD;
-}
-
-void
-Atari::processFlags()
-{
-    bool interrupt = false;
-
-    if (flags & RL::BREAKPOINT) {
-
-        clearFlag(RL::BREAKPOINT);
-        msgQueue.put(MSG_BREAKPOINT_REACHED, CpuMsg {u16(cpu.debugger.breakpointPC)});
-        interrupt = true;
-    }
-
-    if (flags & RL::WATCHPOINT) {
-
-        clearFlag(RL::WATCHPOINT);
-        msgQueue.put(MSG_WATCHPOINT_REACHED, CpuMsg {u16(cpu.debugger.watchpointPC)});
-        interrupt = true;
-    }
-
-    if (flags & RL::STOP) {
-
-        clearFlag(RL::STOP);
-        interrupt = true;
-    }
-
-    if (flags & RL::CPU_JAM) {
-
-        clearFlag(RL::CPU_JAM);
-        msgQueue.put(MSG_CPU_JAMMED);
-        interrupt = true;
-    }
-
-    if (flags & RL::SINGLE_STEP) {
-
-        if ((!stepTo.has_value() && cpu.inFetchPhase()) || stepTo == cpu.getPC0()) {
-
-            clearFlag(RL::SINGLE_STEP);
-            msgQueue.put(MSG_STEP);
-            interrupt = true;
-        }
-    }
-
-    if (interrupt) throw StateChangeException(STATE_PAUSED);
 }
 
 void 
@@ -743,6 +754,7 @@ Atari::setAutoInspectionMask(u64 mask)
     }
 }
 
+/*
 void
 Atari::executeOneCycle()
 {
@@ -750,7 +762,7 @@ Atari::executeOneCycle()
     computeFrame();
     clearFlag(RL::SINGLE_STEP);
 }
-
+*/
 /*
 void
 C64::endScanline()

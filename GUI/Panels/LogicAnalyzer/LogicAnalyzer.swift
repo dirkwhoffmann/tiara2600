@@ -37,6 +37,16 @@ class LogicAnalyzer: DialogController {
     @IBOutlet weak var laOpacity: NSSlider!
     @IBOutlet weak var laDisplayMode: NSPopUpButton!
 
+    @IBOutlet weak var symButtom: NSButton!
+    @IBOutlet weak var hexButtom: NSButton!
+
+    @IBOutlet weak var runButton: NSButton!
+    @IBOutlet weak var frameButton: NSButton!
+    @IBOutlet weak var tickButton: NSButton!
+
+    @IBOutlet weak var laX: NSTextField!
+    @IBOutlet weak var laY: NSTextField!
+
     // Indicates if the panel needs to be updated
     var isDirty = false
 
@@ -54,7 +64,6 @@ class LogicAnalyzer: DialogController {
         didSet {
             let w = scrollView.frame.size.width * CGFloat(zoom)
             let h = scrollView.frame.size.height
-            print("w = \(w) zoom = \(zoom)")
             trace0.setFrameSize(NSSize(width: w, height: h))
         }
     }
@@ -129,6 +138,24 @@ class LogicAnalyzer: DialogController {
 
         if window?.isVisible == false { return }
 
+        if full {
+
+            if emu?.running ?? false {
+
+                runButton.image = NSImage(named: "pauseTemplate")
+                runButton.toolTip = "Pause"
+                frameButton.isEnabled = false
+                tickButton.isEnabled = false
+
+            } else {
+
+                runButton.image = NSImage(named: "runTemplate")
+                runButton.toolTip = "Run"
+                frameButton.isEnabled = true
+                tickButton.isEnabled = true
+            }
+        }
+
         // laLineField.integerValue = line
         // laLineStepper.integerValue = line
 
@@ -152,11 +179,54 @@ class LogicAnalyzer: DialogController {
             trace0.probe[3] = tiara.Probe(rawValue: probe3)!
         }
 
+        symButtom.state = trace0.formatter.symbolic ? .on : .off
+        hexButtom.state = trace0.formatter.hex ? .on : .off
+
+        if let tiaInfo = emu?.tia.info {
+            
+            laX.stringValue = "X: \(tiaInfo.posx)"
+            laY.stringValue = "Y: \(tiaInfo.posy)"
+        }
+
         trace0.update()
 
         isDirty = false
     }
-        
+
+    //
+    // Delegation calls
+    //
+
+    func powerOn() {
+
+        fullRefresh()
+    }
+
+    func powerOff() {
+
+        fullRefresh()
+    }
+
+    func run() {
+
+        fullRefresh()
+    }
+
+    func pause() {
+
+        fullRefresh()
+    }
+
+    func step() {
+
+        fullRefresh()
+    }
+
+    func reset() {
+
+        fullRefresh()
+    }
+
     //
     // Action methods
     //
@@ -221,5 +291,34 @@ class LogicAnalyzer: DialogController {
     @IBAction func laOpacityAction(_ sender: NSSlider!) {
 
         emu?.set(.LA_OPACITY, value: sender.integerValue)
+    }
+
+    @IBAction func runAction(_ sender: NSButton!) {
+
+        if let emu = emu {
+            if emu.running { emu.pause() } else { try? emu.run() }
+        }
+    }
+
+    @IBAction func frameAction(_ sender: NSButton!) {
+
+        emu?.finishFrame()
+    }
+
+    @IBAction func tickAction(_ sender: NSButton!) {
+
+        emu?.stepCycle()
+    }
+
+    @IBAction func symAction(_ sender: NSButton!) {
+
+        trace0.formatter.symbolic = sender.state == .on
+        refresh()
+    }
+
+    @IBAction func hexAction(_ sender: NSButton!) {
+
+        trace0.formatter.hex = sender.state == .on
+        refresh()
     }
 }

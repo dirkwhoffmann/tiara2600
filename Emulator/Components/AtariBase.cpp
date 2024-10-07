@@ -80,12 +80,14 @@ Atari::_dump(Category category, std::ostream& os) const
         os << std::endl;
 
         string str = "";
-        if (flags & RL::WARP_ON)        str = append(str, "WARP_ON");
-        if (flags & RL::WARP_OFF)       str = append(str, "WARP_OFF");
-        if (flags & RL::BREAKPOINT)     str = append(str, "BREAKPOINT");
-        if (flags & RL::WATCHPOINT)     str = append(str, "WATCHPOINT");
-        if (flags & RL::CPU_JAM)        str = append(str, "CPU_JAM");
-        if (flags & RL::SINGLE_STEP)    str = append(str, "SINGLE_STEP");
+        if (flags & RL::WARP_ON)          str = append(str, "WARP_ON");
+        if (flags & RL::WARP_OFF)         str = append(str, "WARP_OFF");
+        if (flags & RL::BREAKPOINT)       str = append(str, "BREAKPOINT");
+        if (flags & RL::WATCHPOINT)       str = append(str, "WATCHPOINT");
+        if (flags & RL::CPU_JAM)          str = append(str, "CPU_JAM");
+        if (flags & RL::STEP_CYCLE)       str = append(str, "STEP_CYCLE");
+        if (flags & RL::STEP_INSTRUCTION) str = append(str, "STEP_INSTRUCTION");
+        if (flags & RL::FINISH_FRAME)     str = append(str, "FINISH_FRAME");
 
         os << tab("Runloop flags");
         os << (str.empty() ? "-" : str) << std::endl;

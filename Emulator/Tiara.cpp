@@ -248,6 +248,12 @@ Tiara::trackOff(isize source)
 }
 
 void
+Tiara::stepCycle()
+{
+    emu->stepCycle();
+}
+
+void
 Tiara::stepInto()
 {
     emu->stepInto();
@@ -259,7 +265,13 @@ Tiara::stepOver()
     emu->stepOver();
 }
 
-void 
+void
+Tiara::finishFrame()
+{
+    emu->finishFrame();
+}
+
+void
 Tiara::wakeUp()
 {
     emu->wakeUp();

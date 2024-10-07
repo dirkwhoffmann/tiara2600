@@ -92,12 +92,21 @@ Emulator::softReset()
 }
 
 void
+Emulator::stepCycle()
+{
+    if (isRunning()) return;
+
+    main.setFlag(RL::STEP_CYCLE);
+    run();
+}
+
+void
 Emulator::stepInto()
 {
     if (isRunning()) return;
 
     main.stepTo = { };
-    main.setFlag(RL::SINGLE_STEP);
+    main.setFlag(RL::STEP_INSTRUCTION);
     run();
 }
 
@@ -107,7 +116,16 @@ Emulator::stepOver()
     if (isRunning()) return;
 
     main.stepTo = main.cpu.getAddressOfNextInstruction();
-    main.setFlag(RL::SINGLE_STEP);
+    main.setFlag(RL::STEP_INSTRUCTION);
+    run();
+}
+
+void
+Emulator::finishFrame()
+{
+    if (isRunning()) return;
+
+    main.setFlag(RL::FINISH_FRAME);
     run();
 }
 

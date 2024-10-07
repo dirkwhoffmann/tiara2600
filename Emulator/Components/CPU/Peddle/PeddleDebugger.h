@@ -8,7 +8,7 @@
 #pragma once
 
 #include "PeddleDebuggerTypes.h"
-#include "Peddle.h"
+#include "PeddleTypes.h"
 
 namespace tiara::peddle {
 
@@ -46,7 +46,7 @@ class Guards {
 protected:
 
     // Reference to the connected CPU
-    class Peddle &cpu;
+    // class Peddle &cpu;
 
     // Capacity of the guards array
     long capacity = 1;
@@ -57,17 +57,14 @@ protected:
     // Number of currently stored guards
     long count = 0;
 
-    // Indicates if guard checking is necessary
-    virtual void setNeedsCheck(bool value) = 0;
-    
-    
+
     //
     // Constructing
     //
 
 public:
 
-    Guards(Peddle& ref) : cpu(ref) { }
+    // Guards(Peddle& ref) : cpu(ref) { }
     virtual ~Guards();
 
 
@@ -122,28 +119,33 @@ public:
 
 
     //
-    // Checking a guard
+    // Checking guards
     //
     
-private:
+    // Indicates if guard checking is necessary
+    virtual void setNeedsCheck(bool value) { };
     
     // Returns true if the guard hits
     bool eval(u32 addr);
 };
 
 class Breakpoints : public Guards {
-    
+
+    class Peddle &cpu;
+
 public:
     
-    Breakpoints(Peddle& ref) : Guards(ref) { }
+    Breakpoints(Peddle& ref) : cpu(ref) { }
     void setNeedsCheck(bool value) override;
 };
 
 class Watchpoints : public Guards {
-    
+
+    class Peddle &cpu;
+
 public:
     
-    Watchpoints(Peddle& ref) : Guards(ref) { }
+    Watchpoints(Peddle& ref) : cpu(ref) { }
     void setNeedsCheck(bool value) override;
 };
 
