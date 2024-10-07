@@ -87,7 +87,8 @@ Atari::_dump(Category category, std::ostream& os) const
         if (flags & RL::CPU_JAM)          str = append(str, "CPU_JAM");
         if (flags & RL::STEP_CYCLE)       str = append(str, "STEP_CYCLE");
         if (flags & RL::STEP_INSTRUCTION) str = append(str, "STEP_INSTRUCTION");
-        if (flags & RL::FINISH_FRAME)     str = append(str, "FINISH_FRAME");
+        if (flags & RL::STEP_LINE)        str = append(str, "STEP_LINE");
+        if (flags & RL::STEP_FRAME)       str = append(str, "STEP_FRAME");
 
         os << tab("Runloop flags");
         os << (str.empty() ? "-" : str) << std::endl;

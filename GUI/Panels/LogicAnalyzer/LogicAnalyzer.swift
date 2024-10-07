@@ -13,7 +13,7 @@ class LogicAnalyzer: DialogController {
     
     // Logic Analyzer
     @IBOutlet weak var laLineField: NSTextField!
-    @IBOutlet weak var laLineButton: NSButton!
+    @IBOutlet weak var laAutoLineButton: NSButton!
     @IBOutlet weak var laLineStepper: NSStepper!
 
     @IBOutlet weak var laEnable0: NSButton!
@@ -41,9 +41,11 @@ class LogicAnalyzer: DialogController {
     @IBOutlet weak var hexButtom: NSButton!
 
     @IBOutlet weak var runButton: NSButton!
-    @IBOutlet weak var frameButton: NSButton!
-    @IBOutlet weak var tickButton: NSButton!
+    @IBOutlet weak var finishCycleButton: NSButton!
+    @IBOutlet weak var finishLineButton: NSButton!
+    @IBOutlet weak var finishFrameButton: NSButton!
 
+    @IBOutlet weak var timeStamp: NSTextField!
     @IBOutlet weak var laX: NSTextField!
     @IBOutlet weak var laY: NSTextField!
 
@@ -53,11 +55,13 @@ class LogicAnalyzer: DialogController {
     // The displayed scanline
     var line = 0 {
         didSet {
-            print("line = \(line)")
             laLineField.integerValue = line
             laLineStepper.integerValue = line
         }
     }
+
+    // Indicates if the displayed scanline is always the current line
+    var linked: Bool { return laAutoLineButton.state == .on }
 
     // Zoom level
     var zoom = 1.0 {
@@ -104,6 +108,7 @@ class LogicAnalyzer: DialogController {
         laColor1.color = palette[1]; trace0.signalColor[1] = palette[1]
         laColor2.color = palette[2]; trace0.signalColor[2] = palette[2]
         laColor3.color = palette[3]; trace0.signalColor[3] = palette[3]
+        for i in 0..<4 { emu?.logicAnalyzer.setColor(i, color: palette[i]) }
 
         // Initialize PopUpButtons
         initPopup(button: laProbe0)
@@ -111,7 +116,9 @@ class LogicAnalyzer: DialogController {
         initPopup(button: laProbe2)
         initPopup(button: laProbe3)
 
-        for i in 0..<4 { emu?.logicAnalyzer.setColor(i, color: palette[i]) }
+        // Assign styles
+        timeStamp.font = NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+        // laF.textColor = .secondaryLabelColor
 
         // trace0.needsDisplay = true
 
@@ -137,56 +144,55 @@ class LogicAnalyzer: DialogController {
     func refresh(full: Bool = false) {
 
         if window?.isVisible == false { return }
+        guard let emu = emu else { return }
+
+        let tiaInfo = emu.tia.info
+        let config = emu.logicAnalyzer.getConfig()
 
         if full {
 
-            if emu?.running ?? false {
+            if emu.running {
 
                 runButton.image = NSImage(named: "pauseTemplate")
                 runButton.toolTip = "Pause"
-                frameButton.isEnabled = false
-                tickButton.isEnabled = false
+                finishFrameButton.isEnabled = false
+                finishCycleButton.isEnabled = false
 
             } else {
 
                 runButton.image = NSImage(named: "runTemplate")
                 runButton.toolTip = "Run"
-                frameButton.isEnabled = true
-                tickButton.isEnabled = true
+                finishFrameButton.isEnabled = true
+                finishCycleButton.isEnabled = true
             }
         }
 
-        // laLineField.integerValue = line
-        // laLineStepper.integerValue = line
+        // Switch to the current line if applicable
+        if linked { line = tiaInfo.posy }
+        laLineField.isEditable = !linked
 
-        if let la = emu?.logicAnalyzer.getConfig() {
+        let probe0 = emu.get(.LA_PROBE0)
+        let probe1 = emu.get(.LA_PROBE1)
+        let probe2 = emu.get(.LA_PROBE2)
+        let probe3 = emu.get(.LA_PROBE3)
 
-            let probe0 = emu!.get(.LA_PROBE0)
-            let probe1 = emu!.get(.LA_PROBE1)
-            let probe2 = emu!.get(.LA_PROBE2)
-            let probe3 = emu!.get(.LA_PROBE3)
+        laProbe0.selectItem(withTag: probe0)
+        laProbe1.selectItem(withTag: probe1)
+        laProbe2.selectItem(withTag: probe2)
+        laProbe3.selectItem(withTag: probe3)
+        laOpacity.integerValue = Int(config.opacity)
+        laDisplayMode.selectItem(withTag: config.displayMode.rawValue)
 
-            laProbe0.selectItem(withTag: probe0)
-            laProbe1.selectItem(withTag: probe1)
-            laProbe2.selectItem(withTag: probe2)
-            laProbe3.selectItem(withTag: probe3)
-            laOpacity.integerValue = Int(la.opacity)
-            laDisplayMode.selectItem(withTag: la.displayMode.rawValue)
-
-            trace0.probe[0] = tiara.Probe(rawValue: probe0)!
-            trace0.probe[1] = tiara.Probe(rawValue: probe1)!
-            trace0.probe[2] = tiara.Probe(rawValue: probe2)!
-            trace0.probe[3] = tiara.Probe(rawValue: probe3)!
-        }
+        trace0.probe[0] = tiara.Probe(rawValue: probe0)!
+        trace0.probe[1] = tiara.Probe(rawValue: probe1)!
+        trace0.probe[2] = tiara.Probe(rawValue: probe2)!
+        trace0.probe[3] = tiara.Probe(rawValue: probe3)!
 
         symButtom.state = trace0.formatter.symbolic ? .on : .off
         hexButtom.state = trace0.formatter.hex ? .on : .off
 
-        if let tiaInfo = emu?.tia.info {
-            
-            laX.stringValue = "X: \(tiaInfo.posx)"
-            laY.stringValue = "Y: \(tiaInfo.posy)"
-        }
+        timeStamp.stringValue = String(format: "%d:%03d:%03d",
+                                       tiaInfo.frame, tiaInfo.posy, tiaInfo.posx)
 
         trace0.update()
 
@@ -300,14 +306,19 @@ class LogicAnalyzer: DialogController {
         }
     }
 
-    @IBAction func frameAction(_ sender: NSButton!) {
-
-        emu?.finishFrame()
-    }
-
-    @IBAction func tickAction(_ sender: NSButton!) {
+    @IBAction func finishCycleAction(_ sender: NSButton!) {
 
         emu?.stepCycle()
+    }
+
+    @IBAction func finishLineAction(_ sender: NSButton!) {
+
+        emu?.finishLine()
+    }
+
+    @IBAction func finishFrameAction(_ sender: NSButton!) {
+
+        emu?.finishFrame()
     }
 
     @IBAction func symAction(_ sender: NSButton!) {

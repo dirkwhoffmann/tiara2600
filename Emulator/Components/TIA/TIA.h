@@ -83,6 +83,9 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
     // Current configuration
     TIAConfig config{};
 
+    // Frame counter
+    isize frame{};
+
     // Beam position
     isize x{}, y{};
 
@@ -269,7 +272,7 @@ public:
     isize getX() const { return x; }
     isize getY() const { return y; }
 
-
+    
     //
     // Managing colors
     //

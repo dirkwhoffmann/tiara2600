@@ -196,9 +196,6 @@ TIA::execute()
     // Check for the "Start HBlank" signal
     bool shb = hc.res;
 
-    // Advance the beam position
-    if (shb && hc.phi2()) { x = 0; y++; }
-
     // RDY logic
     if (strobe == TIA_WSYNC && rdy) {
         // trace(true, "RDY down\n");
@@ -209,6 +206,16 @@ TIA::execute()
         rdy = true; cpu.releaseRdyLine();
     }
 
+    assert(x < Texture::width);
+    assert(y < Texture::height);
+
+    // Run the logic analyzer
+    logicAnalyzer.recordSignals();
+
+    // Advance the beam position
+    x++;
+    if (shb && hc.phi2()) { x = 0; y++; }
+
     // Remove later
     if (y == Texture::height) {
 
@@ -216,19 +223,13 @@ TIA::execute()
         eofHandler();
         atari.setFlag(RL::SYNC_THREAD);
     }
-
-    assert(x < Texture::width);
-    assert(y < Texture::height);
-
-    // Run the logic analyzer
-    logicAnalyzer.recordSignals();
-
-    x++;
 }
 
 void
 TIA::eofHandler()
 {
+    frame++;
+
     // Only proceed if the current frame hasn't been executed in headless mode
     if (atari.getHeadless()) return;
 

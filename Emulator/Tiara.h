@@ -1040,6 +1040,7 @@ public:
      */
     void stepOver();
 
+    void finishLine();
     void finishFrame();
 
 

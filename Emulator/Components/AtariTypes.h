@@ -284,8 +284,9 @@ constexpr u32 WATCHPOINT        = (1 << 4);
 constexpr u32 CPU_JAM           = (1 << 5);
 constexpr u32 STEP_CYCLE        = (1 << 6);
 constexpr u32 STEP_INSTRUCTION  = (1 << 7);
-constexpr u32 FINISH_FRAME      = (1 << 8);
-constexpr u32 SYNC_THREAD       = (1 << 9);
+constexpr u32 STEP_LINE         = (1 << 8);
+constexpr u32 STEP_FRAME        = (1 << 9);
+constexpr u32 SYNC_THREAD       = (1 << 10);
 }
 
 }

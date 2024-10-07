@@ -1204,6 +1204,11 @@ using namespace tiara;
     [self emu]->stepOver();
 }
 
+- (void)finishLine
+{
+    [self emu]->finishLine();
+}
+
 - (void)finishFrame
 {
     [self emu]->finishFrame();

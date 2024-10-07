@@ -266,6 +266,12 @@ Tiara::stepOver()
 }
 
 void
+Tiara::finishLine()
+{
+    emu->finishLine();
+}
+
+void
 Tiara::finishFrame()
 {
     emu->finishFrame();

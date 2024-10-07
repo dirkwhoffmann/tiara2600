@@ -159,6 +159,7 @@ using namespace tiara;
 - (void)stepCycle;
 - (void)stepInto;
 - (void)stepOver;
+- (void)finishLine;
 - (void)finishFrame;
 
 - (void)launch:(const void *)listener function:(Callback *)func;

@@ -170,6 +170,7 @@ public:
     void stepCycle();
     void stepInto();
     void stepOver();
+    void finishLine();
     void finishFrame();
 
 

@@ -258,6 +258,7 @@ TIAConfig;
 typedef struct
 {
     // Counters
+    isize frame;
     isize posx;
     isize posy;
 }

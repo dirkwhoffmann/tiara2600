@@ -589,18 +589,27 @@ Atari::computeFrame()
                 }
             }
 
+            if (flags & RL::STEP_LINE) {
+
+                if (tia.getX() < 3) {
+
+                    clearFlag(RL::STEP_LINE);
+                    msgQueue.put(MSG_STEP);
+                    pause = true;
+                }
+            }
             if (flags & RL::SYNC_THREAD) {
 
                 sync = true;
 
-                if (flags & RL::FINISH_FRAME) {
+                if (flags & RL::STEP_FRAME) {
 
                     clearFlag(RL::STEP_INSTRUCTION);
                     pause = true;
                 }
             }
 
-            flags &= RL::STEP_INSTRUCTION | RL::FINISH_FRAME;
+            flags &= RL::STEP_INSTRUCTION | RL::STEP_LINE | RL::STEP_FRAME;
 
             if (pause) throw StateChangeException(STATE_PAUSED);
             if (sync) break;

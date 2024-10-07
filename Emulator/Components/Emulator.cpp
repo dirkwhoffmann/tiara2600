@@ -121,11 +121,20 @@ Emulator::stepOver()
 }
 
 void
+Emulator::finishLine()
+{
+    if (isRunning()) return;
+
+    main.setFlag(RL::STEP_LINE);
+    run();
+}
+
+void
 Emulator::finishFrame()
 {
     if (isRunning()) return;
 
-    main.setFlag(RL::FINISH_FRAME);
+    main.setFlag(RL::STEP_FRAME);
     run();
 }
 
