@@ -120,6 +120,8 @@ CPU::processCommand(const Cmd &cmd)
 void
 CPU::setBreakpoint(u32 addr, isize ignores)
 {
+    addr &= addrMask();
+
     if (debugger.breakpoints.isSetAt(addr)) throw Error(VC64ERROR_BP_ALREADY_SET, addr);
 
     debugger.breakpoints.setAt(addr, ignores);
@@ -129,6 +131,8 @@ CPU::setBreakpoint(u32 addr, isize ignores)
 void 
 CPU::moveBreakpoint(isize nr, u32 newAddr)
 {
+    newAddr &= addrMask();
+
     if (!debugger.breakpoints.guardNr(nr)) throw Error(VC64ERROR_BP_NOT_FOUND, nr);
 
     debugger.breakpoints.moveTo(nr, newAddr);
@@ -147,6 +151,8 @@ CPU::deleteBreakpoint(isize nr)
 void
 CPU::deleteBreakpointAt(u32 addr)
 {
+    addr &= addrMask();
+
     if (!debugger.breakpoints.guardAt(addr)) throw Error(VC64ERROR_BP_NOT_FOUND, addr);
 
     debugger.breakpoints.removeAt(addr);
@@ -178,6 +184,8 @@ CPU::setEnableBreakpoint(isize nr, bool value)
 void 
 CPU::setEnableBreakpointAt(u32 addr, bool value)
 {
+    addr &= addrMask();
+
     if (!debugger.breakpoints.guardAt(addr)) throw Error(VC64ERROR_BP_NOT_FOUND, addr);
 
     debugger.breakpoints.setEnableAt(addr, value);
@@ -194,6 +202,8 @@ CPU::setEnableAllBreakpoints(bool value)
 void
 CPU::setWatchpoint(u32 addr, isize ignores)
 {
+    addr &= addrMask();
+
     if (debugger.watchpoints.isSetAt(addr)) throw Error(VC64ERROR_WP_ALREADY_SET, addr);
 
     debugger.watchpoints.setAt(addr, ignores);
@@ -203,6 +213,8 @@ CPU::setWatchpoint(u32 addr, isize ignores)
 void
 CPU::moveWatchpoint(isize nr, u32 newAddr)
 {
+    newAddr &= addrMask();
+
     if (!debugger.watchpoints.guardNr(nr)) throw Error(VC64ERROR_WP_NOT_FOUND, nr);
 
     debugger.watchpoints.moveTo(nr, newAddr);
@@ -221,6 +233,8 @@ CPU::deleteWatchpoint(isize nr)
 void
 CPU::deleteWatchpointAt(u32 addr)
 {
+    addr &= addrMask();
+
     if (!debugger.watchpoints.guardAt(addr)) throw Error(VC64ERROR_WP_NOT_FOUND, addr);
 
     debugger.watchpoints.removeAt(addr);
@@ -252,6 +266,8 @@ CPU::setEnableWatchpoint(isize nr, bool value)
 void
 CPU::setEnableWatchpointAt(u32 addr, bool value)
 {
+    addr &= addrMask();
+    
     if (!debugger.watchpoints.guardAt(addr)) throw Error(VC64ERROR_WP_NOT_FOUND, addr);
 
     debugger.watchpoints.setEnableAt(addr, value);

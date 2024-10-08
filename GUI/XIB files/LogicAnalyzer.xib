@@ -8,28 +8,28 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="LogicAnalyzer" customModule="Tiara" customModuleProvider="target">
             <connections>
-                <outlet property="finishCycleButton" destination="Nby-nM-utH" id="URV-bG-0ii"/>
-                <outlet property="finishFrameButton" destination="pp8-Te-COJ" id="r67-4L-Gn5"/>
-                <outlet property="finishLineButton" destination="K5y-53-gvg" id="hR3-CE-xo2"/>
-                <outlet property="hexButtom" destination="XFi-zN-Q9w" id="6oe-Pa-K78"/>
-                <outlet property="laAutoLineButton" destination="sb2-a1-lm9" id="G4C-BQ-Snn"/>
                 <outlet property="laColor0" destination="P1V-P5-GfH" id="ktN-fj-ROW"/>
                 <outlet property="laColor1" destination="gWw-fl-wE5" id="Rol-OS-lX2"/>
                 <outlet property="laColor2" destination="rhh-2z-4fm" id="YiT-9a-UM5"/>
                 <outlet property="laColor3" destination="oKZ-2a-bGE" id="Mb5-1M-J32"/>
                 <outlet property="laDisplayMode" destination="InU-Id-HrG" id="oyk-ZP-TVl"/>
+                <outlet property="laFinishCycleButton" destination="Nby-nM-utH" id="URV-bG-0ii"/>
+                <outlet property="laFinishFrameButton" destination="pp8-Te-COJ" id="r67-4L-Gn5"/>
+                <outlet property="laFinishLineButton" destination="K5y-53-gvg" id="hR3-CE-xo2"/>
+                <outlet property="laHexButtom" destination="XFi-zN-Q9w" id="6oe-Pa-K78"/>
                 <outlet property="laLineField" destination="H7b-QO-4Oo" id="IP1-8U-xm5"/>
                 <outlet property="laLineStepper" destination="9O5-RR-WK8" id="gh8-mP-wg9"/>
+                <outlet property="laLinkButton" destination="sb2-a1-lm9" id="G4C-BQ-Snn"/>
+                <outlet property="laLogicView" destination="eYh-oE-JEi" id="ulM-KX-NDU"/>
                 <outlet property="laOpacity" destination="aGW-i1-JNf" id="4gv-X8-Xid"/>
                 <outlet property="laProbe0" destination="sia-jN-LH7" id="Cfl-cl-4ti"/>
                 <outlet property="laProbe1" destination="a6a-Do-vAv" id="KvN-lJ-akA"/>
                 <outlet property="laProbe2" destination="8JZ-Ek-Huy" id="H5s-xM-28n"/>
                 <outlet property="laProbe3" destination="aI2-IB-WIS" id="tKa-PG-mtS"/>
-                <outlet property="runButton" destination="2rO-0q-kWb" id="0B2-rW-p4a"/>
-                <outlet property="scrollView" destination="epY-WN-8k2" id="5y1-l9-kuP"/>
-                <outlet property="symButtom" destination="WkT-WE-36F" id="Ps5-by-mlk"/>
-                <outlet property="timeStamp" destination="neL-Ai-pAD" id="oAM-ea-CnN"/>
-                <outlet property="trace0" destination="eYh-oE-JEi" id="ulM-KX-NDU"/>
+                <outlet property="laRunButton" destination="2rO-0q-kWb" id="0B2-rW-p4a"/>
+                <outlet property="laScrollView" destination="epY-WN-8k2" id="5y1-l9-kuP"/>
+                <outlet property="laSymButtom" destination="WkT-WE-36F" id="Ps5-by-mlk"/>
+                <outlet property="laTimeStamp" destination="neL-Ai-pAD" id="oAM-ea-CnN"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="Psk-RA-Owv"/>
             </connections>
         </customObject>

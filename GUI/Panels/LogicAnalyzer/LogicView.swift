@@ -18,6 +18,10 @@ class LogicView: NSView {
     // The visualized rasterline
     var line: Int { return analyzer.line }
 
+    // Beam position
+    var x: Int?
+    var y: Int?
+
     // The probed signal
     var probe: [tiara.Probe] = [ .ADDR_BUS, .DATA_BUS, .PHI1, .PHI2 ]
 
@@ -59,9 +63,15 @@ class LogicView: NSView {
         needsDisplay = true
     }
 
+    //
+    // Managing the data source
+    //
+
     func updateData() {
 
-        if let values = emu?.logicAnalyzer.getData(line) {
+        guard let emu = emu else { return }
+
+        if let values = emu.logicAnalyzer.getData(line) {
 
             for c in 0...3 {
 
@@ -87,6 +97,19 @@ class LogicView: NSView {
         }
     }
 
+    func getData(x pos: Int, channel: Int) -> Int? {
+
+        if let x = x, let y = y {
+            return line < y || (line == y && pos < x) ? data[channel][pos] : nil
+        } else {
+            return data[channel][pos]
+        }
+    }
+
+    //
+    // Drawing
+    //
+
     func clear() {
 
         box.fillColor.setFill()
@@ -102,7 +125,7 @@ class LogicView: NSView {
         let path = CGMutablePath()
         let dx = bounds.width / 228
 
-        for i in 1..<227 {
+        for i in 1...227 {
 
             path.move(to: CGPoint(x: CGFloat(i) * dx, y: bounds.minY))
             path.addLine(to: CGPoint(x: CGFloat(i) * dx, y: bounds.maxY))
@@ -150,19 +173,27 @@ class LogicView: NSView {
                               y: bounds.maxY - CGFloat(i + 2) * dy,
                               width: bounds.width,
                               height: 24)
-            drawSignal(in: rect, channel: i)
+            drawSignalTrace(in: rect, channel: i)
         }
     }
 
-    func drawSignal(in rect: NSRect, channel: Int) {
+    func drawSignalTrace(in rect: NSRect, channel: Int) {
 
+        let info = analyzer.emu!.tia.info
+        /*
+        let x = info.posx
+        let y = info.posy
+        if y < analyzer.line { return }
+        */
         let w = rect.size.width / 228
 
-        var prev = -1
-        var curr = data[channel][0]
-        var next = data[channel][1]
+        var prev: Int?
+        var curr: Int? = getData(x: 0, channel: channel)
+        var next: Int? = getData(x: 1, channel: channel)
 
         for i in 0..<228 {
+
+            if curr == nil { break }
 
             let r = CGRect(x: CGFloat(i) * w,
                            y: rect.minY,
@@ -170,18 +201,18 @@ class LogicView: NSView {
                            height: rect.height)
 
             if bitWidth[channel] == 1 {
-                drawSegment(in: r, v: [prev != 0, curr != 0, next != 0], color: signalColor[channel])
+                drawLineSegment(in: r, v: [prev, curr, next], color: signalColor[channel])
             } else {
-                drawSegment(in: r, v: [prev, curr, next], color: signalColor[channel])
+                drawDataSegment(in: r, v: [prev, curr, next], color: signalColor[channel])
             }
-            drawText(text: formatter.string(from: curr, bitWidth: bitWidth[channel]),
+            drawText(text: formatter.string(from: curr!, bitWidth: bitWidth[channel]),
                      at: CGPoint(x: CGFloat(i) * w + (w / 2), y: rect.midY),
                      font: mono,
                      color: NSColor.labelColor)
 
             prev = curr
             curr = next
-            next = data[channel][i+2]
+            next = getData(x: i+2, channel: channel)
         }
     }
 
@@ -214,7 +245,9 @@ class LogicView: NSView {
         return rect
     }
 
-    func drawSegment(in rect: CGRect, v: [Bool], color: NSColor) {
+    func drawLineSegment(in rect: CGRect, v: [Int?], color: NSColor) {
+
+        if v[1] == nil { return }
 
         let path = CGMutablePath()
 
@@ -230,10 +263,10 @@ class LogicView: NSView {
          *          p1                  p4
          */
 
-        let p1 = CGPoint(x: x1, y: v[0] ? y2 : y1)
-        let p2 = CGPoint(x: x1, y: v[1] ? y2 : y1)
-        let p3 = CGPoint(x: x2, y: v[1] ? y2 : y1)
-        let p4 = CGPoint(x: x2, y: v[2] ? y2 : y1)
+        let p2 = CGPoint(x: x1, y: v[1] == 1 ? y2 : y1)
+        let p1 = v[0] != nil ? CGPoint(x: x1, y: v[0] == 1 ? y2 : y1) : p2
+        let p3 = CGPoint(x: x2, y: v[1] == 1 ? y2 : y1)
+        let p4 = v[2] != nil ? CGPoint(x: x2, y: v[2] == 1 ? y2 : y1) : p3
 
         path.move(to: p1)
         path.addLine(to: p2)
@@ -247,7 +280,9 @@ class LogicView: NSView {
         context.drawPath(using: .stroke)
     }
 
-    func drawSegment(in rect: CGRect, v: [Int], color: NSColor) {
+    func drawDataSegment(in rect: CGRect, v: [Int?], color: NSColor) {
+
+        if v[1] == nil { return }
 
         let path = CGMutablePath()
 
@@ -266,21 +301,19 @@ class LogicView: NSView {
          */
 
         let m = 0.1 * rect.width
-        let p1 = CGPoint(x: x1, y: v[0] == v[1] ? y1 : rect.midY)
+        let p1 = CGPoint(x: x1, y: (v[0] == nil || v[0] == v[1]) ? y1 : rect.midY)
         let p2 = CGPoint(x: x1 + m, y: y1)
         let p3 = CGPoint(x: x2 - m, y: y1)
-        let p4 = CGPoint(x: x2, y: v[1] == v[2] ? y1 : rect.midY)
-        let p5 = CGPoint(x: x2, y: v[1] == v[2] ? y2 : rect.midY)
+        let p4 = CGPoint(x: x2, y: (v[2] == nil || v[1] == v[2]) ? y1 : rect.midY)
+        let p5 = CGPoint(x: x2, y: (v[2] == nil || v[1] == v[2]) ? y2 : rect.midY)
         let p6 = CGPoint(x: x2 - m, y: y2)
         let p7 = CGPoint(x: x1 + m, y: y2)
-        let p8 = CGPoint(x: x1, y: v[0] == v[1] ? y2 : rect.midY)
+        let p8 = CGPoint(x: x1, y: (v[0] == nil || v[0] == v[1]) ? y2 : rect.midY)
 
         path.move(to: p1)
-        // path.addLine(to: p1)
         path.addLine(to: p2)
         path.addLine(to: p3)
         path.addLine(to: p4)
-        // path.addLine(to: p5)
         path.move(to: p5)
         path.addLine(to: p6)
         path.addLine(to: p7)

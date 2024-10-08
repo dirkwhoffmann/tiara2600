@@ -573,14 +573,9 @@ Atari::computeFrame()
 
             if (flags & RL::STEP_INSTRUCTION) {
 
-                printf("RL::STEP_INSTRUCTION\n");
-
                 if (cpu.inFetchPhase()) {
 
-                    printf("cpu.inFetchPhase\n");
                     if (!stepTo.has_value() || stepTo == cpu.getPC0()) {
-
-                        printf("HIT\n");
 
                         clearFlag(RL::STEP_INSTRUCTION);
                         msgQueue.put(MSG_STEP);
@@ -591,7 +586,7 @@ Atari::computeFrame()
 
             if (flags & RL::STEP_LINE) {
 
-                if (tia.getX() < 3) {
+                if (tia.getX() >= 226) {
 
                     clearFlag(RL::STEP_LINE);
                     msgQueue.put(MSG_STEP);
