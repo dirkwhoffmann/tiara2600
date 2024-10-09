@@ -28,6 +28,8 @@ class LogicAnalyzer: DialogController {
 
     @IBOutlet weak var laScrollView: NSScrollView!
     @IBOutlet weak var laLogicView: LogicView!
+    @IBOutlet weak var laRecordBox: NSBox!
+    @IBOutlet weak var laSpinIcon: NSProgressIndicator!
 
     @IBOutlet weak var laOpacity: NSSlider!
     @IBOutlet weak var laDisplayMode: NSPopUpButton!
@@ -54,6 +56,9 @@ class LogicAnalyzer: DialogController {
             laLineStepper.integerValue = line
         }
     }
+
+    // Indicates if the emulator is currently running or paused
+    var running = 0
 
     // Indicates if the displayed scanline is always the current line
     var linked: Bool { return laLinkButton.state == .on }
@@ -85,11 +90,11 @@ class LogicAnalyzer: DialogController {
             add("RDY")
             add("VSYNC")
             add("VBLANK")
-
-            zoom = 15
         }
 
         super.awakeFromNib()
+
+        zoom = 15
 
         // Initialize colors
         let palette: [NSColor] = [
@@ -139,11 +144,11 @@ class LogicAnalyzer: DialogController {
 
         let info = emu.tia.info
         let config = emu.logicAnalyzer.getConfig()
-        let running = emu.running
-        
+        if emu.running { running += 1 } else { running = 0 }
+
         if full {
 
-            if running {
+            if running > 0 {
 
                 laRunButton.image = NSImage(named: "pauseTemplate")
                 laRunButton.toolTip = "Pause"
@@ -159,6 +164,17 @@ class LogicAnalyzer: DialogController {
                 laFinishLineButton.isEnabled = true
                 laFinishFrameButton.isEnabled = true
             }
+        }
+
+        if running > 1 {
+            laLogicView.visible = false
+            laRecordBox.isHidden = false
+            laSpinIcon.startAnimation(self)
+        }
+        if running == 0 {
+            laLogicView.visible = true
+            laRecordBox.isHidden = true
+            laSpinIcon.stopAnimation(self)
         }
 
         // Switch to the current line if applicable
@@ -195,7 +211,7 @@ class LogicAnalyzer: DialogController {
 
         laLogicView.update()
 
-        if linked && !running {
+        if linked && running == 0 {
 
             let pos = (laLogicView.bounds.width / CGFloat(228)) * CGFloat(info.posx + 1)
             let newx = pos - (laScrollView.bounds.width / 2)

@@ -26,8 +26,10 @@
                 <outlet property="laProbe1" destination="a6a-Do-vAv" id="KvN-lJ-akA"/>
                 <outlet property="laProbe2" destination="8JZ-Ek-Huy" id="H5s-xM-28n"/>
                 <outlet property="laProbe3" destination="aI2-IB-WIS" id="tKa-PG-mtS"/>
+                <outlet property="laRecordBox" destination="EtY-Tj-K6d" id="L9o-be-9Jv"/>
                 <outlet property="laRunButton" destination="2rO-0q-kWb" id="0B2-rW-p4a"/>
                 <outlet property="laScrollView" destination="epY-WN-8k2" id="5y1-l9-kuP"/>
+                <outlet property="laSpinIcon" destination="SQz-QG-gQN" id="NXJ-oc-gSs"/>
                 <outlet property="laSymButtom" destination="WkT-WE-36F" id="Ps5-by-mlk"/>
                 <outlet property="laTimeStamp" destination="neL-Ai-pAD" id="oAM-ea-CnN"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="Psk-RA-Owv"/>
@@ -365,6 +367,31 @@
                                         <action selector="symAction:" target="-2" id="WWn-Z6-ww3"/>
                                     </connections>
                                 </button>
+                                <box fixedFrame="YES" boxType="custom" borderType="bezel" cornerRadius="3" title="Box" titlePosition="noTitle" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EtY-Tj-K6d">
+                                    <rect key="frame" x="414" y="86" width="171" height="110"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <view key="contentView" id="k7c-Yi-alG">
+                                        <rect key="frame" x="1" y="1" width="169" height="108"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <progressIndicator fixedFrame="YES" maxValue="100" doubleValue="50" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="SQz-QG-gQN">
+                                                <rect key="frame" x="27" y="38" width="32" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            </progressIndicator>
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XZb-qq-lpg">
+                                                <rect key="frame" x="66" y="46" width="77" height="16"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Recording..." id="sqz-nU-O6g">
+                                                    <font key="font" usesAppearanceFont="YES"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                    </view>
+                                    <color key="borderColor" name="windowFrameTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="fillColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                </box>
                             </subviews>
                         </view>
                     </box>

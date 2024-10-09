@@ -324,7 +324,8 @@ public:
     template <bool> void execute();
     template <bool, isize> void execute();
 
-    // End-of-frame handler
+    // Frame handlers (start of frame, end of frame)
+    void sofHandler();
     void eofHandler();
 
 };

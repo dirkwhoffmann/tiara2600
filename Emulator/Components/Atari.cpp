@@ -522,6 +522,8 @@ Atari::update(CmdQueue &queue)
 void
 Atari::computeFrame()
 {
+    if (endOfFrame) { sofHandler(); }
+
     while (1) {
 
         // Advance the cycle counter
@@ -595,7 +597,7 @@ Atari::computeFrame()
             }
             if (flags & RL::SYNC_THREAD) {
 
-                sync = true;
+                endOfFrame = true;
 
                 if (flags & RL::STEP_FRAME) {
 
@@ -607,7 +609,7 @@ Atari::computeFrame()
             flags &= RL::STEP_INSTRUCTION | RL::STEP_LINE | RL::STEP_FRAME;
 
             if (pause) throw StateChangeException(STATE_PAUSED);
-            if (sync) break;
+            if (endOfFrame) break;
         }
     }
 }
@@ -793,6 +795,13 @@ C64::eolHandler()
 
 }
 */
+
+void Atari::sofHandler()
+{
+    tia.sofHandler();
+
+    endOfFrame = false;
+}
 
 void
 Atari::eofHandler()

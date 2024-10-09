@@ -208,11 +208,14 @@ public:
     // The total number of frames drawn since power up
     u64 frame = 0;
 
+    // Indicates if we have reached the end of a frame
+    bool endOfFrame = true;
+
     // The currently drawn scanline (first scanline = 0)
-    [[deprecated]] u16 scanline = 0;
+    // [[deprecated]] u16 scanline = 0;
 
     // The currently executed scanline cycle (first cylce = 1)
-    [[deprecated]] u8 rasterCycle = 1;
+    // [[deprecated]] u8 rasterCycle = 1;
 
 private:
 
@@ -506,7 +509,8 @@ private:
     // Finishes up the current line
     // void eolHandler();
 
-    // Finishes up the current frame
+    // Start-of-frame and End-of-frame handlers
+    void sofHandler();
     void eofHandler();
 
 

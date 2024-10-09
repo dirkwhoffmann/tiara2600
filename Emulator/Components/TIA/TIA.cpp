@@ -226,6 +226,12 @@ TIA::execute()
 }
 
 void
+TIA::sofHandler()
+{
+
+}
+
+void
 TIA::eofHandler()
 {
     frame++;

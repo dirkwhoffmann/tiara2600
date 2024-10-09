@@ -15,6 +15,9 @@ class LogicView: NSView {
     // Reference to the emulator
     var emu: EmulatorProxy? { return analyzer.emu }
 
+    // Indicates if anything should be drawn
+    var visible = false
+
     // The visualized rasterline
     var line: Int { return analyzer.line }
 
@@ -100,10 +103,11 @@ class LogicView: NSView {
     func getData(x pos: Int, channel: Int) -> Int? {
 
         if let x = x, let y = y {
+
             return line < y || (line == y && pos < x) ? data[channel][pos] : nil
-        } else {
-            return data[channel][pos]
         }
+
+        return nil
     }
 
     //
@@ -121,6 +125,9 @@ class LogicView: NSView {
         let endPoint = CGPoint(x: 0, y: bounds.maxY)
         context.drawLinearGradient(gradient!, start: startPoint, end: endPoint, options: [])
         */
+    }
+
+    func drawMarkers(in rect: NSRect) {
 
         let path = CGMutablePath()
         let dx = bounds.width / 228
@@ -136,11 +143,7 @@ class LogicView: NSView {
         context.addPath(path)
         context.drawPath(using: .stroke)
 
-    }
-
-    func drawMarkers(in rect: NSRect) {
-
-        let dx = rect.width / 228
+        // let dx = rect.width / 228
         for i in 0..<228 {
 
             drawText(text: "\(i)",
@@ -157,16 +160,20 @@ class LogicView: NSView {
 
     override func draw(_ dirtyRect: NSRect) {
 
+        super.draw(dirtyRect)
+
+        context = NSGraphicsContext.current?.cgContext
         let dy = CGFloat(36)
 
-        super.draw(dirtyRect)
-        context = NSGraphicsContext.current?.cgContext
-
         clear()
+
+        if !visible { return }
+
         drawMarkers(in: NSRect(x: bounds.minX,
                                y: bounds.maxY - dy,
                                width: bounds.width,
                                height: 24))
+
         for i in 0...3 {
 
             let rect = NSRect(x: bounds.minX,
@@ -179,7 +186,7 @@ class LogicView: NSView {
 
     func drawSignalTrace(in rect: NSRect, channel: Int) {
 
-        let info = analyzer.emu!.tia.info
+        // let info = analyzer.emu!.tia.info
         /*
         let x = info.posx
         let y = info.posy
