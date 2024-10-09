@@ -167,11 +167,14 @@ class LogicAnalyzer: DialogController {
         }
 
         if running > 1 {
+
             laLogicView.visible = false
             laRecordBox.isHidden = false
             laSpinIcon.startAnimation(self)
         }
+
         if running == 0 {
+
             laLogicView.visible = true
             laRecordBox.isHidden = true
             laSpinIcon.stopAnimation(self)
@@ -204,7 +207,7 @@ class LogicAnalyzer: DialogController {
         laHexButtom.state = laLogicView.formatter.hex ? .on : .off
 
         laTimeStamp.stringValue = String(format: "%d:%03d:%03d",
-                                       info.frame, info.posy, info.posx)
+                                         info.frame, info.posy, info.posx)
 
         laLogicView.x = info.posx
         laLogicView.y = info.posy

@@ -33,10 +33,12 @@ class Inspector: DialogController {
     // Commons
     @IBOutlet weak var panel: NSTabView!
     @IBOutlet weak var stopAndGoButton: NSButton!
+    @IBOutlet weak var stepCycleButton: NSButton!
     @IBOutlet weak var stepIntoButton: NSButton!
     @IBOutlet weak var stepOverButton: NSButton!
     @IBOutlet weak var message: NSTextField!
     @IBOutlet weak var hexDecSelector: NSMatrix!
+    @IBOutlet weak var timeStamp: NSTextField!
 
     // CPU panel
     @IBOutlet weak var cpuTab: NSTabView!
@@ -319,6 +321,7 @@ class Inspector: DialogController {
 
                 stopAndGoButton.image = NSImage(named: "pauseTemplate")
                 stopAndGoButton.toolTip = "Pause"
+                stepCycleButton.isEnabled = false
                 stepIntoButton.isEnabled = false
                 stepOverButton.isEnabled = false
 
@@ -326,9 +329,17 @@ class Inspector: DialogController {
 
                 stopAndGoButton.image = NSImage(named: "runTemplate")
                 stopAndGoButton.toolTip = "Run"
+                stepCycleButton.isEnabled = true
                 stepIntoButton.isEnabled = true
                 stepOverButton.isEnabled = true
             }
+
+            timeStamp.font = NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+        }
+
+        if let info = emu?.tia.info {
+            timeStamp.stringValue = String(format: "%d:%03d:%03d",
+                                           info.frame, info.posy, info.posx)
         }
 
         if let id = panel.selectedTabViewItem?.label {
@@ -434,19 +445,20 @@ class Inspector: DialogController {
             if emu.running { emu.pause() } else { try? emu.run() }
         }
     }
-    
+
+    @IBAction func stepCycleAction(_ sender: NSButton!) {
+
+        emu?.stepCycle()
+    }
+
     @IBAction func stepIntoAction(_ sender: NSButton!) {
 
-        if let emu = emu {
-            emu.stepInto()
-        }
+        emu?.stepInto()
     }
     
     @IBAction func stepOverAction(_ sender: NSButton!) {
 
-        if let emu = emu {
-            emu.stepOver()
-        }
+        emu?.stepOver()
     }
     
     @IBAction func hexAction(_ sender: NSButtonCell!) {

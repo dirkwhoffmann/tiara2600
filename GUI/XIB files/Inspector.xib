@@ -82,9 +82,11 @@
                 <outlet property="sidBufferUnderflows" destination="x0I-Ob-qBC" id="OSB-Ge-gmw"/>
                 <outlet property="sidWaveformSource" destination="dh8-Q3-Qtj" id="c11-RI-hss"/>
                 <outlet property="sidWaveformView" destination="ndh-ZM-l08" id="YBl-2x-aeh"/>
+                <outlet property="stepCycleButton" destination="dqo-Oa-apC" id="Kt1-TR-pdb"/>
                 <outlet property="stepIntoButton" destination="EYA-b4-jd8" id="X7c-oQ-vYS"/>
                 <outlet property="stepOverButton" destination="XcS-nk-XBp" id="Blq-Hv-IZy"/>
                 <outlet property="stopAndGoButton" destination="DQ4-Ah-ce3" id="hhb-ps-zLf"/>
+                <outlet property="timeStamp" destination="DGV-Ov-f8V" id="dll-ac-LOR"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="4y3-MY-rvW"/>
             </connections>
         </customObject>
@@ -102,7 +104,7 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <button toolTip="Step Into" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EYA-b4-jd8">
-                        <rect key="frame" x="87" y="10" width="34" height="34"/>
+                        <rect key="frame" x="120" y="10" width="34" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="stepIntoTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="r8o-lg-ef1">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -113,7 +115,7 @@
                         </connections>
                     </button>
                     <button toolTip="Run / Pause" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DQ4-Ah-ce3">
-                        <rect key="frame" x="19" y="10" width="34" height="34"/>
+                        <rect key="frame" x="18" y="10" width="34" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="pauseTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="vTp-Cf-cv9">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -124,7 +126,7 @@
                         </connections>
                     </button>
                     <button toolTip="Step Over" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XcS-nk-XBp">
-                        <rect key="frame" x="53" y="10" width="34" height="34"/>
+                        <rect key="frame" x="86" y="10" width="34" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="stepOverTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="BIq-PM-Ogu">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1856,7 +1858,7 @@
                         </connections>
                     </tabView>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SRP-bu-eZG">
-                        <rect key="frame" x="121" y="20" width="576" height="16"/>
+                        <rect key="frame" x="299" y="20" width="414" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" id="cMK-ob-Mzd">
                             <font key="font" metaFont="system"/>
@@ -1864,6 +1866,36 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button toolTip="Step one cycle" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqo-Oa-apC">
+                        <rect key="frame" x="52" y="9" width="34" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="execCycleTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="kwD-w4-JyS">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="stepCycleAction:" target="-2" id="aaR-mJ-W9n"/>
+                        </connections>
+                    </button>
+                    <box fixedFrame="YES" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ZjO-Yt-fen">
+                        <rect key="frame" x="154" y="7" width="142" height="37"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <view key="contentView" id="wSF-bK-S6j">
+                            <rect key="frame" x="4" y="5" width="134" height="29"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DGV-Ov-f8V">
+                                    <rect key="frame" x="4" y="7" width="127" height="16"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="9999999:000:000" id="vDQ-qG-L9J">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </subviews>
+                        </view>
+                    </box>
                 </subviews>
             </view>
             <connections>
@@ -1873,6 +1905,7 @@
         </window>
     </objects>
     <resources>
+        <image name="execCycleTemplate" width="241" height="241"/>
         <image name="monitorTemplate" width="36" height="36"/>
         <image name="pauseTemplate" width="36" height="36"/>
         <image name="stepIntoTemplate" width="177" height="177"/>

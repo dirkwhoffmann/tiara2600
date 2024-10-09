@@ -57,8 +57,8 @@
                             <action selector="runAction:" target="-2" id="FiJ-ad-P0T"/>
                         </connections>
                     </button>
-                    <button toolTip="Advance one CPU cycle" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K5y-53-gvg">
-                        <rect key="frame" x="85" y="18" width="34" height="34"/>
+                    <button toolTip="Finish line" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K5y-53-gvg">
+                        <rect key="frame" x="87" y="18" width="34" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="execLineTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="aOb-Ik-OCT">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -68,8 +68,8 @@
                             <action selector="finishLineAction:" target="-2" id="ewn-sl-F43"/>
                         </connections>
                     </button>
-                    <button toolTip="Advance one CPU cycle" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pp8-Te-COJ">
-                        <rect key="frame" x="118" y="18" width="34" height="34"/>
+                    <button toolTip="Finish frame" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pp8-Te-COJ">
+                        <rect key="frame" x="121" y="18" width="34" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="execFrameTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="IsP-C6-lDn">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -115,15 +115,15 @@
                         </connections>
                     </slider>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mGW-YN-iYx">
-                        <rect key="frame" x="290" y="26" width="95" height="18"/>
+                        <rect key="frame" x="304" y="26" width="76" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="check" title="Break at Y: " bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="a6T-tO-XPL">
+                        <buttonCell key="cell" type="check" title="Break at" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="a6T-tO-XPL">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c3N-oC-KL9">
-                        <rect key="frame" x="381" y="25" width="30" height="21"/>
+                        <rect key="frame" x="381" y="24" width="30" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="124" drawsBackground="YES" id="AGZ-nb-iqV">
                             <font key="font" metaFont="system"/>
@@ -132,7 +132,7 @@
                         </textFieldCell>
                     </textField>
                     <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BlH-nc-yGa">
-                        <rect key="frame" x="433" y="25" width="33" height="21"/>
+                        <rect key="frame" x="425" y="24" width="33" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="154" drawsBackground="YES" id="vFx-6S-7Lq">
                             <font key="font" metaFont="system"/>
@@ -141,9 +141,9 @@
                         </textFieldCell>
                     </textField>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oja-Gs-KvB">
-                        <rect key="frame" x="415" y="27" width="17" height="16"/>
+                        <rect key="frame" x="414" y="27" width="8" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="X:" id="u8p-d0-HCZ">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title=":" id="u8p-d0-HCZ">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -411,8 +411,8 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <button toolTip="Finish frame" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nby-nM-utH">
-                        <rect key="frame" x="52" y="18" width="34" height="34"/>
+                    <button toolTip="Step one cycle" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nby-nM-utH">
+                        <rect key="frame" x="53" y="18" width="34" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="execCycleTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="2hr-UK-n6R">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -423,10 +423,10 @@
                         </connections>
                     </button>
                     <box fixedFrame="YES" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="oEU-YG-hGh">
-                        <rect key="frame" x="151" y="16" width="137" height="37"/>
+                        <rect key="frame" x="155" y="16" width="142" height="37"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="wIN-QX-Kpf">
-                            <rect key="frame" x="4" y="5" width="129" height="29"/>
+                            <rect key="frame" x="4" y="5" width="134" height="29"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="neL-Ai-pAD">
