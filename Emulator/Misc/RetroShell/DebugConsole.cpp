@@ -209,6 +209,41 @@ DebugConsole::initCommands(Command &root)
         cpu.toggleWatchpoint(parseNum(argv[0]));
     });
 
+    root.add({"btrap"},    "Manage beamtraps");
+
+    {
+
+        root.add({"btrap", ""},
+                 "List all beamtraps",
+                 [this](Arguments& argv, long value) {
+
+            dump(logicAnalyzer, Category::Beamtraps);
+        });
+
+        root.add({"btrap", "at"}, { Arg::value, Arg::value }, { Arg::ignores },
+                 "Set a beamtrap at the specified coordinate",
+                 [this](Arguments& argv, long value) {
+
+            auto v = parseNum(argv[0]);
+            auto h = parseNum(argv[1]);
+            logicAnalyzer.beamtraps.setAt(HI_W_LO_W(v, h), parseNum(argv, 2, 0));
+        });
+
+        root.add({"btrap", "delete"}, { Arg::value },
+                 "Delete a beamtrap",
+                 [this](Arguments& argv, long value) {
+
+            logicAnalyzer.beamtraps.remove(parseNum(argv[0]));
+        });
+
+        root.add({"btrap", "toggle"}, { Arg::value },
+                 "Enable or disable a beamtrap",
+                 [this](Arguments& argv, long value) {
+
+            logicAnalyzer.beamtraps.toggle(parseNum(argv[0]));
+        });
+    }
+
 
     //
     // Monitoring

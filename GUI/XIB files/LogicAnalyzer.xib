@@ -32,6 +32,8 @@
                 <outlet property="laSpinIcon" destination="SQz-QG-gQN" id="NXJ-oc-gSs"/>
                 <outlet property="laSymButtom" destination="WkT-WE-36F" id="Ps5-by-mlk"/>
                 <outlet property="laTimeStamp" destination="neL-Ai-pAD" id="oAM-ea-CnN"/>
+                <outlet property="laX" destination="BlH-nc-yGa" id="qSY-P5-988"/>
+                <outlet property="laY" destination="c3N-oC-KL9" id="3sZ-1W-cLU"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="Psk-RA-Owv"/>
             </connections>
         </customObject>
@@ -117,28 +119,37 @@
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mGW-YN-iYx">
                         <rect key="frame" x="304" y="26" width="76" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="check" title="Break at" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="a6T-tO-XPL">
+                        <buttonCell key="cell" type="check" title="Break at" bezelStyle="regularSquare" imagePosition="left" inset="2" id="a6T-tO-XPL">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="beamtrapAction:" target="-2" id="TeC-Zz-yex"/>
+                        </connections>
                     </button>
                     <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c3N-oC-KL9">
-                        <rect key="frame" x="381" y="24" width="30" height="21"/>
+                        <rect key="frame" x="381" y="24" width="31" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="124" drawsBackground="YES" id="AGZ-nb-iqV">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="100" drawsBackground="YES" id="AGZ-nb-iqV">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <action selector="beamtrapYAction:" target="-2" id="Jh5-ig-fdP"/>
+                        </connections>
                     </textField>
                     <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BlH-nc-yGa">
                         <rect key="frame" x="425" y="24" width="33" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="154" drawsBackground="YES" id="vFx-6S-7Lq">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="0" drawsBackground="YES" id="vFx-6S-7Lq">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <action selector="beamtrapXAction:" target="-2" id="jcV-DN-iLF"/>
+                        </connections>
                     </textField>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oja-Gs-KvB">
                         <rect key="frame" x="414" y="27" width="8" height="16"/>

@@ -264,7 +264,7 @@ public:
 
 
     //
-    // Querying state
+    // Managing the beam
     //
 
 public:
@@ -272,7 +272,10 @@ public:
     isize getX() const { return x; }
     isize getY() const { return y; }
 
-    
+    // Computes the distance of the beam to the provided position
+    isize diff(isize y, isize x);
+
+
     //
     // Managing colors
     //
@@ -327,6 +330,16 @@ public:
     // Frame handlers (start of frame, end of frame)
     void sofHandler();
     void eofHandler();
+
+
+    //
+    // Processing events and commands
+    //
+
+public:
+
+    // Processes a command from the command queue
+    // void processCommand(const Cmd &cmd) { };
 
 };
 

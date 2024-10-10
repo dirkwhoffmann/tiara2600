@@ -69,6 +69,14 @@ Error::Error(ErrorCode code, const string &s)
             description = "Out of memory.";
             break;
 
+        case VC64ERROR_GUARD_NOT_FOUND:
+            description = "Entry " + s + " not found.";
+            break;
+
+        case VC64ERROR_GUARD_ALREADY_SET:
+            description = "Target " + s + " is already observed.";
+            break;
+
         case VC64ERROR_DIR_NOT_FOUND:
             if (s.empty()) {
                 description = "Folder not found.";

@@ -183,9 +183,9 @@ LogicAnalyzer::computeOverlay(u32 *emuTexture, u32 *dmaTexture)
 }
 
 void
-LogicAnalyzer::eofHandler()
+LogicAnalyzer::sofHandler()
 {
-
+    beamtraps.sofHandler();
     memset(data, 0, sizeof data);
 }
 

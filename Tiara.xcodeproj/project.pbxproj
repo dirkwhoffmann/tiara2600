@@ -25,6 +25,8 @@
 		500E34172615C40D006A38DA /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 500E34152615C40D006A38DA /* Parser.cpp */; };
 		500EA6C724B09037009AA7D7 /* SubComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 500EA6C524B09037009AA7D7 /* SubComponent.cpp */; };
 		500F7CC6281EAB64003F1A7C /* DiskCreator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 500F7CC5281EAB64003F1A7C /* DiskCreator.xib */; };
+		50116E8F2CB795F800E1AD7E /* BeamTraps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50116E8E2CB795F600E1AD7E /* BeamTraps.cpp */; };
+		50116E902CB795F800E1AD7E /* BeamTraps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50116E8E2CB795F600E1AD7E /* BeamTraps.cpp */; };
 		50133B97200D4EED00167227 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50133B96200D4EED00167227 /* MetalView.swift */; };
 		50157EEB28256035000E9DDD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50157EEA28256035000E9DDD /* Config.swift */; };
 		50176C810A6F7357009E80BD /* EmulatorProxy.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50176C7A0A6F7357009E80BD /* EmulatorProxy.mm */; };
@@ -366,6 +368,8 @@
 		500F7CC5281EAB64003F1A7C /* DiskCreator.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiskCreator.xib; sourceTree = "<group>"; };
 		500FAA63261376C50062488E /* BasicTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicTypes.h; sourceTree = "<group>"; };
 		500FAA64261377050062488E /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		50116E8D2CB795EF00E1AD7E /* BeamTraps.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeamTraps.h; sourceTree = "<group>"; };
+		50116E8E2CB795F600E1AD7E /* BeamTraps.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BeamTraps.cpp; sourceTree = "<group>"; };
 		50133B96200D4EED00167227 /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
 		50157EEA28256035000E9DDD /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		50176C790A6F7357009E80BD /* EmulatorProxy.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 30; path = EmulatorProxy.h; sourceTree = "<group>"; };
@@ -1170,6 +1174,8 @@
 				50DBB3D02641101E006F45E6 /* LogicAnalyzer.h */,
 				508C1E5C2C0B31320097473C /* LogicAnalyzerBase.cpp */,
 				50DBB3CF2641101E006F45E6 /* LogicAnalyzer.cpp */,
+				50116E8D2CB795EF00E1AD7E /* BeamTraps.h */,
+				50116E8E2CB795F600E1AD7E /* BeamTraps.cpp */,
 			);
 			path = TIA;
 			sourceTree = "<group>";
@@ -1658,6 +1664,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50726FB62961CA290031F2F5 /* Console.cpp in Sources */,
+				50116E902CB795F800E1AD7E /* BeamTraps.cpp in Sources */,
 				50726F502961C9940031F2F5 /* CoreComponent.cpp in Sources */,
 				50A194A02BDA84710046849E /* MemoryBase.cpp in Sources */,
 				50726F432961C97B0031F2F5 /* Checksum.cpp in Sources */,
@@ -1876,6 +1883,7 @@
 				5018BFB324B48DD500551848 /* RendererSetup.swift in Sources */,
 				50E83D512CB0579E00308A1C /* LogicView.swift in Sources */,
 				504104462CA687370004860E /* TIA.cpp in Sources */,
+				50116E8F2CB795F800E1AD7E /* BeamTraps.cpp in Sources */,
 				506F30422B74C1C70083EAEA /* Wakeable.cpp in Sources */,
 				506F303E2B7364270083EAEA /* Suspendable.cpp in Sources */,
 				50FFB54D2B8262BA00042771 /* Serializable.cpp in Sources */,

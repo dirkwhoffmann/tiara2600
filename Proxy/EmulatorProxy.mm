@@ -169,6 +169,120 @@ using namespace tiara;
 
 
 //
+// Guards (Breakpoints, Watchpoints)
+//
+
+@implementation GuardsProxy
+
+- (GuardsAPI *)guards
+{
+    return (GuardsAPI *)obj;
+}
+
+- (NSInteger)count
+{
+    return [self guards]->elements();
+}
+
+- (NSInteger)addr:(NSInteger)nr
+{
+    auto guard = [self guards]->guardNr(nr);
+    return guard ? (*guard).addr : 0;
+}
+
+- (BOOL)isSet:(NSInteger)nr
+{
+    auto guard = [self guards]->guardNr(nr);
+    return guard.has_value();
+}
+
+- (BOOL)isSetAt:(NSInteger)addr
+{
+    auto guard = [self guards]->guardAt(u32(addr));
+    return guard.has_value();
+}
+
+- (void)setAt:(NSInteger)addr exception:(ExceptionWrapper *)ex
+{
+    try { [self guards]->setAt((u32)addr); }
+    catch (Error &error) { [ex save:error]; }
+}
+
+- (void)remove:(NSInteger)nr exception:(ExceptionWrapper *)ex
+{
+    try { [self guards]->remove(nr); }
+    catch (Error &error) { [ex save:error]; }
+}
+
+- (void)removeAt:(NSInteger)addr exception:(ExceptionWrapper *)ex
+{
+    try { [self guards]->removeAt((u32)addr); }
+    catch (Error &error) { [ex save:error]; }
+}
+
+- (void)removeAll
+{
+    return [self guards]->removeAll();
+}
+
+- (void)replace:(NSInteger)nr addr:(NSInteger)addr exception:(ExceptionWrapper *)ex
+{
+    try { [self guards]->moveTo(nr, (u32)addr); }
+    catch (Error &error) { [ex save:error]; }
+}
+
+- (BOOL)isEnabled:(NSInteger)nr
+{
+    auto guard = [self guards]->guardNr(nr);
+    return guard ? (*guard).enabled : false;
+}
+
+- (BOOL)isEnabledAt:(NSInteger)addr
+{
+    auto guard = [self guards]->guardAt(u32(addr));
+    return guard ? (*guard).enabled : false;
+}
+
+- (BOOL)isDisabled:(NSInteger)nr
+{
+    auto guard = [self guards]->guardNr(nr);
+    return guard ? (*guard).enabled == false : false;
+}
+
+- (BOOL)isDisabledAt:(NSInteger)addr
+{
+    auto guard = [self guards]->guardAt(u32(addr));
+    return guard ? (*guard).enabled == false : false;
+}
+
+- (void)enable:(NSInteger)nr exception:(ExceptionWrapper *)ex
+{
+    try { [self guards]->enable(nr); }
+    catch (Error &error) { [ex save:error]; }
+}
+
+- (void)enableAt:(NSInteger)addr exception:(ExceptionWrapper *)ex
+{
+    try { [self guards]->enableAt((u32)addr); }
+    catch (Error &error) { [ex save:error]; }
+}
+
+- (void)disable:(NSInteger)nr exception:(ExceptionWrapper *)ex
+{
+    try { [self guards]->disable(nr); }
+    catch (Error &error) { [ex save:error]; }
+}
+
+- (void)disableAt:(NSInteger)addr exception:(ExceptionWrapper *)ex
+{
+    try { [self guards]->disableAt((u32)addr); }
+    catch (Error &error) { [ex save:error]; }
+}
+
+@end
+
+
+//
 // CPU proxy
 //
 
@@ -269,7 +383,7 @@ using namespace tiara;
 
     result.addr = guard ? guard->addr : 0;
     result.enabled = guard ? guard->enabled : 0;
-    result.hits = guard ? guard->hits : 0;
+    // result.hits = guard ? guard->hits : 0;
     result.ignore = guard ? guard->ignore : 0;
 
     return result;
@@ -882,6 +996,7 @@ using namespace tiara;
 
 @synthesize audioPort;
 @synthesize atari;
+@synthesize beamtraps;
 @synthesize pia;
 @synthesize cpu;
 @synthesize logicAnalyzer;
@@ -908,6 +1023,7 @@ using namespace tiara;
     pia = [[PIAProxy alloc] initWith:&emu->pia emu:emu];
     cpu = [[CPUProxy alloc] initWith:&emu->cpu emu:emu];
     logicAnalyzer = [[LogicAnalyzerProxy alloc] initWith:&emu->logicAnalyzer];
+    beamtraps = [[GuardsProxy alloc] initWith:&emu->logicAnalyzer.beamtraps];
     mem = [[MemoryProxy alloc] initWith:&emu->mem emu:emu];
     port1 = [[ControlPortProxy alloc] initWith:&emu->controlPort1 emu:emu];
     port2 = [[ControlPortProxy alloc] initWith:&emu->controlPort2 emu:emu];

@@ -45,9 +45,6 @@ class Guards {
     
 protected:
 
-    // Reference to the connected CPU
-    // class Peddle &cpu;
-
     // Capacity of the guards array
     long capacity = 1;
 
@@ -56,6 +53,11 @@ protected:
 
     // Number of currently stored guards
     long count = 0;
+
+public:
+
+    // A copy of the latest match
+    std::optional <Guard> hit;
 
 
     //

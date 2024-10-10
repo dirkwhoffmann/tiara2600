@@ -18,7 +18,7 @@ namespace tiara {
 
 class References {
 
-protected:
+public:
 
     class AudioPort &audioPort;
     class Atari &atari;

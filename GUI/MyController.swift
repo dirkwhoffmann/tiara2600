@@ -351,8 +351,7 @@ extension MyController {
             NSSound.beep()
             renderer.console.isDirty = true
 
-        case .BREAKPOINT_UPDATED, 
-                .WATCHPOINT_UPDATED:
+        case .GUARD_UPDATED:
             inspector?.fullRefresh()
 
         case .BREAKPOINT_REACHED:
@@ -360,6 +359,10 @@ extension MyController {
 
         case .WATCHPOINT_REACHED:
             inspector?.signalWatchPoint(pc: pc)
+
+        case .BEAMTRAP_REACHED:
+            // inspector?.signalBeamtrap()
+            analyzer?.signalBeamtrap()
 
         case .CPU_JAMMED:
             jammed = true

@@ -14,6 +14,7 @@
 
 #include "LogicAnalyzerTypes.h"
 #include "SubComponent.h"
+#include "BeamTraps.h"
 #include "Colors.h"
 #include "Constants.h"
 
@@ -64,7 +65,12 @@ class LogicAnalyzer final : public SubComponent {
     // Color lookup table (4 different shades for each color)
     u32 color[4][cnt];
 
-    
+public:
+
+    // Beamtraps
+    Beamtraps beamtraps = Beamtraps(tia);
+
+
     //
     // Methods
     //
@@ -169,8 +175,8 @@ public:
     // Handlers
     //
 
-    // End-of-frame handler
-    void eofHandler();
+    // Frame handlers
+    void sofHandler();
 };
 
 }

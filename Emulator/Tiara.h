@@ -71,6 +71,86 @@ struct MemoryAPI : API {
 
 };
 
+/** Guards API
+ */
+struct GuardsAPI : public API {
+
+    class GuardList *guards = nullptr;
+
+    /** @brief  Returns the number of guards in the guard list.
+     */
+    isize elements() const;
+
+    /** @brief  Returns information about a guard.
+     *  @param  nr      Number of the guard in the guard list
+     */
+    std::optional<GuardInfo> guardNr(long nr) const;
+
+    /** @brief  Returns information about a guard.
+     *  @param  target  The target of the guard to query
+     */
+    std::optional<GuardInfo> guardAt(u32 target) const;
+
+    /** @brief  Sets a guard.
+     *  @param  target  The observed target. For breakpoints and watchpoints,
+     *                  the target is a memory address. For catchpoints, the
+     *                  target is a vector number (interrupts or traps).
+     *  @param  ignores If a value greater zero is given, the guard has to
+     *                  to be hit the specified number of times until program
+     *                  execution is paused.
+     */
+    void setAt(u32 target, isize ignores = 0);
+
+    /** @brief  Relocates a guard.
+     *  @param  nr      Number of the guard in the guard list
+     *  @param  target  New target
+     */
+    void moveTo(isize nr, u32 target);
+
+    /** @brief  Deletes a guard.
+     *  @param  nr      Number of the guard in the guard list
+     */
+    void remove(isize nr);
+
+    /** @brief  Deletes a guard.
+     *  @param  target  The target of the guard to be deleted.
+     */
+    void removeAt(u32 target);
+
+    /** @brief  Deletes all guards.
+     */
+    void removeAll();
+
+    /** @brief  Enables a guard.
+     *  @param  nr      Number of the guard in the guard list
+     */
+    void enable(isize nr);
+
+    /** @brief  Enables a guard.
+     *  @param  target  The target of the guard to be deleted
+     */
+    void enableAt(u32 target);
+
+    /** @brief  Enables all guards.
+     */
+    void enableAll();
+
+    /** @brief  Disables a guard.
+     *  @param  nr      Number of the guard in the guard list
+     */
+    void disable(isize nr);
+
+    /** @brief  Disables a guard.
+     *  @param  target  The target of the guard to be deleted
+     */
+    void disableAt(u32 target);
+
+    /** @brief  Disables all guards.
+     */
+    void disableAll();
+    void toggle(isize nr);
+
+};
 
 /** CPU API
  */
@@ -279,6 +359,8 @@ struct VideoPortAPI : API {
 struct LogicAnalyzerAPI : API {
 
     class LogicAnalyzer *logicAnalyzer = nullptr;
+
+    GuardsAPI beamtraps;
 
     /** @brief  Returns the component's current configuration
      */

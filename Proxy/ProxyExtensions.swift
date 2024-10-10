@@ -96,8 +96,67 @@ extension EmulatorProxy {
     }
 }
 
+extension GuardsProxy {
+
+    func set(at addr: Int) throws {
+
+        let exception = ExceptionWrapper()
+        setAt(addr, exception: exception)
+        if exception.errorCode != .OK { throw VC64Error(exception) }
+    }
+
+    func remove(nr: Int) throws {
+
+        let exception = ExceptionWrapper()
+        remove(nr, exception: exception)
+        if exception.errorCode != .OK { throw VC64Error(exception) }
+    }
+
+    func remove(at addr: Int) throws {
+
+        let exception = ExceptionWrapper()
+        remove(at: addr, exception: exception)
+        if exception.errorCode != .OK { throw VC64Error(exception) }
+    }
+
+    func replace(nr: Int, addr: Int) throws {
+
+        let exception = ExceptionWrapper()
+        replace(nr, addr: addr, exception: exception)
+        if exception.errorCode != .OK { throw VC64Error(exception) }
+    }
+
+    func enable(nr: Int) throws {
+
+        let exception = ExceptionWrapper()
+        enable(nr, exception: exception)
+        if exception.errorCode != .OK { throw VC64Error(exception) }
+    }
+
+    func enable(at addr: Int) throws {
+
+        let exception = ExceptionWrapper()
+        enable(at: addr, exception: exception)
+        if exception.errorCode != .OK { throw VC64Error(exception) }
+    }
+
+    func disable(nr: Int) throws {
+
+        let exception = ExceptionWrapper()
+        disable(nr, exception: exception)
+        if exception.errorCode != .OK { throw VC64Error(exception) }
+    }
+
+    func disable(at addr: Int) throws {
+
+        let exception = ExceptionWrapper()
+        disable(at: addr, exception: exception)
+        if exception.errorCode != .OK { throw VC64Error(exception) }
+    }
+}
+
 extension MediaFileProxy {
-    
+
     func writeToFile(url: URL) throws {
         
         let exception = ExceptionWrapper()

@@ -22,9 +22,10 @@ using namespace tiara;
 @class ControlPortProxy;
 @class CPUProxy;
 @class DefaultsProxy;
-@class LogicAnalyzerProxy;
 @class FileSystemProxy;
+@class GuardsProxy;
 @class JoystickProxy;
+@class LogicAnalyzerProxy;
 @class MediaFileProxy;
 @class MemoryProxy;
 @class PaddleProxy;
@@ -91,6 +92,7 @@ using namespace tiara;
 @interface EmulatorProxy : Proxy {
         
     AudioPortProxy *audioPort;
+    GuardsProxy *beamtraps;
     PIAProxy *pia;
     ControlPortProxy *port1;
     ControlPortProxy *port2;
@@ -108,6 +110,7 @@ using namespace tiara;
 
 @property (readonly, strong) AudioPortProxy *audioPort;
 @property (readonly, strong) AtariProxy *atari;
+@property (readonly, strong) GuardsProxy *beamtraps;
 @property (readonly, strong) PIAProxy *pia;
 @property (readonly, strong) ControlPortProxy *port1;
 @property (readonly, strong) ControlPortProxy *port2;
@@ -242,10 +245,44 @@ using namespace tiara;
 
 @end
 
+
+//
+// Guards (Breakpoints, Watchpoints, Beamtraps)
+//
+
+@interface GuardsProxy : Proxy { }
+
+@property (readonly) NSInteger count;
+
+- (NSInteger)addr:(NSInteger)nr;
+
+- (BOOL)isSet:(NSInteger)nr;
+- (BOOL)isSetAt:(NSInteger)addr;
+- (void)setAt:(NSInteger)addr exception:(ExceptionWrapper *)ex;
+- (void)remove:(NSInteger)nr exception:(ExceptionWrapper *)ex;
+- (void)removeAt:(NSInteger)addr exception:(ExceptionWrapper *)ex;
+- (void)removeAll;
+
+- (void)replace:(NSInteger)nr addr:(NSInteger)addr exception:(ExceptionWrapper *)ex;
+
+- (BOOL)isEnabled:(NSInteger)nr;
+- (BOOL)isEnabledAt:(NSInteger)addr;
+- (BOOL)isDisabled:(NSInteger)nr;
+- (BOOL)isDisabledAt:(NSInteger)addr;
+
+- (void)enable:(NSInteger)nr exception:(ExceptionWrapper *)ex;
+- (void)enableAt:(NSInteger)addr exception:(ExceptionWrapper *)ex;
+- (void)disable:(NSInteger)nr exception:(ExceptionWrapper *)ex;
+- (void)disableAt:(NSInteger)addr exception:(ExceptionWrapper *)ex;
+
+@end
+
+
 //
 // CPU
 //
 
+/*
 struct GuardInfo {
 
     u32 addr;
@@ -253,6 +290,7 @@ struct GuardInfo {
     long hits;
     long ignore;
 };
+*/
 
 @interface CPUProxy : SubComponentProxy { }
 

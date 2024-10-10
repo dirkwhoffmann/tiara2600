@@ -10,167 +10,118 @@
 // SPDX-License-Identifier: GPL-3.0-or-later OR MPL-2.0
 // -----------------------------------------------------------------------------
 
-#include "config.h"
-#include "GuardList.h"
-#include "Emulator.h"
+#pragma once
+
+#include "GuardListTypes.h"
+#include "PeddleDebugger.h"
 
 namespace tiara {
 
-std::optional<GuardInfo>
-GuardList::guardNr(long nr) const
-{
-    if (auto *g = guards.guardNr(nr); g) {
-        return GuardInfo {.addr = g->addr, .enabled = g->enabled, .ignore = g->ignore };
-    }
+/* This class provides functionality for managing a guard list. The term "guard"
+ * is used as a general term to denote breakpoints, watchpoints, catchpoints,
+ * beamtraps, and similar constructs. Internally, the class utilizes an object
+ * of type moira::Guards, which already offers the necessary functionality.
+ * Encapsulating this functionality in a new class enables its use by other
+ * components, such as the Copper, in addition to the CPU.
+ */
+class GuardList {
 
-    return { };
-}
+protected:
 
-std::optional<GuardInfo>
-GuardList::guardAt(u32 addr) const
-{
-    if (auto *g = guards.guardAt(addr); g) {
-        return GuardInfo {.addr = g->addr, .enabled = g->enabled, .ignore = g->ignore };
-    }
+    // Reference to the emulator object
+    class Atari &atari;
 
-    return { };
-}
+    // Reference to the guard list
+    peddle::Guards &guards;
 
-std::optional<GuardInfo>
-GuardList::hit() const
-{
-    if (auto g = guards.hit; g) {
-        return GuardInfo {.addr = g->addr, .enabled = g->enabled, .ignore = g->ignore };
-    }
+    // This guard list is used if no custom list is provided in the constructor
+    peddle::Guards _guards;
 
-    return { };
-}
+    // Indicates if active guards are present
+    bool needsCheck = false;
 
-void
-GuardList::setAt(u32 target, isize ignores)
-{
-    if (guards.isSetAt(target)) throw Error(VAERROR_GUARD_ALREADY_SET, target);
-    guards.setAt(target, ignores);
-    update();
-    emu.main.msgQueue.put(MSG_GUARD_UPDATED);
-}
 
-void
-GuardList::moveTo(isize nr, u32 newTarget)
-{
-    if (!guards.guardNr(nr)) throw Error(VAERROR_GUARD_NOT_FOUND, nr);
-    guards.replace(nr, newTarget);
-    update();
-    emu.main.msgQueue.put(MSG_GUARD_UPDATED);
-}
+    //
+    // Constructing
+    //
 
-void
-GuardList::ignore(long nr, long count)
-{
-    if (!guards.guardNr(nr)) throw Error(VAERROR_GUARD_NOT_FOUND, nr);
-    guards.ignore(nr, count);
-    update();
-    emu.main.msgQueue.put(MSG_GUARD_UPDATED);
-}
+public:
 
-void
-GuardList::remove(isize nr)
-{
-    if (!guards.isSet(nr)) throw Error(VAERROR_GUARD_NOT_FOUND, nr);
-    guards.remove(nr);
-    update();
-    emu.main.msgQueue.put(MSG_GUARD_UPDATED);
-}
+    GuardList(Atari &atari) : atari(atari), guards(_guards) { }
+    GuardList(Atari &atari, peddle::Guards &guards) : atari(atari), guards(guards) { }
+    virtual ~GuardList() { }
 
-void
-GuardList::removeAt(u32 target)
-{
-    if (!guards.isSetAt(target)) throw Error(VAERROR_GUARD_NOT_FOUND, target);
-    guards.removeAt(target);
-    update();
-    emu.main.msgQueue.put(MSG_GUARD_UPDATED);
-}
 
-void
-GuardList::removeAll()
-{
-    guards.removeAll();
-    update();
-    emu.main.msgQueue.put(MSG_GUARD_UPDATED);
-}
+    //
+    // Inspecting the guard list
+    //
 
-void
-GuardList::enable(isize nr)
-{
-    if (!guards.isSet(nr)) throw Error(VAERROR_GUARD_NOT_FOUND, nr);
-    guards.enable(nr);
-    update();
-    emu.main.msgQueue.put(MSG_GUARD_UPDATED);
-}
+public:
 
-void
-GuardList::enableAt(u32 target)
-{
-    if (!guards.isSetAt(target)) throw Error(VAERROR_GUARD_NOT_FOUND, target);
-    guards.enableAt(target);
-    update();
-    emu.main.msgQueue.put(MSG_GUARD_UPDATED);
-}
+    long elements() const { return guards.elements(); }
+    std::optional<GuardInfo> guardNr(long nr) const;
+    std::optional<GuardInfo> guardAt(u32 addr) const;
+    std::optional<GuardInfo> hit() const;
 
-void
-GuardList::enableAll()
-{
-    guards.enableAll();
-    update();
-    emu.main.msgQueue.put(MSG_GUARD_UPDATED);
-}
 
-void
-GuardList::disable(isize nr)
-{
-    if (!guards.isSet(nr)) throw Error(VAERROR_GUARD_NOT_FOUND, nr);
-    guards.disable(nr);
-    update();
-    emu.main.msgQueue.put(MSG_GUARD_UPDATED);
-}
+    //
+    // Adding or removing guards
+    //
 
-void
-GuardList::disableAt(u32 target)
-{
-    if (!guards.isSetAt(target)) throw Error(VAERROR_GUARD_NOT_FOUND, target);
-    guards.disableAt(target);
-    update();
-    emu.main.msgQueue.put(MSG_GUARD_UPDATED);
-}
+public:
 
-void
-GuardList::disableAll()
-{
-    guards.disableAll();
-    update();
-    emu.main.msgQueue.put(MSG_GUARD_UPDATED);
-}
+    bool isSet(long nr) const { return guards.isSet(nr); }
+    bool isSetAt(u32 addr) const { return guards.isSetAt(addr); }
 
-void
-GuardList::toggle(isize nr)
-{
-    guards.isEnabled(nr) ? disable(nr) : enable(nr);
-}
+    void setAt(u32 target, isize ignores = 0);
+    void moveTo(isize nr, u32 newTarget);
 
-void
-GuardList::update() {
+    void remove(isize nr);
+    void removeAt(u32 target);
+    void removeAll();
 
-    needsCheck = false;
-    for (isize i = 0; i < guards.elements(); i++) {
 
-        if (guards.isEnabled(i)) {
+    //
+    // Enabling or disabling guards
+    //
 
-            needsCheck = true;
-            break;
-        }
-    }
+public:
 
-    setNeedsCheck(needsCheck);
-}
+    bool isEnabled(long nr) const { return guards.isEnabled(nr); }
+    bool isEnabledAt(u32 addr) const { return guards.isEnabledAt(addr); }
+    bool isDisabled(long nr) const { return guards.isDisabled(nr); }
+    bool isDisabledAt(u32 addr) const { return guards.isDisabledAt(addr); }
+    bool eval(u32 addr) { return guards.eval(addr); }
+
+    void enable(isize nr);
+    void enableAt(u32 target);
+    void enableAll();
+    void disable(isize nr);
+    void disableAt(u32 target);
+    void disableAll();
+    void toggle(isize nr);
+    void toggleAt(u32 target);
+
+    void ignore(long nr, long count);
+
+
+    //
+    // Delegates
+    //
+
+public:
+
+    virtual void setNeedsCheck(bool value) { };
+
+
+    //
+    // Internals
+    //
+
+private:
+
+    // Updates the needsCheck variable
+    void update();
+};
 
 }

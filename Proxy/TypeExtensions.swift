@@ -163,6 +163,7 @@ extension tiara.EventSlot: CustomStringConvertible {
         case .KEY:     return "Auto Typing"
         case .SRV:     return "Server Daemon"
         case .DBG:     return "Debugger"
+        case .BTR:      return "Beam Traps"
         case .ALA:     return "Alarms"
         case .INS:     return "Inspector"
 

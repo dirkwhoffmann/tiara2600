@@ -10,116 +10,167 @@
 // SPDX-License-Identifier: GPL-3.0-or-later OR MPL-2.0
 // -----------------------------------------------------------------------------
 
-#include "GuardListTypes.h"
-#include "PeddleDebugger.h"
+#include "config.h"
+#include "GuardList.h"
+#include "Emulator.h"
 
 namespace tiara {
 
-/* This class provides functionality for managing a guard list. The term "guard"
- * is used as a general term to denote breakpoints, watchpoints, catchpoints,
- * beamtraps, and similar constructs. Internally, the class utilizes an object
- * of type moira::Guards, which already offers the necessary functionality.
- * Encapsulating this functionality in a new class enables its use by other
- * components, such as the Copper, in addition to the CPU.
- */
-class GuardList {
+std::optional<GuardInfo>
+GuardList::guardNr(long nr) const
+{
+    if (auto *g = guards.guardNr(nr); g) {
+        return GuardInfo {.addr = g->addr, .enabled = g->enabled, .ignore = g->ignore };
+    }
 
-protected:
+    return { };
+}
 
-    // Reference to the emulator object
-    class Emulator &emu;
+std::optional<GuardInfo>
+GuardList::guardAt(u32 addr) const
+{
+    if (auto *g = guards.guardAt(addr); g) {
+        return GuardInfo {.addr = g->addr, .enabled = g->enabled, .ignore = g->ignore };
+    }
 
-    // Reference to the guard list
-    peddle::Guards &guards;
+    return { };
+}
 
-    // This guard list is used if no custom list is provided in the constructor
-    peddle::Guards _guards;
+std::optional<GuardInfo>
+GuardList::hit() const
+{
+    if (auto g = guards.hit; g) {
+        return GuardInfo {.addr = g->addr, .enabled = g->enabled, .ignore = g->ignore };
+    }
 
-    // Indicates if active guards are present
-    bool needsCheck = false;
+    return { };
+}
 
+void
+GuardList::setAt(u32 target, isize ignores)
+{
+    if (guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_ALREADY_SET, target);
+    guards.setAt(target, ignores);
+    update();
+    atari.msgQueue.put(MSG_GUARD_UPDATED);
+}
 
-    //
-    // Constructing
-    //
+void
+GuardList::moveTo(isize nr, u32 newTarget)
+{
+    if (!guards.guardNr(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+    guards.moveTo(nr, newTarget);
+    update();
+    atari.msgQueue.put(MSG_GUARD_UPDATED);
+}
 
-public:
+void
+GuardList::ignore(long nr, long count)
+{
+    if (!guards.guardNr(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+    guards.ignore(nr, count);
+    update();
+    atari.msgQueue.put(MSG_GUARD_UPDATED);
+}
 
-    GuardList(Emulator &emu) : emu(emu), guards(_guards) { }
-    GuardList(Emulator &emu, peddle::Guards &guards) : emu(emu), guards(guards) { }
-    virtual ~GuardList() { }
+void
+GuardList::remove(isize nr)
+{
+    if (!guards.isSet(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+    guards.remove(nr);
+    update();
+    atari.msgQueue.put(MSG_GUARD_UPDATED);
+}
 
+void
+GuardList::removeAt(u32 target)
+{
+    if (!guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_NOT_FOUND, target);
+    guards.removeAt(target);
+    update();
+    atari.msgQueue.put(MSG_GUARD_UPDATED);
+}
 
-    //
-    // Inspecting the guard list
-    //
+void
+GuardList::removeAll()
+{
+    guards.removeAll();
+    update();
+    atari.msgQueue.put(MSG_GUARD_UPDATED);
+}
 
-public:
+void
+GuardList::enable(isize nr)
+{
+    if (!guards.isSet(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+    guards.enable(nr);
+    update();
+    atari.msgQueue.put(MSG_GUARD_UPDATED);
+}
 
-    long elements() const { return guards.elements(); }
-    std::optional<GuardInfo> guardNr(long nr) const;
-    std::optional<GuardInfo> guardAt(u32 addr) const;
-    std::optional<GuardInfo> hit() const;
+void
+GuardList::enableAt(u32 target)
+{
+    if (!guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_NOT_FOUND, target);
+    guards.enableAt(target);
+    update();
+    atari.msgQueue.put(MSG_GUARD_UPDATED);
+}
 
+void
+GuardList::enableAll()
+{
+    guards.enableAll();
+    update();
+    atari.msgQueue.put(MSG_GUARD_UPDATED);
+}
 
-    //
-    // Adding or removing guards
-    //
+void
+GuardList::disable(isize nr)
+{
+    if (!guards.isSet(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+    guards.disable(nr);
+    update();
+    atari.msgQueue.put(MSG_GUARD_UPDATED);
+}
 
-public:
+void
+GuardList::disableAt(u32 target)
+{
+    if (!guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_NOT_FOUND, target);
+    guards.disableAt(target);
+    update();
+    atari.msgQueue.put(MSG_GUARD_UPDATED);
+}
 
-    bool isSet(long nr) const { return guards.isSet(nr); }
-    bool isSetAt(u32 addr) const { return guards.isSetAt(addr); }
+void
+GuardList::disableAll()
+{
+    guards.disableAll();
+    update();
+    atari.msgQueue.put(MSG_GUARD_UPDATED);
+}
 
-    void setAt(u32 target, isize ignores = 0);
-    void moveTo(isize nr, u32 newTarget);
+void
+GuardList::toggle(isize nr)
+{
+    guards.isEnabled(nr) ? disable(nr) : enable(nr);
+}
 
-    void remove(isize nr);
-    void removeAt(u32 target);
-    void removeAll();
+void
+GuardList::update() {
 
+    needsCheck = false;
+    for (isize i = 0; i < guards.elements(); i++) {
 
-    //
-    // Enabling or disabling guards
-    //
+        if (guards.isEnabled(i)) {
 
-public:
+            needsCheck = true;
+            break;
+        }
+    }
 
-    bool isEnabled(long nr) const { return guards.isEnabled(nr); }
-    bool isEnabledAt(u32 addr) const { return guards.isEnabledAt(addr); }
-    bool isDisabled(long nr) const { return guards.isDisabled(nr); }
-    bool isDisabledAt(u32 addr) const { return guards.isDisabledAt(addr); }
-    bool eval(u32 addr) { return guards.eval(addr); }
-
-    void enable(isize nr);
-    void enableAt(u32 target);
-    void enableAll();
-    void disable(isize nr);
-    void disableAt(u32 target);
-    void disableAll();
-    void toggle(isize nr);
-    void toggleAt(u32 target);
-
-    void ignore(long nr, long count);
-
-
-    //
-    // Delegates
-    //
-
-public:
-
-    virtual void setNeedsCheck(bool value) { };
-
-
-    //
-    // Internals
-    //
-
-private:
-
-    // Updates the needsCheck variable
-    void update();
-};
+    setNeedsCheck(needsCheck);
+}
 
 }

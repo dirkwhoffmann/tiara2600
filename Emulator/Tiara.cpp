@@ -75,6 +75,8 @@ Tiara::Tiara() {
 
     logicAnalyzer.emu = emu;
     logicAnalyzer.logicAnalyzer = &emu->main.logicAnalyzer;
+    logicAnalyzer.beamtraps.emu = emu;
+    logicAnalyzer.beamtraps.guards = &emu->main.logicAnalyzer.beamtraps;
 
     controlPort1.emu = emu;
     controlPort1.controlPort = &emu->main.port1;
@@ -436,6 +438,101 @@ AtariAPI::flash(const MediaFile &file)
 {
     atari->flash(file);
     emu->markAsDirty();
+}
+
+
+//
+// Components (Guards)
+//
+
+isize
+GuardsAPI::elements() const
+{
+    return guards->elements();
+}
+
+std::optional<GuardInfo>
+GuardsAPI::guardNr(long nr) const
+{
+    return guards->guardNr(nr);
+}
+
+std::optional<GuardInfo>
+GuardsAPI::guardAt(u32 target) const
+{
+    return guards->guardAt(target);
+}
+
+void
+GuardsAPI::setAt(u32 target, isize ignores)
+{
+    guards->setAt(target, ignores);
+}
+
+void
+GuardsAPI::moveTo(isize nr, u32 newTarget)
+{
+    guards->moveTo(nr, newTarget);
+}
+
+void
+GuardsAPI::remove(isize nr)
+{
+    guards->remove(nr);
+}
+
+void
+GuardsAPI::removeAt(u32 target)
+{
+    guards->removeAt(target);
+}
+
+void
+GuardsAPI::removeAll()
+{
+    guards->removeAll();
+}
+
+void
+GuardsAPI::enable(isize nr)
+{
+    guards->enable(nr);
+}
+
+void
+GuardsAPI::enableAt(u32 target)
+{
+    guards->enableAt(target);
+}
+
+void
+GuardsAPI::enableAll()
+{
+    guards->enableAll();
+}
+
+void
+GuardsAPI::disable(isize nr)
+{
+    guards->disable(nr);
+}
+
+void
+GuardsAPI::disableAt(u32 target)
+{
+    guards->disableAt(target);
+}
+
+void
+GuardsAPI::disableAll()
+{
+    guards->disableAll();
+}
+
+void
+GuardsAPI::toggle(isize nr)
+{
+    guards->toggle(nr);
 }
 
 

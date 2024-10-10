@@ -47,14 +47,15 @@ enum_long(MSG_TYPE)
     MSG_RSH_ERROR,          ///< Command execution has been aborted due to an error
 
     // CPU
-    MSG_BREAKPOINT_UPDATED, ///< The breakpoint list has beed modified
+    MSG_GUARD_UPDATED,      ///< The guard list has beed modified
     MSG_BREAKPOINT_REACHED, ///< A breakpoint has been reached
-    MSG_WATCHPOINT_UPDATED, ///< The watchpoint list has beed modified
     MSG_WATCHPOINT_REACHED, ///< A watchpoint has been reached
     MSG_CPU_JUMPED,         ///< The program counter has been modified manually
     MSG_CPU_JAMMED,         ///< The CPU has halted due to an illegal instruction
 
-    // VIC
+    // TIA
+    // MSG_BEAMTRAP_UPDATED,   ///< The beamtrap list has beed modified
+    MSG_BEAMTRAP_REACHED,   ///< A beam position from the beamtrap list has been reached
     MSG_PAL,                ///< The emulator runs in PAL mode now
     MSG_NTSC,               ///< The emulator runs in NTSC mode now
 
@@ -130,10 +131,10 @@ struct MsgTypeEnum : util::Reflection<MsgTypeEnum, MsgType> {
             case MSG_RSH_WAIT:              return "RSH_WAIT";
             case MSG_RSH_ERROR:             return "RSH_ERROR";
                 
-            case MSG_BREAKPOINT_UPDATED:    return "BREAKPOINT_UPDATED";
+            case MSG_GUARD_UPDATED:         return "GUARD_UPDATED";
             case MSG_BREAKPOINT_REACHED:    return "BREAKPOINT_REACHED";
-            case MSG_WATCHPOINT_UPDATED:    return "WATCHPOINT_UPDATED";
             case MSG_WATCHPOINT_REACHED:    return "WATCHPOINT_REACHED";
+            case MSG_BEAMTRAP_REACHED:      return "BEAMTRAP_REACHED";
             case MSG_CPU_JUMPED:            return "CPU_JUMPED";
             case MSG_CPU_JAMMED:            return "CPU_JAMMED";
 

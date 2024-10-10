@@ -208,8 +208,8 @@ public:
     // The total number of frames drawn since power up
     u64 frame = 0;
 
-    // Indicates if we have reached the end of a frame
-    bool endOfFrame = true;
+    // Indicates if we have reached the begin of a new frame
+    bool sof = true;
 
     // The currently drawn scanline (first scanline = 0)
     // [[deprecated]] u16 scanline = 0;
@@ -498,7 +498,7 @@ public:
     // Executes a single clock cycle.
     // void executeOneCycle();
 
-private:
+public:
 
     // DEPRECATED: Invoked after executing the last cycle of a scanline
     // void endScanline();

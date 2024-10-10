@@ -19,6 +19,7 @@ namespace tiara {
 enum class Category
 {
     BankMap,
+    Beamtraps,
     Breakpoints,
     Checksums,
     Config,

@@ -61,6 +61,12 @@ TIA::_trackOff()
 
 }
 
+isize
+TIA::diff(isize y, isize x)
+{
+    return (y - this->y) * TIA_CYCLES_PER_LINE + (x - this->x);
+}
+
 void
 TIA::updatePalette()
 {
@@ -220,7 +226,7 @@ TIA::execute()
     if (y == Texture::height) {
 
         y = 0;
-        eofHandler();
+        atari.eofHandler();
         atari.setFlag(RL::SYNC_THREAD);
     }
 }

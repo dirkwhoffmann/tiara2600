@@ -12,6 +12,7 @@
 
 #include "config.h"
 #include "LogicAnalyzer.h"
+#include "IOUtils.h"
 #include "TIA.h"
 #include "MsgQueue.h"
 
@@ -22,9 +23,34 @@ LogicAnalyzer::_dump(Category category, std::ostream& os) const
 {
     using namespace util;
 
+    auto print = [&]() {
+
+        for (int i = 0; i < beamtraps.elements(); i++) {
+
+            auto bp = *beamtraps.guardNr(i);
+            auto v = std::to_string(HI_WORD(bp.addr));
+            auto h = std::to_string(LO_WORD(bp.addr));
+            os << tab("Beamtrap " + std::to_string(i));
+            os << "(" + v + "," + h + ")";
+
+            if (!bp.enabled) os << " (Disabled)";
+            else if (bp.ignore) os << " (Disabled for " << dec(bp.ignore) << " hits)";
+            os << std::endl;
+        }
+    };
+
     if (category == Category::Config) {
 
         dumpConfig(os);
+    }
+
+    if (category == Category::Beamtraps) {
+
+        if (beamtraps.elements()) {
+            print();
+        } else {
+            os << "No beamtraps set" << std::endl;
+        }
     }
 }
 
@@ -34,10 +60,10 @@ LogicAnalyzer::getOption(Option option) const
     switch (option) {
 
         case OPT_LA_ENABLE:     return (i64)config.enable;
-        case OPT_LA_CHANNEL0:    return (i64)channel[0];
-        case OPT_LA_CHANNEL1:    return (i64)channel[1];
-        case OPT_LA_CHANNEL2:    return (i64)channel[2];
-        case OPT_LA_CHANNEL3:    return (i64)channel[3];
+        case OPT_LA_CHANNEL0:   return (i64)channel[0];
+        case OPT_LA_CHANNEL1:   return (i64)channel[1];
+        case OPT_LA_CHANNEL2:   return (i64)channel[2];
+        case OPT_LA_CHANNEL3:   return (i64)channel[3];
         case OPT_LA_PROBE0:     return (i64)probe[0];
         case OPT_LA_PROBE1:     return (i64)probe[1];
         case OPT_LA_PROBE2:     return (i64)probe[2];

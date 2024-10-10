@@ -71,6 +71,7 @@ enum_long(SLOT)
     SLOT_KEY,                       // Auto-typing
     SLOT_SRV,                       // Remote server manager
     SLOT_DBG,                       // Debugging (Regression tester)
+    SLOT_BTR,                       // Beam traps
     SLOT_ALA,                       // Alarms (set by the GUI)
     SLOT_INS,                       // Handles periodic calls to inspect()
 
@@ -99,6 +100,7 @@ struct EventSlotEnum : util::Reflection<EventSlotEnum, EventSlot>
             case SLOT_KEY:      return "KEY";
             case SLOT_SRV:      return "SRV";
             case SLOT_DBG:      return "DBG";
+            case SLOT_BTR:      return "BTR";
             case SLOT_ALA:      return "ALA";
             case SLOT_INS:      return "INS";
 
@@ -178,6 +180,10 @@ enum_i8(EventID)
     DBG_WATCHDOG        = 1,
     DBG_EVENT_COUNT,
 
+    // Beamtrap event slot
+    BTR_TRIGGER         = 1,
+    BTR_EVENT_COUNT,
+    
     // Alarm event slot
     ALA_TRIGGER         = 1,
     ALA_EVENT_COUNT,
@@ -281,12 +287,13 @@ constexpr u32 WARP_ON           = (1 << 1);
 constexpr u32 WARP_OFF          = (1 << 2);
 constexpr u32 BREAKPOINT        = (1 << 3);
 constexpr u32 WATCHPOINT        = (1 << 4);
-constexpr u32 CPU_JAM           = (1 << 5);
-constexpr u32 STEP_CYCLE        = (1 << 6);
-constexpr u32 STEP_INSTRUCTION  = (1 << 7);
-constexpr u32 STEP_LINE         = (1 << 8);
-constexpr u32 STEP_FRAME        = (1 << 9);
-constexpr u32 SYNC_THREAD       = (1 << 10);
+constexpr u32 BEAMTRAP          = (1 << 5);
+constexpr u32 CPU_JAM           = (1 << 6);
+constexpr u32 STEP_CYCLE        = (1 << 7);
+constexpr u32 STEP_INSTRUCTION  = (1 << 8);
+constexpr u32 STEP_LINE         = (1 << 9);
+constexpr u32 STEP_FRAME        = (1 << 10);
+constexpr u32 SYNC_THREAD       = (1 << 11);
 }
 
 }

@@ -153,6 +153,16 @@ Atari::eventName(EventSlot slot, EventID id)
             }
             break;
 
+        case SLOT_BTR:
+
+            switch (id) {
+
+                case EVENT_NONE:    return "none";
+                case BTR_TRIGGER:   return "BTR_TRIGGER";
+                default:            return "*** INVALID ***";
+            }
+            break;
+
         case SLOT_ALA:
 
             switch (id) {
@@ -522,18 +532,20 @@ Atari::update(CmdQueue &queue)
 void
 Atari::computeFrame()
 {
-    if (endOfFrame) { sofHandler(); }
+    Cycle cycle = cpu.clock;
+
+    if (sof) { sofHandler(); }
 
     while (1) {
-
-        // Advance the cycle counter
-        Cycle cycle = ++cpu.clock;
 
         // Process all pending events
         if (nextTrigger <= cycle) processEvents(cycle);
 
-        // Execute components
+        // Execute the CPU
+        cycle = ++cpu.clock;
         cpu.execute<MOS_6507>();
+
+        // Execute other components
         pia.execute<false>();
         tia.execute<false>();
         cartPort.cart->execute();
@@ -541,7 +553,6 @@ Atari::computeFrame()
         // Process pending actions
         if (flags) {
 
-            bool sync = false;
             bool pause = false;
 
             if (flags & RL::BREAKPOINT) {
@@ -553,6 +564,13 @@ Atari::computeFrame()
             if (flags & RL::WATCHPOINT) {
 
                 msgQueue.put(MSG_WATCHPOINT_REACHED, CpuMsg {u16(cpu.debugger.watchpointPC)});
+                pause = true;
+            }
+
+            if (flags & RL::BEAMTRAP) {
+
+                msgQueue.put(MSG_BEAMTRAP_REACHED, 0);
+
                 pause = true;
             }
 
@@ -597,7 +615,7 @@ Atari::computeFrame()
             }
             if (flags & RL::SYNC_THREAD) {
 
-                endOfFrame = true;
+                sof = true;
 
                 if (flags & RL::STEP_FRAME) {
 
@@ -609,7 +627,7 @@ Atari::computeFrame()
             flags &= RL::STEP_INSTRUCTION | RL::STEP_LINE | RL::STEP_FRAME;
 
             if (pause) throw StateChangeException(STATE_PAUSED);
-            if (endOfFrame) break;
+            if (sof) break;
         }
     }
 }
@@ -799,14 +817,15 @@ C64::eolHandler()
 void Atari::sofHandler()
 {
     tia.sofHandler();
+    logicAnalyzer.sofHandler();
 
-    endOfFrame = false;
+    sof = false;
 }
 
 void
 Atari::eofHandler()
 {
-    
+    tia.eofHandler();
 }
 
 void
@@ -873,6 +892,9 @@ Atari::processEvents(Cycle cycle)
             }
             if (isDue<SLOT_DBG>(cycle)) {
                 regressionTester.processEvent(eventid[SLOT_DBG]);
+            }
+            if (isDue<SLOT_BTR>(cycle)) {
+                logicAnalyzer.beamtraps.processEvent();
             }
             if (isDue<SLOT_ALA>(cycle)) {
                 processAlarmEvent();

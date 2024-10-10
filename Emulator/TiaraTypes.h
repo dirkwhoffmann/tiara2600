@@ -23,6 +23,7 @@
 #include "CPUTypes.h"
 #include "EmulatorTypes.h"
 #include "ErrorTypes.h"
+#include "GuardListTypes.h"
 #include "JoystickTypes.h"
 #include "LogicAnalyzerTypes.h"
 #include "MediaFileTypes.h"

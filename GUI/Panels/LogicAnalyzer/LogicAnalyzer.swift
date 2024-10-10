@@ -243,6 +243,7 @@ class LogicAnalyzer: DialogController {
 
     func run() {
 
+        laTimeStamp.textColor = .labelColor
         fullRefresh()
     }
 
@@ -253,12 +254,18 @@ class LogicAnalyzer: DialogController {
 
     func step() {
 
+        laTimeStamp.textColor = .labelColor
         fullRefresh()
     }
 
     func reset() {
 
         fullRefresh()
+    }
+
+    func signalBeamtrap() {
+
+        laTimeStamp.textColor = .warning
     }
 
     //
@@ -347,6 +354,31 @@ class LogicAnalyzer: DialogController {
     @IBAction func finishFrameAction(_ sender: NSButton!) {
 
         emu?.finishFrame()
+    }
+
+    @IBAction func beamtrapAction(_ sender: NSButton!) {
+
+        if sender.state == .on {
+
+            if emu?.beamtraps.count == 0 {
+
+                let pos = laY.integerValue << 16 | laX.integerValue
+                try? emu?.beamtraps.set(at: pos)
+            }
+            try? emu?.beamtraps.enable(nr: 0)
+
+        } else {
+
+            try? emu?.beamtraps.disable(nr: 0)
+        }
+    }
+
+    @IBAction func beamtrapYAction(_ sender: NSTextField!) {
+
+    }
+
+    @IBAction func beamtrapXAction(_ sender: NSTextField!) {
+
     }
 
     @IBAction func symAction(_ sender: NSButton!) {

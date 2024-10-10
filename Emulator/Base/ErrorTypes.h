@@ -40,11 +40,15 @@ enum_long(VC64ERROR_CODE)
     VC64ERROR_SYNTAX,               ///< Syntax error
 
     // CPU
-    VC64ERROR_BP_NOT_FOUND,         ///< Breakpoint is not set
-    VC64ERROR_BP_ALREADY_SET,       ///< Breakpoint is already set
-    VC64ERROR_WP_NOT_FOUND,         ///< Watchpoint is not set
-    VC64ERROR_WP_ALREADY_SET,       ///< Watchpoint is already set
-
+    VC64ERROR_GUARD_NOT_FOUND,      ///< Guard is not set
+    VC64ERROR_GUARD_ALREADY_SET,    ///< Guard is already set
+    /*
+    VC64ERROR_BP_NOT_FOUND,         ///< Breakpoint is not set (DEPRECATED)
+    VC64ERROR_BP_ALREADY_SET,       ///< Breakpoint is already set (DEPRECATED)
+    VC64ERROR_WP_NOT_FOUND,         ///< Watchpoint is not set (DEPRECATED)
+    VC64ERROR_WP_ALREADY_SET,       ///< Watchpoint is already set (DEPRECATED)
+     */
+    
     // Memory
     VC64ERROR_OUT_OF_MEMORY,        ///< Out of memory
 
@@ -143,11 +147,14 @@ struct ErrorCodeEnum : util::Reflection<ErrorCodeEnum, ErrorCode> {
             case VC64ERROR_INVALID_KEY:             return "INVALID_KEY";
             case VC64ERROR_SYNTAX:                  return "SYNTAX";
 
+            case VC64ERROR_GUARD_NOT_FOUND:         return "GUARD_NOT_FOUND";
+            case VC64ERROR_GUARD_ALREADY_SET:       return "GUARD_ALREADY_SET";
+                /*
             case VC64ERROR_BP_NOT_FOUND:            return "BP_NOT_FOUND";
             case VC64ERROR_BP_ALREADY_SET:          return "BP_ALREADY_SET";
             case VC64ERROR_WP_NOT_FOUND:            return "WP_NOT_FOUND";
             case VC64ERROR_WP_ALREADY_SET:          return "WP_ALREADY_SET";
-
+                 */
             case VC64ERROR_OUT_OF_MEMORY:           return "OUT_OF_MEMORY";
 
             case VC64ERROR_DIR_NOT_FOUND:           return "DIR_NOT_FOUND";
