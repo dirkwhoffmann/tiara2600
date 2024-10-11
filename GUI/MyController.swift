@@ -412,8 +412,9 @@ extension MyController {
             hideOrShowDriveMenus()
 
         case .DMA_DEBUG:
-            if value != 0 { renderer.zoomTextureOut() } else { renderer.zoomTextureIn() }
-
+            // if value != 0 { renderer.zoomTextureOut() } else { renderer.zoomTextureIn() }
+            break
+            
         case .ALARM:
             debug(.events, "Received Alarm \(msg.value)")
 

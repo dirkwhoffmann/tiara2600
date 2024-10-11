@@ -43,18 +43,17 @@ Beamtraps::scheduleNextEvent()
 
     for (isize i = 0, next = INT_MAX; i < elements(); i++) {
 
-        const auto guard = guardNr(i);
-        auto v = HI_WORD(guard->addr);
-        auto h = LO_WORD(guard->addr);
-        auto d = tia.diff(v, h) - 3;
+        if (const auto guard = guardNr(i); guard->enabled) {
 
-        printf("%ld %ld: Beamtrap (%d,%d) diff: %ld\n", tia.getY(), tia.getX(), v, h, d);
-        if (d > 0 && d < next) {
+            auto v = HI_WORD(guard->addr);
+            auto h = LO_WORD(guard->addr);
+            auto d = tia.diff(v, h) - 3;
 
-            printf("Scheduling\n");
+            if (d > 0 && d < next) {
 
-            next = d;
-            atari.scheduleRel<SLOT_BTR>((d + 2) / 3, BTR_TRIGGER);
+                next = d;
+                atari.scheduleRel<SLOT_BTR>((d + 2) / 3, BTR_TRIGGER);
+            }
         }
     }
 }

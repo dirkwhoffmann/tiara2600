@@ -31,6 +31,7 @@ class LogicAnalyzer: DialogController {
     @IBOutlet weak var laRecordBox: NSBox!
     @IBOutlet weak var laSpinIcon: NSProgressIndicator!
 
+    @IBOutlet weak var laOverlayButtom: NSButton!
     @IBOutlet weak var laOpacity: NSSlider!
     @IBOutlet weak var laDisplayMode: NSPopUpButton!
 
@@ -43,6 +44,7 @@ class LogicAnalyzer: DialogController {
     @IBOutlet weak var laFinishFrameButton: NSButton!
 
     @IBOutlet weak var laTimeStamp: NSTextField!
+    @IBOutlet weak var laBeamTrap: NSButton!
     @IBOutlet weak var laX: NSTextField!
     @IBOutlet weak var laY: NSTextField!
 
@@ -118,6 +120,12 @@ class LogicAnalyzer: DialogController {
 
         // Assign styles
         laTimeStamp.font = NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+
+        // Enable all channels
+        emu?.set(.LA_CHANNEL0, enable: true)
+        emu?.set(.LA_CHANNEL1, enable: true)
+        emu?.set(.LA_CHANNEL2, enable: true)
+        emu?.set(.LA_CHANNEL3, enable: true)
     }
 
     override func showWindow(_ sender: Any?) {
@@ -164,23 +172,12 @@ class LogicAnalyzer: DialogController {
                 laFinishLineButton.isEnabled = true
                 laFinishFrameButton.isEnabled = true
             }
+
+            // 2D overlay
+            laOpacity.integerValue = Int(config.opacity)
         }
 
-        if running > 1 {
-
-            laLogicView.visible = false
-            laRecordBox.isHidden = false
-            laSpinIcon.startAnimation(self)
-        }
-
-        if running == 0 {
-
-            laLogicView.visible = true
-            laRecordBox.isHidden = true
-            laSpinIcon.stopAnimation(self)
-        }
-
-        // Switch to the current line if applicable
+        // Probes
         if linked { line = info.posy }
         laLineField.integerValue = line
         laLineField.isEnabled = !linked
@@ -195,24 +192,41 @@ class LogicAnalyzer: DialogController {
         laProbe1.selectItem(withTag: probe1)
         laProbe2.selectItem(withTag: probe2)
         laProbe3.selectItem(withTag: probe3)
-        laOpacity.integerValue = Int(config.opacity)
+
+        // 2D overlay
+        laOverlayButtom.state = config.enable ? .on : .off
         laDisplayMode.selectItem(withTag: config.displayMode.rawValue)
+
+        // Bottom bar
+        laTimeStamp.stringValue = String(format: "%d:%03d:%03d",
+                                         info.frame, info.posy, info.posx)
+        laX.isEnabled = laBeamTrap.state == .on
+        laY.isEnabled = laBeamTrap.state == .on
+        laSymButtom.state = laLogicView.formatter.symbolic ? .on : .off
+        laHexButtom.state = laLogicView.formatter.hex ? .on : .off
+
+        // Trace view
+        if running > 1 {
+
+            laLogicView.visible = false
+            laRecordBox.isHidden = false
+            laSpinIcon.startAnimation(self)
+        }
+
+        if running == 0 {
+
+            laLogicView.visible = true
+            laRecordBox.isHidden = true
+            laSpinIcon.stopAnimation(self)
+        }
 
         laLogicView.probe[0] = tiara.Probe(rawValue: probe0)!
         laLogicView.probe[1] = tiara.Probe(rawValue: probe1)!
         laLogicView.probe[2] = tiara.Probe(rawValue: probe2)!
         laLogicView.probe[3] = tiara.Probe(rawValue: probe3)!
 
-        laSymButtom.state = laLogicView.formatter.symbolic ? .on : .off
-        laHexButtom.state = laLogicView.formatter.hex ? .on : .off
-
-        laTimeStamp.stringValue = String(format: "%d:%03d:%03d",
-                                         info.frame, info.posy, info.posx)
-
         laLogicView.x = info.posx
         laLogicView.y = info.posy
-
-        laLogicView.update()
 
         if linked && running == 0 {
 
@@ -223,6 +237,8 @@ class LogicAnalyzer: DialogController {
                 laScrollView.contentView.animator().setBoundsOrigin(NSPoint(x: newx, y: 0))
             }, completionHandler: nil)
         }
+
+        laLogicView.update()
 
         isDirty = false
     }
@@ -324,12 +340,17 @@ class LogicAnalyzer: DialogController {
         zoom = sender.doubleValue
     }
 
-    @IBAction func laDisplayModeAction(_ sender: NSPopUpButton!) {
+    @IBAction func overlayAction(_ sender: NSButton!) {
+
+        emu?.set(.LA_ENABLE, enable: sender.state == .on)
+    }
+
+    @IBAction func displayModeAction(_ sender: NSPopUpButton!) {
 
         emu?.set(.LA_MODE, value: sender.selectedTag())
     }
     
-    @IBAction func laOpacityAction(_ sender: NSSlider!) {
+    @IBAction func opacityAction(_ sender: NSSlider!) {
 
         emu?.set(.LA_OPACITY, value: sender.integerValue)
     }
@@ -375,10 +396,29 @@ class LogicAnalyzer: DialogController {
 
     @IBAction func beamtrapYAction(_ sender: NSTextField!) {
 
+        let pos = emu?.beamtraps.addr(0) ?? 0
+        let x = pos & 0xFFFF
+        let y = sender.integerValue
+
+        try? emu?.beamtraps.replace(nr: 0, addr: y << 16 | x)
     }
 
     @IBAction func beamtrapXAction(_ sender: NSTextField!) {
 
+        let pos = emu?.beamtraps.addr(0) ?? 0
+        let x = sender.integerValue
+        let y = (pos >> 16) & 0xFFFF
+
+        try? emu?.beamtraps.replace(nr: 0, addr: y << 16 | x)
+    }
+
+    @IBAction func zoomAction(_ sender: NSButton!) {
+
+        if sender.state == .on {
+            parent.renderer.zoomTextureOut()
+        } else {
+            parent.renderer.zoomTextureIn()
+        }
     }
 
     @IBAction func symAction(_ sender: NSButton!) {
