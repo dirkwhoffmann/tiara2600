@@ -361,12 +361,12 @@
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="InU-Id-HrG">
                                     <rect key="frame" x="479" y="9" width="160" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                    <popUpButtonCell key="cell" type="roundRect" title="Modulate foreground" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="wsE-VL-FyL" id="Z8q-RU-Wiv">
+                                    <popUpButtonCell key="cell" type="roundRect" title="Modulate foreground" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="wsE-VL-FyL" id="Z8q-RU-Wiv">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="cellTitle"/>
                                         <menu key="menu" id="klF-Rf-hfV">
                                             <items>
-                                                <menuItem title="Modulate foreground" id="wsE-VL-FyL"/>
+                                                <menuItem title="Modulate foreground" state="on" id="wsE-VL-FyL"/>
                                                 <menuItem title="Modulate background" tag="1" id="2un-Ox-VQP"/>
                                                 <menuItem title="Mix layers" tag="2" id="2hv-Cm-Hjz"/>
                                             </items>

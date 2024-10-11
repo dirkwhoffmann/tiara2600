@@ -31,25 +31,55 @@ class PIA : public SubComponent, public Inspectable<PIAInfo, PIAStats> {
         .shell          = "pia"
     }};
 
-    Options options{ };
-    PIAConfig config = { };
+    Options options{};
+    PIAConfig config{};
 
-    // Random Access Memory
-    u8 ram[128];
+    // Memory
+    u8 ram[128]{};
+
+    // Peripheral data registers
+    u8 pra{};
+    u8 prb{};
+
+    // Data directon registers
+    u8 ddra{};
+    u8 ddrb{};
+
+    // Interval timer
+    u8 timer{};
+    isize counter{};
+
+    // Couting interval
+    isize interval{};
+
+    // Interrupt enable register
+    u8 enable{};
+
+    // Interrupt status register
+    // bool irq{};
+    // bool timerIrqEnable{};
+    u8 instat{};
+    
+    // Edge control (PA7 interrupts)
+    u8 edgctrl{};
 
 
     //
     // Chip interface
     //
 
-    public:
+public:
 
     // Chip Select (1 = selected)
-    bool cs;
-    bool csram;
+    bool cs{};
+    bool csram{};
 
     // Read-write (1 = read)
-    bool rw;
+    bool rw{};
+
+    // Data ports
+    u8 pa{};
+    u8 pb{};
 
 
     //
@@ -127,10 +157,31 @@ public:
     // Accessing registers and memory
     //
 
+public:
+
     u8 peek(u16 addr);
+    u8 peek(PIARegister reg);
+
     u8 spypeek(u16 addr) const;
+    u8 spypeek(PIARegister reg) const;
 
     void poke(PIARegister reg, u8 val, Cycle delay = 0);
+
+    void pokePRA(u8 val);
+    void pokeDDRA(u8 val);
+    void pokePRB(u8 val);
+    void pokeDDRB(u8 val);
+    // void pokeINTIM(u8 val);
+    // void pokeINSTAT(u8 val);
+    void pokeTIMxT(isize x, u8 val, bool enable);
+    void pokeEDGCTL(u8 val);
+
+private:
+
+    void updatePA();
+    void updatePA(u8 val);
+    void updatePB();
+    void updatePB(u8 val);
 
 
     //
