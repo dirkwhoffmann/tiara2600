@@ -39,32 +39,64 @@ class LogicView: NSView {
 
     // The graphics context used for drawing
     var context: CGContext!
-    var gradient: CGGradient?
+    var gradient: [CGGradient?] = [nil, nil, nil, nil]
 
     // Fonts and colors
     let box = NSBox()
-    var signalColor = [ NSColor.white, NSColor.white, NSColor.white, NSColor.white ]
-    let mono = NSFont.monospacedSystemFont(ofSize: 10, weight: .regular)
-    let system = NSFont.systemFont(ofSize: 8)
+    var signalColor = [ NSColor.white, NSColor.white, NSColor.white, NSColor.white ] {
+        didSet {
 
+            bgColor[0] = signalColor[0].adjust(brightness: 1.0, saturation: 0.2)
+            bgColor[1] = signalColor[1].adjust(brightness: 1.0, saturation: 0.2)
+            bgColor[2] = signalColor[2].adjust(brightness: 1.0, saturation: 0.2)
+            bgColor[3] = signalColor[3].adjust(brightness: 1.0, saturation: 0.2)
+
+            needsDisplay = true
+        }
+    }
+    var bgColor = [ NSColor.white, NSColor.white, NSColor.white, NSColor.white ]
+
+    let mono = NSFont.monospacedSystemFont(ofSize: 10, weight: .regular)
+    let system = NSFont.systemFont(ofSize: 12)
+
+    /*
     override func awakeFromNib() {
 
         super.awakeFromNib()
-
-        // Setup gradient
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let colors: [CGColor] = [
-            NSColor(r: 0xFE, g: 0xFF, b: 0xEA).cgColor,
-            NSColor(r: 0xD0, g: 0xD3, b: 0xC1).cgColor
-        ]
-        gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: [0.0, 1.0])
     }
+    */
 
     func update() {
 
         updateData()
         needsDisplay = true
     }
+
+    /*
+    func updateGradients() {
+
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+
+        let colors0: [CGColor] = [ signalColor[0].cgColor, .white ]
+        let colors1: [CGColor] = [ signalColor[1].cgColor, .white ]
+        let colors2: [CGColor] = [ signalColor[2].cgColor, .white ]
+        let colors3: [CGColor] = [ signalColor[3].cgColor, .white ]
+
+        bgColor[0] = signalColor[0].adjust(brightness: 1.0, saturation: 0.2)
+        bgColor[1] = signalColor[1].adjust(brightness: 1.0, saturation: 0.2)
+        bgColor[2] = signalColor[2].adjust(brightness: 1.0, saturation: 0.2)
+        bgColor[3] = signalColor[3].adjust(brightness: 1.0, saturation: 0.2)
+
+        gradient[0] = CGGradient(colorsSpace: colorSpace,
+                                 colors: colors0 as CFArray, locations: [0.0, 1.0])
+        gradient[1] = CGGradient(colorsSpace: colorSpace,
+                                 colors: colors1 as CFArray, locations: [0.0, 1.0])
+        gradient[2] = CGGradient(colorsSpace: colorSpace,
+                                 colors: colors2 as CFArray, locations: [0.0, 1.0])
+        gradient[3] = CGGradient(colorsSpace: colorSpace,
+                                 colors: colors3 as CFArray, locations: [0.0, 1.0])
+    }
+    */
 
     //
     // Managing the data source
@@ -117,20 +149,24 @@ class LogicView: NSView {
     func clear() {
 
         box.fillColor.setFill()
-        // NSColor.controlBackgroundColor.setFill()
         bounds.fill()
-
-        /*
-        let startPoint = CGPoint(x: 0.0, y: bounds.minY)
-        let endPoint = CGPoint(x: 0, y: bounds.maxY)
-        context.drawLinearGradient(gradient!, start: startPoint, end: endPoint, options: [])
-        */
     }
 
     func drawMarkers(in rect: NSRect) {
 
         let path = CGMutablePath()
         let dx = bounds.width / 228
+
+        for i in 0...3 {
+
+            let rect = NSRect(x: bounds.minX,
+                              y: bounds.maxY - CGFloat(i + 2) * 36 - 6,
+                              width: bounds.width,
+                              height: 36)
+
+            bgColor[i].setFill()
+            rect.fill()
+        }
 
         for i in 1...227 {
 
@@ -143,13 +179,12 @@ class LogicView: NSView {
         context.addPath(path)
         context.drawPath(using: .stroke)
 
-        // let dx = rect.width / 228
         for i in 0..<228 {
 
             drawText(text: "\(i)",
-                     at: CGPoint(x: CGFloat(i) * dx + (dx / 2), y: rect.midY),
+                     in: NSRect(x: CGFloat(i) * dx, y: rect.minY, width: dx, height: rect.height),
                      font: system,
-                     color: NSColor.secondaryLabelColor)
+                     color: NSColor.labelColor)
         }
     }
 
@@ -180,18 +215,13 @@ class LogicView: NSView {
                               y: bounds.maxY - CGFloat(i + 2) * dy,
                               width: bounds.width,
                               height: 24)
+
             drawSignalTrace(in: rect, channel: i)
         }
     }
 
     func drawSignalTrace(in rect: NSRect, channel: Int) {
 
-        // let info = analyzer.emu!.tia.info
-        /*
-        let x = info.posx
-        let y = info.posy
-        if y < analyzer.line { return }
-        */
         let w = rect.size.width / 228
 
         var prev: Int?
@@ -208,12 +238,12 @@ class LogicView: NSView {
                            height: rect.height)
 
             if bitWidth[channel] == 1 {
-                drawLineSegment(in: r, v: [prev, curr, next], color: signalColor[channel])
+                drawLineSegment(in: r, v: [prev, curr, next], color: .black)
             } else {
-                drawDataSegment(in: r, v: [prev, curr, next], color: signalColor[channel])
+                drawDataSegment(in: r, v: [prev, curr, next], color: .black)
             }
             drawText(text: formatter.string(from: curr!, bitWidth: bitWidth[channel]),
-                     at: CGPoint(x: CGFloat(i) * w + (w / 2), y: rect.midY),
+                     in: r,
                      font: mono,
                      color: NSColor.labelColor)
 
@@ -223,6 +253,31 @@ class LogicView: NSView {
         }
     }
 
+    func drawText(text: String, in rect: NSRect, font: NSFont, color: NSColor) {
+
+        // Save the current graphics state
+        context?.saveGState()
+
+        // Set up the attributes
+        let attributes: [NSAttributedString.Key: Any] = [ .font: font, .foregroundColor: color ]
+
+        // Create the attributed string
+        let attributedString = NSAttributedString(string: text, attributes: attributes)
+        let size = attributedString.size()
+
+        // Check if the string fits into the drawing area
+        if size.width <= rect.width && size.height <= rect.height {
+
+            // Draw the string
+            let p = CGPoint(x: rect.midX - size.width / 2, y: rect.midY - size.height / 2)
+            attributedString.draw(at: p)
+        }
+
+        // Restore the graphics state
+        context?.restoreGState()
+    }
+
+    /*
     func drawText(text: String, at point: CGPoint, font: NSFont, color: NSColor) {
 
         // Save the current graphics state
@@ -242,6 +297,7 @@ class LogicView: NSView {
         // Restore the graphics state
         context?.restoreGState()
     }
+    */
 
     var rectangle: CGRect {
 
@@ -280,7 +336,7 @@ class LogicView: NSView {
         path.addLine(to: p3)
         path.addLine(to: p4)
 
-        context.setLineWidth(2.0)
+        context.setLineWidth(1.5)
         context.setStrokeColor(color.cgColor)
 
         context.addPath(path)
@@ -326,7 +382,7 @@ class LogicView: NSView {
         path.addLine(to: p7)
         path.addLine(to: p8)
 
-        context.setLineWidth(2.0)
+        context.setLineWidth(1.5)
         context.setStrokeColor(color.cgColor)
 
         context.addPath(path)

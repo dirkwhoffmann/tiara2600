@@ -101,4 +101,21 @@ extension NSColor {
 
         return (0xFF << 24) | (b << 16) | (g << 8) | r
     }
+
+    func adjust(brightness: CGFloat, saturation: CGFloat) -> NSColor {
+
+        guard let colorInHSB = usingColorSpace(.deviceRGB) else { return self }
+
+        var h: CGFloat = 0
+        var s: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+
+        colorInHSB.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+        b = brightness
+        s = saturation
+
+        return NSColor(hue: h, saturation: s, brightness: b, alpha: a)
+    }
+
 }
