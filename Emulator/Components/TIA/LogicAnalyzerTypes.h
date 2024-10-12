@@ -24,20 +24,26 @@ namespace tiara {
 /// Logic analyzer probes
 enum_long(PROBE)
 {
+    // Logic board
     PROBE_ADDR_BUS,                     ///< Address bus
     PROBE_DATA_BUS,                     ///< Data bus
+
+    // TIA
     PROBE_PHI1,                         ///< PHI1 (Horizontal counter)
     PROBE_PHI2,                         ///< PHI2 (Horizontal counter)
     PROBE_RDY,                          ///< Ready signal
     PROBE_VSYNC,                        ///< Vertical Sync
     PROBE_VBLANK,                       ///< Vertical Blank
+
+    // PIA
+    PROBE_INTIM,                        ///< Interval timer
 };
 typedef PROBE Probe;
 
 struct ProbeEnum : util::Reflection<ProbeEnum, Probe> {
 
     static constexpr long minVal = 0;
-    static constexpr long maxVal = PROBE_VBLANK;
+    static constexpr long maxVal = PROBE_INTIM;
 
     static const char *prefix() { return "PROBE"; }
     static const char *_key(long value)
@@ -51,6 +57,7 @@ struct ProbeEnum : util::Reflection<ProbeEnum, Probe> {
             case PROBE_RDY:         return "RDY";
             case PROBE_VSYNC:       return "VSYNC";
             case PROBE_VBLANK:      return "VBLANK";
+            case PROBE_INTIM:       return "INTIM";
         }
         return "???";
     }
@@ -105,6 +112,7 @@ typedef struct
     bool rdy;
     bool vsync;
     bool vblank;
+    u8 intim;
 }
 RecordedSignals;
 

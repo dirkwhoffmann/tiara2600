@@ -70,7 +70,7 @@ Memory::peek(u16 addr, MemoryType source)
 
     atari.addrBus = addr;
     
-    switch(source) {
+    switch (source) {
 
         case M_TIA:     return tia.peek(addr);
         case M_PIA:     return pia.peekReg(PIARegister(addr & 0x1F));
@@ -89,7 +89,7 @@ Memory::spy(u16 addr, MemoryType source) const
 {
     addr &= 0x1FFF;
 
-    switch(source) {
+    switch (source) {
 
         case M_TIA: return tia.spy(addr);
         case M_PIA: return pia.spyReg(PIARegister(addr & 0x1F));
@@ -102,18 +102,28 @@ Memory::spy(u16 addr, MemoryType source) const
 }
 
 void
-Memory::poke(u16 addr, u8 value, MemoryType target)
+Memory::poke(u16 addr, u8 val, MemoryType target)
 {
     assert(addr <= 0x1FFF);
 
     if (config.heatmap) stats.writes[addr]++;
 
     atari.addrBus = addr;
-    atari.dataBus = value;
+    atari.dataBus = val;
 
+    switch (target) {
+
+        case M_TIA: tia.poke(TIARegister(addr & 0x3F), val); break;
+        case M_PIA: pia.pokeReg(PIARegister(addr & 0x1F), val); break;
+        case M_RAM: pia.pokeRam(addr, val); break;
+        case M_CRT: cartPort.cart->poke(addr, val); break;
+
+        default:
+            fatalError;
+    }
+
+    /*
     switch(target) {
-
-        // case M_TIA:     tia.cs = 1; tia.rw = 0; break;
 
         case M_TIA:
         {
@@ -139,6 +149,7 @@ Memory::poke(u16 addr, u8 value, MemoryType target)
         default:
             fatalError;
     }
+    */
 }
 
 string

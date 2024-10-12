@@ -119,13 +119,14 @@ class LogicView: NSView {
                 case .RDY:      for i in 0..<228 { data[c][i] = (values + i).pointee.rdy ? 1 : 0 }
                 case .VSYNC:    for i in 0..<228 { data[c][i] = (values + i).pointee.vsync ? 1 : 0 }
                 case .VBLANK:   for i in 0..<228 { data[c][i] = (values + i).pointee.vblank ? 1 : 0 }
+                case .INTIM:    for i in 0..<228 { data[c][i] = Int((values + i).pointee.intim) }
                 default: break
                 }
 
                 switch probe[c] {
 
                 case .ADDR_BUS: bitWidth[c] = 16
-                case .DATA_BUS: bitWidth[c] = 8
+                case .DATA_BUS, .INTIM: bitWidth[c] = 8
                 default: bitWidth[c] = 1
                 }
             }

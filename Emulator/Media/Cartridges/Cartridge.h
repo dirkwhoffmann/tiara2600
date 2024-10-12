@@ -194,6 +194,7 @@ public:
 
     virtual u8 peek(u16 addr) { return 0; }
     virtual u8 spy(u16 addr) const { return 0; }
+    virtual void poke(u16 addr, u8 val) { }
 
 
     //

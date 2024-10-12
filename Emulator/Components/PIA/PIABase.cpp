@@ -53,12 +53,12 @@ PIA::_didReset(bool hard)
 
             case RAM_PATTERN_ZEROES:
             {
-                memset(ram, 0x00, 1298);
+                memset(ram, 0x00, 128);
                 break;
             }
             case RAM_PATTERN_ONES:
             {
-                memset(ram, 0xFF, 1298);
+                memset(ram, 0xFF, 128);
                 break;
             }
             case RAM_PATTERN_ATARI_7800:

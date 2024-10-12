@@ -92,6 +92,7 @@ class LogicAnalyzer: DialogController {
             add("RDY")
             add("VSYNC")
             add("VBLANK")
+            add("INTIM")
         }
 
         super.awakeFromNib()
