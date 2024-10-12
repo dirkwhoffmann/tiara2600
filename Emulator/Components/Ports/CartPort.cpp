@@ -88,7 +88,7 @@ CartPort::setCartType(CartType newType)
 u16
 CartPort::resetVector() const
 {
-    return LO_HI(cart->spypeek(0xFFFC), cart->spypeek(0xFFFD));
+    return LO_HI(cart->spy(0xFFFC), cart->spy(0xFFFD));
 }
 
 }

@@ -31,7 +31,11 @@ class PIA : public SubComponent, public Inspectable<PIAInfo, PIAStats> {
         .shell          = "pia"
     }};
 
-    Options options{};
+    Options options{
+
+        OPT_RAM_INIT_PATTERN
+    };
+    
     PIAConfig config{};
 
     // Memory
@@ -48,16 +52,10 @@ class PIA : public SubComponent, public Inspectable<PIAInfo, PIAStats> {
     // Interval timer
     u8 timer{};
     isize counter{};
-
-    // Couting interval
     isize interval{};
 
-    // Interrupt enable register
-    u8 enable{};
-
-    // Interrupt status register
-    // bool irq{};
-    // bool timerIrqEnable{};
+    // Interrupt registers (enable and status)
+    u8 intena{};
     u8 instat{};
     
     // Edge control (PA7 interrupts)
@@ -71,11 +69,11 @@ class PIA : public SubComponent, public Inspectable<PIAInfo, PIAStats> {
 public:
 
     // Chip Select (1 = selected)
-    bool cs{};
-    bool csram{};
+    // bool cs{};
+    // bool csram{};
 
     // Read-write (1 = read)
-    bool rw{};
+    // bool rw{};
 
     // Data ports
     u8 pa{};
@@ -113,6 +111,10 @@ public:
 
         if (isResetter(worker)) return;
 
+        worker
+
+        << config.ramPattern;
+
     } SERIALIZERS(serialize);
 
 
@@ -149,8 +151,8 @@ public:
     const PIAConfig &getConfig() const { return config; }
     const Options &getOptions() const override { return options; }
     i64 getOption(Option opt) const override;
-    void checkOption(Option opt, i64 value) override;
-    void setOption(Option opt, i64 value) override;
+    void checkOption(Option opt, i64 val) override;
+    void setOption(Option opt, i64 val) override;
 
 
     //
@@ -159,24 +161,23 @@ public:
 
 public:
 
-    u8 peek(u16 addr);
-    u8 peek(PIARegister reg);
+    u8 peekRam(u16 addr);
+    u8 peekReg(PIARegister reg);
 
-    u8 spypeek(u16 addr) const;
-    u8 spypeek(PIARegister reg) const;
+    u8 spyRam(u16 addr) const;
+    u8 spyReg(PIARegister reg) const;
 
-    void poke(PIARegister reg, u8 val, Cycle delay = 0);
+    void pokeRam(u16 addr, u8 val);
+    void pokeReg(PIARegister reg, u8 val, Cycle delay = 0);
+
+private:
 
     void pokePRA(u8 val);
     void pokeDDRA(u8 val);
     void pokePRB(u8 val);
     void pokeDDRB(u8 val);
-    // void pokeINTIM(u8 val);
-    // void pokeINSTAT(u8 val);
     void pokeTIMxT(isize x, u8 val, bool enable);
     void pokeEDGCTL(u8 val);
-
-private:
 
     void updatePA();
     void updatePA(u8 val);

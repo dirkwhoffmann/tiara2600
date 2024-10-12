@@ -18,11 +18,11 @@ namespace tiara {
 u8
 StdCartridge::peek(u16 addr)
 {
-    return spypeek(addr);
+    return spy(addr);
 }
 
 u8
-StdCartridge::spypeek(u16 addr) const
+StdCartridge::spy(u16 addr) const
 {
     assert(rom.size >= 0x1000);
     return rom[addr & 0xFFF];

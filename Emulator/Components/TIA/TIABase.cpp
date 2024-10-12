@@ -59,9 +59,9 @@ TIA::_dump(Category category, std::ostream& os) const
 }
 
 i64
-TIA::getOption(Option option) const
+TIA::getOption(Option opt) const
 {
-    switch (option) {
+    switch (opt) {
 
         case OPT_TIA_REVISION:        return config.revision;
         case OPT_TIA_POWER_SAVE:      return config.powerSave;

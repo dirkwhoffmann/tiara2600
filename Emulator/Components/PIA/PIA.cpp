@@ -18,15 +18,13 @@
 namespace tiara {
 
 u8
-PIA::peek(u16 addr)
+PIA::peekRam(u16 addr)
 {
-    if ((addr & RAM_MASK) == RAM_MATCH) return ram[addr & 0x7F];
-
-    return peek(PIARegister(addr & 0x1F));
+    return ram[addr & 0x7F];
 }
 
 u8
-PIA::peek(PIARegister reg)
+PIA::peekReg(PIARegister reg)
 {
     u8 result;
 
@@ -36,7 +34,7 @@ PIA::peek(PIARegister reg)
         case 0x06: case 0x0E: case 0x16: case 0x1E:
 
             if (timer != 0xFF) CLR_BIT(instat, 7);
-            REPLACE_BIT(enable, 7, GET_BIT(reg, 3));
+            REPLACE_BIT(intena, 7, GET_BIT(reg, 3));
             result = timer;
             break;
 
@@ -44,28 +42,28 @@ PIA::peek(PIARegister reg)
         case 0x07: case 0x0F: case 0x17: case 0x1F:
 
             result = instat;
-            instat &= 0x80;
+            CLR_BIT(instat, 7);
             break;
 
         default:
 
-            result = spypeek(reg);
+            result = spyReg(reg);
             break;
     }
+
+    debug(PIA_REG_DEBUG, "PIA::peek(%s) = %02x\n", PIARegisterEnum::key(reg), result);
 
     return result;
 }
 
 u8
-PIA::spypeek(u16 addr) const
+PIA::spyRam(u16 addr) const
 {
-    if ((addr & RAM_MASK) == RAM_MATCH) return ram[addr & 0x7F];
-
-    return spypeek(PIARegister(addr & 0x1F));
+    return ram[addr & 0x7F];
 }
 
 u8
-PIA::spypeek(PIARegister reg) const
+PIA::spyReg(PIARegister reg) const
 {
     switch (reg) {
 
@@ -84,49 +82,68 @@ PIA::spypeek(PIARegister reg) const
 }
 
 void
-PIA::poke(PIARegister reg, u8 val, Cycle delay)
+PIA::pokeRam(u16 addr, u8 val)
 {
+    ram[addr & 0x7F] = val;
+}
+
+void
+PIA::pokeReg(PIARegister reg, u8 val, Cycle delay)
+{
+    assert_enum(PIARegister, reg);
+
     if (delay) {
+
+        debug(PIA_REG_DEBUG, "PIA::poke(%s, %02x) delayed by %lld cycles\n",
+              PIARegisterEnum::key(reg), val, delay);
 
         assert(!atari.hasEvent<SLOT_REG>());
         atari.scheduleRel<SLOT_REG>(delay, REG_WRITE_PIA, HI_LO(reg, val));
         return;
     }
 
+    debug(PIA_REG_DEBUG, "PIA::poke(%s, %02x)\n", PIARegisterEnum::key(reg), val);
+
+    // 000x x0xx: IO
+    // 0001 x1xx: Interval timer
+    // 0000 x1xx: Edge detect control
+
     switch(reg) {
 
-        case 0x00: pokePRA(val); break;
-        case 0x01: pokeDDRA(val); break;
-        case 0x02: pokePRB(val); break;
-        case 0x03: pokeDDRB(val); break;
-        case 0x04: pokeEDGCTL(0); break;
-        case 0x05: pokeEDGCTL(1); break;
-        case 0x06: pokeEDGCTL(2); break;
-        case 0x07: pokeEDGCTL(3); break;
-        case 0x08: pokePRA(val); break;
-        case 0x09: pokeDDRA(val); break;
-        case 0x0A: pokePRB(val); break;
-        case 0x0B: pokeDDRB(val); break;
-        case 0x0C: pokeEDGCTL(0); break;
-        case 0x0D: pokeEDGCTL(1); break;
-        case 0x0E: pokeEDGCTL(2); break;
-        case 0x0F: pokeEDGCTL(3); break;
-        case 0x10: pokePRA(val); break;
-        case 0x11: pokeDDRA(val); break;
-        case 0x12: pokePRB(val); break;
-        case 0x13: pokeDDRB(val); break;
-        case 0x14: pokeTIMxT(1, val, false); break;
-        case 0x15: pokeTIMxT(8, val, false); break;
-        case 0x16: pokeTIMxT(64, val, false); break;
-        case 0x17: pokeTIMxT(1024, val, false); break;
-        case 0x18: pokePRA(val); break;
-        case 0x19: pokeDDRA(val); break;
-        case 0x1A: pokePRB(val); break;
-        case 0x1B: pokeDDRB(val); break;
-        case 0x1C: pokeTIMxT(1, val, true); break;
-        case 0x1D: pokeTIMxT(8, val, true); break;
-        case 0x1E: pokeTIMxT(64, val, true); break;
-        case 0x1F: pokeTIMxT(1024, val, true); break;
+        case 0x00: case 0x08: case 0x10: case 0x18:
+
+            pokePRA(val);
+            break;
+
+        case 0x01: case 0x09: case 0x11: case 0x19:
+
+            pokeDDRA(val);
+            break;
+
+        case 0x02: case 0x0A: case 0x12: case 0x1A:
+
+            pokePRB(val);
+            break;
+
+        case 0x03: case 0x0B: case 0x13: case 0x1B:
+
+            pokeDDRB(val);
+            break;
+
+        case 0x04: case 0x05: case 0x06: case 0x07:
+        case 0x0C: case 0x0D: case 0x0E: case 0x0F:
+
+            pokeEDGCTL(reg & 0x3);
+            break;
+
+        case 0x14:  pokeTIMxT(1, val, false); break;
+        case 0x15:  pokeTIMxT(8, val, false); break;
+        case 0x16:  pokeTIMxT(64, val, false); break;
+        case 0x17:  pokeTIMxT(1024, val, false); break;
+        case 0x1C:  pokeTIMxT(1, val, true); break;
+        case 0x1D:  pokeTIMxT(8, val, true); break;
+        case 0x1E:  pokeTIMxT(64, val, true); break;
+        case 0x1F:  pokeTIMxT(1024, val, true); break;
 
         default:
             fatalError;
@@ -167,7 +184,7 @@ PIA::pokeTIMxT(isize x, u8 val, bool irqEnable)
 {
     interval = x;
     timer = val;
-    REPLACE_BIT(enable, 7, irqEnable);
+    REPLACE_BIT(intena, 7, irqEnable);
     CLR_BIT(instat, 7);
     counter = 0;
 }
@@ -187,11 +204,12 @@ PIA::updatePA()
 void
 PIA::updatePA(u8 val)
 {
+    // Check for a rising or falling edge on PA7
     if (GET_BIT(edgctrl, 0) == 0 && RISING_EDGE_BIT(pa, val, 7)) {
-        instat |= 0x40;
+        SET_BIT(instat, 6);
     }
     if (GET_BIT(edgctrl, 0) == 1 && FALLING_EDGE_BIT(pa, val, 7)) {
-        instat |= 0x40;
+        SET_BIT(instat, 6);
     }
     pa = val;
 }
@@ -218,37 +236,10 @@ PIA::execute()
 
     } else if ((counter & (interval - 1)) == 0) {
 
-        if (timer == 0) instat |= 0x80;
+        if (timer == 0) SET_BIT(instat, 7);
         timer--;
     }
     counter++;
-
-    /*
-    if (cs) {
-
-        auto addr = atari.addrBus & 0x7F;
-        auto data = atari.dataBus;
-
-        if (csram) {
-
-            if (rw) {
-                cpu.concludeRead(ram[addr]);
-            } else {
-                ram[addr] = data;
-            }
-
-        } else {
-
-            if (rw) {
-                cpu.concludeRead(0);
-            } else {
-
-            }
-        }
-        
-        cs = 0;
-    }
-    */
 }
 template void PIA::execute<false>();
 template void PIA::execute<true>();

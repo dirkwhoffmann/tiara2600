@@ -936,7 +936,7 @@ Atari::processREGEvent()
     switch (eventid[SLOT_REG]) {
 
         case REG_WRITE_TIA: tia.poke(TIARegister(hi), lo); break;
-        case REG_WRITE_PIA: pia.poke(PIARegister(hi), lo); break;
+        case REG_WRITE_PIA: pia.pokeReg(PIARegister(hi), lo); break;
 
         default:
             fatalError;

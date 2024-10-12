@@ -32,8 +32,8 @@ class Configuration {
     }
 
     var ramPattern: Int {
-        get { return emu?.get(.MEM_INIT_PATTERN) ?? 0 }
-        set { emu?.set(.MEM_INIT_PATTERN, value: newValue) }
+        get { return emu?.get(.RAM_INIT_PATTERN) ?? 0 }
+        set { emu?.set(.RAM_INIT_PATTERN, value: newValue) }
     }
     
     //

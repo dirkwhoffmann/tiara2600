@@ -14,6 +14,7 @@
 
 #include "MemoryTypes.h"
 #include "MemoryDebugger.h"
+#include "PIATypes.h"
 #include "SubComponent.h"
 #include "Heatmap.h"
 
@@ -33,7 +34,6 @@ class Memory final : public SubComponent, public Inspectable<MemInfo, MemStats> 
 
     Options options = {
 
-        OPT_MEM_INIT_PATTERN,
         OPT_MEM_HEATMAP,
     };
 
@@ -100,7 +100,7 @@ public:
         << peekSrc
         << pokeTarget
 
-        << config.ramPattern;
+        << config.heatmap;
 
     }
 
@@ -153,9 +153,6 @@ public:
 
 public:
 
-    // Erases the RAM with the provided init pattern
-    void eraseWithPattern(RamPattern pattern);
-
     // Returns the current peek source of the specified memory address
     MemoryType getPeekSource(u16 addr) { return peekSrc[(addr & 0x1FFF) >> 7]; }
 
@@ -167,8 +164,8 @@ public:
     u8 peek(u16 addr) { return peek(addr, peekSrc[(addr & 0x1FFF) >> 7]); }
 
     // Reads a value from memory without side effects
-    u8 spypeek(u16 addr, MemoryType source) const;
-    u8 spypeek(u16 addr) const { return spypeek(addr, peekSrc[(addr & 0x1FFF) >> 7]); }
+    u8 spy(u16 addr, MemoryType source) const;
+    u8 spy(u16 addr) const { return spy(addr, peekSrc[(addr & 0x1FFF) >> 7]); }
 
     // Writing a value into memory
     void poke(u16 addr, u8 value, MemoryType target);

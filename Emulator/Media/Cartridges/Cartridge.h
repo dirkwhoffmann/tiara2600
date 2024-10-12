@@ -193,7 +193,7 @@ public:
 public:
 
     virtual u8 peek(u16 addr) { return 0; }
-    virtual u8 spypeek(u16 addr) const { return 0; }
+    virtual u8 spy(u16 addr) const { return 0; }
 
 
     //

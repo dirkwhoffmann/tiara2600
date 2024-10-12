@@ -43,13 +43,13 @@ MemoryDebugger::dump(char *dst, u16 addr, const char *fmt) const
 
             case 'b': // Byte
 
-                snprintf(dst, 3, "%02X", mem.spypeek(u16(addr + bcnt++)));
+                snprintf(dst, 3, "%02X", mem.spy(u16(addr + bcnt++)));
                 dst += 2;
                 break;
 
             case 'c': // Character
             {
-                auto value = mem.spypeek(u16(addr + ccnt++));
+                auto value = mem.spy(u16(addr + ccnt++));
                 *dst++ = isprint(value) ? char(value) : '.';
                 break;
             }
@@ -132,7 +132,7 @@ MemoryDebugger::memSearch(const string &pattern, u16 addr)
             for (isize j = 0;; j++) {
 
                 // Get a byte from memory
-                auto val = mem.spypeek(u16(i + j));
+                auto val = mem.spy(u16(i + j));
 
                 // Stop searching if we find a mismatch
                 if (val != u8(pattern[j])) break;
@@ -163,12 +163,12 @@ MemoryDebugger::copy(u16 src, u16 dst, isize cnt)
     if (src < dst) {
 
         for (isize i = cnt - 1; i >= 0; i--)
-            mem.poke(u16(dst + i), mem.spypeek(u16(src + i)));
+            mem.poke(u16(dst + i), mem.spy(u16(src + i)));
 
     } else {
 
         for (isize i = 0; i <= cnt - 1; i++)
-            mem.poke(u16(dst + i), mem.spypeek(u16(src + i)));
+            mem.poke(u16(dst + i), mem.spy(u16(src + i)));
     }
 }
 

@@ -115,13 +115,42 @@ struct PIARegisterEnum : util::Reflection<PIARegisterEnum, PIARegister> {
     }
 };
 
+/// Ram startup pattern
+enum_long(RAM_PATTERN)
+{
+    RAM_PATTERN_ZEROES,     ///< Initialize with all zeroes
+    RAM_PATTERN_ONES,       ///< Initialize with all ones
+    RAM_PATTERN_RANDOM,     ///< Initialize with pseudo-random values
+    RAM_PATTERN_ATARI_7800, ///< Initialize with the Atari 7800 pattern from Stella
+};
+typedef RAM_PATTERN RamPattern;
+
+struct RamPatternEnum : util::Reflection<RamPatternEnum, RamPattern> {
+
+    static constexpr long minVal = 0;
+    static constexpr long maxVal = RAM_PATTERN_ATARI_7800;
+
+    static const char *prefix() { return "RAM_PATTERN"; }
+    static const char *_key(long value)
+    {
+        switch (value) {
+
+            case RAM_PATTERN_ZEROES:        return "ZEROES";
+            case RAM_PATTERN_ONES:          return "ONES";
+            case RAM_PATTERN_RANDOM:        return "RANDOM";
+            case RAM_PATTERN_ATARI_7800:    return "ATARI_7800";
+        }
+        return "???";
+    }
+};
+
 //
 // Structures
 //
 
 typedef struct
 {
-
+    RamPattern ramPattern;
 }
 PIAConfig;
 

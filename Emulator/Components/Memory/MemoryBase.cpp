@@ -46,7 +46,6 @@ Memory::getOption(Option option) const
 {
     switch (option) {
 
-        case OPT_MEM_INIT_PATTERN:  return config.ramPattern;
         case OPT_MEM_HEATMAP:       return config.heatmap;
 
         default:
@@ -58,13 +57,6 @@ void
 Memory::checkOption(Option opt, i64 value)
 {
     switch (opt) {
-
-        case OPT_MEM_INIT_PATTERN:
-
-            if (!RamPatternEnum::isValid(value)) {
-                throw Error(VC64ERROR_OPT_INV_ARG, RamPatternEnum::keyList());
-            }
-            return;
 
         case OPT_MEM_HEATMAP:
 
@@ -81,11 +73,6 @@ Memory::setOption(Option opt, i64 value)
     checkOption(opt, value);
     
     switch (opt) {
-
-        case OPT_MEM_INIT_PATTERN:
-
-            config.ramPattern = (RamPattern)value;
-            return;
 
         case OPT_MEM_HEATMAP:
 

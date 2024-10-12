@@ -38,6 +38,8 @@ Defaults::Defaults()
     setFallback(OPT_TIA_REVISION,               TIA_NTSC);
     setFallback(OPT_TIA_POWER_SAVE,             true);
 
+    setFallback(OPT_RAM_INIT_PATTERN,           RAM_PATTERN_ZEROES);
+
     setFallback(OPT_LA_ENABLE,                  false);
     setFallback(OPT_LA_CHANNEL0,                false);
     setFallback(OPT_LA_CHANNEL1,                false);
@@ -91,7 +93,6 @@ Defaults::Defaults()
 
     setFallback(OPT_SID_SAMPLING,               0);
 
-    setFallback(OPT_MEM_INIT_PATTERN,           RAM_PATTERN_ZEROES);
     setFallback(OPT_MEM_HEATMAP,                false);
     
     setFallback(OPT_MOUSE_SHAKE_DETECT,         true);

@@ -38,11 +38,7 @@ Memory::Memory(Atari &ref) : SubComponent(ref)
 void
 Memory::_didReset(bool hard)
 {
-    if (hard) {
 
-        // Erase RAM
-        eraseWithPattern(config.ramPattern);
-    }
 }
 
 void 
@@ -63,43 +59,6 @@ Memory::operator << (SerWriter &worker)
     serialize(worker);
 }
 
-void
-Memory::eraseWithPattern(RamPattern pattern)
-{
-    /*
-    switch (pattern) {
-                        
-        case RAM_PATTERN_ZEROES:
-            
-            for (isize i = 0; i < isizeof(ram); i++)
-                ram[i] = 0;
-            
-            break;
-            
-        case RAM_PATTERN_ONES:
-            
-            for (isize i = 0; i < isizeof(ram); i++)
-                ram[i] = 0xFF;
-            
-            break;
-            
-        case RAM_PATTERN_RANDOM:
-        {
-            std::random_device rd;
-            std::mt19937 gen(rd());
-            std::uniform_int_distribution<> distrib(0, 0xFF);
-            
-            for (isize i = 0; i < isizeof(ram); i++)
-                ram[i] = (u8)distrib(gen);
-            
-            break;
-        }
-        default:
-            fatalError;
-    }
-    */
-}
-
 u8
 Memory::peek(u16 addr, MemoryType source)
 {
@@ -114,15 +73,9 @@ Memory::peek(u16 addr, MemoryType source)
     switch(source) {
 
         case M_TIA:     return tia.peek(addr);
-        case M_PIA:
-        case M_RAM:     return pia.peek(addr);
+        case M_PIA:     return pia.peekReg(PIARegister(addr & 0x1F));
+        case M_RAM:     return pia.peekRam(addr);
         case M_CRT:     return cartPort.cart->peek(addr);
-            /*
-        case M_TIA:     tia.cs = 1; tia.rw = 1; break;
-        case M_PIA:     pia.cs = 1; pia.csram = 0; pia.rw = 1; break;
-        case M_RAM:     pia.cs = 1; pia.csram = 1; pia.rw = 1; break;
-        case M_CRT:     cartPort.cart->cs = 1; cartPort.cart->rw = 1; break;
-             */
 
         default:
             fatalError;
@@ -132,16 +85,16 @@ Memory::peek(u16 addr, MemoryType source)
 }
 
 u8
-Memory::spypeek(u16 addr, MemoryType source) const
+Memory::spy(u16 addr, MemoryType source) const
 {
     addr &= 0x1FFF;
 
     switch(source) {
 
-        case M_TIA: return tia.spypeek(addr);
-        case M_PIA:
-        case M_RAM: return pia.spypeek(addr);
-        case M_CRT: return cartPort.cart->spypeek(addr);
+        case M_TIA: return tia.spy(addr);
+        case M_PIA: return pia.spyReg(PIARegister(addr & 0x1F));
+        case M_RAM: return pia.spyRam(addr);
+        case M_CRT: return cartPort.cart->spy(addr);
 
         default:
             fatalError;
@@ -212,10 +165,10 @@ Memory::memdump(u16 addr, isize num, bool hex, isize pads, MemoryType src) const
             for (isize j = 0; j < pads; j++) *p++ = ' ';
 
             if (hex) {
-                util::sprint8x(p, spypeek(addr++, src));
+                util::sprint8x(p, spy(addr++, src));
                 p += 2;
             } else {
-                util::sprint8d(p, spypeek(addr++, src));
+                util::sprint8d(p, spy(addr++, src));
                 p += 3;
             }
         }
@@ -248,7 +201,7 @@ Memory::txtdump(u16 addr, isize num, MemoryType src) const
         
         for (isize i = 0; i < num; i++) {
             
-            u8 byte = spypeek(addr++, src);
+            u8 byte = spy(addr++, src);
             
             if (byte >= 65 && byte <= 90) { *p++ = byte; continue; }
             if (byte >= 32 && byte <= 57) { *p++ = byte; continue; }

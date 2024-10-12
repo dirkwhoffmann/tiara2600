@@ -42,7 +42,7 @@ public:
     virtual bool isSupported() const override { return true; }
 
     virtual u8 peek(u16 addr) override;
-    virtual u8 spypeek(u16 addr) const override;
+    virtual u8 spy(u16 addr) const override;
     virtual void execute() override;
     virtual void endOfFrame() override;
 };

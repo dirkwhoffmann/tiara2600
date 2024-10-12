@@ -47,6 +47,8 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_TIA_REVISION:              return enumParser.template operator()<TIARevisionEnum>();
         case OPT_TIA_POWER_SAVE:            return boolParser();
 
+        case OPT_RAM_INIT_PATTERN:          return enumParser.template operator()<RamPatternEnum>();
+
         case OPT_LA_ENABLE:                 return boolParser();
         case OPT_LA_CHANNEL0:               return boolParser();
         case OPT_LA_CHANNEL1:               return boolParser();
@@ -100,7 +102,6 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_AUD_VOL_L:                 return numParser("%");
         case OPT_AUD_VOL_R:                 return numParser("%");
 
-        case OPT_MEM_INIT_PATTERN:          return enumParser.template operator()<RamPatternEnum>();
         case OPT_MEM_HEATMAP:               return boolParser();
 
         case OPT_MOUSE_SHAKE_DETECT:        return boolParser();

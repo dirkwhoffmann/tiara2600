@@ -573,7 +573,7 @@ extension DefaultsProxy {
         remove(.TIA_REVISION)
         remove(.TIA_POWER_SAVE)
 
-        remove(.MEM_INIT_PATTERN)
+        remove(.RAM_INIT_PATTERN)
     }
 }
 
@@ -591,7 +591,7 @@ extension Configuration {
 
             defaults.set(.TIA_REVISION, tiaRevision)
 
-            defaults.set(.MEM_INIT_PATTERN, ramPattern)
+            defaults.set(.RAM_INIT_PATTERN, ramPattern)
 
             defaults.save()
 
@@ -610,7 +610,7 @@ extension Configuration {
             let defaults = EmulatorProxy.defaults!
 
             tiaRevision = defaults.get(.TIA_REVISION)
-            ramPattern = defaults.get(.MEM_INIT_PATTERN)
+            ramPattern = defaults.get(.RAM_INIT_PATTERN)
 
             emu.resume()
         }

@@ -69,41 +69,12 @@ struct MemoryTypeEnum : util::Reflection<MemoryTypeEnum, MemoryType> {
     }
 };
 
-/// Ram startup pattern
-enum_long(RAM_PATTERN)
-{
-    RAM_PATTERN_ZEROES,     ///< Initialize with all zeroes
-    RAM_PATTERN_ONES,       ///< Initialize with all ones
-    RAM_PATTERN_RANDOM      ///< Initialize with pseudo-random values
-};
-typedef RAM_PATTERN RamPattern;
-
-struct RamPatternEnum : util::Reflection<RamPatternEnum, RamPattern> {
-
-    static constexpr long minVal = 0;
-    static constexpr long maxVal = RAM_PATTERN_RANDOM;
-
-    static const char *prefix() { return "RAM_PATTERN"; }
-    static const char *_key(long value)
-    {
-        switch (value) {
-
-            case RAM_PATTERN_ZEROES: return "ZEROES";
-            case RAM_PATTERN_ONES:   return "ONES";
-            case RAM_PATTERN_RANDOM: return "RANDOM";
-        }
-        return "???";
-    }
-};
-
-
 //
 // Structures
 //
 
 typedef struct
 {
-    RamPattern ramPattern;
     bool heatmap; 
 }
 MemConfig;

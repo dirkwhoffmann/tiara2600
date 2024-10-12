@@ -12,7 +12,8 @@
 
 #include "config.h"
 #include "PIA.h"
-#include "CPU.h"
+#include "Atari.h"
+// #include "CPU.h"
 #include "IOUtils.h"
 
 namespace tiara {
@@ -46,7 +47,35 @@ PIA::_didReset(bool hard)
         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF
     };
 
-    memcpy(ram, atari7800, 128);
+    if (hard) {
+
+        switch (config.ramPattern) {
+
+            case RAM_PATTERN_ZEROES:
+            {
+                memset(ram, 0x00, 1298);
+                break;
+            }
+            case RAM_PATTERN_ONES:
+            {
+                memset(ram, 0xFF, 1298);
+                break;
+            }
+            case RAM_PATTERN_ATARI_7800:
+            {
+                memcpy(ram, atari7800, 128);
+                break;
+            }
+            case RAM_PATTERN_RANDOM:
+            {
+                auto ran = atari.random();
+                for (isize i = 0; i < 128; i++, ran = atari.random(ran)) ram[i] = (u8)ran;
+                break;
+            }
+            default:
+                fatalError;
+        }
+    }
 }
 
 void
@@ -120,21 +149,49 @@ PIA::cacheStats(PIAStats &result) const
 }
 
 i64
-PIA::getOption(Option option) const
+PIA::getOption(Option opt) const
 {
-    fatalError;
+    switch (opt) {
+
+        case OPT_RAM_INIT_PATTERN:  return config.ramPattern;
+
+        default:
+            fatalError;
+    }
 }
 
 void
 PIA::checkOption(Option opt, i64 value)
 {
-    throw Error(VC64ERROR_OPT_UNSUPPORTED);
+    switch (opt) {
+
+        case OPT_RAM_INIT_PATTERN:
+
+            if (!RamPatternEnum::isValid(value)) {
+                throw Error(VC64ERROR_OPT_INV_ARG, RamPatternEnum::keyList());
+            }
+            return;
+
+        default:
+            throw Error(VC64ERROR_OPT_UNSUPPORTED);
+    }
 }
 
 void
 PIA::setOption(Option opt, i64 value)
 {
-    fatalError;
+    checkOption(opt, value);
+
+    switch (opt) {
+
+        case OPT_RAM_INIT_PATTERN:
+
+            config.ramPattern = (RamPattern)value;
+            return;
+
+        default:
+            fatalError;
+    }
 }
 
 }

@@ -141,11 +141,11 @@ TIA::drawDebugPixel(isize x, isize y, u32 color)
 u8
 TIA::peek(u16 addr)
 {
-    return spypeek(addr);
+    return spy(addr);
 }
 
 u8
-TIA::spypeek(u16 addr) const
+TIA::spy(u16 addr) const
 {
     switch (TIARegister(addr)) {
 

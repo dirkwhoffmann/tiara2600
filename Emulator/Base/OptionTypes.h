@@ -46,12 +46,15 @@ enum_long(OPT)
     OPT_TIA_REVISION,           ///< Chip revision
     OPT_TIA_POWER_SAVE,         ///< Enable fast-paths
 
+    // PIA
+    OPT_RAM_INIT_PATTERN,       ///< Initial RAM values
+
     // Logic Analyzer
     OPT_LA_ENABLE,              ///< Global on/off switch of the logic analyzer
-    OPT_LA_CHANNEL0,             ///< Enable channel 0
-    OPT_LA_CHANNEL1,             ///< Enable channel 1
-    OPT_LA_CHANNEL2,             ///< Enable channel 2
-    OPT_LA_CHANNEL3,             ///< Enable channel 3
+    OPT_LA_CHANNEL0,            ///< Enable channel 0
+    OPT_LA_CHANNEL1,            ///< Enable channel 1
+    OPT_LA_CHANNEL2,            ///< Enable channel 2
+    OPT_LA_CHANNEL3,            ///< Enable channel 3
     OPT_LA_PROBE0,              ///< Probe on channel 0
     OPT_LA_PROBE1,              ///< Probe on channel 1
     OPT_LA_PROBE2,              ///< Probe on channel 2
@@ -106,7 +109,6 @@ enum_long(OPT)
     OPT_AUD_VOL_R,              ///< Master volume (right channel)
 
     // Memory
-    OPT_MEM_INIT_PATTERN,       ///< Ram initialization pattern
     OPT_MEM_HEATMAP,            ///< Memory heatmap
 
     // Mouse
@@ -163,6 +165,8 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_TIA_REVISION:          return "TIA.REVISION";
             case OPT_TIA_POWER_SAVE:        return "TIA.POWER_SAVE";
 
+            case OPT_RAM_INIT_PATTERN:      return "PIA.RAM_INIT_PATTERN";
+
             case OPT_LA_ENABLE:             return "LA.ENABLE";
             case OPT_LA_CHANNEL0:           return "LA.CHANNEL0";
             case OPT_LA_CHANNEL1:           return "LA.CHANNEL1";
@@ -216,7 +220,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_AUD_VOL_L:             return "AUD.VOLL";
             case OPT_AUD_VOL_R:             return "AUD.VOLR";
 
-            case OPT_MEM_INIT_PATTERN:      return "MEM.INIT_PATTERN";
             case OPT_MEM_HEATMAP:           return "MEM.HEATMAP";
 
             case OPT_MOUSE_SHAKE_DETECT:    return "MOUSE.SHAKE_DETECTION";
@@ -263,11 +266,13 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_TIA_REVISION:          return "Video standard";
             case OPT_TIA_POWER_SAVE:        return "Take fast paths";
 
+            case OPT_RAM_INIT_PATTERN:      return "Memory start-up pattern";
+
             case OPT_LA_ENABLE:             return "Logic analyzer";
-            case OPT_LA_CHANNEL0:            return "Channel 0 enable";
-            case OPT_LA_CHANNEL1:            return "Channel 1 enable";
-            case OPT_LA_CHANNEL2:            return "Channel 2 enable";
-            case OPT_LA_CHANNEL3:            return "Channel 3 enable";
+            case OPT_LA_CHANNEL0:           return "Channel 0 enable";
+            case OPT_LA_CHANNEL1:           return "Channel 1 enable";
+            case OPT_LA_CHANNEL2:           return "Channel 2 enable";
+            case OPT_LA_CHANNEL3:           return "Channel 3 enable";
             case OPT_LA_PROBE0:             return "Channel 0 probe";
             case OPT_LA_PROBE1:             return "Channel 1 probe";
             case OPT_LA_PROBE2:             return "Channel 2 probe";
@@ -315,7 +320,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_AUD_VOL_L:             return "Master volume (left)";
             case OPT_AUD_VOL_R:             return "Master volume (right)";
 
-            case OPT_MEM_INIT_PATTERN:      return "Memory start-up pattern";
             case OPT_MEM_HEATMAP:           return "Heatmap";
 
             case OPT_MOUSE_SHAKE_DETECT:    return "Detect a shaked mouse";

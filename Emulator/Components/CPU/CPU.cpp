@@ -301,7 +301,7 @@ CPU::write(u16 addr, u8 val)
 u8
 CPU::readDasm(u16 addr) const
 {
-    return mem.spypeek(addr);
+    return mem.spy(addr);
 }
 
 u16
