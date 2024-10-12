@@ -113,6 +113,12 @@ private:
     bool vs{};
     bool vb{};
 
+    // Controls the vertical beam reset
+    bool vsedge{};
+
+    // Indicates a y counter overflow (missing VSYNC)
+    // bool missingvs{};
+
     // RDY latch (controls the CPU's RDY input)
     bool rdy{};
 
@@ -314,7 +320,8 @@ public:
     u8 peek(u16 addr);
     u8 spy(u16 addr) const;
 
-    void poke(TIARegister reg, u8 val, Cycle delay = 0);
+    void poke(TIARegister reg, u8 val);
+    void poke(TIARegister reg, u8 val, Cycle delay);
 
     
     //

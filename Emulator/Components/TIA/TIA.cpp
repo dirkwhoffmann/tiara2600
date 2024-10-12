@@ -155,6 +155,12 @@ TIA::spy(u16 addr) const
 }
 
 void
+TIA::poke(TIARegister reg, u8 val)
+{
+    poke(reg, val, 0);
+}
+
+void
 TIA::poke(TIARegister reg, u8 val, Cycle delay)
 {
     if (delay) {
@@ -170,7 +176,17 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
 
     switch(reg) {
 
-        case TIA_WSYNC: strobe = TIA_WSYNC; break;
+        case TIA_VSYNC:
+
+            vsedge = RISING_EDGE(vs, val & 0x02);
+            vs = val & 0x02;
+            break;
+
+        case TIA_VBLANK:
+        case TIA_WSYNC:
+
+            strobe = reg;
+            break;
 
         default:
 
@@ -186,6 +202,13 @@ TIA::execute()
     execute <debug, 0> ();
     execute <debug, 1> ();
     execute <debug, 2> ();
+
+    // VSYNC logic
+    if (vsedge) {
+
+        debug(true, "EOF\n");
+        atari.eofHandler();
+    }
 }
 template void TIA::execute<false>();
 template void TIA::execute<true>();
@@ -202,7 +225,10 @@ TIA::execute()
     // Check for the "Start HBlank" signal
     bool shb = hc.res;
 
+    //
     // RDY logic
+    //
+
     if (strobe == TIA_WSYNC && rdy) {
         // trace(true, "RDY down\n");
         rdy = false; cpu.pullDownRdyLine();
@@ -212,22 +238,48 @@ TIA::execute()
         rdy = true; cpu.releaseRdyLine();
     }
 
+    //
+    // Strobes
+    //
+
+    if (cycle == 0) {
+
+        switch (strobe) {
+
+            case TIA_VBLANK:
+
+                vb = atari.dataBus & 0x02;
+                break;
+
+            default:
+
+                break;
+        }
+    }
+
     assert(x < Texture::width);
     assert(y < Texture::height);
 
     // Run the logic analyzer
     logicAnalyzer.recordSignals();
 
-    // Advance the beam position
+    //
+    // Beam position
+    //
+
     x++;
-    if (shb && hc.phi2()) { x = 0; y++; }
+    if (shb && hc.phi2()) {
 
-    // Remove later
-    if (y == Texture::height) {
+        x = 0;
+        y++;
 
-        y = 0;
-        atari.eofHandler();
-        atari.setFlag(RL::SYNC_THREAD);
+        // Force a VSYNC event if have reached the texure end
+        if (y == Texture::height) {
+
+            debug(true, "EMERGENCY VSYNC\n");
+            y = 0;
+            vsedge = true;
+        }
     }
 }
 
@@ -241,6 +293,8 @@ void
 TIA::eofHandler()
 {
     frame++;
+    y = 0;
+    vsedge = false;
 
     // Only proceed if the current frame hasn't been executed in headless mode
     if (atari.getHeadless()) return;
