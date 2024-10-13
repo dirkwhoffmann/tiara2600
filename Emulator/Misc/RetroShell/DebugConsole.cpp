@@ -162,21 +162,21 @@ DebugConsole::initCommands(Command &root)
              "Set a breakpoint",
              [this](Arguments& argv, long value) {
 
-        cpu.setBreakpoint(parseAddr(argv[0]), parseNum(argv, 1, 0));
+        cpu.breakpoints.setAt(parseAddr(argv[0]), parseNum(argv, 1, 0));
     });
 
     root.add({"break", "delete"}, { Arg::nr },
              "Delete breakpoints",
              [this](Arguments& argv, long value) {
 
-        cpu.deleteBreakpoint(parseNum(argv[0]));
+        cpu.breakpoints.remove(parseNum(argv[0]));
     });
 
     root.add({"break", "toggle"}, { Arg::nr },
              "Enable or disable breakpoints",
              [this](Arguments& argv, long value) {
 
-        cpu.toggleBreakpoint(parseNum(argv[0]));
+        cpu.breakpoints.toggle(parseNum(argv[0]));
     });
 
     root.add({"watch"},     "Manage CPU watchpoints");
@@ -192,21 +192,21 @@ DebugConsole::initCommands(Command &root)
              "Set a watchpoint",
              [this](Arguments& argv, long value) {
 
-        cpu.setWatchpoint(parseAddr(argv[0]), parseNum(argv, 1, 0));
+        cpu.watchpoints.setAt(parseAddr(argv[0]), parseNum(argv, 1, 0));
     });
 
     root.add({"watch", "delete"}, { Arg::nr },
              "Delete watchpoints",
              [this](Arguments& argv, long value) {
 
-        cpu.deleteWatchpoint(parseNum(argv[0]));
+        cpu.watchpoints.remove(parseNum(argv[0]));
     });
 
     root.add({"watch", "toggle"}, { Arg::nr },
              "Enable or disable watchpoints",
              [this](Arguments& argv, long value) {
 
-        cpu.toggleWatchpoint(parseNum(argv[0]));
+        cpu.watchpoints.toggle(parseNum(argv[0]));
     });
 
     root.add({"btrap"},    "Manage beamtraps");

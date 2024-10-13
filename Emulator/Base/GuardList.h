@@ -14,6 +14,7 @@
 
 #include "GuardListTypes.h"
 #include "PeddleDebugger.h"
+#include "Suspendable.h"
 
 namespace tiara {
 
@@ -24,7 +25,7 @@ namespace tiara {
  * Encapsulating this functionality in a new class enables its use by other
  * components, such as the Copper, in addition to the CPU.
  */
-class GuardList {
+class GuardList : public Suspendable {
 
 protected:
 
@@ -52,6 +53,14 @@ public:
     virtual ~GuardList() { }
 
 
+    //
+    // Methods from Suspendable
+    //
+
+    void suspend() override;
+    void resume() override;
+
+    
     //
     // Inspecting the guard list
     //

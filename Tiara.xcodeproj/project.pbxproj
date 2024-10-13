@@ -1360,8 +1360,8 @@
 				50F5B6A12959C44E000457A0 /* Host.h */,
 				50F5B6A02959C44E000457A0 /* Host.cpp */,
 				50E046AF2CB3C8520035BE47 /* GuardListTypes.h */,
-				50E046AC2CB3C84C0035BE47 /* GuardList.cpp */,
 				50E046AB2CB3C8440035BE47 /* GuardList.h */,
+				50E046AC2CB3C84C0035BE47 /* GuardList.cpp */,
 			);
 			path = Base;
 			sourceTree = "<group>";

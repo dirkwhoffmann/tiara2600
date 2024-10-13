@@ -41,47 +41,6 @@ enum_long(CMD_TYPE)
     CMD_CPU_BRK,                ///< Let the CPU execute a BRK instruction
     CMD_CPU_NMI,                ///< Emulate an external expansion port NMI
 
-    /*
-    // CPU (Breakpoints)
-    CMD_BP_SET_AT,              ///< Set a breakpoint
-    CMD_BP_MOVE_TO,             ///< Change the address of a breakpoint
-    CMD_BP_REMOVE_NR,           ///< Remove the n-th breakpoint
-    CMD_BP_REMOVE_AT,           ///< Remove the breakpoint at an address
-    CMD_BP_REMOVE_ALL,          ///< Remove all brekpoints
-    CMD_BP_ENABLE_NR,           ///< Enable the n-th breakpoint
-    CMD_BP_ENABLE_AT,           ///< Enable the breakpoint at an address
-    CMD_BP_ENABLE_ALL,          ///< Enable all brekpoints
-    CMD_BP_DISABLE_NR,          ///< Disable the n-th breakpoint
-    CMD_BP_DISABLE_AT,          ///< Disable the breakpoint at an address
-    CMD_BP_DISABLE_ALL,         ///< Disable all brekpoints
-
-    // CPU (Watchpoints)
-    CMD_WP_SET_AT,              ///< Set a watchpoint
-    CMD_WP_MOVE_TO,             ///< Change the address of a watchpoint
-    CMD_WP_REMOVE_NR,           ///< Remove the n-th watchpoint
-    CMD_WP_REMOVE_AT,           ///< Remove the watchpoint at an address
-    CMD_WP_REMOVE_ALL,          ///< Remove all watchpoints
-    CMD_WP_ENABLE_NR,           ///< Enable the n-th watchpoint
-    CMD_WP_ENABLE_AT,           ///< Enable the watchpoint at an address
-    CMD_WP_ENABLE_ALL,          ///< Enable all watchpoints
-    CMD_WP_DISABLE_NR,          ///< Disable the n-th watchpoint
-    CMD_WP_DISABLE_AT,          ///< Disable the watchpoint at an address
-    CMD_WP_DISABLE_ALL,         ///< Disable all watchpoints
-
-    // Logic Analyzer (Beamtraps)
-    CMD_BT_SET_AT,              ///< Set a beamtrap
-    CMD_BT_MOVE_TO,             ///< Change the address of a beamtrap
-    CMD_BT_REMOVE_NR,           ///< Remove the n-th beamtrap
-    CMD_BT_REMOVE_AT,           ///< Remove the beamtrap at an address
-    CMD_BT_REMOVE_ALL,          ///< Remove all beamtraps
-    CMD_BT_ENABLE_NR,           ///< Enable the n-th beamtrap
-    CMD_BT_ENABLE_AT,           ///< Enable the beamtrap at an address
-    CMD_BT_ENABLE_ALL,          ///< Enable all beamtraps
-    CMD_BT_DISABLE_NR,          ///< Disable the n-th beamtrap
-    CMD_BT_DISABLE_AT,          ///< Disable the beamtrap at an address
-    CMD_BT_DISABLE_ALL,         ///< Disable all beamtraps
-    */
-
     // Mouse
     CMD_MOUSE_MOVE_ABS,         ///< Signal a mouse movement (absolute)
     CMD_MOUSE_MOVE_REL,         ///< Signal a mouse movement (relative)
@@ -120,41 +79,6 @@ struct CmdTypeEnum : util::Reflection<CmdTypeEnum, CmdType> {
             case CMD_CPU_BRK:               return "CPU_BRK";
             case CMD_CPU_NMI:               return "CPU_NMI";
 
-                /*
-            case CMD_BP_SET_AT:             return "BP_SET_AT";
-            case CMD_BP_REMOVE_NR:          return "BP_REMOVE_NR";
-            case CMD_BP_REMOVE_AT:          return "BP_REMOVE_AT";
-            case CMD_BP_REMOVE_ALL:         return "BP_REMOVE_ALL";
-            case CMD_BP_ENABLE_NR:          return "BP_ENABLE_NR";
-            case CMD_BP_ENABLE_AT:          return "BP_ENABLE_AT";
-            case CMD_BP_ENABLE_ALL:         return "BP_ENABLE_ALL";
-            case CMD_BP_DISABLE_NR:         return "BP_DISABLE_NR";
-            case CMD_BP_DISABLE_AT:         return "BP_DISABLE_AT";
-            case CMD_BP_DISABLE_ALL:        return "BP_DISABLE_ALL";
-
-            case CMD_WP_SET_AT:             return "WP_SET_AT";
-            case CMD_WP_REMOVE_NR:          return "WP_REMOVE_NR";
-            case CMD_WP_REMOVE_AT:          return "WP_REMOVE_AT";
-            case CMD_WP_REMOVE_ALL:         return "WP_REMOVE_ALL";
-            case CMD_WP_ENABLE_NR:          return "WP_ENABLE_NR";
-            case CMD_WP_ENABLE_AT:          return "WP_ENABLE_AT";
-            case CMD_WP_ENABLE_ALL:         return "WP_ENABLE_ALL";
-            case CMD_WP_DISABLE_NR:         return "WP_DISABLE_NR";
-            case CMD_WP_DISABLE_AT:         return "WP_DISABLE_AT";
-            case CMD_WP_DISABLE_ALL:        return "WP_DISABLE_ALL";
-
-            case CMD_BT_SET_AT:             return "BT_SET_AT";
-            case CMD_BT_REMOVE_NR:          return "BT_REMOVE_NR";
-            case CMD_BT_REMOVE_AT:          return "BT_REMOVE_AT";
-            case CMD_BT_REMOVE_ALL:         return "BT_REMOVE_ALL";
-            case CMD_BT_ENABLE_NR:          return "BT_ENABLE_NR";
-            case CMD_BT_ENABLE_AT:          return "BT_ENABLE_AT";
-            case CMD_BT_ENABLE_ALL:         return "BT_ENABLE_ALL";
-            case CMD_BT_DISABLE_NR:         return "BT_DISABLE_NR";
-            case CMD_BT_DISABLE_AT:         return "BT_DISABLE_AT";
-            case CMD_BT_DISABLE_ALL:        return "BT_DISABLE_ALL";
-                 */
-                
             case CMD_MOUSE_MOVE_ABS:        return "MOUSE_MOVE_ABS";
             case CMD_MOUSE_MOVE_REL:        return "MOUSE_MOVE_REL";
             case CMD_MOUSE_EVENT:           return "MOUSE_EVENT";

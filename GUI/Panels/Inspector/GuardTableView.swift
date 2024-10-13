@@ -157,13 +157,13 @@ class BreakTableView: GuardTableView {
                     inspector.fullRefresh()
                     inspector.cpuInstrView.jumpTo(addr: addr)
                 }
+            }
 
-                if col == 2 {
+            if col == 2 {
 
-                    // Delete
-                    try? breakpoints.remove(nr: row)
-                    inspector.fullRefresh()
-                }
+                // Delete
+                try? breakpoints.remove(nr: row)
+                inspector.fullRefresh()
             }
         }
     }

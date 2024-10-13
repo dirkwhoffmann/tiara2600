@@ -303,18 +303,6 @@ using namespace tiara;
 - (NSString *)disassemble:(NSInteger)addr format:(NSString *)fmt length:(NSInteger *)len;
 - (NSString *)disassembleRecorded:(NSInteger)i format:(NSString *)fmt length:(NSInteger *)len;
 
-/*
-- (BOOL) hasBreakpointWithNr:(NSInteger)nr;
-- (GuardInfo) breakpointWithNr:(NSInteger)nr;
-- (BOOL) hasBreakpointAtAddr:(NSInteger)addr;
-- (GuardInfo) breakpointAtAddr:(NSInteger)addr;
-
-- (BOOL) hasWatchpointWithNr:(NSInteger)nr;
-- (GuardInfo) watchpointWithNr:(NSInteger)nr;
-- (BOOL) hasWatchpointAtAddr:(NSInteger)addr;
-- (GuardInfo) watchpointAtAddr:(NSInteger)addr;
-*/
-
 @end
 
 

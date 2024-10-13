@@ -16,6 +16,18 @@
 
 namespace tiara {
 
+void
+GuardList::suspend()
+{
+    atari.suspend();
+}
+
+void
+GuardList::resume()
+{
+    atari.resume();
+}
+
 std::optional<GuardInfo>
 GuardList::guardNr(long nr) const
 {
@@ -49,112 +61,151 @@ GuardList::hit() const
 void
 GuardList::setAt(u32 target, isize ignores)
 {
-    if (guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_ALREADY_SET, target);
-    guards.setAt(target, ignores);
-    update();
+    {   SUSPENDED
+
+        if (guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_ALREADY_SET, target);
+        guards.setAt(target, ignores);
+        update();
+    }
     atari.msgQueue.put(MSG_GUARD_UPDATED);
 }
 
 void
 GuardList::moveTo(isize nr, u32 newTarget)
 {
-    if (!guards.guardNr(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
-    guards.moveTo(nr, newTarget);
-    update();
+    {   SUSPENDED
+
+        if (!guards.guardNr(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+        guards.moveTo(nr, newTarget);
+        update();
+    }
     atari.msgQueue.put(MSG_GUARD_UPDATED);
 }
 
 void
 GuardList::ignore(long nr, long count)
 {
-    if (!guards.guardNr(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
-    guards.ignore(nr, count);
-    update();
+    {   SUSPENDED
+
+        if (!guards.guardNr(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+        guards.ignore(nr, count);
+        update();
+    }
     atari.msgQueue.put(MSG_GUARD_UPDATED);
 }
 
 void
 GuardList::remove(isize nr)
 {
-    if (!guards.isSet(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
-    guards.remove(nr);
-    update();
+    {   SUSPENDED
+
+        if (!guards.isSet(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+        guards.remove(nr);
+        update();
+    }
     atari.msgQueue.put(MSG_GUARD_UPDATED);
 }
 
 void
 GuardList::removeAt(u32 target)
 {
-    if (!guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_NOT_FOUND, target);
-    guards.removeAt(target);
-    update();
+    {   SUSPENDED
+
+        if (!guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_NOT_FOUND, target);
+        guards.removeAt(target);
+        update();
+    }
     atari.msgQueue.put(MSG_GUARD_UPDATED);
 }
 
 void
 GuardList::removeAll()
 {
-    guards.removeAll();
-    update();
+    {   SUSPENDED
+
+        guards.removeAll();
+        update();
+    }
     atari.msgQueue.put(MSG_GUARD_UPDATED);
 }
 
 void
 GuardList::enable(isize nr)
 {
-    if (!guards.isSet(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
-    guards.enable(nr);
-    update();
+    {   SUSPENDED
+
+        if (!guards.isSet(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+        guards.enable(nr);
+        update();
+    }
     atari.msgQueue.put(MSG_GUARD_UPDATED);
 }
 
 void
 GuardList::enableAt(u32 target)
 {
-    if (!guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_NOT_FOUND, target);
-    guards.enableAt(target);
-    update();
+    {   SUSPENDED
+
+        if (!guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_NOT_FOUND, target);
+        guards.enableAt(target);
+        update();
+    }
     atari.msgQueue.put(MSG_GUARD_UPDATED);
 }
 
 void
 GuardList::enableAll()
 {
-    guards.enableAll();
-    update();
+    {   SUSPENDED
+
+        guards.enableAll();
+        update();
+    }
     atari.msgQueue.put(MSG_GUARD_UPDATED);
 }
 
 void
 GuardList::disable(isize nr)
 {
-    if (!guards.isSet(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
-    guards.disable(nr);
-    update();
+    {   SUSPENDED
+
+        if (!guards.isSet(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+        guards.disable(nr);
+        update();
+    }
     atari.msgQueue.put(MSG_GUARD_UPDATED);
 }
 
 void
 GuardList::disableAt(u32 target)
 {
-    if (!guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_NOT_FOUND, target);
-    guards.disableAt(target);
-    update();
+    {   SUSPENDED
+
+        if (!guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_NOT_FOUND, target);
+        guards.disableAt(target);
+        update();
+    }
     atari.msgQueue.put(MSG_GUARD_UPDATED);
 }
 
 void
 GuardList::disableAll()
 {
-    guards.disableAll();
-    update();
+    {   SUSPENDED
+
+        guards.disableAll();
+        update();
+    }
     atari.msgQueue.put(MSG_GUARD_UPDATED);
 }
 
 void
 GuardList::toggle(isize nr)
 {
-    guards.isEnabled(nr) ? disable(nr) : enable(nr);
+    {   SUSPENDED
+
+        guards.isEnabled(nr) ? disable(nr) : enable(nr);
+    }
 }
 
 void

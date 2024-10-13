@@ -16,6 +16,7 @@
 #include "TiaraTypes.h"
 #include "Error.h"
 #include "MediaFile.h"
+#include "Suspendable.h"
 #include <filesystem>
 
 namespace tiara {
@@ -28,7 +29,7 @@ using peddle::DasmNumberFormat;
 // Base class for all APIs
 //
 
-class API {
+class API : public Suspendable {
 
 public:
 
@@ -37,8 +38,8 @@ public:
     API() { }
     API(Emulator *emu) : emu(emu) { }
 
-    void suspend();
-    void resume();
+    void suspend() override;
+    void resume() override;
 
 protected:
 
