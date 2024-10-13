@@ -19,7 +19,9 @@
 
 namespace tiara {
 
-CPU::CPU(Atari& ref) : Peddle(ref)
+CPU::CPU(Atari& ref) : Peddle(ref),
+breakpoints(emulator.main, debugger.breakpoints),
+watchpoints(emulator.main, debugger.watchpoints)
 {
 
 }
@@ -87,7 +89,8 @@ CPU::processCommand(const Cmd &cmd)
                 cpu.releaseNmiLine(INTSRC_EXP);
             }
             break;
-            
+
+            /*
         case CMD_BP_SET_AT:         cpu.setBreakpoint(u32(cmd.value)); break;
         case CMD_BP_MOVE_TO:        cpu.moveBreakpoint(isize(cmd.value), u32(cmd.value2)); break;
         case CMD_BP_REMOVE_NR:      cpu.deleteBreakpoint(isize(cmd.value)); break;
@@ -111,7 +114,8 @@ CPU::processCommand(const Cmd &cmd)
         case CMD_WP_DISABLE_NR:     cpu.disableWatchpoint(isize(cmd.value)); break;
         case CMD_WP_DISABLE_AT:     cpu.disableWatchpoint(u32(cmd.value)); break;
         case CMD_WP_DISABLE_ALL:    cpu.disableAllWatchpoints(); break;
-
+             */
+            
         default:
             fatalError;
     }

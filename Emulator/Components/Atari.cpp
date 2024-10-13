@@ -459,6 +459,7 @@ Atari::update(CmdQueue &queue)
 
             case CMD_CPU_BRK:
             case CMD_CPU_NMI:
+                /*
             case CMD_BP_SET_AT:
             case CMD_BP_MOVE_TO:
             case CMD_BP_REMOVE_NR:
@@ -481,7 +482,7 @@ Atari::update(CmdQueue &queue)
             case CMD_WP_DISABLE_NR:
             case CMD_WP_DISABLE_AT:
             case CMD_WP_DISABLE_ALL:
-
+                 */
                 cpu.processCommand(cmd);
                 break;
 

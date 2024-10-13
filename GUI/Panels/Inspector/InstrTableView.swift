@@ -76,9 +76,9 @@ class InstrTableView: NSTableView {
                 instrInRow[i] = cpu.disassemble(addr, format: "%i", length: &length)
                 dataInRow[i] = cpu.disassemble(addr, format: "%b", length: &length)
 
-                if !cpu.hasBreakpoint(atAddr: addr & 0x1FFF) {
+                if !cpu.breakpoints.isSet(at: addr & 0x1FFF) {
                     bpInRow[i] = BreakpointType.none
-                } else if cpu.breakpoint(atAddr: addr & 0x1FFF).enabled {
+                } else if cpu.breakpoints.isEnabled(at: addr & 0x1FFF) {
                     bpInRow[i] = BreakpointType.enabled
                 } else {
                     bpInRow[i] = BreakpointType.disabled
@@ -145,12 +145,12 @@ class InstrTableView: NSTableView {
 
             if let addr = addrInRow[row] {
 
-                if !cpu.hasBreakpoint(atAddr: addr) {
-                    emu?.put(.BP_SET_AT, value: addr)
-                } else if cpu.breakpoint(atAddr: addr).enabled {
-                    emu?.put(.BP_DISABLE_AT, value: addr)
+                if !cpu.breakpoints.isSet(at: addr) {
+                    try? cpu.breakpoints.set(at: addr)
+                } else if cpu.breakpoints.isEnabled(at: addr) {
+                    try? cpu.breakpoints.disable(at: addr)
                 } else {
-                    emu?.put(.BP_ENABLE_AT, value: addr)
+                    try? cpu.breakpoints.enable(at: addr)
                 }
 
                 inspector.fullRefresh()
@@ -172,10 +172,10 @@ class InstrTableView: NSTableView {
 
             if let addr = addrInRow[row] {
 
-                if cpu.hasBreakpoint(atAddr: addr) {
-                    emu?.put(.BP_REMOVE_AT, value: addr)
+                if cpu.breakpoints.isSet(at: addr) {
+                    try? cpu.breakpoints.remove(at: addr)
                 } else {
-                    emu?.put(.BP_SET_AT, value: addr)
+                    try? cpu.breakpoints.set(at: addr)
                 }
 
                 inspector.fullRefresh()

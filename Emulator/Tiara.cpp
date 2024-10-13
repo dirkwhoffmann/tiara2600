@@ -60,6 +60,10 @@ Tiara::Tiara() {
 
     cpu.emu = emu;
     cpu.cpu = &emu->main.cpu;
+    cpu.breakpoints.emu = emu;
+    cpu.breakpoints.guards = &emu->main.cpu.breakpoints;
+    cpu.watchpoints.emu = emu;
+    cpu.watchpoints.guards = &emu->main.cpu.watchpoints;
 
     pia.emu = emu;
     pia.pia = &emu->main.pia;

@@ -158,6 +158,9 @@ struct CPUAPI : API {
 
     class CPU *cpu = nullptr;
 
+    GuardsAPI breakpoints;
+    GuardsAPI watchpoints;
+    
     /** @brief  Returns the component's current state.
      */
     const CPUInfo &getInfo() const;

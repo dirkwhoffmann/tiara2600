@@ -41,6 +41,7 @@ enum_long(CMD_TYPE)
     CMD_CPU_BRK,                ///< Let the CPU execute a BRK instruction
     CMD_CPU_NMI,                ///< Emulate an external expansion port NMI
 
+    /*
     // CPU (Breakpoints)
     CMD_BP_SET_AT,              ///< Set a breakpoint
     CMD_BP_MOVE_TO,             ///< Change the address of a breakpoint
@@ -79,6 +80,7 @@ enum_long(CMD_TYPE)
     CMD_BT_DISABLE_NR,          ///< Disable the n-th beamtrap
     CMD_BT_DISABLE_AT,          ///< Disable the beamtrap at an address
     CMD_BT_DISABLE_ALL,         ///< Disable all beamtraps
+    */
 
     // Mouse
     CMD_MOUSE_MOVE_ABS,         ///< Signal a mouse movement (absolute)
@@ -118,6 +120,7 @@ struct CmdTypeEnum : util::Reflection<CmdTypeEnum, CmdType> {
             case CMD_CPU_BRK:               return "CPU_BRK";
             case CMD_CPU_NMI:               return "CPU_NMI";
 
+                /*
             case CMD_BP_SET_AT:             return "BP_SET_AT";
             case CMD_BP_REMOVE_NR:          return "BP_REMOVE_NR";
             case CMD_BP_REMOVE_AT:          return "BP_REMOVE_AT";
@@ -150,7 +153,8 @@ struct CmdTypeEnum : util::Reflection<CmdTypeEnum, CmdType> {
             case CMD_BT_DISABLE_NR:         return "BT_DISABLE_NR";
             case CMD_BT_DISABLE_AT:         return "BT_DISABLE_AT";
             case CMD_BT_DISABLE_ALL:        return "BT_DISABLE_ALL";
-
+                 */
+                
             case CMD_MOUSE_MOVE_ABS:        return "MOUSE_MOVE_ABS";
             case CMD_MOUSE_MOVE_REL:        return "MOUSE_MOVE_REL";
             case CMD_MOUSE_EVENT:           return "MOUSE_EVENT";

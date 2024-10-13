@@ -29,12 +29,16 @@ public Inspectable<EmulatorInfo, EmulatorStats> {
     friend class API;
     friend class Tiara;
 
+public:
+
     // The virtual Atari
     Atari main = Atari(*this, 0);
 
     // The run-ahead instance
     Atari ahead = Atari(*this, 1);
 
+private:
+    
     // Indicates if the run-ahead instance needs to be updated
     bool isDirty = true;
 

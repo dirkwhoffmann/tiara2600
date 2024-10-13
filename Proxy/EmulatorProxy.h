@@ -282,17 +282,14 @@ using namespace tiara;
 // CPU
 //
 
-/*
-struct GuardInfo {
+@interface CPUProxy : SubComponentProxy {
 
-    u32 addr;
-    bool enabled;
-    long hits;
-    long ignore;
-};
-*/
+    GuardsProxy *breakpoints;
+    GuardsProxy *watchpoints;
+}
 
-@interface CPUProxy : SubComponentProxy { }
+@property (readonly, strong) GuardsProxy *breakpoints;
+@property (readonly, strong) GuardsProxy *watchpoints;
 
 @property (readonly) CPUInfo info;
 @property (readonly) CPUInfo cachedInfo;
@@ -306,6 +303,7 @@ struct GuardInfo {
 - (NSString *)disassemble:(NSInteger)addr format:(NSString *)fmt length:(NSInteger *)len;
 - (NSString *)disassembleRecorded:(NSInteger)i format:(NSString *)fmt length:(NSInteger *)len;
 
+/*
 - (BOOL) hasBreakpointWithNr:(NSInteger)nr;
 - (GuardInfo) breakpointWithNr:(NSInteger)nr;
 - (BOOL) hasBreakpointAtAddr:(NSInteger)addr;
@@ -315,6 +313,7 @@ struct GuardInfo {
 - (GuardInfo) watchpointWithNr:(NSInteger)nr;
 - (BOOL) hasWatchpointAtAddr:(NSInteger)addr;
 - (GuardInfo) watchpointAtAddr:(NSInteger)addr;
+*/
 
 @end
 

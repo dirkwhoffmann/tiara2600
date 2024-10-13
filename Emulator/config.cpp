@@ -39,11 +39,11 @@ debugflag MEM_DEBUG       = 0;
 
 // TIA
 debugflag TIA_DEBUG       = 0;
-debugflag TIA_REG_DEBUG   = 1;
+debugflag TIA_REG_DEBUG   = 0;
 
 // PIA
 debugflag PIA_DEBUG       = 0;
-debugflag PIA_REG_DEBUG   = 1;
+debugflag PIA_REG_DEBUG   = 0;
 
 // SID
 debugflag SID_DEBUG       = 0;
@@ -53,7 +53,7 @@ debugflag AUDBUF_DEBUG    = 0;
 debugflag AUDVOL_DEBUG    = 0;
 
 // Media
-debugflag CART_DEBUG      = 1;
+debugflag CART_DEBUG      = 0;
 debugflag FILE_DEBUG      = 0;
 
 // Peripherals

@@ -13,8 +13,10 @@
 #pragma once
 
 #include "CPUTypes.h"
-#include "Peddle.h"
+#include "SubComponent.h"
 #include "CmdQueue.h"
+#include "GuardList.h"
+#include "Peddle.h"
 
 using namespace tiara::peddle;
 
@@ -37,6 +39,10 @@ class CPU final : public Peddle, public Inspectable<CPUInfo> {
     };
 
 public:
+
+    // Breakpoints, Watchpoints, Catchpoints
+    GuardList breakpoints;
+    GuardList watchpoints;
 
     /* Processor port
      *

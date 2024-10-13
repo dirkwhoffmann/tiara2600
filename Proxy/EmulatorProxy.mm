@@ -288,6 +288,21 @@ using namespace tiara;
 
 @implementation CPUProxy
 
+@synthesize breakpoints;
+@synthesize watchpoints;
+
+- (instancetype)initWith:(void *)ref
+{
+    if (self = [super init]) {
+
+        obj = ref;
+        CPUAPI *cpu = (CPUAPI *)ref;
+        breakpoints = [[GuardsProxy alloc] initWith:&cpu->breakpoints];
+        watchpoints = [[GuardsProxy alloc] initWith:&cpu->watchpoints];
+    }
+    return self;
+}
+
 - (CPUAPI *)cpu
 {
     return (CPUAPI *)obj;
@@ -389,6 +404,7 @@ using namespace tiara;
     return result;
 }
 
+/*
 - (BOOL) hasBreakpointWithNr:(NSInteger)nr
 {
     return [self cpu]->breakpointNr(nr) != nullptr;
@@ -427,6 +443,7 @@ using namespace tiara;
 {
     return [self guardInfo:[self cpu]->watchpointAt(u32(addr))];
 }
+*/
 
 @end
 
@@ -1021,7 +1038,7 @@ using namespace tiara;
     audioPort = [[AudioPortProxy alloc] initWith:&emu->audioPort emu:emu];
     atari = [[AtariProxy alloc] initWith:&emu->atari emu:emu];
     pia = [[PIAProxy alloc] initWith:&emu->pia emu:emu];
-    cpu = [[CPUProxy alloc] initWith:&emu->cpu emu:emu];
+    cpu = [[CPUProxy alloc] initWith:&emu->cpu];
     logicAnalyzer = [[LogicAnalyzerProxy alloc] initWith:&emu->logicAnalyzer];
     beamtraps = [[GuardsProxy alloc] initWith:&emu->logicAnalyzer.beamtraps];
     mem = [[MemoryProxy alloc] initWith:&emu->mem emu:emu];

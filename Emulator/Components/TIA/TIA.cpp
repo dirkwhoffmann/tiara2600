@@ -206,7 +206,6 @@ TIA::execute()
     // VSYNC logic
     if (vsedge) {
 
-        debug(true, "EOF\n");
         atari.eofHandler();
     }
 }
