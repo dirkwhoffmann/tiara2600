@@ -145,12 +145,14 @@ class InstrTableView: NSTableView {
 
             if let addr = addrInRow[row] {
 
-                if !cpu.breakpoints.isSet(at: addr) {
-                    try? cpu.breakpoints.set(at: addr)
-                } else if cpu.breakpoints.isEnabled(at: addr) {
-                    try? cpu.breakpoints.disable(at: addr)
+                let masked = addr & 0x1FFF
+
+                if !cpu.breakpoints.isSet(at: masked) {
+                    try? cpu.breakpoints.set(at: masked)
+                } else if cpu.breakpoints.isEnabled(at: masked) {
+                    try? cpu.breakpoints.disable(at: masked)
                 } else {
-                    try? cpu.breakpoints.enable(at: addr)
+                    try? cpu.breakpoints.enable(at: masked)
                 }
 
                 inspector.fullRefresh()
@@ -172,10 +174,12 @@ class InstrTableView: NSTableView {
 
             if let addr = addrInRow[row] {
 
-                if cpu.breakpoints.isSet(at: addr) {
-                    try? cpu.breakpoints.remove(at: addr)
+                let masked = addr & 0x1FFF
+
+                if cpu.breakpoints.isSet(at: masked) {
+                    try? cpu.breakpoints.remove(at: masked)
                 } else {
-                    try? cpu.breakpoints.set(at: addr)
+                    try? cpu.breakpoints.set(at: masked)
                 }
 
                 inspector.fullRefresh()

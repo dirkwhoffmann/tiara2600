@@ -62,26 +62,6 @@ using namespace tiara;
 
 
 //
-// SubComponentProxy proxy
-//
-
-@implementation SubComponentProxy
-
-- (instancetype) initWith:(void *)ref emu:(Tiara *)emuref
-{
-    if (ref == nil || emuref == nil) {
-        return nil;
-    }
-    if (self = [super init]) {
-        obj = ref;
-        emu = emuref;
-    }
-    return self;
-}
-
-@end
-
-//
 // Defaults
 //
 
@@ -404,47 +384,6 @@ using namespace tiara;
     return result;
 }
 
-/*
-- (BOOL) hasBreakpointWithNr:(NSInteger)nr
-{
-    return [self cpu]->breakpointNr(nr) != nullptr;
-}
-
-- (GuardInfo) breakpointWithNr:(NSInteger)nr
-{
-    return [self guardInfo:[self cpu]->breakpointNr(nr)];
-}
-
-- (BOOL) hasBreakpointAtAddr:(NSInteger)addr
-{
-    return [self cpu]->breakpointAt(u32(addr)) != nullptr;
-}
-
-- (GuardInfo) breakpointAtAddr:(NSInteger)addr
-{
-    return [self guardInfo:[self cpu]->breakpointAt(u32(addr))];
-}
-
-- (BOOL) hasWatchpointWithNr:(NSInteger)nr
-{
-    return [self cpu]->watchpointNr(nr) != nullptr;
-}
-
-- (GuardInfo) watchpointWithNr:(NSInteger)nr
-{
-    return [self guardInfo:[self cpu]->watchpointNr(nr)];
-}
-
-- (BOOL) hasWatchpointAtAddr:(NSInteger)addr
-{
-    return [self cpu]->watchpointAt(u32(addr)) != nullptr;
-}
-- (GuardInfo) watchpointAtAddr:(NSInteger)addr
-{
-    return [self guardInfo:[self cpu]->watchpointAt(u32(addr))];
-}
-*/
-
 @end
 
 
@@ -677,9 +616,9 @@ using namespace tiara;
 @synthesize paddle;
 @synthesize joystick;
 
-- (instancetype) initWith:(void *)ref emu:(Tiara *)emuref
+- (instancetype) initWith:(void *)ref
 {
-    if (self = [super initWith:ref emu:emuref]) {
+    if (self = [super initWith:ref]) {
 
         ControlPortAPI *port = (ControlPortAPI *)obj;
         joystick = [[JoystickProxy alloc] initWith:&port->joystick];
@@ -1035,19 +974,19 @@ using namespace tiara;
     obj = emu;
 
     // Create sub proxys
-    audioPort = [[AudioPortProxy alloc] initWith:&emu->audioPort emu:emu];
-    atari = [[AtariProxy alloc] initWith:&emu->atari emu:emu];
-    pia = [[PIAProxy alloc] initWith:&emu->pia emu:emu];
+    audioPort = [[AudioPortProxy alloc] initWith:&emu->audioPort];
+    atari = [[AtariProxy alloc] initWith:&emu->atari];
+    pia = [[PIAProxy alloc] initWith:&emu->pia];
     cpu = [[CPUProxy alloc] initWith:&emu->cpu];
     logicAnalyzer = [[LogicAnalyzerProxy alloc] initWith:&emu->logicAnalyzer];
     beamtraps = [[GuardsProxy alloc] initWith:&emu->logicAnalyzer.beamtraps];
-    mem = [[MemoryProxy alloc] initWith:&emu->mem emu:emu];
-    port1 = [[ControlPortProxy alloc] initWith:&emu->controlPort1 emu:emu];
-    port2 = [[ControlPortProxy alloc] initWith:&emu->controlPort2 emu:emu];
-    remoteManager = [[RemoteManagerProxy alloc] initWith:&emu->remoteManager emu:emu];
-    retroShell = [[RetroShellProxy alloc] initWith:&emu->retroShell emu:emu];
-    tia = [[TIAProxy alloc] initWith:&emu->tia emu:emu];
-    videoPort = [[VideoPortProxy alloc] initWith:&emu->videoPort emu:emu];
+    mem = [[MemoryProxy alloc] initWith:&emu->mem];
+    port1 = [[ControlPortProxy alloc] initWith:&emu->controlPort1];
+    port2 = [[ControlPortProxy alloc] initWith:&emu->controlPort2];
+    remoteManager = [[RemoteManagerProxy alloc] initWith:&emu->remoteManager];
+    retroShell = [[RetroShellProxy alloc] initWith:&emu->retroShell];
+    tia = [[TIAProxy alloc] initWith:&emu->tia];
+    videoPort = [[VideoPortProxy alloc] initWith:&emu->videoPort];
 
     return self;
 }

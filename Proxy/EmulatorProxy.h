@@ -65,13 +65,6 @@ using namespace tiara;
 
 @end
 
-@interface SubComponentProxy : Proxy {
-
-    // Reference to the emulator instance
-    @public void *emu;
-}
-@end
-
 //
 // Constants
 //
@@ -202,7 +195,7 @@ using namespace tiara;
 // Defaults
 //
 
-@interface DefaultsProxy : SubComponentProxy { }
+@interface DefaultsProxy : Proxy { }
 
 - (void)load:(NSURL *)url exception:(ExceptionWrapper *)ex;
 - (void)save:(NSURL *)url exception:(ExceptionWrapper *)ex;
@@ -230,7 +223,7 @@ using namespace tiara;
 // Atari
 //
 
-@interface AtariProxy : SubComponentProxy { }
+@interface AtariProxy : Proxy { }
 
 @property (readonly) AtariInfo info;
 @property (readonly) AtariInfo cachedInfo;
@@ -282,7 +275,7 @@ using namespace tiara;
 // CPU
 //
 
-@interface CPUProxy : SubComponentProxy {
+@interface CPUProxy : Proxy {
 
     GuardsProxy *breakpoints;
     GuardsProxy *watchpoints;
@@ -310,7 +303,7 @@ using namespace tiara;
 // PIA
 //
 
-@interface PIAProxy : SubComponentProxy { }
+@interface PIAProxy : Proxy { }
 
 @property (readonly) PIAConfig config;
 @property (readonly) PIAInfo info;
@@ -324,7 +317,7 @@ using namespace tiara;
 // Memory
 //
 
-@interface MemoryProxy : SubComponentProxy { }
+@interface MemoryProxy : Proxy { }
 
 @property (readonly) MemConfig config;
 @property (readonly) MemInfo info;
@@ -342,7 +335,7 @@ using namespace tiara;
 // TIA
 //
 
-@interface TIAProxy : SubComponentProxy { }
+@interface TIAProxy : Proxy { }
 
 @property (readonly) TIATraits traits;
 @property (readonly) TIAConfig config;
@@ -359,7 +352,7 @@ using namespace tiara;
 // LogicAnalyzer
 //
 
-@interface LogicAnalyzerProxy : SubComponentProxy { }
+@interface LogicAnalyzerProxy : Proxy { }
 
 - (LogicAnalyzerConfig)getConfig;
 
@@ -374,7 +367,7 @@ using namespace tiara;
 // SID
 //
 
-@interface SIDProxy : SubComponentProxy { }
+@interface SIDProxy : Proxy { }
 
 - (float)drawWaveform:(u32 *)buffer w:(NSInteger)w h:(NSInteger)h scale:(float)s color:(u32)c source:(NSInteger)source;
 - (float)drawWaveform:(u32 *)buffer size:(NSSize)size scale:(float)s color:(u32)c source:(NSInteger)source;
@@ -386,7 +379,7 @@ using namespace tiara;
 // Audio port
 //
 
-@interface AudioPortProxy : SubComponentProxy { }
+@interface AudioPortProxy : Proxy { }
 
 @property (readonly) AudioPortStats stats;
 
@@ -401,7 +394,7 @@ using namespace tiara;
 // Video port
 //
 
-@interface VideoPortProxy : SubComponentProxy { }
+@interface VideoPortProxy : Proxy { }
 
 @property (readonly) u32 *texture;
 
@@ -412,7 +405,7 @@ using namespace tiara;
 // ControlPort
 //
 
-@interface ControlPortProxy : SubComponentProxy {
+@interface ControlPortProxy : Proxy {
 
     JoystickProxy *joystick;
     PaddleProxy *paddle;
@@ -428,7 +421,7 @@ using namespace tiara;
 // Paddle
 //
 
-@interface PaddleProxy : SubComponentProxy { }
+@interface PaddleProxy : Proxy { }
 
 - (BOOL)detectShakeAbs:(NSPoint)pos;
 - (BOOL)detectShakeRel:(NSPoint)pos;
@@ -440,7 +433,7 @@ using namespace tiara;
 // Joystick
 //
 
-@interface JoystickProxy : SubComponentProxy { }
+@interface JoystickProxy : Proxy { }
 
 @end
 
@@ -449,7 +442,7 @@ using namespace tiara;
 // RemoteManager
 //
 
-@interface RemoteManagerProxy : SubComponentProxy { }
+@interface RemoteManagerProxy : Proxy { }
 
 @property (readonly) RemoteManagerInfo info;
 
@@ -460,7 +453,7 @@ using namespace tiara;
 // RetroShell
 //
 
-@interface RetroShellProxy : SubComponentProxy { }
+@interface RetroShellProxy : Proxy { }
 
 @property (readonly) NSInteger cursorRel;
 
