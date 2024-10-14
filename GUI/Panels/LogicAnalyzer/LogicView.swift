@@ -22,6 +22,7 @@ class LogicView: NSView {
     var line: Int { return analyzer.line }
 
     // Beam position
+    var sof = false
     var x: Int?
     var y: Int?
 
@@ -252,28 +253,6 @@ class LogicView: NSView {
         // Restore the graphics state
         context?.restoreGState()
     }
-
-    /*
-    func drawText(text: String, at point: CGPoint, font: NSFont, color: NSColor) {
-
-        // Save the current graphics state
-        context?.saveGState()
-
-        // Set up the attributes
-        let attributes: [NSAttributedString.Key: Any] = [ .font: font, .foregroundColor: color ]
-
-        // Create the attributed string
-        let attributedString = NSAttributedString(string: text, attributes: attributes)
-        let size = attributedString.size()
-
-        // Draw the string
-        let p = CGPoint(x: point.x - size.width / 2, y: point.y - size.height / 2)
-        attributedString.draw(at: p)
-
-        // Restore the graphics state
-        context?.restoreGState()
-    }
-    */
 
     var rectangle: CGRect {
 

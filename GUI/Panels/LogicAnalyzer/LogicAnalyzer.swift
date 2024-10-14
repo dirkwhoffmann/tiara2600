@@ -153,6 +153,7 @@ class LogicAnalyzer: DialogController {
         guard let emu = emu else { return }
 
         let info = emu.tia.info
+        let atariInfo = emu.atari.info
         let config = emu.logicAnalyzer.getConfig()
         if emu.running { running += 1 } else { running = 0 }
 
@@ -229,6 +230,7 @@ class LogicAnalyzer: DialogController {
 
         laLogicView.x = info.posx
         laLogicView.y = info.posy
+        laLogicView.sof = atariInfo.flags & tiara.RL.SYNC_THREAD != 0
 
         if linked && running == 0 {
 

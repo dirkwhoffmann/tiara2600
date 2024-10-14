@@ -189,10 +189,15 @@ LogicAnalyzer::computeOverlay(u32 *emuTexture, u32 *dmaTexture)
 }
 
 void
-LogicAnalyzer::sofHandler()
+LogicAnalyzer::sofHandler(isize y)
 {
+    assert(y < Texture::height);
+    
     beamtraps.sofHandler();
-    memset(data, 0, sizeof data);
+
+    // y can wrap over in the middle of a scanline. Copy the already recorded
+    // part of the current line over to line 0.
+    for (isize i = 0; i < tia.getX(); i++) data[0][i] = data[y][i];
 }
 
 void

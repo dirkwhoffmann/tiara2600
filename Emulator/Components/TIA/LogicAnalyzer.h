@@ -176,7 +176,7 @@ public:
     //
 
     // Frame handlers
-    void sofHandler();
+    void sofHandler(isize y);
     void eofHandler();
 };
 

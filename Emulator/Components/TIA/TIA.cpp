@@ -288,15 +288,13 @@ TIA::execute()
 void
 TIA::sofHandler()
 {
-
+    y = 0;
+    vsedge = false;
 }
 
 void
 TIA::eofHandler()
 {
-    y = 0;
-    vsedge = false;
-
     // Only proceed if the current frame hasn't been executed in headless mode
     if (atari.getHeadless()) return;
 

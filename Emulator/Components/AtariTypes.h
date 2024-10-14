@@ -199,6 +199,24 @@ enum_i8(EventID)
     INS_EVENT_COUNT
 };
 
+typedef u32 RunLoopFlags;
+
+namespace RL {
+
+const u32 STOP              = (1 << 0);
+const u32 WARP_ON           = (1 << 1);
+const u32 WARP_OFF          = (1 << 2);
+const u32 BREAKPOINT        = (1 << 3);
+const u32 WATCHPOINT        = (1 << 4);
+const u32 BEAMTRAP          = (1 << 5);
+const u32 CPU_JAM           = (1 << 6);
+const u32 STEP_CYCLE        = (1 << 7);
+const u32 STEP_INSTRUCTION  = (1 << 8);
+const u32 STEP_LINE         = (1 << 9);
+const u32 STEP_FRAME        = (1 << 10);
+const u32 SYNC_THREAD       = (1 << 11);
+}
+
 
 //
 // Structures
@@ -270,6 +288,8 @@ typedef struct
 {
     Cycle cpuProgress;
     i64 frame;
+    RunLoopFlags flags;
+
     // long vpos;
     // long hpos;
 
@@ -277,23 +297,5 @@ typedef struct
     EventSlotInfo slotInfo[SLOT_COUNT];
 }
 AtariInfo;
-
-typedef u32 RunLoopFlags;
-
-namespace RL {
-
-constexpr u32 STOP              = (1 << 0);
-constexpr u32 WARP_ON           = (1 << 1);
-constexpr u32 WARP_OFF          = (1 << 2);
-constexpr u32 BREAKPOINT        = (1 << 3);
-constexpr u32 WATCHPOINT        = (1 << 4);
-constexpr u32 BEAMTRAP          = (1 << 5);
-constexpr u32 CPU_JAM           = (1 << 6);
-constexpr u32 STEP_CYCLE        = (1 << 7);
-constexpr u32 STEP_INSTRUCTION  = (1 << 8);
-constexpr u32 STEP_LINE         = (1 << 9);
-constexpr u32 STEP_FRAME        = (1 << 10);
-constexpr u32 SYNC_THREAD       = (1 << 11);
-}
 
 }

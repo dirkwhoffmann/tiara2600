@@ -599,7 +599,7 @@ Atari::computeFrame()
 
                 if (flags & RL::STEP_FRAME) {
 
-                    // clearFlag(RL::STEP_INSTRUCTION);
+                    clearFlag(RL::STEP_FRAME);
                     pause = true;
                 }
             }
@@ -652,7 +652,7 @@ Atari::_pause()
     debug(RUN_DEBUG, "_pause\n");
 
     // Clear pending runloop flags
-    flags = 0;
+    // flags = 0;
 
     msgQueue.put(MSG_PAUSE);
 }
@@ -704,6 +704,7 @@ Atari::cacheInfo(AtariInfo &result) const
 
         result.cpuProgress = cpu.clock;
         result.frame = frame;
+        result.flags = flags;
         // result.vpos = scanline;
         // result.hpos = rasterCycle;
 
@@ -797,16 +798,20 @@ C64::eolHandler()
 void Atari::sofHandler()
 {
     // sof = false;
+    trace(true, "sofHandler\n");
     flags &= ~RL::SYNC_THREAD;
+
+    auto oldy = tia.getY();
 
     tia.sofHandler();
     pia.sofHandler();
-    logicAnalyzer.sofHandler();
+    logicAnalyzer.sofHandler(oldy);
 }
 
 void
 Atari::eofHandler()
 {
+    trace(true, "eofHandler\n");
     flags |= RL::SYNC_THREAD;
 
     frame++;

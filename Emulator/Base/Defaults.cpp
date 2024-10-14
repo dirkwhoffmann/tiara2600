@@ -45,8 +45,8 @@ Defaults::Defaults()
     setFallback(OPT_LA_CHANNEL1,                false);
     setFallback(OPT_LA_CHANNEL2,                false);
     setFallback(OPT_LA_CHANNEL3,                false);
-    setFallback(OPT_LA_PROBE0,                  PROBE_NONE);
-    setFallback(OPT_LA_PROBE1,                  PROBE_NONE);
+    setFallback(OPT_LA_PROBE0,                  PROBE_ADDR_BUS);
+    setFallback(OPT_LA_PROBE1,                  PROBE_DATA_BUS);
     setFallback(OPT_LA_PROBE2,                  PROBE_NONE);
     setFallback(OPT_LA_PROBE3,                  PROBE_NONE);
     setFallback(OPT_LA_MODE,                    LA_DISPLAY_MODE_FG_LAYER);
