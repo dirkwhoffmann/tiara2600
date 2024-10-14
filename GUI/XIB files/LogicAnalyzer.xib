@@ -139,7 +139,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
-                                        <action selector="laColorAction:" target="-2" id="gGx-c4-3pS"/>
+                                        <action selector="colorAction:" target="-2" id="gGx-c4-3pS"/>
                                     </connections>
                                 </colorWell>
                                 <popUpButton tag="1" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-Do-vAv">
@@ -155,7 +155,7 @@
                                         </menu>
                                     </popUpButtonCell>
                                     <connections>
-                                        <action selector="laProbeAction:" target="-2" id="Gwo-wA-LgH"/>
+                                        <action selector="probeAction:" target="-2" id="Gwo-wA-LgH"/>
                                     </connections>
                                 </popUpButton>
                                 <box fixedFrame="YES" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="5yD-R7-9ha">
@@ -198,7 +198,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
-                                        <action selector="laColorAction:" target="-2" id="du1-kN-TuZ"/>
+                                        <action selector="colorAction:" target="-2" id="du1-kN-TuZ"/>
                                     </connections>
                                 </colorWell>
                                 <colorWell fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="gWw-fl-wE5">
@@ -206,7 +206,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
-                                        <action selector="laColorAction:" target="-2" id="zhR-U5-n2Z"/>
+                                        <action selector="colorAction:" target="-2" id="zhR-U5-n2Z"/>
                                     </connections>
                                 </colorWell>
                                 <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P1V-P5-GfH">
@@ -214,7 +214,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
-                                        <action selector="laColorAction:" target="-2" id="oor-6V-08C"/>
+                                        <action selector="colorAction:" target="-2" id="oor-6V-08C"/>
                                     </connections>
                                 </colorWell>
                                 <popUpButton tag="2" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8JZ-Ek-Huy">
@@ -230,7 +230,7 @@
                                         </menu>
                                     </popUpButtonCell>
                                     <connections>
-                                        <action selector="laProbeAction:" target="-2" id="OEs-kq-Du2"/>
+                                        <action selector="probeAction:" target="-2" id="OEs-kq-Du2"/>
                                     </connections>
                                 </popUpButton>
                                 <popUpButton tag="3" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aI2-IB-WIS">
@@ -246,7 +246,7 @@
                                         </menu>
                                     </popUpButtonCell>
                                     <connections>
-                                        <action selector="laProbeAction:" target="-2" id="5ph-4t-Em0"/>
+                                        <action selector="probeAction:" target="-2" id="5ph-4t-Em0"/>
                                     </connections>
                                 </popUpButton>
                                 <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sia-jN-LH7">
@@ -262,7 +262,7 @@
                                         </menu>
                                     </popUpButtonCell>
                                     <connections>
-                                        <action selector="laProbeAction:" target="-2" id="rUD-C3-LyO"/>
+                                        <action selector="probeAction:" target="-2" id="rUD-C3-LyO"/>
                                     </connections>
                                 </popUpButton>
                                 <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H7b-QO-4Oo">
@@ -359,7 +359,7 @@
                                     <color key="fillColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 </box>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="InU-Id-HrG">
-                                    <rect key="frame" x="479" y="9" width="160" height="18"/>
+                                    <rect key="frame" x="517" y="9" width="160" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                     <popUpButtonCell key="cell" type="roundRect" title="Modulate foreground" bezelStyle="roundedRect" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="wsE-VL-FyL" id="Z8q-RU-Wiv">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -384,19 +384,8 @@
                                         <action selector="opacityAction:" target="-2" id="3DM-cG-ICu"/>
                                     </connections>
                                 </slider>
-                                <button toolTip="Step Over" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JDf-gL-biq">
-                                    <rect key="frame" x="641" y="6" width="32" height="24"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                    <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="arrowshape.left.arrowshape.right.fill" catalog="system" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zX9-J0-kJq">
-                                        <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="zoomAction:" target="-2" id="Dxm-IW-y0C"/>
-                                    </connections>
-                                </button>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6dN-Jk-c85">
-                                    <rect key="frame" x="440" y="11" width="36" height="16"/>
+                                    <rect key="frame" x="478" y="11" width="36" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="check" title="2D" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="yfC-7V-j3U">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -488,7 +477,6 @@
         </button>
     </objects>
     <resources>
-        <image name="arrowshape.left.arrowshape.right.fill" catalog="system" width="29" height="13"/>
         <image name="execCycleTemplate" width="241" height="241"/>
         <image name="execFrameTemplate" width="242" height="241"/>
         <image name="execLineTemplate" width="242" height="241"/>

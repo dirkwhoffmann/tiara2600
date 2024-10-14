@@ -280,7 +280,7 @@ class Canvas: Layer {
         }
         
         // Setup uniforms
-        fragmentUniforms.alpha = (emu?.paused ?? true) ? 0.5 : alpha.current
+        fragmentUniforms.alpha = alpha.current
         fragmentUniforms.white = renderer.white.current
         fragmentUniforms.dotMaskHeight = Int32(ressourceManager.dotMask.height)
         fragmentUniforms.dotMaskWidth = Int32(ressourceManager.dotMask.width)

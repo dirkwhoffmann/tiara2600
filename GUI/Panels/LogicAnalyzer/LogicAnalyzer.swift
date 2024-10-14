@@ -310,7 +310,7 @@ class LogicAnalyzer: DialogController {
         refresh()
     }
 
-    @IBAction func laProbeAction(_ sender: NSPopUpButton!) {
+    @IBAction func probeAction(_ sender: NSPopUpButton!) {
 
         let tag = sender.selectedTag()
 
@@ -323,7 +323,7 @@ class LogicAnalyzer: DialogController {
         }
     }
 
-    @IBAction func laColorAction(_ sender: NSColorWell!) {
+    @IBAction func colorAction(_ sender: NSColorWell!) {
 
         emu?.logicAnalyzer.setColor(sender.tag, color: sender.color)
         laLogicView.signalColor[sender.tag] = sender.color
@@ -347,6 +347,12 @@ class LogicAnalyzer: DialogController {
     @IBAction func overlayAction(_ sender: NSButton!) {
 
         emu?.set(.LA_ENABLE, enable: sender.state == .on)
+
+        if sender.state == .on {
+            parent.renderer.zoomTextureOut()
+        } else {
+            parent.renderer.zoomTextureIn()
+        }
     }
 
     @IBAction func displayModeAction(_ sender: NSPopUpButton!) {
@@ -414,15 +420,6 @@ class LogicAnalyzer: DialogController {
         let y = (pos >> 16) & 0xFFFF
 
         try? emu?.beamtraps.replace(nr: 0, addr: y << 16 | x)
-    }
-
-    @IBAction func zoomAction(_ sender: NSButton!) {
-
-        if sender.state == .on {
-            parent.renderer.zoomTextureOut()
-        } else {
-            parent.renderer.zoomTextureIn()
-        }
     }
 
     @IBAction func symAction(_ sender: NSButton!) {
