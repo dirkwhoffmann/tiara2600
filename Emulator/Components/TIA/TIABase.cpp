@@ -12,6 +12,7 @@
 
 #include "config.h"
 #include "TIA.h"
+#include "Atari.h"
 #include "IOUtils.h"
 
 namespace tiara {
@@ -24,7 +25,7 @@ TIA::TIA(Atari &ref) : SubComponent(ref)
 void
 TIA::cacheInfo(TIAInfo &result) const
 {
-    result.frame = frame;
+    result.frame = atari.getFrame();  // TODO: Move to AtariInfo
     result.posx = x;
     result.posy = y;
 }

@@ -78,6 +78,7 @@ LogicAnalyzer::recordSignals()
 
             switch (probe[i]) {
 
+                case PROBE_NONE:
                 case PROBE_ADDR_BUS:
                 case PROBE_DATA_BUS:
 
@@ -95,7 +96,7 @@ LogicAnalyzer::recordSignals()
 
                 case PROBE_RDY:
 
-                    if (data[y][x].rdy) *p = color[0][i];
+                    if (!data[y][x].rdy) *p = color[0][i];
                     break;
 
                 case PROBE_VSYNC:
@@ -192,6 +193,12 @@ LogicAnalyzer::sofHandler()
 {
     beamtraps.sofHandler();
     memset(data, 0, sizeof data);
+}
+
+void
+LogicAnalyzer::eofHandler()
+{
+
 }
 
 }

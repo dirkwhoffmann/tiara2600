@@ -84,7 +84,7 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
     TIAConfig config{};
 
     // Frame counter
-    isize frame{};
+    // isize frame{};
 
     // Beam position
     isize x{}, y{};

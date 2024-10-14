@@ -24,6 +24,8 @@ namespace tiara {
 /// Logic analyzer probes
 enum_long(PROBE)
 {
+    PROBE_NONE,                         ///< Unconnected
+
     // Logic board
     PROBE_ADDR_BUS,                     ///< Address bus
     PROBE_DATA_BUS,                     ///< Data bus
@@ -50,6 +52,7 @@ struct ProbeEnum : util::Reflection<ProbeEnum, Probe> {
     {
         switch (value) {
 
+            case PROBE_NONE:        return "NONE";
             case PROBE_ADDR_BUS:    return "ADDR_BUS";
             case PROBE_DATA_BUS:    return "DATA_BUS";
             case PROBE_PHI1:        return "PHI1";

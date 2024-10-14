@@ -110,6 +110,10 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-&quot;cart attach /tmp/Combat.bin&quot; "
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-&quot;cart attach /tmp/vsync.a26&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

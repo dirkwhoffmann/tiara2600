@@ -194,7 +194,8 @@ public:
     // Executes three color clock cycles
     template <bool> void execute();
 
-    // End-of-frame handler
+    // Frame handlers
+    void sofHandler();
     void eofHandler();
 };
 

@@ -178,6 +178,9 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
 
         case TIA_VSYNC:
 
+            // if (RISING_EDGE(vs, val & 0x02)) debug(true, "VSYNC rising edge\n");
+            // if (FALLING_EDGE(vs, val & 0x02)) debug(true, "VSYNC falling edge\n");
+
             vsedge = RISING_EDGE(vs, val & 0x02);
             vs = val & 0x02;
             break;
@@ -291,7 +294,6 @@ TIA::sofHandler()
 void
 TIA::eofHandler()
 {
-    frame++;
     y = 0;
     vsedge = false;
 

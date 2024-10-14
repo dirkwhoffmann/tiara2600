@@ -206,10 +206,10 @@ public:
 public:
 
     // The total number of frames drawn since power up
-    u64 frame = 0;
+    i64 frame = 0;
 
     // Indicates if we have reached the begin of a new frame
-    bool sof = true;
+    // bool sof = true;
 
     // The currently drawn scanline (first scanline = 0)
     // [[deprecated]] u16 scanline = 0;
@@ -437,6 +437,9 @@ public: // private
     //
 
 public:
+
+    // Return the current frame count
+    i64 getFrame() const { return frame; }
 
     // Headless mode
     bool getHeadless() const { return headless; }

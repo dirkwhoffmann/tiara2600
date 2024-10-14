@@ -245,6 +245,12 @@ template void PIA::execute<false>();
 template void PIA::execute<true>();
 
 void
+PIA::sofHandler()
+{
+
+}
+
+void
 PIA::eofHandler()
 {
 

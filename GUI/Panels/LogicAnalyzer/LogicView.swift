@@ -72,32 +72,6 @@ class LogicView: NSView {
         needsDisplay = true
     }
 
-    /*
-    func updateGradients() {
-
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-
-        let colors0: [CGColor] = [ signalColor[0].cgColor, .white ]
-        let colors1: [CGColor] = [ signalColor[1].cgColor, .white ]
-        let colors2: [CGColor] = [ signalColor[2].cgColor, .white ]
-        let colors3: [CGColor] = [ signalColor[3].cgColor, .white ]
-
-        bgColor[0] = signalColor[0].adjust(brightness: 1.0, saturation: 0.2)
-        bgColor[1] = signalColor[1].adjust(brightness: 1.0, saturation: 0.2)
-        bgColor[2] = signalColor[2].adjust(brightness: 1.0, saturation: 0.2)
-        bgColor[3] = signalColor[3].adjust(brightness: 1.0, saturation: 0.2)
-
-        gradient[0] = CGGradient(colorsSpace: colorSpace,
-                                 colors: colors0 as CFArray, locations: [0.0, 1.0])
-        gradient[1] = CGGradient(colorsSpace: colorSpace,
-                                 colors: colors1 as CFArray, locations: [0.0, 1.0])
-        gradient[2] = CGGradient(colorsSpace: colorSpace,
-                                 colors: colors2 as CFArray, locations: [0.0, 1.0])
-        gradient[3] = CGGradient(colorsSpace: colorSpace,
-                                 colors: colors3 as CFArray, locations: [0.0, 1.0])
-    }
-    */
-
     //
     // Managing the data source
     //
@@ -112,6 +86,7 @@ class LogicView: NSView {
 
                 switch probe[c] {
 
+                case .NONE:     for i in 0..<228 { data[c][i] = 0 }
                 case .ADDR_BUS: for i in 0..<228 { data[c][i] = Int((values + i).pointee.addrBus) }
                 case .DATA_BUS: for i in 0..<228 { data[c][i] = Int((values + i).pointee.dataBus) }
                 case .PHI1:     for i in 0..<228 { data[c][i] = (values + i).pointee.phi1 ? 1 : 0 }
@@ -217,7 +192,7 @@ class LogicView: NSView {
                               width: bounds.width,
                               height: 24)
 
-            drawSignalTrace(in: rect, channel: i)
+            if probe[i] != .NONE { drawSignalTrace(in: rect, channel: i) }
         }
     }
 

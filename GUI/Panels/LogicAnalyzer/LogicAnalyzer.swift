@@ -85,6 +85,7 @@ class LogicAnalyzer: DialogController {
             }
 
             button.removeAllItems()
+            add("None")
             add("Address Bus")
             add("Data Bus")
             add("PHI1")

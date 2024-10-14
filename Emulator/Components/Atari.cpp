@@ -222,7 +222,9 @@ Atari::prefix(isize level, const char *component, isize line) const
 
 void 
 Atari::_didReset(bool hard)
-{    
+{
+    flags |= RL::SYNC_THREAD;
+
     // Inform the GUI
     msgQueue.put(MSG_RESET);
 }
@@ -512,7 +514,7 @@ Atari::computeFrame()
 {
     Cycle cycle = cpu.clock;
 
-    if (sof) { sofHandler(); }
+    if (flags & RL::SYNC_THREAD) { sofHandler(); }
 
     while (1) {
 
@@ -593,19 +595,19 @@ Atari::computeFrame()
             }
             if (flags & RL::SYNC_THREAD) {
 
-                sof = true;
+                // sof = true;
 
                 if (flags & RL::STEP_FRAME) {
 
-                    clearFlag(RL::STEP_INSTRUCTION);
+                    // clearFlag(RL::STEP_INSTRUCTION);
                     pause = true;
                 }
             }
 
-            flags &= RL::STEP_INSTRUCTION | RL::STEP_LINE | RL::STEP_FRAME;
+            flags &= RL::STEP_INSTRUCTION | RL::STEP_LINE | RL::STEP_FRAME | RL::SYNC_THREAD;
 
             if (pause) throw StateChangeException(STATE_PAUSED);
-            if (sof) break;
+            if (flags & RL::SYNC_THREAD) break;
         }
     }
 }
@@ -794,16 +796,24 @@ C64::eolHandler()
 
 void Atari::sofHandler()
 {
-    tia.sofHandler();
-    logicAnalyzer.sofHandler();
+    // sof = false;
+    flags &= ~RL::SYNC_THREAD;
 
-    sof = false;
+    tia.sofHandler();
+    pia.sofHandler();
+    logicAnalyzer.sofHandler();
 }
 
 void
 Atari::eofHandler()
 {
+    flags |= RL::SYNC_THREAD;
+
+    frame++;
+
     tia.eofHandler();
+    pia.eofHandler();
+    logicAnalyzer.eofHandler();
 }
 
 void
