@@ -67,12 +67,6 @@ TIA::diff(isize y, isize x)
     return (y - this->y) * TIA_CYCLES_PER_LINE + (x - this->x);
 }
 
-void
-TIA::updatePalette()
-{
-
-}
-
 u32 *
 TIA::getTexture() const
 {
@@ -298,7 +292,9 @@ TIA::eofHandler()
     // Only proceed if the current frame hasn't been executed in headless mode
     if (atari.getHeadless()) return;
 
-    // Run the logic Analyzer if enabled
+    // Colorize the emulator texture
+
+    // Compute the overlay texture (logic analyzer)
     bool debug = logicAnalyzer.config.enable;
     if (debug) logicAnalyzer.computeOverlay(emuTexture, dmaTexture);
 

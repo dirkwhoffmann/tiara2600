@@ -11,7 +11,7 @@
 // -----------------------------------------------------------------------------
 
 #include "config.h"
-#include "Beamtraps.h"
+#include "BeamTraps.h"
 #include "Atari.h"
 
 namespace tiara {

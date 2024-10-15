@@ -103,6 +103,7 @@ TIA::setOption(Option opt, i64 value)
         case OPT_TIA_REVISION:
 
             config.revision = TIARevision(value);
+            monitor.updateColors();
             return;
 
         case OPT_TIA_POWER_SAVE:

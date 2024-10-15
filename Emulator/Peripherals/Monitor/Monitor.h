@@ -13,6 +13,7 @@
 #pragma once
 
 #include "MonitorTypes.h"
+// #include "TIATypes.h"
 #include "AtariTypes.h"
 #include "SubComponent.h"
 
@@ -58,6 +59,9 @@ class Monitor final : public SubComponent {
 
     // Current configuration
     MonitorConfig config = { };
+
+    // Lookup table for all 128 Atari color
+    u32 color[128]{};
 
 
     //
@@ -154,9 +158,20 @@ public:
 
 public:
 
+    // Updates the color palette
+    void updateColors();
+
     // Computes a C64 color in 32 bit big-endian RGBA format
-    u32 getColor(isize nr, Palette palette);
-    u32 getColor(isize nr) { return getColor(nr, config.palette); }
+    // u32 getColor(isize nr, Palette palette);
+    // u32 getColor(isize nr) { return getColor(nr, config.palette); }
+
+    // Draws a palette image
+    void drawPalette(u32 *dst, isize blockWidth, isize blockHeight, isize gap) const;
+
+private:
+
+    // Adjusts the RGBA value according to the selected color parameters
+    void adjustRGB(u8 &r, u8 &g, u8 &b);
 };
 
 }

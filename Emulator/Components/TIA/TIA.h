@@ -15,6 +15,7 @@
 #include "TIAComponents.h"
 #include "SubComponent.h"
 #include "AtariTypes.h"
+#include "Playfield.h"
 #include "Constants.h"
 
 namespace tiara {
@@ -83,8 +84,8 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
     // Current configuration
     TIAConfig config{};
 
-    // Frame counter
-    // isize frame{};
+    // Objects
+    Playfield playfield;
 
     // Beam position
     isize x{}, y{};
@@ -287,8 +288,6 @@ public:
     //
 
 public:
-
-    void updatePalette();
 
 
     //

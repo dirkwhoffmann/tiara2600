@@ -136,25 +136,25 @@ Monitor::setOption(Option opt, i64 value)
         case OPT_MON_PALETTE:
             
             config.palette = Palette(value);
-            tia.updatePalette();
+            updateColors();
             return;
             
         case OPT_MON_BRIGHTNESS:
             
             config.brightness = isize(value);
-            tia.updatePalette();
+            updateColors();
             return;
             
         case OPT_MON_CONTRAST:
             
             config.contrast = isize(value);
-            tia.updatePalette();
+            updateColors();
             return;
             
         case OPT_MON_SATURATION:
             
             config.saturation = isize(value);
-            tia.updatePalette();
+            updateColors();
             return;
             
         case OPT_MON_HCENTER:

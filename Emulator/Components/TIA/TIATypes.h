@@ -213,6 +213,66 @@ struct TIARegisterEnum : util::Reflection<TIARegisterEnum, TIARegister> {
     }
 };
 
+enum_long(TIA_OBJECT)
+{
+    TIA_PF,         ///< Playfield
+    TIA_BL,         ///< Ball
+    TIA_M0,         ///< First missile
+    TIA_M1,         ///< Second missile
+    TIA_P0,         ///< First player
+    TIA_P1          ///< Second player
+};
+typedef TIA_OBJECT TIAObject;
+
+struct TIAObjectEnum : util::Reflection<TIAObjectEnum, TIAObject> {
+
+    static constexpr long minVal = 0;
+    static constexpr long maxVal = TIA_P1;
+
+    static const char *prefix() { return "TIA"; }
+    static const char *_key(long value)
+    {
+        switch (value) {
+
+            case TIA_PF:    return "PF";
+            case TIA_BL:    return "BL";
+            case TIA_M0:    return "M0";
+            case TIA_P0:    return "P0";
+            case TIA_P1:    return "P1";
+        }
+        return "???";
+    }
+};
+
+
+enum_long(TIA_COLOR)
+{
+    TIA_COLOR_BK,   ///< Background
+    TIA_COLOR_PF,   ///< Playfield
+    TIA_COLOR_PM0,  ///< Player 0 and Missile 0
+    TIA_COLOR_PM1   ///< Player 1 and Missile 1
+};
+typedef TIA_COLOR TIAColor;
+
+struct TIAColorEnum : util::Reflection<TIAColorEnum, TIAColor> {
+
+    static constexpr long minVal = 0;
+    static constexpr long maxVal = TIA_COLOR_PM1;
+
+    static const char *prefix() { return "TIA_COLOR"; }
+    static const char *_key(long value)
+    {
+        switch (value) {
+
+            case TIA_COLOR_BK:  return "BK";
+            case TIA_COLOR_PF:  return "PF";
+            case TIA_COLOR_PM0: return "PM0";
+            case TIA_COLOR_PM1: return "PM1";
+        }
+        return "???";
+    }
+};
+
 
 //
 // Structures
