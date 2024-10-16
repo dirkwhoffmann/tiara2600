@@ -110,6 +110,13 @@ Monitor::updateColors()
     }
 }
 
+u32
+Monitor::getColor(isize nr)
+{
+    assert(nr >= 0 && nr <= 127);
+    return color[nr];
+}
+
 void
 Monitor::adjustRGB(u8 &r, u8 &g, u8 &b)
 {

@@ -163,7 +163,7 @@ public:
 
     // Computes a C64 color in 32 bit big-endian RGBA format
     // u32 getColor(isize nr, Palette palette);
-    // u32 getColor(isize nr) { return getColor(nr, config.palette); }
+    u32 getColor(isize nr);
 
     // Draws a palette image
     void drawPalette(u32 *dst, isize blockWidth, isize blockHeight, isize gap) const;

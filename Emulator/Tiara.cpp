@@ -712,7 +712,7 @@ TIAAPI::getCachedInfo() const
 u32
 TIAAPI::getColor(isize nr) const
 {
-    return 0; // tia->getColor(nr);
+    return tia->monitor.getColor(nr);
 }
 
 u32

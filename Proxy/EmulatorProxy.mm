@@ -498,9 +498,9 @@ using namespace tiara;
 
 - (NSColor *)color:(NSInteger)nr
 {
-    assert (0 <= nr && nr < 16);
+    assert (0 <= nr && nr < 128);
 
-    u32 color = [self tia]->getColor((unsigned)nr);
+    u32 color = [self tia]->getColor(nr);
     u8 r = color & 0xFF;
     u8 g = (color >> 8) & 0xFF;
     u8 b = (color >> 16) & 0xFF;

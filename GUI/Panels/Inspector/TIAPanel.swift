@@ -23,6 +23,8 @@ extension Inspector {
 
         if full {
 
+            tiaPalette.image = paletteImage
+
             /*
              vicScanline.assignFormatter(fmt9)
              vicRasterCycle.assignFormatter(fmt9)
@@ -53,5 +55,58 @@ extension Inspector {
          vicYCounter.integerValue = Int(vicInfo.yCounter)
          vicXCounter.integerValue = Int(vicInfo.xCounter)
          */
+    }
+
+    var paletteImage: NSImage? {
+
+        // Compute layout
+        let width = 256
+        let height = 512
+        let cols = 8
+        let rows = 128 / cols
+        let dx = width / cols
+        let dy = height / rows
+
+        // Create image representation
+        let size = CGSize(width: width, height: height)
+        let cap = width * height
+        let mask = calloc(cap, MemoryLayout<UInt32>.size)!
+        let ptr = mask.bindMemory(to: UInt32.self, capacity: cap)
+
+        func drawBlock(y: Int, x: Int, abgr: UInt32) {
+
+            for i in 0...dy {
+                for j in 0...dx {
+
+                    let index = (y * dy + i) * width + x * dx + j
+
+                    if index < width * height {
+                        ptr[index] = abgr
+                    } else {
+                        break
+                    }
+                }
+            }
+        }
+
+        for i in 0..<rows {
+            for j in 0..<cols {
+
+                let color = emu?.tia.color(i*cols+j) ?? NSColor.white
+
+                let r = Int(color.redComponent * CGFloat(255))
+                let g = Int(color.greenComponent * CGFloat(255))
+                let b = Int(color.blueComponent * CGFloat(255))
+                let a = Int(color.alphaComponent * CGFloat(255))
+                let abgr = UInt32(r | g << 8 | b << 16 | a << 24)
+
+                drawBlock(y: i, x: j, abgr: abgr)
+            }
+        }
+
+        // Create image
+        let image = NSImage.make(data: mask, rect: size)
+        let resizedImage = image?.resizeSharp(width: 512, height: 256)
+        return resizedImage
     }
 }
