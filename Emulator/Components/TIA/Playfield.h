@@ -23,7 +23,9 @@ class Playfield final : CoreObject {
 
     const char *objectName() const { return "Playfield"; }
 
-    isize get() const;
+public:
+
+    bool get() const;
 
 };
 

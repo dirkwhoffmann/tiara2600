@@ -16,6 +16,9 @@
 #include "SubComponent.h"
 #include "AtariTypes.h"
 #include "Playfield.h"
+#include "Player.h"
+#include "Missile.h"
+#include "Ball.h"
 #include "Constants.h"
 
 namespace tiara {
@@ -84,11 +87,55 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
     // Current configuration
     TIAConfig config{};
 
+    //
     // Objects
-    Playfield playfield;
+    //
+
+    Playfield pf{};
+    Player p0{};
+    Player p1{};
+    Missile m0{};
+    Missile m1{};
+    Ball bl{};
+
+    
+    //
+    // Counters
+    //
 
     // Beam position
     isize x{}, y{};
+
+
+    //
+    // Lookup tables
+    //
+
+    /* Display color and collision bits
+     *
+     * lookup[PFP][SCORE][RIGHT][<TIA objects>]
+     */
+    struct { TIAColor color; u32 collison; } lookup[2][2][2][64];
+
+
+    //
+    // Registers
+    //
+
+    // Color registers
+    u8 colup0;
+    u8 colup1;
+    u8 colupf;
+    u8 colubk;
+
+    // RGBA values of the four selected colors
+    u32 rgba[4];
+
+    // Control playfield, ball size, collisions
+    u8 ctrlpf;
+
+    // Collision bits
+    u32 cx;
 
 
     //
@@ -123,8 +170,17 @@ private:
     // RDY latch (controls the CPU's RDY input)
     bool rdy{};
 
-    // The horizontal counter
+    // Dual-phase horizontal counter
     DualPhaseCounter<56> hc { .phase = 1, .current = 56, .resl = false, .res = true };
+
+    // SEC logic
+    SEC sec{};
+
+    // Latched SEC signal
+    bool secl{};
+
+    // HB latch (Horizontal Blank)
+    DualPhaseDelayLatch<bool> hb{};
 
 
     //
@@ -139,9 +195,6 @@ private:
     //
 
 private:
-
-    // C64 colors in RGBA format (updated in updatePalette())
-    u32 rgbaTable[16]{};
 
     /* Texture buffers. TIA outputs the generated texture into these buffers.
      * At any time, one buffer is the working buffer and the other one is the

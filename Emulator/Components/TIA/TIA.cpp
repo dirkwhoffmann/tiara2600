@@ -19,7 +19,62 @@ namespace tiara {
 void
 TIA::_initialize()
 {
+    for (isize obj = 0; obj < 64; obj++) {
 
+        bool pf = obj & (1 << TIA_PF);
+        bool bl = obj & (1 << TIA_BL);
+        bool m0 = obj & (1 << TIA_M0);
+        bool m1 = obj & (1 << TIA_M1);
+        bool p0 = obj & (1 << TIA_P0);
+        bool p1 = obj & (1 << TIA_P1);
+
+        u32 collision =
+        (m0 && p0) << 0  | // CXM0P
+        (m0 && p1) << 1  | // .
+        (m1 && p1) << 2  | // CXM1P
+        (m1 && p0) << 3  | // .
+        (p0 && bl) << 4  | // CXP0FB
+        (p0 && pf) << 5  | // .
+        (p1 && bl) << 6  | // CXP1FB
+        (p1 && pf) << 7  | // .
+        (m0 && bl) << 8  | // CXM0FB
+        (m0 && pf) << 9  | // .
+        (m1 && bl) << 10 | // CXM1FB
+        (m1 && pf) << 11 | // .
+        (bl && pf) << 12 | // CXBLPF
+        (m0 && m1) << 13 | // CXPPMM
+        (p0 && p1) << 14 ; // .
+
+        for (isize pfp = 0; pfp < 2; pfp++) {
+            for (isize score = 0; score < 2; score++) {
+                for (isize side = 0; side < 2; side++) {
+
+                    TIAColor pfcolor =
+                    score ? (side ? TIA_COLOR_PM1 : TIA_COLOR_PM0) : TIA_COLOR_PF;
+
+                    if (pfp) {
+
+                        lookup[pfp][score][side][obj].color =
+                        pf || bl ? pfcolor :        // Highest Priority PF, BL
+                        p0 || m0 ? TIA_COLOR_PM0 :  // Second Highest P0, M0
+                        p1 || m1 ? TIA_COLOR_PM1 :  // Third Highest P1, M1
+                        TIA_COLOR_BK;               // Lowest Priority BK
+
+                    } else {
+
+                        lookup[pfp][score][side][obj].color =
+                        p0 || m0 ? TIA_COLOR_PM0 :  // Highest Priority P0, M0
+                        p1 || m1 ? TIA_COLOR_PM1 :  // Second Highest P1, M1
+                        pf || bl ? pfcolor  :       // Third Highest PF, BL
+                        TIA_COLOR_BK;               // Lowest Priority BK
+
+                    }
+
+                    lookup[pfp][score][side][obj].collison = collision;
+                }
+            }
+        }
+    }
 }
 
 void
@@ -141,7 +196,25 @@ TIA::peek(u16 addr)
 u8
 TIA::spy(u16 addr) const
 {
+    auto setCX = [&](u8 val) { return u8((val & 0xC0) | (atari.dataBus & 0x3F)); };
+
     switch (TIARegister(addr)) {
+
+        case TIA_COLUP0:    return colup0;
+        case TIA_COLUP1:    return colup1;
+        case TIA_COLUPF:    return colupf;
+        case TIA_COLUBK:    return colubk;
+
+        case TIA_CTRLPF:    return ctrlpf;
+
+        case TIA_CXM0P:     return setCX(u8(cx << 6));
+        case TIA_CXM1P:     return setCX(u8(cx << 4));
+        case TIA_CXP0FB:    return setCX(u8(cx << 2));
+        case TIA_CXP1FB:    return setCX(u8(cx << 0));
+        case TIA_CXM0FB:    return setCX(u8(cx >> 2));
+        case TIA_CXM1FB:    return setCX(u8(cx >> 4));
+        case TIA_CXBLPF:    return setCX(u8(cx >> 6));
+        case TIA_CXPPMM:    return setCX(u8(cx >> 8));
 
         default:
             return 0;
@@ -172,19 +245,57 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
 
         case TIA_VSYNC:
 
-            // if (RISING_EDGE(vs, val & 0x02)) debug(true, "VSYNC rising edge\n");
-            // if (FALLING_EDGE(vs, val & 0x02)) debug(true, "VSYNC falling edge\n");
-
             vsedge = RISING_EDGE(vs, val & 0x02);
             vs = val & 0x02;
             break;
 
         case TIA_VBLANK:
         case TIA_WSYNC:
+        case TIA_RESP0:
+        case TIA_RESP1:
+        case TIA_RESM0:
+        case TIA_RESM1:
+        case TIA_RESBL:
+        case TIA_HMOVE:
+        case TIA_HMCLR:
 
             strobe = reg;
             break;
 
+        case TIA_CXCLR:
+
+            cx = 0;
+            break;
+
+        case TIA_COLUP0:
+
+            colup0 = val & 0b11111110;
+            rgba[TIA_COLOR_PM0] = monitor.getColor(colup0 >> 1);
+            break;
+
+        case TIA_COLUP1:
+
+            colup1 = val & 0b11111110;
+            rgba[TIA_COLOR_PM1] = monitor.getColor(colup1 >> 1);
+            break;
+
+        case TIA_COLUPF:
+
+            colupf = val & 0b11111110;
+            rgba[TIA_COLOR_PF] = monitor.getColor(colupf >> 1);
+            break;
+
+        case TIA_COLUBK:
+
+            colubk = val & 0b11111110;
+            rgba[TIA_COLOR_BK] = monitor.getColor(colubk >> 1);
+            break;
+
+        case TIA_CTRLPF:
+
+            ctrlpf = val & 0b00110111;
+            break;
+            
         default:
 
             debug(TIA_REG_DEBUG,
@@ -217,9 +328,26 @@ TIA::execute()
 
     // Clock the horizontal counter
     hc.execute(true, false);
+    bool phi1 = hc.phi1();
+    bool phi2 = hc.phi2();
 
     // Check for the "Start HBlank" signal
     bool shb = hc.res;
+
+    //
+    // SEC logic
+    //
+
+    sec.execute(phi1, phi2, strobe == TIA_HMOVE);
+    secl = (secl & !shb) | sec.get();
+
+
+    //
+    // HB logic
+    //
+
+    hb.execute(phi1, phi2, hc.current == (sec.get() ? 18 : 16), shb);
+
 
     //
     // RDY logic
@@ -255,6 +383,37 @@ TIA::execute()
 
     assert(x < Texture::width);
     assert(y < Texture::height);
+
+    //
+    // Collision logic
+    //
+
+    isize index =
+    (pf.get() ? (1 << TIA_PF) : 0) |
+    (bl.get() ? (1 << TIA_BL) : 0) |
+    (m0.get() ? (1 << TIA_M0) : 0) |
+    (m1.get() ? (1 << TIA_M1) : 0) |
+    (p0.get() ? (1 << TIA_P0) : 0) |
+    (p1.get() ? (1 << TIA_P1) : 0) ;
+
+    auto lup = lookup[0][0][0][index]; // TODO: [PFP][SCORE][RIGHT]
+    cx |= lup.collison;
+
+
+    //
+    // Drawing
+    //
+
+    if (hb.neg()) {
+
+        TIAColor color = lup.color;
+        assert(color >= 0 && color < 4);
+        emuTexture[y * Texture::width + x] = rgba[color];
+
+    } else {
+
+        emuTexture[y * Texture::width + x] = 0xFF000000;
+    }
 
     // Run the logic analyzer
     logicAnalyzer.recordSignals();

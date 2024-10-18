@@ -10,15 +10,23 @@
 // SPDX-License-Identifier: GPL-3.0-or-later OR MPL-2.0
 // -----------------------------------------------------------------------------
 
-#include "config.h"
-#include "Playfield.h"
+#pragma once
+
+#include "TIAComponents.h"
+#include "TIATypes.h"
+#include "SubComponent.h"
+#include "Constants.h"
 
 namespace tiara {
 
-bool
-Playfield::get() const
-{
-    return false;
-}
+class Ball final : CoreObject {
+
+    const char *objectName() const { return "Ball"; }
+
+public:
+
+    bool get() const;
+
+};
 
 }

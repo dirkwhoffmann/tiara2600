@@ -797,8 +797,6 @@ C64::eolHandler()
 
 void Atari::sofHandler()
 {
-    // sof = false;
-    trace(true, "sofHandler\n");
     flags &= ~RL::SYNC_THREAD;
 
     auto oldy = tia.getY();
@@ -811,7 +809,6 @@ void Atari::sofHandler()
 void
 Atari::eofHandler()
 {
-    trace(true, "eofHandler\n");
     flags |= RL::SYNC_THREAD;
 
     frame++;

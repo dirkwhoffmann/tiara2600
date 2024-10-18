@@ -245,7 +245,7 @@ struct TIAObjectEnum : util::Reflection<TIAObjectEnum, TIAObject> {
 };
 
 
-enum_long(TIA_COLOR)
+enum_i8(TIA_COLOR)
 {
     TIA_COLOR_BK,   ///< Background
     TIA_COLOR_PF,   ///< Playfield
@@ -321,6 +321,12 @@ typedef struct
     i64 frame;
     isize posx;
     isize posy;
+
+    // Registers
+    u8 colup0;
+    u8 colup1;
+    u8 colupf;
+    u8 colubk;
 }
 TIAInfo;
 

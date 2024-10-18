@@ -28,6 +28,11 @@ TIA::cacheInfo(TIAInfo &result) const
     result.frame = atari.getFrame();  // TODO: Move to AtariInfo
     result.posx = x;
     result.posy = y;
+
+    result.colup0 = colup0;
+    result.colup1 = colup1;
+    result.colupf = colupf;
+    result.colubk = colubk;
 }
 
 void

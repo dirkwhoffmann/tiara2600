@@ -122,11 +122,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-&quot;break at $1001&quot;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-&quot;break at $1032&quot;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

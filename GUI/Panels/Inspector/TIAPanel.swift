@@ -49,12 +49,14 @@ extension Inspector {
              */
         }
 
-        /*
-         vicScanline.integerValue = Int(vicInfo.scanline)
-         vicRasterCycle.integerValue = Int(vicInfo.rasterCycle)
-         vicYCounter.integerValue = Int(vicInfo.yCounter)
-         vicXCounter.integerValue = Int(vicInfo.xCounter)
-         */
+        tiaCOLUP0.integerValue = Int(tiaInfo.colup0)
+        tiaCOLUP1.integerValue = Int(tiaInfo.colup1)
+        tiaCOLUPF.integerValue = Int(tiaInfo.colupf)
+        tiaCOLUBK.integerValue = Int(tiaInfo.colubk)
+        tiaColorWell0.color = emu?.tia.color(Int(tiaInfo.colup0 >> 1)) ?? .white
+        tiaColorWell1.color = emu?.tia.color(Int(tiaInfo.colup1 >> 1)) ?? .white
+        tiaColorWell2.color = emu?.tia.color(Int(tiaInfo.colupf >> 1)) ?? .white
+        tiaColorWell3.color = emu?.tia.color(Int(tiaInfo.colubk >> 1)) ?? .white
     }
 
     var paletteImage: NSImage? {

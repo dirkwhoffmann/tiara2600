@@ -303,6 +303,12 @@
 		50E9B92F201FA92C00065A89 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9B92E201FA92C00065A89 /* Alerts.swift */; };
 		50EAFFEA24B2600D00024CD2 /* MyToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EAFFE924B2600D00024CD2 /* MyToolbar.swift */; };
 		50ED5BF812DD99C000596417 /* Speedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED5BF712DD99C000596417 /* Speedometer.swift */; };
+		50EF6F032CC0DBCF00B4642F /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50EF6F022CC0DBCC00B4642F /* Player.cpp */; };
+		50EF6F042CC0DBCF00B4642F /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50EF6F022CC0DBCC00B4642F /* Player.cpp */; };
+		50EF6F072CC0DBDE00B4642F /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50EF6F062CC0DBDC00B4642F /* Ball.cpp */; };
+		50EF6F082CC0DBDE00B4642F /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50EF6F062CC0DBDC00B4642F /* Ball.cpp */; };
+		50EF6F0B2CC25F9100B4642F /* Missile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50EF6F0A2CC25F9000B4642F /* Missile.cpp */; };
+		50EF6F0C2CC25F9200B4642F /* Missile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50EF6F0A2CC25F9000B4642F /* Missile.cpp */; };
 		50EFB0C42C18D6200013B73C /* Dumpable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50EFB0C22C18D6200013B73C /* Dumpable.cpp */; };
 		50EFB0C52C18D6200013B73C /* Dumpable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50EFB0C22C18D6200013B73C /* Dumpable.cpp */; };
 		50F062E3258DE564009A6B21 /* TypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F062E2258DE564009A6B21 /* TypeExtensions.swift */; };
@@ -719,6 +725,12 @@
 		50ED5BF712DD99C000596417 /* Speedometer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speedometer.swift; sourceTree = "<group>"; };
 		50EF22322815927D00440C4D /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		50EF22342815929500440C4D /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		50EF6F012CC0DBC200B4642F /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		50EF6F022CC0DBCC00B4642F /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		50EF6F052CC0DBD600B4642F /* Ball.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ball.h; sourceTree = "<group>"; };
+		50EF6F062CC0DBDC00B4642F /* Ball.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Ball.cpp; sourceTree = "<group>"; };
+		50EF6F092CC25F8900B4642F /* Missile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Missile.h; sourceTree = "<group>"; };
+		50EF6F0A2CC25F9000B4642F /* Missile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Missile.cpp; sourceTree = "<group>"; };
 		50EFB0C22C18D6200013B73C /* Dumpable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dumpable.cpp; sourceTree = "<group>"; };
 		50EFB0C32C18D6200013B73C /* Dumpable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dumpable.h; sourceTree = "<group>"; };
 		50F062E2258DE564009A6B21 /* TypeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeExtensions.swift; sourceTree = "<group>"; };
@@ -1176,6 +1188,12 @@
 				504104442CA687300004860E /* TIA.cpp */,
 				501034692CBD38B2007DEEE0 /* Playfield.h */,
 				5010346A2CBD38BA007DEEE0 /* Playfield.cpp */,
+				50EF6F012CC0DBC200B4642F /* Player.h */,
+				50EF6F022CC0DBCC00B4642F /* Player.cpp */,
+				50EF6F092CC25F8900B4642F /* Missile.h */,
+				50EF6F0A2CC25F9000B4642F /* Missile.cpp */,
+				50EF6F052CC0DBD600B4642F /* Ball.h */,
+				50EF6F062CC0DBDC00B4642F /* Ball.cpp */,
 				50DBB3D22641107E006F45E6 /* LogicAnalyzerTypes.h */,
 				50DBB3D02641101E006F45E6 /* LogicAnalyzer.h */,
 				508C1E5C2C0B31320097473C /* LogicAnalyzerBase.cpp */,
@@ -1738,11 +1756,14 @@
 				50E17E222B8B26AC0029747D /* Option.cpp in Sources */,
 				50EFB0C52C18D6200013B73C /* Dumpable.cpp in Sources */,
 				50726F482961C9940031F2F5 /* Defaults.cpp in Sources */,
+				50EF6F082CC0DBDE00B4642F /* Ball.cpp in Sources */,
 				50726F412961C97B0031F2F5 /* Parser.cpp in Sources */,
 				508C1E542C0B20610097473C /* ControlPortBase.cpp in Sources */,
 				50BB3E9B2B7A50F600B2D87B /* Synchronizable.cpp in Sources */,
 				508C1E5E2C0B31320097473C /* LogicAnalyzerBase.cpp in Sources */,
+				50EF6F0B2CC25F9100B4642F /* Missile.cpp in Sources */,
 				50726F4A2961C9940031F2F5 /* CPU.cpp in Sources */,
+				50EF6F042CC0DBCF00B4642F /* Player.cpp in Sources */,
 				50A5B7D42C74E44C00D6DDAD /* RshServer.cpp in Sources */,
 				50726F472961C9940031F2F5 /* SubComponent.cpp in Sources */,
 				5041044D2CA691410004860E /* TIAComponents.cpp in Sources */,
@@ -1836,6 +1857,7 @@
 				50AE193C2633E9B0005A5898 /* RegressionTester.cpp in Sources */,
 				5038CA9720B6C2BE000D9193 /* SIDPanel.swift in Sources */,
 				50BE4B6224E7F8DE008F39C9 /* NSTableView.swift in Sources */,
+				50EF6F032CC0DBCF00B4642F /* Player.cpp in Sources */,
 				50549B49257D288E006FE39C /* AudioPort.cpp in Sources */,
 				5038CA9120B6C281000D9193 /* MemoryPanel.swift in Sources */,
 				507A499E24C8D65700DBF984 /* TraceTableView.swift in Sources */,
@@ -1892,6 +1914,7 @@
 				50E83D512CB0579E00308A1C /* LogicView.swift in Sources */,
 				504104462CA687370004860E /* TIA.cpp in Sources */,
 				50116E8F2CB795F800E1AD7E /* BeamTraps.cpp in Sources */,
+				50EF6F072CC0DBDE00B4642F /* Ball.cpp in Sources */,
 				506F30422B74C1C70083EAEA /* Wakeable.cpp in Sources */,
 				506F303E2B7364270083EAEA /* Suspendable.cpp in Sources */,
 				50FFB54D2B8262BA00042771 /* Serializable.cpp in Sources */,
@@ -1910,6 +1933,7 @@
 				5092A5B1200BC4B70037754D /* DragAndDrop.swift in Sources */,
 				504C438224AF29AC00E69CAE /* CoreObject.cpp in Sources */,
 				5098C57F2658E1F400E05EFC /* DragImageView.swift in Sources */,
+				50EF6F0C2CC25F9200B4642F /* Missile.cpp in Sources */,
 				50DBB3D12641101E006F45E6 /* LogicAnalyzer.cpp in Sources */,
 				508C1E5D2C0B31320097473C /* LogicAnalyzerBase.cpp in Sources */,
 				50DEAD8F2008E615008A8761 /* Shaders.swift in Sources */,

@@ -11,12 +11,12 @@
 // -----------------------------------------------------------------------------
 
 #include "config.h"
-#include "Playfield.h"
+#include "Player.h"
 
 namespace tiara {
 
 bool
-Playfield::get() const
+Player::get() const
 {
     return false;
 }

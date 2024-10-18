@@ -142,6 +142,14 @@ class Inspector: DialogController {
     
     // TIA panel
     @IBOutlet weak var tiaPalette: NSButton!
+    @IBOutlet weak var tiaCOLUP0: NSTextField!
+    @IBOutlet weak var tiaCOLUP1: NSTextField!
+    @IBOutlet weak var tiaCOLUPF: NSTextField!
+    @IBOutlet weak var tiaCOLUBK: NSTextField!
+    @IBOutlet weak var tiaColorWell0: NSColorWell!
+    @IBOutlet weak var tiaColorWell1: NSColorWell!
+    @IBOutlet weak var tiaColorWell2: NSColorWell!
+    @IBOutlet weak var tiaColorWell3: NSColorWell!
 
     @IBOutlet weak var vicScanline: NSTextField!
     @IBOutlet weak var vicRasterCycle: NSTextField!
@@ -159,8 +167,6 @@ class Inspector: DialogController {
     @IBOutlet weak var vicDisplayState: NSButton!
     @IBOutlet weak var vicVBlank: NSButton!
     @IBOutlet weak var vicScreenGeometry: NSPopUpButton!
-    @IBOutlet weak var vicVFlop: NSButton!
-    @IBOutlet weak var vicHFlop: NSButton!
     @IBOutlet weak var vicDisplayMode: NSPopUpButton!
     @IBOutlet weak var vicBorderColor: NSColorWell!
     @IBOutlet weak var vicBgColor0: NSColorWell!
