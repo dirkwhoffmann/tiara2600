@@ -23,10 +23,28 @@ class Playfield final : CoreObject {
 
     const char *objectName() const { return "Playfield"; }
 
+    // The 20-bit playfield register
+    u32 playfield{};
+
+    // PF line (playfield serial graphics output)
+    DualPhaseDelay<bool> pf{};
+
+    // REF bit (reflect playfield bit in CTRLPF)
+    bool ref{};
+
+    // Bit selection masks
+    u32 fwdMask{};
+    u32 bwdMask{};
+
 public:
 
+    void setPF0(u8 val);
+    void setPF1(u8 val);
+    void setPF2(u8 val);
+    void setREF(bool val) { ref = val; }
     bool get() const;
 
+    void alwaysinline execute(const class TIA &tia);
 };
 
 }

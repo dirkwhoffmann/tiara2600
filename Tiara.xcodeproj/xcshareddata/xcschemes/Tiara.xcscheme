@@ -113,7 +113,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-&quot;cart attach /tmp/vsync.a26&quot;"
+            argument = "-&quot;cart attach /tmp/playfield.a26&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

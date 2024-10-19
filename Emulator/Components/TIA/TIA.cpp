@@ -294,8 +294,24 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
         case TIA_CTRLPF:
 
             ctrlpf = val & 0b00110111;
+            pf.setREF(val & 0b00000001);
             break;
-            
+
+        case TIA_PF0:
+
+            pf.setPF0(val);
+            break;
+
+        case TIA_PF1:
+
+            pf.setPF1(val);
+            break;
+
+        case TIA_PF2:
+
+            pf.setPF2(val);
+            break;
+
         default:
 
             debug(TIA_REG_DEBUG,
@@ -384,6 +400,14 @@ TIA::execute()
     assert(x < Texture::width);
     assert(y < Texture::height);
 
+
+    //
+    // Playfield logic
+    //
+
+    pf.execute(*this);
+
+    
     //
     // Collision logic
     //

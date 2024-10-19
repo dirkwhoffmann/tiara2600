@@ -85,6 +85,9 @@
 #define REPLACE_LO_WORD(x,y) (((x) & ~0xFFFF) | (y))
 #define REPLACE_HI_WORD(x,y) (((x) & ~0xFFFF0000) | ((y) << 16))
 
+// Reverses the order of all bits in a byte
+#define REVERSE_BYTE(x) (((x) * 0x0202020202ULL & 0x010884422010ULL) % 1023)
+
 // Checks if none or all bits of a bitmask are set
 #define ALL_CLR(x,m) (((x) & (m)) == 0)
 #define ALL_SET(x,m) (((x) & (m)) == m)
