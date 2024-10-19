@@ -78,22 +78,23 @@ class LogicAnalyzer: DialogController {
 
         func initPopup(button: NSPopUpButton) {
 
-            func add(_ title: String) {
+            func add(_ title: String, _ probe: tiara.Probe) {
 
                 button.addItem(withTitle: title)
-                button.lastItem!.tag = button.numberOfItems - 1
+                button.lastItem!.tag = probe.rawValue
             }
 
             button.removeAllItems()
-            add("None")
-            add("Address Bus")
-            add("Data Bus")
-            add("PHI1")
-            add("PHI2")
-            add("RDY")
-            add("VSYNC")
-            add("VBLANK")
-            add("INTIM")
+            add("None", .NONE)
+            add("Address Bus", .ADDR_BUS)
+            add("Data Bus", .DATA_BUS)
+            add("PHI1", .PHI1)
+            add("PHI2", .PHI2)
+            add("RDY", .RDY)
+            add("VSYNC", .VSYNC)
+            add("VBLANK", .VBLANK)
+            add("HBLANK", .HBLANK)
+            add("INTIM", .INTIM)
         }
 
         super.awakeFromNib()

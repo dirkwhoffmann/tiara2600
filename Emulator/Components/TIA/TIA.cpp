@@ -428,7 +428,7 @@ TIA::execute()
     // Drawing
     //
 
-    if (hb.neg()) {
+    if (hb.get()) {
 
         TIAColor color = lup.color;
         assert(color >= 0 && color < 4);

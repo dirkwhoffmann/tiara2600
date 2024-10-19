@@ -36,6 +36,7 @@ enum_long(PROBE)
     PROBE_RDY,                          ///< Ready signal
     PROBE_VSYNC,                        ///< Vertical Sync
     PROBE_VBLANK,                       ///< Vertical Blank
+    PROBE_HBLANK,                       ///< Horizontal Blank
 
     // PIA
     PROBE_INTIM,                        ///< Interval timer
@@ -60,6 +61,7 @@ struct ProbeEnum : util::Reflection<ProbeEnum, Probe> {
             case PROBE_RDY:         return "RDY";
             case PROBE_VSYNC:       return "VSYNC";
             case PROBE_VBLANK:      return "VBLANK";
+            case PROBE_HBLANK:      return "HBLANK";
             case PROBE_INTIM:       return "INTIM";
         }
         return "???";
@@ -115,6 +117,7 @@ typedef struct
     bool rdy;
     bool vsync;
     bool vblank;
+    bool hblank;
     u8 intim;
 }
 RecordedSignals;

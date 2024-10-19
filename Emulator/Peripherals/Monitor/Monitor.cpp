@@ -98,9 +98,9 @@ Monitor::updateColors()
     // Iterate through all 128 colors
     for (isize i = 0; i < 128; i++) {
 
-        u8 r = (baseColor[rev][i] >> 0) & 0xFF;
+        u8 b = (baseColor[rev][i] >> 0) & 0xFF;
         u8 g = (baseColor[rev][i] >> 8) & 0xFF;
-        u8 b = (baseColor[rev][i] >> 16) & 0xFF;
+        u8 r = (baseColor[rev][i] >> 16) & 0xFF;
 
         // Adjust the base color according to the current video settings
         adjustRGB(r, g, b);

@@ -35,7 +35,7 @@ public:
     }
 
     T get() const { return t[1]; }
-    T neg() const { return ~t[1]; }
+    // T neg() const { return ~t[1]; }
 };
 
 template <typename T> class DualPhaseDelayLatch : public DualPhaseDelay<T> {

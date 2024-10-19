@@ -67,6 +67,7 @@ LogicAnalyzer::recordSignals()
     data[y][x].rdy = tia.rdy;
     data[y][x].vsync = tia.vs;
     data[y][x].vblank = tia.vb;
+    data[y][x].hblank = tia.hb.get();
     data[y][x].intim = pia.spyReg(PIA_INTIM);
 
     // Update the overlay texture
@@ -107,6 +108,11 @@ LogicAnalyzer::recordSignals()
                 case PROBE_VBLANK:
 
                     if (data[y][x].vblank) *p = color[0][i];
+                    break;
+
+                case PROBE_HBLANK:
+
+                    if (!data[y][x].hblank) *p = color[0][i];
                     break;
 
                 case PROBE_INTIM:

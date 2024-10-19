@@ -95,6 +95,7 @@ class LogicView: NSView {
                 case .RDY:      for i in 0..<228 { data[c][i] = (values + i).pointee.rdy ? 1 : 0 }
                 case .VSYNC:    for i in 0..<228 { data[c][i] = (values + i).pointee.vsync ? 1 : 0 }
                 case .VBLANK:   for i in 0..<228 { data[c][i] = (values + i).pointee.vblank ? 1 : 0 }
+                case .HBLANK:   for i in 0..<228 { data[c][i] = (values + i).pointee.hblank ? 1 : 0 }
                 case .INTIM:    for i in 0..<228 { data[c][i] = Int((values + i).pointee.intim) }
                 default: break
                 }
