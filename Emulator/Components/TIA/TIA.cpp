@@ -230,6 +230,11 @@ TIA::poke(TIARegister reg, u8 val)
 void
 TIA::poke(TIARegister reg, u8 val, Cycle delay)
 {
+    auto unsupported = [&]() {
+        debug(TIA_REG_DEBUG,
+              "Ignoring write to TIA register %s\n", TIARegisterEnum::key(reg));
+    };
+
     if (delay) {
 
         debug(TIA_REG_DEBUG, "%s = %02X (in %lld cycles)\n", TIARegisterEnum::key(reg), val, delay);
@@ -251,20 +256,14 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
 
         case TIA_VBLANK:
         case TIA_WSYNC:
-        case TIA_RESP0:
-        case TIA_RESP1:
-        case TIA_RESM0:
-        case TIA_RESM1:
-        case TIA_RESBL:
-        case TIA_HMOVE:
-        case TIA_HMCLR:
 
             strobe = reg;
             break;
 
-        case TIA_CXCLR:
+        case TIA_NUSIZ0:
+        case TIA_NUSIZ1:
 
-            cx = 0;
+            unsupported();
             break;
 
         case TIA_COLUP0:
@@ -295,6 +294,13 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
 
             ctrlpf = val & 0b00110111;
             pf.setREF(val & 0b00000001);
+            bl.pokeCTLRPF(val);
+            break;
+
+        case TIA_REFP0:
+        case TIA_REFP1:
+
+            unsupported();
             break;
 
         case TIA_PF0:
@@ -312,10 +318,101 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
             pf.setPF2(val);
             break;
 
-        default:
+        case TIA_RESP0:
+        case TIA_RESP1:
+        case TIA_RESM0:
+        case TIA_RESM1:
+        case TIA_RESBL:
 
-            debug(TIA_REG_DEBUG,
-                  "Ignoring write to TIA register %s\n", TIARegisterEnum::key(reg));
+            strobe = reg;
+            break;
+
+        case TIA_AUDC0:
+        case TIA_AUDC1:
+        case TIA_AUDF0:
+        case TIA_AUDF1:
+        case TIA_AUDV0:
+        case TIA_AUDV1:
+
+            unsupported();
+            break;
+
+        case TIA_GRP0:
+
+            unsupported();
+            break;
+
+        case TIA_GRP1:
+
+            bl.vshift();
+            unsupported();
+            break;
+
+        case TIA_ENAM0:
+        case TIA_ENAM1:
+
+            unsupported();
+            break;
+
+        case TIA_ENABL:
+
+            bl.pokeENABL(val);
+            break;
+
+        case TIA_HMP0:
+        case TIA_HMP1:
+        case TIA_HMM0:
+        case TIA_HMM1:
+        case TIA_HMBL:
+        case TIA_VDELP0:
+        case TIA_VDELP1:
+
+            unsupported();
+            break;
+
+        case TIA_VDELBL:
+
+            bl.pokeVDELBL(val);
+            break;
+
+        case TIA_RESMP0:
+        case TIA_RESMP1:
+
+            unsupported();
+            break;
+
+        case TIA_HMOVE:
+        case TIA_HMCLR:
+
+            strobe = reg;
+            break;
+
+        case TIA_CXCLR:
+
+            cx = 0;
+            break;
+
+        case TIA_CXM0P:
+        case TIA_CXM1P:
+        case TIA_CXP0FB:
+        case TIA_CXP1FB:
+        case TIA_CXM0FB:
+        case TIA_CXM1FB:
+        case TIA_CXBLPF:
+        case TIA_CXPPMM:
+        case TIA_INPT0:
+        case TIA_INPT1:
+        case TIA_INPT2:
+        case TIA_INPT3:
+        case TIA_INPT4:
+        case TIA_INPT5:
+
+            xfiles("Write to read-only TIA register %s\n", TIARegisterEnum::key(reg));
+            break;
+
+        default:
+            xfiles("Write to unmapped TIA register %s\n", TIARegisterEnum::key(reg));
+
     }
 }
 
@@ -363,7 +460,7 @@ TIA::execute()
     //
 
     hb.execute(phi1, phi2, hc.current == (sec.get() ? 18 : 16), shb);
-
+    auto motck = hb.get();
 
     //
     // RDY logic
@@ -425,6 +522,11 @@ TIA::execute()
 
 
     //
+    // TIA objects (extra cycles)
+    //
+
+
+    //
     // Drawing
     //
 
@@ -438,6 +540,16 @@ TIA::execute()
 
         emuTexture[y * Texture::width + x] = 0xFF000000;
     }
+
+    //
+    // TIA objects (normal cycles)
+    //
+
+    bl.execute(motck /* & not extra cycle */, strobe == TIA_RESBL);
+    m0.execute(motck /* & not extra cycle */, strobe == TIA_RESM0);
+    m1.execute(motck /* & not extra cycle */, strobe == TIA_RESM1);
+    p0.execute(motck /* & not extra cycle */, strobe == TIA_RESP0);
+    p1.execute(motck /* & not extra cycle */, strobe == TIA_RESP1);
 
     // Run the logic analyzer
     logicAnalyzer.recordSignals();

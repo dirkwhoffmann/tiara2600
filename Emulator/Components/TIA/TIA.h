@@ -167,9 +167,6 @@ private:
     // Controls the vertical beam reset
     bool vsedge{};
 
-    // Indicates a y counter overflow (missing VSYNC)
-    // bool missingvs{};
-
     // RDY latch (controls the CPU's RDY input)
     bool rdy{};
 
@@ -184,7 +181,7 @@ private:
 
     // HB latch (Horizontal Blank)
     DualPhaseDelayLatch<bool> hb{};
-
+    
 
     //
     // Signals

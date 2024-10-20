@@ -52,7 +52,7 @@ struct TIARevisionEnum : util::Reflection<TIARevisionEnum, TIARevision> {
 /// TIA registers
 enum_long(TIA_REGISTER)
 {
-    // Readable
+    // Writable
     TIA_VSYNC,      ///< 00   ......1.   vertical sync set-clear
     TIA_VBLANK,     ///< 01   11....1.   vertical blank set-clear
     TIA_WSYNC,      ///< 02   <strobe>   wait for leading edge of horizontal blank
@@ -104,7 +104,7 @@ enum_long(TIA_REGISTER)
     TIA_2E,         ///< 2E   unused
     TIA_2F,         ///< 2F   unused
 
-    // Writable
+    // Readable
     TIA_CXM0P,      ///< 30   11......   read collision M0-P1, M0-P0 (Bit 7,6
     TIA_CXM1P,      ///< 31   11......   read collision M1-P0, M1-P1
     TIA_CXP0FB,     ///< 32   11......   read collision P0-PF, P0-BL

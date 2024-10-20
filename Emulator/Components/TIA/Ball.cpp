@@ -18,7 +18,26 @@ namespace tiara {
 bool
 Ball::get() const
 {
+    // Adapted from Jigo2600
+    if (blen[blvd]) {
+
+        auto start1 = counter.res;
+
+        if (start1) {
+            return (blsiz >= 2) || ((blsiz >= 1) && (counter.phase >= 2)) || (counter.phase == 2);
+        } else if (start2.get()) {
+            return blsiz == 3;
+        }
+    }
     return false;
+}
+
+void
+Ball::execute(bool clk, bool rst)
+{
+    counter.execute(clk, rst);
+    auto start1 = counter.res;
+    start2.execute(counter.phi1(), counter.phi2(), start1);
 }
 
 }
