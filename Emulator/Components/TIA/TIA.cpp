@@ -354,37 +354,26 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
             unsupported();
             break;
 
-        case TIA_ENABL:
+        case TIA_ENABL:     bl.pokeENABL(val); break;
+        case TIA_HMP0:      p0ec.setHM(val); break;
+        case TIA_HMP1:      p1ec.setHM(val); break;
+        case TIA_HMM0:      m0ec.setHM(val); break;
+        case TIA_HMM1:      m1ec.setHM(val); break;
+        case TIA_HMBL:      blec.setHM(val); break;
+        case TIA_VDELP0:    unsupported(); break;
+        case TIA_VDELP1:    unsupported(); break;
+        case TIA_VDELBL:    bl.pokeVDELBL(val); break;
+        case TIA_RESMP0:    unsupported(); break;
+        case TIA_RESMP1:    unsupported(); break;
+        case TIA_HMOVE:     strobe = reg; break;
 
-            bl.pokeENABL(val);
-            break;
-
-        case TIA_HMP0:
-        case TIA_HMP1:
-        case TIA_HMM0:
-        case TIA_HMM1:
-        case TIA_HMBL:
-        case TIA_VDELP0:
-        case TIA_VDELP1:
-
-            unsupported();
-            break;
-
-        case TIA_VDELBL:
-
-            bl.pokeVDELBL(val);
-            break;
-
-        case TIA_RESMP0:
-        case TIA_RESMP1:
-
-            unsupported();
-            break;
-
-        case TIA_HMOVE:
         case TIA_HMCLR:
 
-            strobe = reg;
+            blec.resetHM();
+            p0ec.resetHM();
+            p1ec.resetHM();
+            m0ec.resetHM();
+            m1ec.resetHM();
             break;
 
         case TIA_CXCLR:
@@ -456,11 +445,29 @@ TIA::execute()
 
 
     //
+    // HM logic
+    //
+
+    if (phi2 && (hmc > 0 || sec.get())) hmc = (hmc + 1) & 0xF;
+
+
+    //
+    // Extra-clock logic
+    //
+    blec.execute(phi1, phi2, sec.get(), hmc);
+    m0ec.execute(phi1, phi2, sec.get(), hmc);
+    m1ec.execute(phi1, phi2, sec.get(), hmc);
+    p0ec.execute(phi1, phi2, sec.get(), hmc);
+    p1ec.execute(phi1, phi2, sec.get(), hmc);
+
+
+    //
     // HB logic
     //
 
     hb.execute(phi1, phi2, hc.current == (sec.get() ? 18 : 16), shb);
     auto motck = hb.get();
+
 
     //
     // RDY logic
@@ -525,6 +532,25 @@ TIA::execute()
     // TIA objects (extra cycles)
     //
 
+    /*
+    auto blecEnabled = false;
+    auto m0ecEnabled = false;
+    auto m1ecEnabled = false;
+    auto p0ecEnabled = false;
+    auto p1ecEnabled = false;
+    */
+    auto blecEnabled = phi1 && blec.enabled();
+    auto m0ecEnabled = phi1 && m0ec.enabled();
+    auto m1ecEnabled = phi1 && m1ec.enabled();
+    auto p0ecEnabled = phi1 && p0ec.enabled();
+    auto p1ecEnabled = phi1 && p1ec.enabled();
+
+    if (blecEnabled) bl.execute(true, strobe == TIA_RESBL);
+    if (m0ecEnabled) m0.execute(true, strobe == TIA_RESM0);
+    if (m1ecEnabled) m1.execute(true, strobe == TIA_RESM1);
+    if (p0ecEnabled) p0.execute(true, strobe == TIA_RESP0);
+    if (p1ecEnabled) p1.execute(true, strobe == TIA_RESP1);
+
 
     //
     // Drawing
@@ -545,11 +571,11 @@ TIA::execute()
     // TIA objects (normal cycles)
     //
 
-    bl.execute(motck /* & not extra cycle */, strobe == TIA_RESBL);
-    m0.execute(motck /* & not extra cycle */, strobe == TIA_RESM0);
-    m1.execute(motck /* & not extra cycle */, strobe == TIA_RESM1);
-    p0.execute(motck /* & not extra cycle */, strobe == TIA_RESP0);
-    p1.execute(motck /* & not extra cycle */, strobe == TIA_RESP1);
+    bl.execute(motck && !blecEnabled, strobe == TIA_RESBL);
+    m0.execute(motck && !m0ecEnabled, strobe == TIA_RESM0);
+    m1.execute(motck && !m1ecEnabled, strobe == TIA_RESM1);
+    p0.execute(motck && !p0ecEnabled, strobe == TIA_RESP0);
+    p1.execute(motck && !p1ecEnabled, strobe == TIA_RESP1);
 
     // Run the logic analyzer
     logicAnalyzer.recordSignals();

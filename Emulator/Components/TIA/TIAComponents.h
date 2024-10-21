@@ -38,6 +38,9 @@ public:
     // T neg() const { return ~t[1]; }
 };
 
+/*
+ *
+ */
 template <typename T> class DualPhaseDelayLatch : public DualPhaseDelay<T> {
 
 public:
@@ -124,6 +127,35 @@ public:
         if (phi1) { hmovel &= !s1; s0 = hmovel; }
     }
 
+};
+
+/* Extra clocking logic
+ *
+ */
+
+class ExtraClock {
+
+    bool ena[2]{};
+    isize hm{};
+
+public:
+
+    void execute(bool phi1, bool phi2, bool sec, isize hmc) {
+
+        if (phi1) {
+
+            bool rst = (hmc == hm);
+            ena[0] = (ena[1] | sec) & !rst;
+
+        } else if (phi2) {
+
+            ena[1] = ena[0];
+        }
+    }
+
+    void setHM(u8 data = 0) { hm = 8 + ((i8)data >> 4); }
+    void resetHM() { hm = 8; }
+    bool enabled() const { return ena[1]; }
 };
 
 }

@@ -101,14 +101,23 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
     Missile m1{};
     Ball bl{};
 
-    
+    //
+    // Extra motion clocks
+    //
+
+    isize hmc;
+    ExtraClock blec;
+    ExtraClock m0ec;
+    ExtraClock m1ec;
+    ExtraClock p0ec;
+    ExtraClock p1ec;
+
     //
     // Counters
     //
 
     // Beam position
     isize x{}, y{};
-
 
     //
     // Lookup tables
@@ -119,7 +128,6 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
      * lookup[PFP][SCORE][RIGHT][<TIA objects>]
      */
     struct { TIAColor color; u32 collison; } lookup[2][2][2][64];
-
 
     //
     // Registers
@@ -140,7 +148,6 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
     // Collision bits
     u32 cx;
 
-
     //
     // Chip interface
     //
@@ -153,7 +160,7 @@ public:
     // Read-write (1 = read)
     bool rw{};
 
-
+    
     //
     // Internal components
     //
