@@ -254,17 +254,10 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
             vs = val & 0x02;
             break;
 
-        case TIA_VBLANK:
-        case TIA_WSYNC:
-
-            strobe = reg;
-            break;
-
-        case TIA_NUSIZ0:
-        case TIA_NUSIZ1:
-
-            unsupported();
-            break;
+        case TIA_VBLANK:    strobe = reg; break;
+        case TIA_WSYNC:     strobe = reg; break;
+        case TIA_NUSIZ0:    p0.pokeNUSIZ(val); break;
+        case TIA_NUSIZ1:    p1.pokeNUSIZ(val); break;
 
         case TIA_COLUP0:
 
@@ -297,35 +290,16 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
             bl.pokeCTLRPF(val);
             break;
 
-        case TIA_REFP0:
-        case TIA_REFP1:
-
-            unsupported();
-            break;
-
-        case TIA_PF0:
-
-            pf.setPF0(val);
-            break;
-
-        case TIA_PF1:
-
-            pf.setPF1(val);
-            break;
-
-        case TIA_PF2:
-
-            pf.setPF2(val);
-            break;
-
-        case TIA_RESP0:
-        case TIA_RESP1:
-        case TIA_RESM0:
-        case TIA_RESM1:
-        case TIA_RESBL:
-
-            strobe = reg;
-            break;
+        case TIA_REFP0:     p0.pokeREFP(val); break;
+        case TIA_REFP1:     p1.pokeREFP(val); break;
+        case TIA_PF0:       pf.setPF0(val); break;
+        case TIA_PF1:       pf.setPF1(val); break;
+        case TIA_PF2:       pf.setPF2(val); break;
+        case TIA_RESP0:     strobe = reg; break;
+        case TIA_RESP1:     strobe = reg; break;
+        case TIA_RESM0:     strobe = reg; break;
+        case TIA_RESM1:     strobe = reg; break;
+        case TIA_RESBL:     strobe = reg; break;
 
         case TIA_AUDC0:
         case TIA_AUDC1:
@@ -337,17 +311,9 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
             unsupported();
             break;
 
-        case TIA_GRP0:
-
-            unsupported();
-            break;
-
-        case TIA_GRP1:
-
-            bl.vshift();
-            unsupported();
-            break;
-
+        case TIA_GRP0:      p0.pokeGRP(val); break;
+        case TIA_GRP1:      bl.vshift(); p1.pokeGRP(val); break;
+            
         case TIA_ENAM0:
         case TIA_ENAM1:
 

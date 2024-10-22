@@ -15,10 +15,47 @@
 
 namespace tiara {
 
+void
+Player::execute(bool clk, bool rst)
+{
+    auto phi1 = counter.phi1();
+    auto phi2 = counter.phi2();
+
+    if (clk) {
+
+        if (ena) {
+
+            if (sc < 8) {
+                sc++;
+            } else if (start.get()) {
+                sc = 0;
+            }
+        }
+        if (nusiz == 5) {
+            ena = (phi1 || phi2);
+        } else if (nusiz == 7) {
+            ena = phi2;
+        } else {
+            ena = true;
+        }
+    }
+
+    counter.execute(clk, rst);
+
+    auto current = counter.current;
+
+    start.execute(phi1, phi2, (current == 39)
+                  ? 1
+                  : 2 * (((current == 3) && (nusiz == 1 || nusiz == 3)) ||
+                         ((current == 7) &&
+                          (nusiz == 2 || nusiz == 3 || nusiz == 6)) ||
+                         ((current == 15) && (nusiz == 4 || nusiz == 6))));
+}
+
 bool
 Player::get() const
 {
-    return false;
+    return sc < 8 ? GET_BIT(grp[vdelp], refp ? sc : 7 - sc) : false;
 }
 
 }

@@ -23,11 +23,26 @@ class Player final : CoreObject {
 
     const char *objectName() const { return "Player"; }
 
+    DualPhaseCounter<39> counter;
+    DualPhaseDelay<isize> start;
+    u8 grp[2]{};
+    isize sc{};
+    isize nusiz{};
+    bool vdelp{};
+    bool ena{};
+    bool refp{};
+
 public:
+
+    void pokeNUSIZ(u8 val) { nusiz = val & 0x7; }
+    void pokeGRP(u8 val) { grp[0] = val; }
+    void pokeVDELP(u8 val) { vdelp = val & 0x1; }
+    void pokeREFP(u8 val) { refp = val & 0x8; }
+    void vshift() { grp[1] = grp[0]; }
 
     bool get() const;
 
-    void alwaysinline execute(bool clk, bool rst) { };
+    void alwaysinline execute(bool clk, bool rst);
 };
 
 }
