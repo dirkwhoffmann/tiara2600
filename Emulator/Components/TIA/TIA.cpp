@@ -256,8 +256,8 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
 
         case TIA_VBLANK:    strobe = reg; break;
         case TIA_WSYNC:     strobe = reg; break;
-        case TIA_NUSIZ0:    p0.pokeNUSIZ(val); break;
-        case TIA_NUSIZ1:    p1.pokeNUSIZ(val); break;
+        case TIA_NUSIZ0:    p0.pokeNUSIZ(val); m0.pokeNUSIZ(val); break;
+        case TIA_NUSIZ1:    p1.pokeNUSIZ(val); m1.pokeNUSIZ(val); break;
 
         case TIA_COLUP0:
 
@@ -313,13 +313,8 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
 
         case TIA_GRP0:      p0.pokeGRP(val); break;
         case TIA_GRP1:      bl.vshift(); p1.pokeGRP(val); break;
-            
-        case TIA_ENAM0:
-        case TIA_ENAM1:
-
-            unsupported();
-            break;
-
+        case TIA_ENAM0:     m0.pokeENAM(val); break;
+        case TIA_ENAM1:     m1.pokeENAM(val); break;
         case TIA_ENABL:     bl.pokeENABL(val); break;
         case TIA_HMP0:      p0ec.setHM(val); break;
         case TIA_HMP1:      p1ec.setHM(val); break;
@@ -329,8 +324,8 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
         case TIA_VDELP0:    unsupported(); break;
         case TIA_VDELP1:    unsupported(); break;
         case TIA_VDELBL:    bl.pokeVDELBL(val); break;
-        case TIA_RESMP0:    unsupported(); break;
-        case TIA_RESMP1:    unsupported(); break;
+        case TIA_RESMP0:    m0.pokeRESMP(val); break;
+        case TIA_RESMP1:    m1.pokeRESMP(val); break;
         case TIA_HMOVE:     strobe = reg; break;
 
         case TIA_HMCLR:
@@ -559,7 +554,7 @@ TIA::execute()
         // Force a VSYNC event if have reached the texure end
         if (y == Texture::height) {
 
-            debug(true, "EMERGENCY VSYNC\n");
+            // debug(true, "EMERGENCY VSYNC\n");
             y = 0;
             vsedge = true;
         }

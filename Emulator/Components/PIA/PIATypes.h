@@ -23,7 +23,7 @@ namespace tiara {
 enum_long(PIA_REGISTER)
 {
     PIA_SWCHA,      ///< 00   11111111  Port A; input or output (read or write)
-    PIA_SWACNT,     ///< 01   11111111  Port A DDR, 0= input, 1=output
+    PIA_SWACNT,     ///< 01   11111111  Port A DDR, 0=input, 1=output
     PIA_SWCHB,      ///< 02   11111111  Port B; console switches (read only)
     PIA_SWBCNT,     ///< 03   11111111  Port B DDR (hardwired as input)
     PIA_INTIM,      ///< 04   11111111  Timer output (read only)

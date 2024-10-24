@@ -305,10 +305,39 @@ CQ
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Keyboard" id="212">
-                    <menu key="submenu" title="Keyboard" id="213">
+                <menuItem title="Switches" id="212">
+                    <menu key="submenu" title="Switches" id="213">
                         <items>
-                            <menuItem isSeparatorItem="YES" id="AR2-lh-xvH"/>
+                            <menuItem title="Reset" id="i6f-9O-ciU">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="sliderAction:" target="-1" id="pY6-s0-tKq"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Select" tag="1" id="4GM-Ed-cyi">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="sliderAction:" target="-1" id="ifr-XV-hOP"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Color" tag="2" id="dDf-m2-NhM">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="sliderAction:" target="-1" id="XJ4-DM-WYP"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Difficulty Left" tag="3" id="kPM-Ui-3Bh">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="sliderAction:" target="-1" id="MHt-qF-fnL"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Difficulty Right" tag="4" id="sBC-cL-unB">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="sliderAction:" target="-1" id="fo3-nk-gNh"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -442,5 +471,8 @@ CQ
             </items>
             <point key="canvasLocation" x="140" y="154"/>
         </menu>
+        <menuItem title="Color" id="AAa-Hs-vSa">
+            <modifierMask key="keyEquivalentModifierMask"/>
+        </menuItem>
     </objects>
 </document>

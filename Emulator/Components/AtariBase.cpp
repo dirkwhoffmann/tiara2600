@@ -98,6 +98,18 @@ Atari::_dump(Category category, std::ostream& os) const
         os << dec(frame) << std::endl;
         os << tab("CPU progress");
         os << dec(cpu.clock) << " Cycles" << std::endl;
+
+        str = "";
+        if (slider[SLIDER_RESET])   str = append(str, "RESET");
+        if (slider[SLIDER_SELECT])  str = append(str, "SELECT");
+        if (slider[SLIDER_COLOR])   str = append(str, "COLOR");
+        if (slider[SLIDER_DIFFA])   str = append(str, "DIFFA");
+        if (slider[SLIDER_DIFFB])   str = append(str, "DIFFB");
+        os << std::endl;
+
+        os << tab("Switches");
+        os << (str.empty() ? "-" : str) << std::endl;
+        os << std::endl;
     }
 
     if (category == Category::Summary) {

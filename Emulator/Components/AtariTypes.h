@@ -28,9 +28,39 @@ typedef i64 Cycle;
 // Enumerations
 //
 
+enum_long(SLIDER)
+{
+    SLIDER_RESET,
+    SLIDER_SELECT,
+    SLIDER_COLOR,
+    SLIDER_DIFFA,
+    SLIDER_DIFFB
+};
+typedef SLIDER Slider;
+
+struct SliderEnum : util::Reflection<SliderEnum, Slider>
+{
+    static constexpr long minVal = 0;
+    static constexpr long maxVal = SLIDER_DIFFB;
+
+    static const char *prefix() { return "SLIDER"; }
+    static const char *_key(long value)
+    {
+        switch (value) {
+
+            case SLIDER_RESET:  return "RESET";
+            case SLIDER_SELECT: return "SELECT";
+            case SLIDER_COLOR:  return "COLOR";
+            case SLIDER_DIFFA:  return "DIFFA";
+            case SLIDER_DIFFB:  return "DIFFB";
+        }
+        return "???";
+    }
+};
+
 enum_long(WARP_MODE)
 {
-    WARP_AUTO,
+    WARP_AUTO,  // TODO: REMOVE
     WARP_NEVER,
     WARP_ALWAYS
 };
@@ -68,7 +98,7 @@ enum_long(SLOT)
     SLOT_EXP,                       // Expansion port
     SLOT_SNP,                       // Snapshots
     SLOT_RSH,                       // Retro Shell
-    SLOT_KEY,                       // Auto-typing
+    SLOT_SWI,                       // Console switches
     SLOT_SRV,                       // Remote server manager
     SLOT_DBG,                       // Debugging (Regression tester)
     SLOT_BTR,                       // Beam traps
@@ -97,7 +127,7 @@ struct EventSlotEnum : util::Reflection<EventSlotEnum, EventSlot>
 
             case SLOT_SNP:      return "SNP";
             case SLOT_RSH:      return "RSH";
-            case SLOT_KEY:      return "KEY";
+            case SLOT_SWI:      return "SWI";
             case SLOT_SRV:      return "SRV";
             case SLOT_DBG:      return "DBG";
             case SLOT_BTR:      return "BTR";
@@ -168,9 +198,10 @@ enum_i8(EventID)
     RSH_WAKEUP          = 1,
     RSH_EVENT_COUNT,
 
-    // Auto typing
-    KEY_AUTO_TYPE       = 1,
-    KEY_EVENT_COUNT,
+    // Console switches
+    SWI_ON              = 1,
+    SWI_OFF,
+    SWI_EVENT_COUNT,
 
     // Remote server manager
     SRV_LAUNCH_DAEMON   = 1,
@@ -289,9 +320,7 @@ typedef struct
     Cycle cpuProgress;
     i64 frame;
     RunLoopFlags flags;
-
-    // long vpos;
-    // long hpos;
+    bool slider[5];
 
     // Events
     EventSlotInfo slotInfo[SLOT_COUNT];

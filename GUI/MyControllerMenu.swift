@@ -52,6 +52,18 @@ extension MyController: NSMenuItemValidation {
                 item.title = statusBar ? "Hide Status Bar" : "Show Status Bar"
                 return true
 
+                // Switch menu
+            case #selector(MyController.sliderAction(_:)):
+                switch item.tag {
+                case 0: item.state = emu.atari.info.slider.0 ? .on : .off
+                case 1: item.state = emu.atari.info.slider.1 ? .on : .off
+                case 2: item.state = emu.atari.info.slider.2 ? .on : .off
+                case 3: item.state = emu.atari.info.slider.3 ? .on : .off
+                case 4: item.state = emu.atari.info.slider.4 ? .on : .off
+                default: break
+                }
+                return true
+
                 // Cartridge menu
             case #selector(MyController.attachRecentCartridgeAction(_:)):
                 return validateURLlist(MediaManager.attachedCartridges, image: smallCart)
@@ -347,7 +359,32 @@ extension MyController: NSMenuItemValidation {
     //
     // Action methods (Keyboard menu)
     //
-    
+
+    @IBAction func sliderAction(_ sender: NSMenuItem!) {
+
+        let s = tiara.Slider(rawValue: sender.tag)!
+
+        switch sender.tag {
+        case 0: print("Reset switch")
+        case 1: print("Select switch")
+        case 2: print("Color switch")
+        case 3: print("Difficulty A switch")
+        case 4: print("Difficulty B switch")
+        default: fatalError()
+        }
+
+        switch s {
+        case .RESET, .SELECT:
+            emu?.put(.SET_SLIDER,
+                     slider: tiara.SliderCmd(slider: s, value: true, delay: 0.2))
+        case .COLOR, .DIFFA, .DIFFB:
+            emu?.put(.SET_SLIDER,
+                     slider: tiara.SliderCmd(slider: s, value: sender.state == .off, delay: 0.0))
+        default:
+            fatalError()
+        }
+    }
+
     //
     // Action methods (Cartridge menu)
     //

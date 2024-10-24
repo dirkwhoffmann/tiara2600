@@ -1236,6 +1236,7 @@ public:
     void put(const Cmd &cmd);
     void put(CmdType type, i64 payload = 0, i64 payload2 = 0) { put(Cmd(type, payload, payload2)); }
     void put(CmdType type, ConfigCmd payload)  { put(Cmd(type, payload)); }
+    void put(CmdType type, SliderCmd payload)  { put(Cmd(type, payload)); }
     void put(CmdType type, KeyCmd payload)  { put(Cmd(type, payload)); }
     void put(CmdType type, CoordCmd payload)  { put(Cmd(type, payload)); }
     void put(CmdType type, GamePadCmd payload)  { put(Cmd(type, payload)); }

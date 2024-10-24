@@ -160,7 +160,7 @@ extension tiara.EventSlot: CustomStringConvertible {
         case .EXP:     return "Expansion Port"
         case .SNP:     return "Snapshots"
         case .RSH:     return "Retro Shell"
-        case .KEY:     return "Auto Typing"
+        case .SWI:     return "Console Switches"
         case .SRV:     return "Server Daemon"
         case .DBG:     return "Debugger"
         case .BTR:      return "Beam Traps"

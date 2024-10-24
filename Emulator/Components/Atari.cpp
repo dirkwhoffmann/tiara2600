@@ -65,7 +65,7 @@ Atari::eventName(EventSlot slot, EventID id)
                 default:            return "*** INVALID ***";
             }
             break;
-            
+
         case SLOT_SEC:
 
             switch (id) {
@@ -123,12 +123,13 @@ Atari::eventName(EventSlot slot, EventID id)
             }
             break;
 
-        case SLOT_KEY:
+        case SLOT_SWI:
 
             switch (id) {
 
                 case EVENT_NONE:    return "none";
-                case KEY_AUTO_TYPE: return "AUTO_TYPE";
+                case SWI_ON:        return "SWI_ON";
+                case SWI_OFF:       return "SWI_OFF";
                 default:            return "*** INVALID ***";
             }
             break;
@@ -220,7 +221,7 @@ Atari::prefix(isize level, const char *component, isize line) const
     }
 }
 
-void 
+void
 Atari::_didReset(bool hard)
 {
     flags |= RL::SYNC_THREAD;
@@ -298,6 +299,27 @@ Atari::updateClockFrequency()
 {
     auto frequency = clockFrequency();
     durationOfOneCycle = 10000000000 / frequency;
+}
+
+bool
+Atari::getSlider(Slider s) const
+{
+    assert_enum(Slider, s);
+    return slider[s];
+}
+
+void
+Atari::setSlider(Slider s, bool val)
+{
+    setSlider(s, val, 0.0);
+}
+
+void
+Atari::setSlider(Slider s, bool val, double delay)
+{
+    assert_enum(Slider, s);
+    slider[s] = val;
+    if (delay != 0.0) scheduleRel<SLOT_SWI>(sec(delay), val ? SWI_OFF : SWI_ON, s);
 }
 
 void
@@ -452,6 +474,7 @@ Atari::update(CmdQueue &queue)
                 emulator.set(cmd.config.option, cmd.config.value, { });
                 break;
 
+            case CMD_SET_SLIDER:
             case CMD_ALARM_ABS:
             case CMD_ALARM_REL:
             case CMD_INSPECTION_TARGET:
@@ -705,10 +728,8 @@ Atari::cacheInfo(AtariInfo &result) const
         result.cpuProgress = cpu.clock;
         result.frame = frame;
         result.flags = flags;
-        // result.vpos = scanline;
-        // result.hpos = rasterCycle;
+        for (isize i = 0; i < 5; i++) result.slider[i] = slider[i];
 
-        // auto &traits = tia.getTraits();
         auto cyclesPerLine = CPU_CYCLES_PER_LINE;
         auto cyclesPerFrame = tia.cpuCyclesPerFrame();
 
@@ -823,6 +844,11 @@ Atari::processCommand(const Cmd &cmd)
 {
     switch (cmd.type) {
 
+        case CMD_SET_SLIDER:
+
+            setSlider(cmd.slider.slider, cmd.slider.value, cmd.slider.delay);
+            break;
+
         case CMD_ALARM_ABS:
 
             setAlarmAbs(cmd.alarm.cycle, cmd.alarm.value);
@@ -876,6 +902,9 @@ Atari::processEvents(Cycle cycle)
             }
             if (isDue<SLOT_RSH>(cycle)) {
                 retroShell.serviceEvent();
+            }
+            if (isDue<SLOT_SWI>(cycle)) {
+                processSWIEvent(eventid[SLOT_SWI]);
             }
             if (isDue<SLOT_SRV>(cycle)) {
                 remoteManager.serviceServerEvent();
@@ -1041,7 +1070,22 @@ Atari::processSNPEvent(EventID eventId)
     scheduleNextSNPEvent();
 }
 
-void 
+void
+Atari::processSWIEvent(EventID id)
+{
+    switch (id) {
+
+        case SWI_ON:    setSlider(Slider(data[SLOT_SWI]), true); break;
+        case SWI_OFF:   setSlider(Slider(data[SLOT_SWI]), false); break;
+
+        default:
+            fatalError;
+    }
+    
+    cancel<SLOT_SWI>();
+}
+
+void
 Atari::scheduleNextSNPEvent()
 {
     auto snapshots = emulator.get(OPT_ATARI_SNAP_AUTO);

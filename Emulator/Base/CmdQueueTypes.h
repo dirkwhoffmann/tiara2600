@@ -14,6 +14,7 @@
 #pragma once
 
 #include "JoystickTypes.h"
+#include "AtariTypes.h"
 #include "Reflection.h"
 #include "Option.h"
 
@@ -32,7 +33,8 @@ enum_long(CMD_TYPE)
     CMD_CONFIG,                 ///< Configure the emulator
     CMD_CONFIG_ALL,             ///< Configure the emulator
 
-    // C64
+    // Atari
+    CMD_SET_SLIDER,             ///< Operates a slider (console switch)
     CMD_ALARM_ABS,              ///< Schedule an alarm (absolute cycle)
     CMD_ALARM_REL,              ///< Schedule an alarm (relative cycle)
     CMD_INSPECTION_TARGET,      ///< Sets the auto-inspection component
@@ -72,6 +74,7 @@ struct CmdTypeEnum : util::Reflection<CmdTypeEnum, CmdType> {
             case CMD_CONFIG:                return "CONFIG";
             case CMD_CONFIG_ALL:            return "CONFIG_ALL";
 
+            case CMD_SET_SLIDER:            return "SET_SLIDER";
             case CMD_ALARM_ABS:             return "ALARM_ABS";
             case CMD_ALARM_REL:             return "ALARM_REL";
             case CMD_INSPECTION_TARGET:     return "INSPECTION_TARGET";
@@ -143,6 +146,14 @@ AlarmCmd;
 
 typedef struct
 {
+    Slider slider;
+    bool value;
+    double delay;
+}
+SliderCmd;
+
+typedef struct
+{
     const char *command;
 }
 ShellCmd;
@@ -157,6 +168,7 @@ struct Cmd
 
         struct { i64 value; i64 value2; };
         AlarmCmd alarm;
+        SliderCmd slider;
         ConfigCmd config;
         CoordCmd coord;
         GamePadCmd action;
@@ -168,6 +180,7 @@ struct Cmd
     Cmd() { }
     Cmd(CmdType type, i64 v1 = 0, i64 v2 = 0) : type(type), value(v1), value2(v2) { }
     Cmd(CmdType type, const AlarmCmd &cmd) : type(type), alarm(cmd) { }
+    Cmd(CmdType type, const SliderCmd &cmd) : type(type), slider(cmd) { }
     Cmd(CmdType type, const ConfigCmd &cmd) : type(type), config(cmd) { }
     Cmd(CmdType type, const CoordCmd &cmd) : type(type), coord(cmd) { }
     Cmd(CmdType type, const GamePadCmd &cmd) : type(type), action(cmd) { }

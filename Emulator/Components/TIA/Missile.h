@@ -23,11 +23,22 @@ class Missile final : CoreObject {
 
     const char *objectName() const { return "Missile"; }
 
+    DualPhaseCounter<39> counter;
+    isize siz{};
+    bool ena{};
+    bool resmp{};
+    DualPhaseDelay<bool> start1;
+    DualPhaseDelay<bool> start2;
+
 public:
+
+    void pokeNUSIZ(u8 val) { siz = (val >> 4) & 0x03; }
+    void pokeENAM(u8 val) { ena = val & 0x02; }
+    void pokeRESMP(u8 val) { resmp = val & 0x02; }
 
     bool get() const;
 
-    void alwaysinline execute(bool clk, bool rst) { };
+    void alwaysinline execute(bool clk, bool rst);
 };
 
 }

@@ -126,6 +126,9 @@ public:
     ControlPort port1 = ControlPort(*this, PORT_1);
     ControlPort port2 = ControlPort(*this, PORT_2);
 
+    // Sliders (console switches)
+    bool slider[5]{};
+
     // Peripherals
     Monitor monitor = Monitor(*this);
     
@@ -207,15 +210,6 @@ public:
 
     // The total number of frames drawn since power up
     i64 frame = 0;
-
-    // Indicates if we have reached the begin of a new frame
-    // bool sof = true;
-
-    // The currently drawn scanline (first scanline = 0)
-    // [[deprecated]] u16 scanline = 0;
-
-    // The currently executed scanline cycle (first cylce = 1)
-    // [[deprecated]] u8 rasterCycle = 1;
 
 private:
 
@@ -459,6 +453,15 @@ public:
     
 
     //
+    // Handling sliders (console switches)
+    //
+
+    bool getSlider(Slider s) const;
+    void setSlider(Slider s, bool val);
+    void setSlider(Slider s, bool val, double delay);
+
+
+    //
     // Emulating
     //
 
@@ -650,6 +653,9 @@ private:
 
     // Schedules the next snapshot event
     void scheduleNextSNPEvent();
+
+    // Services a console switch event
+    void processSWIEvent(EventID id);
 
 
     //

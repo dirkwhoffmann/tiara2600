@@ -885,7 +885,7 @@ using namespace tiara;
 
 
 //
-// C64 proxy
+// Atari proxy
 //
 
 @implementation AtariProxy
@@ -1332,6 +1332,11 @@ using namespace tiara;
 - (void)put:(CmdType)type value:(NSInteger)value value2:(NSInteger)value2
 {
     [self emu]->put(type, value, value2);
+}
+
+- (void)put:(CmdType)type slider:(SliderCmd)cmd
+{
+    [self emu]->put(type, cmd);
 }
 
 - (void)put:(CmdType)type key:(KeyCmd)cmd
