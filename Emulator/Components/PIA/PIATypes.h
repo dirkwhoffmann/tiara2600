@@ -156,7 +156,27 @@ PIAConfig;
 
 typedef struct
 {
+    u8 reg;
+    u8 dir;
+    u8 ext;
+    u8 port;
+}
+PIAPortInfo;
 
+typedef struct
+{
+    u8 intim;
+    u8 instat;
+    isize counter;
+    isize interval;
+}
+PIATimerInfo;
+
+typedef struct
+{
+    PIAPortInfo portA;
+    PIAPortInfo portB;
+    PIATimerInfo timer;
 }
 PIAInfo;
 

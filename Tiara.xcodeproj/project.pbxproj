@@ -53,7 +53,7 @@
 		5036E0BB261AEF000048E66A /* CommandConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5036E0B5261AEF000048E66A /* CommandConsole.cpp */; };
 		5038CA8F20B6C263000D9193 /* CPUPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038CA8E20B6C263000D9193 /* CPUPanel.swift */; };
 		5038CA9120B6C281000D9193 /* MemoryPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038CA9020B6C281000D9193 /* MemoryPanel.swift */; };
-		5038CA9320B6C298000D9193 /* RIOTPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038CA9220B6C298000D9193 /* RIOTPanel.swift */; };
+		5038CA9320B6C298000D9193 /* PIAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038CA9220B6C298000D9193 /* PIAPanel.swift */; };
 		5038CA9520B6C2AC000D9193 /* TIAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038CA9420B6C2AC000D9193 /* TIAPanel.swift */; };
 		5038CA9720B6C2BE000D9193 /* SIDPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038CA9620B6C2BE000D9193 /* SIDPanel.swift */; };
 		503C1DD124FC10F400D91141 /* SnapshotViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 503C1DD024FC10F400D91141 /* SnapshotViewer.xib */; };
@@ -409,7 +409,7 @@
 		5036E0B5261AEF000048E66A /* CommandConsole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandConsole.cpp; sourceTree = "<group>"; };
 		5038CA8E20B6C263000D9193 /* CPUPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUPanel.swift; sourceTree = "<group>"; };
 		5038CA9020B6C281000D9193 /* MemoryPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPanel.swift; sourceTree = "<group>"; };
-		5038CA9220B6C298000D9193 /* RIOTPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIOTPanel.swift; sourceTree = "<group>"; };
+		5038CA9220B6C298000D9193 /* PIAPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIAPanel.swift; sourceTree = "<group>"; };
 		5038CA9420B6C2AC000D9193 /* TIAPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIAPanel.swift; sourceTree = "<group>"; };
 		5038CA9620B6C2BE000D9193 /* SIDPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIDPanel.swift; sourceTree = "<group>"; };
 		503C0C362B9A4AD400112B4B /* RomDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RomDatabase.h; sourceTree = "<group>"; };
@@ -955,7 +955,7 @@
 				50D3092324C7152700B92563 /* Inspector.swift */,
 				5038CA8E20B6C263000D9193 /* CPUPanel.swift */,
 				5038CA9020B6C281000D9193 /* MemoryPanel.swift */,
-				5038CA9220B6C298000D9193 /* RIOTPanel.swift */,
+				5038CA9220B6C298000D9193 /* PIAPanel.swift */,
 				5038CA9420B6C2AC000D9193 /* TIAPanel.swift */,
 				5038CA9620B6C2BE000D9193 /* SIDPanel.swift */,
 				50726F2E295C27360031F2F5 /* EventPanel.swift */,
@@ -1821,7 +1821,7 @@
 				50F5B6A22959C44E000457A0 /* Host.cpp in Sources */,
 				507A499C24C8D64700DBF984 /* InstrTableView.swift in Sources */,
 				504104482CA68BBD0004860E /* TIABase.cpp in Sources */,
-				5038CA9320B6C298000D9193 /* RIOTPanel.swift in Sources */,
+				5038CA9320B6C298000D9193 /* PIAPanel.swift in Sources */,
 				50BE4B6E24E7FBE1008F39C9 /* Datatypes.swift in Sources */,
 				5009CF3324C0B8EF00F674FF /* Preferences.swift in Sources */,
 				50726F31295C27470031F2F5 /* EventTableView.swift in Sources */,

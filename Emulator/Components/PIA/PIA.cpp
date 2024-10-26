@@ -198,7 +198,7 @@ PIA::pokeEDGCTL(u8 val)
 void
 PIA::updatePA()
 {
-    updatePA((ddra & pra) | (~ddra & pa));
+    updatePA((ddra & pra) | (~ddra & paExternal()));
 }
 
 void
@@ -217,13 +217,34 @@ PIA::updatePA(u8 val)
 void
 PIA::updatePB()
 {
-    updatePB((ddrb & prb) | (~ddrb & pb));
+    updatePB((ddrb & prb) | (~ddrb & pbExternal()));
+    // trace(true, "updatePB %x %x %x\n", prb, ddrb, pbExternal());
 }
 
 void
 PIA::updatePB(u8 val)
 {
     pb = val;
+}
+
+u8
+PIA::paExternal() const
+{
+    return 0xFF;
+}
+
+u8
+PIA::pbExternal() const
+{
+    u8 result = 0xFF;
+
+    if (atari.slider[SLIDER_RESET]) CLR_BIT(result, 0);
+    if (atari.slider[SLIDER_SELECT]) CLR_BIT(result, 1);
+    if (atari.slider[SLIDER_COLOR]) CLR_BIT(result, 3);
+    if (atari.slider[SLIDER_DIFFA]) CLR_BIT(result, 6);
+    if (atari.slider[SLIDER_DIFFB]) CLR_BIT(result, 7);
+
+    return result;
 }
 
 template <bool debug> void

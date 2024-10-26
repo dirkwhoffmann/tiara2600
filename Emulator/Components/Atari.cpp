@@ -318,8 +318,13 @@ void
 Atari::setSlider(Slider s, bool val, double delay)
 {
     assert_enum(Slider, s);
+
     slider[s] = val;
-    if (delay != 0.0) scheduleRel<SLOT_SWI>(sec(delay), val ? SWI_OFF : SWI_ON, s);
+    pia.updatePB();
+
+    if (delay != 0.0) {
+        scheduleRel<SLOT_SWI>(sec(delay), val ? SWI_OFF : SWI_ON, s);
+    }
 }
 
 void

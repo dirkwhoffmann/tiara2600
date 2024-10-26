@@ -68,13 +68,6 @@ class PIA : public SubComponent, public Inspectable<PIAInfo, PIAStats> {
 
 public:
 
-    // Chip Select (1 = selected)
-    // bool cs{};
-    // bool csram{};
-
-    // Read-write (1 = read)
-    // bool rw{};
-
     // Data ports
     u8 pa{};
     u8 pb{};
@@ -179,10 +172,25 @@ private:
     void pokeTIMxT(isize x, u8 val, bool enable);
     void pokeEDGCTL(u8 val);
 
+
+    //
+    // Managing the I/O ports
+    //
+
+public:
+
     void updatePA();
-    void updatePA(u8 val);
     void updatePB();
+
+private:
+
+    void updatePA(u8 val);
     void updatePB(u8 val);
+
+private:
+
+    u8 paExternal() const;
+    u8 pbExternal() const;
 
 
     //

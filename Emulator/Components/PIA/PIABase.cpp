@@ -76,6 +76,10 @@ PIA::_didReset(bool hard)
                 fatalError;
         }
     }
+
+    // Get the port bits right
+    updatePA();
+    updatePB();
 }
 
 void
@@ -131,15 +135,20 @@ PIA::_dump(Category category, std::ostream& os) const
 void
 PIA::cacheInfo(PIAInfo &result) const
 {
-    /*
-    result.portA.port = computePA();
-    result.portA.reg = PRA;
-    result.portA.dir = DDRA;
+    result.portA.port = pa;
+    result.portA.reg = pra;
+    result.portA.dir = ddra;
+    result.portA.ext = paExternal();
 
-    result.portB.port = computePB();
-    result.portB.reg = PRB;
-    result.portB.dir = DDRB;
-    */
+    result.portB.port = pb;
+    result.portB.reg = prb;
+    result.portB.dir = ddrb;
+    result.portB.ext = pbExternal();
+
+    result.timer.intim = timer;
+    result.timer.instat = instat;
+    result.timer.counter = counter;
+    result.timer.interval = interval;
 }
 
 void

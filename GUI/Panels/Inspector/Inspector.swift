@@ -82,64 +82,116 @@ class Inspector: DialogController {
     var layoutIsDirty = true
     var nextLayoutRefresh = 0
 
-    // PIA panel
-    @IBOutlet weak var ciaPRA: NSTextField!
-    @IBOutlet weak var ciaPRAbinary: NSTextField!
-    @IBOutlet weak var ciaDDRA: NSTextField!
-    @IBOutlet weak var ciaDDRAbinary: NSTextField!
-    @IBOutlet weak var ciaPA7: NSButton!
-    @IBOutlet weak var ciaPA6: NSButton!
-    @IBOutlet weak var ciaPA5: NSButton!
-    @IBOutlet weak var ciaPA4: NSButton!
-    @IBOutlet weak var ciaPA3: NSButton!
-    @IBOutlet weak var ciaPA2: NSButton!
-    @IBOutlet weak var ciaPA1: NSButton!
-    @IBOutlet weak var ciaPA0: NSButton!
-    @IBOutlet weak var ciaPRB: NSTextField!
-    @IBOutlet weak var ciaPRBbinary: NSTextField!
-    @IBOutlet weak var ciaDDRB: NSTextField!
-    @IBOutlet weak var ciaDDRBbinary: NSTextField!
-    @IBOutlet weak var ciaPB7: NSButton!
-    @IBOutlet weak var ciaPB6: NSButton!
-    @IBOutlet weak var ciaPB5: NSButton!
-    @IBOutlet weak var ciaPB4: NSButton!
-    @IBOutlet weak var ciaPB3: NSButton!
-    @IBOutlet weak var ciaPB2: NSButton!
-    @IBOutlet weak var ciaPB1: NSButton!
-    @IBOutlet weak var ciaPB0: NSButton!
-    @IBOutlet weak var ciaTA: NSTextField!
-    @IBOutlet weak var ciaTAlatch: NSTextField!
-    @IBOutlet weak var ciaTArunning: NSButton!
-    @IBOutlet weak var ciaTAtoggle: NSButton!
-    @IBOutlet weak var ciaTApbout: NSButton!
-    @IBOutlet weak var ciaTAoneShot: NSButton!
-    @IBOutlet weak var ciaTB: NSTextField!
-    @IBOutlet weak var ciaTBlatch: NSTextField!
-    @IBOutlet weak var ciaTBrunning: NSButton!
-    @IBOutlet weak var ciaTBtoggle: NSButton!
-    @IBOutlet weak var ciaTBpbout: NSButton!
-    @IBOutlet weak var ciaTBoneShot: NSButton!
-    @IBOutlet weak var ciaICR: NSTextField!
-    @IBOutlet weak var ciaICRbinary: NSTextField!
-    @IBOutlet weak var ciaIMR: NSTextField!
-    @IBOutlet weak var ciaIMRbinary: NSTextField!
-    @IBOutlet weak var ciaIntLineLow: NSButton!
-    @IBOutlet weak var ciaTodHours: NSTextField!
-    @IBOutlet weak var ciaTodMinutes: NSTextField!
-    @IBOutlet weak var ciaTodSeconds: NSTextField!
-    @IBOutlet weak var ciaTodTenth: NSTextField!
-    @IBOutlet weak var ciaAlarmHours: NSTextField!
-    @IBOutlet weak var ciaAlarmMinutes: NSTextField!
-    @IBOutlet weak var ciaAlarmSeconds: NSTextField!
-    @IBOutlet weak var ciaTodIntEnable: NSButton!
-    @IBOutlet weak var ciaAlarmTenth: NSTextField!
-    @IBOutlet weak var ciaSDR: NSTextField!
-    @IBOutlet weak var ciaSSR: NSTextField!
-    @IBOutlet weak var ciaSSRbinary: NSTextField!
-    @IBOutlet weak var ciaIdleCycles: NSTextField!
-    @IBOutlet weak var ciaIdleLevelText: NSTextField!
-    @IBOutlet weak var ciaIdleLevel: NSLevelIndicator!
-    
+    // PIA panel (Port A)
+    @IBOutlet weak var piaPRA: NSTextField!
+    @IBOutlet weak var piaPRAbinary: NSTextField!
+    @IBOutlet weak var piaPRA7: NSButton!
+    @IBOutlet weak var piaPRA6: NSButton!
+    @IBOutlet weak var piaPRA5: NSButton!
+    @IBOutlet weak var piaPRA4: NSButton!
+    @IBOutlet weak var piaPRA3: NSButton!
+    @IBOutlet weak var piaPRA2: NSButton!
+    @IBOutlet weak var piaPRA1: NSButton!
+    @IBOutlet weak var piaPRA0: NSButton!
+
+    @IBOutlet weak var piaDDRA: NSTextField!
+    @IBOutlet weak var piaDDRAbinary: NSTextField!
+    @IBOutlet weak var piaDDRA7I: NSTextField!
+    @IBOutlet weak var piaDDRA6I: NSTextField!
+    @IBOutlet weak var piaDDRA5I: NSTextField!
+    @IBOutlet weak var piaDDRA4I: NSTextField!
+    @IBOutlet weak var piaDDRA3I: NSTextField!
+    @IBOutlet weak var piaDDRA2I: NSTextField!
+    @IBOutlet weak var piaDDRA1I: NSTextField!
+    @IBOutlet weak var piaDDRA0I: NSTextField!
+    @IBOutlet weak var piaDDRA7O: NSTextField!
+    @IBOutlet weak var piaDDRA6O: NSTextField!
+    @IBOutlet weak var piaDDRA5O: NSTextField!
+    @IBOutlet weak var piaDDRA4O: NSTextField!
+    @IBOutlet weak var piaDDRA3O: NSTextField!
+    @IBOutlet weak var piaDDRA2O: NSTextField!
+    @IBOutlet weak var piaDDRA1O: NSTextField!
+    @IBOutlet weak var piaDDRA0O: NSTextField!
+
+    @IBOutlet weak var piaEXTA: NSTextField!
+    @IBOutlet weak var piaEXTAbinary: NSTextField!
+    @IBOutlet weak var piaEXTA7I: NSTextField!
+    @IBOutlet weak var piaEXTA6I: NSTextField!
+    @IBOutlet weak var piaEXTA5I: NSTextField!
+    @IBOutlet weak var piaEXTA4I: NSTextField!
+    @IBOutlet weak var piaEXTA3I: NSTextField!
+    @IBOutlet weak var piaEXTA2I: NSTextField!
+    @IBOutlet weak var piaEXTA1I: NSTextField!
+    @IBOutlet weak var piaEXTA0I: NSTextField!
+    @IBOutlet weak var piaEXTA7O: NSTextField!
+    @IBOutlet weak var piaEXTA6O: NSTextField!
+    @IBOutlet weak var piaEXTA5O: NSTextField!
+    @IBOutlet weak var piaEXTA4O: NSTextField!
+    @IBOutlet weak var piaEXTA3O: NSTextField!
+    @IBOutlet weak var piaEXTA2O: NSTextField!
+    @IBOutlet weak var piaEXTA1O: NSTextField!
+    @IBOutlet weak var piaEXTA0O: NSTextField!
+
+    @IBOutlet weak var piaPA7: NSButton!
+    @IBOutlet weak var piaPA6: NSButton!
+    @IBOutlet weak var piaPA5: NSButton!
+    @IBOutlet weak var piaPA4: NSButton!
+    @IBOutlet weak var piaPA3: NSButton!
+    @IBOutlet weak var piaPA2: NSButton!
+    @IBOutlet weak var piaPA1: NSButton!
+    @IBOutlet weak var piaPA0: NSButton!
+
+    // PIA (Port B)
+    @IBOutlet weak var piaPRB: NSTextField!
+    @IBOutlet weak var piaPRBbinary: NSTextField!
+    @IBOutlet weak var piaPRB7: NSButton!
+    @IBOutlet weak var piaPRB6: NSButton!
+    @IBOutlet weak var piaPRB5: NSButton!
+    @IBOutlet weak var piaPRB4: NSButton!
+    @IBOutlet weak var piaPRB3: NSButton!
+    @IBOutlet weak var piaPRB2: NSButton!
+    @IBOutlet weak var piaPRB1: NSButton!
+    @IBOutlet weak var piaPRB0: NSButton!
+
+    @IBOutlet weak var piaDDRB: NSTextField!
+    @IBOutlet weak var piaDDRBbinary: NSTextField!
+    @IBOutlet weak var piaDDRB7I: NSTextField!
+    @IBOutlet weak var piaDDRB6I: NSTextField!
+    @IBOutlet weak var piaDDRB5I: NSTextField!
+    @IBOutlet weak var piaDDRB4I: NSTextField!
+    @IBOutlet weak var piaDDRB3I: NSTextField!
+    @IBOutlet weak var piaDDRB2I: NSTextField!
+    @IBOutlet weak var piaDDRB1I: NSTextField!
+    @IBOutlet weak var piaDDRB0I: NSTextField!
+    @IBOutlet weak var piaDDRB7O: NSTextField!
+    @IBOutlet weak var piaDDRB6O: NSTextField!
+    @IBOutlet weak var piaDDRB5O: NSTextField!
+    @IBOutlet weak var piaDDRB4O: NSTextField!
+    @IBOutlet weak var piaDDRB3O: NSTextField!
+    @IBOutlet weak var piaDDRB2O: NSTextField!
+    @IBOutlet weak var piaDDRB1O: NSTextField!
+    @IBOutlet weak var piaDDRB0O: NSTextField!
+
+    @IBOutlet weak var piaEXTB: NSTextField!
+    @IBOutlet weak var piaEXTBbinary: NSTextField!
+    @IBOutlet weak var piaEXTB7: NSButton!
+    @IBOutlet weak var piaEXTB6: NSButton!
+    @IBOutlet weak var piaEXTB5: NSButton!
+    @IBOutlet weak var piaEXTB4: NSButton!
+    @IBOutlet weak var piaEXTB3: NSButton!
+    @IBOutlet weak var piaEXTB2: NSButton!
+    @IBOutlet weak var piaEXTB1: NSButton!
+    @IBOutlet weak var piaEXTB0: NSButton!
+
+    @IBOutlet weak var piaPB7: NSButton!
+    @IBOutlet weak var piaPB6: NSButton!
+    @IBOutlet weak var piaPB5: NSButton!
+    @IBOutlet weak var piaPB4: NSButton!
+    @IBOutlet weak var piaPB3: NSButton!
+    @IBOutlet weak var piaPB2: NSButton!
+    @IBOutlet weak var piaPB1: NSButton!
+    @IBOutlet weak var piaPB0: NSButton!
+
     // TIA panel
     @IBOutlet weak var tiaPalette: NSButton!
     @IBOutlet weak var tiaCOLUP0: NSTextField!
@@ -273,7 +325,7 @@ class Inspector: DialogController {
     @IBOutlet weak var evVicProgress: NSTextField!
     @IBOutlet weak var evTableView: EventTableView!
 
-    // Cached state of all C64 components
+    // Cached state of all Atari components
     var cpuInfo: tiara.CPUInfo!
     var piaInfo: tiara.PIAInfo!
     var piaStats: tiara.PIAStats!

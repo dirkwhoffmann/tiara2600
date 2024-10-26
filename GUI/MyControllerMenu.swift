@@ -364,15 +364,6 @@ extension MyController: NSMenuItemValidation {
 
         let s = tiara.Slider(rawValue: sender.tag)!
 
-        switch sender.tag {
-        case 0: print("Reset switch")
-        case 1: print("Select switch")
-        case 2: print("Color switch")
-        case 3: print("Difficulty A switch")
-        case 4: print("Difficulty B switch")
-        default: fatalError()
-        }
-
         switch s {
         case .RESET, .SELECT:
             emu?.put(.SET_SLIDER,
