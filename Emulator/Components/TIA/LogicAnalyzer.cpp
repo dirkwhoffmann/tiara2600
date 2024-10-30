@@ -62,9 +62,13 @@ LogicAnalyzer::recordSignals()
     // Record signals
     data[y][x].addrBus = atari.addrBus;
     data[y][x].dataBus = atari.dataBus;
+    data[y][x].strobe = (u8)tia.strobe;
     data[y][x].phi1 = tia.hc.phi1();
     data[y][x].phi2 = tia.hc.phi2();
     data[y][x].rdy = tia.rdy;
+    data[y][x].sec = tia.sec.get();
+    data[y][x].secl = tia.secl;
+    data[y][x].hmc = (u8)tia.hmc;
     data[y][x].vsync = tia.vs;
     data[y][x].vblank = tia.vb;
     data[y][x].hblank = tia.hb.get();
@@ -82,38 +86,19 @@ LogicAnalyzer::recordSignals()
                 case PROBE_NONE:
                 case PROBE_ADDR_BUS:
                 case PROBE_DATA_BUS:
+                case PROBE_STROBE:
+                case PROBE_HMC:
 
                     break;
 
-                case PROBE_PHI1:
-
-                    if (data[y][x].phi1) *p = color[0][i];
-                    break;
-
-                case PROBE_PHI2:
-
-                    if (data[y][x].phi2) *p = color[0][i];
-                    break;
-
-                case PROBE_RDY:
-
-                    if (!data[y][x].rdy) *p = color[0][i];
-                    break;
-
-                case PROBE_VSYNC:
-
-                    if (data[y][x].vsync) *p = color[0][i];
-                    break;
-
-                case PROBE_VBLANK:
-
-                    if (data[y][x].vblank) *p = color[0][i];
-                    break;
-
-                case PROBE_HBLANK:
-
-                    if (!data[y][x].hblank) *p = color[0][i];
-                    break;
+                case PROBE_PHI1: if (data[y][x].phi1) *p = color[0][i]; break;
+                case PROBE_PHI2: if (data[y][x].phi2) *p = color[0][i]; break;
+                case PROBE_RDY: if (!data[y][x].rdy) *p = color[0][i]; break;
+                case PROBE_SEC: if (!data[y][x].sec) *p = color[0][i]; break;
+                case PROBE_SECL: if (!data[y][x].secl) *p = color[0][i]; break;
+                case PROBE_VSYNC: if (data[y][x].vsync) *p = color[0][i]; break;
+                case PROBE_VBLANK: if (data[y][x].vblank) *p = color[0][i]; break;
+                case PROBE_HBLANK: if (!data[y][x].hblank) *p = color[0][i]; break;
 
                 case PROBE_INTIM:
 

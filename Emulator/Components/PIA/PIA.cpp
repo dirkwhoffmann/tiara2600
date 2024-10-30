@@ -218,7 +218,6 @@ void
 PIA::updatePB()
 {
     updatePB((ddrb & prb) | (~ddrb & pbExternal()));
-    // trace(true, "updatePB %x %x %x\n", prb, ddrb, pbExternal());
 }
 
 void
@@ -230,7 +229,7 @@ PIA::updatePB(u8 val)
 u8
 PIA::paExternal() const
 {
-    return 0xFF;
+    return port1.joystick.getControlPort() & port2.joystick.getControlPort();
 }
 
 u8

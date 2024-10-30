@@ -29,7 +29,7 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
     friend class Player;
     friend class Missile;
     friend class LogicAnalyzer;
-    
+
     Descriptions descriptions = {
         {
             .type           = TIAClass,
@@ -160,7 +160,7 @@ public:
     // Read-write (1 = read)
     bool rw{};
 
-    
+
     //
     // Internal components
     //
@@ -188,7 +188,7 @@ private:
 
     // HB latch (Horizontal Blank)
     DualPhaseDelayLatch<bool> hb{};
-    
+
 
     //
     // Signals
@@ -196,6 +196,8 @@ private:
 
     TIARegister strobe = TIA_VOID;
 
+    u8 dataBus{};
+    
 
     //
     // Screen buffers and colors

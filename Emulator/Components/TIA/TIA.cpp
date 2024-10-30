@@ -246,6 +246,8 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
 
     debug(TIA_REG_DEBUG, "%s = %02X\n", TIARegisterEnum::key(reg), val);
 
+    dataBus = val;
+
     switch(reg) {
 
         case TIA_VSYNC:
@@ -316,7 +318,7 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
         case TIA_ENAM0:     m0.pokeENAM(val); break;
         case TIA_ENAM1:     m1.pokeENAM(val); break;
         case TIA_ENABL:     bl.pokeENABL(val); break;
-        case TIA_HMP0:      p0ec.setHM(val); break;
+        case TIA_HMP0:      strobe = reg; break; //  trace(true, "TIA_HMP0 %x\n", val); p0ec.setHM(val); break;
         case TIA_HMP1:      p1ec.setHM(val); break;
         case TIA_HMM0:      m0ec.setHM(val); break;
         case TIA_HMM1:      m1ec.setHM(val); break;
@@ -397,12 +399,19 @@ TIA::execute()
     // Check for the "Start HBlank" signal
     bool shb = hc.res;
 
-    //
-    // SEC logic
-    //
+    if (shb && hc.phi2()) {
 
-    sec.execute(phi1, phi2, strobe == TIA_HMOVE);
-    secl = (secl & !shb) | sec.get();
+        x = 0;
+        y++;
+
+        // Force a VSYNC event if have reached the texure end
+        if (y == Texture::height) {
+
+            // debug(true, "EMERGENCY VSYNC\n");
+            y = 0;
+            vsedge = true;
+        }
+    }
 
 
     //
@@ -413,8 +422,18 @@ TIA::execute()
 
 
     //
+    // SEC logic
+    //
+
+    // if (strobe == TIA_HMOVE) trace(true, "strobe == HMOVE\n");
+    sec.execute(phi1, phi2, strobe == TIA_HMOVE);
+    secl = (secl & !shb) | sec.get();
+
+
+    //
     // Extra-clock logic
     //
+    
     blec.execute(phi1, phi2, sec.get(), hmc);
     m0ec.execute(phi1, phi2, sec.get(), hmc);
     m1ec.execute(phi1, phi2, sec.get(), hmc);
@@ -456,6 +475,12 @@ TIA::execute()
                 vb = atari.dataBus & 0x02;
                 break;
 
+            case TIA_HMP0:
+
+                // trace(true, "TIA_HMP0 %x\n", dataBus);
+                p0ec.setHM(dataBus);
+                break;
+                
             default:
 
                 break;
@@ -541,24 +566,12 @@ TIA::execute()
     // Run the logic analyzer
     logicAnalyzer.recordSignals();
 
+
     //
     // Beam position
     //
 
     x++;
-    if (shb && hc.phi2()) {
-
-        x = 0;
-        y++;
-
-        // Force a VSYNC event if have reached the texure end
-        if (y == Texture::height) {
-
-            // debug(true, "EMERGENCY VSYNC\n");
-            y = 0;
-            vsedge = true;
-        }
-    }
 }
 
 void

@@ -113,16 +113,20 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-&quot;cart attach /tmp/playfield.a26&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-&quot;cart attach /tmp/colorsprites.a26&quot;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-&quot;cart attach /tmp/missiles.a26&quot;"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-&quot;cart attach /tmp/sprite.a26&quot;"
-            isEnabled = "NO">
+            argument = "-&quot;cart attach /tmp/timing.a26&quot;"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-&quot;.&quot;"

@@ -115,22 +115,14 @@ class Inspector: DialogController {
 
     @IBOutlet weak var piaEXTA: NSTextField!
     @IBOutlet weak var piaEXTAbinary: NSTextField!
-    @IBOutlet weak var piaEXTA7I: NSTextField!
-    @IBOutlet weak var piaEXTA6I: NSTextField!
-    @IBOutlet weak var piaEXTA5I: NSTextField!
-    @IBOutlet weak var piaEXTA4I: NSTextField!
-    @IBOutlet weak var piaEXTA3I: NSTextField!
-    @IBOutlet weak var piaEXTA2I: NSTextField!
-    @IBOutlet weak var piaEXTA1I: NSTextField!
-    @IBOutlet weak var piaEXTA0I: NSTextField!
-    @IBOutlet weak var piaEXTA7O: NSTextField!
-    @IBOutlet weak var piaEXTA6O: NSTextField!
-    @IBOutlet weak var piaEXTA5O: NSTextField!
-    @IBOutlet weak var piaEXTA4O: NSTextField!
-    @IBOutlet weak var piaEXTA3O: NSTextField!
-    @IBOutlet weak var piaEXTA2O: NSTextField!
-    @IBOutlet weak var piaEXTA1O: NSTextField!
-    @IBOutlet weak var piaEXTA0O: NSTextField!
+    @IBOutlet weak var piaEXTA7: NSButton!
+    @IBOutlet weak var piaEXTA6: NSButton!
+    @IBOutlet weak var piaEXTA5: NSButton!
+    @IBOutlet weak var piaEXTA4: NSButton!
+    @IBOutlet weak var piaEXTA3: NSButton!
+    @IBOutlet weak var piaEXTA2: NSButton!
+    @IBOutlet weak var piaEXTA1: NSButton!
+    @IBOutlet weak var piaEXTA0: NSButton!
 
     @IBOutlet weak var piaPA7: NSButton!
     @IBOutlet weak var piaPA6: NSButton!

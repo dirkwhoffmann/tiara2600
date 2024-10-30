@@ -49,6 +49,24 @@
                 <outlet property="memTableView" destination="9cm-34-eYe" id="iCO-ae-FMN"/>
                 <outlet property="message" destination="SRP-bu-eZG" id="h82-84-Hae"/>
                 <outlet property="panel" destination="QhJ-8A-HRo" id="g4P-OI-piB"/>
+                <outlet property="piaDDRA" destination="qtb-wz-bHc" id="OFa-iO-35h"/>
+                <outlet property="piaDDRA0I" destination="ABe-a9-hwb" id="6C8-Fo-CoY"/>
+                <outlet property="piaDDRA0O" destination="GnU-uZ-fGn" id="gVP-WK-fcg"/>
+                <outlet property="piaDDRA1I" destination="R4B-Zf-Oio" id="hca-lx-TVh"/>
+                <outlet property="piaDDRA1O" destination="oG2-7x-r3u" id="gey-Kb-6ZC"/>
+                <outlet property="piaDDRA2I" destination="TcP-wK-SZb" id="T3S-2C-yNi"/>
+                <outlet property="piaDDRA2O" destination="7Ip-vi-Jl6" id="Jai-Ou-jIb"/>
+                <outlet property="piaDDRA3I" destination="MKT-aE-oRV" id="ERV-KI-6mF"/>
+                <outlet property="piaDDRA3O" destination="n3Z-c1-WVH" id="cgr-5l-j8A"/>
+                <outlet property="piaDDRA4I" destination="AH7-tS-g0q" id="GmD-hg-pws"/>
+                <outlet property="piaDDRA4O" destination="NWI-1R-y7e" id="19K-H8-NMd"/>
+                <outlet property="piaDDRA5I" destination="Gd0-hq-1O2" id="hfA-5c-Y7l"/>
+                <outlet property="piaDDRA5O" destination="8kN-d4-LzQ" id="7Gq-3B-56v"/>
+                <outlet property="piaDDRA6I" destination="IqQ-0q-YOf" id="7So-v8-FyW"/>
+                <outlet property="piaDDRA6O" destination="yeP-k3-Top" id="FA6-uC-dr5"/>
+                <outlet property="piaDDRA7I" destination="TpR-st-MqZ" id="EiK-pa-1cu"/>
+                <outlet property="piaDDRA7O" destination="EUV-R1-cdU" id="Bnl-Cq-oyJ"/>
+                <outlet property="piaDDRAbinary" destination="ONG-4c-5sh" id="wAm-Bp-loC"/>
                 <outlet property="piaDDRB" destination="miQ-Pt-LPB" id="PRV-T8-YCl"/>
                 <outlet property="piaDDRB0I" destination="vnG-Ve-FBp" id="keJ-Gk-P0Y"/>
                 <outlet property="piaDDRB0O" destination="dBn-sf-38w" id="ubu-W3-cRh"/>
@@ -67,6 +85,16 @@
                 <outlet property="piaDDRB7I" destination="6q1-rG-Odm" id="7RS-IJ-ffG"/>
                 <outlet property="piaDDRB7O" destination="k8R-tC-gup" id="Qfa-Uq-UTH"/>
                 <outlet property="piaDDRBbinary" destination="jwE-Px-ke0" id="n1f-yQ-DsD"/>
+                <outlet property="piaEXTA" destination="Aqm-4N-Dcg" id="j8k-wo-KKJ"/>
+                <outlet property="piaEXTA0" destination="VzU-at-nDi" id="hOa-uD-fHT"/>
+                <outlet property="piaEXTA1" destination="mIa-HT-JxR" id="2RP-Sv-kSe"/>
+                <outlet property="piaEXTA2" destination="83a-OZ-nPU" id="9hD-tk-N7n"/>
+                <outlet property="piaEXTA3" destination="whm-m9-oz6" id="ay8-5b-z9f"/>
+                <outlet property="piaEXTA4" destination="Ga9-n4-aiE" id="Cua-JG-hhB"/>
+                <outlet property="piaEXTA5" destination="O4j-WP-1dz" id="Kkh-Xn-s4m"/>
+                <outlet property="piaEXTA6" destination="sTz-37-pd6" id="FaM-Ry-4xc"/>
+                <outlet property="piaEXTA7" destination="z4B-6u-cDS" id="jQQ-an-luX"/>
+                <outlet property="piaEXTAbinary" destination="gW6-qC-zhs" id="glz-Fs-Cjt"/>
                 <outlet property="piaEXTB" destination="8wC-sa-eQ2" id="oj4-TO-FWj"/>
                 <outlet property="piaEXTB0" destination="Axr-36-hdF" id="nuR-0O-3KV"/>
                 <outlet property="piaEXTB1" destination="Hck-Cb-MgJ" id="J3c-WX-6UO"/>
@@ -77,6 +105,14 @@
                 <outlet property="piaEXTB6" destination="4Sx-5C-seB" id="SvI-Fj-qSj"/>
                 <outlet property="piaEXTB7" destination="NYK-wf-NKk" id="DgL-z5-uAZ"/>
                 <outlet property="piaEXTBbinary" destination="gis-2w-74i" id="xZt-oI-41M"/>
+                <outlet property="piaPA0" destination="9fS-0V-6x6" id="7ZL-4j-YLo"/>
+                <outlet property="piaPA1" destination="vA1-kx-cmE" id="Jlx-8l-m3t"/>
+                <outlet property="piaPA2" destination="Nqs-Um-WPV" id="gYN-bd-Gnu"/>
+                <outlet property="piaPA3" destination="xJi-hg-uol" id="cCB-e9-aU3"/>
+                <outlet property="piaPA4" destination="RTS-87-0Z1" id="GOu-Ru-hdO"/>
+                <outlet property="piaPA5" destination="L71-BY-Lez" id="v7O-Nm-6OA"/>
+                <outlet property="piaPA6" destination="ElP-i6-1af" id="UPs-yH-fBw"/>
+                <outlet property="piaPA7" destination="uKF-PW-FBi" id="MPt-Oy-TbE"/>
                 <outlet property="piaPB0" destination="mxj-fJ-LRV" id="5PF-aU-3SX"/>
                 <outlet property="piaPB1" destination="c8S-pc-VTJ" id="tYM-CV-PXy"/>
                 <outlet property="piaPB2" destination="4eX-Z1-yfF" id="As5-6e-jFA"/>
@@ -85,6 +121,16 @@
                 <outlet property="piaPB5" destination="yad-TI-IAM" id="1uH-K7-cWk"/>
                 <outlet property="piaPB6" destination="LXk-cZ-Lzo" id="fcN-5h-JKQ"/>
                 <outlet property="piaPB7" destination="55j-Qg-h2U" id="1YY-yk-UIB"/>
+                <outlet property="piaPRA" destination="kWR-ad-pB5" id="g5N-Mw-U0h"/>
+                <outlet property="piaPRA0" destination="qUy-nq-q5z" id="qfA-QT-58H"/>
+                <outlet property="piaPRA1" destination="yV6-qS-skH" id="Lcr-9a-J6N"/>
+                <outlet property="piaPRA2" destination="JFz-ZP-lml" id="Y58-un-vM8"/>
+                <outlet property="piaPRA3" destination="K9x-ov-MBr" id="oUn-G8-VuF"/>
+                <outlet property="piaPRA4" destination="pdd-Al-6Ys" id="5AF-hF-SyT"/>
+                <outlet property="piaPRA5" destination="Tuf-ZX-hC3" id="lcv-kn-68K"/>
+                <outlet property="piaPRA6" destination="YtL-6e-y7K" id="PiE-aC-PQs"/>
+                <outlet property="piaPRA7" destination="JsU-BU-fgC" id="FT2-yt-VTl"/>
+                <outlet property="piaPRAbinary" destination="7Oc-vG-1xI" id="oAd-QQ-ntp"/>
                 <outlet property="piaPRB" destination="nEg-a6-ske" id="xQm-Bb-lTc"/>
                 <outlet property="piaPRB0" destination="lvl-Yi-n2O" id="hZ3-Sc-FcV"/>
                 <outlet property="piaPRB1" destination="icT-vn-Od6" id="j8Z-pO-T7T"/>
@@ -905,505 +951,6 @@
                                                 </subviews>
                                             </view>
                                         </box>
-                                        <box autoresizesSubviews="NO" fixedFrame="YES" borderType="line" title="Data port A" translatesAutoresizingMaskIntoConstraints="NO" id="gEj-5R-nWj">
-                                            <rect key="frame" x="6" y="10" width="253" height="355"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <view key="contentView" id="BPq-IH-qkV">
-                                                <rect key="frame" x="4" y="5" width="245" height="335"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gXh-It-B7m">
-                                                        <rect key="frame" x="37" y="308" width="26" height="14"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="PRA" id="g3p-Wt-Hey">
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h9t-Mj-fdA">
-                                                        <rect key="frame" x="14" y="240" width="52" height="14"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Internal" id="T0j-Yo-Nhh">
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cCT-XY-rrw">
-                                                        <rect key="frame" x="129" y="240" width="78" height="14"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="External" id="jfd-z7-OHS">
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Th4-9z-g7H">
-                                                        <rect key="frame" x="99" y="240" width="26" height="14"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Port" id="ViI-Z0-qMv">
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X6F-rA-7Yy">
-                                                        <rect key="frame" x="68" y="213" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="VBa-9I-gEe">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sVe-oc-8rI">
-                                                        <rect key="frame" x="128" y="211" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="gNI-ia-dGY">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tqf-PB-2FZ">
-                                                        <rect key="frame" x="128" y="189" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="Enp-NV-Ph3">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qjt-py-a96">
-                                                        <rect key="frame" x="128" y="169" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="0x3-Lf-Zr8">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jhQ-dk-GXm">
-                                                        <rect key="frame" x="128" y="149" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="XP2-3C-EJV">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="43f-fP-uaz">
-                                                        <rect key="frame" x="128" y="127" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="fXM-QD-dct">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wXb-Yi-CDT">
-                                                        <rect key="frame" x="128" y="107" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="JkK-Hg-nII">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IWE-ox-yPx">
-                                                        <rect key="frame" x="128" y="87" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="iJH-Xf-WV3">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jff-HI-f5P">
-                                                        <rect key="frame" x="68" y="191" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="mER-Yh-aE5">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ha3-OA-67O">
-                                                        <rect key="frame" x="68" y="171" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="lWP-8a-Lte">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7t8-dL-kHh">
-                                                        <rect key="frame" x="68" y="149" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="d2n-Va-XLC">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m16-mU-YgY">
-                                                        <rect key="frame" x="68" y="129" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="X1z-n8-VWo">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wvy-h0-jYc">
-                                                        <rect key="frame" x="67" y="109" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="0oK-Lm-mFK">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cno-ug-eZ1">
-                                                        <rect key="frame" x="66" y="89" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="XJT-HQ-11K">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RED-Qs-tla">
-                                                        <rect key="frame" x="18" y="190" width="50" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PRA6" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="fRo-JI-T40">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="6mF-ze-2cU"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f7e-dQ-2mP">
-                                                        <rect key="frame" x="18" y="170" width="50" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PRA5" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="4W0-gs-tQW">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="eg2-7S-ETh"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PDi-nR-sUM">
-                                                        <rect key="frame" x="18" y="148" width="50" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PRA4" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="AO3-Da-UbF">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="yYS-QK-f4s"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ueN-Di-e66">
-                                                        <rect key="frame" x="18" y="128" width="50" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PRA3" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="66D-Us-1lv">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="we5-xw-tmA"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0eM-B5-fXE">
-                                                        <rect key="frame" x="19" y="212" width="49" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PRA7" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="Ts7-Nn-41R">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="c7W-cz-3cF"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5UW-6V-9le">
-                                                        <rect key="frame" x="83" y="210" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="lBm-1B-fiB">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="Z7v-t8-ogW"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mCs-yW-zYd">
-                                                        <rect key="frame" x="83" y="188" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="gJP-9u-SiV">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="Fxy-7x-PRT"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RAl-hx-T9X">
-                                                        <rect key="frame" x="83" y="168" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="rsC-fD-dzV">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="ZOR-zB-hdO"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BhX-bQ-jCO">
-                                                        <rect key="frame" x="83" y="146" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="Bdk-kb-uvl">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="lML-rS-nkS"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CzK-DK-Qrn">
-                                                        <rect key="frame" x="83" y="125" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="End-zy-Kbh">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="PAU-4i-vdf"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uEH-h5-eN3">
-                                                        <rect key="frame" x="83" y="105" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="XLh-NY-elw">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="mNZ-ZA-4AW"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mTf-BX-cu4">
-                                                        <rect key="frame" x="83" y="85" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="dDK-qa-q22">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="INd-Di-Ykq"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gb7-hA-mTe">
-                                                        <rect key="frame" x="18" y="108" width="50" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PRA2" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="KnO-jK-ooe">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="4wy-d0-JeG"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rfY-pa-ym8">
-                                                        <rect key="frame" x="20" y="88" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PRA1" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="u6o-Tq-dgn">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="dca-9b-fS4"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XSv-aV-Qan">
-                                                        <rect key="frame" x="18" y="68" width="50" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PRA0" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="lTf-Pg-R0Y">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="mno-nl-aRU"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MNR-cA-SeE">
-                                                        <rect key="frame" x="157" y="188" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA6" bezelStyle="regularSquare" imagePosition="left" alignment="right" controlSize="small" inset="2" id="EsE-lj-f3E">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="3Cq-nP-dT8"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vF3-2u-RcC">
-                                                        <rect key="frame" x="157" y="168" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA5" bezelStyle="regularSquare" imagePosition="left" alignment="right" controlSize="small" inset="2" id="3si-EW-1XL">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="Qmw-dW-xmd"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dIo-3x-agE">
-                                                        <rect key="frame" x="157" y="146" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA4" bezelStyle="regularSquare" imagePosition="left" alignment="right" controlSize="small" inset="2" id="fYY-JS-4x9">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="vPm-Lf-3MK"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mHL-Bc-dyk">
-                                                        <rect key="frame" x="157" y="126" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA3" bezelStyle="regularSquare" imagePosition="left" alignment="right" controlSize="small" inset="2" id="EZG-Qj-jSP">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="tc9-Uh-FeN"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zs6-QW-Vzt">
-                                                        <rect key="frame" x="157" y="210" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="left" alignment="right" controlSize="small" inset="2" id="nX8-cw-ofN">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="e13-ix-PIk"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KTS-fl-G1f">
-                                                        <rect key="frame" x="157" y="106" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA2" bezelStyle="regularSquare" imagePosition="left" alignment="right" controlSize="small" inset="2" id="xgI-Lq-Di0">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="d87-Xw-Ci1"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tPI-gL-kYu">
-                                                        <rect key="frame" x="157" y="86" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA1" bezelStyle="regularSquare" imagePosition="left" alignment="right" controlSize="small" inset="2" id="svf-v0-Bf5">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="Ygg-49-heC"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YAD-9s-WAl">
-                                                        <rect key="frame" x="157" y="66" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA0" bezelStyle="regularSquare" imagePosition="left" alignment="right" controlSize="small" inset="2" id="oy2-d8-4mg">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="jUe-st-zcU"/>
-                                                        </connections>
-                                                    </button>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6o3-qg-5hf">
-                                                        <rect key="frame" x="68" y="304" width="30" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="255" drawsBackground="YES" id="9xR-KI-4FH">
-                                                            <font key="font" size="12" name="CourierNewPS-BoldMT"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hs8-vS-ipb">
-                                                        <rect key="frame" x="69" y="277" width="30" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="255" drawsBackground="YES" id="TwW-oc-4Lf">
-                                                            <font key="font" size="12" name="CourierNewPS-BoldMT"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fc-Rb-ldJ">
-                                                        <rect key="frame" x="106" y="304" width="66" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="00000000" drawsBackground="YES" id="0Gd-CA-Z3S">
-                                                            <font key="font" size="12" name="CourierNewPS-BoldMT"/>
-                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wwp-i4-ini">
-                                                        <rect key="frame" x="106" y="277" width="66" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="00000000" drawsBackground="YES" id="Xrf-Fh-JtB">
-                                                            <font key="font" size="12" name="CourierNewPS-BoldMT"/>
-                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fr7-qo-PUw">
-                                                        <rect key="frame" x="2" y="283" width="61" height="14"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="DDRA" id="5Nz-7O-5Tb">
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kYH-L1-fr7">
-                                                        <rect key="frame" x="66" y="69" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="ZCw-g9-i2u">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JxB-gG-kgn">
-                                                        <rect key="frame" x="128" y="67" width="23" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="jjN-oX-l45">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="92V-IK-o6G">
-                                                        <rect key="frame" x="83" y="67" width="48" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="AhP-gp-1P2">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="message" size="11"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="refreshAction:" target="-2" id="je2-ff-kh9"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </view>
-                                        </box>
                                         <box autoresizesSubviews="NO" fixedFrame="YES" borderType="line" title="Data port B" translatesAutoresizingMaskIntoConstraints="NO" id="6w4-mI-RFa">
                                             <rect key="frame" x="272" y="10" width="253" height="355"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1966,6 +1513,532 @@
                                                             <action selector="refreshAction:" target="-2" id="zRC-Nc-trQ"/>
                                                         </connections>
                                                     </button>
+                                                </subviews>
+                                            </view>
+                                        </box>
+                                        <box autoresizesSubviews="NO" fixedFrame="YES" borderType="line" title="Data port A" translatesAutoresizingMaskIntoConstraints="NO" id="j6H-w7-bBu">
+                                            <rect key="frame" x="6" y="10" width="253" height="355"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <view key="contentView" id="rLC-M7-TBa">
+                                                <rect key="frame" x="4" y="5" width="245" height="335"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khE-dn-5KL">
+                                                        <rect key="frame" x="37" y="308" width="26" height="14"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="PRA" id="QM4-XD-DVh">
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2E9-fA-H7U">
+                                                        <rect key="frame" x="16" y="219" width="52" height="14"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Register" id="Rd7-Ov-8NJ">
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rtr-5T-MkY">
+                                                        <rect key="frame" x="84" y="219" width="26" height="14"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Port" id="v1M-67-vKX">
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EUV-R1-cdU">
+                                                        <rect key="frame" x="66" y="192" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="VBX-EW-yQh">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TpR-st-MqZ">
+                                                        <rect key="frame" x="106" y="192" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="K7I-Qr-f43">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IqQ-0q-YOf">
+                                                        <rect key="frame" x="106" y="171" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="7Wi-Nq-Y3n">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gd0-hq-1O2">
+                                                        <rect key="frame" x="106" y="149" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="Eui-Zz-jDk">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AH7-tS-g0q">
+                                                        <rect key="frame" x="106" y="127" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="ytV-z0-gVB">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MKT-aE-oRV">
+                                                        <rect key="frame" x="106" y="105" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="EXr-Vj-UIG">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TcP-wK-SZb">
+                                                        <rect key="frame" x="106" y="83" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="BAl-ar-ecQ">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R4B-Zf-Oio">
+                                                        <rect key="frame" x="106" y="61" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="uog-Ra-Tuc">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yeP-k3-Top">
+                                                        <rect key="frame" x="66" y="171" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="pdu-fg-aLm">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8kN-d4-LzQ">
+                                                        <rect key="frame" x="66" y="149" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="RRF-Eg-kne">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NWI-1R-y7e">
+                                                        <rect key="frame" x="66" y="127" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="4X3-iS-l7w">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3Z-c1-WVH">
+                                                        <rect key="frame" x="66" y="105" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="yuN-P8-ItW">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ip-vi-Jl6">
+                                                        <rect key="frame" x="66" y="83" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="f9F-1r-vM3">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oG2-7x-r3u">
+                                                        <rect key="frame" x="66" y="61" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="Qd1-9D-KBZ">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YtL-6e-y7K">
+                                                        <rect key="frame" x="18" y="170" width="50" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PRA6" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="7hK-wz-qbq">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="u9c-Al-jQe"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tuf-ZX-hC3">
+                                                        <rect key="frame" x="18" y="148" width="50" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PRA5" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="BRs-Zs-Gka">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="dh7-So-W0Z"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdd-Al-6Ys">
+                                                        <rect key="frame" x="18" y="126" width="50" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PRA4" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="5tP-xR-cXt">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="ITH-Sb-3CD"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K9x-ov-MBr">
+                                                        <rect key="frame" x="18" y="104" width="50" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PRA3" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="mAQ-aM-Ehz">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="uCr-Id-RRR"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JsU-BU-fgC">
+                                                        <rect key="frame" x="19" y="191" width="49" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PRA7" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="hej-0K-8DY">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="dZP-Kw-30D"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uKF-PW-FBi">
+                                                        <rect key="frame" x="73" y="192" width="48" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="ICL-1J-VrM">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="59i-rd-RFJ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ElP-i6-1af">
+                                                        <rect key="frame" x="73" y="171" width="48" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="bkx-bJ-LMq">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="Wsb-s1-upj"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L71-BY-Lez">
+                                                        <rect key="frame" x="73" y="149" width="48" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="iyE-wb-3jO">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="NG2-fv-gZ6"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTS-87-0Z1">
+                                                        <rect key="frame" x="73" y="127" width="48" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="MTv-8W-zy8">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="7ZV-hL-57s"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xJi-hg-uol">
+                                                        <rect key="frame" x="73" y="105" width="48" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="uIr-wC-Val">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="D3T-6b-SDL"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nqs-Um-WPV">
+                                                        <rect key="frame" x="73" y="83" width="48" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="Rfj-wK-veo">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="uIb-Cv-j6E"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vA1-kx-cmE">
+                                                        <rect key="frame" x="73" y="61" width="48" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="ybN-NU-zVW">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="gZn-7o-W7D"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JFz-ZP-lml">
+                                                        <rect key="frame" x="18" y="82" width="50" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PRA2" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="qr1-Z2-gQi">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="Xvf-of-e5Z"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yV6-qS-skH">
+                                                        <rect key="frame" x="20" y="60" width="48" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PRA1" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="Ikc-Co-aAQ">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="eBU-5I-Nzt"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qUy-nq-q5z">
+                                                        <rect key="frame" x="18" y="38" width="50" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PRA0" bezelStyle="regularSquare" imagePosition="right" alignment="right" controlSize="small" inset="2" id="iMh-ES-o0H">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="rLC-6k-QFG"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mIa-HT-JxR">
+                                                        <rect key="frame" x="128" y="60" width="93" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="Down" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="NUi-V9-82k">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="B28-RN-Br7"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O4j-WP-1dz">
+                                                        <rect key="frame" x="128" y="148" width="62" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="Down" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="Sgx-Vu-nMb">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="GwE-Za-rnx"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whm-m9-oz6">
+                                                        <rect key="frame" x="128" y="104" width="88" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="Right" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="Tec-8j-jOp">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="2NA-5D-mMS"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ga9-n4-aiE">
+                                                        <rect key="frame" x="128" y="126" width="62" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="Up" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="yYW-jX-RUZ">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="k78-gv-daW"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VzU-at-nDi">
+                                                        <rect key="frame" x="128" y="38" width="89" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="Up" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="sap-yR-0uu">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="N9a-c9-RhF"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83a-OZ-nPU">
+                                                        <rect key="frame" x="128" y="82" width="89" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="Left" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="mg3-bf-0Ow">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="Cvm-fx-9P7"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sTz-37-pd6">
+                                                        <rect key="frame" x="128" y="170" width="89" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="Left" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="N2Z-gb-FvT">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="liF-XU-5GP"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z4B-6u-cDS">
+                                                        <rect key="frame" x="128" y="191" width="87" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="Right" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="U5Y-sR-qYS">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="wM5-v0-qpC"/>
+                                                        </connections>
+                                                    </button>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kWR-ad-pB5">
+                                                        <rect key="frame" x="68" y="304" width="30" height="22"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="255" drawsBackground="YES" id="LZ8-W3-gQw">
+                                                            <font key="font" size="12" name="CourierNewPS-BoldMT"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qtb-wz-bHc">
+                                                        <rect key="frame" x="69" y="277" width="30" height="22"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="255" drawsBackground="YES" id="jCK-RX-brv">
+                                                            <font key="font" size="12" name="CourierNewPS-BoldMT"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Oc-vG-1xI">
+                                                        <rect key="frame" x="106" y="304" width="66" height="22"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="00000000" drawsBackground="YES" id="PPH-o3-hkc">
+                                                            <font key="font" size="12" name="CourierNewPS-BoldMT"/>
+                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ONG-4c-5sh">
+                                                        <rect key="frame" x="106" y="277" width="66" height="22"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="00000000" drawsBackground="YES" id="Hyj-Se-7c5">
+                                                            <font key="font" size="12" name="CourierNewPS-BoldMT"/>
+                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0b6-Um-pTt">
+                                                        <rect key="frame" x="2" y="283" width="61" height="14"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="DDRA" id="WU6-GE-DvI">
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GnU-uZ-fGn">
+                                                        <rect key="frame" x="66" y="39" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="→" id="RvE-Ro-rBA">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ABe-a9-hwb">
+                                                        <rect key="frame" x="106" y="39" width="23" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" controlSize="large" sendsActionOnEndEditing="YES" alignment="center" title="←" id="el6-eU-DDx">
+                                                            <font key="font" metaFont="system"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9fS-0V-6x6">
+                                                        <rect key="frame" x="73" y="39" width="48" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="check" title="PA7" bezelStyle="regularSquare" imagePosition="only" alignment="right" controlSize="small" inset="2" id="TR9-5L-3rW">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="refreshAction:" target="-2" id="Tij-X4-GK2"/>
+                                                        </connections>
+                                                    </button>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aqm-4N-Dcg">
+                                                        <rect key="frame" x="69" y="247" width="30" height="22"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="255" drawsBackground="YES" id="U0q-dp-eCp">
+                                                            <font key="font" size="12" name="CourierNewPS-BoldMT"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gW6-qC-zhs">
+                                                        <rect key="frame" x="106" y="247" width="66" height="22"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="00000000" drawsBackground="YES" id="9fu-s6-2U5">
+                                                            <font key="font" size="12" name="CourierNewPS-BoldMT"/>
+                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GR9-oq-0Mx">
+                                                        <rect key="frame" x="2" y="253" width="61" height="14"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="External" id="Gzh-w7-7oX">
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jNE-wI-C3b">
+                                                        <rect key="frame" x="130" y="219" width="78" height="14"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="External" id="87n-i0-IBT">
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
                                                 </subviews>
                                             </view>
                                         </box>

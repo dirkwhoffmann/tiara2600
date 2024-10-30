@@ -90,9 +90,13 @@ class LogicView: NSView {
                 case .NONE:     for i in 0..<228 { data[c][i] = 0 }
                 case .ADDR_BUS: for i in 0..<228 { data[c][i] = Int((values + i).pointee.addrBus) }
                 case .DATA_BUS: for i in 0..<228 { data[c][i] = Int((values + i).pointee.dataBus) }
+                case .STROBE:   for i in 0..<228 { data[c][i] = Int((values + i).pointee.strobe) }
                 case .PHI1:     for i in 0..<228 { data[c][i] = (values + i).pointee.phi1 ? 1 : 0 }
                 case .PHI2:     for i in 0..<228 { data[c][i] = (values + i).pointee.phi2 ? 1 : 0 }
                 case .RDY:      for i in 0..<228 { data[c][i] = (values + i).pointee.rdy ? 1 : 0 }
+                case .SEC:      for i in 0..<228 { data[c][i] = (values + i).pointee.sec ? 1 : 0 }
+                case .SECL:     for i in 0..<228 { data[c][i] = (values + i).pointee.secl ? 1 : 0 }
+                case .HMC:      for i in 0..<228 { data[c][i] = Int((values + i).pointee.hmc) }
                 case .VSYNC:    for i in 0..<228 { data[c][i] = (values + i).pointee.vsync ? 1 : 0 }
                 case .VBLANK:   for i in 0..<228 { data[c][i] = (values + i).pointee.vblank ? 1 : 0 }
                 case .HBLANK:   for i in 0..<228 { data[c][i] = (values + i).pointee.hblank ? 1 : 0 }
@@ -103,7 +107,8 @@ class LogicView: NSView {
                 switch probe[c] {
 
                 case .ADDR_BUS: bitWidth[c] = 16
-                case .DATA_BUS, .INTIM: bitWidth[c] = 8
+                case .DATA_BUS, .STROBE, .INTIM: bitWidth[c] = 8
+                case .HMC: bitWidth[c] = 4
                 default: bitWidth[c] = 1
                 }
             }

@@ -29,11 +29,15 @@ enum_long(PROBE)
     // Logic board
     PROBE_ADDR_BUS,                     ///< Address bus
     PROBE_DATA_BUS,                     ///< Data bus
+    PROBE_STROBE,                       ///< Strobe signals
 
     // TIA
     PROBE_PHI1,                         ///< PHI1 (Horizontal counter)
     PROBE_PHI2,                         ///< PHI2 (Horizontal counter)
     PROBE_RDY,                          ///< Ready signal
+    PROBE_SEC,                          ///< SEC
+    PROBE_SECL,                         ///< SEC latch
+    PROBE_HMC,                          ///< HMC
     PROBE_VSYNC,                        ///< Vertical Sync
     PROBE_VBLANK,                       ///< Vertical Blank
     PROBE_HBLANK,                       ///< Horizontal Blank
@@ -56,9 +60,13 @@ struct ProbeEnum : util::Reflection<ProbeEnum, Probe> {
             case PROBE_NONE:        return "NONE";
             case PROBE_ADDR_BUS:    return "ADDR_BUS";
             case PROBE_DATA_BUS:    return "DATA_BUS";
+            case PROBE_STROBE:      return "STROBE";
             case PROBE_PHI1:        return "PHI1";
             case PROBE_PHI2:        return "PHI2";
             case PROBE_RDY:         return "RDY";
+            case PROBE_SEC:         return "SEC";
+            case PROBE_SECL:        return "SECL";
+            case PROBE_HMC:         return "HMC";
             case PROBE_VSYNC:       return "VSYNC";
             case PROBE_VBLANK:      return "VBLANK";
             case PROBE_HBLANK:      return "HBLANK";
@@ -112,9 +120,13 @@ typedef struct
 {
     u16 addrBus;
     u8 dataBus;
+    u8 strobe;
     bool phi1;
     bool phi2;
     bool rdy;
+    bool sec;
+    bool secl;
+    u8 hmc;
     bool vsync;
     bool vblank;
     bool hblank;
