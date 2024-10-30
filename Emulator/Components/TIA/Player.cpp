@@ -41,6 +41,8 @@ Player::execute(bool clk, bool rst)
     }
 
     counter.execute(clk, rst);
+    phi1 = counter.phi1();
+    phi2 = counter.phi2();
 
     auto current = counter.current;
 

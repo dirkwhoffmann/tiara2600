@@ -34,10 +34,10 @@ class Player final : CoreObject {
 
 public:
 
-    void pokeNUSIZ(u8 val) { nusiz = val & 0x7; }
-    void pokeGRP(u8 val) { grp[0] = val; }
-    void pokeVDELP(u8 val) { vdelp = val & 0x1; }
-    void pokeREFP(u8 val) { refp = val & 0x8; }
+    void pokeNUSIZ(u8 val) { nusiz = val & 0x7; trace(false, "NUSIZ %ld\n", nusiz); }
+    void pokeGRP(u8 val) { grp[0] = val; trace(false, "GRP %d\n", grp[0]); }
+    void pokeVDELP(u8 val) { vdelp = val & 0x1; trace(false, "VDELP %d\n", vdelp); }
+    void pokeREFP(u8 val) { refp = val & 0x8; trace(false, "REFP %d\n", refp); }
     void vshift() { grp[1] = grp[0]; }
 
     bool get() const;

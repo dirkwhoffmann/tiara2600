@@ -318,11 +318,11 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
         case TIA_ENAM0:     m0.pokeENAM(val); break;
         case TIA_ENAM1:     m1.pokeENAM(val); break;
         case TIA_ENABL:     bl.pokeENABL(val); break;
-        case TIA_HMP0:      strobe = reg; break; //  trace(true, "TIA_HMP0 %x\n", val); p0ec.setHM(val); break;
-        case TIA_HMP1:      p1ec.setHM(val); break;
-        case TIA_HMM0:      m0ec.setHM(val); break;
-        case TIA_HMM1:      m1ec.setHM(val); break;
-        case TIA_HMBL:      blec.setHM(val); break;
+        case TIA_HMP0:      strobe = reg; break;
+        case TIA_HMP1:      strobe = reg; break;
+        case TIA_HMM0:      strobe = reg; break;
+        case TIA_HMM1:      strobe = reg; break;
+        case TIA_HMBL:      strobe = reg; break;
         case TIA_VDELP0:    unsupported(); break;
         case TIA_VDELP1:    unsupported(); break;
         case TIA_VDELBL:    bl.pokeVDELBL(val); break;
@@ -445,7 +445,7 @@ TIA::execute()
     // HB logic
     //
 
-    hb.execute(phi1, phi2, hc.current == (sec.get() ? 18 : 16), shb);
+    hb.execute(phi1, phi2, hc.current == (secl ? 18 : 16), shb);
     auto motck = hb.get();
 
 
@@ -462,56 +462,12 @@ TIA::execute()
         rdy = true; cpu.releaseRdyLine();
     }
 
-    //
-    // Strobes
-    //
-
-    if (cycle == 0) {
-
-        switch (strobe) {
-
-            case TIA_VBLANK:
-
-                vb = atari.dataBus & 0x02;
-                break;
-
-            case TIA_HMP0:
-
-                // trace(true, "TIA_HMP0 %x\n", dataBus);
-                p0ec.setHM(dataBus);
-                break;
-                
-            default:
-
-                break;
-        }
-    }
-
-    assert(x < Texture::width);
-    assert(y < Texture::height);
-
 
     //
     // Playfield logic
     //
 
     pf.execute(*this);
-
-    
-    //
-    // Collision logic
-    //
-
-    isize index =
-    (pf.get() ? (1 << TIA_PF) : 0) |
-    (bl.get() ? (1 << TIA_BL) : 0) |
-    (m0.get() ? (1 << TIA_M0) : 0) |
-    (m1.get() ? (1 << TIA_M1) : 0) |
-    (p0.get() ? (1 << TIA_P0) : 0) |
-    (p1.get() ? (1 << TIA_P1) : 0) ;
-
-    auto lup = lookup[0][0][0][index]; // TODO: [PFP][SCORE][RIGHT]
-    cx |= lup.collison;
 
 
     //
@@ -539,8 +495,27 @@ TIA::execute()
 
 
     //
+    // Collision logic
+    //
+
+    isize index =
+    (pf.get() ? (1 << TIA_PF) : 0) |
+    (bl.get() ? (1 << TIA_BL) : 0) |
+    (m0.get() ? (1 << TIA_M0) : 0) |
+    (m1.get() ? (1 << TIA_M1) : 0) |
+    (p0.get() ? (1 << TIA_P0) : 0) |
+    (p1.get() ? (1 << TIA_P1) : 0) ;
+
+    auto lup = lookup[0][0][0][index]; // TODO: [PFP][SCORE][RIGHT]
+    cx |= lup.collison;
+
+
+    //
     // Drawing
     //
+
+    assert(x < Texture::width);
+    assert(y < Texture::height);
 
     if (hb.get()) {
 
@@ -557,13 +532,49 @@ TIA::execute()
     // TIA objects (normal cycles)
     //
 
+    blecEnabled = phi1 && blec.enabled();
+    m0ecEnabled = phi1 && m0ec.enabled();
+    m1ecEnabled = phi1 && m1ec.enabled();
+    p0ecEnabled = phi1 && p0ec.enabled();
+    p1ecEnabled = phi1 && p1ec.enabled();
+
     bl.execute(motck && !blecEnabled, strobe == TIA_RESBL);
     m0.execute(motck && !m0ecEnabled, strobe == TIA_RESM0);
     m1.execute(motck && !m1ecEnabled, strobe == TIA_RESM1);
     p0.execute(motck && !p0ecEnabled, strobe == TIA_RESP0);
     p1.execute(motck && !p1ecEnabled, strobe == TIA_RESP1);
 
-    // Run the logic analyzer
+
+    //
+    // Strobes
+    //
+
+    if (cycle == 0) {
+
+        switch (strobe) {
+
+            case TIA_VBLANK:
+
+                vb = atari.dataBus & 0x02;
+                break;
+
+            case TIA_HMP0:  p0ec.setHM(dataBus); break;
+            case TIA_HMP1:  p1ec.setHM(dataBus); break;
+            case TIA_HMM0:  m0ec.setHM(dataBus); break;
+            case TIA_HMM1:  m1ec.setHM(dataBus); break;
+            case TIA_HMBL:  blec.setHM(dataBus); break;
+
+            default:
+
+                break;
+        }
+    }
+
+
+    //
+    // Logic analyzer
+    //
+
     logicAnalyzer.recordSignals();
 
 
