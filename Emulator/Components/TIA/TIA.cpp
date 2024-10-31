@@ -288,6 +288,8 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
         case TIA_CTRLPF:
 
             ctrlpf = val & 0b00110111;
+            score = !!GET_BIT(val, 1);
+            pfp = !!GET_BIT(val, 2);
             pf.setREF(val & 0b00000001);
             bl.pokeCTLRPF(val);
             break;
@@ -506,7 +508,8 @@ TIA::execute()
     (p0.get() ? (1 << TIA_P0) : 0) |
     (p1.get() ? (1 << TIA_P1) : 0) ;
 
-    auto lup = lookup[0][0][0][index]; // TODO: [PFP][SCORE][RIGHT]
+    bool right = (x >= 148);
+    auto lup = lookup[pfp][score][right][index]; // TODO: [PFP][SCORE][RIGHT]
     cx |= lup.collison;
 
 

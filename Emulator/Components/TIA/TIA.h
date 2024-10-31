@@ -144,6 +144,8 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
 
     // Control playfield, ball size, collisions
     u8 ctrlpf;
+    bool score;
+    bool pfp;
 
     // Collision bits
     u32 cx;

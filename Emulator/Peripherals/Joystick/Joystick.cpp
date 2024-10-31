@@ -92,6 +92,7 @@ Joystick::trigger(GamePadAction event)
     }
     
     port.device = CPDEVICE_JOYSTICK;
+    pia.updatePA();
 }
 
 void
