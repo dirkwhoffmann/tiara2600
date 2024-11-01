@@ -45,6 +45,7 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_ATARI_SNAP_COMPRESS:       return boolParser();
 
         case OPT_TIA_REVISION:              return enumParser.template operator()<TIARevisionEnum>();
+        case OPT_TIA_COLLISIONS:            return numParser();
         case OPT_TIA_POWER_SAVE:            return boolParser();
 
         case OPT_RAM_INIT_PATTERN:          return enumParser.template operator()<RamPatternEnum>();

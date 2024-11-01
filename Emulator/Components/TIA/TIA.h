@@ -84,6 +84,7 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
     Options options = {
 
         OPT_TIA_REVISION,
+        OPT_TIA_COLLISIONS,
         OPT_TIA_POWER_SAVE
     };
 
@@ -143,12 +144,16 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
     u32 rgba[4];
 
     // Control playfield, ball size, collisions
-    u8 ctrlpf;
-    bool score;
-    bool pfp;
+    u8 ctrlpf{};
+    bool score{};
+    bool pfp{};
 
     // Collision bits
-    u32 cx;
+    u32 cx{};
+
+    // Input bits
+    // mutable u8 inpt{};
+
 
     //
     // Chip interface
@@ -386,7 +391,9 @@ public:
     void poke(TIARegister reg, u8 val);
     void poke(TIARegister reg, u8 val, Cycle delay);
 
-    
+    void updateInpt();
+
+
     //
     // Executing
     //

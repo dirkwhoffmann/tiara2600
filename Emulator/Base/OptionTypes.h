@@ -44,6 +44,7 @@ enum_long(OPT)
 
     // TIA
     OPT_TIA_REVISION,           ///< Chip revision
+    OPT_TIA_COLLISIONS,         ///< Collision checking
     OPT_TIA_POWER_SAVE,         ///< Enable fast-paths
 
     // PIA
@@ -163,6 +164,7 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_ATARI_SNAP_COMPRESS:   return "C64.SNAP_COMPRESS";
 
             case OPT_TIA_REVISION:          return "TIA.REVISION";
+            case OPT_TIA_COLLISIONS:        return "TIA.COLLISIONS";
             case OPT_TIA_POWER_SAVE:        return "TIA.POWER_SAVE";
 
             case OPT_RAM_INIT_PATTERN:      return "PIA.RAM_INIT_PATTERN";
@@ -264,6 +266,7 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_ATARI_SNAP_COMPRESS:   return "Compress snapshot data";
 
             case OPT_TIA_REVISION:          return "Video standard";
+            case OPT_TIA_COLLISIONS:        return "Collision checking";
             case OPT_TIA_POWER_SAVE:        return "Take fast paths";
 
             case OPT_RAM_INIT_PATTERN:      return "Memory start-up pattern";

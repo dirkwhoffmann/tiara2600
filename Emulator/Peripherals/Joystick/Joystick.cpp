@@ -22,7 +22,7 @@ Joystick::Joystick(Atari& ref, ControlPort& pref) : SubComponent(ref, pref.objid
 };
 
 u8
-Joystick::getControlPort() const
+Joystick::getPiaBits() const
 {
     u8 result = 0xFF;
 
@@ -30,7 +30,16 @@ Joystick::getControlPort() const
     if (axisY ==  1) CLR_BIT(result, objid == 0 ? 1 : 5);
     if (axisX == -1) CLR_BIT(result, objid == 0 ? 2 : 6);
     if (axisX ==  1) CLR_BIT(result, objid == 0 ? 3 : 7);
-    // if (button)      CLR_BIT(result,  objid == 0 ? 4);
+
+    return result;
+}
+
+u8
+Joystick::getTiaBits() const
+{
+    u8 result = 0xFF;
+
+    if (button) CLR_BIT(result, objid == 0 ? 4 : 5);
 
     return result;
 }

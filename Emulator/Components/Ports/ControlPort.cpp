@@ -37,12 +37,23 @@ ControlPort::updateControlPort()
 }
 
 u8
-ControlPort::getControlPort() const
+ControlPort::getPiaBits() const
 {
     switch (device) {
             
-        case CPDEVICE_JOYSTICK: return joystick.getControlPort();
-        // case CPDEVICE_MOUSE: return mouse.getControlPort();
+        case CPDEVICE_JOYSTICK: return joystick.getPiaBits();
+
+        default:
+            return 0xFF;
+    }
+}
+
+u8
+ControlPort::getTiaBits() const
+{
+    switch (device) {
+
+        case CPDEVICE_JOYSTICK: return joystick.getTiaBits();
 
         default:
             return 0xFF;

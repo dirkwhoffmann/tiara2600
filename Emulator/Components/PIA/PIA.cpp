@@ -229,7 +229,7 @@ PIA::updatePB(u8 val)
 u8
 PIA::paExternal() const
 {
-    return port1.joystick.getControlPort() & port2.joystick.getControlPort();
+    return port1.joystick.getPiaBits() & port2.joystick.getPiaBits();
 }
 
 u8

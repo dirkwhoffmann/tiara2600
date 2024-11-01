@@ -310,8 +310,8 @@ typedef struct
     // Visibility
     // bool hideBall;
 
-    // Cheating
-    // bool checkCollisions;
+    // Collision checks
+    u16 collisionMask;
 }
 TIAConfig;
 

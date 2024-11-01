@@ -70,6 +70,7 @@ TIA::getOption(Option opt) const
     switch (opt) {
 
         case OPT_TIA_REVISION:        return config.revision;
+        case OPT_TIA_COLLISIONS:      return config.collisionMask;
         case OPT_TIA_POWER_SAVE:      return config.powerSave;
 
         default:
@@ -87,11 +88,18 @@ TIA::checkOption(Option opt, i64 value)
             if (!TIARevisionEnum::isValid(value)) {
                 throw Error(VC64ERROR_OPT_INV_ARG, TIARevisionEnum::keyList());
             }
-            return;
+            break;
+
+        case OPT_TIA_COLLISIONS:
+
+            if (value < 0 || value > 0xFFFF) {
+                throw Error(VC64ERROR_OPT_INV_ARG, "0x0000...0xFFFF");
+            }
+            break;
 
         case OPT_TIA_POWER_SAVE:
 
-            return;
+            break;
 
         default:
             throw Error(VC64ERROR_OPT_UNSUPPORTED);
@@ -109,12 +117,17 @@ TIA::setOption(Option opt, i64 value)
 
             config.revision = TIARevision(value);
             monitor.updateColors();
-            return;
+            break;
+
+        case OPT_TIA_COLLISIONS:
+
+            config.collisionMask = u16(value);
+            break;
 
         case OPT_TIA_POWER_SAVE:
 
             config.powerSave = bool(value);
-            return;
+            break;
 
         default:
             fatalError;

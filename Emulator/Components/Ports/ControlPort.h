@@ -118,10 +118,13 @@ public:
 
     // Updates the control port bits (must be called before reading)
     void updateControlPort();
-    
-    // Returns the control port bits as set by the mouse
-    u8 getControlPort() const;
-    
+
+    // Reads the port bits that show up in the PIA's data port registers
+    u8 getPiaBits() const;
+
+    // Reads the port bits that show up in the TIA's input registers
+    u8 getTiaBits() const;
+
     // Updates the pot bits (must be called before reading)
     void updatePotX();
     void updatePotY();

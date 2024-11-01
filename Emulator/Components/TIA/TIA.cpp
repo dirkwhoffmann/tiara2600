@@ -16,6 +16,9 @@
 
 namespace tiara {
 
+// REMOVE ASAP
+static u32 oldcx = 0;
+
 void
 TIA::_initialize()
 {
@@ -30,20 +33,21 @@ TIA::_initialize()
 
         u32 collision =
         (m0 && p0) << 0  | // CXM0P
-        (m0 && p1) << 1  | // .
+        (m0 && p1) << 1  | //
         (m1 && p1) << 2  | // CXM1P
-        (m1 && p0) << 3  | // .
+        (m1 && p0) << 3  | //
         (p0 && bl) << 4  | // CXP0FB
-        (p0 && pf) << 5  | // .
+        (p0 && pf) << 5  | //
         (p1 && bl) << 6  | // CXP1FB
-        (p1 && pf) << 7  | // .
+        (p1 && pf) << 7  | //
         (m0 && bl) << 8  | // CXM0FB
-        (m0 && pf) << 9  | // .
+        (m0 && pf) << 9  | //
         (m1 && bl) << 10 | // CXM1FB
-        (m1 && pf) << 11 | // .
-        (bl && pf) << 12 | // CXBLPF
-        (m0 && m1) << 13 | // CXPPMM
-        (p0 && p1) << 14 ; // .
+        (m1 && pf) << 11 | //
+        /* unused */       // CXBLPF
+        (bl && pf) << 13 | //
+        (m0 && m1) << 14 | // CXPPMM
+        (p0 && p1) << 15 ; //
 
         for (isize pfp = 0; pfp < 2; pfp++) {
             for (isize score = 0; score < 2; score++) {
@@ -197,6 +201,8 @@ u8
 TIA::spy(u16 addr) const
 {
     auto setCX = [&](u8 val) { return u8((val & 0xC0) | (atari.dataBus & 0x3F)); };
+    auto setINP = [&](bool val) { return u8((atari.dataBus & 0x3F) | (val ? 0x80 : 0x00)); };
+    auto mask = [&]() { return 0; }; // cx & config.collisionMask; };
 
     switch (TIARegister(addr)) {
 
@@ -207,14 +213,21 @@ TIA::spy(u16 addr) const
 
         case TIA_CTRLPF:    return ctrlpf;
 
-        case TIA_CXM0P:     return setCX(u8(cx << 6));
-        case TIA_CXM1P:     return setCX(u8(cx << 4));
-        case TIA_CXP0FB:    return setCX(u8(cx << 2));
-        case TIA_CXP1FB:    return setCX(u8(cx << 0));
-        case TIA_CXM0FB:    return setCX(u8(cx >> 2));
-        case TIA_CXM1FB:    return setCX(u8(cx >> 4));
-        case TIA_CXBLPF:    return setCX(u8(cx >> 6));
-        case TIA_CXPPMM:    return setCX(u8(cx >> 8));
+        case TIA_CXM0P:     return setCX(u8(mask() << 6));
+        case TIA_CXM1P:     return setCX(u8(mask() << 4));
+        case TIA_CXP0FB:    return setCX(u8(mask() << 2));
+        case TIA_CXP1FB:    return setCX(u8(mask() << 0));
+        case TIA_CXM0FB:    return setCX(u8(mask() >> 2));
+        case TIA_CXM1FB:    return setCX(u8(mask() >> 4));
+        case TIA_CXBLPF:    return setCX(u8(mask() >> 6));
+        case TIA_CXPPMM:    return setCX(u8(mask() >> 8));
+
+        case TIA_INPT0:     return setINP(0);
+        case TIA_INPT1:     return setINP(0);
+        case TIA_INPT2:     return setINP(0);
+        case TIA_INPT3:     return setINP(0);
+        case TIA_INPT4:     return setINP(GET_BIT(port1.getTiaBits(), 4));
+        case TIA_INPT5:     return setINP(GET_BIT(port1.getTiaBits(), 5));
 
         default:
             return 0;
@@ -435,7 +448,7 @@ TIA::execute()
     //
     // Extra-clock logic
     //
-    
+
     blec.execute(phi1, phi2, sec.get(), hmc);
     m0ec.execute(phi1, phi2, sec.get(), hmc);
     m1ec.execute(phi1, phi2, sec.get(), hmc);
@@ -477,12 +490,12 @@ TIA::execute()
     //
 
     /*
-    auto blecEnabled = false;
-    auto m0ecEnabled = false;
-    auto m1ecEnabled = false;
-    auto p0ecEnabled = false;
-    auto p1ecEnabled = false;
-    */
+     auto blecEnabled = false;
+     auto m0ecEnabled = false;
+     auto m1ecEnabled = false;
+     auto p0ecEnabled = false;
+     auto p1ecEnabled = false;
+     */
     auto blecEnabled = phi1 && blec.enabled();
     auto m0ecEnabled = phi1 && m0ec.enabled();
     auto m1ecEnabled = phi1 && m1ec.enabled();
@@ -512,6 +525,10 @@ TIA::execute()
     auto lup = lookup[pfp][score][right][index]; // TODO: [PFP][SCORE][RIGHT]
     cx |= lup.collison;
 
+    if (oldcx != cx) {
+        trace(true, "Collision %x!!!\n", cx);
+        oldcx = cx;
+    }
 
     //
     // Drawing

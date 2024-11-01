@@ -169,7 +169,10 @@ public:
 public:
 
     // Reads the port bits that show up in the PIA's data port registers
-    u8 getControlPort() const;
+    u8 getPiaBits() const;
+
+    // Reads the port bits that show up in the TIA's input registers
+    u8 getTiaBits() const;
 
     // Triggers a gamepad event
     void trigger(GamePadAction event);
