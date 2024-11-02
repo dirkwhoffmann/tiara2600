@@ -178,10 +178,9 @@ class BreakTableView: GuardTableView {
             // emu?.suspend()
 
             if row < numRows {
-                try? breakpoints.set(at: addr)
-            } else {
-                assert(row < numRows)
                 try? breakpoints.replace(nr: row, addr: addr)
+            } else {
+                try? breakpoints.set(at: addr)
             }
 
             inspector.cpuInstrView.jumpTo(addr: addr)

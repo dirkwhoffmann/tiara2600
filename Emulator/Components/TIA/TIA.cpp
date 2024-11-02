@@ -202,16 +202,11 @@ TIA::spy(u16 addr) const
 {
     auto setCX = [&](u8 val) { return u8((val & 0xC0) | (atari.dataBus & 0x3F)); };
     auto setINP = [&](bool val) { return u8((atari.dataBus & 0x3F) | (val ? 0x80 : 0x00)); };
-    auto mask = [&]() { return 0; }; // cx & config.collisionMask; };
+    auto mask = [&]() { return cx & config.collisionMask; };
 
-    switch (TIARegister(addr)) {
+    auto reg = TIARegister(addr | 0x30);
 
-        case TIA_COLUP0:    return colup0;
-        case TIA_COLUP1:    return colup1;
-        case TIA_COLUPF:    return colupf;
-        case TIA_COLUBK:    return colubk;
-
-        case TIA_CTRLPF:    return ctrlpf;
+    switch (reg) {
 
         case TIA_CXM0P:     return setCX(u8(mask() << 6));
         case TIA_CXM1P:     return setCX(u8(mask() << 4));
@@ -221,7 +216,6 @@ TIA::spy(u16 addr) const
         case TIA_CXM1FB:    return setCX(u8(mask() >> 4));
         case TIA_CXBLPF:    return setCX(u8(mask() >> 6));
         case TIA_CXPPMM:    return setCX(u8(mask() >> 8));
-
         case TIA_INPT0:     return setINP(0);
         case TIA_INPT1:     return setINP(0);
         case TIA_INPT2:     return setINP(0);
@@ -230,6 +224,10 @@ TIA::spy(u16 addr) const
         case TIA_INPT5:     return setINP(GET_BIT(port1.getTiaBits(), 5));
 
         default:
+
+            debug(TIA_REG_DEBUG,
+                  "Ignoring READ from TIA register %s\n", TIARegisterEnum::key(reg));
+
             return 0;
     }
 }
@@ -522,11 +520,11 @@ TIA::execute()
     (p1.get() ? (1 << TIA_P1) : 0) ;
 
     bool right = (x >= 148);
-    auto lup = lookup[pfp][score][right][index]; // TODO: [PFP][SCORE][RIGHT]
+    auto lup = lookup[pfp][score][right][index];
     cx |= lup.collison;
 
     if (oldcx != cx) {
-        trace(true, "Collision %x!!!\n", cx);
+        // trace(true, "Collision %x!!!\n", cx);
         oldcx = cx;
     }
 
