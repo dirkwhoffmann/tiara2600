@@ -4,6 +4,7 @@ target_sources(tiaraCore PRIVATE
 
 BeamTraps.cpp
 Ball.cpp
+Detector.cpp
 Player.cpp
 Playfield.cpp
 TIABase.cpp

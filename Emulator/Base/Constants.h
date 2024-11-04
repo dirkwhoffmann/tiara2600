@@ -23,49 +23,51 @@ static const long TIA_CYCLES_PER_LINE   = 228;
 static const long CPU_CYCLES_PER_LINE   = 76;
 
 static const long FIRST_VISIBLE_PIXEL   = 68;
-static const long FIRST_VISIBLE_LINE    = 40;
+// static const long FIRST_VISIBLE_LINE    = 40;
 static const long VISIBLE_WIDTH         = 160;
 
 namespace NTSC {
 
-static const long FPS                   = 50;
-
-static const long TIA_CLOCK_FREQUENCY   = 3579545;   ///< Color clock frequency in Hz
-static const long TIA_CYCLES_PER_SEC    = TIA_CLOCK_FREQUENCY;
-
-static const long CPU_CLOCK_FREQUENCY   = 1193182;   ///< Color clock divided by three
-static const long CPU_CYCLES_PER_SEC    = CPU_CLOCK_FREQUENCY;
-
-static const long TIA_CYCLES_PER_LINE   = tiara::TIA_CYCLES_PER_LINE;
-static const long CPU_CYCLES_PER_LINE   = tiara::CPU_CYCLES_PER_LINE;
+static const long FPS                   = 60;
 
 static const long WIDTH                 = tiara::TIA_CYCLES_PER_LINE;
 static const long HEIGHT                = 262;
 static const long FIRST_VISIBLE_PIXEL   = tiara::FIRST_VISIBLE_PIXEL;
-static const long FIRST_VISIBLE_LINE    = tiara::FIRST_VISIBLE_LINE;
+static const long FIRST_VISIBLE_LINE    = 20;
 static const long VISIBLE_WIDTH         = tiara::VISIBLE_WIDTH;
-static const long VISIBLE_HEIGHT        = 192;
+static const long VISIBLE_HEIGHT        = 234;
+
+static const long TIA_CLOCK_FREQUENCY   = 3579545;   ///< Color clock frequency in Hz
+static const long TIA_CYCLES_PER_SEC    = TIA_CLOCK_FREQUENCY;
+static const long TIA_CYCLES_PER_LINE   = tiara::TIA_CYCLES_PER_LINE;
+static const long TIA_CYCLES_PER_FRAME  = HEIGHT * TIA_CYCLES_PER_LINE;
+
+static const long CPU_CLOCK_FREQUENCY   = 1193182;   ///< Color clock divided by three
+static const long CPU_CYCLES_PER_SEC    = CPU_CLOCK_FREQUENCY;
+static const long CPU_CYCLES_PER_LINE   = tiara::CPU_CYCLES_PER_LINE;
+static const long CPU_CYCLES_PER_FRAME  = HEIGHT * CPU_CYCLES_PER_LINE;
 
 }
 namespace PAL {
 
-static const long FPS                   = 60;
-
-static const long TIA_CLOCK_FREQUENCY   = 3546894;   ///< Color clock frequency in Hz
-static const long TIA_CYCLES_PER_SEC    = TIA_CLOCK_FREQUENCY;
-
-static const long CPU_CLOCK_FREQUENCY   = 1182298;   ///< Color clock divided by three
-static const long CPU_CYCLES_PER_SEC    = CPU_CLOCK_FREQUENCY;
-
-static const long TIA_CYCLES_PER_LINE   = tiara::TIA_CYCLES_PER_LINE;
-static const long CPU_CYCLES_PER_LINE   = tiara::CPU_CYCLES_PER_LINE;
+static const long FPS                   = 50;
 
 static const long WIDTH                 = tiara::TIA_CYCLES_PER_LINE;
 static const long HEIGHT                = 312;
 static const long FIRST_VISIBLE_PIXEL   = tiara::FIRST_VISIBLE_PIXEL;
-static const long FIRST_VISIBLE_LINE    = tiara::FIRST_VISIBLE_LINE;
+static const long FIRST_VISIBLE_LINE    = 24;
 static const long VISIBLE_WIDTH         = tiara::VISIBLE_WIDTH;
-static const long VISIBLE_HEIGHT        = 228;
+static const long VISIBLE_HEIGHT        = 280;
+
+static const long TIA_CLOCK_FREQUENCY   = 3546894;   ///< Color clock frequency in Hz
+static const long TIA_CYCLES_PER_SEC    = TIA_CLOCK_FREQUENCY;
+static const long TIA_CYCLES_PER_LINE   = tiara::TIA_CYCLES_PER_LINE;
+static const long TIA_CYCLES_PER_FRAME  = HEIGHT * TIA_CYCLES_PER_LINE;
+
+static const long CPU_CLOCK_FREQUENCY   = 1182298;   ///< Color clock divided by three
+static const long CPU_CYCLES_PER_SEC    = CPU_CLOCK_FREQUENCY;
+static const long CPU_CYCLES_PER_LINE   = tiara::CPU_CYCLES_PER_LINE;
+static const long CPU_CYCLES_PER_FRAME  = HEIGHT * CPU_CYCLES_PER_LINE;
 
 }
 

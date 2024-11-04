@@ -38,7 +38,10 @@ public:
     Atari ahead = Atari(*this, 1);
 
 private:
-    
+
+    // Used to sync the thread
+    Cycle baseCycle = 0;
+
     // Indicates if the run-ahead instance needs to be updated
     bool isDirty = true;
 
@@ -132,6 +135,7 @@ private:
     bool shouldWarp();
     isize missingFrames() const override;
     void computeFrame() override;
+    void resync() override;
 
     void _powerOn() override { main.powerOn(); }
     void _powerOff() override { main.powerOff(); }

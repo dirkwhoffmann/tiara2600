@@ -55,7 +55,7 @@ protected:
 
     // Time stamps
     util::Time baseTime;
-    
+
     // Clocks for measuring the CPU load
     util::Clock nonstopClock;
     util::Clock loadClock;
@@ -104,7 +104,7 @@ public:
     // Performs a state change
     void switchState(ExecState newState);
 
-private:
+protected:
 
     // Updates the emulator state (implemented by the subclass)
     virtual void update() = 0;
@@ -119,7 +119,7 @@ private:
     virtual void computeFrame() = 0;
 
     // Rectifies an out-of-sync condition. Resets all counters and clocks.
-    void resync();
+    virtual void resync();
 
     /** The thread's main entry point.
      *

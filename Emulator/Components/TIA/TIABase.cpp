@@ -115,8 +115,12 @@ TIA::setOption(Option opt, i64 value)
 
         case OPT_TIA_REVISION:
 
-            config.revision = TIARevision(value);
-            monitor.updateColors();
+            if (config.revision != TIARevision(value)) {
+
+                config.revision = TIARevision(value);
+                monitor.updateColors();
+                msgQueue.put(MSG_TIA_REVISION, value);
+            }
             break;
 
         case OPT_TIA_COLLISIONS:

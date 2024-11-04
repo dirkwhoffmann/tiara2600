@@ -19,6 +19,7 @@
 #include "Player.h"
 #include "Missile.h"
 #include "Ball.h"
+#include "Detector.h"
 #include "Constants.h"
 
 namespace tiara {
@@ -41,43 +42,46 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
 
     static constexpr TIATraits traits[3] = {
         {
-            .revision       = TIA_NTSC,
+            .revision           = TIA_NTSC,
 
-            .cpuFrequency   = NTSC::CPU_CLOCK_FREQUENCY,
-            .fps            = NTSC::FPS,
+            .cpuFrequency       = NTSC::CPU_CLOCK_FREQUENCY,
+            .cpuCyclesPerFrame  = NTSC::CPU_CYCLES_PER_FRAME,
+            .fps                = NTSC::FPS,
 
-            .width          = NTSC::WIDTH,
-            .height         = NTSC::HEIGHT,
-            .hblankWidth    = NTSC::FIRST_VISIBLE_PIXEL,
-            .vblankHeight   = NTSC::FIRST_VISIBLE_LINE,
-            .visibleWidth   = NTSC::VISIBLE_WIDTH,
-            .visibleHeight  = NTSC::VISIBLE_HEIGHT
+            .width              = NTSC::WIDTH,
+            .height             = NTSC::HEIGHT,
+            .hblankWidth        = NTSC::FIRST_VISIBLE_PIXEL,
+            .vblankHeight       = NTSC::FIRST_VISIBLE_LINE,
+            .visibleWidth       = NTSC::VISIBLE_WIDTH,
+            .visibleHeight      = NTSC::VISIBLE_HEIGHT
         },
         {
-            .revision       = TIA_PAL,
+            .revision           = TIA_PAL,
 
-            .cpuFrequency   = PAL::CPU_CLOCK_FREQUENCY,
-            .fps            = PAL::FPS,
+            .cpuFrequency       = PAL::CPU_CLOCK_FREQUENCY,
+            .cpuCyclesPerFrame  = PAL::CPU_CYCLES_PER_FRAME,
+            .fps                = PAL::FPS,
 
-            .width          = PAL::WIDTH,
-            .height         = PAL::HEIGHT,
-            .hblankWidth    = PAL::FIRST_VISIBLE_PIXEL,
-            .vblankHeight   = PAL::FIRST_VISIBLE_LINE,
-            .visibleWidth   = PAL::VISIBLE_WIDTH,
-            .visibleHeight  = PAL::VISIBLE_HEIGHT
+            .width              = PAL::WIDTH,
+            .height             = PAL::HEIGHT,
+            .hblankWidth        = PAL::FIRST_VISIBLE_PIXEL,
+            .vblankHeight       = PAL::FIRST_VISIBLE_LINE,
+            .visibleWidth       = PAL::VISIBLE_WIDTH,
+            .visibleHeight      = PAL::VISIBLE_HEIGHT
         },
         {
-            .revision       = TIA_SECAM,
+            .revision           = TIA_SECAM,
 
-            .cpuFrequency   = PAL::CPU_CLOCK_FREQUENCY,
-            .fps            = PAL::FPS,
+            .cpuFrequency       = PAL::CPU_CLOCK_FREQUENCY,
+            .cpuCyclesPerFrame  = PAL::CPU_CYCLES_PER_FRAME,
+            .fps                = PAL::FPS,
 
-            .width          = PAL::WIDTH,
-            .height         = PAL::HEIGHT,
-            .hblankWidth    = PAL::FIRST_VISIBLE_PIXEL,
-            .vblankHeight   = PAL::FIRST_VISIBLE_LINE,
-            .visibleWidth   = PAL::VISIBLE_WIDTH,
-            .visibleHeight  = PAL::VISIBLE_HEIGHT
+            .width              = PAL::WIDTH,
+            .height             = PAL::HEIGHT,
+            .hblankWidth        = PAL::FIRST_VISIBLE_PIXEL,
+            .vblankHeight       = PAL::FIRST_VISIBLE_LINE,
+            .visibleWidth       = PAL::VISIBLE_WIDTH,
+            .visibleHeight      = PAL::VISIBLE_HEIGHT
         }
     };
 
@@ -90,6 +94,17 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
 
     // Current configuration
     TIAConfig config{};
+
+
+    //
+    // Subcomponents
+    //
+
+public:
+
+    // Host system information
+    Detector detector = Detector(atari);
+
 
     //
     // Objects
@@ -151,8 +166,6 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
     // Collision bits
     u32 cx{};
 
-    // Input bits
-    // mutable u8 inpt{};
 
 
     //

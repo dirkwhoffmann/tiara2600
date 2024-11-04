@@ -515,7 +515,7 @@ public:
     // Finishes up the current line
     // void eolHandler();
 
-    // Start-of-frame and End-of-frame handlers
+    // Frame handlers
     void sofHandler();
     void eofHandler();
 

@@ -29,8 +29,6 @@ enum_long(COMP_TYPE)
     HostClass,
     MemoryClass,
     PIAClass,
-    // SIDClass,
-    // SIDBridgeClass,
     TIAClass,
     TODClass,
 
@@ -45,6 +43,9 @@ enum_long(COMP_TYPE)
     JoystickClass,
     MonitorClass,
     MouseClass,
-    PaddleClass
+    PaddleClass,
+
+    // Misc
+    DetectorClass
 };
 typedef COMP_TYPE CType;

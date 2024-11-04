@@ -56,8 +56,7 @@ enum_long(MSG_TYPE)
     // TIA
     // MSG_BEAMTRAP_UPDATED,   ///< The beamtrap list has beed modified
     MSG_BEAMTRAP_REACHED,   ///< A beam position from the beamtrap list has been reached
-    MSG_PAL,                ///< The emulator runs in PAL mode now
-    MSG_NTSC,               ///< The emulator runs in NTSC mode now
+    MSG_TIA_REVISION,       ///< TIA revision change
 
     // Serial Port (IEC Bus)
     MSG_SER_BUSY,           ///< The IEC bus is transferring data
@@ -138,8 +137,7 @@ struct MsgTypeEnum : util::Reflection<MsgTypeEnum, MsgType> {
             case MSG_CPU_JUMPED:            return "CPU_JUMPED";
             case MSG_CPU_JAMMED:            return "CPU_JAMMED";
 
-            case MSG_PAL:                   return "PAL";
-            case MSG_NTSC:                  return "NTSC";
+            case MSG_TIA_REVISION:          return "TIA_REVISION";
 
             case MSG_SER_BUSY:              return "SER_BUSY";
             case MSG_SER_IDLE:              return "SER_IDLE";

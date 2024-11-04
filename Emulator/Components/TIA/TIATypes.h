@@ -285,6 +285,7 @@ typedef struct
 
     // Clock frequency and frame refresh rate
     isize cpuFrequency;
+    isize cpuCyclesPerFrame;
     isize fps;
 
     // Total canvas size (including unvisible areas)

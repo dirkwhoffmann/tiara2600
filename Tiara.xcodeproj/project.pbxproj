@@ -233,6 +233,8 @@
 		50B1A61F25A2386F00201A2C /* HIDExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1A61E25A2386F00201A2C /* HIDExtensions.swift */; };
 		50B485FD24FA1D3200844133 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B485FC24FA1D3200844133 /* iCarousel.m */; };
 		50B579B7281436F6001D8621 /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B579B5281436F6001D8621 /* StringUtils.cpp */; };
+		50B6EE002CD764C30020D696 /* Detector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B6EDFF2CD764C00020D696 /* Detector.cpp */; };
+		50B6EE012CD764C30020D696 /* Detector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B6EDFF2CD764C00020D696 /* Detector.cpp */; };
 		50B7566C2617703100CE1865 /* RessourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B7566B2617703100CE1865 /* RessourceManager.swift */; };
 		50B7E26C2813F8C400A405A3 /* TextStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B7E26A2813F8C400A405A3 /* TextStorage.cpp */; };
 		50B929F221C2B5C90039E8F2 /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B929F121C2B5C90039E8F2 /* PreferencesWindow.swift */; };
@@ -630,6 +632,8 @@
 		50B485FE24FA1D4100844133 /* iCarousel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		50B579B5281436F6001D8621 /* StringUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StringUtils.cpp; sourceTree = "<group>"; };
 		50B579B6281436F6001D8621 /* StringUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringUtils.h; sourceTree = "<group>"; };
+		50B6EDFE2CD764B90020D696 /* Detector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Detector.h; sourceTree = "<group>"; };
+		50B6EDFF2CD764C00020D696 /* Detector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Detector.cpp; sourceTree = "<group>"; };
 		50B7566B2617703100CE1865 /* RessourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RessourceManager.swift; sourceTree = "<group>"; };
 		50B7E2692813F8B000A405A3 /* RetroShellTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RetroShellTypes.h; sourceTree = "<group>"; };
 		50B7E26A2813F8C400A405A3 /* TextStorage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextStorage.cpp; sourceTree = "<group>"; };
@@ -1182,8 +1186,8 @@
 				5078BEB4264D735D00EDA161 /* CMakeLists.txt */,
 				504104432CA681E90004860E /* TIATypes.h */,
 				5041044A2CA6910F0004860E /* TIAComponents.h */,
-				504104472CA687610004860E /* TIABase.cpp */,
 				5041044B2CA6913E0004860E /* TIAComponents.cpp */,
+				504104472CA687610004860E /* TIABase.cpp */,
 				504104422CA67F650004860E /* TIA.h */,
 				504104442CA687300004860E /* TIA.cpp */,
 				501034692CBD38B2007DEEE0 /* Playfield.h */,
@@ -1194,6 +1198,8 @@
 				50EF6F0A2CC25F9000B4642F /* Missile.cpp */,
 				50EF6F052CC0DBD600B4642F /* Ball.h */,
 				50EF6F062CC0DBDC00B4642F /* Ball.cpp */,
+				50B6EDFE2CD764B90020D696 /* Detector.h */,
+				50B6EDFF2CD764C00020D696 /* Detector.cpp */,
 				50DBB3D22641107E006F45E6 /* LogicAnalyzerTypes.h */,
 				50DBB3D02641101E006F45E6 /* LogicAnalyzer.h */,
 				508C1E5C2C0B31320097473C /* LogicAnalyzerBase.cpp */,
@@ -1712,6 +1718,7 @@
 				50E83D4C2CAE752700308A1C /* CartPortBase.cpp in Sources */,
 				50726F402961C97B0031F2F5 /* IOUtils.cpp in Sources */,
 				50726F572961C9A10031F2F5 /* PIA.cpp in Sources */,
+				50B6EE002CD764C30020D696 /* Detector.cpp in Sources */,
 				50726F3F2961C97B0031F2F5 /* StringUtils.cpp in Sources */,
 				50726FBD2961CA5A0031F2F5 /* Headless.cpp in Sources */,
 				50726FAF2961CA1C0031F2F5 /* Script.cpp in Sources */,
@@ -1821,6 +1828,7 @@
 				50F5B6A22959C44E000457A0 /* Host.cpp in Sources */,
 				507A499C24C8D64700DBF984 /* InstrTableView.swift in Sources */,
 				504104482CA68BBD0004860E /* TIABase.cpp in Sources */,
+				50B6EE012CD764C30020D696 /* Detector.cpp in Sources */,
 				5038CA9320B6C298000D9193 /* PIAPanel.swift in Sources */,
 				50BE4B6E24E7FBE1008F39C9 /* Datatypes.swift in Sources */,
 				5009CF3324C0B8EF00F674FF /* Preferences.swift in Sources */,

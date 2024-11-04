@@ -613,6 +613,14 @@ TIA::sofHandler()
 void
 TIA::eofHandler()
 {
+    // Run the video standard predictor
+    detector.eofHandler();
+    auto prediction = detector.predict();
+    if (tia.getConfig().revision != prediction) {
+        trace(true, "Switching to %s\n", TIARevisionEnum::key(prediction));
+        setOption(OPT_TIA_REVISION, prediction);
+    }
+
     // Only proceed if the current frame hasn't been executed in headless mode
     if (atari.getHeadless()) return;
 

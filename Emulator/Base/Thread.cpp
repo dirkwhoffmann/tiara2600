@@ -54,7 +54,7 @@ Thread::execute()
     // Determine the number of overdue frames
     isize missing = warp ? 1 : missingFrames();
 
-    if (std::abs(missing) <= 5) {
+    if (std::abs(missing) <= 15) {
 
         loadClock.go();
         try {

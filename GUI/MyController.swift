@@ -371,7 +371,7 @@ extension MyController {
         case .CPU_JUMPED:
             inspector?.signalGoto(pc: pc)
 
-        case .PAL, .NTSC:
+        case .TIA_REVISION:
             renderer.canvas.updateTextureRect()
 
         case .DRIVE_STEP, .DISK_INSERT, .DISK_EJECT:

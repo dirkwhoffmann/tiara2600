@@ -250,18 +250,21 @@ isize
 Emulator::missingFrames() const
 {
     auto &config = main.getConfig();
+    auto &traits = main.tia.getTraits();
 
     // In VSYNC mode, compute exactly one frame per wakeup call
     if (config.vsync) return 1;
 
-    // Compute the elapsed time
-    auto elapsed = util::Time::now() - baseTime;
+    // Compute the elapsed time and elapsed cycles
+    auto elapsedTime = util::Time::now() - baseTime;
+    auto elapsedCycles = main.cpu.clock - baseCycle;
 
-    // Compute which frame should be reached by now
-    auto target = elapsed.asNanoseconds() * i64(main.refreshRate()) / 1000000000;
+    // Compute the number of missing cycles
+    auto targetCycle = Cycle(elapsedTime.asSeconds() * main.refreshRate() * traits.cpuCyclesPerFrame);
+    auto missingCycles = targetCycle - elapsedCycles;
 
     // Compute the number of missing frames
-    return isize(target - frameCounter);
+    return isize(missingCycles / traits.cpuCyclesPerFrame);
 }
 
 void
@@ -293,6 +296,13 @@ Emulator::computeFrame()
         // Only run the main instance
         main.computeFrame();
     }
+}
+
+void
+Emulator::resync()
+{
+    Thread::resync();
+    baseCycle = main.cpu.clock;
 }
 
 void
