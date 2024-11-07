@@ -506,45 +506,48 @@ TIA::execute()
     if (p0ecEnabled) p0.execute(true, strobe == TIA_RESP0);
     if (p1ecEnabled) p1.execute(true, strobe == TIA_RESP1);
 
-
     //
-    // Collision logic
-    //
-
-    isize index =
-    (pf.get() ? (1 << TIA_PF) : 0) |
-    (bl.get() ? (1 << TIA_BL) : 0) |
-    (m0.get() ? (1 << TIA_M0) : 0) |
-    (m1.get() ? (1 << TIA_M1) : 0) |
-    (p0.get() ? (1 << TIA_P0) : 0) |
-    (p1.get() ? (1 << TIA_P1) : 0) ;
-
-    bool right = (x >= 148);
-    auto lup = lookup[pfp][score][right][index];
-    cx |= lup.collison;
-
-    if (oldcx != cx) {
-        // trace(true, "Collision %x!!!\n", cx);
-        oldcx = cx;
-    }
-
-    //
-    // Drawing
+    // Drawing and collisons
     //
 
-    assert(x < Texture::width);
-    assert(y < Texture::height);
+    if (!vb) {
 
-    if (hb.get()) {
+        isize index =
+        (pf.get() ? (1 << TIA_PF) : 0) |
+        (bl.get() ? (1 << TIA_BL) : 0) |
+        (m0.get() ? (1 << TIA_M0) : 0) |
+        (m1.get() ? (1 << TIA_M1) : 0) |
+        (p0.get() ? (1 << TIA_P0) : 0) |
+        (p1.get() ? (1 << TIA_P1) : 0) ;
 
-        TIAColor color = lup.color;
-        assert(color >= 0 && color < 4);
-        emuTexture[y * Texture::width + x] = rgba[color];
+        bool right = (x >= 148);
+        auto lup = lookup[pfp][score][right][index];
+        cx |= lup.collison;
+
+        if (oldcx != cx) {
+            // trace(true, "Collision %x!!!\n", cx);
+            oldcx = cx;
+        }
+
+        assert(x < Texture::width);
+        assert(y < Texture::height);
+
+        if (hb.get()) {
+
+            TIAColor color = lup.color;
+            assert(color >= 0 && color < 4);
+            emuTexture[y * Texture::width + x] = rgba[color];
+
+        } else {
+
+            emuTexture[y * Texture::width + x] = 0xFF000000;
+        }
 
     } else {
 
         emuTexture[y * Texture::width + x] = 0xFF000000;
     }
+
 
     //
     // TIA objects (normal cycles)
