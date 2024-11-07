@@ -89,7 +89,7 @@ class DropZone: Layer {
         open(delay: delay)
         resize()
     }
-    
+
     override func update(frames: Int64) {
         
         super.update(frames: frames)

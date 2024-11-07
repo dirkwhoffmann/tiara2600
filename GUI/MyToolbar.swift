@@ -16,7 +16,7 @@ class MyToolbar: NSToolbar {
     // References to toolbar items
     @IBOutlet weak var controlPort1Item: NSToolbarItem!
     @IBOutlet weak var controlPort2Item: NSToolbarItem!
-    @IBOutlet weak var keyboardItem: NSToolbarItem!
+    @IBOutlet weak var slidersItem: NSToolbarItem!
     @IBOutlet weak var preferencesItem: NSToolbarItem!
     @IBOutlet weak var controlsItem: NSToolbarItem!
 
@@ -37,7 +37,7 @@ class MyToolbar: NSToolbar {
 
         controlPort1Item.menuFormRepresentation = nil
         controlPort2Item.menuFormRepresentation = nil
-        keyboardItem.menuFormRepresentation = nil
+        slidersItem.menuFormRepresentation = nil
         preferencesItem.menuFormRepresentation = nil
         controlsItem.menuFormRepresentation = nil
     }
@@ -118,7 +118,8 @@ class MyToolbar: NSToolbar {
         }
     }
 
-    @IBAction func keyboardAction(_ sender: Any!) {
+    @IBAction func switchesAction(_ sender: Any!) {
+
         
     }
     

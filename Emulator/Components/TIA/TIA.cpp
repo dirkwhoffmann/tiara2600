@@ -326,8 +326,8 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
             unsupported();
             break;
 
-        case TIA_GRP0:      p0.pokeGRP(val); break;
-        case TIA_GRP1:      bl.vshift(); p1.pokeGRP(val); break;
+        case TIA_GRP0:      p0.pokeGRP(val); p1.vshift(); break;
+        case TIA_GRP1:      p1.pokeGRP(val); p0.vshift(); bl.vshift(); break;
         case TIA_ENAM0:     m0.pokeENAM(val); break;
         case TIA_ENAM1:     m1.pokeENAM(val); break;
         case TIA_ENABL:     bl.pokeENABL(val); break;
@@ -336,8 +336,8 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
         case TIA_HMM0:      strobe = reg; break;
         case TIA_HMM1:      strobe = reg; break;
         case TIA_HMBL:      strobe = reg; break;
-        case TIA_VDELP0:    unsupported(); break;
-        case TIA_VDELP1:    unsupported(); break;
+        case TIA_VDELP0:    p0.pokeVDELP(val); break;
+        case TIA_VDELP1:    p1.pokeVDELP(val); break;
         case TIA_VDELBL:    bl.pokeVDELBL(val); break;
         case TIA_RESMP0:    m0.pokeRESMP(val); break;
         case TIA_RESMP1:    m1.pokeRESMP(val); break;
