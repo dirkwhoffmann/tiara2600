@@ -329,6 +329,9 @@ using namespace tiara;
 
 - (void)drawHeatmap:(u32 *)buffer w:(NSInteger)w h:(NSInteger)h;
 
+- (NSInteger)peek:(NSInteger)addr;
+- (void)poke:(NSInteger)addr value:(NSInteger)value;
+
 @end
 
 
@@ -345,6 +348,10 @@ using namespace tiara;
 
 - (NSColor *)color:(NSInteger)nr;
 - (UInt32)rgbaColor:(NSInteger)nr palette:(Palette)palette;
+- (void)setColor:(TIARegister)reg color:(NSColor *)color;
+
+- (void)lockReg:(TIARegister)reg;
+- (void)unlockReg:(TIARegister)reg;
 
 @end
 

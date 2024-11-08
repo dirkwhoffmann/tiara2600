@@ -89,6 +89,7 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
 
         OPT_TIA_REVISION,
         OPT_TIA_COLLISIONS,
+        OPT_TIA_REGLOCK,
         OPT_TIA_POWER_SAVE
     };
 
@@ -370,6 +371,9 @@ public:
     //
 
 public:
+
+    // Sets a color register to color best matching the provided RGB color
+    void setColor(TIARegister reg, u8 r, u8 g, u8 b);
 
 
     //

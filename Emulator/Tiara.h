@@ -61,6 +61,14 @@ struct MemoryAPI : API {
     const MemInfo &getInfo() const;
     const MemInfo &getCachedInfo() const;
 
+    /** @brief Reads a byte from memory
+     */
+    u8 peek(u16 addr) const;
+
+    /** @brief Writes a byte into memory
+     */
+    void poke(u16 addr, u8 val);
+
     /** @brief  Returns a string representations for a portion of memory.
      */
     string memdump(u16 addr, isize num, bool hex, isize pads, MemoryType src) const;
@@ -275,6 +283,18 @@ struct TIAAPI : API {
     /** @brief  Returns the RGBA value of a color from a color palette.
      */
     u32 getColor(isize nr, Palette palette) const;
+
+    /** @brief  Selects the color with the best match
+     */
+    void setColor(TIARegister reg, u8 r, u8 g, u8 b);
+
+    /** @brief  Write-protects a register.
+     */
+    void lockReg(TIARegister reg);
+
+    /** @brief  Removes a write-protection from a register.
+     */
+    void unlockReg(TIARegister reg);
 };
 
 

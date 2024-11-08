@@ -70,6 +70,13 @@
 #define BYTE3(x) LO_BYTE((x) >> 24)
 #define GET_BYTE(x,nr) LO_BYTE((x) >> (8 * (nr)))
 
+// Returns a certain nibble of a larger integer
+#define NIBBLE0(x) LO_BYTE(x)
+#define NIBBLE1(x) LO_BYTE((x) >> 4)
+#define NIBBLE2(x) LO_BYTE((x) >> 8)
+#define NIBBLE3(x) LO_BYTE((x) >> 12)
+#define GET_NIBBLE(x,nr) LO_BYTE((x) >> (4 * (nr)))
+
 // Returns a non-zero value if the n-th bit is set in x
 #define GET_BIT(x,nr) ((x) & (1 << (nr)))
 

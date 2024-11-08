@@ -70,7 +70,8 @@ TIA::getOption(Option opt) const
     switch (opt) {
 
         case OPT_TIA_REVISION:        return config.revision;
-        case OPT_TIA_COLLISIONS:      return config.collisionMask;
+        case OPT_TIA_COLLISIONS:      return config.collMask;
+        case OPT_TIA_REGLOCK:         return config.lockMask;
         case OPT_TIA_POWER_SAVE:      return config.powerSave;
 
         default:
@@ -97,6 +98,7 @@ TIA::checkOption(Option opt, i64 value)
             }
             break;
 
+        case OPT_TIA_REGLOCK:
         case OPT_TIA_POWER_SAVE:
 
             break;
@@ -125,7 +127,12 @@ TIA::setOption(Option opt, i64 value)
 
         case OPT_TIA_COLLISIONS:
 
-            config.collisionMask = u16(value);
+            config.collMask = u16(value);
+            break;
+
+        case OPT_TIA_REGLOCK:
+
+            config.lockMask = u64(value);
             break;
 
         case OPT_TIA_POWER_SAVE:

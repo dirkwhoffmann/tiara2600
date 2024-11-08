@@ -161,7 +161,7 @@ public:
     // Updates the color palette
     void updateColors();
 
-    // Computes a C64 color in 32 bit big-endian RGBA format
+    // Computes a C64 color in 32 bit big-endian ABGR format
     // u32 getColor(isize nr, Palette palette);
     u32 getColor(isize nr);
 

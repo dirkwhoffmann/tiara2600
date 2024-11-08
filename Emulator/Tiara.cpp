@@ -633,6 +633,18 @@ MemoryAPI::getCachedInfo() const
     return mem->getCachedInfo();
 }
 
+u8
+MemoryAPI::peek(u16 addr) const
+{
+    return mem->spy(addr);
+}
+
+void
+MemoryAPI::poke(u16 addr, u8 val)
+{
+    mem->poke(addr, val);
+}
+
 string
 MemoryAPI::memdump(u16 addr, isize num, bool hex, isize pads, MemoryType src) const
 {
@@ -719,6 +731,24 @@ u32
 TIAAPI::getColor(isize nr, Palette palette) const
 {
     return 0; // tia->getColor(nr, palette);
+}
+
+void
+TIAAPI::setColor(TIARegister reg, u8 r, u8 g, u8 b)
+{
+    tia->setColor(reg, r, g, b);
+}
+
+void
+TIAAPI::lockReg(TIARegister reg)
+{
+    emu->set(OPT_TIA_REGLOCK, emu->get(OPT_TIA_REGLOCK) | (1 << reg));
+}
+
+void
+TIAAPI::unlockReg(TIARegister reg)
+{
+    emu->set(OPT_TIA_REGLOCK, emu->get(OPT_TIA_REGLOCK) & ~(1 << reg));
 }
 
 

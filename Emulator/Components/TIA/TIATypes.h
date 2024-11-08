@@ -311,8 +311,9 @@ typedef struct
     // Visibility
     // bool hideBall;
 
-    // Collision checks
-    u16 collisionMask;
+    // Collision checking and register protection
+    u16 collMask;
+    u64 lockMask;
 }
 TIAConfig;
 

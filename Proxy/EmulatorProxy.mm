@@ -413,6 +413,16 @@ using namespace tiara;
     return [self mem]->getCachedInfo();
 }
 
+- (NSInteger)peek:(NSInteger)addr
+{
+    return [self mem]->peek(u16(addr));
+}
+
+- (void)poke:(NSInteger)addr value:(NSInteger)value
+{
+    [self mem]->poke(u16(addr), u8(value));
+}
+
 - (NSString *)memdump:(NSInteger)addr num:(NSInteger)num hex:(BOOL)hex src:(MemoryType)src
 {
     return @([self mem]->memdump((u16)addr, num, hex, hex ? 2 : 1, src).c_str());
@@ -515,6 +525,26 @@ using namespace tiara;
 {
     assert (0 <= nr && nr < 16);
     return [self tia]->getColor((unsigned)nr, palette);
+}
+
+- (void)setColor:(TIARegister)reg color:(NSColor *)color
+{
+    auto r = u8(color.redComponent * 255.0);
+    auto g = u8(color.greenComponent * 255.0);
+    auto b = u8(color.blueComponent * 255.0);
+    [self tia]->setColor(reg, r, g, b);
+}
+
+- (void)lockReg:(TIARegister)reg
+{
+    assert (0 <= reg && reg < 64);
+    [self tia]->lockReg(reg);
+}
+
+- (void)unlockReg:(TIARegister)reg
+{
+    assert (0 <= reg && reg < 64);
+    [self tia]->unlockReg(reg);
 }
 
 @end
