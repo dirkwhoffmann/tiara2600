@@ -22,15 +22,15 @@ extension Inspector {
         cacheTIA()
 
         func solidImage(size: NSSize, color: NSColor) -> NSImage {
+
             let image = NSImage(size: size)
+
             image.lockFocus()
-
-            // Set the color and fill the entire image area
             color.setFill()
-            let rect = NSRect(origin: .zero, size: size)
-            rect.fill()
-
+            // let rect = NSRect(origin: .zero, size: size)
+            NSRect(origin: .zero, size: size).fill()
             image.unlockFocus()
+
             return image
         }
 
@@ -89,8 +89,6 @@ extension Inspector {
              */
         }
 
-        let lockImg = NSImage(systemSymbolName: "lock", accessibilityDescription: nil)!
-        let unlockImg = NSImage(systemSymbolName: "lock.open", accessibilityDescription: nil)!
         let mask = emu!.get(.TIA_REGLOCK)
         let lockCOLUP0 = mask & (1 << tiara.TIARegister._COLUP0.rawValue) != 0
         let lockCOLUP1 = mask & (1 << tiara.TIARegister._COLUP1.rawValue) != 0
@@ -101,20 +99,17 @@ extension Inspector {
         tiaCOLUPF.integerValue = Int(tiaInfo.colupf)
         tiaCOLUP0.integerValue = Int(tiaInfo.colup0)
         tiaCOLUP1.integerValue = Int(tiaInfo.colup1)
+
         tiaCOLUBKPopup.selectItem(withTag: Int(tiaInfo.colubk >> 1))
         tiaCOLUPFPopup.selectItem(withTag: Int(tiaInfo.colupf >> 1))
         tiaCOLUP0Popup.selectItem(withTag: Int(tiaInfo.colup0 >> 1))
         tiaCOLUP1Popup.selectItem(withTag: Int(tiaInfo.colup1 >> 1))
 
-        tiaCOLUBKlock.image = lockCOLUBK ? lockImg : unlockImg
-        tiaCOLUPFlock.image = lockCOLUPF ? lockImg : unlockImg
-        tiaCOLUP0lock.image = lockCOLUP0 ? lockImg : unlockImg
-        tiaCOLUP1lock.image = lockCOLUP1 ? lockImg : unlockImg
-        tiaColorWell0.color = emu?.tia.color(Int(tiaInfo.colup0 >> 1)) ?? .white
-        tiaColorWell1.color = emu?.tia.color(Int(tiaInfo.colup1 >> 1)) ?? .white
-        tiaColorWell2.color = emu?.tia.color(Int(tiaInfo.colupf >> 1)) ?? .white
-        tiaColorWell3.color = emu?.tia.color(Int(tiaInfo.colubk >> 1)) ?? .white
-    }
+        tiaCOLUBKlock.isHidden = !lockCOLUBK
+        tiaCOLUPFlock.isHidden = !lockCOLUPF
+        tiaCOLUP0lock.isHidden = !lockCOLUP0
+        tiaCOLUP1lock.isHidden = !lockCOLUP1
+     }
 
     var paletteImage: NSImage? {
 
@@ -191,24 +186,29 @@ extension Inspector {
     }
     */
 
+    func tag2colreg(_ tag: Int) -> tiara.TIARegister {
+
+        switch tag {
+        case 0: return ._COLUBK
+        case 1: return ._COLUPF
+        case 2: return ._COLUP0
+        case 3: return ._COLUP1
+        default: fatalError()
+        }
+    }
+
     @IBAction func tiaColorAction(_ sender: NSPopUpButton!) {
 
         print("colorAction \(sender.tag) \(sender.selectedTag())")
 
-        guard let emu = emu else { return }
-
-        let reg: tiara.TIARegister =
-        sender.tag == 0 ? ._COLUBK :
-        sender.tag == 1 ? ._COLUPF :
-        sender.tag == 2 ? ._COLUP0 : ._COLUP1
-
+        let reg = tag2colreg(sender.tag)
         let val = sender.selectedTag()
 
-        emu.suspend()
-        emu.tia.unlockReg(reg)
-        emu.mem.poke(reg.rawValue, value: (val << 1))
-        emu.tia.lockReg(reg)
-        emu.resume()
+        emu!.suspend()
+        emu!.tia.unlockReg(reg)
+        emu!.mem.poke(reg.rawValue, value: (val << 1))
+        emu!.tia.lockReg(reg)
+        emu!.resume()
 
         refreshTIA()
     }
@@ -216,8 +216,7 @@ extension Inspector {
     @IBAction func tiaColorLockAction(_ sender: NSButton!) {
 
         print("colorLockAction \(sender.tag)")
-
-        // emu?.logicAnalyzer.setColor(sender.tag, color: sender.color)
-        // laLogicView.signalColor[sender.tag] = sender.color
+        emu?.tia.unlockReg(tag2colreg(sender.tag))
+        refreshTIA()
     }
 }

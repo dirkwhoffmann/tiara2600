@@ -198,11 +198,7 @@ class Inspector: DialogController {
     @IBOutlet weak var tiaCOLUPFPopup: NSPopUpButton!
     @IBOutlet weak var tiaCOLUP0Popup: NSPopUpButton!
     @IBOutlet weak var tiaCOLUP1Popup: NSPopUpButton!
-    @IBOutlet weak var tiaColorWell0: NSColorWell!
-    @IBOutlet weak var tiaColorWell1: NSColorWell!
-    @IBOutlet weak var tiaColorWell2: NSColorWell!
-    @IBOutlet weak var tiaColorWell3: NSColorWell!
-
+ 
     @IBOutlet weak var vicScanline: NSTextField!
     @IBOutlet weak var vicRasterCycle: NSTextField!
     @IBOutlet weak var vicYCounter: NSTextField!
