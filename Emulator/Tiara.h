@@ -284,7 +284,11 @@ struct TIAAPI : API {
      */
     u32 getColor(isize nr, Palette palette) const;
 
-    /** @brief  Selects the color with the best match
+    /** @brief  Assigns a color
+     */
+    // void setColor(TIARegister reg, u8 value);
+
+    /** @brief  Sets the color with the best match
      */
     void setColor(TIARegister reg, u8 r, u8 g, u8 b);
 

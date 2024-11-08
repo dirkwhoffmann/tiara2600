@@ -42,24 +42,24 @@ extension Inspector {
 
                 let img = solidImage(size: NSSize(width: 32, height: 16), color: color)
 
-                tiaColorPopup0.addItem(withTitle: "")
-                tiaColorPopup0.lastItem!.tag = tag
-                tiaColorPopup0.lastItem!.image = img
-                tiaColorPopup1.addItem(withTitle: "")
-                tiaColorPopup1.lastItem!.tag = tag
-                tiaColorPopup1.lastItem!.image = img
-                tiaColorPopup2.addItem(withTitle: "")
-                tiaColorPopup2.lastItem!.tag = tag
-                tiaColorPopup2.lastItem!.image = img
-                tiaColorPopup3.addItem(withTitle: "")
-                tiaColorPopup3.lastItem!.tag = tag
-                tiaColorPopup3.lastItem!.image = img
+                tiaCOLUBKPopup.addItem(withTitle: "")
+                tiaCOLUBKPopup.lastItem!.tag = tag
+                tiaCOLUBKPopup.lastItem!.image = img
+                tiaCOLUPFPopup.addItem(withTitle: "")
+                tiaCOLUPFPopup.lastItem!.tag = tag
+                tiaCOLUPFPopup.lastItem!.image = img
+                tiaCOLUP0Popup.addItem(withTitle: "")
+                tiaCOLUP0Popup.lastItem!.tag = tag
+                tiaCOLUP0Popup.lastItem!.image = img
+                tiaCOLUP1Popup.addItem(withTitle: "")
+                tiaCOLUP1Popup.lastItem!.tag = tag
+                tiaCOLUP1Popup.lastItem!.image = img
             }
 
-            tiaColorPopup0.removeAllItems()
-            tiaColorPopup1.removeAllItems()
-            tiaColorPopup2.removeAllItems()
-            tiaColorPopup3.removeAllItems()
+            tiaCOLUBKPopup.removeAllItems()
+            tiaCOLUPFPopup.removeAllItems()
+            tiaCOLUP0Popup.removeAllItems()
+            tiaCOLUP1Popup.removeAllItems()
 
             for i in 0...127 {
                 add(i, color: emu!.tia.color(i)!)
@@ -97,19 +97,19 @@ extension Inspector {
         let lockCOLUBK = mask & (1 << tiara.TIARegister._COLUBK.rawValue) != 0
         let lockCOLUPF = mask & (1 << tiara.TIARegister._COLUPF.rawValue) != 0
 
+        tiaCOLUBK.integerValue = Int(tiaInfo.colubk)
+        tiaCOLUPF.integerValue = Int(tiaInfo.colupf)
         tiaCOLUP0.integerValue = Int(tiaInfo.colup0)
         tiaCOLUP1.integerValue = Int(tiaInfo.colup1)
-        tiaCOLUPF.integerValue = Int(tiaInfo.colupf)
-        tiaCOLUBK.integerValue = Int(tiaInfo.colubk)
-        tiaColorPopup0.selectItem(withTag: Int(tiaInfo.colup0 >> 1))
-        tiaColorPopup1.selectItem(withTag: Int(tiaInfo.colup1 >> 1))
-        tiaColorPopup2.selectItem(withTag: Int(tiaInfo.colupf >> 1))
-        tiaColorPopup3.selectItem(withTag: Int(tiaInfo.colubk >> 1))
+        tiaCOLUBKPopup.selectItem(withTag: Int(tiaInfo.colubk >> 1))
+        tiaCOLUPFPopup.selectItem(withTag: Int(tiaInfo.colupf >> 1))
+        tiaCOLUP0Popup.selectItem(withTag: Int(tiaInfo.colup0 >> 1))
+        tiaCOLUP1Popup.selectItem(withTag: Int(tiaInfo.colup1 >> 1))
 
+        tiaCOLUBKlock.image = lockCOLUBK ? lockImg : unlockImg
+        tiaCOLUPFlock.image = lockCOLUPF ? lockImg : unlockImg
         tiaCOLUP0lock.image = lockCOLUP0 ? lockImg : unlockImg
         tiaCOLUP1lock.image = lockCOLUP1 ? lockImg : unlockImg
-        tiaCOLUPFlock.image = lockCOLUPF ? lockImg : unlockImg
-        tiaCOLUBKlock.image = lockCOLUBK ? lockImg : unlockImg
         tiaColorWell0.color = emu?.tia.color(Int(tiaInfo.colup0 >> 1)) ?? .white
         tiaColorWell1.color = emu?.tia.color(Int(tiaInfo.colup1 >> 1)) ?? .white
         tiaColorWell2.color = emu?.tia.color(Int(tiaInfo.colupf >> 1)) ?? .white
@@ -169,6 +169,7 @@ extension Inspector {
         return resizedImage
     }
 
+    /*
     @IBAction func tiaColorAction(_ sender: NSColorWell!) {
 
         print("colorAction \(sender.tag)")
@@ -185,6 +186,31 @@ extension Inspector {
         emu.tia.setColor(reg, color: sender.color)
         emu.tia.lockReg(reg)
         emu.resume()
+
+        refreshTIA()
+    }
+    */
+
+    @IBAction func tiaColorAction(_ sender: NSPopUpButton!) {
+
+        print("colorAction \(sender.tag) \(sender.selectedTag())")
+
+        guard let emu = emu else { return }
+
+        let reg: tiara.TIARegister =
+        sender.tag == 0 ? ._COLUBK :
+        sender.tag == 1 ? ._COLUPF :
+        sender.tag == 2 ? ._COLUP0 : ._COLUP1
+
+        let val = sender.selectedTag()
+
+        emu.suspend()
+        emu.tia.unlockReg(reg)
+        emu.mem.poke(reg.rawValue, value: (val << 1))
+        emu.tia.lockReg(reg)
+        emu.resume()
+
+        refreshTIA()
     }
 
     @IBAction func tiaColorLockAction(_ sender: NSButton!) {

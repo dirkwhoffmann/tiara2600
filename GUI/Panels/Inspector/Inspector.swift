@@ -194,10 +194,10 @@ class Inspector: DialogController {
     @IBOutlet weak var tiaCOLUP1lock: NSButton!
     @IBOutlet weak var tiaCOLUPFlock: NSButton!
     @IBOutlet weak var tiaCOLUBKlock: NSButton!
-    @IBOutlet weak var tiaColorPopup0: NSPopUpButton!
-    @IBOutlet weak var tiaColorPopup1: NSPopUpButton!
-    @IBOutlet weak var tiaColorPopup2: NSPopUpButton!
-    @IBOutlet weak var tiaColorPopup3: NSPopUpButton!
+    @IBOutlet weak var tiaCOLUBKPopup: NSPopUpButton!
+    @IBOutlet weak var tiaCOLUPFPopup: NSPopUpButton!
+    @IBOutlet weak var tiaCOLUP0Popup: NSPopUpButton!
+    @IBOutlet weak var tiaCOLUP1Popup: NSPopUpButton!
     @IBOutlet weak var tiaColorWell0: NSColorWell!
     @IBOutlet weak var tiaColorWell1: NSColorWell!
     @IBOutlet weak var tiaColorWell2: NSColorWell!

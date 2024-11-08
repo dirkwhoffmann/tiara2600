@@ -152,21 +152,17 @@
                 <outlet property="stepOverButton" destination="XcS-nk-XBp" id="Blq-Hv-IZy"/>
                 <outlet property="stopAndGoButton" destination="DQ4-Ah-ce3" id="hhb-ps-zLf"/>
                 <outlet property="tiaCOLUBK" destination="d4b-wW-Axn" id="OQx-db-5fE"/>
+                <outlet property="tiaCOLUBKPopup" destination="Obv-Fa-Rrd" id="i50-k3-SD5"/>
                 <outlet property="tiaCOLUBKlock" destination="VIF-Qm-6O4" id="JES-4O-L4S"/>
                 <outlet property="tiaCOLUP0" destination="sWy-G4-vyb" id="bXb-yH-Bew"/>
+                <outlet property="tiaCOLUP0Popup" destination="EzX-nE-VFl" id="REA-Xx-qB0"/>
                 <outlet property="tiaCOLUP0lock" destination="lmd-BU-gDP" id="zia-FO-aFA"/>
                 <outlet property="tiaCOLUP1" destination="xsO-Um-RXa" id="1Og-Gh-wjD"/>
+                <outlet property="tiaCOLUP1Popup" destination="fD3-Pf-bYi" id="xxl-rt-xgB"/>
                 <outlet property="tiaCOLUP1lock" destination="VXb-Qm-pMr" id="WkV-lr-dlw"/>
                 <outlet property="tiaCOLUPF" destination="ahF-Dy-IWu" id="1hf-mW-6qm"/>
+                <outlet property="tiaCOLUPFPopup" destination="d1T-7b-Mmc" id="9eD-xq-CQw"/>
                 <outlet property="tiaCOLUPFlock" destination="8I8-Ps-42h" id="le5-Bb-8Cj"/>
-                <outlet property="tiaColorPopup0" destination="Obv-Fa-Rrd" id="i50-k3-SD5"/>
-                <outlet property="tiaColorPopup1" destination="d1T-7b-Mmc" id="9eD-xq-CQw"/>
-                <outlet property="tiaColorPopup2" destination="EzX-nE-VFl" id="REA-Xx-qB0"/>
-                <outlet property="tiaColorPopup3" destination="fD3-Pf-bYi" id="xxl-rt-xgB"/>
-                <outlet property="tiaColorWell0" destination="XhA-ZE-Q9l" id="4Md-zJ-k2M"/>
-                <outlet property="tiaColorWell1" destination="Ovv-5u-spu" id="eiH-tg-ulK"/>
-                <outlet property="tiaColorWell2" destination="Xaw-Z6-ZiT" id="ttO-eR-UV8"/>
-                <outlet property="tiaColorWell3" destination="PeC-TM-6jQ" id="tWp-I6-uNj"/>
                 <outlet property="tiaPalette" destination="0eB-vG-5cu" id="frs-17-Xrt"/>
                 <outlet property="timeStamp" destination="DGV-Ov-f8V" id="dll-ac-LOR"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="4y3-MY-rvW"/>
@@ -2073,7 +2069,7 @@
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                                                 <clipView key="contentView" drawsBackground="NO" id="EqP-5S-dIY">
                                                                     <rect key="frame" x="1" y="1" width="118" height="177"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <tableView wantsLayer="YES" focusRingType="exterior" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="15" headerView="oYx-eh-0z5" id="Dol-9l-TFV" customClass="BankTableView" customModule="Tiara" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="118" height="152"/>
@@ -2132,7 +2128,7 @@
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <clipView key="contentView" drawsBackground="NO" id="uN2-KZ-pod">
                                                                     <rect key="frame" x="1" y="1" width="638" height="177"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <tableView focusRingType="exterior" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="15" headerView="Yjj-no-34g" id="9cm-34-eYe" customClass="MemTableView" customModule="Tiara" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="638" height="152"/>
@@ -2449,30 +2445,6 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <colorWell fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="XhA-ZE-Q9l">
-                                                        <rect key="frame" x="106" y="4" width="44" height="28"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <connections>
-                                                            <action selector="tiaColorAction:" target="-2" id="Z4B-zP-hGc"/>
-                                                        </connections>
-                                                    </colorWell>
-                                                    <colorWell fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ovv-5u-spu">
-                                                        <rect key="frame" x="152" y="10" width="44" height="28"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <connections>
-                                                            <action selector="tiaColorAction:" target="-2" id="qRz-VY-UVF"/>
-                                                        </connections>
-                                                    </colorWell>
-                                                    <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PeC-TM-6jQ">
-                                                        <rect key="frame" x="17" y="10" width="44" height="28"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <connections>
-                                                            <action selector="tiaColorAction:" target="-2" id="5fX-gt-NN9"/>
-                                                        </connections>
-                                                    </colorWell>
                                                     <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ahF-Dy-IWu">
                                                         <rect key="frame" x="83" y="124" width="30" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -2491,14 +2463,6 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <colorWell fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Xaw-Z6-ZiT">
-                                                        <rect key="frame" x="72" y="10" width="44" height="28"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <connections>
-                                                            <action selector="tiaColorAction:" target="-2" id="NqB-fe-CYc"/>
-                                                        </connections>
-                                                    </colorWell>
                                                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VIF-Qm-6O4">
                                                         <rect key="frame" x="184" y="154.5" width="18" height="18"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -2557,8 +2521,11 @@
                                                                 </items>
                                                             </menu>
                                                         </popUpButtonCell>
+                                                        <connections>
+                                                            <action selector="tiaColorAction:" target="-2" id="OiV-6V-MAh"/>
+                                                        </connections>
                                                     </popUpButton>
-                                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d1T-7b-Mmc">
+                                                    <popUpButton tag="1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d1T-7b-Mmc">
                                                         <rect key="frame" x="118" y="121" width="64" height="25"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyUpOrDown" inset="2" selectedItem="wVK-SQ-NL8" id="gWb-Yj-7c7">
@@ -2572,8 +2539,11 @@
                                                                 </items>
                                                             </menu>
                                                         </popUpButtonCell>
+                                                        <connections>
+                                                            <action selector="tiaColorAction:" target="-2" id="00g-Nk-SW2"/>
+                                                        </connections>
                                                     </popUpButton>
-                                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EzX-nE-VFl">
+                                                    <popUpButton tag="2" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EzX-nE-VFl">
                                                         <rect key="frame" x="118" y="93" width="64" height="25"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyUpOrDown" inset="2" selectedItem="859-Jm-jeV" id="jU5-lS-Jgw">
@@ -2587,8 +2557,11 @@
                                                                 </items>
                                                             </menu>
                                                         </popUpButtonCell>
+                                                        <connections>
+                                                            <action selector="tiaColorAction:" target="-2" id="PlV-Dx-Dvh"/>
+                                                        </connections>
                                                     </popUpButton>
-                                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fD3-Pf-bYi">
+                                                    <popUpButton tag="3" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fD3-Pf-bYi">
                                                         <rect key="frame" x="118" y="65" width="64" height="25"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyUpOrDown" inset="2" selectedItem="rEm-lm-Exn" id="QYl-9J-9sa">
@@ -2602,6 +2575,9 @@
                                                                 </items>
                                                             </menu>
                                                         </popUpButtonCell>
+                                                        <connections>
+                                                            <action selector="tiaColorAction:" target="-2" id="lfk-M3-wKk"/>
+                                                        </connections>
                                                     </popUpButton>
                                                 </subviews>
                                             </view>

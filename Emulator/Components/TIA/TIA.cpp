@@ -145,7 +145,7 @@ TIA::setColor(TIARegister reg, u8 r, u8 g, u8 b)
         return dist(NIBBLE0(abgr), NIBBLE1(abgr), NIBBLE2(abgr));
     };
 
-    trace(true, "setColor (%x,%x,%x)\n", r, g, b);
+    trace(true, "setColor (%s,%x,%x,%x)\n", TIARegisterEnum::key(reg), r, g, b);
 
     // Iterate through all colors and find the best match
 
@@ -158,11 +158,7 @@ TIA::setColor(TIARegister reg, u8 r, u8 g, u8 b)
         if (d < minDistance) { minDistance = d; bestMatch = i; }
     }
 
-    trace(true, "Best match = %lx: ", bestMatch);
-
     auto abgr = monitor.getColor(bestMatch);
-    trace(true, "%x %x %x\n", NIBBLE0(abgr), NIBBLE1(abgr), NIBBLE2(abgr));
-
     assert(reg == TIA_COLUP0 || reg == TIA_COLUP1 || reg == TIA_COLUPF || reg == TIA_COLUBK);
     poke(reg, u8(bestMatch << 1));
 }
