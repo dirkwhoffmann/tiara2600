@@ -38,7 +38,7 @@ public:
 
     bool get() const;
 
-    void alwaysinline execute(bool clk, bool rst);
+    void alwaysinline execute(bool clk, bool rst, class Player &player);
 };
 
 }

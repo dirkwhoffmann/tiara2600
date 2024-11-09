@@ -12,6 +12,7 @@
 
 #include "config.h"
 #include "Missile.h"
+#include "Player.h"
 
 namespace tiara {
 
@@ -30,14 +31,14 @@ Missile::get() const
 }
 
 void
-Missile::execute(bool clk, bool rst)
+Missile::execute(bool clk, bool rst, Player &player)
 {
-    counter.execute(clk, rst); // TODO: || (rst && PL.getRESMP()));
+    counter.execute(clk, rst || (resmp && player.getRESMP()));
     auto phi1 = counter.phi1();
     auto phi2 = counter.phi2();
     auto curr = counter.current;
 
-    isize nusiz = 1; // PL.getNUSIZ();
+    isize nusiz = player.getNUSIZ();
 
     start1.execute(phi1, phi2, ((curr == 39)) ||
                  ((curr == 3) && (nusiz == 1 || nusiz == 3)) ||

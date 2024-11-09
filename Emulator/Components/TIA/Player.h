@@ -40,6 +40,9 @@ public:
     void pokeREFP(u8 val) { refp = val & 0x8; trace(false, "REFP %d\n", refp); }
     void vshift() { grp[1] = grp[0]; }
 
+    isize getNUSIZ() { return nusiz; }
+    bool getRESMP() const { return ena && (sc == 1) && (start.get() == 1); }
+
     bool get() const;
 
     void alwaysinline execute(bool clk, bool rst);

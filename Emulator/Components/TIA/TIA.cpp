@@ -546,8 +546,8 @@ TIA::execute()
     auto p1ecEnabled = phi1 && p1ec.enabled();
 
     if (blecEnabled) bl.execute(true, strobe == TIA_RESBL);
-    if (m0ecEnabled) m0.execute(true, strobe == TIA_RESM0);
-    if (m1ecEnabled) m1.execute(true, strobe == TIA_RESM1);
+    if (m0ecEnabled) m0.execute(true, strobe == TIA_RESM0, p0);
+    if (m1ecEnabled) m1.execute(true, strobe == TIA_RESM1, p1);
     if (p0ecEnabled) p0.execute(true, strobe == TIA_RESP0);
     if (p1ecEnabled) p1.execute(true, strobe == TIA_RESP1);
 
@@ -605,8 +605,8 @@ TIA::execute()
     p1ecEnabled = phi1 && p1ec.enabled();
 
     bl.execute(motck && !blecEnabled, strobe == TIA_RESBL);
-    m0.execute(motck && !m0ecEnabled, strobe == TIA_RESM0);
-    m1.execute(motck && !m1ecEnabled, strobe == TIA_RESM1);
+    m0.execute(motck && !m0ecEnabled, strobe == TIA_RESM0, p0);
+    m1.execute(motck && !m1ecEnabled, strobe == TIA_RESM1, p1);
     p0.execute(motck && !p0ecEnabled, strobe == TIA_RESP0);
     p1.execute(motck && !p1ecEnabled, strobe == TIA_RESP1);
 
