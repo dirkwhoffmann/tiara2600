@@ -47,6 +47,10 @@
 		501E428020D975AD000BB48D /* IconTiara.icns in Resources */ = {isa = PBXBuildFile; fileRef = 501E427B20D975AD000BB48D /* IconTiara.icns */; };
 		5020434C1EE71B47006C3FD3 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5031D59C200B81D20088C802 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031D59B200B81D20088C802 /* Animation.swift */; };
+		503393F32CDF51F100FB8379 /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 503393F22CDF51EF00FB8379 /* Audio.cpp */; };
+		503393F42CDF51F100FB8379 /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 503393F22CDF51EF00FB8379 /* Audio.cpp */; };
+		503393F72CDF862C00FB8379 /* Sampler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 503393F62CDF862B00FB8379 /* Sampler.cpp */; };
+		503393F82CDF862C00FB8379 /* Sampler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 503393F62CDF862B00FB8379 /* Sampler.cpp */; };
 		5036E0B7261AEF000048E66A /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5036E0AF261AEF000048E66A /* Console.cpp */; };
 		5036E0B9261AEF000048E66A /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5036E0B2261AEF000048E66A /* Command.cpp */; };
 		5036E0BA261AEF000048E66A /* RetroShell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5036E0B3261AEF000048E66A /* RetroShell.cpp */; };
@@ -402,6 +406,11 @@
 		501E427B20D975AD000BB48D /* IconTiara.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = IconTiara.icns; sourceTree = "<group>"; };
 		5026118D259CACB60066E754 /* PETName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PETName.h; sourceTree = "<group>"; };
 		5031D59B200B81D20088C802 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		503393F12CDF51DF00FB8379 /* Audio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Audio.h; sourceTree = "<group>"; };
+		503393F22CDF51EF00FB8379 /* Audio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Audio.cpp; sourceTree = "<group>"; };
+		503393F52CDF862400FB8379 /* Sampler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sampler.h; sourceTree = "<group>"; };
+		503393F62CDF862B00FB8379 /* Sampler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sampler.cpp; sourceTree = "<group>"; };
+		503393F92CDF8D9100FB8379 /* SamplerTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SamplerTypes.h; sourceTree = "<group>"; };
 		5036E0AE261AEF000048E66A /* RetroShell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetroShell.h; sourceTree = "<group>"; };
 		5036E0AF261AEF000048E66A /* Console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Console.cpp; sourceTree = "<group>"; };
 		5036E0B1261AEF000048E66A /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
@@ -1198,6 +1207,11 @@
 				50EF6F0A2CC25F9000B4642F /* Missile.cpp */,
 				50EF6F052CC0DBD600B4642F /* Ball.h */,
 				50EF6F062CC0DBDC00B4642F /* Ball.cpp */,
+				503393F12CDF51DF00FB8379 /* Audio.h */,
+				503393F22CDF51EF00FB8379 /* Audio.cpp */,
+				503393F92CDF8D9100FB8379 /* SamplerTypes.h */,
+				503393F52CDF862400FB8379 /* Sampler.h */,
+				503393F62CDF862B00FB8379 /* Sampler.cpp */,
 				50B6EDFE2CD764B90020D696 /* Detector.h */,
 				50B6EDFF2CD764C00020D696 /* Detector.cpp */,
 				50DBB3D22641107E006F45E6 /* LogicAnalyzerTypes.h */,
@@ -1695,6 +1709,7 @@
 			files = (
 				50726FB62961CA290031F2F5 /* Console.cpp in Sources */,
 				50116E902CB795F800E1AD7E /* BeamTraps.cpp in Sources */,
+				503393F42CDF51F100FB8379 /* Audio.cpp in Sources */,
 				50726F502961C9940031F2F5 /* CoreComponent.cpp in Sources */,
 				50A194A02BDA84710046849E /* MemoryBase.cpp in Sources */,
 				50726F432961C97B0031F2F5 /* Checksum.cpp in Sources */,
@@ -1760,6 +1775,7 @@
 				50726FA32961CA1C0031F2F5 /* CartFile.cpp in Sources */,
 				50726FBA2961CA2F0031F2F5 /* RegressionTester.cpp in Sources */,
 				50E046AD2CB3C8500035BE47 /* GuardList.cpp in Sources */,
+				503393F72CDF862C00FB8379 /* Sampler.cpp in Sources */,
 				50E17E222B8B26AC0029747D /* Option.cpp in Sources */,
 				50EFB0C52C18D6200013B73C /* Dumpable.cpp in Sources */,
 				50726F482961C9940031F2F5 /* Defaults.cpp in Sources */,
@@ -1873,6 +1889,7 @@
 				508C1E662C0B5F770097473C /* MonitorBase.cpp in Sources */,
 				50BE4B6A24E7FB6C008F39C9 /* NSImage.swift in Sources */,
 				506D3DCE20223E5E009742CF /* MyApplication.swift in Sources */,
+				503393F82CDF862C00FB8379 /* Sampler.cpp in Sources */,
 				504C437A24AF29AC00E69CAE /* AnyFile.cpp in Sources */,
 				50C9B3C51F879A3900EA35C6 /* GamePadManager.swift in Sources */,
 				509280CF2930A1B6006E1966 /* PeddleUtils.cpp in Sources */,
@@ -1949,6 +1966,7 @@
 				504C437024AF29AC00E69CAE /* Cartridge.cpp in Sources */,
 				50BE4B6824E7FB28008F39C9 /* MTLTexture.swift in Sources */,
 				50A22A2A2618725200C9FB1E /* Console.swift in Sources */,
+				503393F32CDF51F100FB8379 /* Audio.cpp in Sources */,
 				500C1C752965D10F00071AF3 /* StrWriter.cpp in Sources */,
 				5031D59C200B81D20088C802 /* Animation.swift in Sources */,
 				50BD640A2C01FADC007CD347 /* VideoPort.cpp in Sources */,

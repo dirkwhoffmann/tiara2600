@@ -95,10 +95,8 @@ enum_long(OPT)
     OPT_MON_DISALIGNMENT_H,     ///< Horizontal cathode ray disalignment
     OPT_MON_DISALIGNMENT_V,     ///< Vertical cathode ray disalignment
 
-    // SID
-    OPT_SID_SAMPLING,           ///< Audio sampling mode
-
     // Audio port
+    OPT_AUD_SAMPLING,           ///< Audio sampling mode
     OPT_AUD_VOL0,               ///< Channel 0 volume
     OPT_AUD_VOL1,               ///< Channel 1 volume
     OPT_AUD_VOL2,               ///< Channel 2 volume
@@ -211,8 +209,7 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_MON_DISALIGNMENT_H:    return "MON.DISALIGNMENT_H";
             case OPT_MON_DISALIGNMENT_V:    return "MON.DISALIGNMENT_V";
 
-            case OPT_SID_SAMPLING:          return "SID.SAMPLING";
-
+            case OPT_AUD_SAMPLING:          return "AUD.SAMPLING";
             case OPT_AUD_VOL0:              return "AUD.VOL0";
             case OPT_AUD_VOL1:              return "AUD.VOL1";
             case OPT_AUD_VOL2:              return "AUD.VOL2";
@@ -314,7 +311,7 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_MON_DISALIGNMENT_H:    return "Horizontal cathode ray shift";
             case OPT_MON_DISALIGNMENT_V:    return "Vertical cathode ray shift";
 
-            case OPT_SID_SAMPLING:          return "Audio sampling rate";
+            case OPT_AUD_SAMPLING:          return "Audio sampling method";
             case OPT_AUD_VOL0:              return "Channel 0 volume";
             case OPT_AUD_VOL1:              return "Channel 1 volume";
             case OPT_AUD_VOL2:              return "Channel 2 volume";

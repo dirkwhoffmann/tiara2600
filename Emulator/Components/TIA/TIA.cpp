@@ -532,13 +532,6 @@ TIA::execute()
     // TIA objects (extra cycles)
     //
 
-    /*
-     auto blecEnabled = false;
-     auto m0ecEnabled = false;
-     auto m1ecEnabled = false;
-     auto p0ecEnabled = false;
-     auto p1ecEnabled = false;
-     */
     auto blecEnabled = phi1 && blec.enabled();
     auto m0ecEnabled = phi1 && m0ec.enabled();
     auto m1ecEnabled = phi1 && m1ec.enabled();

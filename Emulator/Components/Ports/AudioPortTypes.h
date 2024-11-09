@@ -14,6 +14,7 @@
 #pragma once
 
 #include "BasicTypes.h"
+#include "SamplerTypes.h"
 
 namespace tiara {
 
@@ -23,6 +24,9 @@ namespace tiara {
 
 typedef struct
 {
+    // Selects how the audio buffer is resampled to match the target frequency
+    SamplingMethod sampling;
+    
     // Channel volumes
     i64 vol[4];
 

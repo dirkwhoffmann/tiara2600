@@ -91,8 +91,7 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_MON_DISALIGNMENT_H:        return numParser();
         case OPT_MON_DISALIGNMENT_V:        return numParser();
 
-        case OPT_SID_SAMPLING:              return numParser(); // enumParser.template operator()<SamplingMethodEnum>();
-
+        case OPT_AUD_SAMPLING:              return enumParser.template operator()<SamplingMethodEnum>();
         case OPT_AUD_VOL0:                  return numParser("%");
         case OPT_AUD_VOL1:                  return numParser("%");
         case OPT_AUD_VOL2:                  return numParser("%");

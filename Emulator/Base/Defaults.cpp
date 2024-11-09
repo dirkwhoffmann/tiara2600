@@ -82,6 +82,7 @@ Defaults::Defaults()
     setFallback(OPT_MON_DISALIGNMENT_H,         1000);
     setFallback(OPT_MON_DISALIGNMENT_V,         1000);
 
+    setFallback(OPT_AUD_SAMPLING,               SMP_NONE);
     setFallback(OPT_AUD_VOL0,                   100);
     setFallback(OPT_AUD_VOL1,                   100);
     setFallback(OPT_AUD_VOL2,                   100);
@@ -92,8 +93,6 @@ Defaults::Defaults()
     setFallback(OPT_AUD_PAN3,                   0);
     setFallback(OPT_AUD_VOL_L,                  50);
     setFallback(OPT_AUD_VOL_R,                  50);
-
-    setFallback(OPT_SID_SAMPLING,               0);
 
     setFallback(OPT_MEM_HEATMAP,                false);
     

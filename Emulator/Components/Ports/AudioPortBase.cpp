@@ -134,6 +134,7 @@ AudioPort::getOption(Option option) const
 {
     switch (option) {
 
+        case OPT_AUD_SAMPLING:  return config.sampling;
         case OPT_AUD_VOL0:      return config.vol[0];
         case OPT_AUD_VOL1:      return config.vol[1];
         case OPT_AUD_VOL2:      return config.vol[2];
@@ -154,6 +155,13 @@ void
 AudioPort::checkOption(Option opt, i64 value)
 {
     switch (opt) {
+
+        case OPT_AUD_SAMPLING:
+
+            if (!SamplingMethodEnum::isValid(value)) {
+                throw Error(VC64ERROR_OPT_INV_ARG, SamplingMethodEnum::keyList());
+            }
+            return;
 
         case OPT_AUD_VOL3:
         case OPT_AUD_VOL2:
@@ -187,6 +195,11 @@ AudioPort::setOption(Option opt, i64 value)
     isize channel = 0;
 
     switch (opt) {
+
+        case OPT_AUD_SAMPLING:
+
+            config.sampling = (SamplingMethod)value;
+            return;
 
         case OPT_AUD_VOL3: channel++;
         case OPT_AUD_VOL2: channel++;
