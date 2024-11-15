@@ -15,6 +15,7 @@
 #include "TIAComponents.h"
 #include "SubComponent.h"
 #include "AtariTypes.h"
+#include "Audio.h"
 #include "Playfield.h"
 #include "Player.h"
 #include "Missile.h"
@@ -103,7 +104,10 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
 
 public:
 
-    // Host system information
+    // Audio units
+    Audio audio[2] = { Audio(atari, 0), Audio(atari, 1) };
+
+    // Host sample frequency detector
     Detector detector = Detector(atari);
 
 
@@ -373,7 +377,7 @@ public:
 public:
 
     // Sets a color register to color best matching the provided RGB color
-    void setColor(TIARegister reg, u8 r, u8 g, u8 b);
+    // void setColor(TIARegister reg, u8 r, u8 g, u8 b);
 
 
     //

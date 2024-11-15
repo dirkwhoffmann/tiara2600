@@ -9,43 +9,22 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later OR MPL-2.0
 // -----------------------------------------------------------------------------
+/// @file
 
 #pragma once
 
-#include "BasicTypes.h"
+#include "Reflection.h"
 
+namespace tiara {
 
 //
-// Enumerations
+// Structures
 //
 
-enum_long(COMP_TYPE)
+typedef struct
 {
-    GenericClass,
 
-    // Components
-    AtariClass,
-    AudioClass,
-    CPUClass,
-    HostClass,
-    MemoryClass,
-    PIAClass,
-    TIAClass,
+}
+AudioConfig;
 
-    // Ports
-    CartPortClass,
-    AudioPortClass,
-    ControlPortClass,
-    VideoPortClass,
-
-    // Peripherals
-    CartridgeClass,
-    JoystickClass,
-    MonitorClass,
-    MouseClass,
-    PaddleClass,
-
-    // Misc
-    DetectorClass
-};
-typedef COMP_TYPE CType;
+}

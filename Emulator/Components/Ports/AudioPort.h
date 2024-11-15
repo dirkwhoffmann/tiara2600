@@ -16,6 +16,7 @@
 #include "SubComponent.h"
 #include "Concurrency.h"
 #include "RingBuffer.h"
+#include "Sampler.h"
 #include "Volume.h"
 
 namespace tiara {
@@ -78,6 +79,20 @@ public util::RingBuffer <SamplePair, 12288> {
 
     // Used to determine if a MSG_MUTE should be send
     bool muted = false;
+
+
+    //
+    // Subcomponents
+    //
+
+public:
+
+    // Inputs (one Sampler for each channel)
+    Sampler sampler[2] = {
+
+        Sampler(),
+        Sampler()
+    };
 
 
     //

@@ -22,7 +22,6 @@ namespace tiara {
 
 class LogicAnalyzer final : public SubComponent {
 
-    friend class VICII;
     friend class TIA;
 
     // Number of logic analyzer channels

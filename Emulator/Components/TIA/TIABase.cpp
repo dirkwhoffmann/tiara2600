@@ -19,7 +19,11 @@ namespace tiara {
 
 TIA::TIA(Atari &ref) : SubComponent(ref)
 {
-    // initFuncTable();
+    subComponents = std::vector<CoreComponent *> {
+
+        &audio[0],
+        &audio[1]
+    };
 }
 
 void

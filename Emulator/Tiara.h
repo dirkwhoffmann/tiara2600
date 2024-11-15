@@ -290,7 +290,7 @@ struct TIAAPI : API {
 
     /** @brief  Sets the color with the best match
      */
-    void setColor(TIARegister reg, u8 r, u8 g, u8 b);
+    // void setColor(TIARegister reg, u8 r, u8 g, u8 b);
 
     /** @brief  Write-protects a register.
      */

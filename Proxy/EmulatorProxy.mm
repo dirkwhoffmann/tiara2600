@@ -527,6 +527,7 @@ using namespace tiara;
     return [self tia]->getColor((unsigned)nr, palette);
 }
 
+/*
 - (void)setColor:(TIARegister)reg color:(NSColor *)color
 {
     auto r = u8(color.redComponent * 255.0);
@@ -534,6 +535,7 @@ using namespace tiara;
     auto b = u8(color.blueComponent * 255.0);
     [self tia]->setColor(reg, r, g, b);
 }
+*/
 
 - (void)lockReg:(TIARegister)reg
 {

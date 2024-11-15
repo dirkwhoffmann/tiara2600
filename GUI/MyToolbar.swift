@@ -119,7 +119,6 @@ class MyToolbar: NSToolbar {
     }
 
     @IBAction func switchesAction(_ sender: Any!) {
-
         
     }
     

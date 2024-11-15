@@ -126,6 +126,7 @@ TIA::diff(isize y, isize x)
     return (y - this->y) * TIA_CYCLES_PER_LINE + (x - this->x);
 }
 
+/*
 void
 TIA::setColor(TIARegister reg, u8 r, u8 g, u8 b)
 {
@@ -162,7 +163,7 @@ TIA::setColor(TIARegister reg, u8 r, u8 g, u8 b)
     assert(reg == TIA_COLUP0 || reg == TIA_COLUP1 || reg == TIA_COLUPF || reg == TIA_COLUBK);
     poke(reg, u8(bestMatch << 1));
 }
-
+*/
 
 u32 *
 TIA::getTexture() const
@@ -518,6 +519,17 @@ TIA::execute()
     if (shb && !rdy) {
         // trace(true, "RDY up\n");
         rdy = true; cpu.releaseRdyLine();
+    }
+
+
+    //
+    // Audio logic
+    //
+
+    if (phi2 && (hc.current == 9 || hc.current == 37)) {
+
+        audio[0].execute();
+        audio[1].execute();
     }
 
 

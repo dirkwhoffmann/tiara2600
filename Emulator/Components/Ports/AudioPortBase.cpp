@@ -74,6 +74,10 @@ AudioPort::_didReset(bool hard)
 {
     SYNCHRONIZED
 
+    // Reset samplers
+    sampler[0].reset();
+    sampler[1].reset();
+
     // Wipe out the buffer contents
     this->clear(SamplePair{0,0});
 

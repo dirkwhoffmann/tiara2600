@@ -627,6 +627,7 @@
 		50AE19382632B787005A5898 /* Script.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Script.h; sourceTree = "<group>"; };
 		50AE193A2633E9B0005A5898 /* RegressionTester.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RegressionTester.cpp; sourceTree = "<group>"; };
 		50AE193B2633E9B0005A5898 /* RegressionTester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegressionTester.h; sourceTree = "<group>"; };
+		50B01F662CE779A30091D1C1 /* AudioTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioTypes.h; sourceTree = "<group>"; };
 		50B064ED2C884AA90080FCA0 /* RegressionTesterTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegressionTesterTypes.h; sourceTree = "<group>"; };
 		50B064EE2C888F2C0080FCA0 /* RegressionTesterBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RegressionTesterBase.cpp; sourceTree = "<group>"; };
 		50B165AD25B06A03009B576D /* TextureToolbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureToolbox.swift; sourceTree = "<group>"; };
@@ -1207,6 +1208,7 @@
 				50EF6F0A2CC25F9000B4642F /* Missile.cpp */,
 				50EF6F052CC0DBD600B4642F /* Ball.h */,
 				50EF6F062CC0DBDC00B4642F /* Ball.cpp */,
+				50B01F662CE779A30091D1C1 /* AudioTypes.h */,
 				503393F12CDF51DF00FB8379 /* Audio.h */,
 				503393F22CDF51EF00FB8379 /* Audio.cpp */,
 				503393F92CDF8D9100FB8379 /* SamplerTypes.h */,

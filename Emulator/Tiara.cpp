@@ -733,11 +733,13 @@ TIAAPI::getColor(isize nr, Palette palette) const
     return 0; // tia->getColor(nr, palette);
 }
 
+/*
 void
 TIAAPI::setColor(TIARegister reg, u8 r, u8 g, u8 b)
 {
     tia->setColor(reg, r, g, b);
 }
+*/
 
 void
 TIAAPI::lockReg(TIARegister reg)
