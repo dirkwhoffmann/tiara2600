@@ -782,12 +782,8 @@ extension DefaultsProxy {
 
         remove(.AUD_VOL0)
         remove(.AUD_VOL1)
-        remove(.AUD_VOL2)
-        remove(.AUD_VOL3)
         remove(.AUD_PAN0)
         remove(.AUD_PAN1)
-        remove(.AUD_PAN2)
-        remove(.AUD_PAN3)
         remove(.AUD_VOL_L)
         remove(.AUD_VOL_R)
     }
@@ -807,12 +803,8 @@ extension Configuration {
 
             defaults.set(.AUD_VOL0, vol0)
             defaults.set(.AUD_VOL1, vol1)
-            defaults.set(.AUD_VOL2, vol2)
-            defaults.set(.AUD_VOL3, vol3)
             defaults.set(.AUD_PAN0, pan0)
             defaults.set(.AUD_PAN1, pan1)
-            defaults.set(.AUD_PAN2, pan2)
-            defaults.set(.AUD_PAN3, pan3)
             defaults.set(.AUD_VOL_L, volL)
             defaults.set(.AUD_VOL_R, volR)
             defaults.save()
@@ -833,13 +825,9 @@ extension Configuration {
 
             vol0 = defaults.get(.AUD_VOL0)
             vol1 = defaults.get(.AUD_VOL1)
-            vol2 = defaults.get(.AUD_VOL2)
-            vol3 = defaults.get(.AUD_VOL3)
 
             pan0 = defaults.get(.AUD_PAN0)
             pan1 = defaults.get(.AUD_PAN1)
-            pan2 = defaults.get(.AUD_PAN2)
-            pan3 = defaults.get(.AUD_PAN3)
 
             volL = defaults.get(.AUD_VOL_L)
             volR = defaults.get(.AUD_VOL_R)

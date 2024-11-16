@@ -17,13 +17,9 @@ extension ConfigurationController {
         // In
         audVol0.integerValue = config.vol0
         audVol1.integerValue = config.vol1
-        audVol2.integerValue = config.vol2
-        audVol3.integerValue = config.vol3
         audPan0.integerValue = config.pan0
         audPan1.integerValue = config.pan1
-        audPan2.integerValue = config.pan2
-        audPan3.integerValue = config.pan3
- 
+
         // Out
         audVolL.integerValue = config.volL
         audVolR.integerValue = config.volR
@@ -41,17 +37,7 @@ extension ConfigurationController {
 
         config.vol1 = sender.integerValue
     }
-    
-    @IBAction func audVol2Action(_ sender: NSSlider!) {
 
-        config.vol2 = sender.integerValue
-    }
-    
-    @IBAction func audVol3Action(_ sender: NSSlider!) {
-
-        config.vol3 = sender.integerValue
-    }
-    
     @IBAction func audPan0Action(_ sender: NSSlider!) {
         
         config.pan0 = sender.integerValue
@@ -60,16 +46,6 @@ extension ConfigurationController {
     @IBAction func audPan1Action(_ sender: NSSlider!) {
         
         config.pan1 = sender.integerValue
-    }
-    
-    @IBAction func audPan2Action(_ sender: NSSlider!) {
-        
-        config.pan2 = sender.integerValue
-    }
-    
-    @IBAction func audPan3Action(_ sender: NSSlider!) {
-        
-        config.pan3 = sender.integerValue
     }
 
     @IBAction func audVolLAction(_ sender: NSSlider!) {
@@ -105,14 +81,10 @@ extension ConfigurationController {
             case 0: // Mono
                 config.pan0 = 0
                 config.pan1 = 0
-                config.pan2 = 0
-                config.pan3 = 0
 
             case 1: // Stereo
                 config.pan0 = 100
                 config.pan1 = 300
-                config.pan2 = 300
-                config.pan3 = 100
 
             default:
                 fatalError()

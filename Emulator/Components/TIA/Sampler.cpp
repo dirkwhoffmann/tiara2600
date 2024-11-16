@@ -54,6 +54,12 @@ Sampler::interpolate(Cycle clock)
     // If the buffer contains a single element, return that element
     if (r2 == w) return elements[r1];
 
+    /*
+    for (isize i = r; i != w; i = next(i)) {
+        printf("key: %lld value: %hd\n", keys[i], elements[i]);
+    }
+    */
+
     // Make sure that we've selected the right sample pair
     assert(clock >= keys[r1] && clock < keys[r2]);
 

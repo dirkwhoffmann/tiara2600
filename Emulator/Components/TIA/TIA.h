@@ -140,6 +140,9 @@ public:
     // Beam position
     isize x{}, y{};
 
+    // The audios units have been executed up to this clock cycle
+    Cycle audioClock = 0;
+
     //
     // Lookup tables
     //
@@ -292,7 +295,8 @@ public:
         worker
 
         << x
-        << y;
+        << y
+        << audioClock;
 
         if (isResetter(worker)) return;
 

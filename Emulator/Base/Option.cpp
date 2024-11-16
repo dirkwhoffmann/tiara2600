@@ -94,12 +94,8 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_AUD_SAMPLING:              return enumParser.template operator()<SamplingMethodEnum>();
         case OPT_AUD_VOL0:                  return numParser("%");
         case OPT_AUD_VOL1:                  return numParser("%");
-        case OPT_AUD_VOL2:                  return numParser("%");
-        case OPT_AUD_VOL3:                  return numParser("%");
         case OPT_AUD_PAN0:                  return numParser();
         case OPT_AUD_PAN1:                  return numParser();
-        case OPT_AUD_PAN2:                  return numParser();
-        case OPT_AUD_PAN3:                  return numParser();
         case OPT_AUD_VOL_L:                 return numParser("%");
         case OPT_AUD_VOL_R:                 return numParser("%");
 

@@ -107,6 +107,7 @@ AudioStream::copyStereo(float *left, float *right, isize n)
             for (isize i = 0; i < cnt; i++) {
 
                 auto pair = read();
+
                 *left++ = pair.l * float(cnt - i) / float(cnt);
                 *right++ = pair.r * float(cnt - i) / float(cnt);
             }

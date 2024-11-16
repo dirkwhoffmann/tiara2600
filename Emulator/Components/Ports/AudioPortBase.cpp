@@ -37,18 +37,10 @@ AudioPort::_dump(Category category, std::ostream& os) const
         os << flt(vol[0]) << std::endl;
         os << tab("Channel 1 volume");
         os << flt(vol[1]) << std::endl;
-        os << tab("Channel 2 volume");
-        os << flt(vol[2]) << std::endl;
-        os << tab("Channel 3 volume");
-        os << flt(vol[3]) << std::endl;
         os << tab("Channel 0 pan");
         os << flt(pan[0]) << std::endl;
         os << tab("Channel 1 pan");
         os << flt(pan[1]) << std::endl;
-        os << tab("Channel 2 pan");
-        os << flt(pan[2]) << std::endl;
-        os << tab("Channel 3 pan");
-        os << flt(pan[3]) << std::endl;
         os << tab("Sample rate correction");
         os << flt(sampleRateCorrection) << " Hz" << std::endl;
     }
@@ -67,6 +59,14 @@ AudioPort::cacheStats(AudioPortStats &result) const
         
         stats.fillLevel = stream.fillLevel();
     }
+}
+
+void
+AudioPort::_didLoad()
+{
+    // Reset samplers
+    sampler[0].reset();
+    sampler[1].reset();
 }
 
 void
@@ -147,12 +147,8 @@ AudioPort::getOption(Option option) const
         case OPT_AUD_SAMPLING:  return config.sampling;
         case OPT_AUD_VOL0:      return config.vol[0];
         case OPT_AUD_VOL1:      return config.vol[1];
-        case OPT_AUD_VOL2:      return config.vol[2];
-        case OPT_AUD_VOL3:      return config.vol[3];
         case OPT_AUD_PAN0:      return config.pan[0];
         case OPT_AUD_PAN1:      return config.pan[1];
-        case OPT_AUD_PAN2:      return config.pan[2];
-        case OPT_AUD_PAN3:      return config.pan[3];
         case OPT_AUD_VOL_L:     return config.volL;
         case OPT_AUD_VOL_R:     return config.volR;
 
@@ -173,15 +169,11 @@ AudioPort::checkOption(Option opt, i64 value)
             }
             return;
 
-        case OPT_AUD_VOL3:
-        case OPT_AUD_VOL2:
         case OPT_AUD_VOL1:
         case OPT_AUD_VOL0:
 
             return;
 
-        case OPT_AUD_PAN3:
-        case OPT_AUD_PAN2:
         case OPT_AUD_PAN1:
         case OPT_AUD_PAN0:
 
@@ -211,8 +203,6 @@ AudioPort::setOption(Option opt, i64 value)
             config.sampling = (SamplingMethod)value;
             return;
 
-        case OPT_AUD_VOL3: channel++;
-        case OPT_AUD_VOL2: channel++;
         case OPT_AUD_VOL1: channel++;
         case OPT_AUD_VOL0:
 
@@ -221,8 +211,6 @@ AudioPort::setOption(Option opt, i64 value)
             if (emscript) vol[channel] *= 0.15f;
             return;
 
-        case OPT_AUD_PAN3: channel++;
-        case OPT_AUD_PAN2: channel++;
         case OPT_AUD_PAN1: channel++;
         case OPT_AUD_PAN0:
 
@@ -244,6 +232,24 @@ AudioPort::setOption(Option opt, i64 value)
 
         default:
             fatalError;
+    }
+}
+
+void
+AudioPort::setSampleRate(double hz)
+{
+    // Set the sample rate or get it from the detector if none is provided
+    if (hz != 0.0) {
+
+        sampleRate = hz;
+        debug(AUD_DEBUG, "setSampleRate(%.2f)\n", sampleRate);
+
+    } else {
+
+        // sampleRate = detector.sampleRate();
+        // trace(AUD_DEBUG, "setSampleRate(%.2f) (predicted)\n", sampleRate);
+        sampleRate = 44100;
+        debug(AUD_DEBUG, "setSampleRate(%.2f) (assumed)\n", sampleRate);
     }
 }
 

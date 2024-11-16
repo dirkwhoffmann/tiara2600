@@ -696,6 +696,10 @@ TIA::eofHandler()
         dmaTexture = dmaTexture1;
         if (debug) { resetEmuTexture(1); resetDmaTexture(1); }
     }
+
+    // Generate sound samples
+    audioPort.synthesize(audioClock, cpu.clock - 1024);
+    audioClock = cpu.clock - 1024;
 }
 
 }

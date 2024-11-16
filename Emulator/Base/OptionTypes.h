@@ -99,12 +99,8 @@ enum_long(OPT)
     OPT_AUD_SAMPLING,           ///< Audio sampling mode
     OPT_AUD_VOL0,               ///< Channel 0 volume
     OPT_AUD_VOL1,               ///< Channel 1 volume
-    OPT_AUD_VOL2,               ///< Channel 2 volume
-    OPT_AUD_VOL3,               ///< Channel 3 volume
     OPT_AUD_PAN0,               ///< Channel 0 panning
     OPT_AUD_PAN1,               ///< Channel 1 panning
-    OPT_AUD_PAN2,               ///< Channel 2 panning
-    OPT_AUD_PAN3,               ///< Channel 3 panning
     OPT_AUD_VOL_L,              ///< Master volume (left channel)
     OPT_AUD_VOL_R,              ///< Master volume (right channel)
 
@@ -212,12 +208,8 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_AUD_SAMPLING:          return "AUD.SAMPLING";
             case OPT_AUD_VOL0:              return "AUD.VOL0";
             case OPT_AUD_VOL1:              return "AUD.VOL1";
-            case OPT_AUD_VOL2:              return "AUD.VOL2";
-            case OPT_AUD_VOL3:              return "AUD.VOL3";
             case OPT_AUD_PAN0:              return "AUD.PAN0";
             case OPT_AUD_PAN1:              return "AUD.PAN1";
-            case OPT_AUD_PAN2:              return "AUD.PAN2";
-            case OPT_AUD_PAN3:              return "AUD.PAN3";
             case OPT_AUD_VOL_L:             return "AUD.VOLL";
             case OPT_AUD_VOL_R:             return "AUD.VOLR";
 
@@ -314,12 +306,8 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_AUD_SAMPLING:          return "Audio sampling method";
             case OPT_AUD_VOL0:              return "Channel 0 volume";
             case OPT_AUD_VOL1:              return "Channel 1 volume";
-            case OPT_AUD_VOL2:              return "Channel 2 volume";
-            case OPT_AUD_VOL3:              return "Channel 3 volume";
             case OPT_AUD_PAN0:              return "Channel 0 pan";
             case OPT_AUD_PAN1:              return "Channel 1 pan";
-            case OPT_AUD_PAN2:              return "Channel 2 pan";
-            case OPT_AUD_PAN3:              return "Channel 3 pan";
             case OPT_AUD_VOL_L:             return "Master volume (left)";
             case OPT_AUD_VOL_R:             return "Master volume (right)";
 

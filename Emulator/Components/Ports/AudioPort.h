@@ -52,18 +52,20 @@ class AudioPort final : public SubComponent, public Inspectable<AudioPortInfo, A
 
         OPT_AUD_VOL0,
         OPT_AUD_VOL1,
-        OPT_AUD_VOL2,
-        OPT_AUD_VOL3,
         OPT_AUD_PAN0,
         OPT_AUD_PAN1,
-        OPT_AUD_PAN2,
-        OPT_AUD_PAN3,
         OPT_AUD_VOL_L,
         OPT_AUD_VOL_R
     };
 
     // Current configuration
     AudioPortConfig config = { };
+
+    // Current sample rate
+    double sampleRate = 44100;
+
+    // Fraction of a sample that hadn't been generated in synthesize
+    double fraction = 0.0;
 
     // Time stamp of the last write pointer alignment
     util::Time lastAlignment;
@@ -72,10 +74,10 @@ class AudioPort final : public SubComponent, public Inspectable<AudioPortInfo, A
     double sampleRateCorrection = 0.0;
 
     // Channel volumes
-    float vol[4] = { };
+    float vol[2] = { };
 
     // Panning factors
-    float pan[4] ={ };
+    float pan[2] ={ };
 
     // Master volumes (fadable)
     util::Animated<float> volL;
@@ -154,6 +156,7 @@ public:
 private:
 
     void _dump(Category category, std::ostream& os) const override;
+    void _didLoad() override;
     void _didReset(bool hard) override;
     void _powerOn() override;
     void _run() override;
@@ -186,6 +189,8 @@ public:
     void checkOption(Option opt, i64 value) override;
     void setOption(Option opt, i64 value) override;
 
+    void setSampleRate(double hz);
+
 
     //
     // Analyzing
@@ -198,28 +203,23 @@ public:
 
 
     //
-    // Managing the ring buffer
+    // Generating audio streams
     //
 
 public:
 
-    // Puts the write pointer somewhat ahead of the read pointer
-    // void alignWritePtr();
+    // Generates new sound samples
+    void synthesize(Cycle clock, Cycle target);
 
-    /* Handles a buffer underflow condition. A buffer underflow occurs when the
-     * audio device of the host machine needs sound samples than SID hasn't
-     * produced, yet.
-     */
+private:
+
+    void synthesize(Cycle clock, long count, double cyclesPerSample);
+    template <SamplingMethod method>
+    void synthesize(Cycle clock, long count, double cyclesPerSample);
+
+    // Handles a buffer underflow or overflow
     void handleBufferUnderflow();
-
-    /* Handles a buffer overflow condition. A buffer overflow occurs when SID
-     * is producing more samples than the audio device of the host machine is
-     * able to consume.
-     */
     void handleBufferOverflow();
-
-    // Reduces the sample count to the specified number
-    // void clamp(isize maxSamples);
 
 
     //

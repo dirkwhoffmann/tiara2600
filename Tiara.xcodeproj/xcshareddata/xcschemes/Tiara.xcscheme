@@ -117,8 +117,8 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-&quot;cart attach /tmp/piatimer.a26&quot;"
-            isEnabled = "NO">
+            argument = "-&quot;cart attach /tmp/32_musicplayer.a26&quot;"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-&quot;cart attach /tmp/collisions.a26&quot;"

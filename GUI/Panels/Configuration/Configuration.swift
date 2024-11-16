@@ -134,10 +134,10 @@ class Configuration {
     // Audio
     //
 
-    var sidSampling: Int = 0 /* {
-        get { remu?.get(.SID_SAMPLING, id: 0) ?? 0 }
-        set { emu?.set(.SID_SAMPLING, value: newValue) }
-    } */
+    var sidSampling: Int {
+        get { emu?.get(.AUD_SAMPLING, id: 0) ?? 0 }
+        set { emu?.set(.AUD_SAMPLING, value: newValue) }
+    }
     var vol0: Int {
         get { return emu?.get(.AUD_VOL0) ?? 0 }
         set { emu?.set(.AUD_VOL0, value: newValue) }
@@ -146,14 +146,6 @@ class Configuration {
         get { return emu?.get(.AUD_VOL1) ?? 0 }
         set { emu?.set(.AUD_VOL1, value: newValue) }
     }
-    var vol2: Int {
-        get { return emu?.get(.AUD_VOL2) ?? 0 }
-        set { emu?.set(.AUD_VOL2, value: newValue) }
-    }
-    var vol3: Int {
-        get { return emu?.get(.AUD_VOL3) ?? 0 }
-        set { emu?.set(.AUD_VOL3, value: newValue) }
-    }
     var pan0: Int {
         get { return emu?.get(.AUD_PAN0) ?? 0 }
         set { emu?.set(.AUD_PAN0, value: newValue) }
@@ -161,14 +153,6 @@ class Configuration {
     var pan1: Int {
         get { return emu?.get(.AUD_PAN1) ?? 0 }
         set { emu?.set(.AUD_PAN1, value: newValue) }
-    }
-    var pan2: Int {
-        get { return emu?.get(.AUD_PAN2) ?? 0 }
-        set { emu?.set(.AUD_PAN2, value: newValue) }
-    }
-    var pan3: Int {
-        get { return emu?.get(.AUD_PAN3) ?? 0 }
-        set { emu?.set(.AUD_PAN3, value: newValue) }
     }
     var volL: Int {
         get { return emu?.get(.AUD_VOL_L) ?? 0 }

@@ -65,6 +65,18 @@ TIA::_dump(Category category, std::ostream& os) const
 
     if (category == Category::Registers) {
 
+        os << tab("AUDC0");
+        os << hex(audio[0].audc) << std::endl;
+        os << tab("AUDC1");
+        os << hex(audio[1].audc) << std::endl;
+        os << tab("AUDF0");
+        os << hex(audio[0].audf) << std::endl;
+        os << tab("AUDF1");
+        os << hex(audio[1].audf) << std::endl;
+        os << tab("AUDV0");
+        os << hex(audio[0].audv) << std::endl;
+        os << tab("AUDV1");
+        os << hex(audio[1].audv) << std::endl;
     }
 }
 

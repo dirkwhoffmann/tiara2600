@@ -85,12 +85,8 @@ Defaults::Defaults()
     setFallback(OPT_AUD_SAMPLING,               SMP_NONE);
     setFallback(OPT_AUD_VOL0,                   100);
     setFallback(OPT_AUD_VOL1,                   100);
-    setFallback(OPT_AUD_VOL2,                   100);
-    setFallback(OPT_AUD_VOL3,                   100);
     setFallback(OPT_AUD_PAN0,                   0);
     setFallback(OPT_AUD_PAN1,                   0);
-    setFallback(OPT_AUD_PAN2,                   0);
-    setFallback(OPT_AUD_PAN3,                   0);
     setFallback(OPT_AUD_VOL_L,                  50);
     setFallback(OPT_AUD_VOL_R,                  50);
 

@@ -68,7 +68,11 @@ Audio::execute()
     Sampler &sampler = audioPort.sampler[objid];
 
     // Generate a new sound sample
-    u8 sample = c8 ? audv : 0;
+    u8 sample = c8 ? 16 * audv : 0;
+
+    if (sample) {
+        // trace(true, "Sample = %d\n", sample);
+    }
 
     // Add a sample th the sample buffer
     if (!sampler.isFull()) {
