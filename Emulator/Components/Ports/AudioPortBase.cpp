@@ -65,7 +65,7 @@ AudioPort::cacheStats(AudioPortStats &result) const
 {
     {   SYNCHRONIZED
         
-        stats.fillLevel = fillLevel();
+        stats.fillLevel = stream.fillLevel();
     }
 }
 
@@ -78,12 +78,8 @@ AudioPort::_didReset(bool hard)
     sampler[0].reset();
     sampler[1].reset();
 
-    // Wipe out the buffer contents
-    this->clear(SamplePair{0,0});
-
-    // Realign the write pointer
-    alignWritePtr();
-    lastAlignment = util::Time::now();
+    // Clear the sample buffer
+    clear();
 
     // Clear statistics
     if (hard) clearStats();
@@ -131,6 +127,16 @@ void
 AudioPort::_unfocus()
 {
     mute(100000);
+}
+
+void
+AudioPort::clear()
+{
+    debug(AUDBUF_DEBUG, "Clearing the audio sample buffer\n");
+
+    // Wipe out the ringbuffer
+    stream.wipeOut();
+    stream.alignWritePtr();
 }
 
 i64

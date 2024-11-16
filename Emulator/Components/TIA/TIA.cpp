@@ -362,15 +362,12 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
         case TIA_RESM1:     strobe = reg; break;
         case TIA_RESBL:     strobe = reg; break;
 
-        case TIA_AUDC0:
-        case TIA_AUDC1:
-        case TIA_AUDF0:
-        case TIA_AUDF1:
-        case TIA_AUDV0:
-        case TIA_AUDV1:
-
-            unsupported();
-            break;
+        case TIA_AUDC0:     audio[0].pokeAUDC(val); break;
+        case TIA_AUDC1:     audio[1].pokeAUDC(val); break;
+        case TIA_AUDF0:     audio[0].pokeAUDF(val); break;
+        case TIA_AUDF1:     audio[1].pokeAUDF(val); break;
+        case TIA_AUDV0:     audio[0].pokeAUDV(val); break;
+        case TIA_AUDV1:     audio[1].pokeAUDV(val); break;
 
         case TIA_GRP0:      p0.pokeGRP(val); p1.vshift(); break;
         case TIA_GRP1:      p1.pokeGRP(val); p0.vshift(); bl.vshift(); break;

@@ -161,6 +161,15 @@ public:
 
 
     //
+    // Accessing registers
+    //
+
+    void pokeAUDC(u8 val);
+    void pokeAUDF(u8 val);
+    void pokeAUDV(u8 val);
+
+
+    //
     // Execution
     //
 

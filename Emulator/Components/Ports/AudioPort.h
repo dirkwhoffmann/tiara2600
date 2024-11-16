@@ -14,27 +14,31 @@
 
 #include "AudioPortTypes.h"
 #include "SubComponent.h"
+#include "Animated.h"
+#include "AudioStream.h"
 #include "Concurrency.h"
 #include "RingBuffer.h"
 #include "Sampler.h"
-#include "Volume.h"
+
+/* Architecture of the audio pipeline
+ *
+ *     TIA                             Audio port
+ *   --------    ------------------------------------------------------
+ *  |        |  |                                                      |
+ *  | Audio  |  |    ---------                                         |
+ *  |  unit -|--|-->| Sampler |-> vol ->|                              |
+ *  |     0  |  |    ---------          |     pan     --------------   |
+ *  |        |  |                       |--> l vol ->| Audio Stream |--|--> GUI
+ *  | Audio  |  |    ---------          |    r vol    --------------   |
+ *  |  unit -|--|-->| Sampler |-> vol ->|                              |
+ *  |     1  |  |    ---------                                         |
+ *  |        |  |                                                      |
+ *   --------    ------------------------------------------------------
+ */
 
 namespace tiara {
 
-typedef struct {
-
-    // Audio sample of the left stereo channel
-    float l;
-
-    // Audio sample of the right stereo channel
-    float r;
-}
-SamplePair;
-
-class AudioPort final :
-public SubComponent,
-public Inspectable<AudioPortInfo, AudioPortStats>,
-public util::RingBuffer <SamplePair, 12288> {
+class AudioPort final : public SubComponent, public Inspectable<AudioPortInfo, AudioPortStats> {
 
     Descriptions descriptions = {{
 
@@ -74,8 +78,8 @@ public util::RingBuffer <SamplePair, 12288> {
     float pan[4] ={ };
 
     // Master volumes (fadable)
-    Volume volL;
-    Volume volR;
+    util::Animated<float> volL;
+    util::Animated<float> volR;
 
     // Used to determine if a MSG_MUTE should be send
     bool muted = false;
@@ -94,6 +98,9 @@ public:
         Sampler()
     };
 
+    // Output buffer
+    AudioStream stream;
+
 
     //
     // Methods
@@ -110,6 +117,9 @@ public:
 
         return *this;
     }
+
+    // Resets the output buffer
+    void clear();
 
 
     //
@@ -178,13 +188,23 @@ public:
 
 
     //
+    // Analyzing
+    //
+
+public:
+
+    // Returns true if the output volume is zero
+    bool isMuted() const;
+
+
+    //
     // Managing the ring buffer
     //
 
 public:
 
     // Puts the write pointer somewhat ahead of the read pointer
-    void alignWritePtr();
+    // void alignWritePtr();
 
     /* Handles a buffer underflow condition. A buffer underflow occurs when the
      * audio device of the host machine needs sound samples than SID hasn't
@@ -199,7 +219,7 @@ public:
     void handleBufferOverflow();
 
     // Reduces the sample count to the specified number
-    void clamp(isize maxSamples);
+    // void clamp(isize maxSamples);
 
 
     //
@@ -209,7 +229,7 @@ public:
 public:
 
     // Generates samples
-    void generateSamples();
+    // void generateSamples();
 
     // Returns the sample rate adjustment
     double getSampleRateCorrection() { return sampleRateCorrection; }
@@ -225,12 +245,10 @@ public:
     void fadeOut();
 
     // Gradually decrease the master volume to zero
-    void mute() { volL.mute(); volR.mute(); }
-    void mute(isize steps) { volL.mute(steps); volR.mute(steps); }
+    void mute(isize steps = 0) { volL.fadeOut(steps); volR.fadeOut(steps); }
 
     // Gradually inrease the master volume to max
-    void unmute() { volL.unmute(); volR.unmute(); }
-    void unmute(isize steps) { volL.unmute(steps); volR.unmute(steps); }
+    void unmute(isize steps = 0) { volL.fadeIn(steps); volR.fadeIn(steps); }
 
 
     //

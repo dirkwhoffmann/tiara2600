@@ -15,11 +15,20 @@
 
 namespace tiara {
 
+bool
+AudioPort::isMuted() const
+{
+    if (volL.isFading() || volR.isFading()) return false;
+    return volL + volR == 0.0 || vol[0] + vol[1] + vol[2] + vol[3] == 0.0;
+}
+
+/*
 void
 AudioPort::alignWritePtr()
 {
     this->align(this->cap() / 2);
 }
+*/
 
 void
 AudioPort::handleBufferUnderflow()
@@ -29,11 +38,9 @@ AudioPort::handleBufferUnderflow()
     // (1) The consumer runs slightly faster than the producer.
     // (2) The producer is halted or not startet yet.
 
-    trace(AUDBUF_DEBUG, "BUFFER UNDERFLOW (r: %ld w: %ld)\n", r, w);
-
     // Wipe out the buffer and reset the write pointer
-    clear(SamplePair{0,0});
-    alignWritePtr();
+    stream.clear(SamplePair{0,0});
+    stream.alignWritePtr();
 
     // Determine the elapsed seconds since the last pointer adjustment
     auto elapsedTime = util::Time::now() - lastAlignment;
@@ -60,10 +67,8 @@ AudioPort::handleBufferOverflow()
     // (1) The consumer runs slightly slower than the producer
     // (2) The consumer is halted or not startet yet
 
-    trace(AUDBUF_DEBUG, "BUFFER OVERFLOW (r: %ld w: %ld)\n", r, w);
-
     // Reset the write pointer
-    alignWritePtr();
+    stream.alignWritePtr();
 
     // Determine the number of elapsed seconds since the last adjustment
     auto elapsedTime = util::Time::now() - lastAlignment;
@@ -82,163 +87,72 @@ AudioPort::handleBufferOverflow()
     }
 }
 
-void 
+/*
+void
 AudioPort::clamp(isize maxSamples)
 {
     SYNCHRONIZED
 
     while (count() > maxSamples) read();
 }
-
+*/
+/*
 void
 AudioPort::generateSamples()
 {
     SYNCHRONIZED
 
 }
+*/
 
 void
 AudioPort::fadeOut()
 {
-    SYNCHRONIZED
-
-    debug(AUDVOL_DEBUG, "Fading out (%ld samples)...\n", count());
-
-    volL.set(0.0);
-    volR.set(0.0);
-
-    float scale = 1.0f;
-    float delta = 1.0f / count();
-
-    // Rescale the existing samples
-    for (isize i = begin(); i != end(); i = next(i)) {
-
-        scale -= delta;
-        assert(scale >= -0.1 && scale < 1.0);
-
-        elements[i].l *= scale;
-        elements[i].r *= scale;
-    }
-
-    // Wipe out the rest of the buffer
-    for (isize i = end(); i != begin(); i = next(i)) {
-
-        elements[i] = SamplePair { 0, 0 };
-    }
+    stream.eliminateCracks();
+    volL.current = 0;
+    volR.current = 0;
 }
-
-
 
 isize
 AudioPort::copyMono(float *buffer, isize n)
 {
-    {   SYNCHRONIZED
+    // Copy sound samples
+    auto cnt = stream.copyMono(buffer, n);
+    stats.consumedSamples += cnt;
 
-        // Check for buffer underflows
-        if (auto cnt = count(); cnt < n) {
+    // Check for a buffer underflow
+    if (cnt < n) handleBufferUnderflow();
 
-            // Copy all we have and stepwise lower the volume to minimize cracks
-            for (isize i = 0; i < cnt; i++) {
-
-                SamplePair pair = read();
-                *buffer++ = (pair.l + pair.r) * float(cnt - i) / float(cnt);
-            }
-            assert(isEmpty());
-
-            // Fill the rest with zeroes
-            for (isize i = cnt; i < n; i++) *buffer++ = 0;
-
-            // Realign the ring buffer
-            handleBufferUnderflow();
-
-            return cnt;
-        }
-
-        // The standard case: We have enough samples. Copy the requested number
-        for (isize i = 0; i < n; i++) {
-
-            SamplePair pair = read();
-            *buffer++ = pair.l + pair.r;
-        }
-
-        return n;
-    }
+    return cnt;
 }
 
 isize
 AudioPort::copyStereo(float *left, float *right, isize n)
 {
-    {   SYNCHRONIZED
+    // Inform the sample rate detector about the number of requested samples
+    // detector.feed(n);
 
-        // Check for buffer underflows
-        if (auto cnt = count(); cnt < n) {
+    // Copy sound samples
+    auto cnt = stream.copyStereo(left, right, n);
+    stats.consumedSamples += cnt;
 
-            // Copy all we have and stepwise lower the volume to minimize cracks
-            for (isize i = 0; i < cnt; i++) {
+    // Check for a buffer underflow
+    if (cnt < n) handleBufferUnderflow();
 
-                SamplePair pair = read();
-                *left++ = pair.l * float(cnt - i) / float(cnt);
-                *right++ = pair.r * float(cnt - i) / float(cnt);
-            }
-            assert(isEmpty());
-
-            // Fill the rest with zeroes
-            for (isize i = cnt; i < n; i++) *left++ = *right++ = 0;
-
-            // Realign the ring buffer
-            handleBufferUnderflow();
-
-            return cnt;
-        }
-
-        // The standard case: We have enough samples. Copy the requested number
-        for (isize i = 0; i < n; i++) {
-
-            SamplePair pair = read();
-            *left++ = pair.l;
-            *right++ = pair.r;
-        }
-
-        return n;
-    }
+    return cnt;
 }
 
 isize
 AudioPort::copyInterleaved(float *buffer, isize n)
 {
-    {   SYNCHRONIZED
+    // Copy sound samples
+    auto cnt = stream.copyInterleaved(buffer, n);
+    stats.consumedSamples += cnt;
 
-        // Check for buffer underflows
-        if (auto cnt = count(); cnt < n) {
+    // Check for a buffer underflow
+    if (cnt < n) handleBufferUnderflow();
 
-            // Copy all we have and stepwise lower the volume to minimize cracks
-            for (isize i = 0; i < cnt; i++) {
-
-                SamplePair pair = read();
-                *buffer++ = pair.l * float(cnt - i) / float(cnt);
-                *buffer++ = pair.r * float(cnt - i) / float(cnt);
-            }
-            assert(isEmpty());
-
-            // Fill the rest with zeroes
-            for (isize i = cnt; i < n; i++) { *buffer++ = 0; *buffer++ = 0; }
-
-            // Realign the ring buffer
-            handleBufferUnderflow();
-
-            return cnt;
-        }
-
-        // We have enough samples. Copy over the requested number
-        for (isize i = 0; i < n; i++) {
-
-            SamplePair pair = read();
-            *buffer++ = pair.l;
-            *buffer++ = pair.r;
-        }
-        
-        return n;
-    }
+    return cnt;
 }
 
 }

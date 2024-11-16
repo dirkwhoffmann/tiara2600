@@ -379,17 +379,15 @@ Emulator::getDebugVariable(DebugFlag flag)
 
         case FLAG_MEM_DEBUG:        return MEM_DEBUG;
 
-        case FLAG_PIA_DEBUG:        return PIA_DEBUG;
-        case FLAG_PIA_REG_DEBUG:    return PIA_REG_DEBUG;
-
         case FLAG_TIA_DEBUG:        return TIA_DEBUG;
         case FLAG_TIA_REG_DEBUG:    return TIA_REG_DEBUG;
-
-        case FLAG_SID_DEBUG:        return SID_DEBUG;
-        case FLAG_SID_EXEC:         return SID_EXEC;
-        case FLAG_SIDREG_DEBUG:     return SIDREG_DEBUG;
+        case FLAG_AUD_DEBUG:        return AUD_DEBUG;
+        case FLAG_AUDREG_DEBUG:     return AUDREG_DEBUG;
         case FLAG_AUDBUF_DEBUG:     return AUDBUF_DEBUG;
         case FLAG_AUDVOL_DEBUG:     return AUDVOL_DEBUG;
+
+        case FLAG_PIA_DEBUG:        return PIA_DEBUG;
+        case FLAG_PIA_REG_DEBUG:    return PIA_REG_DEBUG;
 
         case FLAG_CRT_DEBUG:        return CART_DEBUG;
         case FLAG_FILE_DEBUG:       return FILE_DEBUG;
@@ -450,17 +448,15 @@ Emulator::setDebugVariable(DebugFlag flag, bool val)
 
         case FLAG_MEM_DEBUG:        MEM_DEBUG       = val; break;
 
-        case FLAG_PIA_DEBUG:       PIA_DEBUG        = val; break;
-        case FLAG_PIA_REG_DEBUG:   PIA_REG_DEBUG    = val; break;
-
         case FLAG_TIA_DEBUG:        TIA_DEBUG       = val; break;
         case FLAG_TIA_REG_DEBUG:    TIA_REG_DEBUG   = val; break;
-
-        case FLAG_SID_DEBUG:        SID_DEBUG       = val; break;
-        case FLAG_SID_EXEC:         SID_EXEC        = val; break;
-        case FLAG_SIDREG_DEBUG:     SIDREG_DEBUG    = val; break;
+        case FLAG_AUD_DEBUG:        AUD_DEBUG       = val; break;
+        case FLAG_AUDREG_DEBUG:     AUDREG_DEBUG    = val; break;
         case FLAG_AUDBUF_DEBUG:     AUDBUF_DEBUG    = val; break;
         case FLAG_AUDVOL_DEBUG:     AUDVOL_DEBUG    = val; break;
+
+        case FLAG_PIA_DEBUG:       PIA_DEBUG        = val; break;
+        case FLAG_PIA_REG_DEBUG:   PIA_REG_DEBUG    = val; break;
 
         case FLAG_CRT_DEBUG:        CART_DEBUG       = val; break;
         case FLAG_FILE_DEBUG:       FILE_DEBUG      = val; break;

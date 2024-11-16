@@ -53,17 +53,14 @@ enum_long(DEBUG_FLAG)
     // TIA
     FLAG_TIA_DEBUG,         ///< Debug the Television Interface Adapter
     FLAG_TIA_REG_DEBUG,     ///< Debug TIA register accesses
+    FLAG_AUD_DEBUG,         ///< Debug the Sound Interface Device
+    FLAG_AUDREG_DEBUG,      ///< Debug TIA audio register accesses
+    FLAG_AUDBUF_DEBUG,      ///< Debug the audio buffers
+    FLAG_AUDVOL_DEBUG,      ///< Debug the audio volumes
 
     // PIA
     FLAG_PIA_DEBUG,         ///< Debug the RAM Input/Output Timer
     FLAG_PIA_REG_DEBUG,     ///< Debug the PIA register accesses
-
-    // SID
-    FLAG_SID_DEBUG,         ///< Debug the Sound Interface Device
-    FLAG_SID_EXEC,          ///< Debug SID execution
-    FLAG_SIDREG_DEBUG,      ///< Debug SID register accesses
-    FLAG_AUDBUF_DEBUG,      ///< Debug the audio buffers
-    FLAG_AUDVOL_DEBUG,      ///< Debug the audio volumes
 
     // Media
     FLAG_CRT_DEBUG,         ///< Debug cartridges
@@ -128,17 +125,14 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
                 // TIA
             case FLAG_TIA_DEBUG:                return "TIA_DEBUG";
             case FLAG_TIA_REG_DEBUG:            return "TIA_REG_DEBUG";
+            case FLAG_AUD_DEBUG:                return "AUD_DEBUG";
+            case FLAG_AUDREG_DEBUG:             return "AUDREG_DEBUG";
+            case FLAG_AUDBUF_DEBUG:             return "AUDBUF_DEBUG";
+            case FLAG_AUDVOL_DEBUG:             return "AUDVOL_DEBUG";
 
                 // PIA
             case FLAG_PIA_DEBUG:               return "PIA_DEBUG";
             case FLAG_PIA_REG_DEBUG:           return "PIA_REG_DEBUG";
-
-                // SID
-            case FLAG_SID_DEBUG:                return "SID_DEBUG";
-            case FLAG_SID_EXEC:                 return "SID_EXEC";
-            case FLAG_SIDREG_DEBUG:             return "SIDREG_DEBUG";
-            case FLAG_AUDBUF_DEBUG:             return "AUDBUF_DEBUG";
-            case FLAG_AUDVOL_DEBUG:             return "AUDVOL_DEBUG";
 
                 // Media
             case FLAG_CRT_DEBUG:                return "CRT_DEBUG";
@@ -203,11 +197,8 @@ struct DebugFlagEnum : util::Reflection<DebugFlagEnum, DebugFlag>
                 // TIA
             case FLAG_TIA_DEBUG:                return "Television Interface Adapter";
             case FLAG_TIA_REG_DEBUG:            return "TIA registers";
-
-                // SID
-            case FLAG_SID_DEBUG:                return "Sound Interface Device";
-            case FLAG_SID_EXEC:                 return "Sound Interface Device (Execution)";
-            case FLAG_SIDREG_DEBUG:             return "Sound Interface Device (Registers)";
+            case FLAG_AUD_DEBUG:                return "TIA sound";
+            case FLAG_AUDREG_DEBUG:             return "TIA sound (Registers)";
             case FLAG_AUDBUF_DEBUG:             return "Audio buffers";
 
                 // Media

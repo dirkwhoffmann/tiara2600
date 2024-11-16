@@ -118,17 +118,14 @@ extern debugflag MEM_DEBUG;
 // TIA
 extern debugflag TIA_DEBUG;
 extern debugflag TIA_REG_DEBUG;
+extern debugflag AUD_DEBUG;
+extern debugflag AUDREG_DEBUG;
+extern debugflag AUDBUF_DEBUG;
+extern debugflag AUDVOL_DEBUG;
 
 // PIA
 extern debugflag PIA_DEBUG;
 extern debugflag PIA_REG_DEBUG;
-
-// SID
-extern debugflag SID_DEBUG;
-extern debugflag SID_EXEC;
-extern debugflag SIDREG_DEBUG;
-extern debugflag AUDBUF_DEBUG;
-extern debugflag AUDVOL_DEBUG;
 
 // Media
 extern debugflag CART_DEBUG;

@@ -230,6 +230,8 @@
 		50AD303C28141F0B00D9A7A6 /* Buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50AD303A28141F0B00D9A7A6 /* Buffer.cpp */; };
 		50AE19392632B787005A5898 /* Script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50AE19372632B787005A5898 /* Script.cpp */; };
 		50AE193C2633E9B0005A5898 /* RegressionTester.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50AE193A2633E9B0005A5898 /* RegressionTester.cpp */; };
+		50B01F692CE88BA10091D1C1 /* AudioStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B01F682CE88B9E0091D1C1 /* AudioStream.cpp */; };
+		50B01F6A2CE88BA10091D1C1 /* AudioStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B01F682CE88B9E0091D1C1 /* AudioStream.cpp */; };
 		50B064EF2C888F2C0080FCA0 /* RegressionTesterBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B064EE2C888F2C0080FCA0 /* RegressionTesterBase.cpp */; };
 		50B064F02C888F2C0080FCA0 /* RegressionTesterBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50B064EE2C888F2C0080FCA0 /* RegressionTesterBase.cpp */; };
 		50B165AE25B06A03009B576D /* TextureToolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B165AD25B06A03009B576D /* TextureToolbox.swift */; };
@@ -628,6 +630,8 @@
 		50AE193A2633E9B0005A5898 /* RegressionTester.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RegressionTester.cpp; sourceTree = "<group>"; };
 		50AE193B2633E9B0005A5898 /* RegressionTester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegressionTester.h; sourceTree = "<group>"; };
 		50B01F662CE779A30091D1C1 /* AudioTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioTypes.h; sourceTree = "<group>"; };
+		50B01F672CE88B960091D1C1 /* AudioStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioStream.h; sourceTree = "<group>"; };
+		50B01F682CE88B9E0091D1C1 /* AudioStream.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AudioStream.cpp; sourceTree = "<group>"; };
 		50B064ED2C884AA90080FCA0 /* RegressionTesterTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegressionTesterTypes.h; sourceTree = "<group>"; };
 		50B064EE2C888F2C0080FCA0 /* RegressionTesterBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RegressionTesterBase.cpp; sourceTree = "<group>"; };
 		50B165AD25B06A03009B576D /* TextureToolbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureToolbox.swift; sourceTree = "<group>"; };
@@ -1214,6 +1218,8 @@
 				503393F92CDF8D9100FB8379 /* SamplerTypes.h */,
 				503393F52CDF862400FB8379 /* Sampler.h */,
 				503393F62CDF862B00FB8379 /* Sampler.cpp */,
+				50B01F672CE88B960091D1C1 /* AudioStream.h */,
+				50B01F682CE88B9E0091D1C1 /* AudioStream.cpp */,
 				50B6EDFE2CD764B90020D696 /* Detector.h */,
 				50B6EDFF2CD764C00020D696 /* Detector.cpp */,
 				50DBB3D22641107E006F45E6 /* LogicAnalyzerTypes.h */,
@@ -1771,6 +1777,7 @@
 				50E83D482CAE750D00308A1C /* CartPort.cpp in Sources */,
 				50BB3E922B7A232800B2D87B /* Inspectable.cpp in Sources */,
 				5010346C2CBD38BC007DEEE0 /* Playfield.cpp in Sources */,
+				50B01F692CE88BA10091D1C1 /* AudioStream.cpp in Sources */,
 				508C1E6A2C0C507D0097473C /* CartridgeBase.cpp in Sources */,
 				50A1947F2BDA597A0046849E /* PIABase.cpp in Sources */,
 				50B98B4B2BFDF5FC00FA1EC6 /* AudioPortBase.cpp in Sources */,
@@ -1848,6 +1855,7 @@
 				504104482CA68BBD0004860E /* TIABase.cpp in Sources */,
 				50B6EE012CD764C30020D696 /* Detector.cpp in Sources */,
 				5038CA9320B6C298000D9193 /* PIAPanel.swift in Sources */,
+				50B01F6A2CE88BA10091D1C1 /* AudioStream.cpp in Sources */,
 				50BE4B6E24E7FBE1008F39C9 /* Datatypes.swift in Sources */,
 				5009CF3324C0B8EF00F674FF /* Preferences.swift in Sources */,
 				50726F31295C27470031F2F5 /* EventTableView.swift in Sources */,

@@ -51,6 +51,12 @@ typedef struct
     // Current ring buffer fill level
     double fillLevel;
 
+    // Number of samples produced by the emulator
+    i64 producedSamples;
+
+    // Number of samples requested by the host
+    i64 consumedSamples;
+
     // Number of buffer underflows since power up
     u64 bufferUnderflows;
 

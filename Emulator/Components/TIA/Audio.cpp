@@ -29,18 +29,46 @@ Audio::_dump(Category category, std::ostream& os) const
 }
 
 void
+Audio::pokeAUDC(u8 val)
+{
+    debug(AUDREG_DEBUG, "pokeAUDC(%02X)\n", val);
+
+    audc = val & 0x0F;
+}
+
+void
+Audio::pokeAUDF(u8 val)
+{
+    debug(AUDREG_DEBUG, "pokeAUDF(%02X)\n", val);
+
+    audf = val & 0x1F;
+}
+
+void
+Audio::pokeAUDV(u8 val)
+{
+    debug(AUDREG_DEBUG, "pokeAUDV(%02X)\n", val);
+
+    audv = val & 0x0F;
+}
+
+void
 Audio::execute()
 {
     // Only proceed if this is not the run-ahead instance
     if (atari.objid != 0) return;
 
+    bool c2 = bool(poly5 & 0b00100);
+    bool c4 = bool(poly5 & 0b10000);
+    bool c5 = bool(poly4 & 0b0001);
+    bool c7 = bool(poly4 & 0b0100);
+    bool c8 = bool(poly4 & 0b1000);
+
     // Get the proper sampler for this audio unit
     Sampler &sampler = audioPort.sampler[objid];
 
-    /*
-
     // Generate a new sound sample
-    u8 sample = (poly4 & 0x8) ? audvol : 0;
+    u8 sample = c8 ? audv : 0;
 
     // Add a sample th the sample buffer
     if (!sampler.isFull()) {
@@ -48,7 +76,6 @@ Audio::execute()
     } else {
         trace(AUD_DEBUG, "Sample buffer is full\n");
     }
-    */
 
     // Run the frequency divider (controled by the AUDF register)
     if (fdiv != audf) {
@@ -64,9 +91,6 @@ Audio::execute()
 
     bool p4Clk;
     u8 inBit;
-    auto c2 = !!(poly5 & 0x04);
-    auto c4 = !!(poly5 & 0x10);
-    auto c8 = !!(poly4 & 0x08);
 
     switch (audc & 0b11) {
 
@@ -105,10 +129,6 @@ Audio::execute()
     poly5 = ((poly5 << 1) & 0b11111) | inBit;
 
     if (p4Clk) {
-
-        auto c5 = !!(poly4 & 0x01);
-        auto c7 = !!(poly4 & 0x04);
-        auto c8 = !!(poly4 & 0x08);
 
         switch (audc >> 2) {
 
