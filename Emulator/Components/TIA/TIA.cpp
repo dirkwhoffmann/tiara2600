@@ -287,11 +287,6 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
         return;
     }
 
-    auto unsupported = [&]() {
-        debug(TIA_REG_DEBUG,
-              "Ignoring write to TIA register %s\n", TIARegisterEnum::key(reg));
-    };
-
     if (delay) {
 
         debug(TIA_REG_DEBUG, "%s = %02X (in %lld cycles)\n", TIARegisterEnum::key(reg), val, delay);

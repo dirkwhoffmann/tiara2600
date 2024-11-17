@@ -19,7 +19,7 @@ bool
 AudioPort::isMuted() const
 {
     if (volL.isFading() || volR.isFading()) return false;
-    return volL + volR == 0.0 || vol[0] + vol[1] + vol[2] + vol[3] == 0.0;
+    return volL + volR == 0.0 || vol[0] + vol[1] == 0.0;
 }
 
 void
@@ -31,6 +31,7 @@ AudioPort::synthesize(Cycle clock, Cycle target)
     if (atari.objid != 0) return;
 
     // Determine the number of elapsed cycles per audio sample
+    sampleRate = 48000; // TODO: REMOVE ASAP
     double cps = double(atari.clockFrequency()) / sampleRate;
 
     // Determine how many samples we need to produce
@@ -85,6 +86,9 @@ AudioPort::synthesize(Cycle clock, long count, double cyclesPerSample)
     */
 
     // Take the slow path
+
+    synthesize <SMP_LINEAR> (clock, count, cyclesPerSample);
+/*
     switch (config.sampling) {
 
         case SMP_NONE:      synthesize <SMP_NONE>    (clock, count, cyclesPerSample); break;
@@ -94,7 +98,7 @@ AudioPort::synthesize(Cycle clock, long count, double cyclesPerSample)
         default:
             fatalError;
     }
-
+*/
     stream.mutex.unlock();
 }
 
@@ -110,8 +114,8 @@ AudioPort::synthesize(Cycle clock, long count, double cyclesPerSample)
 
     for (isize i = 0; i < count; i++) {
 
-        float ch0 = sampler[0].interpolate <method> (Cycle(cycle)) * vol0;
-        float ch1 = sampler[1].interpolate <method> (Cycle(cycle)) * vol1;
+        float ch0 = sampler[0].interpolate <method> (Cycle(cycle)) * vol0 * 4;
+        float ch1 = sampler[1].interpolate <method> (Cycle(cycle)) * vol1 * 4;
 
         // Compute left and right channel output
         double l = ch0 * (1 - pan0) + ch1 * (1 - pan1);
