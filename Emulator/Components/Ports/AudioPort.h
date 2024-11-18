@@ -16,6 +16,7 @@
 #include "SubComponent.h"
 #include "Animated.h"
 #include "AudioStream.h"
+#include "Chrono.h"
 #include "Concurrency.h"
 #include "RingBuffer.h"
 #include "Sampler.h"
@@ -62,13 +63,16 @@ class AudioPort final : public SubComponent, public Inspectable<AudioPortInfo, A
     AudioPortConfig config = { };
 
     // Current sample rate
-    double sampleRate = 44100;
+    // double sampleRate = 44100;
 
     // Fraction of a sample that hadn't been generated in synthesize
     double fraction = 0.0;
 
     // Time stamp of the last write pointer alignment
     util::Time lastAlignment;
+
+    // Records the number of requested samples and their time stamps
+    util::RingBuffer<double, 16> requests;
 
     // Sample rate adjustment
     double sampleRateCorrection = 0.0;
@@ -85,6 +89,10 @@ class AudioPort final : public SubComponent, public Inspectable<AudioPortInfo, A
 
     // Used to determine if a MSG_MUTE should be send
     bool muted = false;
+
+    // (sample rate prediction)
+    // isize cnt = 0;
+    // util::Time base = 0;
 
 
     //
@@ -189,7 +197,7 @@ public:
     void checkOption(Option opt, i64 value) override;
     void setOption(Option opt, i64 value) override;
 
-    void setSampleRate(double hz);
+    // void setSampleRate(double hz);
 
 
     //
@@ -265,6 +273,15 @@ public:
     isize copyMono(float *buffer, isize n);
     isize copyStereo(float *left, float *right, isize n);
     isize copyInterleaved(float *buffer, isize n);
+
+private:
+
+    // Experimental (sample rate prediction)
+    void recordRequest(isize n);
+
+    // Experimental (sample rate prediction)
+    double sampleRate() const;
+    double predictSampleRate() const;
 };
 
 }

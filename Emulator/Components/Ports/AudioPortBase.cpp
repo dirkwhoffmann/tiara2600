@@ -235,6 +235,7 @@ AudioPort::setOption(Option opt, i64 value)
     }
 }
 
+/*
 void
 AudioPort::setSampleRate(double hz)
 {
@@ -252,5 +253,6 @@ AudioPort::setSampleRate(double hz)
         debug(AUD_DEBUG, "setSampleRate(%.2f) (assumed)\n", sampleRate);
     }
 }
+*/
 
 }

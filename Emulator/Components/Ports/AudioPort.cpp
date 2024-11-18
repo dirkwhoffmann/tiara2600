@@ -31,8 +31,7 @@ AudioPort::synthesize(Cycle clock, Cycle target)
     if (atari.objid != 0) return;
 
     // Determine the number of elapsed cycles per audio sample
-    sampleRate = 48000; // TODO: REMOVE ASAP
-    double cps = double(atari.clockFrequency()) / sampleRate;
+    double cps = double(atari.clockFrequency()) / sampleRate();
 
     // Determine how many samples we need to produce
     double exact = (double)(target - clock) / cps + fraction;
@@ -227,6 +226,9 @@ AudioPort::fadeOut()
 isize
 AudioPort::copyMono(float *buffer, isize n)
 {
+    // Record request to allow automatic sample-rate detection
+    recordRequest(n);
+
     // Copy sound samples
     auto cnt = stream.copyMono(buffer, n);
     stats.consumedSamples += cnt;
@@ -240,8 +242,8 @@ AudioPort::copyMono(float *buffer, isize n)
 isize
 AudioPort::copyStereo(float *left, float *right, isize n)
 {
-    // Inform the sample rate detector about the number of requested samples
-    // detector.feed(n);
+    // Record request to allow automatic sample-rate detection
+    recordRequest(n);
 
     // Copy sound samples
     auto cnt = stream.copyStereo(left, right, n);
@@ -256,6 +258,9 @@ AudioPort::copyStereo(float *left, float *right, isize n)
 isize
 AudioPort::copyInterleaved(float *buffer, isize n)
 {
+    // Record request to allow automatic sample-rate detection
+    recordRequest(n);
+
     // Copy sound samples
     auto cnt = stream.copyInterleaved(buffer, n);
     stats.consumedSamples += cnt;
@@ -264,6 +269,56 @@ AudioPort::copyInterleaved(float *buffer, isize n)
     if (cnt < n) handleBufferUnderflow();
 
     return cnt;
+}
+
+void
+AudioPort::recordRequest(isize n)
+{
+    static isize cnt = 0;
+    static util::Time base = util::Time::now();
+
+    SYNCHRONIZED
+
+    if (cnt >= 16384) {
+
+        if (requests.isFull()) (void)requests.read();
+        requests.write((double)cnt / (util::Time::now() - base).asSeconds());
+
+        debug(true, "Predicted frequency: %f\n", requests.latest());
+
+        cnt = 0;
+        base = util::Time::now();
+    }
+
+    cnt += n;
+}
+
+double
+AudioPort::sampleRate() const
+{
+    SYNCHRONIZED
+
+    // Get the sample rate from the host
+    double result = host.getConfig().sampleRate;
+
+    // Predict the sample rate if the host provides none
+    if (result == 0.0) result = predictSampleRate();
+
+    // Use a default value if the prediction failed
+    if (result == 0.0) result = 44100;
+
+    return result;
+}
+
+double
+AudioPort::predictSampleRate() const
+{
+    if (requests.isEmpty()) return 0.0;
+
+    // Right now, we only use the latest ring buffer element.
+    // Another possibility would be to interpolate all recorded entries
+    double frequency = requests.latest();
+    return frequency;
 }
 
 }
