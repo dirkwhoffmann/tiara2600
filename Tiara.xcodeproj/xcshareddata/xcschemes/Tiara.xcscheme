@@ -113,6 +113,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-&quot;cart attach /tmp/duck_chase.a26&quot;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-&quot;cart attach /tmp/scoreboard.a26&quot;"
             isEnabled = "NO">
          </CommandLineArgument>

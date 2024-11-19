@@ -19,9 +19,9 @@
 
 namespace tiara {
 
-class Playfield final : CoreObject {
+class Playfield final : CoreObject, public Serializable {
 
-    const char *objectName() const { return "Playfield"; }
+    const char *objectName() const override { return "Playfield"; }
 
     // The 20-bit playfield register
     u32 playfield{};
@@ -35,6 +35,21 @@ class Playfield final : CoreObject {
     // Bit selection masks
     u32 fwdMask{};
     u32 bwdMask{};
+
+public:
+
+    template <class T>
+    void serialize(T& worker)
+    {
+        worker
+
+        << playfield
+        << pf
+        << ref
+        << fwdMask
+        << bwdMask;
+
+    } SERIALIZERS(serialize);
 
 public:
 

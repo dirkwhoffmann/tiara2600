@@ -40,7 +40,7 @@ debugflag MEM_DEBUG       = 0;
 // TIA
 debugflag TIA_DEBUG       = 0;
 debugflag TIA_REG_DEBUG   = 0;
-debugflag AUD_DEBUG       = 1;
+debugflag AUD_DEBUG       = 0;
 debugflag AUDREG_DEBUG    = 0;
 debugflag AUDBUF_DEBUG    = 0;
 debugflag AUDVOL_DEBUG    = 0;

@@ -19,9 +19,9 @@
 
 namespace tiara {
 
-class Player final : CoreObject {
+class Player final : CoreObject, public Serializable {
 
-    const char *objectName() const { return "Player"; }
+    const char *objectName() const override { return "Player"; }
 
     DualPhaseCounter<39> counter;
     DualPhaseDelay<isize> start;
@@ -32,12 +32,33 @@ class Player final : CoreObject {
     bool ena{};
     bool refp{};
 
+
+    //
+    // Methods from Serializable
+    //
+
 public:
 
-    void pokeNUSIZ(u8 val) { nusiz = val & 0x7; trace(false, "NUSIZ %ld\n", nusiz); }
-    void pokeGRP(u8 val) { grp[0] = val; trace(false, "GRP %d\n", grp[0]); }
-    void pokeVDELP(u8 val) { vdelp = val & 0x1; trace(false, "VDELP %d\n", vdelp); }
-    void pokeREFP(u8 val) { refp = val & 0x8; trace(false, "REFP %d\n", refp); }
+    template <class T>
+    void serialize(T& worker)
+    {
+        worker
+
+        << counter
+        << start
+        << grp
+        << sc
+        << nusiz
+        << vdelp
+        << ena
+        << refp;
+
+    } SERIALIZERS(serialize);
+
+    void pokeNUSIZ(u8 val) { nusiz = val & 0x7; }
+    void pokeGRP(u8 val) { grp[0] = val; }
+    void pokeVDELP(u8 val) { vdelp = val & 0x1; }
+    void pokeREFP(u8 val) { refp = val & 0x8; }
     void vshift() { grp[1] = grp[0]; }
 
     isize getNUSIZ() { return nusiz; }

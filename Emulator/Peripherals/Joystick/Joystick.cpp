@@ -39,7 +39,7 @@ Joystick::getTiaBits() const
 {
     u8 result = 0xFF;
 
-    if (button) CLR_BIT(result, objid == 0 ? 4 : 5);
+    if (button) CLR_BIT(result, 7);
 
     return result;
 }

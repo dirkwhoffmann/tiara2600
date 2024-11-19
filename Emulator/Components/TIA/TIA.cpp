@@ -92,7 +92,10 @@ TIA::_didReset(bool hard)
         x = y = 0;
 
         // Reset counters
-        hc = { .phase = 1, .current = 56, .resl = false, .res = true };
+        hc.phase = 1;
+        hc.current = 56;
+        hc.resl = false;
+        hc.res = true;
 
         // Reset latches
         rdy = true;
@@ -243,7 +246,7 @@ TIA::spy(u16 addr) const
     auto setINP = [&](bool val) { return u8((atari.dataBus & 0x3F) | (val ? 0x80 : 0x00)); };
     auto mask = [&]() { return cx & config.collMask; };
 
-    auto reg = TIARegister(addr | 0x30);
+    auto reg = TIARegister((addr & 0x0F) | 0x30);
 
     switch (reg) {
 
@@ -259,13 +262,21 @@ TIA::spy(u16 addr) const
         case TIA_INPT1:     return setINP(0);
         case TIA_INPT2:     return setINP(0);
         case TIA_INPT3:     return setINP(0);
-        case TIA_INPT4:     return setINP(GET_BIT(port1.getTiaBits(), 4));
-        case TIA_INPT5:     return setINP(GET_BIT(port1.getTiaBits(), 5));
+        case TIA_INPT4:     {
+            auto res = setINP(GET_BIT(port1.getTiaBits(), 7));
+            // debug(true, "TIA_INPT4 = %x\n", res);
+            return res;
+        }
+        case TIA_INPT5:     {
 
+            auto res = setINP(GET_BIT(port2.getTiaBits(), 7));
+            // debug(true, "TIA_INPT5 = %x\n", res);
+            return res;
+        }
         default:
 
             debug(TIA_REG_DEBUG,
-                  "Ignoring READ from TIA register %s\n", TIARegisterEnum::key(reg));
+                  "Ignoring READ from TIA register %lx (%s)\n", reg, TIARegisterEnum::key(reg));
 
             return 0;
     }

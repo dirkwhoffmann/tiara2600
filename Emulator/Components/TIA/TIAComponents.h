@@ -13,17 +13,26 @@
 #pragma once
 
 #include "TIATypes.h"
+#include "Serializable.h"
 
 namespace tiara {
 
 /*
  *
  */
-template <typename T> class DualPhaseDelay {
+template <typename T>
+class DualPhaseDelay : public Serializable {
 
     T t[2];
 
 public:
+
+    template <class W>
+    void serialize(W& worker)
+    {
+        worker << t;
+
+    } SERIALIZERS(serialize);
 
     void execute(bool phi1, bool phi2, T val, bool reset = false) {
 
@@ -41,7 +50,8 @@ public:
 /*
  *
  */
-template <typename T> class DualPhaseDelayLatch : public DualPhaseDelay<T> {
+template <typename T>
+class DualPhaseDelayLatch : public DualPhaseDelay<T> {
 
 public:
 
@@ -55,7 +65,7 @@ public:
 /*
  *
  */
-template <int max> class DualPhaseCounter {
+template <int max> class DualPhaseCounter : public Serializable {
 
 public:
 
@@ -70,6 +80,20 @@ public:
 
     // Latched reset value
     bool resl{};
+
+public:
+
+    template <class W>
+    void serialize(W& worker)
+    {
+        worker
+
+        << current
+        << phase
+        << res
+        << resl;
+
+    } SERIALIZERS(serialize);
 
     void execute(bool clk, bool rst) {
 
@@ -103,7 +127,7 @@ public:
  * the horizontal dual-phase clock. It produces the dual-phase pulse called
  * SEC in the TIA schematics. */
 
-class SEC {
+class SEC : public Serializable {
 
     // Pipeline
     bool s0{}, s1{};
@@ -112,7 +136,18 @@ class SEC {
     bool hmovel{};
 
 public:
-    
+
+    template <class W>
+    void serialize(W& worker)
+    {
+        worker
+
+        << s0
+        << s1
+        << hmovel;
+
+    } SERIALIZERS(serialize);
+
     bool get() const { return s1; }
 
     void execute(bool phi1, bool phi2, bool hmove) {
@@ -133,12 +168,22 @@ public:
  *
  */
 
-class ExtraClock {
+class ExtraClock : public Serializable {
 
     bool ena[2]{};
     isize hm{};
 
 public:
+
+    template <class W>
+    void serialize(W& worker)
+    {
+        worker
+
+        << ena
+        << hm;
+
+    } SERIALIZERS(serialize);
 
     void execute(bool phi1, bool phi2, bool sec, isize hmc) {
 

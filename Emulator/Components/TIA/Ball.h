@@ -19,7 +19,7 @@
 
 namespace tiara {
 
-class Ball final : CoreObject {
+class Ball final : CoreObject, public Serializable {
 
     DualPhaseCounter<39> counter;
     DualPhaseDelay<bool> start2;
@@ -30,6 +30,19 @@ class Ball final : CoreObject {
     const char *objectName() const { return "Ball"; }
 
 public:
+
+    template <class T>
+    void serialize(T& worker)
+    {
+        worker
+
+        << counter
+        << start2
+        << blen
+        << blsiz
+        << blvd;
+
+    } SERIALIZERS(serialize);
 
     void pokeENABL(u8 val) { blen[0] = val & 0x02; }
     void pokeVDELBL(u8 val) { blvd = val & 0x01; }

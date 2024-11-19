@@ -19,7 +19,7 @@
 
 namespace tiara {
 
-class Missile final : CoreObject {
+class Missile final : CoreObject, public Serializable {
 
     const char *objectName() const { return "Missile"; }
 
@@ -31,6 +31,20 @@ class Missile final : CoreObject {
     DualPhaseDelay<bool> start2;
 
 public:
+
+    template <class T>
+    void serialize(T& worker)
+    {
+        worker
+
+        << counter
+        << siz
+        << ena
+        << resmp
+        << start1
+        << start2;
+
+    } SERIALIZERS(serialize);
 
     void pokeNUSIZ(u8 val) { siz = (val >> 4) & 0x03; }
     void pokeENAM(u8 val) { ena = val & 0x02; }

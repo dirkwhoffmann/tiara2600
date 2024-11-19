@@ -284,7 +284,7 @@ AudioPort::recordRequest(isize n)
         if (requests.isFull()) (void)requests.read();
         requests.write((double)cnt / (util::Time::now() - base).asSeconds());
 
-        debug(true, "Predicted frequency: %f\n", requests.latest());
+        // debug(true, "Predicted frequency: %f\n", requests.latest());
 
         cnt = 0;
         base = util::Time::now();

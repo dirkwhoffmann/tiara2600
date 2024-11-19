@@ -107,7 +107,18 @@ public:
     // Audio units
     Audio audio[2] = { Audio(atari, 0), Audio(atari, 1) };
 
-    // Host sample frequency detector
+    //
+    // Lookup tables
+    //
+
+    /* Display color and collision bits
+     *
+     * lookup[PFP][SCORE][RIGHT][<TIA objects>]
+     */
+    struct { TIAColor color; u32 collison; } lookup[2][2][2][64];
+
+
+    // Host sample frequency detector TODO: Integrate into VideoPort
     Detector detector = Detector(atari);
 
 
@@ -143,15 +154,6 @@ public:
     // The audios units have been executed up to this clock cycle
     Cycle audioClock = 0;
 
-    //
-    // Lookup tables
-    //
-
-    /* Display color and collision bits
-     *
-     * lookup[PFP][SCORE][RIGHT][<TIA objects>]
-     */
-    struct { TIAColor color; u32 collison; } lookup[2][2][2][64];
 
     //
     // Registers
@@ -206,7 +208,7 @@ private:
     bool rdy{};
 
     // Dual-phase horizontal counter
-    DualPhaseCounter<56> hc { .phase = 1, .current = 56, .resl = false, .res = true };
+    DualPhaseCounter<56> hc{};
 
     // SEC logic
     SEC sec{};
@@ -256,15 +258,6 @@ private:
     u32 *emuTexture{};
     u32 *dmaTexture{};
 
-    /* Pointer to the beginning of the current scanline inside the current
-     * working textures. These pointers are used by all rendering methods to
-     * write pixels. It always points to the beginning of a scanline, either
-     * the first or the second texture buffer. They are reset at the beginning
-     * of each frame and incremented at the beginning of each scanline.
-     */
-    // u32 *emuTexturePtr;
-    // u32 *dmaTexturePtr;
-
 
     //
     // Methods
@@ -294,9 +287,47 @@ public:
 
         worker
 
+        << pf
+        << p0
+        << p1
+        << m0
+        << m1
+        << bl
+
+        << hmc
+        << blec
+        << m0ec
+        << m1ec
+        << p0ec
+        << p1ec
+
         << x
         << y
-        << audioClock;
+        << audioClock
+
+        << colup0
+        << colup1
+        << colupf
+        << colubk
+        << rgba
+
+        << ctrlpf
+        << score
+        << pfp
+        << cx
+
+        << cs
+        << rw
+
+        << vs
+        << vb
+        << vsedge
+        << hc
+        << sec
+        << secl
+        << hb
+
+        << dataBus;
 
         if (isResetter(worker)) return;
 
