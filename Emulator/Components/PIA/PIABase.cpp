@@ -49,6 +49,9 @@ PIA::_didReset(bool hard)
 
     if (hard) {
 
+        // REMOVE ASAP
+        // config.ramPattern = RAM_PATTERN_ATARI_7800;
+
         switch (config.ramPattern) {
 
             case RAM_PATTERN_ZEROES:
@@ -94,41 +97,25 @@ PIA::_dump(Category category, std::ostream& os) const
 
     if (category == Category::Registers) {
 
-        /*
         os << std::endl;
-        os << tab("Counter A") << hex(counterA) << std::endl;
-        os << tab("Latch A") << hex(latchA) << std::endl;
-        os << tab("Data register A") << hex(PRA) << std::endl;
-        os << tab("Data port direction A") << hex(DDRA) << std::endl;
-        os << tab("Data port A") << hex(PA) << std::endl;
-        os << tab("Control register A") << hex(CRA) << std::endl;
+        os << tab("PRA") << hex(pra) << std::endl;
+        os << tab("PRB") << hex(prb) << std::endl;
+        os << tab("DDRA") << hex(ddra) << std::endl;
+        os << tab("DDRB") << hex(ddrb) << std::endl;
+        os << tab("INTENA") << hex(intena) << std::endl;
+        os << tab("INSTAT") << hex(instat) << std::endl;
+        os << tab("EDGCTRL") << hex(edgctrl) << std::endl;
         os << std::endl;
-        os << tab("Counter B") << hex(counterB) << std::endl;
-        os << tab("Latch B") << hex(latchB) << std::endl;
-        os << tab("Data register B") << hex(PRB) << std::endl;
-        os << tab("Data port direction B") << hex(DDRB) << std::endl;
-        os << tab("Data port B") << hex(PB) << std::endl;
-        os << tab("Control register B") << hex(CRB) << std::endl;
-        os << std::endl;
-        os << tab("Interrupt control reg") << hex(icr) << std::endl;
-        os << tab("Interrupt mask reg") << hex(imr) << std::endl;
-        os << std::endl;
-        os << tab("SDR") << hex(sdr) << std::endl;
-        os << tab("serCounter") << dec(serCounter) << std::endl;
-        os << std::endl;
-        */
     }
 
     if (category == Category::State) {
 
-        /*
-        os << tab("Sleeping") << bol(sleeping) << std::endl;
-        os << tab("Tiredness") << dec(tiredness) << std::endl;
-        os << tab("Sleep cycle") << dec(sleepCycle) << std::endl;
-        os << tab("Wakeup cycle") << dec(wakeUpCycle) << std::endl;
-        os << tab("CNT") << dec(CNT) << std::endl;
-        os << tab("INT") << dec(INT) << std::endl;
-        */
+        os << tab("PA") << hex(pa) << std::endl;
+        os << tab("PB") << hex(pb) << std::endl;
+        os << std::endl;
+        os << tab("Timer") << dec(timer) << std::endl;
+        os << tab("Counter") << dec(counter) << std::endl;
+        os << tab("Interval") << dec(interval) << std::endl;
     }
 }
 

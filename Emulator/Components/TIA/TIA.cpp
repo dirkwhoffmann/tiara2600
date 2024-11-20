@@ -243,7 +243,7 @@ u8
 TIA::spy(u16 addr) const
 {
     auto setCX = [&](u8 val) { return u8((val & 0xC0) | (atari.dataBus & 0x3F)); };
-    auto setINP = [&](bool val) { return u8((atari.dataBus & 0x3F) | (val ? 0x80 : 0x00)); };
+    // auto setINP = [&](bool val) { return u8((atari.dataBus & 0x3F) | (val ? 0x80 : 0x00)); };
     auto mask = [&]() { return cx & config.collMask; };
 
     auto reg = TIARegister((addr & 0x0F) | 0x30);
@@ -258,21 +258,13 @@ TIA::spy(u16 addr) const
         case TIA_CXM1FB:    return setCX(u8(mask() >> 4));
         case TIA_CXBLPF:    return setCX(u8(mask() >> 6));
         case TIA_CXPPMM:    return setCX(u8(mask() >> 8));
-        case TIA_INPT0:     return setINP(0);
-        case TIA_INPT1:     return setINP(0);
-        case TIA_INPT2:     return setINP(0);
-        case TIA_INPT3:     return setINP(0);
-        case TIA_INPT4:     {
-            auto res = setINP(GET_BIT(port1.getTiaBits(), 7));
-            // debug(true, "TIA_INPT4 = %x\n", res);
-            return res;
-        }
-        case TIA_INPT5:     {
+        case TIA_INPT0:     return inpt[0] | (atari.dataBus & 0x3F);
+        case TIA_INPT1:     return inpt[1] | (atari.dataBus & 0x3F);
+        case TIA_INPT2:     return inpt[2] | (atari.dataBus & 0x3F);
+        case TIA_INPT3:     return inpt[3] | (atari.dataBus & 0x3F);
+        case TIA_INPT4:     return inpt[4] | (atari.dataBus & 0x3F);
+        case TIA_INPT5:     return inpt[5] | (atari.dataBus & 0x3F);
 
-            auto res = setINP(GET_BIT(port2.getTiaBits(), 7));
-            // debug(true, "TIA_INPT5 = %x\n", res);
-            return res;
-        }
         default:
 
             debug(TIA_REG_DEBUG,
@@ -428,6 +420,16 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
             xfiles("Write to unmapped TIA register %s\n", TIARegisterEnum::key(reg));
 
     }
+}
+
+void
+TIA::updateInpt()
+{
+    inpt[4] = inptLatched ? inpt[4] : 0x80;
+    inpt[4] &= port1.getTiaBits();
+
+    inpt[5] = inptLatched ? inpt[5] : 0x80;
+    inpt[5] &= port2.getTiaBits();
 }
 
 template <bool debug> void
@@ -630,6 +632,8 @@ TIA::execute()
             case TIA_VBLANK:
 
                 vb = atari.dataBus & 0x02;
+                inptLatched = atari.dataBus & 0x40;
+                updateInpt();
                 break;
 
             case TIA_HMP0:  p0ec.setHM(dataBus); break;

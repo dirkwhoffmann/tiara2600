@@ -42,24 +42,24 @@ class PIA : public SubComponent, public Inspectable<PIAInfo, PIAStats> {
     u8 ram[128]{};
 
     // Peripheral data registers
-    u8 pra{};
-    u8 prb{};
+    u8 pra = 0;
+    u8 prb = 0;
 
     // Data directon registers
-    u8 ddra{};
-    u8 ddrb{};
+    u8 ddra = 0;
+    u8 ddrb = 0;
 
     // Interval timer
-    u8 timer{};
-    isize counter{};
-    isize interval{};
+    u8 timer = 0;
+    isize counter = 0;
+    isize interval = 0;
 
     // Interrupt registers (enable and status)
-    u8 intena{};
-    u8 instat{};
-    
+    u8 intena = 0;
+    u8 instat = 0;
+
     // Edge control (PA7 interrupts)
-    u8 edgctrl{};
+    u8 edgctrl = 0;
 
 
     //
@@ -69,8 +69,8 @@ class PIA : public SubComponent, public Inspectable<PIAInfo, PIAStats> {
 public:
 
     // Data ports
-    u8 pa{};
-    u8 pb{};
+    u8 pa = 0;
+    u8 pb = 0;
 
 
     //
@@ -100,7 +100,18 @@ public:
     {
         worker
 
-        << ram;
+        << pra
+        << prb
+        << ddra
+        << ddrb
+        << timer
+        << counter
+        << interval
+        << intena
+        << instat
+        << edgctrl
+        << pa
+        << pb;
 
         if (isResetter(worker)) return;
 

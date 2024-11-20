@@ -26,10 +26,10 @@ Joystick::getPiaBits() const
 {
     u8 result = 0xFF;
 
-    if (axisY == -1) CLR_BIT(result, objid == 0 ? 0 : 4);
-    if (axisY ==  1) CLR_BIT(result, objid == 0 ? 1 : 5);
-    if (axisX == -1) CLR_BIT(result, objid == 0 ? 2 : 6);
-    if (axisX ==  1) CLR_BIT(result, objid == 0 ? 3 : 7);
+    if (axisY == -1) CLR_BIT(result, objid != 0 ? 0 : 4);
+    if (axisY ==  1) CLR_BIT(result, objid != 0 ? 1 : 5);
+    if (axisX == -1) CLR_BIT(result, objid != 0 ? 2 : 6);
+    if (axisX ==  1) CLR_BIT(result, objid != 0 ? 3 : 7);
 
     return result;
 }
@@ -102,6 +102,7 @@ Joystick::trigger(GamePadAction event)
     
     port.device = CPDEVICE_JOYSTICK;
     pia.updatePA();
+    tia.updateInpt();
 }
 
 void

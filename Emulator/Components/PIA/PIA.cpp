@@ -211,6 +211,7 @@ PIA::updatePA(u8 val)
     if (GET_BIT(edgctrl, 0) == 1 && FALLING_EDGE_BIT(pa, val, 7)) {
         SET_BIT(instat, 6);
     }
+
     pa = val;
 }
 
@@ -259,7 +260,7 @@ PIA::execute()
         if (timer == 0) SET_BIT(instat, 7);
         timer--;
     }
-    counter++;
+    counter = (counter + 1) % 1024;
 }
 template void PIA::execute<false>();
 template void PIA::execute<true>();

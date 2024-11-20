@@ -160,22 +160,27 @@ public:
     //
 
     // Color registers
-    u8 colup0;
-    u8 colup1;
-    u8 colupf;
-    u8 colubk;
+    u8 colup0 = 0;
+    u8 colup1 = 0;
+    u8 colupf = 0;
+    u8 colubk = 0;
 
     // RGBA values of the four selected colors
-    u32 rgba[4];
+    u32 rgba[4]{};
 
     // Control playfield, ball size, collisions
-    u8 ctrlpf{};
-    bool score{};
-    bool pfp{};
+    u8 ctrlpf = 0;
+    bool score = false;
+    bool pfp = false;
 
     // Collision bits
-    u32 cx{};
+    u32 cx = 0;
 
+    // Port bits
+    u8 inpt[6]{};
+
+    // Latch mode for INPT.4 and INPT.5
+    bool inptLatched = false;
 
 
     //
@@ -447,6 +452,7 @@ public:
     void poke(TIARegister reg, u8 val);
     void poke(TIARegister reg, u8 val, Cycle delay);
 
+    void latchInpt45(bool value);
     void updateInpt();
 
 
