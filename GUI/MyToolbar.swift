@@ -118,8 +118,15 @@ class MyToolbar: NSToolbar {
         }
     }
 
-    @IBAction func switchesAction(_ sender: Any!) {
-        
+    @IBAction func slidersAction(_ sender: Any!) {
+
+        if parent.renderer.dropZone.isVisible {
+            print("Closing drop zone...")
+            parent.renderer.dropZone.close()
+        } else {
+            print("Opening drop zone...")
+            parent.renderer.dropZone.open(type: .CART, delay: 0.25)
+        }
     }
     
     @IBAction func preferencesAction(_ sender: Any) {

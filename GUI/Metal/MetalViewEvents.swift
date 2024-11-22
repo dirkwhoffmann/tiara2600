@@ -88,7 +88,7 @@ public extension MetalView {
     override func mouseDown(with event: NSEvent) {
 
         if !gotMouse {
-            if prefs.retainMouseByClick && insideTrackingArea { retainMouse() }
+            if prefs.retainMouseByClick && insideTrackingArea && !renderer.dropZone.isVisible { retainMouse() }
             return
         }
 

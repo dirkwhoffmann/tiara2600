@@ -9,6 +9,65 @@
 
 import Foundation
 
+class HoverImageView: NSImageView {
+
+    private var trackingArea: NSTrackingArea?
+    private var dropZone: DropZone?
+    private var nr = 0
+    private var state = 0
+
+    convenience init(nr : Int, dropZone: DropZone) {
+
+        self.init()
+        self.nr = nr
+        self.dropZone = dropZone
+
+        updateImage(hover: false)
+    }
+
+    override func updateTrackingAreas() {
+
+        super.updateTrackingAreas()
+
+        if let trackingArea = trackingArea {
+            removeTrackingArea(trackingArea)
+        }
+
+        let options: NSTrackingArea.Options = [.mouseEnteredAndExited, .activeInKeyWindow]
+        trackingArea = NSTrackingArea(rect: bounds, options: options, owner: self, userInfo: nil)
+
+        if let trackingArea = trackingArea {
+            addTrackingArea(trackingArea)
+        }
+    }
+
+    override func mouseEntered(with event: NSEvent) {
+
+        super.mouseEntered(with: event)
+        updateImage(hover: true)
+    }
+
+    override func mouseExited(with event: NSEvent) {
+
+        super.mouseExited(with: event)
+        updateImage(hover: false)
+    }
+
+    override func mouseDown(with event: NSEvent) {
+
+        super.mouseDown(with: event)
+        state = state == 0 ? 1 : 0
+        updateImage(hover: false)
+        dropZone?.click(zone: nr)
+    }
+
+    func updateImage(hover: Bool) {
+
+        let suffix = hover ? "d" : ""
+        image = NSImage(named: "switch0\(state)\(suffix)")!
+    }
+}
+
 class DropZone: Layer {
 
     static let unconnected = 0.92
@@ -21,7 +80,7 @@ class DropZone: Layer {
     var mydocument: MyDocument { return controller.mydocument! }
     var mm: MediaManager { return controller.mm }
 
-    let numZones = 1
+    let numZones = 5
 
     var zones: [NSImageView]
     var ul: [NSPoint]
@@ -48,21 +107,26 @@ class DropZone: Layer {
         currentAlpha = [Double](repeating: 0.0, count: numZones)
         targetAlpha = [Double](repeating: DropZone.unselected, count: numZones)
         maxAlpha = [Double](repeating: 0.0, count: numZones)
-
         zones = [NSImageView]()
         zones.reserveCapacity(numZones)
-        for _ in 0..<numZones { zones.append(NSImageView()) }
-        for i in 0..<numZones { zones[i].unregisterDraggedTypes() }
+
         super.init(renderer: renderer)
+
+        for i in 0..<numZones { zones.append(HoverImageView(nr: i, dropZone: self)) }
+        for i in 0..<numZones { zones[i].unregisterDraggedTypes() }
+
         resize()
     }
 
-    private func image(zone: Int) -> NSImage {
+    /*
+    private func image(zone: Int, state: Int, hover: Bool) -> NSImage {
 
         let suffix = enabled[zone] ? (inUse[zone] ? "InUse" : "Empty") : "Disabled"
-        return NSImage(named: "dropZone\(zone)\(suffix)")!
+        // return NSImage(named: "dropZone\(zone)\(suffix)")!
+        return NSImage(named: "dropZone0\(state)\(suffix)")!
     }
-    
+    */
+
     private func setType(_ type: tiara.FileType) {
 
         inUse[0] = true
@@ -76,7 +140,7 @@ class DropZone: Layer {
             enabled[0] = false
         }
 
-        for i in 0..<numZones { zones[i].image = image(zone: i) }
+        // for i in 0..<numZones { zones[i].image = image(zone: i) }
 
         // Hide all drop zones if none is enabled
         hideAll = true
@@ -107,7 +171,8 @@ class DropZone: Layer {
     }
 
     func draggingUpdated(_ sender: NSDraggingInfo) {
-                   
+
+    /*
         if hideAll { return }
         
         for i in 0..<numZones {
@@ -133,8 +198,9 @@ class DropZone: Layer {
                 targetAlpha[i] = DropZone.unselected
             }
         }
+     */
     }
-    
+
     override func alphaDidChange() {
                 
         if hideAll { return }
@@ -238,5 +304,11 @@ class DropZone: Layer {
 
             x += w + margin
         }
+    }
+
+    func click(zone: Int) {
+
+        print("Zone \(zone) clicked")
+        close()
     }
 }
