@@ -36,8 +36,6 @@ extension Inspector {
 
         if full {
 
-            tiaPalette.image = paletteImage
-
             func add(_ tag: Int, color: NSColor) {
 
                 let img = solidImage(size: NSSize(width: 32, height: 16), color: color)
@@ -110,81 +108,6 @@ extension Inspector {
         tiaCOLUP0lock.isHidden = !lockCOLUP0
         tiaCOLUP1lock.isHidden = !lockCOLUP1
      }
-
-    var paletteImage: NSImage? {
-
-        // Compute layout
-        let width = 256
-        let height = 512
-        let cols = 8
-        let rows = 128 / cols
-        let dx = width / cols
-        let dy = height / rows
-
-        // Create image representation
-        let size = CGSize(width: width, height: height)
-        let cap = width * height
-        let mask = calloc(cap, MemoryLayout<UInt32>.size)!
-        let ptr = mask.bindMemory(to: UInt32.self, capacity: cap)
-
-        func drawBlock(y: Int, x: Int, abgr: UInt32) {
-
-            for i in 0...dy {
-                for j in 0...dx {
-
-                    let index = (y * dy + i) * width + x * dx + j
-
-                    if index < width * height {
-                        ptr[index] = abgr
-                    } else {
-                        break
-                    }
-                }
-            }
-        }
-
-        for i in 0..<rows {
-            for j in 0..<cols {
-
-                let color = emu?.tia.color(i*cols+j) ?? NSColor.white
-
-                let r = Int(color.redComponent * CGFloat(255))
-                let g = Int(color.greenComponent * CGFloat(255))
-                let b = Int(color.blueComponent * CGFloat(255))
-                let a = Int(color.alphaComponent * CGFloat(255))
-                let abgr = UInt32(r | g << 8 | b << 16 | a << 24)
-
-                drawBlock(y: i, x: j, abgr: abgr)
-            }
-        }
-
-        // Create image
-        let image = NSImage.make(data: mask, rect: size)
-        let resizedImage = image?.resizeSharp(width: 512, height: 256)
-        return resizedImage
-    }
-
-    /*
-    @IBAction func tiaColorAction(_ sender: NSColorWell!) {
-
-        print("colorAction \(sender.tag)")
-
-        guard let emu = emu else { return }
-
-        let reg: tiara.TIARegister =
-        sender.tag == 0 ? ._COLUBK :
-        sender.tag == 1 ? ._COLUPF :
-        sender.tag == 2 ? ._COLUP0 : ._COLUP1
-
-        emu.suspend()
-        emu.tia.unlockReg(reg)
-        emu.tia.setColor(reg, color: sender.color)
-        emu.tia.lockReg(reg)
-        emu.resume()
-
-        refreshTIA()
-    }
-    */
 
     func tag2colreg(_ tag: Int) -> tiara.TIARegister {
 

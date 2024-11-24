@@ -185,7 +185,6 @@ class Inspector: DialogController {
     @IBOutlet weak var piaPB0: NSButton!
 
     // TIA panel
-    @IBOutlet weak var tiaPalette: NSButton!
     @IBOutlet weak var tiaCOLUP0: NSTextField!
     @IBOutlet weak var tiaCOLUP1: NSTextField!
     @IBOutlet weak var tiaCOLUPF: NSTextField!

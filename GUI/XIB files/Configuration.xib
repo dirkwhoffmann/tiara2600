@@ -58,6 +58,7 @@
                 <outlet property="prfVSync" destination="FHx-4K-dGQ" id="t0q-RM-Yzd"/>
                 <outlet property="romOkButton" destination="sYt-GY-XZQ" id="x48-u0-P2N"/>
                 <outlet property="romPowerButton" destination="7kO-E0-VCD" id="B6z-qV-8e8"/>
+                <outlet property="tiaPalette" destination="Ahx-Wo-og0" id="m9d-8G-5yr"/>
                 <outlet property="vidBloomBrightnessSlider" destination="tcf-i4-M9e" id="APL-nV-hEu"/>
                 <outlet property="vidBloomPopUp" destination="J7V-We-wO2" id="Txv-g5-ha7"/>
                 <outlet property="vidBloomRadiusSlider" destination="VJ1-QU-G8y" id="Swh-1G-ZJ0"/>
@@ -390,7 +391,7 @@ Gw
                                             </textFieldCell>
                                         </textField>
                                         <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N53-b0-EtR" userLabel="System">
-                                            <rect key="frame" x="421" y="99" width="171" height="26"/>
+                                            <rect key="frame" x="423" y="262" width="171" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" title="VICE" bezelStyle="rounded" imagePosition="right" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="c0k-4E-Bw7" id="9X3-bD-eLr" userLabel="System">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -412,7 +413,7 @@ Gw
                                             </connections>
                                         </popUpButton>
                                         <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Btb-1b-eir">
-                                            <rect key="frame" x="319" y="131" width="114" height="17"/>
+                                            <rect key="frame" x="321" y="294" width="114" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Power up" id="8ha-9E-SGy">
                                                 <font key="font" metaFont="systemBold"/>
@@ -421,7 +422,7 @@ Gw
                                             </textFieldCell>
                                         </textField>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eTJ-R8-P9k">
-                                            <rect key="frame" x="337" y="106" width="84" height="16"/>
+                                            <rect key="frame" x="339" y="269" width="84" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="RAM Pattern:" id="Hgf-XR-gqy">
                                                 <font key="font" metaFont="system"/>
@@ -467,6 +468,24 @@ Gw
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <box fixedFrame="YES" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Mi0-h3-hqa">
+                                            <rect key="frame" x="7" y="77" width="275" height="230"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <view key="contentView" id="JHW-YL-Wm3">
+                                                <rect key="frame" x="4" y="5" width="267" height="222"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ahx-Wo-og0">
+                                                        <rect key="frame" x="7" y="10" width="254" height="203"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="background" imagePosition="only" alignment="center" imageScaling="axesIndependently" inset="2" id="KtY-k9-gnw">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                    </button>
+                                                </subviews>
+                                            </view>
+                                        </box>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -2226,6 +2245,7 @@ Gw
     </objects>
     <resources>
         <image name="NSTouchBarDeleteTemplate" width="19" height="22"/>
+        <image name="background" width="1601" height="1201"/>
         <image name="devGamepad1Template" width="20" height="21"/>
         <image name="devGamepad2Template" width="20" height="21"/>
         <image name="devKeyset1Template" width="20" height="20"/>

@@ -38,10 +38,10 @@ class ConfigurationController: DialogController {
     // Hardware
     //
     
-    // VIC
+    // TIA
     @IBOutlet weak var hwVicModelPopup: NSPopUpButton!
     @IBOutlet weak var hwVicIcon: NSImageView!
-    @IBOutlet weak var hwVicGrayDotBug: NSButton!
+    @IBOutlet weak var tiaPalette: NSButton!
 
     // Startup
     @IBOutlet weak var hwRamPatternPopup: NSPopUpButton!
