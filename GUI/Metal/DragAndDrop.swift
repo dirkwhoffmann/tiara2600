@@ -63,7 +63,6 @@ public extension MetalView {
 
     override func draggingUpdated(_ sender: NSDraggingInfo) -> NSDragOperation {
         
-        parent.renderer.dropZone.draggingUpdated(sender)
         return NSDragOperation.copy
     }
     
@@ -109,6 +108,7 @@ public extension MetalView {
         if !tiara.FileType.draggable.contains(type) { return false }
 
         // Check drop zones
+        /*
         var zone: Int?
         for i in 0...0 where renderer.dropZone.isInside(sender, zone: i) {
 
@@ -121,6 +121,10 @@ public extension MetalView {
 
         dropZone = zone
         dropType = type
+        */
+        dropZone = 0
+        dropType = type
+
         return true
     }
 

@@ -13,8 +13,8 @@ class HoverImageView: NSImageView {
 
     private var trackingArea: NSTrackingArea?
     private var dropZone: DropZone?
-    private var nr = 0
-    private var state = 0
+    var nr = 0
+    var state = 0
 
     convenience init(nr : Int, dropZone: DropZone) {
 
@@ -63,8 +63,7 @@ class HoverImageView: NSImageView {
 
     func updateImage(hover: Bool) {
 
-        let suffix = hover ? "d" : ""
-        image = NSImage(named: "switch0\(state)\(suffix)")!
+        image = NSImage(named: "switch\(nr)\(state)\(hover ? "b" : "a")")!
     }
 }
 
@@ -82,12 +81,9 @@ class DropZone: Layer {
 
     let numZones = 5
 
-    var zones: [NSImageView]
+    var zones: [HoverImageView]
     var ul: [NSPoint]
     var lr: [NSPoint]
-    var enabled: [Bool]
-    var inUse: [Bool]
-    var inside: [Bool]
     var currentAlpha: [Double]
     var targetAlpha: [Double]
     var maxAlpha: [Double]
@@ -101,13 +97,10 @@ class DropZone: Layer {
 
         ul = [NSPoint](repeating: NSPoint(x: 0, y: 0), count: numZones)
         lr = [NSPoint](repeating: NSPoint(x: 0, y: 0), count: numZones)
-        enabled = [Bool](repeating: false, count: numZones)
-        inUse = [Bool](repeating: false, count: numZones)
-        inside = [Bool](repeating: false, count: numZones)
         currentAlpha = [Double](repeating: 0.0, count: numZones)
         targetAlpha = [Double](repeating: DropZone.unselected, count: numZones)
         maxAlpha = [Double](repeating: 0.0, count: numZones)
-        zones = [NSImageView]()
+        zones = [HoverImageView]()
         zones.reserveCapacity(numZones)
 
         super.init(renderer: renderer)
@@ -118,39 +111,10 @@ class DropZone: Layer {
         resize()
     }
 
-    /*
-    private func image(zone: Int, state: Int, hover: Bool) -> NSImage {
-
-        let suffix = enabled[zone] ? (inUse[zone] ? "InUse" : "Empty") : "Disabled"
-        // return NSImage(named: "dropZone\(zone)\(suffix)")!
-        return NSImage(named: "dropZone0\(state)\(suffix)")!
-    }
-    */
-
-    private func setType(_ type: tiara.FileType) {
-
-        inUse[0] = true
-
-        switch type {
-
-        case .CART:
-            enabled[0] = true
-
-        default:
-            enabled[0] = false
-        }
-
-        // for i in 0..<numZones { zones[i].image = image(zone: i) }
-
-        // Hide all drop zones if none is enabled
-        hideAll = true
-        for i in 0..<numZones where enabled[i] { hideAll = false }
-    }
-
     func open(type: tiara.FileType, delay: Double) {
 
-        setType(type)
         open(delay: delay)
+        for i in 0..<numZones { zones[i].updateImage(hover: false) }
         resize()
     }
 
@@ -158,47 +122,6 @@ class DropZone: Layer {
         
         super.update(frames: frames)
         if alpha.current > 0 { updateAlpha() }
-    }
-    
-    func isInside(_ sender: NSDraggingInfo, zone i: Int) -> Bool {
-
-        assert(i >= 0 && i < numZones)
-
-        let x = sender.draggingLocation.x
-        let y = sender.draggingLocation.y
-
-        return x > ul[i].x && x < lr[i].x && y > ul[i].y && y < lr[i].y
-    }
-
-    func draggingUpdated(_ sender: NSDraggingInfo) {
-
-    /*
-        if hideAll { return }
-        
-        for i in 0..<numZones {
-
-            if !enabled[i] {
-                targetAlpha[i] = DropZone.unconnected
-                continue
-            }
-            
-            let isIn = isInside(sender, zone: i)
-
-            if isIn && !inside[i] {
-                
-                inside[i] = true
-                zones[i].image = NSImage(named: "dropZone\(i)Selected")
-                targetAlpha[i] = DropZone.selected
-            }
-
-            if !isIn && inside[i] {
-
-                inside[i] = false
-                zones[i].image = image(zone: i)
-                targetAlpha[i] = DropZone.unselected
-            }
-        }
-     */
     }
 
     override func alphaDidChange() {
@@ -307,6 +230,23 @@ class DropZone: Layer {
     }
 
     func click(zone: Int) {
+
+        let val = zones[zone].state != 0
+        let cmd: tiara.SliderCmd
+
+        switch zone {
+
+        case 0:  cmd = tiara.SliderCmd(slider: .COLOR, value: val, delay: 0.0)
+        case 1:  cmd = tiara.SliderCmd(slider: .DIFFA, value: val, delay: 0.0)
+        case 2:  cmd = tiara.SliderCmd(slider: .DIFFB, value: val, delay: 0.0)
+        case 3:  cmd = tiara.SliderCmd(slider: .SELECT, value: val, delay: 0.2)
+        case 4:  cmd = tiara.SliderCmd(slider: .RESET, value: val, delay: 0.2)
+
+        default:
+            fatalError()
+        }
+
+        emu?.put(.SET_SLIDER, slider: cmd)
 
         print("Zone \(zone) clicked")
         close()
