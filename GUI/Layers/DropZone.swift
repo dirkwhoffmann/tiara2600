@@ -14,9 +14,9 @@ class HoverImageView: NSImageView {
     private var trackingArea: NSTrackingArea?
     private var dropZone: DropZone?
     var nr = 0
-    var state = 0
+    var state = false
 
-    convenience init(nr : Int, dropZone: DropZone) {
+    convenience init(nr: Int, dropZone: DropZone) {
 
         self.init()
         self.nr = nr
@@ -56,14 +56,14 @@ class HoverImageView: NSImageView {
     override func mouseDown(with event: NSEvent) {
 
         super.mouseDown(with: event)
-        state = state == 0 ? 1 : 0
+        state = !state
         updateImage(hover: false)
         dropZone?.click(zone: nr)
     }
 
     func updateImage(hover: Bool) {
 
-        image = NSImage(named: "switch\(nr)\(state)\(hover ? "b" : "a")")!
+        image = NSImage(named: "switch\(nr)\(state ? "1" : "0")\(hover ? "b" : "a")")!
     }
 }
 
@@ -114,6 +114,27 @@ class DropZone: Layer {
     func open(type: tiara.FileType, delay: Double) {
 
         open(delay: delay)
+
+        if let info = emu?.atari?.info {
+
+            func update(zone nr: Int, slider: tiara.Slider) {
+
+                switch slider.rawValue {
+                case 0: zones[nr].state = info.slider.0
+                case 1: zones[nr].state = info.slider.1
+                case 2: zones[nr].state = info.slider.2
+                case 3: zones[nr].state = info.slider.3
+                case 4: zones[nr].state = info.slider.4
+                default: fatalError()
+                }
+            }
+
+            update(zone: 0, slider: tiara.Slider.COLOR)
+            update(zone: 1, slider: tiara.Slider.DIFFA)
+            update(zone: 2, slider: tiara.Slider.DIFFB)
+            update(zone: 3, slider: tiara.Slider.SELECT)
+            update(zone: 4, slider: tiara.Slider.RESET)
+        }
         for i in 0..<numZones { zones[i].updateImage(hover: false) }
         resize()
     }
@@ -231,7 +252,7 @@ class DropZone: Layer {
 
     func click(zone: Int) {
 
-        let val = zones[zone].state != 0
+        let val = zones[zone].state
         let cmd: tiara.SliderCmd
 
         switch zone {
