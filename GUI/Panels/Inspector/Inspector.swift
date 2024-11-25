@@ -184,79 +184,92 @@ class Inspector: DialogController {
     @IBOutlet weak var piaPB1: NSButton!
     @IBOutlet weak var piaPB0: NSButton!
 
-    // TIA panel
+    // TIA panel (Registers)
     @IBOutlet weak var tiaCOLUP0: NSTextField!
-    @IBOutlet weak var tiaCOLUP1: NSTextField!
-    @IBOutlet weak var tiaCOLUPF: NSTextField!
-    @IBOutlet weak var tiaCOLUBK: NSTextField!
     @IBOutlet weak var tiaCOLUP0lock: NSButton!
+    @IBOutlet weak var tiaCOLUP0Popup: NSPopUpButton!
+    @IBOutlet weak var tiaCOLUP1: NSTextField!
     @IBOutlet weak var tiaCOLUP1lock: NSButton!
+    @IBOutlet weak var tiaCOLUP1Popup: NSPopUpButton!
+    @IBOutlet weak var tiaCOLUPF: NSTextField!
     @IBOutlet weak var tiaCOLUPFlock: NSButton!
+    @IBOutlet weak var tiaCOLUPFPopup: NSPopUpButton!
+    @IBOutlet weak var tiaCOLUBK: NSTextField!
     @IBOutlet weak var tiaCOLUBKlock: NSButton!
     @IBOutlet weak var tiaCOLUBKPopup: NSPopUpButton!
-    @IBOutlet weak var tiaCOLUPFPopup: NSPopUpButton!
-    @IBOutlet weak var tiaCOLUP0Popup: NSPopUpButton!
-    @IBOutlet weak var tiaCOLUP1Popup: NSPopUpButton!
- 
-    @IBOutlet weak var vicScanline: NSTextField!
-    @IBOutlet weak var vicRasterCycle: NSTextField!
-    @IBOutlet weak var vicYCounter: NSTextField!
-    @IBOutlet weak var vicXCounter: NSTextField!
-    @IBOutlet weak var vicVC: NSTextField!
-    @IBOutlet weak var vicVCBase: NSTextField!
-    @IBOutlet weak var vicRC: NSTextField!
-    @IBOutlet weak var vicVMLI: NSTextField!
-    @IBOutlet weak var vicCtrl1: NSTextField!
-    @IBOutlet weak var vicCtrl2: NSTextField!
-    @IBOutlet weak var vicDy: NSTextField!
-    @IBOutlet weak var vicDx: NSTextField!
-    @IBOutlet weak var vicBadLine: NSButton!
-    @IBOutlet weak var vicDisplayState: NSButton!
-    @IBOutlet weak var vicVBlank: NSButton!
-    @IBOutlet weak var vicScreenGeometry: NSPopUpButton!
-    @IBOutlet weak var vicDisplayMode: NSPopUpButton!
-    @IBOutlet weak var vicBorderColor: NSColorWell!
-    @IBOutlet weak var vicBgColor0: NSColorWell!
-    @IBOutlet weak var vicBgColor1: NSColorWell!
-    @IBOutlet weak var vicBgColor2: NSColorWell!
-    @IBOutlet weak var vicBgColor3: NSColorWell!
-    @IBOutlet weak var vicMemSelect: NSTextField!
-    @IBOutlet weak var vicUltimax: NSButton!
-    @IBOutlet weak var vicMemoryBankAddr: NSPopUpButton!
-    @IBOutlet weak var vicScreenMemoryAddr: NSPopUpButton!
-    @IBOutlet weak var vicCharMemoryAddr: NSPopUpButton!
-    @IBOutlet weak var vicIrqRasterline: NSTextField!
-    @IBOutlet weak var vicImr: NSTextField!
-    @IBOutlet weak var vicImrLP: NSButton!
-    @IBOutlet weak var vicImrSS: NSButton!
-    @IBOutlet weak var vicImrSB: NSButton!
-    @IBOutlet weak var vicImrRaster: NSButton!
-    @IBOutlet weak var vicIrr: NSTextField!
-    @IBOutlet weak var vicIrrIrq: NSButton!
-    @IBOutlet weak var vicIrrLP: NSButton!
-    @IBOutlet weak var vicIrrSS: NSButton!
-    @IBOutlet weak var vicIrrSB: NSButton!
-    @IBOutlet weak var vicIrrRaster: NSButton!
-    @IBOutlet weak var latchedLPX: NSTextField!
-    @IBOutlet weak var latchedLPY: NSTextField!
-    @IBOutlet weak var vicLpLine: NSButton!
-    @IBOutlet weak var vicLpIrqHasOccurred: NSButton!
-    
-    @IBOutlet weak var sprSelector: NSSegmentedControl!
-    @IBOutlet weak var sprX: NSTextField!
-    @IBOutlet weak var sprY: NSTextField!
-    @IBOutlet weak var sprEnabled: NSButton!
-    @IBOutlet weak var sprExpandX: NSButton!
-    @IBOutlet weak var sprExpandY: NSButton!
-    @IBOutlet weak var sprPriority: NSButton!
-    @IBOutlet weak var sprMulticolor: NSButton!
-    @IBOutlet weak var sprSSCollision: NSButton!
-    @IBOutlet weak var sprSBCollision: NSButton!
-    @IBOutlet weak var sprColor: NSColorWell!
-    @IBOutlet weak var sprExtra1: NSColorWell!
-    @IBOutlet weak var sprExtra2: NSColorWell!
+    @IBOutlet weak var tiaCX: NSTextField!
+    @IBOutlet weak var tiaCXlock: NSButton!
+    @IBOutlet weak var tiaINP: NSTextField!
+    @IBOutlet weak var tiaINPlock: NSButton!
 
-    // SID panel
+    @IBOutlet weak var tiaVSYNC: NSTextField!
+    @IBOutlet weak var tiaVSYNClock: NSButton!
+    @IBOutlet weak var tiaVBLANK: NSTextField!
+    @IBOutlet weak var tiaVBLANKlock: NSButton!
+    @IBOutlet weak var tiaPF0: NSTextField!
+    @IBOutlet weak var tiaPF0lock: NSButton!
+    @IBOutlet weak var tiaPF1: NSTextField!
+    @IBOutlet weak var tiaPF1lock: NSButton!
+    @IBOutlet weak var tiaPF2: NSTextField!
+    @IBOutlet weak var tiaPF2lock: NSButton!
+    @IBOutlet weak var tiaCTRLPF: NSTextField!
+    @IBOutlet weak var tiaCTRLPFlock: NSButton!
+
+    @IBOutlet weak var tiaENABL: NSTextField!
+    @IBOutlet weak var tiaENABLlock: NSButton!
+    @IBOutlet weak var tiaHMBL: NSTextField!
+    @IBOutlet weak var tiaHMBLlock: NSButton!
+    @IBOutlet weak var tiaVDELBL: NSTextField!
+    @IBOutlet weak var tiaVDELBLlock: NSButton!
+
+    @IBOutlet weak var tiaGRP0: NSTextField!
+    @IBOutlet weak var tiaGRP0lock: NSButton!
+    @IBOutlet weak var tiaREFP0: NSTextField!
+    @IBOutlet weak var tiaREFP0lock: NSButton!
+    @IBOutlet weak var tiaNUSIZ0: NSTextField!
+    @IBOutlet weak var tiaNUSIZ0lock: NSButton!
+    @IBOutlet weak var tiaVDELP0: NSTextField!
+    @IBOutlet weak var tiaVDELP0lock: NSButton!
+    @IBOutlet weak var tiaHMP0: NSTextField!
+    @IBOutlet weak var tiaHMP0lock: NSButton!
+
+    @IBOutlet weak var tiaENAM0: NSTextField!
+    @IBOutlet weak var tiaENAM0lock: NSButton!
+    @IBOutlet weak var tiaHMM0: NSTextField!
+    @IBOutlet weak var tiaHMM0lock: NSButton!
+    @IBOutlet weak var tiaRESPMP0: NSTextField!
+    @IBOutlet weak var tiaRESPMP0lock: NSButton!
+
+    @IBOutlet weak var tiaGRP1: NSTextField!
+    @IBOutlet weak var tiaGRP1lock: NSButton!
+    @IBOutlet weak var tiaREFP1: NSTextField!
+    @IBOutlet weak var tiaREFP1lock: NSButton!
+    @IBOutlet weak var tiaNUSIZ1: NSTextField!
+    @IBOutlet weak var tiaNUSIZ1lock: NSButton!
+    @IBOutlet weak var tiaVDELP1: NSTextField!
+    @IBOutlet weak var tiaVDELP1lock: NSButton!
+    @IBOutlet weak var tiaHMP1: NSTextField!
+    @IBOutlet weak var tiaHMP1lock: NSButton!
+
+    @IBOutlet weak var tiaENAM1: NSTextField!
+    @IBOutlet weak var tiaENAM1lock: NSButton!
+    @IBOutlet weak var tiaHMM1: NSTextField!
+    @IBOutlet weak var tiaHMM1lock: NSButton!
+    @IBOutlet weak var tiaRESPMP1: NSTextField!
+    @IBOutlet weak var tiaRESPMP1lock: NSButton!
+
+    @IBOutlet weak var tiaCXCLR: NSButton!
+    @IBOutlet weak var tiaWSYNC: NSButton!
+    @IBOutlet weak var tiaRSYNC: NSButton!
+    @IBOutlet weak var tiaHMOVE: NSButton!
+    @IBOutlet weak var tiaHMCLR: NSButton!
+    @IBOutlet weak var tiaRESBL: NSButton!
+    @IBOutlet weak var tiaRESP0: NSButton!
+    @IBOutlet weak var tiaRESM0: NSButton!
+    @IBOutlet weak var tiaRESP1: NSButton!
+    @IBOutlet weak var tiaRESM1: NSButton!
+
+    // Audio panel
     @IBOutlet weak var sidSelector: NSSegmentedControl!
     @IBOutlet weak var sidWaveform1: NSPopUpButton!
     @IBOutlet weak var sidFrequency1: NSTextField!
