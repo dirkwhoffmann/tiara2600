@@ -136,9 +136,9 @@ extension Inspector {
         refreshTIA()
     }
 
-    @IBAction func tiaColorLockAction(_ sender: NSButton!) {
+    @IBAction func tiaLockAction(_ sender: NSButton!) {
 
-        print("colorLockAction \(sender.tag)")
+        print("tiaLockAction \(sender.tag)")
         emu?.tia.unlockReg(tag2colreg(sender.tag))
         refreshTIA()
     }
