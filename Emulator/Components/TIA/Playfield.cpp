@@ -16,6 +16,34 @@
 
 namespace tiara {
 
+u8
+Playfield::spyPF0() const
+{
+    // 19 18 17 16 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00
+    // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- xx xx xx xx
+
+    return (u8)(playfield & 0x000F << 4);
+}
+
+u8
+Playfield::spyPF1() const
+{
+    // 19 18 17 16 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00
+    // -- -- -- -- -- -- -- -- xx xx xx xx xx xx xx xx -- -- -- --
+    //                               (reversed)
+
+    return (u8)REVERSE_BYTE((u8)(playfield >> 4 & 0xFF));
+}
+
+u8
+Playfield::spyPF2() const
+{
+    // 19 18 17 16 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00
+    // xx xx xx xx xx xx xx xx -- -- -- -- -- -- -- -- -- -- -- --
+
+    return (u8)(playfield >> 12 & 0xFF);
+}
+
 void
 Playfield::setPF0(u8 val)
 {
@@ -45,7 +73,6 @@ Playfield::setPF2(u8 val) {
 
     u32 bits = u32(val) << 12;
     playfield = (playfield & 0x00FFF) | bits;
-
 }
 
 bool

@@ -53,9 +53,14 @@ public:
 
 public:
 
+    u8 spyPF0() const;
+    u8 spyPF1() const;
+    u8 spyPF2() const;
+
     void setPF0(u8 val);
     void setPF1(u8 val);
     void setPF2(u8 val);
+
     void setREF(bool val) { ref = val; }
     bool get() const;
 

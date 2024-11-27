@@ -250,6 +250,52 @@ TIA::spy(u16 addr) const
 
     switch (reg) {
 
+        case TIA_VSYNC:     return vs;
+        case TIA_VBLANK:    return vblank;
+        case TIA_WSYNC:     return strobe == reg ? 1 : 0;
+        case TIA_RSYNC:     return strobe == reg ? 1 : 0;
+        case TIA_NUSIZ0:    return p0.getNUSIZ();
+        case TIA_NUSIZ1:    return p1.getNUSIZ();
+        case TIA_COLUP0:    return colup0;
+        case TIA_COLUP1:    return colup1;
+        case TIA_COLUPF:    return colupf;
+        case TIA_COLUBK:    return colubk;
+        case TIA_CTRLPF:    return ctrlpf;
+        case TIA_REFP0:     return p0.getREFP();
+        case TIA_REFP1:     return p1.getREFP();
+        case TIA_PF0:       return pf.spyPF0();
+        case TIA_PF1:       return pf.spyPF1();
+        case TIA_PF2:       return pf.spyPF2();
+        case TIA_RESP0:     return strobe == reg ? 1 : 0;
+        case TIA_RESP1:     return strobe == reg ? 1 : 0;
+        case TIA_RESM0:     return strobe == reg ? 1 : 0;
+        case TIA_RESM1:     return strobe == reg ? 1 : 0;
+        case TIA_RESBL:     return strobe == reg ? 1 : 0;
+        case TIA_AUDC0:     return audio[0].getAUDC();
+        case TIA_AUDC1:     return audio[1].getAUDC();
+        case TIA_AUDF0:     return audio[0].getAUDF();
+        case TIA_AUDF1:     return audio[1].getAUDF();
+        case TIA_AUDV0:     return audio[0].getAUDV();
+        case TIA_AUDV1:     return audio[1].getAUDV();
+        case TIA_GRP0:      return p0.getGRP();
+        case TIA_GRP1:      return p1.getGRP();
+        case TIA_ENAM0:     return m0.spyENAM();
+        case TIA_ENAM1:     return m1.spyENAM();
+        case TIA_ENABL:     return bl.spyENABL();
+        case TIA_HMP0:      return p0ec.spyHM();
+        case TIA_HMP1:      return p1ec.spyHM();
+        case TIA_HMM0:      return m0ec.spyHM();
+        case TIA_HMM1:      return m1ec.spyHM();
+        case TIA_HMBL:      return blec.spyHM();
+        case TIA_VDELP0:    return p0.getVDELP();
+        case TIA_VDELP1:    return p1.getVDELP();
+        case TIA_VDELBL:    return bl.spyVDELBL();
+        case TIA_RESMP0:    return m0.spyRESMP();
+        case TIA_RESMP1:    return m1.spyRESMP();
+        case TIA_HMOVE:     return strobe == reg ? 1 : 0;
+        case TIA_HMCLR:     return strobe == reg ? 1 : 0;
+        case TIA_CXCLR:     return strobe == reg ? 1 : 0;
+
         case TIA_CXM0P:     return setCX(u8(mask() << 6));
         case TIA_CXM1P:     return setCX(u8(mask() << 4));
         case TIA_CXP0FB:    return setCX(u8(mask() << 2));
@@ -630,6 +676,8 @@ TIA::execute()
         switch (strobe) {
 
             case TIA_VBLANK:
+
+                vblank = atari.dataBus & 0b11000010;
 
                 vb = atari.dataBus & 0x02;
                 inptLatched = atari.dataBus & 0x40;

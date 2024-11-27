@@ -44,6 +44,9 @@ public:
 
     } SERIALIZERS(serialize);
 
+    u8 spyENABL() const { return blen[0] ? 0x02 : 0x00; }
+    u8 spyVDELBL() const { return blvd ? 0x01 : 0x00; }
+
     void pokeENABL(u8 val) { blen[0] = val & 0x02; }
     void pokeVDELBL(u8 val) { blvd = val & 0x01; }
     void pokeCTLRPF(u8 val) { blsiz = val >> 4 & 0x03; }

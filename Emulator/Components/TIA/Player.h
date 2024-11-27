@@ -25,12 +25,12 @@ class Player final : CoreObject, public Serializable {
 
     DualPhaseCounter<39> counter;
     DualPhaseDelay<isize> start;
-    u8 grp[2]{};
-    isize sc{};
-    isize nusiz{};
-    bool vdelp{};
-    bool ena{};
-    bool refp{};
+    u8 grp[2] {};
+    isize sc = 0;
+    isize nusiz= 0;
+    bool vdelp = false;
+    bool ena = false;
+    bool refp = false;
 
 
     //
@@ -61,7 +61,10 @@ public:
     void pokeREFP(u8 val) { refp = val & 0x8; }
     void vshift() { grp[1] = grp[0]; }
 
-    isize getNUSIZ() { return nusiz; }
+    isize getNUSIZ() const { return nusiz; }
+    u8 getGRP() const { return grp[0]; }
+    u8 getVDELP() const { return vdelp; }
+    u8 getREFP() const { return refp; }
     bool getRESMP() const { return ena && (sc == 1) && (start.get() == 1); }
 
     bool get() const;

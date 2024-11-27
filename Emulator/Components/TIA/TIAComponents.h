@@ -198,6 +198,7 @@ public:
         }
     }
 
+    u8 spyHM() const { return u8(hm) & 0x0F << 4; }
     void setHM(u8 data = 0) { hm = 8 + ((i8)data >> 4); }
     void resetHM() { hm = 8; }
     bool enabled() const { return ena[1]; }

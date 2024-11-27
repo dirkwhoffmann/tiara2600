@@ -33,10 +33,9 @@ TIA::cacheInfo(TIAInfo &result) const
     result.posx = x;
     result.posy = y;
 
-    result.colup0 = colup0;
-    result.colup1 = colup1;
-    result.colupf = colupf;
-    result.colubk = colubk;
+    for (u16 addr = 0; addr < 64; addr++) {
+        result.regs[addr] = spy(addr);
+    }
 }
 
 void

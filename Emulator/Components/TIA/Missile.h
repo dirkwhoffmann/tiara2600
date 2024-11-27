@@ -46,6 +46,10 @@ public:
 
     } SERIALIZERS(serialize);
 
+    u8 spyNUSIZ() const { return (u8)siz; }
+    u8 spyENAM() const { return ena ? 0x02 : 0x00; }
+    u8 spyRESMP() const { return resmp ? 0x02 : 0x00; }
+
     void pokeNUSIZ(u8 val) { siz = (val >> 4) & 0x03; }
     void pokeENAM(u8 val) { ena = val & 0x02; }
     void pokeRESMP(u8 val) { resmp = val & 0x02; }

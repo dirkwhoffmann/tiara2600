@@ -325,10 +325,7 @@ typedef struct
     isize posy;
 
     // Registers
-    u8 colup0;
-    u8 colup1;
-    u8 colupf;
-    u8 colubk;
+    u8 regs[64];
 }
 TIAInfo;
 

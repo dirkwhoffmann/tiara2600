@@ -203,14 +203,15 @@ public:
 private:
 
     // VSYNC and VBLANK latches
-    bool vs{};
-    bool vb{};
+    bool vs = false; // TODO: RENAME TO VSYNC
+    bool vb = false; // DEPRECATED
+    u8 vblank = 0;
 
     // Controls the vertical beam reset
-    bool vsedge{};
+    bool vsedge = false;
 
     // RDY latch (controls the CPU's RDY input)
-    bool rdy{};
+    bool rdy = false;
 
     // Dual-phase horizontal counter
     DualPhaseCounter<56> hc{};
@@ -219,7 +220,7 @@ private:
     SEC sec{};
 
     // Latched SEC signal
-    bool secl{};
+    bool secl = false;
 
     // HB latch (Horizontal Blank)
     DualPhaseDelayLatch<bool> hb{};
@@ -231,8 +232,8 @@ private:
 
     TIARegister strobe = TIA_VOID;
 
-    u8 dataBus{};
-    
+    u8 dataBus = 0;
+
 
     //
     // Screen buffers and colors
@@ -415,9 +416,6 @@ public:
     //
 
 public:
-
-    // Sets a color register to color best matching the provided RGB color
-    // void setColor(TIARegister reg, u8 r, u8 g, u8 b);
 
 
     //

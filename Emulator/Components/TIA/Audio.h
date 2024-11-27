@@ -71,13 +71,13 @@ class Audio final : public SubComponent {
     //
 
     // Audio volume (AUDV)
-    u8 audv{};
+    u8 audv = 0;
 
     // Audio frequency (AUDF)
-    u8 audf{};
+    u8 audf = 0;
 
     // Audio control (AUDC)
-    u8 audc{};
+    u8 audc = 0;
 
 
     //
@@ -85,11 +85,11 @@ class Audio final : public SubComponent {
     //
 
     // Couter that implements the frequency divider
-    u8 fdiv{};
+    u8 fdiv = 0;
 
     // Polynomial counters
-    u8 poly5;
-    u8 poly4;
+    u8 poly5 = 0;
+    u8 poly4 = 0;
 
 
     //
@@ -164,6 +164,12 @@ public:
     //
     // Accessing registers
     //
+
+public:
+
+    u8 getAUDC() const { return audc; }
+    u8 getAUDF() const { return audf; }
+    u8 getAUDV() const { return audv; }
 
     void pokeAUDC(u8 val);
     void pokeAUDF(u8 val);

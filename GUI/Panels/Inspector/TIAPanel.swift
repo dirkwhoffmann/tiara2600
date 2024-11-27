@@ -93,15 +93,15 @@ extension Inspector {
         let lockCOLUBK = mask & (1 << tiara.TIARegister._COLUBK.rawValue) != 0
         let lockCOLUPF = mask & (1 << tiara.TIARegister._COLUPF.rawValue) != 0
 
-        tiaCOLUBK.integerValue = Int(tiaInfo.colubk)
-        tiaCOLUPF.integerValue = Int(tiaInfo.colupf)
-        tiaCOLUP0.integerValue = Int(tiaInfo.colup0)
-        tiaCOLUP1.integerValue = Int(tiaInfo.colup1)
+        tiaCOLUP0.integerValue = Int(tiaInfo.regs.6)
+        tiaCOLUP1.integerValue = Int(tiaInfo.regs.7)
+        tiaCOLUPF.integerValue = Int(tiaInfo.regs.8)
+        tiaCOLUBK.integerValue = Int(tiaInfo.regs.9)
 
-        tiaCOLUBKPopup.selectItem(withTag: Int(tiaInfo.colubk >> 1))
-        tiaCOLUPFPopup.selectItem(withTag: Int(tiaInfo.colupf >> 1))
-        tiaCOLUP0Popup.selectItem(withTag: Int(tiaInfo.colup0 >> 1))
-        tiaCOLUP1Popup.selectItem(withTag: Int(tiaInfo.colup1 >> 1))
+        tiaCOLUP0Popup.selectItem(withTag: Int(tiaInfo.regs.6 >> 1))
+        tiaCOLUP1Popup.selectItem(withTag: Int(tiaInfo.regs.7 >> 1))
+        tiaCOLUPFPopup.selectItem(withTag: Int(tiaInfo.regs.8 >> 1))
+        tiaCOLUBKPopup.selectItem(withTag: Int(tiaInfo.regs.9 >> 1))
 
         tiaCOLUBKlock.isHidden = !lockCOLUBK
         tiaCOLUPFlock.isHidden = !lockCOLUPF
