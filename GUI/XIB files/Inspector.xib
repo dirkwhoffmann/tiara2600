@@ -152,15 +152,21 @@
                 <outlet property="stepOverButton" destination="XcS-nk-XBp" id="Blq-Hv-IZy"/>
                 <outlet property="stopAndGoButton" destination="DQ4-Ah-ce3" id="hhb-ps-zLf"/>
                 <outlet property="tiaCOLUBK" destination="h00-qd-3bk" id="5vC-rY-kEL"/>
+                <outlet property="tiaCOLUBKPopup" destination="r8Z-HH-4p3" id="D5C-5b-Qsk"/>
+                <outlet property="tiaCOLUBKlock" destination="RzG-86-vsP" id="CAP-J0-CDw"/>
                 <outlet property="tiaCOLUP0" destination="1tf-HP-Z23" id="Oea-JU-cQT"/>
+                <outlet property="tiaCOLUP0Popup" destination="0Ga-X0-nl3" id="jUj-k4-mh9"/>
                 <outlet property="tiaCOLUP0lock" destination="trs-eZ-21x" id="ayD-uP-SaG"/>
                 <outlet property="tiaCOLUP1" destination="nys-jF-105" id="If1-ia-EUE"/>
+                <outlet property="tiaCOLUP1Popup" destination="HsZ-36-iuf" id="PDj-pF-rWM"/>
                 <outlet property="tiaCOLUP1lock" destination="ccp-Wa-oWw" id="a6l-rh-3YS"/>
                 <outlet property="tiaCOLUPF" destination="Top-pg-YAw" id="WAS-aU-BPl"/>
+                <outlet property="tiaCOLUPFPopup" destination="trd-Zq-LhN" id="0V1-F7-aTQ"/>
                 <outlet property="tiaCOLUPFlock" destination="K6E-IK-UOz" id="LRZ-SJ-9Oi"/>
                 <outlet property="tiaCTRLPF" destination="IDh-KN-VIP" id="hdJ-fI-lOs"/>
                 <outlet property="tiaCTRLPFlock" destination="50p-gp-9cS" id="CCq-Ep-gTL"/>
                 <outlet property="tiaCX" destination="OSu-pW-JvM" id="UKt-uL-zaJ"/>
+                <outlet property="tiaCXCLR" destination="qP3-v6-92p" id="aKc-7y-ect"/>
                 <outlet property="tiaENABL" destination="EdX-R5-P9G" id="d9e-Uz-Gkd"/>
                 <outlet property="tiaENABLlock" destination="6yw-P3-NbO" id="To7-qF-SCK"/>
                 <outlet property="tiaENAM0" destination="Sy4-p5-xxc" id="6Yo-rA-AeY"/>
@@ -173,10 +179,12 @@
                 <outlet property="tiaGRP1lock" destination="sOW-y3-sXv" id="maN-pw-tXg"/>
                 <outlet property="tiaHMBL" destination="E69-2s-Pgu" id="u61-t9-3bf"/>
                 <outlet property="tiaHMBLlock" destination="50t-Ty-PS9" id="ijH-Zf-NmZ"/>
+                <outlet property="tiaHMCLR" destination="vNL-cU-YlU" id="y0R-XC-yp8"/>
                 <outlet property="tiaHMM0" destination="Sip-UI-iba" id="uOJ-6Y-s13"/>
                 <outlet property="tiaHMM0lock" destination="Kun-yn-aSj" id="fTF-jg-boO"/>
                 <outlet property="tiaHMM1" destination="oTD-UN-6ku" id="Xqe-59-9Y4"/>
                 <outlet property="tiaHMM1lock" destination="lWi-TN-aVt" id="rlo-AZ-U9k"/>
+                <outlet property="tiaHMOVE" destination="1zp-qO-mK9" id="Ytm-Wt-wvq"/>
                 <outlet property="tiaHMP0" destination="xr2-sp-6KP" id="43Z-9o-6p4"/>
                 <outlet property="tiaHMP0lock" destination="ZIH-q2-8n5" id="21R-JR-2zd"/>
                 <outlet property="tiaHMP1" destination="qbw-cb-szR" id="dJp-61-YI2"/>
@@ -198,12 +206,15 @@
                 <outlet property="tiaRESBL" destination="ysp-9B-FB6" id="nSh-FK-6OE"/>
                 <outlet property="tiaRESM0" destination="sp9-io-UBA" id="IfN-lH-qE2"/>
                 <outlet property="tiaRESM1" destination="m3V-UU-1pq" id="2cY-fP-nKR"/>
+                <outlet property="tiaRESMP0" destination="mNY-Oy-8va" id="FGK-Gx-2yp"/>
+                <outlet property="tiaRESMP0lock" destination="qr7-QA-oVq" id="c3n-0J-Jz0"/>
+                <outlet property="tiaRESMP1" destination="4IY-Jg-hBr" id="JK7-RG-Dp6"/>
+                <outlet property="tiaRESMP1lock" destination="ngW-jQ-a0a" id="OG5-eS-LVn"/>
                 <outlet property="tiaRESP0" destination="fII-wF-zDB" id="JQb-kK-uKk"/>
                 <outlet property="tiaRESP1" destination="6d7-x5-zHP" id="txI-RG-1sg"/>
-                <outlet property="tiaRESPMP0" destination="mNY-Oy-8va" id="wbq-0Y-5aQ"/>
-                <outlet property="tiaRESPMP0lock" destination="qr7-QA-oVq" id="zdb-hB-9ui"/>
-                <outlet property="tiaRESPMP1" destination="4IY-Jg-hBr" id="258-KE-ogp"/>
                 <outlet property="tiaRESPMP1lock" destination="ngW-jQ-a0a" id="2Rn-6Y-yY9"/>
+                <outlet property="tiaRSYNC" destination="GOU-uv-CP5" id="MkW-u6-MiA"/>
+                <outlet property="tiaVBLANK" destination="dSX-bF-lhK" id="fxq-HD-oho"/>
                 <outlet property="tiaVBLANKlock" destination="3Ml-p4-85p" id="UiP-In-k1e"/>
                 <outlet property="tiaVDELBL" destination="Ui2-le-MbL" id="1uU-fX-BiG"/>
                 <outlet property="tiaVDELBLlock" destination="o20-xc-ycI" id="com-Lc-fcT"/>
@@ -211,7 +222,9 @@
                 <outlet property="tiaVDELP0lock" destination="Adl-cF-LEx" id="Bih-jZ-IBu"/>
                 <outlet property="tiaVDELP1" destination="lDr-WY-kDi" id="DEC-aX-rpH"/>
                 <outlet property="tiaVDELP1lock" destination="1bn-fa-ms4" id="m3y-6r-KzT"/>
+                <outlet property="tiaVSYNC" destination="Doc-j3-FXx" id="Sbb-4G-oEw"/>
                 <outlet property="tiaVSYNClock" destination="5eY-0G-mKN" id="QXB-w7-s7g"/>
+                <outlet property="tiaWSYNC" destination="jMm-Ub-0HG" id="JJA-hv-SWM"/>
                 <outlet property="timeStamp" destination="DGV-Ov-f8V" id="dll-ac-LOR"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="4y3-MY-rvW"/>
             </connections>

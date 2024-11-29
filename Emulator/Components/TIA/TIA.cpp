@@ -242,11 +242,14 @@ TIA::peek(u16 addr)
 u8
 TIA::spy(u16 addr) const
 {
-    auto setCX = [&](u8 val) { return u8((val & 0xC0) | (atari.dataBus & 0x3F)); };
-    // auto setINP = [&](bool val) { return u8((atari.dataBus & 0x3F) | (val ? 0x80 : 0x00)); };
-    auto mask = [&]() { return cx & config.collMask; };
+    return spy(TIARegister((addr & 0x0F) | 0x30));
+}
 
-    auto reg = TIARegister((addr & 0x0F) | 0x30);
+u8
+TIA::spy(TIARegister reg) const
+{
+    auto setCX = [&](u8 val) { return u8((val & 0xC0) | (atari.dataBus & 0x3F)); };
+    auto mask = [&]() { return cx & config.collMask; };
 
     switch (reg) {
 
@@ -254,8 +257,8 @@ TIA::spy(u16 addr) const
         case TIA_VBLANK:    return vblank;
         case TIA_WSYNC:     return strobe == reg ? 1 : 0;
         case TIA_RSYNC:     return strobe == reg ? 1 : 0;
-        case TIA_NUSIZ0:    return p0.getNUSIZ();
-        case TIA_NUSIZ1:    return p1.getNUSIZ();
+        case TIA_NUSIZ0:    return (u8)p0.getNUSIZ();
+        case TIA_NUSIZ1:    return (u8)p1.getNUSIZ();
         case TIA_COLUP0:    return colup0;
         case TIA_COLUP1:    return colup1;
         case TIA_COLUPF:    return colupf;
@@ -330,7 +333,7 @@ void
 TIA::poke(TIARegister reg, u8 val, Cycle delay)
 {
     // Only proceed if the register is write-enabled
-    if (GET_BIT(config.lockMask, reg)) {
+    if (config.lockMask & (1LL << reg)) {
 
         debug(TIA_REG_DEBUG, "Blocking write to %s\n", TIARegisterEnum::key(reg));
         return;

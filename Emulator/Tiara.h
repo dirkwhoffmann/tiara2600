@@ -299,6 +299,10 @@ struct TIAAPI : API {
     /** @brief  Removes a write-protection from a register.
      */
     void unlockReg(TIARegister reg);
+
+    /** @brief  Toggles the write-protection status of a register.
+     */
+    void toggleRegLock(TIARegister reg);
 };
 
 

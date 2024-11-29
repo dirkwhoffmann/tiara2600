@@ -33,8 +33,8 @@ TIA::cacheInfo(TIAInfo &result) const
     result.posx = x;
     result.posy = y;
 
-    for (u16 addr = 0; addr < 64; addr++) {
-        result.regs[addr] = spy(addr);
+    for (isize i = 0; i < 64; i++) {
+        result.regs[i] = spy(TIARegister(i));
     }
 }
 

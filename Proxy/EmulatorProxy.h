@@ -348,10 +348,10 @@ using namespace tiara;
 
 - (NSColor *)color:(NSInteger)nr;
 - (UInt32)rgbaColor:(NSInteger)nr palette:(Palette)palette;
-// - (void)setColor:(TIARegister)reg color:(NSColor *)color;
 
 - (void)lockReg:(TIARegister)reg;
 - (void)unlockReg:(TIARegister)reg;
+- (void)toggleRegLock:(TIARegister)reg;
 
 @end
 

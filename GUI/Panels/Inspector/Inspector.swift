@@ -237,8 +237,8 @@ class Inspector: DialogController {
     @IBOutlet weak var tiaENAM0lock: NSButton!
     @IBOutlet weak var tiaHMM0: NSTextField!
     @IBOutlet weak var tiaHMM0lock: NSButton!
-    @IBOutlet weak var tiaRESPMP0: NSTextField!
-    @IBOutlet weak var tiaRESPMP0lock: NSButton!
+    @IBOutlet weak var tiaRESMP0: NSTextField!
+    @IBOutlet weak var tiaRESMP0lock: NSButton!
 
     @IBOutlet weak var tiaGRP1: NSTextField!
     @IBOutlet weak var tiaGRP1lock: NSButton!
@@ -255,8 +255,8 @@ class Inspector: DialogController {
     @IBOutlet weak var tiaENAM1lock: NSButton!
     @IBOutlet weak var tiaHMM1: NSTextField!
     @IBOutlet weak var tiaHMM1lock: NSButton!
-    @IBOutlet weak var tiaRESPMP1: NSTextField!
-    @IBOutlet weak var tiaRESPMP1lock: NSButton!
+    @IBOutlet weak var tiaRESMP1: NSTextField!
+    @IBOutlet weak var tiaRESMP1lock: NSButton!
 
     @IBOutlet weak var tiaCXCLR: NSButton!
     @IBOutlet weak var tiaWSYNC: NSButton!

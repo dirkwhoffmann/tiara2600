@@ -21,6 +21,17 @@ extension Inspector {
 
         cacheTIA()
 
+        let mask = emu!.get(.TIA_REGLOCK)
+
+        func lock(_ obj: NSButton, reg: tiara.TIARegister) {
+
+            let locked = mask & (1 << reg.rawValue) != 0
+
+            obj.image = locked ?
+            NSImage(named: NSImage.lockLockedTemplateName) :
+            NSImage(named: NSImage.lockUnlockedTemplateName)
+        }
+
         func solidImage(size: NSSize, color: NSColor) -> NSImage {
 
             let image = NSImage(size: size)
@@ -63,52 +74,124 @@ extension Inspector {
                 add(i, color: emu!.tia.color(i)!)
             }
 
-            /*
-             vicScanline.assignFormatter(fmt9)
-             vicRasterCycle.assignFormatter(fmt9)
-             vicYCounter.assignFormatter(fmt9)
-             vicXCounter.assignFormatter(fmt9)
-             vicVC.assignFormatter(fmt10)
-             vicVCBase.assignFormatter(fmt10)
-             vicRC.assignFormatter(fmt3)
-             vicVMLI.assignFormatter(fmt6)
-             vicCtrl1.assignFormatter(fmt8)
-             vicCtrl2.assignFormatter(fmt8)
-             vicDy.assignFormatter(fmt3)
-             vicDx.assignFormatter(fmt3)
-             vicMemSelect.assignFormatter(fmt8)
-             vicIrqRasterline.assignFormatter(fmt8)
-             vicImr.assignFormatter(fmt8)
-             vicIrr.assignFormatter(fmt8)
-             latchedLPX.assignFormatter(fmt8)
-             latchedLPY.assignFormatter(fmt8)
-             sprX.assignFormatter(fmt9)
-             sprY.assignFormatter(fmt8)
-             */
+            tiaVSYNC.assignFormatter(fmt8)
+            tiaVBLANK.assignFormatter(fmt8)
+            tiaWSYNC.assignFormatter(fmt8)
+            tiaRSYNC.assignFormatter(fmt8)
+            tiaNUSIZ0.assignFormatter(fmt8)
+            tiaNUSIZ1.assignFormatter(fmt8)
+            tiaCOLUP0.assignFormatter(fmt8)
+            tiaCOLUP1.assignFormatter(fmt8)
+            tiaCOLUPF.assignFormatter(fmt8)
+            tiaCOLUBK.assignFormatter(fmt8)
+            tiaCTRLPF.assignFormatter(fmt8)
+            tiaREFP0.assignFormatter(fmt8)
+            tiaREFP1.assignFormatter(fmt8)
+            tiaPF0.assignFormatter(fmt8)
+            tiaPF1.assignFormatter(fmt8)
+            tiaPF2.assignFormatter(fmt8)
+            tiaRESP0.assignFormatter(fmt8)
+            tiaRESP1.assignFormatter(fmt8)
+            tiaRESM0.assignFormatter(fmt8)
+            tiaRESM1.assignFormatter(fmt8)
+            tiaRESBL.assignFormatter(fmt8)
+            tiaGRP0.assignFormatter(fmt8)
+            tiaGRP1.assignFormatter(fmt8)
+            tiaENAM0.assignFormatter(fmt8)
+            tiaENAM1.assignFormatter(fmt8)
+            tiaENABL.assignFormatter(fmt8)
+            tiaHMP0.assignFormatter(fmt8)
+            tiaHMP1.assignFormatter(fmt8)
+            tiaHMM0.assignFormatter(fmt8)
+            tiaHMM1.assignFormatter(fmt8)
+            tiaHMBL.assignFormatter(fmt8)
+            tiaVDELP0.assignFormatter(fmt8)
+            tiaVDELP1.assignFormatter(fmt8)
+            tiaVDELBL.assignFormatter(fmt8)
+            tiaRESMP0.assignFormatter(fmt8)
+            tiaRESMP1.assignFormatter(fmt8)
+            tiaHMOVE.assignFormatter(fmt8)
+            tiaHMCLR.assignFormatter(fmt8)
+            tiaCXCLR.assignFormatter(fmt8)
         }
 
-        let mask = emu!.get(.TIA_REGLOCK)
-        let lockCOLUP0 = mask & (1 << tiara.TIARegister._COLUP0.rawValue) != 0
-        let lockCOLUP1 = mask & (1 << tiara.TIARegister._COLUP1.rawValue) != 0
-        let lockCOLUBK = mask & (1 << tiara.TIARegister._COLUBK.rawValue) != 0
-        let lockCOLUPF = mask & (1 << tiara.TIARegister._COLUPF.rawValue) != 0
-
+        tiaVSYNC.integerValue = Int(tiaInfo.regs.0)
+        tiaVBLANK.integerValue = Int(tiaInfo.regs.1)
+        tiaWSYNC.integerValue = Int(tiaInfo.regs.2)
+        tiaRSYNC.integerValue = Int(tiaInfo.regs.3)
+        tiaNUSIZ0.integerValue = Int(tiaInfo.regs.4)
+        tiaNUSIZ1.integerValue = Int(tiaInfo.regs.5)
         tiaCOLUP0.integerValue = Int(tiaInfo.regs.6)
         tiaCOLUP1.integerValue = Int(tiaInfo.regs.7)
         tiaCOLUPF.integerValue = Int(tiaInfo.regs.8)
         tiaCOLUBK.integerValue = Int(tiaInfo.regs.9)
+        tiaCTRLPF.integerValue = Int(tiaInfo.regs.10)
+        tiaREFP0.integerValue = Int(tiaInfo.regs.11)
+        tiaREFP1.integerValue = Int(tiaInfo.regs.12)
+        tiaPF0.integerValue = Int(tiaInfo.regs.13)
+        tiaPF1.integerValue = Int(tiaInfo.regs.14)
+        tiaPF2.integerValue = Int(tiaInfo.regs.15)
+        tiaRESP0.integerValue = Int(tiaInfo.regs.16)
+        tiaRESP1.integerValue = Int(tiaInfo.regs.17)
+        tiaRESM0.integerValue = Int(tiaInfo.regs.18)
+        tiaRESM1.integerValue = Int(tiaInfo.regs.19)
+        tiaRESBL.integerValue = Int(tiaInfo.regs.20)
+        tiaGRP0.integerValue = Int(tiaInfo.regs.27)
+        tiaGRP1.integerValue = Int(tiaInfo.regs.28)
+        tiaENAM0.integerValue = Int(tiaInfo.regs.29)
+        tiaENAM1.integerValue = Int(tiaInfo.regs.30)
+        tiaENABL.integerValue = Int(tiaInfo.regs.31)
+        tiaHMP0.integerValue = Int(tiaInfo.regs.32)
+        tiaHMP1.integerValue = Int(tiaInfo.regs.33)
+        tiaHMM0.integerValue = Int(tiaInfo.regs.34)
+        tiaHMM1.integerValue = Int(tiaInfo.regs.35)
+        tiaHMBL.integerValue = Int(tiaInfo.regs.36)
+        tiaVDELP0.integerValue = Int(tiaInfo.regs.37)
+        tiaVDELP1.integerValue = Int(tiaInfo.regs.38)
+        tiaVDELBL.integerValue = Int(tiaInfo.regs.39)
+        tiaRESMP0.integerValue = Int(tiaInfo.regs.40)
+        tiaRESMP1.integerValue = Int(tiaInfo.regs.41)
+        tiaHMOVE.integerValue = Int(tiaInfo.regs.42)
+        tiaHMCLR.integerValue = Int(tiaInfo.regs.43)
+        tiaCXCLR.integerValue = Int(tiaInfo.regs.44)
+
+        lock(tiaVSYNClock, reg: tiara.TIARegister._VSYNC)
+        lock(tiaVBLANKlock, reg: tiara.TIARegister._VBLANK)
+        lock(tiaNUSIZ0lock, reg: tiara.TIARegister._NUSIZ0)
+        lock(tiaNUSIZ1lock, reg: tiara.TIARegister._NUSIZ1)
+        lock(tiaCOLUP0lock, reg: tiara.TIARegister._COLUP0)
+        lock(tiaCOLUP1lock, reg: tiara.TIARegister._COLUP1)
+        lock(tiaCOLUPFlock, reg: tiara.TIARegister._COLUPF)
+        lock(tiaCOLUBKlock, reg: tiara.TIARegister._COLUBK)
+        lock(tiaCTRLPFlock, reg: tiara.TIARegister._CTRLPF)
+        lock(tiaREFP0lock, reg: tiara.TIARegister._REFP0)
+        lock(tiaREFP1lock, reg: tiara.TIARegister._REFP1)
+        lock(tiaPF0lock, reg: tiara.TIARegister._PF0)
+        lock(tiaPF1lock, reg: tiara.TIARegister._PF1)
+        lock(tiaPF2lock, reg: tiara.TIARegister._PF2)
+        lock(tiaGRP0lock, reg: tiara.TIARegister._GRP0)
+        lock(tiaGRP1lock, reg: tiara.TIARegister._GRP1)
+        lock(tiaENAM0lock, reg: tiara.TIARegister._ENAM0)
+        lock(tiaENAM1lock, reg: tiara.TIARegister._ENAM1)
+        lock(tiaENABLlock, reg: tiara.TIARegister._ENABL)
+        lock(tiaHMP0lock, reg: tiara.TIARegister._HMP0)
+        lock(tiaHMP1lock, reg: tiara.TIARegister._HMP1)
+        lock(tiaHMM0lock, reg: tiara.TIARegister._HMM0)
+        lock(tiaHMM1lock, reg: tiara.TIARegister._HMM1)
+        lock(tiaHMBLlock, reg: tiara.TIARegister._HMBL)
+        lock(tiaVDELP0lock, reg: tiara.TIARegister._VDELP0)
+        lock(tiaVDELP1lock, reg: tiara.TIARegister._VDELP1)
+        lock(tiaVDELBLlock, reg: tiara.TIARegister._VDELBL)
+        lock(tiaRESMP0lock, reg: tiara.TIARegister._RESMP0)
+        lock(tiaRESMP1lock, reg: tiara.TIARegister._RESMP1)
 
         tiaCOLUP0Popup.selectItem(withTag: Int(tiaInfo.regs.6 >> 1))
         tiaCOLUP1Popup.selectItem(withTag: Int(tiaInfo.regs.7 >> 1))
         tiaCOLUPFPopup.selectItem(withTag: Int(tiaInfo.regs.8 >> 1))
         tiaCOLUBKPopup.selectItem(withTag: Int(tiaInfo.regs.9 >> 1))
-
-        tiaCOLUBKlock.isHidden = !lockCOLUBK
-        tiaCOLUPFlock.isHidden = !lockCOLUPF
-        tiaCOLUP0lock.isHidden = !lockCOLUP0
-        tiaCOLUP1lock.isHidden = !lockCOLUP1
      }
 
+    /*
     func tag2colreg(_ tag: Int) -> tiara.TIARegister {
 
         switch tag {
@@ -119,12 +202,13 @@ extension Inspector {
         default: fatalError()
         }
     }
+    */
 
     @IBAction func tiaColorAction(_ sender: NSPopUpButton!) {
 
         print("colorAction \(sender.tag) \(sender.selectedTag())")
 
-        let reg = tag2colreg(sender.tag)
+        let reg = tiara.TIARegister(rawValue: sender.tag)!
         let val = sender.selectedTag()
 
         emu!.suspend()
@@ -139,7 +223,9 @@ extension Inspector {
     @IBAction func tiaLockAction(_ sender: NSButton!) {
 
         print("tiaLockAction \(sender.tag)")
-        emu?.tia.unlockReg(tag2colreg(sender.tag))
+
+        let reg = tiara.TIARegister(rawValue: sender.tag)!
+        emu?.tia.toggleRegLock(reg)
         refreshTIA()
     }
 }

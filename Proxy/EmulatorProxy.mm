@@ -549,6 +549,12 @@ using namespace tiara;
     [self tia]->unlockReg(reg);
 }
 
+- (void)toggleRegLock:(TIARegister)reg
+{
+    assert (0 <= reg && reg < 64);
+    [self tia]->toggleRegLock(reg);
+}
+
 @end
 
 
