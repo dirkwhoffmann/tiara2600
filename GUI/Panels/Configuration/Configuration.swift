@@ -355,7 +355,7 @@ class Configuration {
 
     func loadRomUserDefaults() {
 
-        func load(_ url: URL?, type: tiara.FileType) {
+        func load(_ url: URL?, type: FileType) {
 
             if url != nil {
                 if let file = try? MediaFileProxy.make(with: url!) {

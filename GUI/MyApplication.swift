@@ -157,7 +157,7 @@ extension MyAppDelegate {
     }
 
     // Callen when a HID device has been pulled
-    func devicePulled(events: [tiara.GamePadAction]) {
+    func devicePulled(events: [GamePadAction]) {
         prefController?.refreshDeviceEvents(events: events)
     }
 }

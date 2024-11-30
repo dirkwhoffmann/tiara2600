@@ -27,7 +27,7 @@ class LogicView: NSView {
     var y: Int?
 
     // The probed signal
-    var probe: [tiara.Probe] = [ .ADDR_BUS, .DATA_BUS, .PHI1, .PHI2 ]
+    var probe: [Probe] = [ .ADDR_BUS, .DATA_BUS, .PHI1, .PHI2 ]
 
     // Bit-width of the probed signals (e.g., 8 for data bus, 1 for RDY)
     var bitWidth: [Int] = [ 16, 8, 1, 1 ]

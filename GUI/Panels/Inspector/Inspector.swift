@@ -77,7 +77,7 @@ class Inspector: DialogController {
     @IBOutlet weak var memTableView: MemTableView!
     @IBOutlet weak var memHeatmapView: HeatmapView!
 
-    var bankType: [Int: tiara.MemoryType] = [:]
+    var bankType: [Int: MemoryType] = [:]
     var displayedBank = 0
     var layoutIsDirty = true
     var nextLayoutRefresh = 0
@@ -381,7 +381,10 @@ class Inspector: DialogController {
     func refresh(count: Int = 0, full: Bool = false) {
         
         if window?.isVisible == false { return }
-        
+
+        let tiaInfo = emu!.tia.info
+        let atariInfo = emu!.atari.info
+
         if full {
 
             if emu?.running ?? false {
@@ -404,10 +407,8 @@ class Inspector: DialogController {
             timeStamp.font = NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
         }
 
-        if let info = emu?.tia.info {
-            timeStamp.stringValue = String(format: "%d:%03d:%03d",
-                                           info.frame, info.posy, info.posx)
-        }
+        timeStamp.stringValue = String(format: "%d:%03d:%03d",
+                                       atariInfo.frame, tiaInfo.posy, tiaInfo.posx)
 
         if let id = panel.selectedTabViewItem?.label {
 

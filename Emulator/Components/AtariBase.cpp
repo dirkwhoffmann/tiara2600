@@ -292,4 +292,119 @@ Atari::setOption(Option opt, i64 value)
     }
 }
 
+void
+Atari::_powerOn()
+{
+    debug(RUN_DEBUG, "_powerOn\n");
+
+    hardReset();
+    msgQueue.put(MSG_POWER, 1);
+}
+
+void
+Atari::_powerOff()
+{
+    debug(RUN_DEBUG, "_powerOff\n");
+
+    msgQueue.put(MSG_POWER, 0);
+}
+
+void
+Atari::_run()
+{
+    debug(RUN_DEBUG, "_run\n");
+
+    msgQueue.put(MSG_RUN);
+}
+
+void
+Atari::_pause()
+{
+    debug(RUN_DEBUG, "_pause\n");
+
+    // Clear pending runloop flags
+    // flags = 0;
+
+    msgQueue.put(MSG_PAUSE);
+}
+
+void
+Atari::_halt()
+{
+    debug(RUN_DEBUG, "_halt\n");
+
+    msgQueue.put(MSG_SHUTDOWN);
+}
+
+void
+Atari::_warpOn()
+{
+    debug(RUN_DEBUG, "_warpOn\n");
+
+    msgQueue.put(MSG_WARP, 1);
+}
+
+void
+Atari::_warpOff()
+{
+    debug(RUN_DEBUG, "_warpOff\n");
+
+    msgQueue.put(MSG_WARP, 0);
+}
+
+void
+Atari::_trackOn()
+{
+    debug(RUN_DEBUG, "_trackOn\n");
+
+    msgQueue.put(MSG_TRACK, 1);
+}
+
+void
+Atari::_trackOff()
+{
+    debug(RUN_DEBUG, "_trackOff\n");
+
+    msgQueue.put(MSG_TRACK, 0);
+}
+
+void
+Atari::cacheInfo(AtariInfo &result) const
+{
+    {   SYNCHRONIZED
+
+        result.cpuProgress = cpu.clock;
+        result.frame = frame;
+        result.flags = flags;
+        for (isize i = 0; i < 5; i++) result.slider[i] = slider[i];
+
+        auto cyclesPerLine = CPU_CYCLES_PER_LINE;
+        auto cyclesPerFrame = tia.cpuCyclesPerFrame();
+
+        for (isize i = 0; i < SLOT_COUNT; i++) {
+
+            auto cycle = trigger[i];
+
+            result.slotInfo[i].slot = EventSlot(i);
+            result.slotInfo[i].eventId = eventid[i];
+            result.slotInfo[i].trigger = cycle;
+            result.slotInfo[i].triggerRel = cycle - cpu.clock;
+
+            // Compute clock at pos (0,0)
+            auto clock00 = cpu.clock - cyclesPerLine * tia.getY() - tia.getX();
+
+            // Compute the number of elapsed cycles since then
+            auto diff = cycle - clock00;
+
+            // Split into frame / line / cycle
+            result.slotInfo[i].frameRel = long(diff / cyclesPerFrame);
+            diff = diff % cyclesPerFrame;
+            result.slotInfo[i].vpos = long(diff / cyclesPerLine);
+            result.slotInfo[i].hpos = long(diff % cyclesPerLine);
+
+            result.slotInfo[i].eventName = eventName(EventSlot(i), eventid[i]);
+        }
+    }
+}
+
 }

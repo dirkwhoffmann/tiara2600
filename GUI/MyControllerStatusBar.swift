@@ -11,7 +11,7 @@ extension MyController {
 
     var hourglassIcon: NSImage? {
 
-        if tiara.WarpMode(rawValue: config.warpMode) == .AUTO {
+        if WarpMode(rawValue: config.warpMode) == .AUTO {
 
             return NSImage(named: emu?.info.warping == true ? "hourglass3Template" : "hourglass1Template")
 
@@ -169,11 +169,11 @@ extension MyController {
 
     @IBAction func warpAction(_ sender: Any!) {
 
-        switch tiara.WarpMode(rawValue: config.warpMode) {
+        switch WarpMode(rawValue: config.warpMode) {
 
-        case .AUTO: config.warpMode = tiara.WarpMode.NEVER.rawValue
-        case .NEVER: config.warpMode = tiara.WarpMode.ALWAYS.rawValue
-        case .ALWAYS: config.warpMode = tiara.WarpMode.AUTO.rawValue
+        case .AUTO: config.warpMode = WarpMode.NEVER.rawValue
+        case .NEVER: config.warpMode = WarpMode.ALWAYS.rawValue
+        case .ALWAYS: config.warpMode = WarpMode.AUTO.rawValue
 
         default:
             fatalError()

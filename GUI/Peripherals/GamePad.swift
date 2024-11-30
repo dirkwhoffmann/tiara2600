@@ -54,7 +54,7 @@ class GamePad {
     var locationID: String { return device?.locationID ?? "" }
     
     // Type of the managed device (joystick or mouse)
-    var type: tiara.ControlPortDevice
+    var type: ControlPortDevice
     var isMouse: Bool { return type == .MOUSE }
     var isJoystick: Bool { return type == .JOYSTICK }
 
@@ -85,7 +85,7 @@ class GamePad {
      * This information is utilized to determine whether a joystick event has
      * to be triggered.
      */
-    var oldEvents: [Int: [tiara.GamePadAction]] = [:]
+    var oldEvents: [Int: [GamePadAction]] = [:]
 
     // Receivers for HID events
     let inputValueCallback: IOHIDValueCallback = {
@@ -97,7 +97,7 @@ class GamePad {
                                  value: value)
     }
     
-    init(manager: GamePadManager, device: IOHIDDevice? = nil, type: tiara.ControlPortDevice) {
+    init(manager: GamePadManager, device: IOHIDDevice? = nil, type: ControlPortDevice) {
 
         self.manager = manager
         self.device = device
@@ -150,7 +150,7 @@ class GamePad {
     //
 
     // Binds a key to a gamepad action
-    func bind(key: MacKey, action: tiara.GamePadAction) {
+    func bind(key: MacKey, action: GamePadAction) {
 
         guard let n = keyMap else { return }
         
@@ -161,7 +161,7 @@ class GamePad {
     }
 
     // Removes a key binding to the specified gampad action (if any)
-    func unbind(action: tiara.GamePadAction) {
+    func unbind(action: GamePadAction) {
 
         guard let n = keyMap else { return }
         
@@ -171,13 +171,13 @@ class GamePad {
      }
 
     // Translates a key press event to a list of gamepad actions
-    func keyDownEvents(_ macKey: MacKey) -> [tiara.GamePadAction] {
+    func keyDownEvents(_ macKey: MacKey) -> [GamePadAction] {
 
         var macKey2 = macKey
         macKey2.carbonFlags = 0
         guard let n = keyMap, let direction = prefs.keyMaps[n][macKey2] else { return [] }
                     
-        switch tiara.GamePadAction(rawValue: direction) {
+        switch GamePadAction(rawValue: direction) {
 
         case .PULL_UP:
             keyUp = true
@@ -210,7 +210,7 @@ class GamePad {
     }
         
     // Handles a key release event
-    func keyUpEvents(_ macKey: MacKey) -> [tiara.GamePadAction] {
+    func keyUpEvents(_ macKey: MacKey) -> [GamePadAction] {
 
         var macKey2 = macKey
         macKey2.carbonFlags = 0
@@ -218,7 +218,7 @@ class GamePad {
                 
         debug(.events, "keyUpEvents \(direction)")
         
-        switch tiara.GamePadAction(rawValue: direction) {
+        switch GamePadAction(rawValue: direction) {
 
         case .PULL_UP:
             keyUp = false
@@ -292,7 +292,7 @@ class GamePad {
         return nil // Dead zone
     }
     
-    static func mapHAxis(value: IOHIDValue, element: IOHIDElement) -> [tiara.GamePadAction]? {
+    static func mapHAxis(value: IOHIDValue, element: IOHIDElement) -> [GamePadAction]? {
 
         if let v = mapAnalogAxis(value: value, element: element) {
             return v == 2 ? [.PULL_RIGHT] : v == -2 ? [.PULL_LEFT] : [.RELEASE_X]
@@ -301,7 +301,7 @@ class GamePad {
         }
     }
     
-    static func mapVAxis(value: IOHIDValue, element: IOHIDElement) -> [tiara.GamePadAction]? {
+    static func mapVAxis(value: IOHIDValue, element: IOHIDElement) -> [GamePadAction]? {
 
         if let v = mapAnalogAxis(value: value, element: element) {
             return v == 2 ? [.PULL_DOWN] : v == -2 ? [.PULL_UP] : [.RELEASE_Y]
@@ -310,7 +310,7 @@ class GamePad {
         }
     }
 
-    static func mapVAxisRev(value: IOHIDValue, element: IOHIDElement) -> [tiara.GamePadAction]? {
+    static func mapVAxisRev(value: IOHIDValue, element: IOHIDElement) -> [GamePadAction]? {
 
         if let v = mapAnalogAxis(value: value, element: element) {
             return v == 2 ? [.PULL_UP] : v == -2 ? [.PULL_DOWN] : [.RELEASE_Y]
@@ -331,7 +331,7 @@ class GamePad {
                 
         // debug(.hid, "usagePage = \(usagePage) usage = \(usage) value = \(intValue)")
 
-        var events: [tiara.GamePadAction]?
+        var events: [GamePadAction]?
         
         if usagePage == kHIDPage_Button {
 
@@ -500,14 +500,14 @@ class GamePad {
     //
     
     @discardableResult
-    func processJoystickEvents(events: [tiara.GamePadAction]) -> Bool {
+    func processJoystickEvents(events: [GamePadAction]) -> Bool {
 
         let c64 = manager.parent.emu!
 
         if let id = port {
 
             for event in events {
-                c64.put(.JOY_EVENT, action: tiara.GamePadCmd(port: id, action: event))
+                c64.put(.JOY_EVENT, action: GamePadCmd(port: id, action: event))
             }
         }
 
@@ -518,14 +518,14 @@ class GamePad {
     }
 
     @discardableResult
-    func processMouseEvents(events: [tiara.GamePadAction]) -> Bool {
+    func processMouseEvents(events: [GamePadAction]) -> Bool {
 
         let c64 = manager.parent.emu!
 
         if let id = port {
 
             for event in events {
-                c64.put(.MOUSE_EVENT, action: tiara.GamePadCmd(port: id, action: event))
+                c64.put(.MOUSE_EVENT, action: GamePadCmd(port: id, action: event))
             }
         }
 
@@ -541,7 +541,7 @@ class GamePad {
 
         if let id = port {
 
-            c64.put(.MOUSE_MOVE_REL, coord: tiara.CoordCmd(port: id, x: delta.x, y: delta.y))
+            c64.put(.MOUSE_MOVE_REL, coord: CoordCmd(port: id, x: delta.x, y: delta.y))
         }
     }
 
@@ -573,16 +573,16 @@ class GamePad {
         return true
     }
 
-    func processKeyboardEvent(events: [tiara.GamePadAction]) {
+    func processKeyboardEvent(events: [GamePadAction]) {
 
         let c64 = manager.parent.emu!
 
         if let id = port {
 
-            let type  = isMouse ? tiara.CmdType.MOUSE_EVENT : tiara.CmdType.JOY_EVENT
+            let type  = isMouse ? CmdType.MOUSE_EVENT : CmdType.JOY_EVENT
 
             for e in events {
-                c64.put(type, action: tiara.GamePadCmd(port: id, action: e))
+                c64.put(type, action: GamePadCmd(port: id, action: e))
             }
         }
     }

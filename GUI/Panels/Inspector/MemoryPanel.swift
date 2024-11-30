@@ -123,7 +123,7 @@ extension Inspector {
         }
     }
 
-    func jumpTo(type: [tiara.MemoryType]) {
+    func jumpTo(type: [MemoryType]) {
 
         for i in 0...63 where type.contains(bankType[i]!) {
             jumpTo(bank: i)

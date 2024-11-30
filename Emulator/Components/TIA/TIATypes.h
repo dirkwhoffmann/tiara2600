@@ -319,8 +319,7 @@ TIAConfig;
 
 typedef struct
 {
-    // Counters
-    i64 frame;
+    // Beam position
     isize posx;
     isize posy;
 

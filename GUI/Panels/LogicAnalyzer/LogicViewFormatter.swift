@@ -18,11 +18,11 @@ class LogicViewFormatter {
 
         if symbolic, bitWidth == 16 {
 
-            if tiara.TIARegister.isTIAAddr(addr: value) {
-                return tiara.TIARegister(rawValue: value)?.description ?? "???"
+            if TIARegister.isTIAAddr(addr: value) {
+                return TIARegister(rawValue: value)?.description ?? "???"
             }
-            if tiara.PIARegister.isPIAAddr(addr: value) {
-                return tiara.PIARegister(rawValue: value)?.description ?? "???"
+            if PIARegister.isPIAAddr(addr: value) {
+                return PIARegister(rawValue: value)?.description ?? "???"
             }
         }
 

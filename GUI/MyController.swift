@@ -8,7 +8,7 @@
 // -----------------------------------------------------------------------------
 
 protocol MessageReceiver {
-    func processMessage(_ msg: tiara.Message)
+    func processMessage(_ msg: Message)
 }
 
 class MyController: NSWindowController, MessageReceiver {
@@ -216,7 +216,7 @@ extension MyController {
         // Convert 'self' to a void pointer
         let myself = UnsafeRawPointer(Unmanaged.passUnretained(self).toOpaque())
         
-        emu!.launch(myself) { (ptr, msg: tiara.Message) in
+        emu!.launch(myself) { (ptr, msg: Message) in
 
             // Convert void pointer back to 'self'
             let myself = Unmanaged<MyController>.fromOpaque(ptr!).takeUnretainedValue()
@@ -262,7 +262,7 @@ extension MyController {
         }
     }
 
-    func processMessage(_ msg: tiara.Message) {
+    func processMessage(_ msg: Message) {
 
         var value: Int { return Int(msg.value) }
         var nr: Int { return Int(msg.drive.nr) }

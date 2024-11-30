@@ -73,7 +73,7 @@ extension ConfigurationController {
         tiaPalette.image = paletteImage
         
         /*
-        switch tiara.TIARevision(rawValue: config.tiaRevision) {
+        switch TIARevision(rawValue: config.tiaRevision) {
 
         case .PAL_6569_R1, .PAL_6569_R3:
 
@@ -134,39 +134,39 @@ extension ConfigurationController {
             switch sender.selectedTag() {
 
             case 0: // C64_PAL
-                config.vicRevision = tiara.VICIIRevision.PAL_6569_R3.rawValue
+                config.vicRevision = VICIIRevision.PAL_6569_R3.rawValue
                 config.vicGrayDotBug = false
-                config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
+                config.ciaRevision = CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = true
 
             case 1: // C64_II_PAL
-                config.vicRevision = tiara.VICIIRevision.PAL_8565.rawValue
+                config.vicRevision = VICIIRevision.PAL_8565.rawValue
                 config.vicGrayDotBug = true
-                config.ciaRevision = tiara.CIARevision.MOS_8521.rawValue
+                config.ciaRevision = CIARevision.MOS_8521.rawValue
                 config.ciaTimerBBug = false
 
             case 2: // C64_OLD_PAL
-                config.vicRevision = tiara.VICIIRevision.PAL_6569_R1.rawValue
+                config.vicRevision = VICIIRevision.PAL_6569_R1.rawValue
                 config.vicGrayDotBug = false
-                config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
+                config.ciaRevision = CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = true
 
             case 3: // C64_NTSC
-                config.vicRevision = tiara.VICIIRevision.NTSC_6567.rawValue
+                config.vicRevision = VICIIRevision.NTSC_6567.rawValue
                 config.vicGrayDotBug = false
-                config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
+                config.ciaRevision = CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = false
 
             case 4: // C64_II_NTSC
-                config.vicRevision = tiara.VICIIRevision.NTSC_8562.rawValue
+                config.vicRevision = VICIIRevision.NTSC_8562.rawValue
                 config.vicGrayDotBug = true
-                config.ciaRevision = tiara.CIARevision.MOS_8521.rawValue
+                config.ciaRevision = CIARevision.MOS_8521.rawValue
                 config.ciaTimerBBug = true
 
             case 5: // C64_OLD_NTSC
-                config.vicRevision = tiara.VICIIRevision.NTSC_6567_R56A.rawValue
+                config.vicRevision = VICIIRevision.NTSC_6567_R56A.rawValue
                 config.vicGrayDotBug = false
-                config.ciaRevision = tiara.CIARevision.MOS_6526.rawValue
+                config.ciaRevision = CIARevision.MOS_6526.rawValue
                 config.ciaTimerBBug = false
 
             default:

@@ -13,7 +13,7 @@
 
 extension MediaFileProxy {
 
-    static func makeWith(buffer: UnsafeRawPointer, length: Int, type: tiara.FileType) throws -> Self {
+    static func makeWith(buffer: UnsafeRawPointer, length: Int, type: FileType) throws -> Self {
 
         let exc = ExceptionWrapper()
         let obj = make(withBuffer: buffer, length: length, type: type, exception: exc)
@@ -21,7 +21,7 @@ extension MediaFileProxy {
         return obj!
     }
 
-    static func make(with data: Data, type: tiara.FileType) throws -> Self {
+    static func make(with data: Data, type: FileType) throws -> Self {
 
         let exc = ExceptionWrapper()
         let obj = make(with: data, type: type, exception: exc)
@@ -29,7 +29,7 @@ extension MediaFileProxy {
         return obj!
     }
 
-    private static func make(with data: Data, type: tiara.FileType, exception: ExceptionWrapper) -> Self? {
+    private static func make(with data: Data, type: FileType, exception: ExceptionWrapper) -> Self? {
 
         return data.withUnsafeBytes { uwbp -> Self? in
 
@@ -45,7 +45,7 @@ extension MediaFileProxy {
         return obj!
     }
 
-    static func make(with url: URL, type: tiara.FileType) throws -> Self {
+    static func make(with url: URL, type: FileType) throws -> Self {
 
         let exc = ExceptionWrapper()
         let obj = make(withFile: url.path, type: type, exception: exc)

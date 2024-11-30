@@ -102,7 +102,7 @@ class MyDocument: NSDocument {
         launchUrl = url
         /*
         do {
-            try mm.addMedia(url: url, allowedTypes: tiara.FileType.draggable)
+            try mm.addMedia(url: url, allowedTypes: FileType.draggable)
 
         } catch let error as VC64Error {
 

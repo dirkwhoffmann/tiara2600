@@ -23,7 +23,7 @@ extension Inspector {
 
         let mask = emu!.get(.TIA_REGLOCK)
 
-        func lock(_ obj: NSButton, reg: tiara.TIARegister) {
+        func lock(_ obj: NSButton, reg: TIARegister) {
 
             let locked = mask & (1 << reg.rawValue) != 0
 
@@ -155,35 +155,35 @@ extension Inspector {
         tiaHMCLR.integerValue = Int(tiaInfo.regs.43)
         tiaCXCLR.integerValue = Int(tiaInfo.regs.44)
 
-        lock(tiaVSYNClock, reg: tiara.TIARegister._VSYNC)
-        lock(tiaVBLANKlock, reg: tiara.TIARegister._VBLANK)
-        lock(tiaNUSIZ0lock, reg: tiara.TIARegister._NUSIZ0)
-        lock(tiaNUSIZ1lock, reg: tiara.TIARegister._NUSIZ1)
-        lock(tiaCOLUP0lock, reg: tiara.TIARegister._COLUP0)
-        lock(tiaCOLUP1lock, reg: tiara.TIARegister._COLUP1)
-        lock(tiaCOLUPFlock, reg: tiara.TIARegister._COLUPF)
-        lock(tiaCOLUBKlock, reg: tiara.TIARegister._COLUBK)
-        lock(tiaCTRLPFlock, reg: tiara.TIARegister._CTRLPF)
-        lock(tiaREFP0lock, reg: tiara.TIARegister._REFP0)
-        lock(tiaREFP1lock, reg: tiara.TIARegister._REFP1)
-        lock(tiaPF0lock, reg: tiara.TIARegister._PF0)
-        lock(tiaPF1lock, reg: tiara.TIARegister._PF1)
-        lock(tiaPF2lock, reg: tiara.TIARegister._PF2)
-        lock(tiaGRP0lock, reg: tiara.TIARegister._GRP0)
-        lock(tiaGRP1lock, reg: tiara.TIARegister._GRP1)
-        lock(tiaENAM0lock, reg: tiara.TIARegister._ENAM0)
-        lock(tiaENAM1lock, reg: tiara.TIARegister._ENAM1)
-        lock(tiaENABLlock, reg: tiara.TIARegister._ENABL)
-        lock(tiaHMP0lock, reg: tiara.TIARegister._HMP0)
-        lock(tiaHMP1lock, reg: tiara.TIARegister._HMP1)
-        lock(tiaHMM0lock, reg: tiara.TIARegister._HMM0)
-        lock(tiaHMM1lock, reg: tiara.TIARegister._HMM1)
-        lock(tiaHMBLlock, reg: tiara.TIARegister._HMBL)
-        lock(tiaVDELP0lock, reg: tiara.TIARegister._VDELP0)
-        lock(tiaVDELP1lock, reg: tiara.TIARegister._VDELP1)
-        lock(tiaVDELBLlock, reg: tiara.TIARegister._VDELBL)
-        lock(tiaRESMP0lock, reg: tiara.TIARegister._RESMP0)
-        lock(tiaRESMP1lock, reg: tiara.TIARegister._RESMP1)
+        lock(tiaVSYNClock, reg: TIARegister._VSYNC)
+        lock(tiaVBLANKlock, reg: TIARegister._VBLANK)
+        lock(tiaNUSIZ0lock, reg: TIARegister._NUSIZ0)
+        lock(tiaNUSIZ1lock, reg: TIARegister._NUSIZ1)
+        lock(tiaCOLUP0lock, reg: TIARegister._COLUP0)
+        lock(tiaCOLUP1lock, reg: TIARegister._COLUP1)
+        lock(tiaCOLUPFlock, reg: TIARegister._COLUPF)
+        lock(tiaCOLUBKlock, reg: TIARegister._COLUBK)
+        lock(tiaCTRLPFlock, reg: TIARegister._CTRLPF)
+        lock(tiaREFP0lock, reg: TIARegister._REFP0)
+        lock(tiaREFP1lock, reg: TIARegister._REFP1)
+        lock(tiaPF0lock, reg: TIARegister._PF0)
+        lock(tiaPF1lock, reg: TIARegister._PF1)
+        lock(tiaPF2lock, reg: TIARegister._PF2)
+        lock(tiaGRP0lock, reg: TIARegister._GRP0)
+        lock(tiaGRP1lock, reg: TIARegister._GRP1)
+        lock(tiaENAM0lock, reg: TIARegister._ENAM0)
+        lock(tiaENAM1lock, reg: TIARegister._ENAM1)
+        lock(tiaENABLlock, reg: TIARegister._ENABL)
+        lock(tiaHMP0lock, reg: TIARegister._HMP0)
+        lock(tiaHMP1lock, reg: TIARegister._HMP1)
+        lock(tiaHMM0lock, reg: TIARegister._HMM0)
+        lock(tiaHMM1lock, reg: TIARegister._HMM1)
+        lock(tiaHMBLlock, reg: TIARegister._HMBL)
+        lock(tiaVDELP0lock, reg: TIARegister._VDELP0)
+        lock(tiaVDELP1lock, reg: TIARegister._VDELP1)
+        lock(tiaVDELBLlock, reg: TIARegister._VDELBL)
+        lock(tiaRESMP0lock, reg: TIARegister._RESMP0)
+        lock(tiaRESMP1lock, reg: TIARegister._RESMP1)
 
         tiaCOLUP0Popup.selectItem(withTag: Int(tiaInfo.regs.6 >> 1))
         tiaCOLUP1Popup.selectItem(withTag: Int(tiaInfo.regs.7 >> 1))
@@ -192,7 +192,7 @@ extension Inspector {
      }
 
     /*
-    func tag2colreg(_ tag: Int) -> tiara.TIARegister {
+    func tag2colreg(_ tag: Int) -> TIARegister {
 
         switch tag {
         case 0: return ._COLUBK
@@ -208,7 +208,7 @@ extension Inspector {
 
         print("colorAction \(sender.tag) \(sender.selectedTag())")
 
-        let reg = tiara.TIARegister(rawValue: sender.tag)!
+        let reg = TIARegister(rawValue: sender.tag)!
         let val = sender.selectedTag()
 
         emu!.suspend()
@@ -224,7 +224,7 @@ extension Inspector {
 
         print("tiaLockAction \(sender.tag)")
 
-        let reg = tiara.TIARegister(rawValue: sender.tag)!
+        let reg = TIARegister(rawValue: sender.tag)!
         emu?.tia.toggleRegLock(reg)
         refreshTIA()
     }

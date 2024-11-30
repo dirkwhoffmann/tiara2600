@@ -78,7 +78,7 @@ class LogicAnalyzer: DialogController {
 
         func initPopup(button: NSPopUpButton) {
 
-            func add(_ title: String, _ probe: tiara.Probe) {
+            func add(_ title: String, _ probe: Probe) {
 
                 button.addItem(withTitle: title)
                 button.lastItem!.tag = probe.rawValue
@@ -207,7 +207,7 @@ class LogicAnalyzer: DialogController {
 
         // Bottom bar
         laTimeStamp.stringValue = String(format: "%d:%03d:%03d",
-                                         info.frame, info.posy, info.posx)
+                                         atariInfo.frame, info.posy, info.posx)
         laX.isEnabled = laBeamTrap.state == .on
         laY.isEnabled = laBeamTrap.state == .on
         laSymButtom.state = laLogicView.formatter.symbolic ? .on : .off
@@ -228,10 +228,10 @@ class LogicAnalyzer: DialogController {
             laSpinIcon.stopAnimation(self)
         }
 
-        laLogicView.probe[0] = tiara.Probe(rawValue: probe0)!
-        laLogicView.probe[1] = tiara.Probe(rawValue: probe1)!
-        laLogicView.probe[2] = tiara.Probe(rawValue: probe2)!
-        laLogicView.probe[3] = tiara.Probe(rawValue: probe3)!
+        laLogicView.probe[0] = Probe(rawValue: probe0)!
+        laLogicView.probe[1] = Probe(rawValue: probe1)!
+        laLogicView.probe[2] = Probe(rawValue: probe2)!
+        laLogicView.probe[3] = Probe(rawValue: probe3)!
 
         laLogicView.x = info.posx
         laLogicView.y = info.posy

@@ -279,7 +279,7 @@ extension URL {
     }
 
     /*
-    var c64FileType: tiara.FileType {
+    var c64FileType: FileType {
         
         switch pathExtension.lowercased() {
         

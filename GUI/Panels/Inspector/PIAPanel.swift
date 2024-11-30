@@ -126,7 +126,7 @@ extension Inspector {
         piaDDRA1O.textColor = (bits & 0b00000010) != 0 ? .textColor : .secondaryLabelColor
         piaDDRA0O.textColor = (bits & 0b00000001) != 0 ? .textColor : .secondaryLabelColor
 
-        var pass = "↔", block = "|"
+        let pass = "↔", block = "|"
         piaDDRA7I.stringValue = (bits & 0b10000000) == 0 ? pass : block
         piaDDRA6I.stringValue = (bits & 0b01000000) == 0 ? pass : block
         piaDDRA5I.stringValue = (bits & 0b00100000) == 0 ? pass : block

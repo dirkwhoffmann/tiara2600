@@ -27,7 +27,7 @@ class Ball final : CoreObject, public Serializable {
     isize blsiz{};
     bool blvd{};
 
-    const char *objectName() const { return "Ball"; }
+    const char *objectName() const override { return "Ball"; }
 
 public:
 

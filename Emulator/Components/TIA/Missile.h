@@ -21,7 +21,7 @@ namespace tiara {
 
 class Missile final : CoreObject, public Serializable {
 
-    const char *objectName() const { return "Missile"; }
+    const char *objectName() const override { return "Missile"; }
 
     DualPhaseCounter<39> counter;
     isize siz{};

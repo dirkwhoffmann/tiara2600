@@ -13,7 +13,7 @@ class EventTableView: NSTableView {
 
     var emu: EmulatorProxy? { return inspector.emu }
 
-    var slotInfo = [tiara.EventSlotInfo?](repeating: nil, count: tiara.EventSlot.COUNT.rawValue)
+    var slotInfo = [EventSlotInfo?](repeating: nil, count: EventSlot.COUNT.rawValue)
 
     override func awakeFromNib() {
 
@@ -26,7 +26,7 @@ class EventTableView: NSTableView {
 
         if let emu = emu {
 
-            for row in 0 ..< tiara.EventSlot.COUNT.rawValue {
+            for row in 0 ..< EventSlot.COUNT.rawValue {
                 slotInfo[row] = emu.atari.cachedSlotInfo(row)
             }
         }
@@ -43,7 +43,7 @@ extension EventTableView: NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
 
-        return tiara.EventSlot.COUNT.rawValue
+        return EventSlot.COUNT.rawValue
     }
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {

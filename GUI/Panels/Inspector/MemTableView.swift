@@ -31,7 +31,7 @@ class MemTableView: NSTableView {
         reloadData()
     }
     
-    var bankType: tiara.MemoryType {
+    var bankType: MemoryType {
 
         let type = inspector.bankType[inspector.displayedBank]!
         return type.rawValue == 0 ? .NONE : type

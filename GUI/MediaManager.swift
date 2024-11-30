@@ -116,7 +116,7 @@ class MediaManager {
     // Loading media files
     //
 
-    func createFileProxy(from url: URL, allowedTypes: [tiara.FileType]) throws -> MediaFileProxy {
+    func createFileProxy(from url: URL, allowedTypes: [FileType]) throws -> MediaFileProxy {
 
         debug(.media, "Reading file \(url.lastPathComponent)")
 
@@ -159,7 +159,7 @@ class MediaManager {
     //
 
     func addMedia(url: URL,
-                  allowedTypes types: [tiara.FileType] = tiara.FileType.all,
+                  allowedTypes types: [FileType] = FileType.all,
                   options: [Option] = [.remember]) throws {
 
         debug(.media, "url = \(url) types = \(types)")

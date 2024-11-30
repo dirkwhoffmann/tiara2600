@@ -87,10 +87,10 @@ extension DefaultsProxy {
     func register(_ key: String, _ val: Double) {
         register(key, value: "\(val)")
     }
-    func remove(_ option: tiara.Option, _ nr: Int) {
+    func remove(_ option: Option, _ nr: Int) {
         remove(option, nr: nr)
     }
-    func remove(_ option: tiara.Option, _ nr: [Int]) {
+    func remove(_ option: Option, _ nr: [Int]) {
         for n in nr { remove(option, nr: n) }
     }
     func set(_ key: String, _ val: String) {
@@ -111,28 +111,28 @@ extension DefaultsProxy {
     func set(_ key: String, _ val: Double) {
         setKey(key, value: "\(val)")
     }
-    func set(_ option: tiara.Option, _ val: Int) {
+    func set(_ option: Option, _ val: Int) {
         setOpt(option, value: val)
     }
-    func set(_ option: tiara.Option, _ val: Bool) {
+    func set(_ option: Option, _ val: Bool) {
         setOpt(option, value: val ? 1 : 0)
     }
-    func set(_ option: tiara.Option, _ nr: Int, _ val: Int) {
+    func set(_ option: Option, _ nr: Int, _ val: Int) {
         setOpt(option, nr: nr, value: val)
     }
-    func set(_ option: tiara.Option, _ nr: Int, _ val: Bool) {
+    func set(_ option: Option, _ nr: Int, _ val: Bool) {
         setOpt(option, nr: nr, value: val ? 1 : 0)
     }
-    func set(_ option: tiara.Option, _ nr: [Int], _ val: Int) {
+    func set(_ option: Option, _ nr: [Int], _ val: Int) {
         for n in nr { setOpt(option, nr: n, value: val) }
     }
-    func set(_ option: tiara.Option, _ nr: [Int], _ val: Bool) {
+    func set(_ option: Option, _ nr: [Int], _ val: Bool) {
         for n in nr { setOpt(option, nr: n, value: val ? 1 : 0) }
     }
-    func get(_ option: tiara.Option) -> Int {
+    func get(_ option: Option) -> Int {
         return getOpt(option)
     }
-    func get(_ option: tiara.Option, _ nr: Int) -> Int {
+    func get(_ option: Option, _ nr: Int) -> Int {
         return getOpt(option, nr: nr)
     }
     func string(_ key: String) -> String {
@@ -411,20 +411,20 @@ extension DefaultsProxy {
 
         let stdKeyMap1: [MacKey: Int] = [
 
-            MacKey(keyCode: kVK_LeftArrow): tiara.GamePadAction.PULL_LEFT.rawValue,
-            MacKey(keyCode: kVK_RightArrow): tiara.GamePadAction.PULL_RIGHT.rawValue,
-            MacKey(keyCode: kVK_UpArrow): tiara.GamePadAction.PULL_UP.rawValue,
-            MacKey(keyCode: kVK_DownArrow): tiara.GamePadAction.PULL_DOWN.rawValue,
-            MacKey(keyCode: kVK_Space): tiara.GamePadAction.PRESS_FIRE.rawValue
+            MacKey(keyCode: kVK_LeftArrow): GamePadAction.PULL_LEFT.rawValue,
+            MacKey(keyCode: kVK_RightArrow): GamePadAction.PULL_RIGHT.rawValue,
+            MacKey(keyCode: kVK_UpArrow): GamePadAction.PULL_UP.rawValue,
+            MacKey(keyCode: kVK_DownArrow): GamePadAction.PULL_DOWN.rawValue,
+            MacKey(keyCode: kVK_Space): GamePadAction.PRESS_FIRE.rawValue
         ]
 
         let stdKeyMap2 = [
 
-            MacKey(keyCode: kVK_ANSI_S): tiara.GamePadAction.PULL_LEFT.rawValue,
-            MacKey(keyCode: kVK_ANSI_D): tiara.GamePadAction.PULL_RIGHT.rawValue,
-            MacKey(keyCode: kVK_ANSI_E): tiara.GamePadAction.PULL_UP.rawValue,
-            MacKey(keyCode: kVK_ANSI_X): tiara.GamePadAction.PULL_DOWN.rawValue,
-            MacKey(keyCode: kVK_ANSI_C): tiara.GamePadAction.PRESS_FIRE.rawValue
+            MacKey(keyCode: kVK_ANSI_S): GamePadAction.PULL_LEFT.rawValue,
+            MacKey(keyCode: kVK_ANSI_D): GamePadAction.PULL_RIGHT.rawValue,
+            MacKey(keyCode: kVK_ANSI_E): GamePadAction.PULL_UP.rawValue,
+            MacKey(keyCode: kVK_ANSI_X): GamePadAction.PULL_DOWN.rawValue,
+            MacKey(keyCode: kVK_ANSI_C): GamePadAction.PRESS_FIRE.rawValue
         ]
 
         // Emulation keys

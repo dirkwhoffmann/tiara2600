@@ -76,7 +76,7 @@ extension PreferencesController {
         devActivity2.isHidden = pad == nil
     }
 
-    func refreshDeviceEvents(events: [tiara.GamePadAction]) {
+    func refreshDeviceEvents(events: [GamePadAction]) {
             
         var activity = "", activity2 = ""
         

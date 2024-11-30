@@ -7,7 +7,28 @@
 // See https://www.gnu.org for license information
 // -----------------------------------------------------------------------------
 
-extension tiara.TIARegister: CustomStringConvertible {
+typealias CartType = tiara.CartType
+typealias CmdType = tiara.CmdType
+typealias ControlPortDevice = tiara.ControlPortDevice
+typealias CoordCmd = tiara.CoordCmd
+typealias ErrorCode = tiara.ErrorCode
+typealias EventSlot = tiara.EventSlot
+typealias EventSlotInfo = tiara.EventSlotInfo
+typealias FileType = tiara.FileType
+typealias GamePadAction = tiara.GamePadAction
+typealias GamePadCmd = tiara.GamePadCmd
+typealias MemoryType = tiara.MemoryType
+typealias Message = tiara.Message
+typealias Option = tiara.Option
+typealias Palette = tiara.Palette
+typealias Probe = tiara.Probe
+typealias PIARegister = tiara.PIARegister
+typealias TIARegister = tiara.TIARegister
+typealias Slider = tiara.Slider
+typealias SliderCmd = tiara.SliderCmd
+typealias WarpMode = tiara.WarpMode
+
+extension TIARegister: CustomStringConvertible {
 
     public var description: String {
 
@@ -92,7 +113,7 @@ extension tiara.TIARegister: CustomStringConvertible {
     }
 }
 
-extension tiara.PIARegister: CustomStringConvertible {
+extension PIARegister: CustomStringConvertible {
 
     public var description: String {
 
@@ -145,7 +166,7 @@ extension tiara.PIARegister: CustomStringConvertible {
     }
 }
 
-extension tiara.EventSlot: CustomStringConvertible {
+extension EventSlot: CustomStringConvertible {
 
     public var description: String {
 
@@ -174,7 +195,7 @@ extension tiara.EventSlot: CustomStringConvertible {
     }
 }
 
-extension tiara.CartType {
+extension CartType {
 
     var description: String {
 
@@ -242,22 +263,22 @@ extension tiara.CartType {
     }
 }
 
-extension tiara.FileType {
+extension FileType {
 
     init?(url: URL?) {
         self = url == nil ? .UNKNOWN : MediaFileProxy.type(of: url)
     }
 
-    static var all: [tiara.FileType] {
+    static var all: [FileType] {
         return [ .SNAPSHOT, .SCRIPT, .CART ]
     }
 
-    static var draggable: [tiara.FileType] {
+    static var draggable: [FileType] {
         return [ .SNAPSHOT, .SCRIPT, .CART ]
     }
 }
 
-extension tiara.ErrorCode {
+extension ErrorCode {
 
     func description(expected exp: Int = 0) -> String {
         
@@ -274,20 +295,6 @@ extension tiara.ErrorCode {
 
         default:
             fatalError("\(self)")
-        }
-    }
-}
-
-extension tiara.TAPVersion {
-    
-    var description: String {
-        
-        switch self {
-        
-        case .ORIGINAL: return "TAP type 0 (Original pulse layout)"
-        case .ADVANCED: return "TAP type 1 (Advanced pulse layout)"
-            
-        default: return "TAP type \(self.rawValue) (Unknown)"
         }
     }
 }

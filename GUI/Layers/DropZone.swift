@@ -111,13 +111,13 @@ class DropZone: Layer {
         resize()
     }
 
-    func open(type: tiara.FileType, delay: Double) {
+    func open(type: FileType, delay: Double) {
 
         open(delay: delay)
 
         if let info = emu?.atari?.info {
 
-            func update(zone nr: Int, slider: tiara.Slider) {
+            func update(zone nr: Int, slider: Slider) {
 
                 switch slider.rawValue {
                 case 0: zones[nr].state = info.slider.0
@@ -129,11 +129,11 @@ class DropZone: Layer {
                 }
             }
 
-            update(zone: 0, slider: tiara.Slider.COLOR)
-            update(zone: 1, slider: tiara.Slider.DIFFA)
-            update(zone: 2, slider: tiara.Slider.DIFFB)
-            update(zone: 3, slider: tiara.Slider.SELECT)
-            update(zone: 4, slider: tiara.Slider.RESET)
+            update(zone: 0, slider: Slider.COLOR)
+            update(zone: 1, slider: Slider.DIFFA)
+            update(zone: 2, slider: Slider.DIFFB)
+            update(zone: 3, slider: Slider.SELECT)
+            update(zone: 4, slider: Slider.RESET)
         }
         for i in 0..<numZones { zones[i].updateImage(hover: false) }
         resize()
@@ -257,11 +257,11 @@ class DropZone: Layer {
 
         switch zone {
 
-        case 0:  cmd = tiara.SliderCmd(slider: .COLOR, value: val, delay: 0.0)
-        case 1:  cmd = tiara.SliderCmd(slider: .DIFFA, value: val, delay: 0.0)
-        case 2:  cmd = tiara.SliderCmd(slider: .DIFFB, value: val, delay: 0.0)
-        case 3:  cmd = tiara.SliderCmd(slider: .SELECT, value: val, delay: 0.2)
-        case 4:  cmd = tiara.SliderCmd(slider: .RESET, value: val, delay: 0.2)
+        case 0:  cmd = SliderCmd(slider: .COLOR, value: val, delay: 0.0)
+        case 1:  cmd = SliderCmd(slider: .DIFFA, value: val, delay: 0.0)
+        case 2:  cmd = SliderCmd(slider: .DIFFB, value: val, delay: 0.0)
+        case 3:  cmd = SliderCmd(slider: .SELECT, value: val, delay: 0.2)
+        case 4:  cmd = SliderCmd(slider: .RESET, value: val, delay: 0.2)
 
         default:
             fatalError()

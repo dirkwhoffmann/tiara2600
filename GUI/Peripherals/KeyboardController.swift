@@ -125,11 +125,11 @@ class KeyboardController: NSObject {
 
     func capsLockDown() {
 
-        parent.config.warpMode = tiara.WarpMode.ALWAYS.rawValue
+        parent.config.warpMode = WarpMode.ALWAYS.rawValue
     }
 
     func capsLockUp() {
 
-        parent.config.warpMode = tiara.WarpMode.NEVER.rawValue
+        parent.config.warpMode = WarpMode.NEVER.rawValue
     }
 }
