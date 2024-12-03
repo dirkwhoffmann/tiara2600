@@ -478,38 +478,39 @@ TIA::updateInpt()
     inpt[5] &= port2.getTiaBits();
 }
 
-template <bool debug> void
+template <bool fastPath> void
 TIA::execute()
 {
-    // Emulate three color cycles
-    execute <debug, 0> ();
-    execute <debug, 1> ();
-    execute <debug, 2> ();
+    // Cycle 0
+    hc.execute(true, false);
+    hc.phi1() ? execute <fastPath, 1, 0> (0) :
+    hc.phi2() ? execute <fastPath, 0, 1> (0) : execute <fastPath, 0, 0> (0);
+
+    // Cycle 1
+    hc.execute(true, false);
+    hc.phi1() ? execute <fastPath, 1, 0> (1) :
+    hc.phi2() ? execute <fastPath, 0, 1> (1) : execute <fastPath, 0, 0> (1);
+
+    strobe = TIA_VOID;
+
+    // Cycle 2
+    hc.execute(true, false);
+    hc.phi1() ? execute <fastPath, 1, 0> (2) :
+    hc.phi2() ? execute <fastPath, 0, 1> (2) : execute <fastPath, 0, 0> (2);
 
     // VSYNC logic
-    if (vsedge) {
-
-        atari.eofHandler();
-    }
+    if (vsedge) { atari.eofHandler(); }
 }
 template void TIA::execute<false>();
 template void TIA::execute<true>();
 
-template <bool fastPath, isize cycle> void
-TIA::execute()
+template <bool fastPath, bool phi1, bool phi2> void
+TIA::execute(isize cycle)
 {
-    //
-    if constexpr (cycle == 2) { strobe = TIA_VOID; }
-
-    // Clock the horizontal counter
-    hc.execute(true, false);
-    bool phi1 = hc.phi1();
-    bool phi2 = hc.phi2();
-
     // Check for the "Start HBlank" signal
     bool shb = hc.res;
 
-    if (shb && hc.phi2()) {
+    if (shb && phi2) {
 
         x = 0;
         y++;

@@ -465,7 +465,7 @@ public:
     template <bool fastPaths> void execute();
 
     // Executes a specific color-clock cycle
-    template <bool fastPaths, isize cycle> void execute();
+    template <bool fastPaths, bool phi1, bool phi2> void execute(isize cycle);
 
     // Start-of-frame handler
     void sofHandler();
