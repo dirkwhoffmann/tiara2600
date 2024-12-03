@@ -41,12 +41,11 @@ public:
         // Run the pipeline
         if (phi1) { t[0] = val; } else if (phi2) { t[1] = t[0]; }
 
-        // Check for the reset signal
+        // Emulate the reset line
         if (reset) { t[1] = T(0); }
     }
 
     T get() const { return t[1]; }
-    // T neg() const { return ~t[1]; }
 };
 
 /*
@@ -112,16 +111,21 @@ public:
         }
         if (clk) {
 
-            // Advance the phase counter
-            phase = (phase + 1) & 0b11;
+            execute();
+        }
+    }
 
-            // Advance or reset the actual counter
-            if (phase == 2) {
+    void execute() {
 
-                res = resl | (current == max);
-                current = res ? 0 : current + 1;
-                resl = false;
-            }
+        // Advance the phase counter
+        phase = (phase + 1) & 0b11;
+
+        // Advance or reset the actual counter
+        if (phase == 2) {
+
+            res = resl | (current == max);
+            current = res ? 0 : current + 1;
+            resl = false;
         }
     }
 

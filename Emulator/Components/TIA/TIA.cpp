@@ -482,19 +482,19 @@ template <bool fastPath> void
 TIA::execute()
 {
     // Cycle 0
-    hc.execute(true, false);
+    hc.execute();
     hc.phi1() ? execute <fastPath, 1, 0> (0) :
     hc.phi2() ? execute <fastPath, 0, 1> (0) : execute <fastPath, 0, 0> (0);
 
     // Cycle 1
-    hc.execute(true, false);
+    hc.execute();
     hc.phi1() ? execute <fastPath, 1, 0> (1) :
     hc.phi2() ? execute <fastPath, 0, 1> (1) : execute <fastPath, 0, 0> (1);
 
     strobe = TIA_VOID;
 
     // Cycle 2
-    hc.execute(true, false);
+    hc.execute();
     hc.phi1() ? execute <fastPath, 1, 0> (2) :
     hc.phi2() ? execute <fastPath, 0, 1> (2) : execute <fastPath, 0, 0> (2);
 
