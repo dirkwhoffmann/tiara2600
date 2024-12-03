@@ -169,14 +169,15 @@ Atari::getOption(Option opt) const
 {
     switch (opt) {
 
-        case OPT_ATARI_WARP_BOOT:         return config.warpBoot;
-        case OPT_ATARI_WARP_MODE:         return config.warpMode;
-        case OPT_ATARI_SPEED_BOOST:      return config.speedBoost;
-        case OPT_ATARI_VSYNC:             return config.vsync;
-        case OPT_ATARI_RUN_AHEAD:         return config.runAhead;
-        case OPT_ATARI_SNAP_AUTO:         return config.snapshots;
-        case OPT_ATARI_SNAP_DELAY:        return config.snapshotDelay;
-        case OPT_ATARI_SNAP_COMPRESS:     return config.compressSnapshots;
+        case OPT_ATARI_WARP_BOOT:       return config.warpBoot;
+        case OPT_ATARI_WARP_MODE:       return config.warpMode;
+        case OPT_ATARI_SPEED_BOOST:     return config.speedBoost;
+        case OPT_ATARI_VSYNC:           return config.vsync;
+        case OPT_ATARI_RUN_AHEAD:       return config.runAhead;
+        case OPT_ATARI_FAST_PATHS:      return config.fastPaths;
+        case OPT_ATARI_SNAP_AUTO:       return config.snapshots;
+        case OPT_ATARI_SNAP_DELAY:      return config.snapshotDelay;
+        case OPT_ATARI_SNAP_COMPRESS:   return config.compressSnapshots;
 
         default:
             fatalError;
@@ -215,6 +216,10 @@ Atari::checkOption(Option opt, i64 value)
             if (value < 0 || value > 12) {
                 throw Error(VC64ERROR_OPT_INV_ARG, "0...12");
             }
+            return;
+
+        case OPT_ATARI_FAST_PATHS:
+
             return;
 
         case OPT_ATARI_SNAP_AUTO:
@@ -268,6 +273,11 @@ Atari::setOption(Option opt, i64 value)
         case OPT_ATARI_RUN_AHEAD:
 
             config.runAhead = isize(value);
+            return;
+
+        case OPT_ATARI_FAST_PATHS:
+
+            config.fastPaths = bool(value);
             return;
 
         case OPT_ATARI_SNAP_AUTO:

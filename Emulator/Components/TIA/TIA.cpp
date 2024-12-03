@@ -12,12 +12,9 @@
 
 #include "config.h"
 #include "TIA.h"
-#include "Atari.h"
+#include "Emulator.h"
 
 namespace tiara {
-
-// REMOVE ASAP
-static u32 oldcx = 0;
 
 void
 TIA::_initialize()
@@ -44,7 +41,7 @@ TIA::_initialize()
         (m0 && pf) << 9  | //
         (m1 && bl) << 10 | // CXM1FB
         (m1 && pf) << 11 | //
-        /* unused */       // CXBLPF
+        // unused          // CXBLPF
         (bl && pf) << 13 | //
         (m0 && m1) << 14 | // CXPPMM
         (p0 && p1) << 15 ; //
@@ -54,21 +51,21 @@ TIA::_initialize()
                 for (isize side = 0; side < 2; side++) {
 
                     TIAColor pfcolor =
-                    score ? (side ? TIA_COLOR_PM1 : TIA_COLOR_PM0) : TIA_COLOR_PF;
+                    score ? (side ? TIA_COLOR_P1 : TIA_COLOR_P0) : TIA_COLOR_PF;
 
                     if (pfp) {
 
                         lookup[pfp][score][side][obj].color =
                         pf || bl ? pfcolor :        // Highest Priority PF, BL
-                        p0 || m0 ? TIA_COLOR_PM0 :  // Second Highest P0, M0
-                        p1 || m1 ? TIA_COLOR_PM1 :  // Third Highest P1, M1
+                        p0 || m0 ? TIA_COLOR_P0 :   // Second Highest P0, M0
+                        p1 || m1 ? TIA_COLOR_P1 :   // Third Highest P1, M1
                         TIA_COLOR_BK;               // Lowest Priority BK
 
                     } else {
 
                         lookup[pfp][score][side][obj].color =
-                        p0 || m0 ? TIA_COLOR_PM0 :  // Highest Priority P0, M0
-                        p1 || m1 ? TIA_COLOR_PM1 :  // Second Highest P1, M1
+                        p0 || m0 ? TIA_COLOR_P0 :   // Highest Priority P0, M0
+                        p1 || m1 ? TIA_COLOR_P1 :   // Second Highest P1, M1
                         pf || bl ? pfcolor  :       // Third Highest PF, BL
                         TIA_COLOR_BK;               // Lowest Priority BK
 
@@ -368,13 +365,13 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
         case TIA_COLUP0:
 
             colup0 = val & 0b11111110;
-            rgba[TIA_COLOR_PM0] = monitor.getColor(colup0 >> 1);
+            rgba[TIA_COLOR_P0] = monitor.getColor(colup0 >> 1);
             break;
 
         case TIA_COLUP1:
 
             colup1 = val & 0b11111110;
-            rgba[TIA_COLOR_PM1] = monitor.getColor(colup1 >> 1);
+            rgba[TIA_COLOR_P1] = monitor.getColor(colup1 >> 1);
             break;
 
         case TIA_COLUPF:
@@ -498,7 +495,7 @@ TIA::execute()
 template void TIA::execute<false>();
 template void TIA::execute<true>();
 
-template <bool debug, isize cycle> void
+template <bool fastPath, isize cycle> void
 TIA::execute()
 {
     //
@@ -538,7 +535,6 @@ TIA::execute()
     // SEC logic
     //
 
-    // if (strobe == TIA_HMOVE) trace(true, "strobe == HMOVE\n");
     sec.execute(phi1, phi2, strobe == TIA_HMOVE);
     secl = (secl & !shb) | sec.get();
 
@@ -628,11 +624,6 @@ TIA::execute()
         auto lup = lookup[pfp][score][right][index];
         cx |= lup.collison;
 
-        if (oldcx != cx) {
-            // trace(true, "Collision %x!!!\n", cx);
-            oldcx = cx;
-        }
-
         assert(x < Texture::width);
         assert(y < Texture::height);
 
@@ -704,7 +695,7 @@ TIA::execute()
     // Logic analyzer
     //
 
-    logicAnalyzer.recordSignals();
+    if (emulator.isTracking()) logicAnalyzer.recordSignals();
 
 
     //
@@ -735,8 +726,6 @@ TIA::eofHandler()
     // Only proceed if the current frame hasn't been executed in headless mode
     if (atari.getHeadless()) return;
 
-    // Colorize the emulator texture
-
     // Compute the overlay texture (logic analyzer)
     bool debug = logicAnalyzer.config.enable;
     if (debug) logicAnalyzer.computeOverlay(emuTexture, dmaTexture);
@@ -757,10 +746,6 @@ TIA::eofHandler()
         dmaTexture = dmaTexture1;
         if (debug) { resetEmuTexture(1); resetDmaTexture(1); }
     }
-
-    // Generate sound samples
-    audioPort.synthesize(audioClock, cpu.clock - 1024);
-    audioClock = cpu.clock - 1024;
 }
 
 }

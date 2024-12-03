@@ -23,6 +23,8 @@ namespace tiara {
 template <typename T>
 class DualPhaseDelay : public Serializable {
 
+    friend class TIA;
+
     T t[2];
 
 public:
@@ -53,6 +55,8 @@ public:
 template <typename T>
 class DualPhaseDelayLatch : public DualPhaseDelay<T> {
 
+    friend class TIA;
+
 public:
 
     void execute(bool phi1, bool phi2, T val, bool reset = false) {
@@ -66,6 +70,8 @@ public:
  *
  */
 template <int max> class DualPhaseCounter : public Serializable {
+
+    friend class TIA;
 
 public:
 
@@ -129,6 +135,8 @@ public:
 
 class SEC : public Serializable {
 
+    friend class TIA;
+
     // Pipeline
     bool s0{}, s1{};
 
@@ -170,6 +178,8 @@ public:
 
 class ExtraClock : public Serializable {
 
+    friend class TIA;
+    
     bool ena[2]{};
     isize hm{};
 

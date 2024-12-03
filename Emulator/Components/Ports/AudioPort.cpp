@@ -23,7 +23,7 @@ AudioPort::isMuted() const
 }
 
 void
-AudioPort::synthesize(Cycle clock, Cycle target)
+AudioPort::synthesize(Cycle target)
 {
     assert(target > clock);
 
@@ -40,11 +40,13 @@ AudioPort::synthesize(Cycle clock, Cycle target)
     double count; fraction = std::modf(exact, &count);
 
     // Synthesize samples
-    synthesize(clock, (long)count, cps);
+    synthesize((long)count, cps);
+
+    clock = target;
 }
 
 void
-AudioPort::synthesize(Cycle clock, long count, double cyclesPerSample)
+AudioPort::synthesize(long count, double cyclesPerSample)
 {
     if (muted != isMuted()) {
 
@@ -86,23 +88,21 @@ AudioPort::synthesize(Cycle clock, long count, double cyclesPerSample)
 
     // Take the slow path
 
-    synthesize <SMP_LINEAR> (clock, count, cyclesPerSample);
-/*
     switch (config.sampling) {
 
-        case SMP_NONE:      synthesize <SMP_NONE>    (clock, count, cyclesPerSample); break;
-        case SMP_NEAREST:   synthesize <SMP_NEAREST> (clock, count, cyclesPerSample); break;
-        case SMP_LINEAR:    synthesize <SMP_LINEAR>  (clock, count, cyclesPerSample); break;
+        case SMP_NONE:      synthesize <SMP_NONE>    (count, cyclesPerSample); break;
+        case SMP_NEAREST:   synthesize <SMP_NEAREST> (count, cyclesPerSample); break;
+        case SMP_LINEAR:    synthesize <SMP_LINEAR>  (count, cyclesPerSample); break;
 
         default:
             fatalError;
     }
-*/
+
     stream.mutex.unlock();
 }
 
 template <SamplingMethod method> void
-AudioPort::synthesize(Cycle clock, long count, double cyclesPerSample)
+AudioPort::synthesize(long count, double cyclesPerSample)
 {
     assert(count > 0);
 
@@ -197,30 +197,18 @@ AudioPort::handleBufferOverflow()
     }
 }
 
-/*
-void
-AudioPort::clamp(isize maxSamples)
-{
-    SYNCHRONIZED
-
-    while (count() > maxSamples) read();
-}
-*/
-/*
-void
-AudioPort::generateSamples()
-{
-    SYNCHRONIZED
-
-}
-*/
-
 void
 AudioPort::fadeOut()
 {
     stream.eliminateCracks();
     volL.current = 0;
     volR.current = 0;
+}
+
+void
+AudioPort::eofHandler()
+{
+    if (cpu.clock > 1024) synthesize(cpu.clock - 1024);
 }
 
 isize

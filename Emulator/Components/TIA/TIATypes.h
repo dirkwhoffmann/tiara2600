@@ -247,27 +247,27 @@ struct TIAObjectEnum : util::Reflection<TIAObjectEnum, TIAObject> {
 
 enum_i8(TIA_COLOR)
 {
-    TIA_COLOR_BK,   ///< Background
+    TIA_COLOR_P0,   ///< Player 0 and Missile 0
+    TIA_COLOR_P1,   ///< Player 1 and Missile 1
     TIA_COLOR_PF,   ///< Playfield
-    TIA_COLOR_PM0,  ///< Player 0 and Missile 0
-    TIA_COLOR_PM1   ///< Player 1 and Missile 1
+    TIA_COLOR_BK    ///< Background
 };
 typedef TIA_COLOR TIAColor;
 
 struct TIAColorEnum : util::Reflection<TIAColorEnum, TIAColor> {
 
     static constexpr long minVal = 0;
-    static constexpr long maxVal = TIA_COLOR_PM1;
+    static constexpr long maxVal = TIA_COLOR_BK;
 
     static const char *prefix() { return "TIA_COLOR"; }
     static const char *_key(long value)
     {
         switch (value) {
 
-            case TIA_COLOR_BK:  return "BK";
+            case TIA_COLOR_P0:  return "P0";
+            case TIA_COLOR_P1:  return "P1";
             case TIA_COLOR_PF:  return "PF";
-            case TIA_COLOR_PM0: return "PM0";
-            case TIA_COLOR_PM1: return "PM1";
+            case TIA_COLOR_BK:  return "BK";
         }
         return "???";
     }
@@ -311,8 +311,10 @@ typedef struct
     // Visibility
     // bool hideBall;
 
-    // Collision checking and register protection
+    // Collision checking mask
     u16 collMask;
+
+    // Register protection mask
     u64 lockMask;
 }
 TIAConfig;

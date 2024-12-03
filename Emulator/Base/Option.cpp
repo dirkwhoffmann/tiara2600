@@ -39,6 +39,7 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_ATARI_VSYNC:               return boolParser();
         case OPT_ATARI_SPEED_BOOST:         return numParser("%");
         case OPT_ATARI_RUN_AHEAD:           return numParser(" frames");
+        case OPT_ATARI_FAST_PATHS:          return boolParser();
 
         case OPT_ATARI_SNAP_AUTO:           return boolParser();
         case OPT_ATARI_SNAP_DELAY:          return numParser(" sec");

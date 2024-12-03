@@ -30,13 +30,14 @@ enum_long(OPT)
     OPT_HOST_FRAMEBUF_WIDTH,    ///< Current width of the emulator window
     OPT_HOST_FRAMEBUF_HEIGHT,   ///< Current height of the emulator window
 
-    // C64
+    // Atari
     OPT_ATARI_WARP_BOOT,        ///< Warp-boot time in seconds
     OPT_ATARI_WARP_MODE,        ///< Warp activation mode
     OPT_ATARI_VSYNC,            ///< Derive the frame rate to the VSYNC signal
     OPT_ATARI_SPEED_BOOST,      ///< Speed adjustment in percent
     OPT_ATARI_RUN_AHEAD,        ///< Number of run-ahead frames
-
+    OPT_ATARI_FAST_PATHS,       ///< Enable emulation optimizations
+    ///<
     // Snapshots
     OPT_ATARI_SNAP_AUTO,        ///< Automatically take a snapshots
     OPT_ATARI_SNAP_DELAY,       ///< Delay between two snapshots in seconds
@@ -148,12 +149,13 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_HOST_FRAMEBUF_WIDTH:   return "HOST.FRAMEBUF_WIDTH";
             case OPT_HOST_FRAMEBUF_HEIGHT:  return "HOST.FRAMEBUF_HEIGHT";
 
-            case OPT_ATARI_WARP_BOOT:       return "C64.WARP_BOOT";
-            case OPT_ATARI_WARP_MODE:       return "C64.WARP_MODE";
-            case OPT_ATARI_VSYNC:           return "C64.VSYNC";
-            case OPT_ATARI_SPEED_BOOST:     return "C64.SPEED_BOOST";
-            case OPT_ATARI_RUN_AHEAD:       return "C64.RUN_AHEAD";
-            
+            case OPT_ATARI_WARP_BOOT:       return "ATARI.WARP_BOOT";
+            case OPT_ATARI_WARP_MODE:       return "ATARI.WARP_MODE";
+            case OPT_ATARI_VSYNC:           return "ATARI.VSYNC";
+            case OPT_ATARI_SPEED_BOOST:     return "ATARI.SPEED_BOOST";
+            case OPT_ATARI_RUN_AHEAD:       return "ATARI.RUN_AHEAD";
+            case OPT_ATARI_FAST_PATHS:      return "ATARI.FAST_PATHS";
+
             case OPT_ATARI_SNAP_AUTO:       return "C64.SNAP_AUTO";
             case OPT_ATARI_SNAP_DELAY:      return "C64.SNAP_DELAY";
             case OPT_ATARI_SNAP_COMPRESS:   return "C64.SNAP_COMPRESS";
@@ -249,8 +251,9 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_ATARI_WARP_BOOT:       return "Warp-boot duration";
             case OPT_ATARI_WARP_MODE:       return "Warp activation";
             case OPT_ATARI_VSYNC:           return "VSYNC mode";
-            case OPT_ATARI_SPEED_BOOST:      return "Speed adjustment";
+            case OPT_ATARI_SPEED_BOOST:     return "Speed adjustment";
             case OPT_ATARI_RUN_AHEAD:       return "Run-ahead frames";
+            case OPT_ATARI_FAST_PATHS:      return "Enable emulation optimizations";
 
             case OPT_ATARI_SNAP_AUTO:       return "Automatically take snapshots";
             case OPT_ATARI_SNAP_DELAY:      return "Time span between two snapshots";

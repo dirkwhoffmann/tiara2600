@@ -540,6 +540,12 @@ Atari::update(CmdQueue &queue)
 void
 Atari::computeFrame()
 {
+    config.fastPaths ? computeFrame<true>() : computeFrame<false>();
+}
+
+template <bool fastPaths> void
+Atari::computeFrame()
+{
     Cycle cycle = cpu.clock;
 
     if (flags & RL::SYNC_THREAD) { sofHandler(); }
@@ -554,8 +560,8 @@ Atari::computeFrame()
         cpu.execute<MOS_6507>();
 
         // Execute other components
-        pia.execute<false>();
-        tia.execute<false>();
+        pia.execute<fastPaths>();
+        tia.execute<fastPaths>();
         cartPort.cart->execute();
 
         // Process pending actions
@@ -578,7 +584,6 @@ Atari::computeFrame()
             if (flags & RL::BEAMTRAP) {
 
                 msgQueue.put(MSG_BEAMTRAP_REACHED, 0);
-
                 pause = true;
             }
 
@@ -621,13 +626,13 @@ Atari::computeFrame()
                     pause = true;
                 }
             }
-            if (flags & RL::SYNC_THREAD) {
 
-                // sof = true;
+            if (flags & RL::SYNC_THREAD) {
 
                 if (flags & RL::STEP_FRAME) {
 
                     clearFlag(RL::STEP_FRAME);
+                    msgQueue.put(MSG_STEP);
                     pause = true;
                 }
             }
@@ -670,42 +675,6 @@ Atari::setAutoInspectionMask(u64 mask)
     }
 }
 
-/*
-void
-Atari::executeOneCycle()
-{
-    setFlag(RL::SINGLE_STEP);
-    computeFrame();
-    clearFlag(RL::SINGLE_STEP);
-}
-*/
-/*
-void
-C64::endScanline()
-{
-
-}
-
-void
-C64::endFrame()
-{
-    frame++;
-    
-    // vic.endFrame();
-    mem.endFrame();
-    expansionport.endOfFrame();
-    port1.execute();
-    port2.execute();
-}
- */
-/*
-void
-C64::eolHandler()
-{
-
-}
-*/
-
 void Atari::sofHandler()
 {
     flags &= ~RL::SYNC_THREAD;
@@ -726,6 +695,7 @@ Atari::eofHandler()
 
     tia.eofHandler();
     pia.eofHandler();
+    audioPort.eofHandler();
     logicAnalyzer.eofHandler();
 }
 

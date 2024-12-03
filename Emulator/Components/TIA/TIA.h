@@ -99,15 +99,6 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
 
 
     //
-    // Subcomponents
-    //
-
-public:
-
-    // Audio units
-    Audio audio[2] = { Audio(atari, 0), Audio(atari, 1) };
-
-    //
     // Lookup tables
     //
 
@@ -118,6 +109,15 @@ public:
     struct { TIAColor color; u32 collison; } lookup[2][2][2][64];
 
 
+    //
+    // Subcomponents
+    //
+
+public:
+
+    // Audio units
+    Audio audio[2] = { Audio(atari, 0), Audio(atari, 1) };
+
     // Host sample frequency detector TODO: Integrate into VideoPort
     Detector detector = Detector(atari);
 
@@ -126,12 +126,13 @@ public:
     // Objects
     //
 
-    Playfield pf{};
-    Player p0{};
-    Player p1{};
-    Missile m0{};
-    Missile m1{};
-    Ball bl{};
+    Playfield pf;
+    Player p0;
+    Player p1;
+    Missile m0;
+    Missile m1;
+    Ball bl;
+
 
     //
     // Extra motion clocks
@@ -144,6 +145,7 @@ public:
     ExtraClock p0ec;
     ExtraClock p1ec;
 
+
     //
     // Counters
     //
@@ -151,8 +153,7 @@ public:
     // Beam position
     isize x{}, y{};
 
-    // The audios units have been executed up to this clock cycle
-    Cycle audioClock = 0;
+
 
 
     //
@@ -309,7 +310,6 @@ public:
 
         << x
         << y
-        << audioClock
 
         << colup0
         << colup1
@@ -461,12 +461,16 @@ public:
 
 public:
 
-    // Executes three color clock cycles
-    template <bool> void execute();
-    template <bool, isize> void execute();
+    // Executes three color-clock cycles
+    template <bool fastPaths> void execute();
 
-    // Frame handlers (start of frame, end of frame)
+    // Executes a specific color-clock cycle
+    template <bool fastPaths, isize cycle> void execute();
+
+    // Start-of-frame handler
     void sofHandler();
+
+    // End-of-frame handler
     void eofHandler();
 
 

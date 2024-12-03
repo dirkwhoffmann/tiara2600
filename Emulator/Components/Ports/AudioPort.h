@@ -62,8 +62,8 @@ class AudioPort final : public SubComponent, public Inspectable<AudioPortInfo, A
     // Current configuration
     AudioPortConfig config = { };
 
-    // Current sample rate
-    // double sampleRate = 44100;
+    // Samples have been generated up to this CPU cycle
+    Cycle clock = 0;
 
     // Fraction of a sample that hadn't been generated in synthesize
     double fraction = 0.0;
@@ -141,6 +141,11 @@ public:
     template <class T>
     void serialize(T& worker)
     {
+        worker
+
+        << clock
+        << fraction;
+
         if (isResetter(worker)) return;
 
         worker
@@ -197,8 +202,6 @@ public:
     void checkOption(Option opt, i64 value) override;
     void setOption(Option opt, i64 value) override;
 
-    // void setSampleRate(double hz);
-
 
     //
     // Analyzing
@@ -217,13 +220,13 @@ public:
 public:
 
     // Generates new sound samples
-    void synthesize(Cycle clock, Cycle target);
+    void synthesize(Cycle target);
 
 private:
 
-    void synthesize(Cycle clock, long count, double cyclesPerSample);
+    void synthesize(long count, double cyclesPerSample);
     template <SamplingMethod method>
-    void synthesize(Cycle clock, long count, double cyclesPerSample);
+    void synthesize(long count, double cyclesPerSample);
 
     // Handles a buffer underflow or overflow
     void handleBufferUnderflow();
@@ -235,9 +238,6 @@ private:
     //
 
 public:
-
-    // Generates samples
-    // void generateSamples();
 
     // Returns the sample rate adjustment
     double getSampleRateCorrection() { return sampleRateCorrection; }
@@ -257,6 +257,16 @@ public:
 
     // Gradually inrease the master volume to max
     void unmute(isize steps = 0) { volL.fadeIn(steps); volR.fadeIn(steps); }
+
+
+    //
+    // Executing
+    //
+
+public:
+
+    // End-of-frame handler
+    void eofHandler();
 
 
     //

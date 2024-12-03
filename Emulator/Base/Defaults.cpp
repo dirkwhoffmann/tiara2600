@@ -30,6 +30,7 @@ Defaults::Defaults()
     setFallback(OPT_ATARI_VSYNC,                false);
     setFallback(OPT_ATARI_SPEED_BOOST,          100);
     setFallback(OPT_ATARI_RUN_AHEAD,            0);
+    setFallback(OPT_ATARI_FAST_PATHS,           1);
 
     setFallback(OPT_ATARI_SNAP_AUTO,            false);
     setFallback(OPT_ATARI_SNAP_DELAY,           10);

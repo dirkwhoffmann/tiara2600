@@ -270,6 +270,9 @@ typedef struct
     //! Number of run-ahead frames (0 = run-ahead is disabled)
     isize runAhead;
 
+    //! Enable emulation optimizations and experimental speed-ups
+    isize fastPaths;
+
     //! Enable auto-snapshots
     bool snapshots;
 

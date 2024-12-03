@@ -90,6 +90,7 @@ class Atari final : public CoreComponent, public Inspectable<AtariInfo> {
         OPT_ATARI_SPEED_BOOST,
         OPT_ATARI_VSYNC,
         OPT_ATARI_RUN_AHEAD,
+        OPT_ATARI_FAST_PATHS,
         OPT_ATARI_SNAP_AUTO,
         OPT_ATARI_SNAP_DELAY,
         OPT_ATARI_SNAP_COMPRESS
@@ -477,6 +478,8 @@ private:
 
     // Emulates a frame
     void computeFrame();
+    template <bool fastPaths> void computeFrame();
+
     // void processFlags();
 
     // Fast-forward the run-ahead instance
@@ -506,17 +509,14 @@ public:
 
 public:
 
-    // DEPRECATED: Invoked after executing the last cycle of a scanline
-    // void endScanline();
+    //
+    // Handlers
+    //
 
-    // DEPRECATED: Invoked after executing the last scanline of a frame
-    // void endFrame();
-
-    // Finishes up the current line
-    // void eolHandler();
-
-    // Frame handlers
+    // Start-of-frame handler
     void sofHandler();
+
+    // End-of-frame handler
     void eofHandler();
 
 
