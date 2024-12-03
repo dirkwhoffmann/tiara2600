@@ -64,7 +64,30 @@ public:
     void setREF(bool val) { ref = val; }
     bool get() const;
 
-    void alwaysinline execute(const class TIA &tia);
+    template <bool fastPath, bool phi1, bool phi2> void alwaysinline execute(const class TIA &tia, isize curr)
+    {
+        // auto phi1 = tia.hc.phi1();
+        // auto phi2 = tia.hc.phi2();
+        // auto curr = tia.hc.current;
+
+        // Shift bit selection masks
+        if (phi2) { fwdMask <<= 1; bwdMask >>= 1; }
+
+        // Reset masks at the proper horizontal positions
+        if (curr == 16) { fwdMask = 0x00001; }
+        if (curr == 36) { ref ? (bwdMask = 0x80000) : (fwdMask = 0x00001); }
+
+        // Feed the dual-phase latch
+        pf.execute(phi1, phi2, playfield & (fwdMask | bwdMask));
+    }
 };
 
+/*
+template<> void Playfield::execute <false, true, false> (const class TIA &);
+template<> void Playfield::execute <false, false, true> (const class TIA &);
+template<> void Playfield::execute <false, false, false> (const class TIA &);
+template<> void Playfield::execute <true, true, false> (const class TIA &);
+template<> void Playfield::execute <true, false, true> (const class TIA &);
+template<> void Playfield::execute <true, false, false> (const class TIA &);
+ */
 }

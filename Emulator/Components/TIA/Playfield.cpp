@@ -81,11 +81,12 @@ Playfield::get() const
     return pf.get();
 }
 
-void
+/*
+template <bool fastPath, bool phi1, bool phi2> void
 Playfield::execute(const TIA &tia)
 {
-    auto phi1 = tia.hc.phi1();
-    auto phi2 = tia.hc.phi2();
+    // auto phi1 = tia.hc.phi1();
+    // auto phi2 = tia.hc.phi2();
     auto curr = tia.hc.current;
 
     // Shift bit selection masks
@@ -98,5 +99,6 @@ Playfield::execute(const TIA &tia)
     // Feed the dual-phase latch
     pf.execute(phi1, phi2, playfield & (fwdMask | bwdMask));
 }
+*/
 
 }

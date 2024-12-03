@@ -158,7 +158,8 @@ public:
 
     bool get() const { return s1; }
 
-    void execute(bool phi1, bool phi2, bool hmove) {
+    template <bool fastPath, bool phi1, bool phi2>
+    void execute(bool hmove) {
 
         // On phi2, transfer s0 to s1
         if (phi2) { s1 = s0; }
@@ -169,7 +170,6 @@ public:
         // On phi1, clear the latch if s1 == 1 and feed the result back to s0
         if (phi1) { hmovel &= !s1; s0 = hmovel; }
     }
-
 };
 
 /* Extra clocking logic
@@ -195,14 +195,16 @@ public:
 
     } SERIALIZERS(serialize);
 
-    void execute(bool phi1, bool phi2, bool sec, isize hmc) {
+    template <bool fastPath, bool phi1, bool phi2>
+    void execute(bool sec, isize hmc) {
 
-        if (phi1) {
+        if constexpr (phi1) {
 
             bool rst = (hmc == hm);
             ena[0] = (ena[1] | sec) & !rst;
+        }
 
-        } else if (phi2) {
+        if constexpr (phi2) {
 
             ena[1] = ena[0];
         }

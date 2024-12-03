@@ -518,7 +518,7 @@ TIA::execute(isize cycle)
         // Force a VSYNC event if have reached the texure end
         if (y == Texture::height) {
 
-            // debug(true, "EMERGENCY VSYNC\n");
+            debug(TIA_DEBUG, "Emergency VSYNC\n");
             y = 0;
             vsedge = true;
         }
@@ -536,7 +536,7 @@ TIA::execute(isize cycle)
     // SEC logic
     //
 
-    sec.execute(phi1, phi2, strobe == TIA_HMOVE);
+    sec.execute <fastPath, phi1, phi2> (strobe == TIA_HMOVE);
     secl = (secl & !shb) | sec.get();
 
 
@@ -544,11 +544,11 @@ TIA::execute(isize cycle)
     // Extra-clock logic
     //
 
-    blec.execute(phi1, phi2, sec.get(), hmc);
-    m0ec.execute(phi1, phi2, sec.get(), hmc);
-    m1ec.execute(phi1, phi2, sec.get(), hmc);
-    p0ec.execute(phi1, phi2, sec.get(), hmc);
-    p1ec.execute(phi1, phi2, sec.get(), hmc);
+    blec.execute <fastPath, phi1, phi2> (sec.get(), hmc);
+    m0ec.execute <fastPath, phi1, phi2> (sec.get(), hmc);
+    m1ec.execute <fastPath, phi1, phi2> (sec.get(), hmc);
+    p0ec.execute <fastPath, phi1, phi2> (sec.get(), hmc);
+    p1ec.execute <fastPath, phi1, phi2> (sec.get(), hmc);
 
 
     //
@@ -588,7 +588,7 @@ TIA::execute(isize cycle)
     // Playfield logic
     //
 
-    pf.execute(*this);
+    pf.execute <fastPath, phi1, phi2> (*this, hc.current);
 
 
     //
