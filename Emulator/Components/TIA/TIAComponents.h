@@ -17,13 +17,8 @@
 
 namespace tiara {
 
-/*
- *
- */
 template <typename T>
 class DualPhaseDelay : public Serializable {
-
-    friend class TIA;
 
     T t[2];
 
@@ -48,13 +43,8 @@ public:
     T get() const { return t[1]; }
 };
 
-/*
- *
- */
 template <typename T>
 class DualPhaseDelayLatch : public DualPhaseDelay<T> {
-
-    friend class TIA;
 
 public:
 
@@ -65,51 +55,74 @@ public:
 };
 
 
-/*
+/* The dual-phase counter is a central building block of the TIA design. In
+ * total, five counters of this type are utilized:
  *
+ *   - The horizontal counter
+ *   - The two player counters
+ *   - The two missile counters
+ *   - The ball counter
+ *
+ * Each counter consists of two parts:
+ *
+ *  1. The dual-phase clock generator. It takes the clock signal CLK and a
+ *     reset signal RES as inputs and outputs a dual-phase clock signal
+ *     (phi1,phi2) and RESL, a latched version of RES.
+ *
+ *     Phase: | 0 | 1 | 2 | 3 | 0 | 1 | 2 | 3 | 0 | 1 | 2 | 3 |
+ *
+ *     Phi1:   ---             ---             ---
+ *            | 1 | 0   0   0 | 1 | 0   0   0 | 1 | 0   0   0
+ *                  -----------     -----------    ------------
+ *     Phi2:           ---             ---             ---
+ *              0   0 | 1 | 0   0   0 | 1 | 0   0   0 | 1 | 0
+ *            --------     -----------     -----------     ----
+ *
+ * 2. The actual counter. The couter is advanced via phi2. It either increments
+ *    by one or resets. A reset is triggered by RESL or on overflow.
  */
 template <int max> class DualPhaseCounter : public Serializable {
 
-    friend class TIA;
-
 public:
-
-    // Counter value
-    isize current{};
 
     // Phase counter
-    isize phase{};
+    isize phase = 0;
+
+    // Counter value
+    isize current = 0;
 
     // Reset line
-    bool res{};
+    bool res = false;
 
     // Latched reset value
-    bool resl{};
-
-public:
+    bool resl = false;
 
     template <class W>
     void serialize(W& worker)
     {
         worker
 
-        << current
         << phase
+        << current
         << res
         << resl;
 
     } SERIALIZERS(serialize);
 
+    bool phi1() const { return phase == 0; }
+    bool phi2() const { return phase == 2; }
+
     void execute(bool clk, bool rst) {
 
         if (rst) {
 
-            // Reset the phase counter and the latched reset value
+            // Reset the phase counter
             phase = 0;
+
+            // Latch the reset signal
             resl = true;
-            return;
-        }
-        if (clk) {
+
+        } else if (clk) {
 
             execute();
         }
@@ -128,9 +141,6 @@ public:
             resl = false;
         }
     }
-
-    bool phi1() const { return phase == 0; }
-    bool phi2() const { return phase == 2; }
 };
 
 /* The purpose of the SEC logic is to synchronize the strobe signal HMOVE with
@@ -145,7 +155,7 @@ class SEC : public Serializable {
     bool s0{}, s1{};
 
     // HMOVEL latch
-    bool hmovel{};
+    bool hmovel = false;
 
 public:
 
@@ -165,13 +175,13 @@ public:
     template <bool fastPath, bool phi1, bool phi2>
     void execute(bool hmove) {
 
-        // On phi2, transfer s0 to s1
-        if (phi2) { s1 = s0; }
-
         // Latch the HMOVE signal
         hmovel |= hmove;
 
-        // On phi1, clear the latch if s1 == 1 and feed the result back to s0
+        // On phi2, transfer s0 to s1
+        if (phi2) { s1 = s0; }
+
+        // On phi1, clear the latch if s1 equals 1 and feed the result into s0
         if (phi1) { hmovel &= !s1; s0 = hmovel; }
     }
 };

@@ -533,16 +533,11 @@ TIA::execute(isize cycle)
 
 
     //
-    // SEC logic
+    // Extra-clock logic
     //
 
     sec.execute <fastPath, phi1, phi2> (strobe == TIA_HMOVE);
     secl = (secl & !shb) | sec.get();
-
-
-    //
-    // Extra-clock logic
-    //
 
     blec.execute <fastPath, phi1, phi2> (sec.get(), hmc);
     m0ec.execute <fastPath, phi1, phi2> (sec.get(), hmc);

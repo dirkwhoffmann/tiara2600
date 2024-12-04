@@ -215,16 +215,16 @@ private:
     bool rdy = false;
 
     // Dual-phase horizontal counter
-    DualPhaseCounter<56> hc{};
+    DualPhaseCounter<56> hc;
 
     // SEC logic
-    SEC sec{};
+    SEC sec;
 
     // Latched SEC signal
     bool secl = false;
 
     // HB latch (Horizontal Blank)
-    DualPhaseDelayLatch<bool> hb{};
+    DualPhaseDelayLatch<bool> hb;
 
 
     //
