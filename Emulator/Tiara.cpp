@@ -744,21 +744,38 @@ TIAAPI::setColor(TIARegister reg, u8 r, u8 g, u8 b)
 void
 TIAAPI::lockReg(TIARegister reg)
 {
-    emu->set(OPT_TIA_REGLOCK, emu->get(OPT_TIA_REGLOCK) | (1LL << reg));
+    emu->set(OPT_TIA_REG_LOCK, emu->get(OPT_TIA_REG_LOCK) | (1LL << reg));
 }
 
 void
 TIAAPI::unlockReg(TIARegister reg)
 {
-    emu->set(OPT_TIA_REGLOCK, emu->get(OPT_TIA_REGLOCK) & ~(1LL << reg));
+    emu->set(OPT_TIA_REG_LOCK, emu->get(OPT_TIA_REG_LOCK) & ~(1LL << reg));
 }
 
 void
 TIAAPI::toggleRegLock(TIARegister reg)
 {
-    emu->set(OPT_TIA_REGLOCK, emu->get(OPT_TIA_REGLOCK) ^ (1LL << reg));
+    emu->set(OPT_TIA_REG_LOCK, emu->get(OPT_TIA_REG_LOCK) ^ (1LL << reg));
 }
 
+void
+TIAAPI::watchReg(TIARegister reg)
+{
+    emu->set(OPT_TIA_REG_WATCH, emu->get(OPT_TIA_REG_WATCH) | (1LL << reg));
+}
+
+void
+TIAAPI::unwatchReg(TIARegister reg)
+{
+    emu->set(OPT_TIA_REG_WATCH, emu->get(OPT_TIA_REG_WATCH) & ~(1LL << reg));
+}
+
+void
+TIAAPI::toggleRegWatch(TIARegister reg)
+{
+    emu->set(OPT_TIA_REG_WATCH, emu->get(OPT_TIA_REG_WATCH) ^ (1LL << reg));
+}
 
 //
 // Audio port

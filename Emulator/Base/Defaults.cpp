@@ -38,7 +38,8 @@ Defaults::Defaults()
 
     setFallback(OPT_TIA_REVISION,               TIA_NTSC);
     setFallback(OPT_TIA_COLLISIONS,             0xFFFF);
-    setFallback(OPT_TIA_REGLOCK,                0);
+    setFallback(OPT_TIA_REG_LOCK,               0);
+    setFallback(OPT_TIA_REG_WATCH,              0);
     setFallback(OPT_TIA_POWER_SAVE,             true);
 
     setFallback(OPT_RAM_INIT_PATTERN,           RAM_PATTERN_ZEROES);

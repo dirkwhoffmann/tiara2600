@@ -46,6 +46,8 @@ TIA::_initialize()
         (m0 && m1) << 14 | // CXPPMM
         (p0 && p1) << 15 ; //
 
+        collisonTable[obj] = collision;
+
         for (isize pfp = 0; pfp < 2; pfp++) {
             for (isize score = 0; score < 2; score++) {
                 for (isize side = 0; side < 2; side++) {
@@ -55,7 +57,7 @@ TIA::_initialize()
 
                     if (pfp) {
 
-                        lookup[pfp][score][side][obj].color =
+                        colorTable[pfp][score][side][obj] =
                         pf || bl ? pfcolor :        // Highest Priority PF, BL
                         p0 || m0 ? TIA_COLOR_P0 :   // Second Highest P0, M0
                         p1 || m1 ? TIA_COLOR_P1 :   // Third Highest P1, M1
@@ -63,15 +65,13 @@ TIA::_initialize()
 
                     } else {
 
-                        lookup[pfp][score][side][obj].color =
+                        colorTable[pfp][score][side][obj] =
                         p0 || m0 ? TIA_COLOR_P0 :   // Highest Priority P0, M0
                         p1 || m1 ? TIA_COLOR_P1 :   // Second Highest P1, M1
                         pf || bl ? pfcolor  :       // Third Highest PF, BL
                         TIA_COLOR_BK;               // Lowest Priority BK
 
                     }
-
-                    lookup[pfp][score][side][obj].collison = collision;
                 }
             }
         }
@@ -329,10 +329,16 @@ TIA::poke(TIARegister reg, u8 val)
 void
 TIA::poke(TIARegister reg, u8 val, Cycle delay)
 {
-    // Only proceed if the register is write-enabled
     if (config.lockMask & (1LL << reg)) {
 
         debug(TIA_REG_DEBUG, "Blocking write to %s\n", TIARegisterEnum::key(reg));
+        return;
+    }
+
+    if (config.watchMask & (1LL << reg)) {
+
+        atari.signalWatchpoint();
+        debug(TIA_REG_DEBUG, "Interrupting write to %s\n", TIARegisterEnum::key(reg));
         return;
     }
 
@@ -432,11 +438,11 @@ TIA::poke(TIARegister reg, u8 val, Cycle delay)
 
         case TIA_HMCLR:
 
-            blec.resetHM();
-            p0ec.resetHM();
-            p1ec.resetHM();
-            m0ec.resetHM();
-            m1ec.resetHM();
+            blec.setHM(0);
+            p0ec.setHM(0);
+            p1ec.setHM(0);
+            m0ec.setHM(0);
+            m1ec.setHM(0);
             break;
 
         case TIA_CXCLR:
@@ -507,10 +513,13 @@ template void TIA::execute<true>();
 template <bool fastPath, bool phi1, bool phi2> void
 TIA::execute(isize cycle)
 {
-    // Check for the "Start HBlank" signal
+    //
+    // SHB logic (Start HBlank)
+    //
+
     bool shb = hc.res;
 
-    if (shb && phi2) {
+    if (phi2 && shb) {
 
         x = 0;
         y++;
@@ -526,28 +535,56 @@ TIA::execute(isize cycle)
 
 
     //
-    // HM logic
+    // HM logic (Horizontal Motion)
     //
+    //             ---             ---             ---
+    //     Phi2   | 1 | 0   0   0 | 1 | 0   0   0 | 1 | 0   0   0
+    //                 -----------     -----------    ------------
+    //             ---------------
+    //     SEC    | 1   1   1   1 | 0   0   0   0   0   0   0   0
+    //                             -------------------------------
+    //
+    //     HMC     <0> <0> <0> <0> <1> <1> <1> <1> <2> <2> <2> <2>
+    //
+    //                             ... <15> <15> <15> <15> <0> <0> <0> <0> ...
 
     if (phi2 && (hmc > 0 || sec.get())) hmc = (hmc + 1) & 0xF;
 
 
     //
-    // Extra-clock logic
+    // Extra-clocking logic
     //
 
     sec.execute <fastPath, phi1, phi2> (strobe == TIA_HMOVE);
-    secl = (secl & !shb) | sec.get();
 
-    blec.execute <fastPath, phi1, phi2> (sec.get(), hmc);
-    m0ec.execute <fastPath, phi1, phi2> (sec.get(), hmc);
-    m1ec.execute <fastPath, phi1, phi2> (sec.get(), hmc);
-    p0ec.execute <fastPath, phi1, phi2> (sec.get(), hmc);
-    p1ec.execute <fastPath, phi1, phi2> (sec.get(), hmc);
+    if (sec.get()) {
+
+        // Latch the SEC signal
+        secl = true;
+
+        // Emulate the extra-clocking logic
+        blec.execute <fastPath, phi1, phi2> (true, hmc);
+        m0ec.execute <fastPath, phi1, phi2> (true, hmc);
+        m1ec.execute <fastPath, phi1, phi2> (true, hmc);
+        p0ec.execute <fastPath, phi1, phi2> (true, hmc);
+        p1ec.execute <fastPath, phi1, phi2> (true, hmc);
+
+    } else {
+
+        // Reset the SEC latch at the beginning of the horizontal blank area
+        secl &= !shb;
+
+        // Emulate the extra-clocking logic
+        blec.execute <fastPath, phi1, phi2> (false, hmc);
+        m0ec.execute <fastPath, phi1, phi2> (false, hmc);
+        m1ec.execute <fastPath, phi1, phi2> (false, hmc);
+        p0ec.execute <fastPath, phi1, phi2> (false, hmc);
+        p1ec.execute <fastPath, phi1, phi2> (false, hmc);
+    }
 
 
     //
-    // HB logic
+    // HB logic (Horizontal Blank)
     //
 
     hb.execute(phi1, phi2, hc.current == (secl ? 18 : 16), shb);
@@ -558,13 +595,21 @@ TIA::execute(isize cycle)
     // RDY logic
     //
 
-    if (strobe == TIA_WSYNC && rdy) {
-        // trace(true, "RDY down\n");
-        rdy = false; cpu.pullDownRdyLine();
-    }
-    if (shb && !rdy) {
-        // trace(true, "RDY up\n");
-        rdy = true; cpu.releaseRdyLine();
+    if (rdy) {
+
+        if (strobe == TIA_WSYNC) {
+
+            rdy = false;
+            cpu.pullDownRdyLine();
+        }
+
+    } else {
+
+        if (shb) {
+
+            rdy = true;
+            cpu.releaseRdyLine();
+        }
     }
 
 
@@ -602,11 +647,15 @@ TIA::execute(isize cycle)
     if (p0ecEnabled) p0.execute(true, strobe == TIA_RESP0);
     if (p1ecEnabled) p1.execute(true, strobe == TIA_RESP1);
 
+
     //
-    // Drawing and collisons
+    // Drawing and collison detection
     //
 
     if (!vb) {
+
+        assert(x < Texture::width);
+        assert(y < Texture::height);
 
         isize index =
         (pf.get() ? (1 << TIA_PF) : 0) |
@@ -616,17 +665,13 @@ TIA::execute(isize cycle)
         (p0.get() ? (1 << TIA_P0) : 0) |
         (p1.get() ? (1 << TIA_P1) : 0) ;
 
-        bool right = (x >= 148);
-        auto lup = lookup[pfp][score][right][index];
-        cx |= lup.collison;
-
-        assert(x < Texture::width);
-        assert(y < Texture::height);
+        cx |= collisonTable[index];
 
         if (hb.get()) {
 
-            TIAColor color = lup.color;
+            TIAColor color = colorTable[pfp][score][x >= 148][index];
             assert(color >= 0 && color < 4);
+
             emuTexture[y * Texture::width + x] = rgba[color];
 
         } else {

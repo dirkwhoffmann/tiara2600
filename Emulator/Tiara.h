@@ -284,14 +284,6 @@ struct TIAAPI : API {
      */
     u32 getColor(isize nr, Palette palette) const;
 
-    /** @brief  Assigns a color
-     */
-    // void setColor(TIARegister reg, u8 value);
-
-    /** @brief  Sets the color with the best match
-     */
-    // void setColor(TIARegister reg, u8 r, u8 g, u8 b);
-
     /** @brief  Write-protects a register.
      */
     void lockReg(TIARegister reg);
@@ -303,6 +295,18 @@ struct TIAAPI : API {
     /** @brief  Toggles the write-protection status of a register.
      */
     void toggleRegLock(TIARegister reg);
+
+    /** @brief  Sets a watchpoint to a register.
+     */
+    void watchReg(TIARegister reg);
+
+    /** @brief  Removes a watchpoint from a register.
+     */
+    void unwatchReg(TIARegister reg);
+
+    /** @brief  Toggles the watchpoint status of a register.
+     */
+    void toggleRegWatch(TIARegister reg);
 };
 
 

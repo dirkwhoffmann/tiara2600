@@ -36,12 +36,13 @@ static const std::string nr         = "<nr>";
 static const std::string onoff      = "{ on | off }";
 static const std::string path       = "<path>";
 static const std::string process    = "<process>";
+static const std::string reg        = "<register>";
 static const std::string seconds    = "<seconds>";
-static const std::string value      = "<value>";
 static const std::string sequence   = "<byte sequence>";
 static const std::string src        = "<source>";
-static const std::string volume     = "<volume>";
 static const std::string string     = "<string>";
+static const std::string value      = "<value>";
+static const std::string volume     = "<volume>";
 
 };
 

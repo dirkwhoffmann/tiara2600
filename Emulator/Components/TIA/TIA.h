@@ -90,7 +90,8 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
 
         OPT_TIA_REVISION,
         OPT_TIA_COLLISIONS,
-        OPT_TIA_REGLOCK,
+        OPT_TIA_REG_LOCK,
+        OPT_TIA_REG_WATCH,
         OPT_TIA_POWER_SAVE
     };
 
@@ -102,11 +103,11 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
     // Lookup tables
     //
 
-    /* Display color and collision bits
-     *
-     * lookup[PFP][SCORE][RIGHT][<TIA objects>]
-     */
-    struct { TIAColor color; u32 collison; } lookup[2][2][2][64];
+    // Color lookup table ( [PFP][SCORE][RIGHT][<TIA objects>] )
+    TIAColor colorTable[2][2][2][64];
+
+    // Collision lookup table ( [<TIA objects>] )
+    u32 collisonTable[64];
 
 
     //

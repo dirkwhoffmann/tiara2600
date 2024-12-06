@@ -48,6 +48,23 @@ TIA::_dump(Category category, std::ostream& os) const
 {
     using namespace util;
 
+    auto dumpReg = [&](TIARegister reg) {
+
+        std::vector<string> vec;
+
+        if (config.lockMask & (1LL << reg)) vec.push_back("locked");
+        if (config.watchMask & (1LL << reg)) vec.push_back("watched");
+        auto attributes = util::concat(vec, ", ");
+
+        std::stringstream ss;
+        ss << TIARegisterEnum::key(reg) << " (0x" << std::hex << reg << ")";
+        os << tab(ss.str());
+
+        os << hex(spy(reg));
+        if (attributes != "") os << " (" << attributes << ")";
+        os << std::endl;
+    };
+
     if (category == Category::Config) {
 
         dumpConfig(os);
@@ -63,18 +80,11 @@ TIA::_dump(Category category, std::ostream& os) const
 
     if (category == Category::Registers) {
 
-        os << tab("AUDC0");
-        os << hex(audio[0].audc) << std::endl;
-        os << tab("AUDC1");
-        os << hex(audio[1].audc) << std::endl;
-        os << tab("AUDF0");
-        os << hex(audio[0].audf) << std::endl;
-        os << tab("AUDF1");
-        os << hex(audio[1].audf) << std::endl;
-        os << tab("AUDV0");
-        os << hex(audio[0].audv) << std::endl;
-        os << tab("AUDV1");
-        os << hex(audio[1].audv) << std::endl;
+        os << "Writable registers:" << std::endl << std::endl;
+        for (isize i = 0x00; i < 0x2D; i++) { dumpReg(TIARegister(i)); }
+        os << std::endl;
+        os << "Readable registers:" << std::endl << std::endl;
+        for (isize i = 0x30; i < 0x3E; i++) { dumpReg(TIARegister(i)); }
     }
 }
 
@@ -85,7 +95,8 @@ TIA::getOption(Option opt) const
 
         case OPT_TIA_REVISION:        return config.revision;
         case OPT_TIA_COLLISIONS:      return config.collMask;
-        case OPT_TIA_REGLOCK:         return config.lockMask;
+        case OPT_TIA_REG_LOCK:        return config.lockMask;
+        case OPT_TIA_REG_WATCH:       return config.watchMask;
         case OPT_TIA_POWER_SAVE:      return config.powerSave;
 
         default:
@@ -112,7 +123,8 @@ TIA::checkOption(Option opt, i64 value)
             }
             break;
 
-        case OPT_TIA_REGLOCK:
+        case OPT_TIA_REG_LOCK:
+        case OPT_TIA_REG_WATCH:
         case OPT_TIA_POWER_SAVE:
 
             break;
@@ -144,9 +156,14 @@ TIA::setOption(Option opt, i64 value)
             config.collMask = u16(value);
             break;
 
-        case OPT_TIA_REGLOCK:
+        case OPT_TIA_REG_LOCK:
 
             config.lockMask = u64(value);
+            break;
+
+        case OPT_TIA_REG_WATCH:
+
+            config.watchMask = u64(value);
             break;
 
         case OPT_TIA_POWER_SAVE:

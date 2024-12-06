@@ -21,7 +21,7 @@ extension Inspector {
 
         cacheTIA()
 
-        let mask = emu!.get(.TIA_REGLOCK)
+        let mask = emu!.get(.TIA_REG_LOCK)
 
         func lock(_ obj: NSButton, reg: TIARegister) {
 

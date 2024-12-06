@@ -152,7 +152,7 @@ class SEC : public Serializable {
     friend class TIA;
 
     // Pipeline
-    bool s0{}, s1{};
+    bool s[2]{};
 
     // HMOVEL latch
     bool hmovel = false;
@@ -164,13 +164,12 @@ public:
     {
         worker
 
-        << s0
-        << s1
+        << s
         << hmovel;
 
     } SERIALIZERS(serialize);
 
-    bool get() const { return s1; }
+    bool get() const { return s[1]; }
 
     template <bool fastPath, bool phi1, bool phi2>
     void execute(bool hmove) {
@@ -178,11 +177,11 @@ public:
         // Latch the HMOVE signal
         hmovel |= hmove;
 
-        // On phi2, transfer s0 to s1
-        if (phi2) { s1 = s0; }
+        // On phi2, run the pipeline
+        if constexpr (phi2) { s[1] = s[0]; }
 
-        // On phi1, clear the latch if s1 equals 1 and feed the result into s0
-        if (phi1) { hmovel &= !s1; s0 = hmovel; }
+        // On phi1, clear the latch if s[1] equals 1 and feed the result back
+        if constexpr (phi1) { hmovel &= !s[1]; s[0] = hmovel; }
     }
 };
 
@@ -195,7 +194,7 @@ class ExtraClock : public Serializable {
     friend class TIA;
     
     bool ena[2]{};
-    isize hm{};
+    i8 hm = 0;
 
 public:
 
@@ -214,8 +213,7 @@ public:
 
         if constexpr (phi1) {
 
-            bool rst = (hmc == hm);
-            ena[0] = (ena[1] | sec) & !rst;
+            ena[0] = (ena[1] | sec) & (hmc != hm);
         }
 
         if constexpr (phi2) {
@@ -225,8 +223,7 @@ public:
     }
 
     u8 spyHM() const { return u8(hm) & 0x0F << 4; }
-    void setHM(u8 data = 0) { hm = 8 + ((i8)data >> 4); }
-    void resetHM() { hm = 8; }
+    void setHM(u8 data) { hm = 8 + ((i8)data >> 4); }
     bool enabled() const { return ena[1]; }
 };
 

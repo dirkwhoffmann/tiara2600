@@ -308,14 +308,15 @@ typedef struct
     TIARevision revision;
     bool powerSave;
 
-    // Visibility
-    // bool hideBall;
-
     // Collision checking mask
     u16 collMask;
 
     // Register protection mask
     u64 lockMask;
+
+    // Register watch mask
+    u64 watchMask;
+
 }
 TIAConfig;
 

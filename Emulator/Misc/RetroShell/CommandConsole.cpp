@@ -222,6 +222,23 @@ CommandConsole::initCommands(Command &root)
 
     cmd = registerComponent(tia);
 
+    root.add({cmd, "lock"}, { Arg::reg },
+             "Write-protects or unprotects a register",
+             [this](Arguments& argv, long value) {
+
+        auto reg = parseEnum<TIARegister, TIARegisterEnum>(argv[0]);
+        atari.set(OPT_TIA_REG_LOCK, atari.get(OPT_TIA_REG_LOCK) ^ (1LL << reg));
+    });
+
+    root.add({cmd, "watch"}, { Arg::reg },
+             "Secures or unsecures a register with a watchpoint",
+             [this](Arguments& argv, long value) {
+
+        auto reg = parseEnum<TIARegister, TIARegisterEnum>(argv[0]);
+        atari.set(OPT_TIA_REG_WATCH, atari.get(OPT_TIA_REG_WATCH) ^ (1LL << reg));
+    });
+
+
     //
     // Components (Cartridge)
     //
