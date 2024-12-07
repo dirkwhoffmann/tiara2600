@@ -169,7 +169,6 @@ Atari::getOption(Option opt) const
 {
     switch (opt) {
 
-        case OPT_ATARI_WARP_BOOT:       return config.warpBoot;
         case OPT_ATARI_WARP_MODE:       return config.warpMode;
         case OPT_ATARI_SPEED_BOOST:     return config.speedBoost;
         case OPT_ATARI_VSYNC:           return config.vsync;
@@ -188,10 +187,6 @@ void
 Atari::checkOption(Option opt, i64 value)
 {
     switch (opt) {
-
-        case OPT_ATARI_WARP_BOOT:
-
-            return;
 
         case OPT_ATARI_WARP_MODE:
 
@@ -248,11 +243,6 @@ Atari::setOption(Option opt, i64 value)
     checkOption(opt, value);
 
     switch (opt) {
-
-        case OPT_ATARI_WARP_BOOT:
-
-            config.warpBoot = isize(value);
-            return;
 
         case OPT_ATARI_WARP_MODE:
 

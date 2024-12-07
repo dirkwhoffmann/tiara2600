@@ -255,9 +255,6 @@ const u32 SYNC_THREAD       = (1 << 11);
 
 typedef struct
 {
-    //! After a reset, the emulator runs in warp mode for this amout of seconds
-    isize warpBoot;
-
     //! Warp mode
     WarpMode warpMode;
 

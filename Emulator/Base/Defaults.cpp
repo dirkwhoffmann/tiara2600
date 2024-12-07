@@ -25,7 +25,6 @@ Defaults::Defaults()
     setFallback(OPT_HOST_FRAMEBUF_WIDTH,        0);
     setFallback(OPT_HOST_FRAMEBUF_HEIGHT,       0);
 
-    setFallback(OPT_ATARI_WARP_BOOT,            0);
     setFallback(OPT_ATARI_WARP_MODE,            WARP_NEVER);
     setFallback(OPT_ATARI_VSYNC,                false);
     setFallback(OPT_ATARI_SPEED_BOOST,          100);

@@ -85,7 +85,6 @@ class Atari final : public CoreComponent, public Inspectable<AtariInfo> {
 
     Options options = {
 
-        OPT_ATARI_WARP_BOOT,
         OPT_ATARI_WARP_MODE,
         OPT_ATARI_SPEED_BOOST,
         OPT_ATARI_VSYNC,
@@ -326,7 +325,6 @@ public:
 
         << durationOfOneCycle
 
-        << config.warpBoot
         << config.warpMode
         << config.vsync
         << config.speedBoost

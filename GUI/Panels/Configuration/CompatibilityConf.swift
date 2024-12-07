@@ -10,13 +10,9 @@
 extension ConfigurationController {
 
     func refreshPerformanceTab() {
-                                
-        // Power saving
-        // comViciiPowerSave.state = config.tiaPowerSave ? .on : .off
 
         // Warp
-        comWarpMode.selectItem(withTag: config.warpMode)
-        comWarpBoot.integerValue = config.warpBoot
+        prfWarpMode.selectItem(withTag: config.warpMode)
 
         // Threading
         let speedBoost = config.speedBoost
@@ -29,33 +25,35 @@ extension ConfigurationController {
         prfSpeedBoost.isEnabled = !config.vsync
         prfSpeedBoostInfo.textColor = config.vsync ? .tertiaryLabelColor : .labelColor
 
+        // Collisions
+        let coll = config.tiaCollisions
+        prfP0P1.state = coll & (1 << prfP0P1.tag) != 0 ? .on : .off
+        prfP0M0.state = coll & (1 << prfP0M0.tag) != 0 ? .on : .off
+        prfP0M1.state = coll & (1 << prfP0M1.tag) != 0 ? .on : .off
+        prfP0BL.state = coll & (1 << prfP0BL.tag) != 0 ? .on : .off
+        prfP0PF.state = coll & (1 << prfP0PF.tag) != 0 ? .on : .off
+        prfP1M0.state = coll & (1 << prfP1M0.tag) != 0 ? .on : .off
+        prfP1M1.state = coll & (1 << prfP1M1.tag) != 0 ? .on : .off
+        prfP1BL.state = coll & (1 << prfP1BL.tag) != 0 ? .on : .off
+        prfP1PF.state = coll & (1 << prfP1PF.tag) != 0 ? .on : .off
+        prfM0M1.state = coll & (1 << prfM0M1.tag) != 0 ? .on : .off
+        prfM0BL.state = coll & (1 << prfM0BL.tag) != 0 ? .on : .off
+        prfM0PF.state = coll & (1 << prfM0PF.tag) != 0 ? .on : .off
+        prfM1BL.state = coll & (1 << prfM1BL.tag) != 0 ? .on : .off
+        prfM1PF.state = coll & (1 << prfM1PF.tag) != 0 ? .on : .off
+        prfBLPF.state = coll & (1 << prfBLPF.tag) != 0 ? .on : .off
+
         // Power button
-        comPowerButton.isHidden = !bootable
+        prfPowerButton.isHidden = !bootable
     }
-
-    //
-    // Action methods (power saving)
-    //
-
-    /*
-    @IBAction func comViciiPowerSaveAction(_ sender: NSButton!) {
-        
-        config.tiaPowerSave = sender.state == .on
-    }
-    */
 
     //
     // Action methods (warp)
     //
 
-    @IBAction func comWarpModeAction(_ sender: NSPopUpButton!) {
+    @IBAction func prfWarpModeAction(_ sender: NSPopUpButton!) {
 
         config.warpMode = sender.selectedTag()
-    }
-
-    @IBAction func comWarpBootAction(_ sender: NSTextField!) {
-
-        config.warpBoot = sender.integerValue
     }
 
     //
@@ -77,7 +75,24 @@ extension ConfigurationController {
         config.runAhead = sender.integerValue
     }
 
-    @IBAction func comPresetAction(_ sender: NSPopUpButton!) {
+    //
+    // Action methods (Collisions)
+    //
+
+     @IBAction func prfCollisionAction(_ sender: NSButton!) {
+
+         var coll = config.tiaCollisions
+
+         if sender.state == .on {
+             coll = coll | (1 << sender.tag)
+         } else {
+             coll = coll & ~(1 << sender.tag)
+         }
+
+         config.tiaCollisions = coll
+     }
+
+    @IBAction func prfPresetAction(_ sender: NSPopUpButton!) {
         
         if let emu = emu {
             
@@ -89,32 +104,11 @@ extension ConfigurationController {
             // Update the configuration
             config.applyPerformanceUserDefaults()
 
-            // Override some options
-            /*
-            switch sender.selectedTag() {
-
-            case 1: // Accurate
-
-                config.viciiPowerSave = false
-                config.ssCollisions = true
-                config.sbCollisions = true
-
-            case 2: // Accelerated
-
-                config.viciiPowerSave = true
-                config.ssCollisions = false
-                config.sbCollisions = false
-
-            default:
-                break
-            }
-            */
-
             emu.resume()
         }
     }
     
-    @IBAction func comDefaultsAction(_ sender: NSButton!) {
+    @IBAction func prfDefaultsAction(_ sender: NSButton!) {
         
         config.savePerformanceUserDefaults()
     }

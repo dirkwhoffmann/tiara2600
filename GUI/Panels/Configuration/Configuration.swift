@@ -36,6 +36,21 @@ class Configuration {
         set { emu?.set(.TIA_AUTO_DETECT, enable: newValue) }
     }
 
+    var tiaCollisions: Int {
+        get { return emu?.get(.TIA_COLLISIONS) ?? 0 }
+        set { emu?.set(.TIA_COLLISIONS, value: newValue) }
+    }
+
+    var tiaRegLock: Int {
+        get { return emu?.get(.TIA_REG_LOCK) ?? 0 }
+        set { emu?.set(.TIA_REG_LOCK, value: newValue) }
+    }
+
+    var tiaRegWatch: Int {
+        get { return emu?.get(.TIA_REG_WATCH) ?? 0 }
+        set { emu?.set(.TIA_REG_WATCH, value: newValue) }
+    }
+
     var ramPattern: Int {
         get { return emu?.get(.RAM_INIT_PATTERN) ?? 0 }
         set { emu?.set(.RAM_INIT_PATTERN, value: newValue) }
@@ -109,11 +124,6 @@ class Configuration {
     var warpMode: Int {
         get { return emu?.get(.ATARI_WARP_MODE) ?? 0 }
         set { emu?.set(.ATARI_WARP_MODE, value: newValue) }
-    }
-
-    var warpBoot: Int {
-        get { return emu?.get(.ATARI_WARP_BOOT) ?? 0 }
-        set { emu?.set(.ATARI_WARP_BOOT, value: newValue) }
     }
 
     var vsync: Bool {

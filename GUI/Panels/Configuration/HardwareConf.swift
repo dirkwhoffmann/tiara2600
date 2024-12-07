@@ -83,7 +83,7 @@ extension ConfigurationController {
 
         // Config summary
         hwSummary.stringValue = "- \(fps) frames per second"
-        hwSummary2.stringValue = String(format: "- %.2f MHz CPU clock", Float(cpu) / 1000000.0)
+        hwSummary2.stringValue = String(format: "- %.2f MHz CPU", Float(cpu) / 1000000.0)
         hwSummary3.stringValue = "- \(height) scanlines per frame"
         hwSummary4.stringValue = "- \(colors) unique colors"
 

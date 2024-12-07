@@ -35,7 +35,6 @@ OptionParser::create(Option opt, i64 arg)
         case OPT_HOST_FRAMEBUF_HEIGHT:      return numParser(" pixels");
 
         case OPT_ATARI_WARP_MODE:           return enumParser.template operator()<WarpModeEnum>();
-        case OPT_ATARI_WARP_BOOT:           return numParser(" sec");
         case OPT_ATARI_VSYNC:               return boolParser();
         case OPT_ATARI_SPEED_BOOST:         return numParser("%");
         case OPT_ATARI_RUN_AHEAD:           return numParser(" frames");

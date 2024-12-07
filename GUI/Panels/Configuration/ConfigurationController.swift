@@ -78,18 +78,9 @@ class ConfigurationController: DialogController {
     //
     // Performance
     //
-    
-    // Power saving
-    @IBOutlet weak var comViciiPowerSave: NSButton!
-    @IBOutlet weak var comSidPowerSave: NSButton!
-
-    // Collision detection
-    @IBOutlet weak var comSsCollisions: NSButton!
-    @IBOutlet weak var comSbCollisions: NSButton!
 
     // Warp mode
-    @IBOutlet weak var comWarpMode: NSPopUpButton!
-    @IBOutlet weak var comWarpBoot: NSTextField!
+    @IBOutlet weak var prfWarpMode: NSPopUpButton!
 
     // Threading
     @IBOutlet weak var prfSyncMode: NSPopUpButton!
@@ -99,8 +90,25 @@ class ConfigurationController: DialogController {
     @IBOutlet weak var prfRunAhead: NSSlider!
     @IBOutlet weak var prfRunAheadInfo: NSTextField!
 
+    // Collisions
+    @IBOutlet weak var prfP0P1: NSButton!
+    @IBOutlet weak var prfP0M0: NSButton!
+    @IBOutlet weak var prfP0M1: NSButton!
+    @IBOutlet weak var prfP0BL: NSButton!
+    @IBOutlet weak var prfP0PF: NSButton!
+    @IBOutlet weak var prfP1M0: NSButton!
+    @IBOutlet weak var prfP1M1: NSButton!
+    @IBOutlet weak var prfP1BL: NSButton!
+    @IBOutlet weak var prfP1PF: NSButton!
+    @IBOutlet weak var prfM0M1: NSButton!
+    @IBOutlet weak var prfM0BL: NSButton!
+    @IBOutlet weak var prfM0PF: NSButton!
+    @IBOutlet weak var prfM1BL: NSButton!
+    @IBOutlet weak var prfM1PF: NSButton!
+    @IBOutlet weak var prfBLPF: NSButton!
+
     // Buttons
-    @IBOutlet weak var comPowerButton: NSButton!
+    @IBOutlet weak var prfPowerButton: NSButton!
 
     //
     // Audio preferences

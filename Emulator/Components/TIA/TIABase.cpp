@@ -27,6 +27,110 @@ TIA::TIA(Atari &ref) : SubComponent(ref)
 }
 
 void
+TIA::_initialize()
+{
+    for (isize obj = 0; obj < 64; obj++) {
+
+        bool pf = obj & (1 << TIA_PF);
+        bool bl = obj & (1 << TIA_BL);
+        bool m0 = obj & (1 << TIA_M0);
+        bool m1 = obj & (1 << TIA_M1);
+        bool p0 = obj & (1 << TIA_P0);
+        bool p1 = obj & (1 << TIA_P1);
+
+        u32 collision =
+        (m0 && p0) << 0  | // CXM0P
+        (m0 && p1) << 1  | //
+        (m1 && p1) << 2  | // CXM1P
+        (m1 && p0) << 3  | //
+        (p0 && bl) << 4  | // CXP0FB
+        (p0 && pf) << 5  | //
+        (p1 && bl) << 6  | // CXP1FB
+        (p1 && pf) << 7  | //
+        (m0 && bl) << 8  | // CXM0FB
+        (m0 && pf) << 9  | //
+        (m1 && bl) << 10 | // CXM1FB
+        (m1 && pf) << 11 | //
+        // unused          // CXBLPF
+        (bl && pf) << 13 | //
+        (m0 && m1) << 14 | // CXPPMM
+        (p0 && p1) << 15 ; //
+
+        collisonTable[obj] = collision;
+
+        for (isize pfp = 0; pfp < 2; pfp++) {
+            for (isize score = 0; score < 2; score++) {
+                for (isize side = 0; side < 2; side++) {
+
+                    TIAColor pfcolor =
+                    score ? (side ? TIA_COLOR_P1 : TIA_COLOR_P0) : TIA_COLOR_PF;
+
+                    if (pfp) {
+
+                        colorTable[pfp][score][side][obj] =
+                        pf || bl ? pfcolor :        // Highest Priority PF, BL
+                        p0 || m0 ? TIA_COLOR_P0 :   // Second Highest P0, M0
+                        p1 || m1 ? TIA_COLOR_P1 :   // Third Highest P1, M1
+                        TIA_COLOR_BK;               // Lowest Priority BK
+
+                    } else {
+
+                        colorTable[pfp][score][side][obj] =
+                        p0 || m0 ? TIA_COLOR_P0 :   // Highest Priority P0, M0
+                        p1 || m1 ? TIA_COLOR_P1 :   // Second Highest P1, M1
+                        pf || bl ? pfcolor  :       // Third Highest PF, BL
+                        TIA_COLOR_BK;               // Lowest Priority BK
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+void
+TIA::_didReset(bool hard)
+{
+    if (hard) {
+
+        clearStats();
+
+        // Reset the beam position
+        x = y = 0;
+
+        // Reset counters
+        hc.phase = 1;
+        hc.current = 56;
+        hc.resl = false;
+        hc.res = true;
+
+        // Reset latches
+        rdy = true;
+
+        // Reset signals
+        strobe = TIA_VOID;
+
+        // Reset the screen buffers
+        resetEmuTextures();
+        resetDmaTextures();
+        emuTexture = emuTexture1;
+        dmaTexture = dmaTexture1;
+    }
+}
+
+void
+TIA::_trackOn()
+{
+
+}
+
+void
+TIA::_trackOff()
+{
+
+}
+
+void
 TIA::cacheInfo(TIAInfo &result) const
 {
     result.posx = x;

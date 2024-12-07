@@ -31,7 +31,6 @@ enum_long(OPT)
     OPT_HOST_FRAMEBUF_HEIGHT,   ///< Current height of the emulator window
 
     // Atari
-    OPT_ATARI_WARP_BOOT,        ///< Warp-boot time in seconds
     OPT_ATARI_WARP_MODE,        ///< Warp activation mode
     OPT_ATARI_VSYNC,            ///< Sync the frame rate with the VSYNC signal
     OPT_ATARI_SPEED_BOOST,      ///< Speed adjustment in percent
@@ -150,7 +149,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_HOST_FRAMEBUF_WIDTH:   return "HOST.FRAMEBUF_WIDTH";
             case OPT_HOST_FRAMEBUF_HEIGHT:  return "HOST.FRAMEBUF_HEIGHT";
 
-            case OPT_ATARI_WARP_BOOT:       return "ATARI.WARP_BOOT";
             case OPT_ATARI_WARP_MODE:       return "ATARI.WARP_MODE";
             case OPT_ATARI_VSYNC:           return "ATARI.VSYNC";
             case OPT_ATARI_SPEED_BOOST:     return "ATARI.SPEED_BOOST";
@@ -250,7 +248,6 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_HOST_FRAMEBUF_WIDTH:   return "Window width";
             case OPT_HOST_FRAMEBUF_HEIGHT:  return "Window height";
 
-            case OPT_ATARI_WARP_BOOT:       return "Warp-boot duration";
             case OPT_ATARI_WARP_MODE:       return "Warp activation";
             case OPT_ATARI_VSYNC:           return "VSYNC mode";
             case OPT_ATARI_SPEED_BOOST:     return "Speed adjustment";

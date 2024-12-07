@@ -228,21 +228,14 @@ Emulator::shouldWarp()
 {
     auto &config = main.getConfig();
 
-    if (main.cpu.clock < Atari::sec(config.warpBoot)) {
+    switch (config.warpMode) {
 
-        return true;
+        case WARP_AUTO:     return false;
+        case WARP_NEVER:    return false;
+        case WARP_ALWAYS:   return true;
 
-    } else {
-
-        switch (config.warpMode) {
-
-            case WARP_AUTO:     return false;
-            case WARP_NEVER:    return false;
-            case WARP_ALWAYS:   return true;
-
-            default:
-                fatalError;
-        }
+        default:
+            fatalError;
     }
 }
 
