@@ -652,16 +652,16 @@ TIA::sofHandler()
 void
 TIA::eofHandler()
 {
-    if (tia.getConfig().revision != videoPort.predict()) {
+    bool debug = logicAnalyzer.config.enable;
+
+    // Auto-detect the chip revision if requested
+    if (config.autoDetect && config.revision != videoPort.predict()) {
+
         trace(true, "Switching to %s\n", TIARevisionEnum::key(videoPort.predict()));
         setOption(OPT_TIA_REVISION, videoPort.predict());
     }
 
-    // Only proceed if the current frame hasn't been executed in headless mode
-    if (atari.getHeadless()) return;
-
-    // Compute the overlay texture (logic analyzer)
-    bool debug = logicAnalyzer.config.enable;
+    // Compute the overlay texture
     if (debug) logicAnalyzer.computeOverlay(emuTexture, dmaTexture);
 
     // Switch texture buffers

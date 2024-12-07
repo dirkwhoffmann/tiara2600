@@ -144,7 +144,7 @@ class Configuration {
     // Audio
     //
 
-    var sidSampling: Int {
+    var audSampling: Int {
         get { emu?.get(.AUD_SAMPLING, id: 0) ?? 0 }
         set { emu?.set(.AUD_SAMPLING, value: newValue) }
     }

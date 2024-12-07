@@ -213,12 +213,6 @@ public:
 
 private:
 
-    /* Indicates if headless mode is activated. If yes, the pixel drawing code
-     * is skipped. Headless mode is used to accelerate warp mode and to speed
-     * up the computation of some frames in run-ahead mode.
-     */
-    bool headless = false;
-
     /* Indicates whether the state has been altered by an external event.
      * This flag is used to determine whether the run-ahead instance needs to
      * be recreated.
@@ -433,10 +427,6 @@ public:
 
     // Return the current frame count
     i64 getFrame() const { return frame; }
-
-    // Headless mode
-    bool getHeadless() const { return headless; }
-    void setHeadless(bool value) { headless = value; }
 
     // Returns the native refresh rate (differs between PAL and NTSC)
     double nativeRefreshRate() const;

@@ -12,7 +12,7 @@ extension ConfigurationController {
     func refreshAudioTab() {
                                 
         // Sampling
-        audSampling.selectItem(withTag: config.sidSampling)
+        audSampling.selectItem(withTag: config.audSampling)
 
         // In
         audVol0.integerValue = config.vol0
@@ -60,7 +60,7 @@ extension ConfigurationController {
 
     @IBAction func audSamplingAction(_ sender: NSPopUpButton!) {
         
-        config.sidSampling = sender.selectedTag()
+        config.audSampling = sender.selectedTag()
     }
 
     @IBAction func audPresetAction(_ sender: NSPopUpButton!) {

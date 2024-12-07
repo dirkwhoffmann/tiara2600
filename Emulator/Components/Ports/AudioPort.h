@@ -51,6 +51,7 @@ class AudioPort final : public SubComponent, public Inspectable<AudioPortInfo, A
 
     Options options = {
 
+        OPT_AUD_SAMPLING,
         OPT_AUD_VOL0,
         OPT_AUD_VOL1,
         OPT_AUD_PAN0,
