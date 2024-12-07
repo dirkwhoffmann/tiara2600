@@ -21,30 +21,30 @@ class ConfigurationController: DialogController {
     @IBOutlet weak var cartName: NSTextField!
     @IBOutlet weak var cartManufacturer: NSTextField!
     @IBOutlet weak var cartModel: NSTextField!
-    @IBOutlet weak var cartType: NSTextField!
-    @IBOutlet weak var cartCartType: NSPopUpButton!
+    @IBOutlet weak var cartType: NSPopUpButton!
     @IBOutlet weak var cartDeleteButton: NSButton!
 
-    @IBOutlet weak var romInstallButton: NSButton!
-
-    @IBOutlet weak var romLockImage: NSButton!
-    @IBOutlet weak var romLockText: NSTextField!
-    @IBOutlet weak var romLockSubText: NSTextField!
-
-    @IBOutlet weak var romOkButton: NSButton!
-    @IBOutlet weak var romPowerButton: NSButton!
+    @IBOutlet weak var cartOkButton: NSButton!
+    @IBOutlet weak var cartPowerButton: NSButton!
 
     //
     // Hardware
     //
     
     // TIA
-    @IBOutlet weak var hwVicModelPopup: NSPopUpButton!
-    @IBOutlet weak var hwVicIcon: NSImageView!
-    @IBOutlet weak var tiaPalette: NSButton!
+    @IBOutlet weak var hwTiaModelPopup: NSPopUpButton!
+    @IBOutlet weak var hwTiaIcon: NSImageView!
+    @IBOutlet weak var hwTiaAutoDetect: NSButton!
+    @IBOutlet weak var hwTiaPalette: NSButton!
+
+    // PIA
+    @IBOutlet weak var hwPiaModelPopup: NSPopUpButton!
 
     // Startup
     @IBOutlet weak var hwRamPatternPopup: NSPopUpButton!
+
+    // Summary
+    @IBOutlet weak var hwSummary: NSTextField!
 
     // Buttons
     @IBOutlet weak var hwOkButton: NSButton!

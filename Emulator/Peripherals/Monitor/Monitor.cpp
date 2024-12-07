@@ -92,15 +92,15 @@ static u32 baseColor[3][128] = {
 void
 Monitor::updateColors()
 {
-    isize rev = tia.getConfig().revision;
-    assert(rev >= 0 && rev <= 2);
+    auto palette = tia.getTraits().palette;
+    assert(palette >= 0 && palette <= 2);
 
     // Iterate through all 128 colors
     for (isize i = 0; i < 128; i++) {
 
-        u8 b = (baseColor[rev][i] >> 0) & 0xFF;
-        u8 g = (baseColor[rev][i] >> 8) & 0xFF;
-        u8 r = (baseColor[rev][i] >> 16) & 0xFF;
+        u8 b = (baseColor[palette][i] >> 0) & 0xFF;
+        u8 g = (baseColor[palette][i] >> 8) & 0xFF;
+        u8 r = (baseColor[palette][i] >> 16) & 0xFF;
 
         // Adjust the base color according to the current video settings
         adjustRGB(r, g, b);
@@ -108,13 +108,6 @@ Monitor::updateColors()
         // Update the lookup table
         color[i] = HI_HI_LO_LO(0xFF, b, g, r);
     }
-}
-
-u32
-Monitor::getColor(isize nr)
-{
-    assert(nr >= 0 && nr <= 127);
-    return color[nr];
 }
 
 void

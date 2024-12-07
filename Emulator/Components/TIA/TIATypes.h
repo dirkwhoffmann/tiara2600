@@ -24,16 +24,19 @@ namespace tiara {
 /// TIA chip revision
 enum_long(TIA_REV)
 {
-    TIA_NTSC,
-    TIA_PAL,
-    TIA_SECAM
+    TIA_NTSC,       //! Native NTSC gaming console
+    TIA_PAL,        //! Native PAL gaming console
+    TIA_SECAM,      //! Native SECAM gaming console
+    TIA_NTSC50,     //! Hybrid model (PAL console with NTSC colors)
+    TIA_PAL60,      //! Hybrid model (NTSC console with PAL colors)
+    TIA_SECAM60     //! Hybrid model (NTSC console with SECAM colors)
 };
 typedef TIA_REV TIARevision;
 
 struct TIARevisionEnum : util::Reflection<TIARevisionEnum, TIARevision> {
 
     static constexpr long minVal = 0;
-    static constexpr long maxVal = TIA_SECAM;
+    static constexpr long maxVal = TIA_SECAM60;
 
     static const char *prefix() { return "TIA"; }
     static const char *_key(long value)
@@ -43,6 +46,37 @@ struct TIARevisionEnum : util::Reflection<TIARevisionEnum, TIARevision> {
             case TIA_NTSC:      return "NTSC";
             case TIA_PAL:       return "PAL";
             case TIA_SECAM:     return "SECAM";
+            case TIA_NTSC50:    return "NTSC50";
+            case TIA_PAL60:     return "PAL60";
+            case TIA_SECAM60:   return "SECAM60";
+        }
+        return "???";
+    }
+};
+
+
+/// TIA color palette
+enum_long(TIA_PALETTE)
+{
+    TIA_PALETTE_NTSC,   //! NTSC color palette
+    TIA_PALETTE_PAL,    //! PAL color palette
+    TIA_PALETTE_SECAM   //! SECAM color palette
+};
+typedef TIA_PALETTE TIAPalette;
+
+struct TIAPaletteEnum : util::Reflection<TIAPaletteEnum, TIAPalette> {
+
+    static constexpr long minVal = 0;
+    static constexpr long maxVal = TIA_PALETTE_SECAM;
+
+    static const char *prefix() { return "TIA_PALETTE"; }
+    static const char *_key(long value)
+    {
+        switch (value) {
+
+            case TIA_PALETTE_NTSC:  return "NTSC";
+            case TIA_PALETTE_PAL:   return "PAL";
+            case TIA_PALETTE_SECAM: return "SECAM";
         }
         return "???";
     }
@@ -280,8 +314,9 @@ struct TIAColorEnum : util::Reflection<TIAColorEnum, TIAColor> {
 
 typedef struct
 {
-    // Video standard
+    // Chip revision and color palette
     TIARevision revision;
+    TIAPalette palette;
 
     // Clock frequency and frame refresh rate
     isize cpuFrequency;
@@ -306,7 +341,7 @@ typedef struct
 {
     // Silicon
     TIARevision revision;
-    bool powerSave;
+    bool autoDetect;
 
     // Collision checking mask
     u16 collMask;

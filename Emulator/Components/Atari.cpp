@@ -696,6 +696,7 @@ Atari::eofHandler()
     tia.eofHandler();
     pia.eofHandler();
     audioPort.eofHandler();
+    videoPort.eofHandler();
     logicAnalyzer.eofHandler();
 }
 

@@ -69,36 +69,22 @@ extension ConfigurationController {
     func refreshHardwareTab() {
                                 
         // TIA
-        hwVicModelPopup.selectItem(withTag: config.tiaRevision)
-        tiaPalette.image = paletteImage
-        
-        /*
+        hwTiaModelPopup.selectItem(withTag: config.tiaRevision)
+        hwTiaModelPopup.isEnabled = !config.tiaAutoDetect
+        hwTiaAutoDetect.state = config.tiaAutoDetect ? .on : .off
+
+        // Images
+        hwTiaPalette.image = paletteImage
+
         switch TIARevision(rawValue: config.tiaRevision) {
 
-        case .PAL_6569_R1, .PAL_6569_R3:
-
-            hwVicIcon.image = NSImage(named: "pref_vicii_pal")
-            hwVicGrayDotBug.isEnabled = false
-
-        case .PAL_8565:
-
-            hwVicIcon.image = NSImage(named: "pref_vicii_pal")
-            hwVicGrayDotBug.isEnabled = true
-
-        case .NTSC_6567_R56A, .NTSC_6567:
-
-            hwVicIcon.image = NSImage(named: "pref_vicii_ntsc")
-            hwVicGrayDotBug.isEnabled = false
-
-        case .NTSC_8562:
-            
-            hwVicIcon.image = NSImage(named: "pref_vicii_ntsc")
-            hwVicGrayDotBug.isEnabled = true
+        case .NTSC, .NTSC50:    hwTiaIcon.image = NSImage(named: "pref_ntsc")
+        case .PAL, .PAL60:      hwTiaIcon.image = NSImage(named: "pref_pal")
+        case .SECAM, .SECAM60:  hwTiaIcon.image = NSImage(named: "pref_secam")
 
         default:
             assert(false)
         }
-        */
 
         // Startup
         hwRamPatternPopup.selectItem(withTag: config.ramPattern)
@@ -107,9 +93,14 @@ extension ConfigurationController {
         hwPowerButton.isHidden = !bootable
     }
     
-    @IBAction func hwVicRevAction(_ sender: NSPopUpButton!) {
+    @IBAction func hwTiaRevAction(_ sender: NSPopUpButton!) {
         
         config.tiaRevision = sender.selectedTag()
+    }
+
+    @IBAction func hwTiaAutoDetectAction(_ sender: NSButton!) {
+
+        config.tiaAutoDetect = sender.state == .on
     }
 
     @IBAction func hwRamPatternAction(_ sender: NSPopUpButton!) {

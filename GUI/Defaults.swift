@@ -563,7 +563,7 @@ extension DefaultsProxy {
     func registerHardwareUserDefaults() {
 
         debug(.defaults)
-        // No GUI related items in this sections
+        // No GUI-only items in this sections
     }
 
     func removeHardwareUserDefaults() {
@@ -571,8 +571,7 @@ extension DefaultsProxy {
         debug(.defaults)
 
         remove(.TIA_REVISION)
-        remove(.TIA_POWER_SAVE)
-
+        remove(.TIA_AUTO_DETECT)
         remove(.RAM_INIT_PATTERN)
     }
 }
@@ -708,7 +707,6 @@ extension DefaultsProxy {
 
         debug(.defaults)
 
-        remove(.TIA_POWER_SAVE)
         remove(.ATARI_WARP_MODE)
         remove(.ATARI_WARP_BOOT)
         remove(.ATARI_SPEED_BOOST)
@@ -729,7 +727,6 @@ extension Configuration {
 
             let defaults = EmulatorProxy.defaults!
 
-            defaults.set(.TIA_POWER_SAVE, tiaPowerSave)
             defaults.set(.ATARI_WARP_MODE, warpMode)
             defaults.set(.ATARI_WARP_BOOT, warpBoot)
             defaults.set(.ATARI_SPEED_BOOST, speedBoost)
@@ -752,7 +749,6 @@ extension Configuration {
 
             let defaults = EmulatorProxy.defaults!
 
-            tiaPowerSave = defaults.get(.TIA_POWER_SAVE) != 0
             warpMode = defaults.get(.ATARI_WARP_MODE)
             warpBoot = defaults.get(.ATARI_WARP_BOOT)
             speedBoost = defaults.get(.ATARI_SPEED_BOOST)

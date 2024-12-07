@@ -13,6 +13,7 @@
 #pragma once
 
 #include "VideoPortTypes.h"
+#include "TIATypes.h"
 #include "SubComponent.h"
 
 namespace tiara {
@@ -34,6 +35,10 @@ class VideoPort final : public SubComponent {
 
     // Current configuration
     VideoPortConfig config = { };
+
+    // Video format prediction counters
+    isize pal = 0;
+    isize ntsc = 0;
 
 
     //
@@ -94,11 +99,14 @@ public:
 
 
     //
-    // Getting textures
+    // Querying
     //
 
 public:
 
+    // Predicts the video standard
+    TIARevision predict() const;
+    
     // Returns a pointer to the stable emulator texture
     u32 *getTexture() const;
 
@@ -112,6 +120,16 @@ private:
 
     // Returns a pointer to a solid blank texture
     u32 *getBlankTexture() const;
+
+
+    //
+    // Executing
+    //
+
+public:
+
+    // End-of-frame handler
+    void eofHandler();
 };
 
 }

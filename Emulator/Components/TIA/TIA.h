@@ -20,7 +20,6 @@
 #include "Player.h"
 #include "Missile.h"
 #include "Ball.h"
-#include "Detector.h"
 #include "Constants.h"
 
 namespace tiara {
@@ -41,9 +40,10 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
         }
     };
 
-    static constexpr TIATraits traits[3] = {
+    static constexpr TIATraits traits[6] = {
         {
             .revision           = TIA_NTSC,
+            .palette            = TIA_PALETTE_NTSC,
 
             .cpuFrequency       = NTSC::CPU_CLOCK_FREQUENCY,
             .cpuCyclesPerFrame  = NTSC::CPU_CYCLES_PER_FRAME,
@@ -58,6 +58,7 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
         },
         {
             .revision           = TIA_PAL,
+            .palette            = TIA_PALETTE_PAL,
 
             .cpuFrequency       = PAL::CPU_CLOCK_FREQUENCY,
             .cpuCyclesPerFrame  = PAL::CPU_CYCLES_PER_FRAME,
@@ -72,6 +73,7 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
         },
         {
             .revision           = TIA_SECAM,
+            .palette            = TIA_PALETTE_SECAM,
 
             .cpuFrequency       = PAL::CPU_CLOCK_FREQUENCY,
             .cpuCyclesPerFrame  = PAL::CPU_CYCLES_PER_FRAME,
@@ -83,16 +85,61 @@ class TIA final : public SubComponent, public Inspectable<TIAInfo, TIAStats> {
             .vblankHeight       = PAL::FIRST_VISIBLE_LINE,
             .visibleWidth       = PAL::VISIBLE_WIDTH,
             .visibleHeight      = PAL::VISIBLE_HEIGHT
+        },
+        {
+            .revision           = TIA_NTSC50,
+            .palette            = TIA_PALETTE_NTSC,
+
+            .cpuFrequency       = PAL::CPU_CLOCK_FREQUENCY,
+            .cpuCyclesPerFrame  = PAL::CPU_CYCLES_PER_FRAME,
+            .fps                = PAL::FPS,
+
+            .width              = PAL::WIDTH,
+            .height             = PAL::HEIGHT,
+            .hblankWidth        = PAL::FIRST_VISIBLE_PIXEL,
+            .vblankHeight       = PAL::FIRST_VISIBLE_LINE,
+            .visibleWidth       = PAL::VISIBLE_WIDTH,
+            .visibleHeight      = PAL::VISIBLE_HEIGHT
+        },
+        {
+            .revision           = TIA_PAL60,
+            .palette            = TIA_PALETTE_PAL,
+
+            .cpuFrequency       = NTSC::CPU_CLOCK_FREQUENCY,
+            .cpuCyclesPerFrame  = NTSC::CPU_CYCLES_PER_FRAME,
+            .fps                = NTSC::FPS,
+
+            .width              = NTSC::WIDTH,
+            .height             = NTSC::HEIGHT,
+            .hblankWidth        = NTSC::FIRST_VISIBLE_PIXEL,
+            .vblankHeight       = NTSC::FIRST_VISIBLE_LINE,
+            .visibleWidth       = NTSC::VISIBLE_WIDTH,
+            .visibleHeight      = NTSC::VISIBLE_HEIGHT
+        },
+        {
+            .revision           = TIA_SECAM60,
+            .palette            = TIA_PALETTE_SECAM,
+
+            .cpuFrequency       = NTSC::CPU_CLOCK_FREQUENCY,
+            .cpuCyclesPerFrame  = NTSC::CPU_CYCLES_PER_FRAME,
+            .fps                = NTSC::FPS,
+
+            .width              = NTSC::WIDTH,
+            .height             = NTSC::HEIGHT,
+            .hblankWidth        = NTSC::FIRST_VISIBLE_PIXEL,
+            .vblankHeight       = NTSC::FIRST_VISIBLE_LINE,
+            .visibleWidth       = NTSC::VISIBLE_WIDTH,
+            .visibleHeight      = NTSC::VISIBLE_HEIGHT
         }
     };
 
     Options options = {
 
         OPT_TIA_REVISION,
+        OPT_TIA_AUTO_DETECT,
         OPT_TIA_COLLISIONS,
         OPT_TIA_REG_LOCK,
         OPT_TIA_REG_WATCH,
-        OPT_TIA_POWER_SAVE
     };
 
     // Current configuration
@@ -118,9 +165,6 @@ public:
 
     // Audio units
     Audio audio[2] = { Audio(atari, 0), Audio(atari, 1) };
-
-    // Host sample frequency detector TODO: Integrate into VideoPort
-    Detector detector = Detector(atari);
 
 
     //

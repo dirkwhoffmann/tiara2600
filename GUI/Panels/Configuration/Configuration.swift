@@ -31,6 +31,11 @@ class Configuration {
         set { emu?.set(.TIA_REVISION, value: newValue) }
     }
 
+    var tiaAutoDetect: Bool {
+        get { return emu?.get(.TIA_AUTO_DETECT) != 0 }
+        set { emu?.set(.TIA_AUTO_DETECT, enable: newValue) }
+    }
+
     var ramPattern: Int {
         get { return emu?.get(.RAM_INIT_PATTERN) ?? 0 }
         set { emu?.set(.RAM_INIT_PATTERN, value: newValue) }
@@ -100,11 +105,6 @@ class Configuration {
     //
     // Performance
     //
-
-    var tiaPowerSave: Bool {
-        get { return emu?.get(.TIA_POWER_SAVE) != 0 }
-        set { emu?.set(.TIA_POWER_SAVE, enable: newValue) }
-    }
 
     var warpMode: Int {
         get { return emu?.get(.ATARI_WARP_MODE) ?? 0 }

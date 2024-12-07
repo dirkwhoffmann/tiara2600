@@ -37,10 +37,10 @@ Defaults::Defaults()
     setFallback(OPT_ATARI_SNAP_COMPRESS,        true);
 
     setFallback(OPT_TIA_REVISION,               TIA_NTSC);
+    setFallback(OPT_TIA_AUTO_DETECT,            true);
     setFallback(OPT_TIA_COLLISIONS,             0xFFFF);
     setFallback(OPT_TIA_REG_LOCK,               0);
     setFallback(OPT_TIA_REG_WATCH,              0);
-    setFallback(OPT_TIA_POWER_SAVE,             true);
 
     setFallback(OPT_RAM_INIT_PATTERN,           RAM_PATTERN_ZEROES);
 

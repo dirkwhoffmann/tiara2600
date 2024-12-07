@@ -94,10 +94,10 @@ TIA::getOption(Option opt) const
     switch (opt) {
 
         case OPT_TIA_REVISION:        return config.revision;
+        case OPT_TIA_AUTO_DETECT:     return config.autoDetect;
         case OPT_TIA_COLLISIONS:      return config.collMask;
         case OPT_TIA_REG_LOCK:        return config.lockMask;
         case OPT_TIA_REG_WATCH:       return config.watchMask;
-        case OPT_TIA_POWER_SAVE:      return config.powerSave;
 
         default:
             fatalError;
@@ -116,6 +116,10 @@ TIA::checkOption(Option opt, i64 value)
             }
             break;
 
+        case OPT_TIA_AUTO_DETECT:
+
+            break;
+
         case OPT_TIA_COLLISIONS:
 
             if (value < 0 || value > 0xFFFF) {
@@ -125,7 +129,6 @@ TIA::checkOption(Option opt, i64 value)
 
         case OPT_TIA_REG_LOCK:
         case OPT_TIA_REG_WATCH:
-        case OPT_TIA_POWER_SAVE:
 
             break;
 
@@ -151,6 +154,11 @@ TIA::setOption(Option opt, i64 value)
             }
             break;
 
+        case OPT_TIA_AUTO_DETECT:
+
+            config.autoDetect = bool(value);
+            break;
+
         case OPT_TIA_COLLISIONS:
 
             config.collMask = u16(value);
@@ -164,11 +172,6 @@ TIA::setOption(Option opt, i64 value)
         case OPT_TIA_REG_WATCH:
 
             config.watchMask = u64(value);
-            break;
-
-        case OPT_TIA_POWER_SAVE:
-
-            config.powerSave = bool(value);
             break;
 
         default:

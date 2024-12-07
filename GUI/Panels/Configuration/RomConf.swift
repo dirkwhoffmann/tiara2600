@@ -17,8 +17,8 @@ extension ConfigurationController {
         for i in first ... last {
 
             let item = CartType(rawValue: i)
-            cartCartType.addItem(withTitle: item!.description)
-            cartCartType.lastItem!.tag = i
+            cartType.addItem(withTitle: item!.description)
+            cartType.lastItem!.tag = i
         }
     }
 
@@ -34,14 +34,14 @@ extension ConfigurationController {
 
             let traits = emu.atari.romTraits
 
-            let cartType = traits.cartType
-            let hasCart = cartType != ._NONE
-            let hasKnownCart = hasCart && cartType != ._UNKNOWN
+            let type = traits.cartType
+            let hasCart = type != ._NONE
+            let hasKnownCart = hasCart && type != ._UNKNOWN
             let name = traits.name != nil ? String(cString: traits.name) : ""
             let manufacturer = traits.manufacturer != nil ? String(cString: traits.manufacturer) : ""
             let model = traits.model != nil ? String(cString: traits.model) : ""
             let hash = traits.md5 != nil ? String(cString: traits.md5) : ""
-            let supported = cartType == ._4K
+            let supported = type == ._4K
 
             let romMissing = NSImage(named: "rom_missing")
             let romDefault = NSImage(named: "rom_original")
@@ -56,23 +56,23 @@ extension ConfigurationController {
                 cartName.stringValue = name
                 cartManufacturer.stringValue = manufacturer
                 cartModel.stringValue = model
-                cartCartType.stringValue = cartType.description
+                cartType.stringValue = type.description
 
             } else {
 
                 cartName.stringValue = "No cartridge"
                 cartManufacturer.stringValue = "Use drag and drop to attach a cartridge"
                 cartModel.stringValue = ""
-                cartCartType.stringValue = ""
+                cartType.stringValue = ""
             }
 
             // PopUps
-            cartCartType.isHidden = !hasCart
+            cartType.isHidden = !hasCart
             if validCartType(type: traits.cartType) {
-                cartCartType.selectItem(withTag: traits.cartType.rawValue)
-                cartCartType.isEnabled = true
+                cartType.selectItem(withTag: traits.cartType.rawValue)
+                cartType.isEnabled = true
             } else {
-                cartCartType.isEnabled = false
+                cartType.isEnabled = false
             }
         }
     }

@@ -33,7 +33,7 @@ enum_long(OPT)
     // Atari
     OPT_ATARI_WARP_BOOT,        ///< Warp-boot time in seconds
     OPT_ATARI_WARP_MODE,        ///< Warp activation mode
-    OPT_ATARI_VSYNC,            ///< Derive the frame rate to the VSYNC signal
+    OPT_ATARI_VSYNC,            ///< Sync the frame rate with the VSYNC signal
     OPT_ATARI_SPEED_BOOST,      ///< Speed adjustment in percent
     OPT_ATARI_RUN_AHEAD,        ///< Number of run-ahead frames
     OPT_ATARI_FAST_PATHS,       ///< Enable emulation optimizations
@@ -45,10 +45,10 @@ enum_long(OPT)
 
     // TIA
     OPT_TIA_REVISION,           ///< Chip revision
+    OPT_TIA_AUTO_DETECT,        ///< Derive the chip revision automatically
     OPT_TIA_COLLISIONS,         ///< Collision checking
     OPT_TIA_REG_LOCK,           ///< Register write-protection mask
     OPT_TIA_REG_WATCH,          ///< Register watch mask
-    OPT_TIA_POWER_SAVE,         ///< Enable fast-paths
 
     // PIA
     OPT_RAM_INIT_PATTERN,       ///< Initial RAM values
@@ -162,10 +162,10 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_ATARI_SNAP_COMPRESS:   return "C64.SNAP_COMPRESS";
 
             case OPT_TIA_REVISION:          return "TIA.REVISION";
+            case OPT_TIA_AUTO_DETECT:       return "TIA.AUTO_DETECT";
             case OPT_TIA_COLLISIONS:        return "TIA.COLLISIONS";
             case OPT_TIA_REG_LOCK:          return "TIA.REG_LOCK";
             case OPT_TIA_REG_WATCH:         return "TIA.REG_WATCH";
-            case OPT_TIA_POWER_SAVE:        return "TIA.POWER_SAVE";
 
             case OPT_RAM_INIT_PATTERN:      return "PIA.RAM_INIT_PATTERN";
 
@@ -262,10 +262,10 @@ struct OptionEnum : util::Reflection<OptionEnum, Option> {
             case OPT_ATARI_SNAP_COMPRESS:   return "Compress snapshot data";
 
             case OPT_TIA_REVISION:          return "Video standard";
+            case OPT_TIA_AUTO_DETECT:       return "Derive the video standard automatically";
             case OPT_TIA_COLLISIONS:        return "Collision checking";
             case OPT_TIA_REG_LOCK:          return "Write-protection mask";
             case OPT_TIA_REG_WATCH:         return "Watch mask";
-            case OPT_TIA_POWER_SAVE:        return "Take fast paths";
 
             case OPT_RAM_INIT_PATTERN:      return "Memory start-up pattern";
 

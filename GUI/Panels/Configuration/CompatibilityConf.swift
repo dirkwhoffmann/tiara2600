@@ -12,7 +12,7 @@ extension ConfigurationController {
     func refreshPerformanceTab() {
                                 
         // Power saving
-        comViciiPowerSave.state = config.tiaPowerSave ? .on : .off
+        // comViciiPowerSave.state = config.tiaPowerSave ? .on : .off
 
         // Warp
         comWarpMode.selectItem(withTag: config.warpMode)
@@ -37,10 +37,12 @@ extension ConfigurationController {
     // Action methods (power saving)
     //
 
+    /*
     @IBAction func comViciiPowerSaveAction(_ sender: NSButton!) {
         
         config.tiaPowerSave = sender.state == .on
     }
+    */
 
     //
     // Action methods (warp)

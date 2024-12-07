@@ -21,6 +21,17 @@ VideoPort::VideoPort(Atari &ref) : SubComponent(ref)
 
 };
 
+TIARevision
+VideoPort::predict() const
+{
+    auto current = tia.getConfig().revision;
+
+    if (pal == 32) return current == TIA_SECAM ? TIA_SECAM : TIA_PAL;
+    if (ntsc == 32) return TIA_NTSC;
+
+    return current;
+}
+
 u32 *
 VideoPort::getTexture() const
 {
@@ -71,6 +82,24 @@ VideoPort::getBlankTexture() const
     }
 
     return blank;
+}
+
+void
+VideoPort::eofHandler()
+{
+    const isize tolerance = 20;
+    auto y = tia.y;
+
+    if (y > NTSC::HEIGHT - tolerance && y < NTSC::HEIGHT + tolerance) {
+
+        if (ntsc <= 32) ntsc++;
+        if (pal > 0) pal--;
+    }
+    if (y > PAL::HEIGHT - tolerance && y < PAL::HEIGHT + tolerance) {
+
+        if (ntsc > 0) ntsc--;
+        if (pal <= 32) pal++;
+    }
 }
 
 }
