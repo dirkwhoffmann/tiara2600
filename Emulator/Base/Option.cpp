@@ -46,7 +46,7 @@ OptionParser::create(Option opt, i64 arg)
 
         case OPT_TIA_REVISION:              return enumParser.template operator()<TIARevisionEnum>();
         case OPT_TIA_AUTO_DETECT:           return boolParser();
-        case OPT_TIA_COLLISIONS:            return numParser();
+        case OPT_TIA_COLLISIONS:            return hexParser();
         case OPT_TIA_REG_LOCK:              return hexParser();
         case OPT_TIA_REG_WATCH:             return hexParser();
 

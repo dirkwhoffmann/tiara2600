@@ -140,6 +140,11 @@ class Configuration {
         set { emu?.set(.ATARI_RUN_AHEAD, value: newValue) }
     }
 
+    var fastPaths: Bool {
+        get { return emu?.get(.ATARI_FAST_PATHS) != 0 }
+        set { emu?.set(.ATARI_FAST_PATHS, enable: newValue) }
+    }
+
     //
     // Audio
     //

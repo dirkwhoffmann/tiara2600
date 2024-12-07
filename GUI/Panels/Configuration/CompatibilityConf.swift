@@ -25,6 +25,9 @@ extension ConfigurationController {
         prfSpeedBoost.isEnabled = !config.vsync
         prfSpeedBoostInfo.textColor = config.vsync ? .tertiaryLabelColor : .labelColor
 
+        // Emulation core
+        prfFastPaths.state = config.fastPaths ? .on : .off
+
         // Collisions
         let coll = config.tiaCollisions
         prfP0P1.state = coll & (1 << prfP0P1.tag) != 0 ? .on : .off
@@ -48,7 +51,7 @@ extension ConfigurationController {
     }
 
     //
-    // Action methods (warp)
+    // Action methods (Warp)
     //
 
     @IBAction func prfWarpModeAction(_ sender: NSPopUpButton!) {
@@ -57,7 +60,7 @@ extension ConfigurationController {
     }
 
     //
-    // Action methods (threading)
+    // Action methods (Threading)
     //
 
     @IBAction func prfVSyncAction(_ sender: NSButton!) {
@@ -73,6 +76,15 @@ extension ConfigurationController {
     @IBAction func prfRunAheadAction(_ sender: NSSlider!) {
 
         config.runAhead = sender.integerValue
+    }
+
+    //
+    // Action methods (Emulation core)
+    //
+
+    @IBAction func prfFastPathsAction(_ sender: NSButton!) {
+
+        config.fastPaths = sender.state == .on
     }
 
     //

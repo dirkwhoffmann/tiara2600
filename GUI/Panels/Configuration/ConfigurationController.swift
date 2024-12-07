@@ -31,13 +31,11 @@ class ConfigurationController: DialogController {
     // Hardware
     //
     
-    // TIA
+    // Custom chips
     @IBOutlet weak var hwTiaModelPopup: NSPopUpButton!
     @IBOutlet weak var hwTiaIcon: NSImageView!
     @IBOutlet weak var hwTiaAutoDetect: NSButton!
     @IBOutlet weak var hwTiaPalette: NSButton!
-
-    // PIA
     @IBOutlet weak var hwPiaModelPopup: NSPopUpButton!
 
     // Startup
@@ -89,6 +87,9 @@ class ConfigurationController: DialogController {
     @IBOutlet weak var prfSpeedBoostInfo: NSTextField!
     @IBOutlet weak var prfRunAhead: NSSlider!
     @IBOutlet weak var prfRunAheadInfo: NSTextField!
+
+    // Emulation core
+    @IBOutlet weak var prfFastPaths: NSButton!
 
     // Collisions
     @IBOutlet weak var prfP0P1: NSButton!
