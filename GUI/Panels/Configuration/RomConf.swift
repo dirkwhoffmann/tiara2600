@@ -43,8 +43,8 @@ extension ConfigurationController {
             let hash = traits.md5 != nil ? String(cString: traits.md5) : ""
             let supported = type == ._4K
 
-            let romMissing = NSImage(named: "rom_missing")
-            let romDefault = NSImage(named: "rom_original")
+            let romMissing = NSImage(named: "cart_missing")
+            let romDefault = NSImage(named: "cart_original")
 
             // Icons
             cartDropView.image = hasCart ? romDefault : romMissing

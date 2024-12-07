@@ -35,7 +35,7 @@ class DropView: NSImageView {
 
         if let url = sender.url {
             if acceptDragSource(url: url) {
-                image = NSImage(named: "rom_medium")
+                image = NSImage(named: "cart_medium")
                 return .copy
             }
         }

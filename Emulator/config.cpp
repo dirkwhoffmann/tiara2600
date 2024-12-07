@@ -73,8 +73,7 @@ debugflag SRV_DEBUG       = 0;
 // Forced error conditions
 //
 
-debugflag FORCE_ROM_MISSING              = 0;
-debugflag FORCE_MEGA64_MISMATCH          = 0;
+debugflag FORCE_CART_MISSING             = 0;
 debugflag FORCE_SNAP_TOO_OLD             = 0;
 debugflag FORCE_SNAP_TOO_NEW             = 0;
 debugflag FORCE_SNAP_IS_BETA             = 0;

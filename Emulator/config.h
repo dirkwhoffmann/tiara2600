@@ -151,8 +151,7 @@ extern debugflag SRV_DEBUG;
 // Forced error conditions
 //
 
-extern debugflag FORCE_ROM_MISSING;
-extern debugflag FORCE_MEGA64_MISMATCH;
+extern debugflag FORCE_CART_MISSING;
 extern debugflag FORCE_SNAP_TOO_OLD;
 extern debugflag FORCE_SNAP_TOO_NEW;
 extern debugflag FORCE_SNAP_IS_BETA;
