@@ -45,6 +45,9 @@ class ConfigurationController: DialogController {
 
     // Summary
     @IBOutlet weak var hwSummary: NSTextField!
+    @IBOutlet weak var hwSummary2: NSTextField!
+    @IBOutlet weak var hwSummary3: NSTextField!
+    @IBOutlet weak var hwSummary4: NSTextField!
 
     // Buttons
     @IBOutlet weak var hwOkButton: NSButton!

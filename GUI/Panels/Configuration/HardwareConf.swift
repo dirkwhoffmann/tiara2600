@@ -67,11 +67,25 @@ extension ConfigurationController {
     }
     
     func refreshHardwareTab() {
-                                
+
+        let traits = emu!.tia.traits
+
+        let fps = traits.fps
+        let cpu = traits.cpuFrequency
+        let height = traits.height
+        let palette = traits.palette
+        let colors = palette == .NTSC ? 128 : palette == .PAL ? 104 : 8
+
         // TIA
         hwTiaModelPopup.selectItem(withTag: config.tiaRevision)
         hwTiaModelPopup.isEnabled = !config.tiaAutoDetect
         hwTiaAutoDetect.state = config.tiaAutoDetect ? .on : .off
+
+        // Config summary
+        hwSummary.stringValue = "- \(fps) frames per second"
+        hwSummary2.stringValue = String(format: "- %.2f MHz CPU clock", Float(cpu) / 1000000.0)
+        hwSummary3.stringValue = "- \(height) scanlines per frame"
+        hwSummary4.stringValue = "- \(colors) unique colors"
 
         // Images
         hwTiaPalette.image = paletteImage
@@ -119,51 +133,6 @@ extension ConfigurationController {
 
             // Update the configuration
             config.applyPeripheralsUserDefaults()
-
-            // Override some options
-            /*
-            switch sender.selectedTag() {
-
-            case 0: // C64_PAL
-                config.vicRevision = VICIIRevision.PAL_6569_R3.rawValue
-                config.vicGrayDotBug = false
-                config.ciaRevision = CIARevision.MOS_6526.rawValue
-                config.ciaTimerBBug = true
-
-            case 1: // C64_II_PAL
-                config.vicRevision = VICIIRevision.PAL_8565.rawValue
-                config.vicGrayDotBug = true
-                config.ciaRevision = CIARevision.MOS_8521.rawValue
-                config.ciaTimerBBug = false
-
-            case 2: // C64_OLD_PAL
-                config.vicRevision = VICIIRevision.PAL_6569_R1.rawValue
-                config.vicGrayDotBug = false
-                config.ciaRevision = CIARevision.MOS_6526.rawValue
-                config.ciaTimerBBug = true
-
-            case 3: // C64_NTSC
-                config.vicRevision = VICIIRevision.NTSC_6567.rawValue
-                config.vicGrayDotBug = false
-                config.ciaRevision = CIARevision.MOS_6526.rawValue
-                config.ciaTimerBBug = false
-
-            case 4: // C64_II_NTSC
-                config.vicRevision = VICIIRevision.NTSC_8562.rawValue
-                config.vicGrayDotBug = true
-                config.ciaRevision = CIARevision.MOS_8521.rawValue
-                config.ciaTimerBBug = true
-
-            case 5: // C64_OLD_NTSC
-                config.vicRevision = VICIIRevision.NTSC_6567_R56A.rawValue
-                config.vicGrayDotBug = false
-                config.ciaRevision = CIARevision.MOS_6526.rawValue
-                config.ciaTimerBBug = false
-
-            default:
-                fatalError()
-            }
-            */
 
             emu.resume()
         }
