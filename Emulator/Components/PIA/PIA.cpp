@@ -247,7 +247,7 @@ PIA::pbExternal() const
     return result;
 }
 
-template <bool debug> void
+template <bool fastPaths> void
 PIA::execute()
 {
     // Interval timer logic

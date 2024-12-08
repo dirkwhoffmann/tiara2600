@@ -217,7 +217,7 @@ private:
 public:
 
     // Executes three color clock cycles
-    template <bool> void execute();
+    template <bool fastPaths> void execute();
 
     // Frame handlers
     void sofHandler();
