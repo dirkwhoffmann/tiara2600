@@ -126,7 +126,7 @@ extension Inspector {
         piaDDRA1O.textColor = (bits & 0b00000010) != 0 ? .textColor : .secondaryLabelColor
         piaDDRA0O.textColor = (bits & 0b00000001) != 0 ? .textColor : .secondaryLabelColor
 
-        let pass = "↔", block = "|"
+        let pass = "↔", block = " "
         piaDDRA7I.stringValue = (bits & 0b10000000) == 0 ? pass : block
         piaDDRA6I.stringValue = (bits & 0b01000000) == 0 ? pass : block
         piaDDRA5I.stringValue = (bits & 0b00100000) == 0 ? pass : block
@@ -143,6 +143,20 @@ extension Inspector {
         piaDDRA2O.stringValue = (bits & 0b00000100) != 0 ? pass : block
         piaDDRA1O.stringValue = (bits & 0b00000010) != 0 ? pass : block
         piaDDRA0O.stringValue = (bits & 0b00000001) != 0 ? pass : block
+
+        piaCounter.integerValue = piaInfo.timer.counter
+        piaINTIM.integerValue = Int(piaInfo.timer.intim)
+        piaTIM1T.state = piaInfo.timer.interval == 1 ? .on : .off
+        piaTIM8T.state = piaInfo.timer.interval == 8 ? .on : .off
+        piaTIM64T.state = piaInfo.timer.interval == 64 ? .on : .off
+        piaT1024T.state = piaInfo.timer.interval == 1024 ? .on : .off
+
+        piaINTENA.integerValue = Int(piaInfo.irq.intena)
+        piaINSTAT.integerValue = Int(piaInfo.irq.instat)
+        piaTimerEna.state = (piaInfo.irq.intena & 0x80) != 0 ? .on : .off
+        piaPA7Ena.state = (piaInfo.irq.intena & 0x40) != 0 ? .on : .off
+        piaTimerStat.state = (piaInfo.irq.instat & 0x80) != 0 ? .on : .off
+        piaPA7Stat.state = (piaInfo.irq.instat & 0x40) != 0 ? .on : .off
 
         //
         // Port B

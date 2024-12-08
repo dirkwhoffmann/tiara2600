@@ -184,6 +184,22 @@ class Inspector: DialogController {
     @IBOutlet weak var piaPB1: NSButton!
     @IBOutlet weak var piaPB0: NSButton!
 
+    // PIA (Counters)
+    @IBOutlet weak var piaCounter: NSTextField!
+    @IBOutlet weak var piaINTIM: NSTextField!
+    @IBOutlet weak var piaTIM1T: NSButton!
+    @IBOutlet weak var piaTIM8T: NSButton!
+    @IBOutlet weak var piaTIM64T: NSButton!
+    @IBOutlet weak var piaT1024T: NSButton!
+
+    // PIA (Interrupts)
+    @IBOutlet weak var piaINTENA: NSTextField!
+    @IBOutlet weak var piaINSTAT: NSTextField!
+    @IBOutlet weak var piaTimerEna: NSButton!
+    @IBOutlet weak var piaPA7Ena: NSButton!
+    @IBOutlet weak var piaTimerStat: NSButton!
+    @IBOutlet weak var piaPA7Stat: NSButton!
+
     // TIA panel (Registers)
     @IBOutlet weak var tiaCOLUP0: NSTextField!
     @IBOutlet weak var tiaCOLUP0lock: NSButton!

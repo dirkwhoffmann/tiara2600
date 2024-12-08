@@ -73,7 +73,7 @@ Memory::peek(u16 addr, MemoryType source)
     switch (source) {
 
         case M_TIA:     return tia.peek(addr);
-        case M_PIA:     return pia.peekReg(PIARegister(addr & 0x1F));
+        case M_PIA:     return pia.peekReg(addr);
         case M_RAM:     return pia.peekRam(addr);
         case M_CRT:     return cartPort.cart->peek(addr);
 
@@ -92,7 +92,7 @@ Memory::spy(u16 addr, MemoryType source) const
     switch (source) {
 
         case M_TIA: return tia.spy(addr);
-        case M_PIA: return pia.spyReg(PIARegister(addr & 0x1F));
+        case M_PIA: return pia.spyReg(addr);
         case M_RAM: return pia.spyRam(addr);
         case M_CRT: return cartPort.cart->spy(addr);
 
@@ -114,7 +114,7 @@ Memory::poke(u16 addr, u8 val, MemoryType target)
     switch (target) {
 
         case M_TIA: tia.poke(TIARegister(addr & 0x3F), val); break;
-        case M_PIA: pia.pokeReg(PIARegister(addr & 0x1F), val); break;
+        case M_PIA: pia.pokeReg(addr, val); break;
         case M_RAM: pia.pokeRam(addr, val); break;
         case M_CRT: cartPort.cart->poke(addr, val); break;
 

@@ -9,7 +9,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Inspector" customModule="Tiara" customModuleProvider="target">
             <connections>
-                <outlet property="ciaIntLineLow" destination="4B0-cE-683" id="ood-MR-8Fg"/>
                 <outlet property="cpuA" destination="ylj-5h-OZB" id="Ohz-uZ-l88"/>
                 <outlet property="cpuB" destination="5mp-Na-BBE" id="ovc-vi-cjf"/>
                 <outlet property="cpuBreakView" destination="WPz-W0-GJ8" id="VCy-vP-TIr"/>
@@ -49,6 +48,7 @@
                 <outlet property="memTableView" destination="9cm-34-eYe" id="iCO-ae-FMN"/>
                 <outlet property="message" destination="SRP-bu-eZG" id="h82-84-Hae"/>
                 <outlet property="panel" destination="QhJ-8A-HRo" id="g4P-OI-piB"/>
+                <outlet property="piaCounter" destination="oB1-kB-sdg" id="BPF-Fc-hUB"/>
                 <outlet property="piaDDRA" destination="qtb-wz-bHc" id="OFa-iO-35h"/>
                 <outlet property="piaDDRA0I" destination="ABe-a9-hwb" id="6C8-Fo-CoY"/>
                 <outlet property="piaDDRA0O" destination="GnU-uZ-fGn" id="gVP-WK-fcg"/>
@@ -105,6 +105,9 @@
                 <outlet property="piaEXTB6" destination="4Sx-5C-seB" id="SvI-Fj-qSj"/>
                 <outlet property="piaEXTB7" destination="NYK-wf-NKk" id="DgL-z5-uAZ"/>
                 <outlet property="piaEXTBbinary" destination="gis-2w-74i" id="xZt-oI-41M"/>
+                <outlet property="piaINSTAT" destination="S4h-e2-1bT" id="W19-Ox-Lya"/>
+                <outlet property="piaINTENA" destination="uho-F3-kWw" id="psc-05-uji"/>
+                <outlet property="piaINTIM" destination="ltM-up-sNe" id="Q4e-gH-oE5"/>
                 <outlet property="piaPA0" destination="9fS-0V-6x6" id="7ZL-4j-YLo"/>
                 <outlet property="piaPA1" destination="vA1-kx-cmE" id="Jlx-8l-m3t"/>
                 <outlet property="piaPA2" destination="Nqs-Um-WPV" id="gYN-bd-Gnu"/>
@@ -113,6 +116,8 @@
                 <outlet property="piaPA5" destination="L71-BY-Lez" id="v7O-Nm-6OA"/>
                 <outlet property="piaPA6" destination="ElP-i6-1af" id="UPs-yH-fBw"/>
                 <outlet property="piaPA7" destination="uKF-PW-FBi" id="MPt-Oy-TbE"/>
+                <outlet property="piaPA7Ena" destination="PIt-Ey-cCk" id="iLd-Ev-BLh"/>
+                <outlet property="piaPA7Stat" destination="d1O-Xn-lLS" id="61S-JN-nYW"/>
                 <outlet property="piaPB0" destination="mxj-fJ-LRV" id="5PF-aU-3SX"/>
                 <outlet property="piaPB1" destination="c8S-pc-VTJ" id="tYM-CV-PXy"/>
                 <outlet property="piaPB2" destination="4eX-Z1-yfF" id="As5-6e-jFA"/>
@@ -141,6 +146,12 @@
                 <outlet property="piaPRB6" destination="U1K-Fs-85q" id="Vhc-gb-eJV"/>
                 <outlet property="piaPRB7" destination="0pC-6S-GWs" id="T9q-Bs-kBG"/>
                 <outlet property="piaPRBbinary" destination="1Qt-vw-Bc7" id="sjU-gm-9Mu"/>
+                <outlet property="piaT1024T" destination="Orh-YI-g5Y" id="NEO-ef-Xxt"/>
+                <outlet property="piaTIM1T" destination="3RX-HO-wrC" id="OgY-Di-hrY"/>
+                <outlet property="piaTIM64T" destination="QUO-co-ryS" id="7gI-uw-qfw"/>
+                <outlet property="piaTIM8T" destination="i2f-Ci-J72" id="rMO-ba-bup"/>
+                <outlet property="piaTimerEna" destination="RC3-Iz-StC" id="RAf-O9-wtX"/>
+                <outlet property="piaTimerStat" destination="4B0-cE-683" id="opt-Ys-bPh"/>
                 <outlet property="sidAudioBufferLevel" destination="p02-yc-FTP" id="4hG-a6-ZMp"/>
                 <outlet property="sidAudioBufferLevelText" destination="sBI-B2-mQb" id="gew-Q2-ExV"/>
                 <outlet property="sidBufferOverflows" destination="PDk-1i-ITc" id="TCA-ka-1ZE"/>

@@ -54,12 +54,18 @@ class PIA : public SubComponent, public Inspectable<PIAInfo, PIAStats> {
     isize counter = 0;
     isize interval = 0;
 
-    // Interrupt registers (enable and status)
+    /* Interrupt registers (enable and status)
+     *
+     *   Bit 6: PA7 interrupt
+     *   Bit 7: Timer interrupt
+     *
+     * All other bits are unused.
+     */
     u8 intena = 0;
     u8 instat = 0;
 
-    // Edge control (PA7 interrupts)
-    u8 edgctrl = 0;
+    // Edge control bit 0 (PA7 interrupts)
+    bool posEdgeDetect = false;
 
 
     //
@@ -109,7 +115,7 @@ public:
         << interval
         << intena
         << instat
-        << edgctrl
+        << posEdgeDetect
         << pa
         << pb;
 
@@ -166,13 +172,13 @@ public:
 public:
 
     u8 peekRam(u16 addr);
-    u8 peekReg(PIARegister reg);
+    u8 peekReg(u16 addr);
 
     u8 spyRam(u16 addr) const;
-    u8 spyReg(PIARegister reg) const;
+    u8 spyReg(u16 addr) const;
 
     void pokeRam(u16 addr, u8 val);
-    void pokeReg(PIARegister reg, u8 val, Cycle delay = 0);
+    void pokeReg(u16 addr, u8 val, Cycle delay = 0);
 
 private:
 
@@ -181,7 +187,6 @@ private:
     void pokePRB(u8 val);
     void pokeDDRB(u8 val);
     void pokeTIMxT(isize x, u8 val, bool enable);
-    void pokeEDGCTL(u8 val);
 
 
     //

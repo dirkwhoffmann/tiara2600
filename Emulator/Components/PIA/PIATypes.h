@@ -166,7 +166,6 @@ PIAPortInfo;
 typedef struct
 {
     u8 intim;
-    u8 instat;
     isize counter;
     isize interval;
 }
@@ -174,9 +173,18 @@ PIATimerInfo;
 
 typedef struct
 {
+    u8 intena;
+    u8 instat;
+    bool posEdgeDetect;
+}
+PIAIrqInfo;
+
+typedef struct
+{
     PIAPortInfo portA;
     PIAPortInfo portB;
     PIATimerInfo timer;
+    PIAIrqInfo irq;
 }
 PIAInfo;
 

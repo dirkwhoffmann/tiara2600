@@ -24,17 +24,19 @@ PIA::peekRam(u16 addr)
 }
 
 u8
-PIA::peekReg(PIARegister reg)
+PIA::peekReg(u16 addr)
 {
     u8 result;
 
-    switch (reg) {
+    addr &= 0x1F;
+
+    switch (addr) {
 
         case 0x04: case 0x0C: case 0x14: case 0x1C:
         case 0x06: case 0x0E: case 0x16: case 0x1E:
 
             if (timer != 0xFF) CLR_BIT(instat, 7);
-            REPLACE_BIT(intena, 7, GET_BIT(reg, 3));
+            REPLACE_BIT(intena, 7, GET_BIT(addr, 3));
             result = timer;
             break;
 
@@ -47,11 +49,11 @@ PIA::peekReg(PIARegister reg)
 
         default:
 
-            result = spyReg(reg);
+            result = spyReg(addr);
             break;
     }
 
-    debug(PIA_REG_DEBUG, "PIA::peek(%s) = %02x\n", PIARegisterEnum::key(reg), result);
+    debug(PIA_REG_DEBUG, "PIA::peek(%s) = %02x\n", PIARegisterEnum::key(addr), result);
 
     return result;
 }
@@ -63,9 +65,9 @@ PIA::spyRam(u16 addr) const
 }
 
 u8
-PIA::spyReg(PIARegister reg) const
+PIA::spyReg(u16 addr) const
 {
-    switch (reg) {
+    switch (addr & 0x1F) {
 
         case 0x00: case 0x08: case 0x10: case 0x18: return pa;
         case 0x01: case 0x09: case 0x11: case 0x19: return ddra;
@@ -88,27 +90,27 @@ PIA::pokeRam(u16 addr, u8 val)
 }
 
 void
-PIA::pokeReg(PIARegister reg, u8 val, Cycle delay)
+PIA::pokeReg(u16 addr, u8 val, Cycle delay)
 {
-    assert_enum(PIARegister, reg);
+    addr &= 0x1F;
 
     if (delay) {
 
         debug(PIA_REG_DEBUG, "PIA::poke(%s, %02x) delayed by %lld cycles\n",
-              PIARegisterEnum::key(reg), val, delay);
+              PIARegisterEnum::key(addr), val, delay);
 
         assert(!atari.hasEvent<SLOT_REG>());
-        atari.scheduleRel<SLOT_REG>(delay, REG_WRITE_PIA, HI_LO(reg, val));
+        atari.scheduleRel<SLOT_REG>(delay, REG_WRITE_PIA, HI_LO(addr, val));
         return;
     }
 
-    debug(PIA_REG_DEBUG, "PIA::poke(%s, %02x)\n", PIARegisterEnum::key(reg), val);
+    debug(PIA_REG_DEBUG, "PIA::poke(%s, %02x)\n", PIARegisterEnum::key(addr), val);
 
     // 000x x0xx: IO
     // 0001 x1xx: Interval timer
     // 0000 x1xx: Edge detect control
 
-    switch(reg) {
+    switch(addr) {
 
         case 0x00: case 0x08: case 0x10: case 0x18:
 
@@ -133,7 +135,8 @@ PIA::pokeReg(PIARegister reg, u8 val, Cycle delay)
         case 0x04: case 0x05: case 0x06: case 0x07:
         case 0x0C: case 0x0D: case 0x0E: case 0x0F:
 
-            pokeEDGCTL(reg & 0x3);
+            posEdgeDetect = GET_BIT(addr, 0);
+            REPLACE_BIT(intena, 6, GET_BIT(addr, 1));
             break;
 
         case 0x14:  pokeTIMxT(1, val, false); break;
@@ -190,12 +193,6 @@ PIA::pokeTIMxT(isize x, u8 val, bool irqEnable)
 }
 
 void
-PIA::pokeEDGCTL(u8 val)
-{
-    edgctrl = val & 0b11;
-}
-
-void
 PIA::updatePA()
 {
     updatePA((ddra & pra) | (~ddra & paExternal()));
@@ -204,12 +201,15 @@ PIA::updatePA()
 void
 PIA::updatePA(u8 val)
 {
-    // Check for a rising or falling edge on PA7
-    if (GET_BIT(edgctrl, 0) == 0 && RISING_EDGE_BIT(pa, val, 7)) {
-        SET_BIT(instat, 6);
-    }
-    if (GET_BIT(edgctrl, 0) == 1 && FALLING_EDGE_BIT(pa, val, 7)) {
-        SET_BIT(instat, 6);
+    if (posEdgeDetect) {
+
+        // Check for a rising edge on PA7
+        if (RISING_EDGE_BIT(pa, val, 7)) SET_BIT(instat, 6);
+
+    } else {
+
+        // Check for a falling edge on PA7
+        if (FALLING_EDGE_BIT(pa, val, 7)) SET_BIT(instat, 6);
     }
 
     pa = val;
@@ -250,7 +250,6 @@ PIA::pbExternal() const
 template <bool fastPaths> void
 PIA::execute()
 {
-    // Interval timer logic
     if (GET_BIT(instat, 7)) {
 
         if (timer != 0x80) timer--;

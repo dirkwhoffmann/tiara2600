@@ -49,9 +49,8 @@ PIA::_didReset(bool hard)
 
     if (hard) {
 
-        // REMOVE ASAP
-        // config.ramPattern = RAM_PATTERN_ATARI_7800;
-
+        interval = 1;
+        
         switch (config.ramPattern) {
 
             case RAM_PATTERN_ZEROES:
@@ -97,6 +96,8 @@ PIA::_dump(Category category, std::ostream& os) const
 
     if (category == Category::Registers) {
 
+        auto edge = posEdgeDetect ? "Positive Edge" : "Negative Edge";
+
         os << std::endl;
         os << tab("PRA") << hex(pra) << std::endl;
         os << tab("PRB") << hex(prb) << std::endl;
@@ -104,7 +105,7 @@ PIA::_dump(Category category, std::ostream& os) const
         os << tab("DDRB") << hex(ddrb) << std::endl;
         os << tab("INTENA") << hex(intena) << std::endl;
         os << tab("INSTAT") << hex(instat) << std::endl;
-        os << tab("EDGCTRL") << hex(edgctrl) << std::endl;
+        os << tab("EDGCTRL") << edge << std::endl;
         os << std::endl;
     }
 
@@ -133,9 +134,12 @@ PIA::cacheInfo(PIAInfo &result) const
     result.portB.ext = pbExternal();
 
     result.timer.intim = timer;
-    result.timer.instat = instat;
     result.timer.counter = counter;
     result.timer.interval = interval;
+
+    result.irq.intena = intena;
+    result.irq.instat = instat;
+    result.irq.posEdgeDetect = posEdgeDetect;
 }
 
 void
