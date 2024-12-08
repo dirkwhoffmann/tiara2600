@@ -805,6 +805,13 @@ AudioPortAPI::copyInterleaved(float *buffer, isize n)
     return audioPort->copyInterleaved(buffer, n);
 }
 
+float
+AudioPortAPI::draw(u32 *buffer, isize width, isize height,
+           float maxAmp, u32 color, isize source) const
+{
+    audioPort->stream.drawL(buffer, width, height, color);
+    return 0;
+}
 
 //
 // Video port

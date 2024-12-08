@@ -36,6 +36,23 @@ Audio::_didReset(bool hard)
 }
 
 void
+Audio::cacheInfo(AudioInfo &result) const
+{
+    result.audv = audv;
+    result.audf = audf;
+    result.audc = audc;
+    result.fdiv = fdiv;
+    result.poly4 = poly4;
+    result.poly5 = poly5;
+}
+
+void
+Audio::cacheStats(AudioStats &result) const
+{
+
+}
+
+void
 Audio::pokeAUDC(u8 val)
 {
     debug(AUDREG_DEBUG, "pokeAUDC%ld(%02X)\n", objid, val);

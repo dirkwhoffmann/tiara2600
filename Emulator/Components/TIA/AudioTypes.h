@@ -27,4 +27,26 @@ typedef struct
 }
 AudioConfig;
 
+typedef struct
+{
+    // Registers
+    u8 audv;
+    u8 audf;
+    u8 audc;
+
+    // Counters
+    u8 fdiv;
+    
+    // Shift registers
+    u8 poly5;
+    u8 poly4;
+}
+AudioInfo;
+
+typedef struct
+{
+
+}
+AudioStats;
+
 }

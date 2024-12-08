@@ -623,6 +623,30 @@ using namespace tiara;
     return [self port]->copyInterleaved(target, n);
 }
 
+- (float)drawWaveform:(u32 *)buffer
+                    w:(NSInteger)w
+                    h:(NSInteger)h
+                scale:(float)s
+                color:(u32)c
+               source:(NSInteger)source
+{
+    return [self port]->draw(buffer, w, h, s, c, source);
+}
+
+- (float)drawWaveform:(u32 *)buffer
+                 size:(NSSize)size
+                scale:(float)s
+                color:(u32)c
+               source:(NSInteger)source
+{
+    return [self drawWaveform:buffer
+                            w:(NSInteger)size.width
+                            h:(NSInteger)size.height
+                        scale:s
+                        color:c
+                       source:source];
+}
+
 @end
 
 
@@ -999,7 +1023,6 @@ using namespace tiara;
 @synthesize port2;
 @synthesize remoteManager;
 @synthesize retroShell;
-@synthesize sid;
 @synthesize tia;
 @synthesize videoPort;
 

@@ -275,7 +275,6 @@ struct TIAAPI : API {
     const TIAInfo &getInfo() const;
     const TIAInfo &getCachedInfo() const;
 
-
     /** @brief  Returns the RGBA value of a color
      */
     u32 getColor(isize nr) const;
@@ -362,7 +361,7 @@ struct AudioPortAPI : API {
      *  The Mac app uses this function to visualize the contents of the
      *  audio buffer in one of it's inspector panels. */
     float draw(u32 *buffer, isize width, isize height,
-               float maxAmp, u32 color, isize sid = -1) const;
+               float maxAmp, u32 color, isize source = -1) const;
     /// @}
 
 };

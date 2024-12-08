@@ -32,7 +32,6 @@ using namespace tiara;
 @class MyController;
 @class RemoteManagerProxy;
 @class RetroShellProxy;
-@class SIDProxy;
 @class TIAProxy;
 @class VideoPortProxy;
 
@@ -94,7 +93,6 @@ using namespace tiara;
     MemoryProxy *mem;
     PaddleProxy *paddle;
     RetroShellProxy *retroShell;
-    SIDProxy *sid;
     TIAProxy *tia;
     VideoPortProxy *videoPort;
 }
@@ -112,7 +110,6 @@ using namespace tiara;
 @property (readonly, strong) MemoryProxy *mem;
 @property (readonly, strong) RemoteManagerProxy *remoteManager;
 @property (readonly, strong) RetroShellProxy *retroShell;
-@property (readonly, strong) SIDProxy *sid;
 @property (readonly, strong) TIAProxy *tia;
 @property (readonly, strong) VideoPortProxy *videoPort;
 
@@ -372,18 +369,6 @@ using namespace tiara;
 
 
 //
-// SID
-//
-
-@interface SIDProxy : Proxy { }
-
-- (float)drawWaveform:(u32 *)buffer w:(NSInteger)w h:(NSInteger)h scale:(float)s color:(u32)c source:(NSInteger)source;
-- (float)drawWaveform:(u32 *)buffer size:(NSSize)size scale:(float)s color:(u32)c source:(NSInteger)source;
-
-@end
-
-
-//
 // Audio port
 //
 
@@ -394,6 +379,9 @@ using namespace tiara;
 - (NSInteger)copyMono:(float *)target size:(NSInteger)n;
 - (NSInteger)copyStereo:(float *)target1 buffer2:(float *)target2 size:(NSInteger)n;
 - (NSInteger)copyInterleaved:(float *)target size:(NSInteger)n;
+
+- (float)drawWaveform:(u32 *)buffer w:(NSInteger)w h:(NSInteger)h scale:(float)s color:(u32)c source:(NSInteger)source;
+- (float)drawWaveform:(u32 *)buffer size:(NSSize)size scale:(float)s color:(u32)c source:(NSInteger)source;
 
 @end
 

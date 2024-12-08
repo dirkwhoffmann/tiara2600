@@ -184,7 +184,6 @@ Atari::eventName(EventSlot slot, EventID id)
                 case INS_MEM:       return "INS_MEM";
                 case INS_TIA:       return "INS_TIA";
                 case INS_PIA:       return "INS_PIA";
-                case INS_SID:       return "INS_SID";
                 case INS_EVENTS:    return "INS_EVENTS";
                 default:            return "*** INVALID ***";
             }

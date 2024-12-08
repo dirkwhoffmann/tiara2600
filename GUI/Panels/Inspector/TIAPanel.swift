@@ -9,7 +9,7 @@
 
 extension Inspector {
 
-    private func cacheTIA() {
+    func cacheTIA() {
 
         if let emu = emu {
 

@@ -286,20 +286,19 @@ class Inspector: DialogController {
     @IBOutlet weak var tiaRESM1: NSButton!
 
     // Audio panel
-    @IBOutlet weak var sidSelector: NSSegmentedControl!
-    @IBOutlet weak var sidWaveform1: NSPopUpButton!
-    @IBOutlet weak var sidFrequency1: NSTextField!
-    @IBOutlet weak var sidPulseWidth1: NSTextField!
-    @IBOutlet weak var sidPulseWidthText1: NSTextField!
-    @IBOutlet weak var sidAttackRate1: NSTextField!
-    @IBOutlet weak var sidDecayRate1: NSTextField!
-    @IBOutlet weak var sidSustainRate1: NSTextField!
-    @IBOutlet weak var sidReleaseRate1: NSTextField!
-    @IBOutlet weak var sidGateBit1: NSButton!
-    @IBOutlet weak var sidTestBit1: NSButton!
-    @IBOutlet weak var sidSyncBit1: NSButton!
-    @IBOutlet weak var sidRingBit1: NSButton!
-    
+    @IBOutlet weak var aud0AUDV: NSTextField!
+    @IBOutlet weak var aud0AUDF: NSTextField!
+    @IBOutlet weak var aud0AUDC: NSTextField!
+    @IBOutlet weak var aud0Poly40: NSTextField!
+    @IBOutlet weak var aud0Poly41: NSTextField!
+    @IBOutlet weak var aud0Poly42: NSTextField!
+    @IBOutlet weak var aud0Poly43: NSTextField!
+    @IBOutlet weak var aud0Poly50: NSTextField!
+    @IBOutlet weak var aud0Poly51: NSTextField!
+    @IBOutlet weak var aud0Poly52: NSTextField!
+    @IBOutlet weak var aud0Poly53: NSTextField!
+    @IBOutlet weak var aud0Poly54: NSTextField!
+
     @IBOutlet weak var sidWaveform2: NSPopUpButton!
     @IBOutlet weak var sidFrequency2: NSTextField!
     @IBOutlet weak var sidPulseWidth2: NSTextField!
@@ -431,10 +430,10 @@ class Inspector: DialogController {
             switch id {
                 
             case "CPU": refreshCPU(count: count, full: full)
-            case "PIA": refreshPIA(count: count, full: full)
             case "Memory": refreshMemory(count: count, full: full)
             case "TIA": refreshTIA(count: count, full: full)
-            case "SID": refreshSID(count: count, full: full)
+            case "PIA": refreshPIA(count: count, full: full)
+            case "Audio": refreshSID(count: count, full: full)
             case "Events": refreshEvents(count: count, full: full)
 
             default:

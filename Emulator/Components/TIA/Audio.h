@@ -18,29 +18,31 @@
 
 namespace tiara {
 
-/*
- This class implements the audio circuitry of the TIA chip. TIA features two
- audio circuits of this kind that operate independently of each other.
-
- The audio unit is driven by a dual-phase clock signal called (AΦ1,AΦ2) in the
- TIA schematics. The clock signal is derived by TIA's horizontal counter, clocking
- the audio circuitry two times per scanline.
-
- The audio circuit runs the clock signal through a frequency divider which is
- controlled by the AUDF register. The frequency divider is driven by modulo-32
- counter running from 0 ... 31. Whenever the counter value matches the contents
- of the AUDF register, the counter is reset and a clock pulse is generated that
- triggers the rest of the audio circuitry. The clock signal produced by the frequency
- divider is labelled (TΦ1,TΦ2) in the TIA schematics.
-
- (TΦ1,TΦ2) drives two interconnected polynomial counters, poly4 and poly5, that are controled by the
- AUDC register. poly4 comprises five dual-pahse delay elements, and poly5 consists of four SR flip-flops. The last bits of poly5 is the emitted audo signal, linearly scaled by the current value of the volume register AUDV.
-
- On each shift-register pulse, poly4 shifts all bits one position to the right and
- feeds in a new bit on the left. The shifted-in bit depends on the contents of the AUDC register.
-
+/* This class implements the audio circuitry of the TIA chip. TIA features two
+ * audio circuits of this kind that operate independently of each other.
+ *
+ * The audio unit is driven by a dual-phase clock signal called (AΦ1,AΦ2) in the
+ * TIA schematics. The clock signal is derived by TIA's horizontal counter,
+ * clocking the audio circuitry two times per scanline.
+ *
+ * The audio circuit runs the clock signal through a frequency divider which is
+ * controlled by the AUDF register. The frequency divider is driven by modulo-32
+ * counter running from 0 ... 31. Whenever the counter value matches the contents
+ * of the AUDF register, the counter is reset and a clock pulse is generated that
+ * triggers the rest of the audio circuitry. The clock signal produced by the
+ * frequency divider is labelled (TΦ1,TΦ2) in the TIA schematics.
+ *
+ * (TΦ1,TΦ2) drives two interconnected polynomial counters, poly4 and poly5, that
+ * are controled by the AUDC register. poly4 comprises five dual-pahse delay
+ * elements, and poly5 consists of four SR flip-flops. The last bits of poly5 is
+ * the emitted audo signal, linearly scaled by the current value of the volume
+ * register AUDV.
+ *
+ * On each shift-register pulse, poly4 shifts all bits one position to the right
+ * and feeds in a new bit on the left. The shifted-in bit depends on the contents
+ * of the AUDC register.
  */
-class Audio final : public SubComponent {
+class Audio final : public SubComponent, public Inspectable<AudioInfo, AudioStats> {
 
     friend class TIA;
 
@@ -84,7 +86,7 @@ class Audio final : public SubComponent {
     // Internals
     //
 
-    // Couter that implements the frequency divider
+    // Couter implementing the frequency divider
     u8 fdiv = 0;
 
     // Polynomial counters
@@ -146,7 +148,17 @@ private:
 
     void _dump(Category category, std::ostream& os) const override;
     void _didReset(bool hard) override;
-    
+
+
+    //
+    // Methods from Inspectable
+    //
+
+private:
+
+    void cacheInfo(AudioInfo &result) const override;
+    void cacheStats(AudioStats &result) const override;
+
 
     //
     // Methods from Configurable

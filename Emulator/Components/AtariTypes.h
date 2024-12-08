@@ -225,7 +225,6 @@ enum_i8(EventID)
     INS_MEM,
     INS_TIA,
     INS_PIA,
-    INS_SID,
     INS_EVENTS,
     INS_EVENT_COUNT
 };

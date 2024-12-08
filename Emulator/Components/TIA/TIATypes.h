@@ -13,7 +13,8 @@
 
 #pragma once
 
-#include "Reflection.h"
+#include "AudioTypes.h"
+// #include "Reflection.h"
 
 namespace tiara {
 
@@ -363,6 +364,10 @@ typedef struct
 
     // Registers
     u8 regs[64];
+
+    // Audio units
+    AudioInfo audio0;
+    AudioInfo audio1;
 }
 TIAInfo;
 
