@@ -139,12 +139,16 @@ TIA::cacheInfo(TIAInfo &result) const
     for (isize i = 0; i < 64; i++) {
         result.regs[i] = spy(TIARegister(i));
     }
+
+    audio[0].cacheInfo(result.audio0);
+    audio[1].cacheInfo(result.audio1);
 }
 
 void
 TIA::cacheStats(TIAStats &result) const
 {
-
+    audio[0].cacheStats(result.audio0);
+    audio[1].cacheStats(result.audio1);
 }
 
 void

@@ -40,8 +40,8 @@ class WaveformView: NSImageView {
 
     override func awakeFromNib() {
 
-        let w = inspector.sidWaveformView.visibleRect.width
-        let h = inspector.sidWaveformView.visibleRect.height
+        let w = inspector.aud0WaveformView.visibleRect.width
+        let h = inspector.aud0WaveformView.visibleRect.height
 
         size = NSSize(width: w, height: h)
         buffer = UnsafeMutablePointer<UInt32>.allocate(capacity: wordCount)
@@ -54,14 +54,7 @@ class WaveformView: NSImageView {
 
     override func draw(_ dirtyRect: NSRect) {
 
-        var source = -1
-        /*
-        if inspector.sidWaveformSource.selectedTag() == 1 {
-            source = inspector.selectedSID
-        }
-        */
-
-        maxAmp = audioPort?.drawWaveform(buffer, size: size, scale: maxAmp, color: color, source: source) ?? 0
+        maxAmp = audioPort?.drawWaveform(buffer, size: size, scale: maxAmp, color: color, source: tag) ?? 0
         image = NSImage.make(data: buffer, rect: CGSize(width: size.width, height: size.height))
         super.draw(dirtyRect)
     }

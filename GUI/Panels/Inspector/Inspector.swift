@@ -299,44 +299,22 @@ class Inspector: DialogController {
     @IBOutlet weak var aud0Poly53: NSTextField!
     @IBOutlet weak var aud0Poly54: NSTextField!
 
-    @IBOutlet weak var sidWaveform2: NSPopUpButton!
-    @IBOutlet weak var sidFrequency2: NSTextField!
-    @IBOutlet weak var sidPulseWidth2: NSTextField!
-    @IBOutlet weak var sidPulseWidthText2: NSTextField!
-    @IBOutlet weak var sidAttackRate2: NSTextField!
-    @IBOutlet weak var sidDecayRate2: NSTextField!
-    @IBOutlet weak var sidSustainRate2: NSTextField!
-    @IBOutlet weak var sidReleaseRate2: NSTextField!
-    @IBOutlet weak var sidGateBit2: NSButton!
-    @IBOutlet weak var sidTestBit2: NSButton!
-    @IBOutlet weak var sidSyncBit2: NSButton!
-    @IBOutlet weak var sidRingBit2: NSButton!
-    
-    @IBOutlet weak var sidWaveform3: NSPopUpButton!
-    @IBOutlet weak var sidFrequency3: NSTextField!
-    @IBOutlet weak var sidPulseWidth3: NSTextField!
-    @IBOutlet weak var sidPulseWidthText3: NSTextField!
-    @IBOutlet weak var sidAttackRate3: NSTextField!
-    @IBOutlet weak var sidDecayRate3: NSTextField!
-    @IBOutlet weak var sidSustainRate3: NSTextField!
-    @IBOutlet weak var sidReleaseRate3: NSTextField!
-    @IBOutlet weak var sidGateBit3: NSButton!
-    @IBOutlet weak var sidTestBit3: NSButton!
-    @IBOutlet weak var sidSyncBit3: NSButton!
-    @IBOutlet weak var sidRingBit3: NSButton!
-    
-    @IBOutlet weak var sidVolume: NSTextField!
-    @IBOutlet weak var sidPotX: NSTextField!
-    @IBOutlet weak var sidPotY: NSTextField!
+    @IBOutlet weak var aud1AUDV: NSTextField!
+    @IBOutlet weak var aud1AUDF: NSTextField!
+    @IBOutlet weak var aud1AUDC: NSTextField!
+    @IBOutlet weak var aud1Poly40: NSTextField!
+    @IBOutlet weak var aud1Poly41: NSTextField!
+    @IBOutlet weak var aud1Poly42: NSTextField!
+    @IBOutlet weak var aud1Poly43: NSTextField!
+    @IBOutlet weak var aud1Poly50: NSTextField!
+    @IBOutlet weak var aud1Poly51: NSTextField!
+    @IBOutlet weak var aud1Poly52: NSTextField!
+    @IBOutlet weak var aud1Poly53: NSTextField!
+    @IBOutlet weak var aud1Poly54: NSTextField!
 
-    @IBOutlet weak var sidFilterType: NSPopUpButton!
-    @IBOutlet weak var sidFilterCutoff: NSTextField!
-    @IBOutlet weak var sidFilterResonance: NSTextField!
-    @IBOutlet weak var sidFilter1: NSButton!
-    @IBOutlet weak var sidFilter2: NSButton!
-    @IBOutlet weak var sidFilter3: NSButton!
-    
-    @IBOutlet weak var sidWaveformView: WaveformView!
+    @IBOutlet weak var aud0WaveformView: WaveformView!
+    @IBOutlet weak var aud1WaveformView: WaveformView!
+
     @IBOutlet weak var sidWaveformSource: NSPopUpButton!
     @IBOutlet weak var sidAudioBufferLevel: NSLevelIndicator!
     @IBOutlet weak var sidAudioBufferLevelText: NSTextField!

@@ -15,6 +15,7 @@ extension Inspector {
 
             cacheTIA()
 
+            // Audio unit 0
             aud0AUDV.integerValue = Int(tiaInfo.audio0.audv)
             aud0AUDF.integerValue = Int(tiaInfo.audio0.audf)
             aud0AUDC.integerValue = Int(tiaInfo.audio0.audc)
@@ -28,6 +29,24 @@ extension Inspector {
             aud0Poly53.integerValue = (Int(tiaInfo.audio0.poly5) & 0x08) != 0 ? 1 : 0
             aud0Poly54.integerValue = (Int(tiaInfo.audio0.poly5) & 0x10) != 0 ? 1 : 0
 
+            // Audio unit 1
+            aud1AUDV.integerValue = Int(tiaInfo.audio1.audv)
+            aud1AUDF.integerValue = Int(tiaInfo.audio1.audf)
+            aud1AUDC.integerValue = Int(tiaInfo.audio1.audc)
+            aud1Poly40.integerValue = (Int(tiaInfo.audio1.poly4) & 0x01) != 0 ? 1 : 0
+            aud1Poly41.integerValue = (Int(tiaInfo.audio1.poly4) & 0x02) != 0 ? 1 : 0
+            aud1Poly42.integerValue = (Int(tiaInfo.audio1.poly4) & 0x04) != 0 ? 1 : 0
+            aud1Poly43.integerValue = (Int(tiaInfo.audio1.poly4) & 0x08) != 0 ? 1 : 0
+            aud1Poly50.integerValue = (Int(tiaInfo.audio1.poly5) & 0x01) != 0 ? 1 : 0
+            aud1Poly51.integerValue = (Int(tiaInfo.audio1.poly5) & 0x02) != 0 ? 1 : 0
+            aud1Poly52.integerValue = (Int(tiaInfo.audio1.poly5) & 0x04) != 0 ? 1 : 0
+            aud1Poly53.integerValue = (Int(tiaInfo.audio1.poly5) & 0x08) != 0 ? 1 : 0
+            aud1Poly54.integerValue = (Int(tiaInfo.audio1.poly5) & 0x10) != 0 ? 1 : 0
+
+            // Waveforms
+            aud0WaveformView.update()
+            aud1WaveformView.update()
+
             // Audio buffer
             let stats = emu.audioPort.stats
             let fillLevel = Int32(stats.fillLevel * 100)
@@ -36,7 +55,6 @@ extension Inspector {
             sidBufferUnderflows.intValue = Int32(stats.bufferUnderflows)
             sidBufferOverflows.intValue = Int32(stats.bufferOverflows)
 
-            sidWaveformView.update()
         }
     }
 

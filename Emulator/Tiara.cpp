@@ -809,7 +809,11 @@ float
 AudioPortAPI::draw(u32 *buffer, isize width, isize height,
            float maxAmp, u32 color, isize source) const
 {
-    audioPort->stream.drawL(buffer, width, height, color);
+    if (source == 0) {
+        audioPort->stream.drawL(buffer, width, height, color);
+    } else {
+        audioPort->stream.drawR(buffer, width, height, color);
+    }
     return 0;
 }
 

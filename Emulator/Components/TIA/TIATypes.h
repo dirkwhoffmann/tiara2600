@@ -373,8 +373,8 @@ TIAInfo;
 
 typedef struct
 {
-    // Speed optimizations
-    // isize fastPaths;
+    AudioStats audio0;
+    AudioStats audio1;
 }
 TIAStats;
 
