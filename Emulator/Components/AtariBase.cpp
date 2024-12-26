@@ -191,14 +191,14 @@ Atari::checkOption(Option opt, i64 value)
         case OPT_ATARI_WARP_MODE:
 
             if (!WarpModeEnum::isValid(value)) {
-                throw Error(VC64ERROR_OPT_INV_ARG, WarpModeEnum::keyList());
+                throw Error(TIARA_ERROR_OPT_INV_ARG, WarpModeEnum::keyList());
             }
             return;
 
         case OPT_ATARI_SPEED_BOOST:
 
             if (value < 50 || value > 200) {
-                throw Error(VC64ERROR_OPT_INV_ARG, "50...200");
+                throw Error(TIARA_ERROR_OPT_INV_ARG, "50...200");
             }
             return;
 
@@ -209,7 +209,7 @@ Atari::checkOption(Option opt, i64 value)
         case OPT_ATARI_RUN_AHEAD:
 
             if (value < 0 || value > 12) {
-                throw Error(VC64ERROR_OPT_INV_ARG, "0...12");
+                throw Error(TIARA_ERROR_OPT_INV_ARG, "0...12");
             }
             return;
 
@@ -224,7 +224,7 @@ Atari::checkOption(Option opt, i64 value)
         case OPT_ATARI_SNAP_DELAY:
 
             if (value < 10 || value > 3600) {
-                throw Error(VC64ERROR_OPT_INV_ARG, "10...3600");
+                throw Error(TIARA_ERROR_OPT_INV_ARG, "10...3600");
             }
             return;
 
@@ -233,7 +233,7 @@ Atari::checkOption(Option opt, i64 value)
             return;
 
         default:
-            throw Error(VC64ERROR_OPT_UNSUPPORTED);
+            throw Error(TIARA_ERROR_OPT_UNSUPPORTED);
     }
 }
 

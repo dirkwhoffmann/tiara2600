@@ -100,13 +100,13 @@ Snapshot::Snapshot(Atari &c64) : Snapshot(c64.size())
 void
 Snapshot::finalizeRead()
 {
-    if (FORCE_SNAP_TOO_OLD) throw Error(VC64ERROR_SNAP_TOO_OLD);
-    if (FORCE_SNAP_TOO_NEW) throw Error(VC64ERROR_SNAP_TOO_NEW);
-    if (FORCE_SNAP_IS_BETA) throw Error(VC64ERROR_SNAP_IS_BETA);
+    if (FORCE_SNAP_TOO_OLD) throw Error(TIARA_ERROR_SNAP_TOO_OLD);
+    if (FORCE_SNAP_TOO_NEW) throw Error(TIARA_ERROR_SNAP_TOO_NEW);
+    if (FORCE_SNAP_IS_BETA) throw Error(TIARA_ERROR_SNAP_IS_BETA);
 
-    if (isTooOld()) throw Error(VC64ERROR_SNAP_TOO_OLD);
-    if (isTooNew()) throw Error(VC64ERROR_SNAP_TOO_NEW);
-    if (isBeta() && !betaRelease) throw Error(VC64ERROR_SNAP_IS_BETA);
+    if (isTooOld()) throw Error(TIARA_ERROR_SNAP_TOO_OLD);
+    if (isTooNew()) throw Error(TIARA_ERROR_SNAP_TOO_NEW);
+    if (isBeta() && !betaRelease) throw Error(TIARA_ERROR_SNAP_IS_BETA);
 }
 
 std::pair <isize,isize> 

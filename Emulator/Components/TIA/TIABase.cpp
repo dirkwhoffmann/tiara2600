@@ -220,7 +220,7 @@ TIA::checkOption(Option opt, i64 value)
         case OPT_TIA_REVISION:
 
             if (!TIARevisionEnum::isValid(value)) {
-                throw Error(VC64ERROR_OPT_INV_ARG, TIARevisionEnum::keyList());
+                throw Error(TIARA_ERROR_OPT_INV_ARG, TIARevisionEnum::keyList());
             }
             break;
 
@@ -231,7 +231,7 @@ TIA::checkOption(Option opt, i64 value)
         case OPT_TIA_COLLISIONS:
 
             if (value < 0 || value > 0xFFFF) {
-                throw Error(VC64ERROR_OPT_INV_ARG, "0x0000...0xFFFF");
+                throw Error(TIARA_ERROR_OPT_INV_ARG, "0x0000...0xFFFF");
             }
             break;
 
@@ -241,7 +241,7 @@ TIA::checkOption(Option opt, i64 value)
             break;
 
         default:
-            throw Error(VC64ERROR_OPT_UNSUPPORTED);
+            throw Error(TIARA_ERROR_OPT_UNSUPPORTED);
     }
 }
 

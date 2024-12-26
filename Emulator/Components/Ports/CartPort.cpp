@@ -42,7 +42,7 @@ CartPort::attachCartridge(const MediaFile &file, bool reset)
 
     } catch (...) {
 
-        throw Error(VC64ERROR_FILE_TYPE_MISMATCH);
+        throw Error(TIARA_ERROR_FILE_TYPE_MISMATCH);
     }
 }
 

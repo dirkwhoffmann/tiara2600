@@ -59,7 +59,7 @@ void
 Emulator::initialize()
 {
     // Make sure this function is only called once
-    if (isInitialized()) throw Error(VC64ERROR_LAUNCH, "The emulator is already initialized.");
+    if (isInitialized()) throw Error(TIARA_ERROR_LAUNCH, "The emulator is already initialized.");
 
     // Initialize all components
     main.initialize();
@@ -346,7 +346,7 @@ Emulator::getDebugVariable(DebugFlag flag)
 {
 #ifdef RELEASEBUILD
 
-    throw Error(VC64ERROR_OPT_UNSUPPORTED, "Debug variables are only accessible in debug builds.");
+    throw Error(TIARA_ERROR_OPT_UNSUPPORTED, "Debug variables are only accessible in debug builds.");
 
 #else
 
@@ -403,7 +403,7 @@ Emulator::getDebugVariable(DebugFlag flag)
         case FLAG_FORCE_CRT_UNSUPPORTED:    return FORCE_CRT_UNSUPPORTED;
 
         default:
-            throw Error(VC64ERROR_OPT_UNSUPPORTED,
+            throw Error(TIARA_ERROR_OPT_UNSUPPORTED,
                         "Unhandled debug variable: " + string(DebugFlagEnum::key(flag)));
     }
 
@@ -415,7 +415,7 @@ Emulator::setDebugVariable(DebugFlag flag, bool val)
 {
 #ifdef RELEASEBUILD
 
-    throw Error(VC64ERROR_OPT_UNSUPPORTED, "Debug variables are only accessible in debug builds.");
+    throw Error(TIARA_ERROR_OPT_UNSUPPORTED, "Debug variables are only accessible in debug builds.");
 
 #else
 
@@ -472,7 +472,7 @@ Emulator::setDebugVariable(DebugFlag flag, bool val)
         case FLAG_FORCE_CRT_UNSUPPORTED:    FORCE_CRT_UNSUPPORTED = val; break;
 
         default:
-            throw Error(VC64ERROR_OPT_UNSUPPORTED,
+            throw Error(TIARA_ERROR_OPT_UNSUPPORTED,
                         "Unhandled debug variable: " + string(DebugFlagEnum::key(flag)));
     }
 #endif

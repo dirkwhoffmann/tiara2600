@@ -30,6 +30,12 @@ CartPort::_dump(Category category, std::ostream& os) const
     }
 }
 
+void
+CartPort::_isReady() const
+{
+    if (cart->traits.cartType == CART_NONE) throw Error(TIARA_ERROR_CART_MISSING);
+}
+
 i64
 CartPort::getOption(Option option) const
 {
@@ -50,12 +56,12 @@ CartPort::checkOption(Option opt, i64 value)
         case OPT_CART_TYPE:
 
             if (!CartTypeEnum::isValid(value)) {
-                throw Error(VC64ERROR_OPT_INV_ARG, CartTypeEnum::keyList());
+                throw Error(TIARA_ERROR_OPT_INV_ARG, CartTypeEnum::keyList());
             }
             return;
 
         default:
-            throw Error(VC64ERROR_OPT_UNSUPPORTED);
+            throw Error(TIARA_ERROR_OPT_UNSUPPORTED);
     }
 }
 

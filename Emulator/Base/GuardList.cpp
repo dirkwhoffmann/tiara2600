@@ -63,7 +63,7 @@ GuardList::setAt(u32 target, isize ignores)
 {
     {   SUSPENDED
 
-        if (guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_ALREADY_SET, target);
+        if (guards.isSetAt(target)) throw Error(TIARA_ERROR_GUARD_ALREADY_SET, target);
         guards.setAt(target, ignores);
         update();
     }
@@ -75,7 +75,7 @@ GuardList::moveTo(isize nr, u32 newTarget)
 {
     {   SUSPENDED
 
-        if (!guards.guardNr(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+        if (!guards.guardNr(nr)) throw Error(TIARA_ERROR_GUARD_NOT_FOUND, nr);
         guards.moveTo(nr, newTarget);
         update();
     }
@@ -87,7 +87,7 @@ GuardList::ignore(long nr, long count)
 {
     {   SUSPENDED
 
-        if (!guards.guardNr(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+        if (!guards.guardNr(nr)) throw Error(TIARA_ERROR_GUARD_NOT_FOUND, nr);
         guards.ignore(nr, count);
         update();
     }
@@ -99,7 +99,7 @@ GuardList::remove(isize nr)
 {
     {   SUSPENDED
 
-        if (!guards.isSet(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+        if (!guards.isSet(nr)) throw Error(TIARA_ERROR_GUARD_NOT_FOUND, nr);
         guards.remove(nr);
         update();
     }
@@ -111,7 +111,7 @@ GuardList::removeAt(u32 target)
 {
     {   SUSPENDED
 
-        if (!guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_NOT_FOUND, target);
+        if (!guards.isSetAt(target)) throw Error(TIARA_ERROR_GUARD_NOT_FOUND, target);
         guards.removeAt(target);
         update();
     }
@@ -134,7 +134,7 @@ GuardList::enable(isize nr)
 {
     {   SUSPENDED
 
-        if (!guards.isSet(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+        if (!guards.isSet(nr)) throw Error(TIARA_ERROR_GUARD_NOT_FOUND, nr);
         guards.enable(nr);
         update();
     }
@@ -146,7 +146,7 @@ GuardList::enableAt(u32 target)
 {
     {   SUSPENDED
 
-        if (!guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_NOT_FOUND, target);
+        if (!guards.isSetAt(target)) throw Error(TIARA_ERROR_GUARD_NOT_FOUND, target);
         guards.enableAt(target);
         update();
     }
@@ -169,7 +169,7 @@ GuardList::disable(isize nr)
 {
     {   SUSPENDED
 
-        if (!guards.isSet(nr)) throw Error(VC64ERROR_GUARD_NOT_FOUND, nr);
+        if (!guards.isSet(nr)) throw Error(TIARA_ERROR_GUARD_NOT_FOUND, nr);
         guards.disable(nr);
         update();
     }
@@ -181,7 +181,7 @@ GuardList::disableAt(u32 target)
 {
     {   SUSPENDED
 
-        if (!guards.isSetAt(target)) throw Error(VC64ERROR_GUARD_NOT_FOUND, target);
+        if (!guards.isSetAt(target)) throw Error(TIARA_ERROR_GUARD_NOT_FOUND, target);
         guards.disableAt(target);
         update();
     }

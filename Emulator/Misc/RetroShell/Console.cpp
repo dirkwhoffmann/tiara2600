@@ -829,7 +829,7 @@ Console::initCommands(Command &root)
              [this](Arguments& argv, long value) {
 
         auto stream = std::ifstream(argv.front());
-        if (!stream.is_open()) throw Error(VC64ERROR_FILE_NOT_FOUND, argv.front());
+        if (!stream.is_open()) throw Error(TIARA_ERROR_FILE_NOT_FOUND, argv.front());
         retroShell.asyncExecScript(stream);
     });
 

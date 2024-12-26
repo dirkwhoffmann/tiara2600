@@ -332,7 +332,7 @@ Atari::exportConfig(const fs::path &path) const
     auto fs = std::ofstream(path, std::ofstream::binary);
 
     if (!fs.is_open()) {
-        throw Error(VC64ERROR_FILE_CANT_WRITE);
+        throw Error(TIARA_ERROR_FILE_CANT_WRITE);
     }
 
     exportConfig(fs);
@@ -355,7 +355,7 @@ Atari::get(Option opt, isize objid) const
     debug(CNF_DEBUG, "get(%s, %ld)\n", OptionEnum::key(opt), objid);
 
     auto target = routeOption(opt, objid);
-    if (target == nullptr) throw Error(VC64ERROR_OPT_INV_ID);
+    if (target == nullptr) throw Error(TIARA_ERROR_OPT_INV_ID);
     return target->getOption(opt);
 }
 
@@ -380,7 +380,7 @@ Atari::check(Option opt, i64 value, const std::vector<isize> objids)
         debug(CNF_DEBUG, "check(%s, %lld, %ld)\n", OptionEnum::key(opt), value, objid);
 
         auto target = routeOption(opt, objid);
-        if (target == nullptr) throw Error(VC64ERROR_OPT_INV_ID);
+        if (target == nullptr) throw Error(TIARA_ERROR_OPT_INV_ID);
 
         target->checkOption(opt, value);
     }
@@ -409,7 +409,7 @@ Atari::set(Option opt, i64 value, const std::vector<isize> objids)
         debug(CNF_DEBUG, "set(%s, %lld, %ld)\n", OptionEnum::key(opt), value, objid);
 
         auto target = routeOption(opt, objid);
-        if (target == nullptr) throw Error(VC64ERROR_OPT_INV_ID);
+        if (target == nullptr) throw Error(TIARA_ERROR_OPT_INV_ID);
 
         target->setOption(opt, value);
     }
@@ -811,11 +811,11 @@ Atari::processREGEvent()
 {
     auto hi = HI_BYTE(data[SLOT_REG]);
     auto lo = LO_BYTE(data[SLOT_REG]);
-
+    
     switch (eventid[SLOT_REG]) {
 
         case REG_WRITE_TIA: tia.poke(TIARegister(hi), lo); break;
-        case REG_WRITE_PIA: pia.pokeReg(PIARegister(hi), lo); break;
+        case REG_WRITE_PIA: pia.pokeReg(u16(hi), lo); break;
 
         default:
             fatalError;
@@ -912,7 +912,7 @@ Atari::loadSnapshot(const MediaFile &file)
 
     } catch (...) {
 
-        throw Error(VC64ERROR_FILE_TYPE_MISMATCH);
+        throw Error(TIARA_ERROR_FILE_TYPE_MISMATCH);
     }
 }
 
@@ -981,7 +981,7 @@ Atari::attachCartridge(const MediaFile &file, bool reset)
 
     } catch (...) {
 
-        throw Error(VC64ERROR_FILE_TYPE_MISMATCH);
+        throw Error(TIARA_ERROR_FILE_TYPE_MISMATCH);
     }
 }
 

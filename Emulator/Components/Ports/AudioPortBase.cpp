@@ -165,7 +165,7 @@ AudioPort::checkOption(Option opt, i64 value)
         case OPT_AUD_SAMPLING:
 
             if (!SamplingMethodEnum::isValid(value)) {
-                throw Error(VC64ERROR_OPT_INV_ARG, SamplingMethodEnum::keyList());
+                throw Error(TIARA_ERROR_OPT_INV_ARG, SamplingMethodEnum::keyList());
             }
             return;
 
@@ -185,7 +185,7 @@ AudioPort::checkOption(Option opt, i64 value)
             return;
 
         default:
-            throw Error(VC64ERROR_OPT_UNSUPPORTED);
+            throw Error(TIARA_ERROR_OPT_UNSUPPORTED);
     }
 }
 

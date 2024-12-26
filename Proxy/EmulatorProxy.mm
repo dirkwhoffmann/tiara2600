@@ -26,7 +26,7 @@ using namespace tiara;
 
     if (self = [super init]) {
         
-        errorCode = VC64ERROR_OK;
+        errorCode = TIARA_ERROR_OK;
         what = @"";
     }
     return self;
@@ -1171,9 +1171,10 @@ using namespace tiara;
     return [self emu]->isTracking();
 }
 
-- (void)run:(ExceptionWrapper *)e
+- (void)run:(ExceptionWrapper *)ex
 {
-    [self emu]->run();
+    try { [self emu]->run(); }
+    catch (Error &error) { [ex save:error]; }
 }
 
 - (void)pause

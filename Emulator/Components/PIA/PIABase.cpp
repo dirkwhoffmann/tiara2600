@@ -168,12 +168,12 @@ PIA::checkOption(Option opt, i64 value)
         case OPT_RAM_INIT_PATTERN:
 
             if (!RamPatternEnum::isValid(value)) {
-                throw Error(VC64ERROR_OPT_INV_ARG, RamPatternEnum::keyList());
+                throw Error(TIARA_ERROR_OPT_INV_ARG, RamPatternEnum::keyList());
             }
             return;
 
         default:
-            throw Error(VC64ERROR_OPT_UNSUPPORTED);
+            throw Error(TIARA_ERROR_OPT_UNSUPPORTED);
     }
 }
 

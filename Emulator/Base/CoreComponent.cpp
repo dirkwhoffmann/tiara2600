@@ -295,7 +295,7 @@ CoreComponent::load(const u8 *buffer)
 
         // Check integrity
         if (hash != c->checksum(false) || FORCE_SNAP_CORRUPTED) {
-            if (SNP_DEBUG) { fatalError; } else { throw Error(VC64ERROR_SNAP_CORRUPTED); }
+            if (SNP_DEBUG) { fatalError; } else { throw Error(TIARA_ERROR_SNAP_CORRUPTED); }
         }
 
         debug(SNP_DEBUG, "Loaded %ld bytes (expected %ld)\n", count, c->size(false));
@@ -327,7 +327,7 @@ CoreComponent::save(u8 *buffer)
 
         // Check integrity
         if (count != c->size(false) || FORCE_SNAP_CORRUPTED) {
-            if (SNP_DEBUG) { fatalError; } else { throw Error(VC64ERROR_SNAP_CORRUPTED); }
+            if (SNP_DEBUG) { fatalError; } else { throw Error(TIARA_ERROR_SNAP_CORRUPTED); }
         }
 
         debug(SNP_DEBUG, "Saved %ld bytes (expected %ld)\n", count, c->size(false));

@@ -626,23 +626,23 @@ struct DefaultsAPI : API {
 public:
 
     /** @brief  Loads a storage file from disk
-     *  @throw  VC64Error (#VC64ERROR_FILE_NOT_FOUND)
-     *  @throw  VC64Error (#VC64ERROR_SYNTAX)
+     *  @throw  VC64Error (#TIARA_ERROR_FILE_NOT_FOUND)
+     *  @throw  VC64Error (#TIARA_ERROR_SYNTAX)
      */
     void load(const std::filesystem::path &path);
 
     /** @brief  Loads a storage file from a stream
-     *  @throw  VC64Error (#VC64ERROR_SYNTAX)
+     *  @throw  VC64Error (#TIARA_ERROR_SYNTAX)
      */
     void load(std::ifstream &stream);
 
     /** @brief  Loads a storage file from a string stream
-     *  @throw  VC64Error (#VC64ERROR_SYNTAX)
+     *  @throw  VC64Error (#TIARA_ERROR_SYNTAX)
      */
     void load(std::stringstream &stream);
 
     /** @brief  Saves a storage file to disk
-     *  @throw  VC64Error (#VC64ERROR_FILE_CANT_WRITE)
+     *  @throw  VC64Error (#TIARA_ERROR_FILE_CANT_WRITE)
      */
     void save(const std::filesystem::path &path);
 
@@ -713,14 +713,14 @@ public:
     /** @brief  Writes a key-value pair into the user storage.
      *  @param  key     The key, given as a string.
      *  @param  value   The value, given as a string.
-     *  @throw  VC64Error (#VC64ERROR_INVALID_KEY)
+     *  @throw  VC64Error (#TIARA_ERROR_INVALID_KEY)
      */
     void set(const string &key, const string &value);
 
     /** @brief  Writes a key-value pair into the user storage.
      *  @param  opt     The option's name forms the prefix of the keys.
      *  @param  value   The value, given as a string.
-     *  @throw  VC64Error (#VC64ERROR_INVALID_KEY)
+     *  @throw  VC64Error (#TIARA_ERROR_INVALID_KEY)
      */
     void set(Option opt, const string &value);
 
@@ -728,14 +728,14 @@ public:
      *  @param  opt     The option's name forms the prefix of the keys.
      *  @param  value   The value for all pairs, given as a string.
      *  @param  objids  The keys are parameterized by adding the vector values as suffixes.
-     *  @throw  VC64Error (#VC64ERROR_INVALID_KEY)
+     *  @throw  VC64Error (#TIARA_ERROR_INVALID_KEY)
      */
     void set(Option opt, const string &value, std::vector<isize> objids);
 
     /** @brief  Writes a key-value pair into the user storage.
      *  @param  opt     The option's name forms the prefix of the keys.
      *  @param  value   The value, given as an integer.
-     *  @throw  VC64Error (#VC64ERROR_INVALID_KEY)
+     *  @throw  VC64Error (#TIARA_ERROR_INVALID_KEY)
      */
     void set(Option opt, i64 value);
 
@@ -743,7 +743,7 @@ public:
      *  @param  opt     The option's name forms the prefix of the keys.
      *  @param  value   The value for all pairs, given as an integer.
      *  @param  objids  The keys are parameterized by adding the vector values as suffixes.
-     *  @throw  VC64Error (#VC64ERROR_INVALID_KEY)
+     *  @throw  VC64Error (#TIARA_ERROR_INVALID_KEY)
      */
     void set(Option opt, i64 value, std::vector<isize> objids);
 
@@ -756,7 +756,7 @@ public:
     /** @brief  Writes a key-value pair into the fallback storage.
      *  @param  opt     The option's name forms the prefix of the keys.
      *  @param  value   The value, given as an integer.
-     *  @throw  VC64Error (#VC64ERROR_INVALID_KEY)
+     *  @throw  VC64Error (#TIARA_ERROR_INVALID_KEY)
      */
     void setFallback(Option opt, const string &value);
 
@@ -770,7 +770,7 @@ public:
     /** @brief  Writes a key-value pair into the fallback storage.
      *  @param  opt     The option's name forms the prefix of the keys.
      *  @param  value   The value, given as an integer.
-     *  @throw  VC64Error (#VC64ERROR_INVALID_KEY)
+     *  @throw  VC64Error (#TIARA_ERROR_INVALID_KEY)
      */
     void setFallback(Option opt, i64 value);
 
@@ -792,20 +792,20 @@ public:
 
     /** @brief  Deletes a key-value pair
      *  @param  key     The key of the key-value pair.
-     *  @throw  VC64Error (#VC64ERROR_INVALID_KEY)
+     *  @throw  VC64Error (#TIARA_ERROR_INVALID_KEY)
      */
     void remove(const string &key) throws;
 
     /** @brief  Deletes a key-value pair
      *  @param  option  The option's name forms the key.
-     *  @throw  VC64Error (#VC64ERROR_INVALID_KEY)
+     *  @throw  VC64Error (#TIARA_ERROR_INVALID_KEY)
      */
     void remove(Option option) throws;
 
     /** @brief  Deletes multiple key-value pairs.
      *  @param  option  The option's name forms the prefix of the keys.
      *  @param  objids  The keys are parameterized by adding the vector values as suffixes.
-     *  @throw  VC64Error (#VC64ERROR_INVALID_KEY)
+     *  @throw  VC64Error (#TIARA_ERROR_INVALID_KEY)
      */
     void remove(Option option, std::vector <isize> objids) throws;
 
@@ -927,8 +927,8 @@ struct AtariAPI : public API {
     /** @brief  Loads a ROM from a file
      *          The ROM type is determined automatically.
      *
-     *  @throw  VC64Error (VC64ERROR_ROM_BASIC_MISSING)
-     *          VC64Error (VC64ERROR_FILE_TYPE_MISMATCH)
+     *  @throw  VC64Error (TIARA_ERROR_ROM_BASIC_MISSING)
+     *          VC64Error (TIARA_ERROR_FILE_TYPE_MISMATCH)
      */
     // void loadRom(const fs::path &path);
 
@@ -1036,11 +1036,11 @@ public:
      *  emulator. On success, the functions returns. Otherwise, an exception
      *  is thrown.
      *
-     *  @throw  Error (VC64ERROR_ROM_BASIC_MISSING)
-     *  @throw  Error (VC64ERROR_ROM_CHAR_MISSING)
-     *  @throw  Error (VC64ERROR_ROM_KERNAL_MISSING)
-     *  @throw  Error (VC64ERROR_ROM_CHAR_MISSING)
-     *  @throw  Error (VC64ERROR_ROM_MEGA65_MISMATCH)
+     *  @throw  Error (TIARA_ERROR_ROM_BASIC_MISSING)
+     *  @throw  Error (TIARA_ERROR_ROM_CHAR_MISSING)
+     *  @throw  Error (TIARA_ERROR_ROM_KERNAL_MISSING)
+     *  @throw  Error (TIARA_ERROR_ROM_CHAR_MISSING)
+     *  @throw  Error (TIARA_ERROR_ROM_MEGA65_MISMATCH)
      */
     void isReady() const;
 

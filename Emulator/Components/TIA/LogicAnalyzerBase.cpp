@@ -95,14 +95,14 @@ LogicAnalyzer::checkOption(Option opt, i64 value)
         case OPT_LA_PROBE3:
 
             if (!ProbeEnum::isValid(value)) {
-                throw Error(VC64ERROR_OPT_INV_ARG, ProbeEnum::keyList());
+                throw Error(TIARA_ERROR_OPT_INV_ARG, ProbeEnum::keyList());
             }
             return;
 
         case OPT_LA_MODE:
 
             if (!LaDisplayModeEnum::isValid(value)) {
-                throw Error(VC64ERROR_OPT_INV_ARG, LaDisplayModeEnum::keyList());
+                throw Error(TIARA_ERROR_OPT_INV_ARG, LaDisplayModeEnum::keyList());
             }
             return;
 
@@ -111,7 +111,7 @@ LogicAnalyzer::checkOption(Option opt, i64 value)
             return;
 
         default:
-            throw Error(VC64ERROR_OPT_UNSUPPORTED);
+            throw Error(TIARA_ERROR_OPT_UNSUPPORTED);
     }
 }
 
