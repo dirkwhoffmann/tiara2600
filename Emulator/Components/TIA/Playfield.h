@@ -21,23 +21,34 @@ namespace tiara {
 
 class Playfield final : CoreObject, public Serializable {
 
-    const char *objectName() const override { return "Playfield"; }
-
     // The 20-bit playfield register
-    u32 playfield{};
+    u32 playfield = 0;
 
     // PF line (playfield serial graphics output)
     DualPhaseDelay<bool> pf{};
 
     // REF bit (reflect playfield bit in CTRLPF)
-    bool ref{};
+    bool ref = false;
 
     // Bit selection masks
-    u32 fwdMask{};
-    u32 bwdMask{};
+    u32 fwdMask = 0;
+    u32 bwdMask = 0;
 
 public:
 
+    const char *objectName() const override { return "Playfield"; }
+    
+    Playfield& operator= (const Playfield& other) {
+        
+        CLONE(playfield);
+        CLONE(pf);
+        CLONE(ref);
+        CLONE(fwdMask);
+        CLONE(bwdMask);
+        
+        return *this;
+    }
+    
     template <class T>
     void serialize(T& worker)
     {
@@ -66,10 +77,6 @@ public:
 
     template <bool fastPath, bool phi1, bool phi2> void alwaysinline execute(const class TIA &tia, isize curr)
     {
-        // auto phi1 = tia.hc.phi1();
-        // auto phi2 = tia.hc.phi2();
-        // auto curr = tia.hc.current;
-
         // Shift bit selection masks
         if (phi2) { fwdMask <<= 1; bwdMask >>= 1; }
 
@@ -82,12 +89,4 @@ public:
     }
 };
 
-/*
-template<> void Playfield::execute <false, true, false> (const class TIA &);
-template<> void Playfield::execute <false, false, true> (const class TIA &);
-template<> void Playfield::execute <false, false, false> (const class TIA &);
-template<> void Playfield::execute <true, true, false> (const class TIA &);
-template<> void Playfield::execute <true, false, true> (const class TIA &);
-template<> void Playfield::execute <true, false, false> (const class TIA &);
- */
 }

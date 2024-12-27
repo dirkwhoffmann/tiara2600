@@ -24,6 +24,13 @@ class DualPhaseDelay : public Serializable {
 
 public:
 
+    DualPhaseDelay& operator= (const DualPhaseDelay& other) {
+        
+        CLONE_ARRAY(t)
+        
+        return *this;
+    }
+    
     template <class W>
     void serialize(W& worker)
     {
@@ -97,6 +104,16 @@ public:
     // Latched reset value
     bool resl = false;
 
+    DualPhaseCounter& operator= (const DualPhaseCounter& other) {
+        
+        CLONE(phase)
+        CLONE(current)
+        CLONE(res)
+        CLONE(resl)
+
+        return *this;
+    }
+    
     template <class W>
     void serialize(W& worker)
     {
@@ -159,6 +176,14 @@ class SEC : public Serializable {
 
 public:
 
+    SEC& operator= (const SEC& other) {
+        
+        CLONE_ARRAY(s)
+        CLONE(hmovel)
+
+        return *this;
+    }
+    
     template <class W>
     void serialize(W& worker)
     {
@@ -193,11 +218,19 @@ class ExtraClock : public Serializable {
 
     friend class TIA;
     
-    bool ena[2]{};
+    bool ena[2] {};
     i8 hm = 0;
 
 public:
 
+    ExtraClock& operator= (const ExtraClock& other) {
+        
+        CLONE_ARRAY(ena)
+        CLONE(hm)
+
+        return *this;
+    }
+    
     template <class W>
     void serialize(W& worker)
     {

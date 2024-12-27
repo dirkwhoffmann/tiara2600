@@ -638,7 +638,9 @@ Atari::computeFrame()
 
             flags &= RL::STEP_INSTRUCTION | RL::STEP_LINE | RL::STEP_FRAME | RL::SYNC_THREAD;
 
-            if (pause) throw StateChangeException(STATE_PAUSED);
+            if (pause) {
+                throw StateChangeException(STATE_PAUSED);
+            }
             if (flags & RL::SYNC_THREAD) break;
         }
     }

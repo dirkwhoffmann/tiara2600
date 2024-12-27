@@ -21,16 +21,27 @@ namespace tiara {
 
 class Ball final : CoreObject, public Serializable {
 
-    DualPhaseCounter<39> counter;
-    DualPhaseDelay<bool> start2;
-    bool blen[2]{};
-    isize blsiz{};
-    bool blvd{};
-
     const char *objectName() const override { return "Ball"; }
+    
+    DualPhaseCounter<39> counter {};
+    DualPhaseDelay<bool> start2 {};
+    bool blen[2] {};
+    isize blsiz = 0;
+    bool blvd = false;
 
 public:
 
+    Ball& operator= (const Ball& other) {
+        
+        CLONE(counter);
+        CLONE(start2);
+        CLONE_ARRAY(blen);
+        CLONE(blsiz);
+        CLONE(blvd);
+
+        return *this;
+    }
+    
     template <class T>
     void serialize(T& worker)
     {

@@ -110,7 +110,7 @@ public extension MetalView {
             case .CART:
                 
                 try parent.mm.addMedia(url: url, allowedTypes: [type])
-                print("CART ADDED PER DRAG AND DROP")
+                parent.emu?.pause()
                 parent.emu?.atari.hardReset()
                 try? parent.emu?.run()
                 

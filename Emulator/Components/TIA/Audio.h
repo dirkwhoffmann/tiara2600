@@ -106,7 +106,13 @@ public:
     Audio& operator= (const Audio& other) {
 
         CLONE(config)
-
+        CLONE(audv)
+        CLONE(audf)
+        CLONE(audc)
+        CLONE(fdiv)
+        CLONE(poly5)
+        CLONE(poly4)
+        
         return *this;
     }
 
@@ -120,18 +126,20 @@ public:
     template <class T>
     void serialize(T& worker)
     {
-        if (isResetter(worker)) return;
-
-        /*
         worker
 
-        << probe
-        << color
+        << audv
+        << audf
+        << audc
+        << fdiv
+        << poly5
+        << poly4;
+        
+        if (isResetter(worker)) return;
 
-        << config.enable
-        << config.displayMode
-        << config.opacity;
-        */
+        // worker
+        //
+        // << config. ;
 
     } SERIALIZERS(serialize);
 

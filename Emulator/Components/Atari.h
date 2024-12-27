@@ -126,9 +126,6 @@ public:
     ControlPort port1 = ControlPort(*this, PORT_1);
     ControlPort port2 = ControlPort(*this, PORT_2);
 
-    // Sliders (console switches)
-    bool slider[5]{};
-
     // Peripherals
     Monitor monitor = Monitor(*this);
     
@@ -140,6 +137,9 @@ public:
     RetroShell retroShell = RetroShell(*this);
     RemoteManager remoteManager = RemoteManager(*this);
     RegressionTester regressionTester = RegressionTester(*this);
+
+    // Sliders (console switches)
+    bool slider[5]{};
 
 
     //
@@ -213,12 +213,6 @@ public:
 
 private:
 
-    /* Indicates whether the state has been altered by an external event.
-     * This flag is used to determine whether the run-ahead instance needs to
-     * be recreated.
-     */
-    // bool isDirty = false;
-    
     // Duration of a CPU cycle in 1/10 nano seconds
     i64 durationOfOneCycle;
 
@@ -269,10 +263,14 @@ public:
 
     Atari& operator= (const Atari& other) {
 
+        CLONE(config)
+        
+        CLONE(host)
         CLONE(mem)
         CLONE(cpu)
         CLONE(pia)
         CLONE(tia)
+        CLONE(cartPort)
         CLONE(audioPort)
         CLONE(videoPort)
         CLONE(port1)
@@ -280,17 +278,23 @@ public:
         CLONE(monitor)
         CLONE(logicAnalyzer)
         CLONE(retroShell)
-        CLONE(regressionTester)
-
+        
+        CLONE_ARRAY(slider)
+        
         CLONE_ARRAY(trigger)
         CLONE_ARRAY(eventid)
         CLONE_ARRAY(data)
         CLONE(nextTrigger)
+
+        CLONE(flags)
+        // CLONE(alarms)
+        
+        CLONE(addrBus)
+        CLONE(dataBus)
+        CLONE(rw)
         CLONE(frame)
 
         CLONE(durationOfOneCycle)
-
-        CLONE(config)
 
         return *this;
     }
@@ -307,10 +311,16 @@ public:
     {
         worker
 
+        << slider
         << trigger
         << eventid
         << data
         << nextTrigger
+        << flags
+        // << alarms
+        << addrBus
+        << dataBus
+        << rw
         << frame;
 
         if (isResetter(worker)) return;

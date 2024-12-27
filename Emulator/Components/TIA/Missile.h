@@ -24,14 +24,26 @@ class Missile final : CoreObject, public Serializable {
     const char *objectName() const override { return "Missile"; }
 
     DualPhaseCounter<39> counter;
-    isize siz{};
-    bool ena{};
-    bool resmp{};
+    isize siz = 0;
+    bool ena = false;
+    bool resmp = false;
     DualPhaseDelay<bool> start1;
     DualPhaseDelay<bool> start2;
 
 public:
 
+    Missile& operator= (const Missile& other) {
+        
+        CLONE(counter);
+        CLONE(siz);
+        CLONE(ena);
+        CLONE(resmp);
+        CLONE(start1);
+        CLONE(start2);
+
+        return *this;
+    }
+    
     template <class T>
     void serialize(T& worker)
     {

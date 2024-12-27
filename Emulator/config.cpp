@@ -18,7 +18,7 @@ debugflag CNF_DEBUG       = 0;
 debugflag DEF_DEBUG       = 0;
 
 // Runloop
-debugflag RUN_DEBUG       = 0;
+debugflag RUN_DEBUG       = 1;
 debugflag TIM_DEBUG       = 0;
 debugflag WARP_DEBUG      = 0;
 debugflag CMD_DEBUG       = 0;

@@ -89,8 +89,21 @@ public:
 
     PIA& operator= (const PIA& other) {
 
-        CLONE_ARRAY(ram);
-
+        CLONE_ARRAY(ram)
+        
+        CLONE(pra)
+        CLONE(prb)
+        CLONE(ddra)
+        CLONE(ddrb)
+        CLONE(timer)
+        CLONE(counter)
+        CLONE(interval)
+        CLONE(intena)
+        CLONE(instat)
+        CLONE(posEdgeDetect)
+        CLONE(pa)
+        CLONE(pb)
+        
         return *this;
     }
 
@@ -106,6 +119,8 @@ public:
     {
         worker
 
+        << ram
+        
         << pra
         << prb
         << ddra

@@ -22,45 +22,6 @@ TIA::diff(isize y, isize x)
     return (y - this->y) * TIA_CYCLES_PER_LINE + (x - this->x);
 }
 
-/*
-void
-TIA::setColor(TIARegister reg, u8 r, u8 g, u8 b)
-{
-    auto dist = [&](u8 r2, u8 g2, u8 b2) {
-
-        // https://stackoverflow.com/questions/9018016/how-to-compare-two-colors-for-similarity-difference
-        long rmean = ((long)r + (long)r2) / 2;
-        long dr = (long)r - (long)r2;
-        long dg = (long)g - (long)g2;
-        long db = (long)b - (long)b2;
-        return sqrt((((512+rmean)*dr*dr)>>8) + 4*dg*dg + (((767-rmean)*db*db)>>8));
-    };
-
-    auto distance = [&](isize color) {
-
-        auto abgr = monitor.getColor(color);
-        return dist(NIBBLE0(abgr), NIBBLE1(abgr), NIBBLE2(abgr));
-    };
-
-    trace(true, "setColor (%s,%x,%x,%x)\n", TIARegisterEnum::key(reg), r, g, b);
-
-    // Iterate through all colors and find the best match
-
-    isize bestMatch = 0;
-    double minDistance = distance(0);
-
-    for (isize i = 1; i < 128; i++) {
-
-        auto d = distance(i);
-        if (d < minDistance) { minDistance = d; bestMatch = i; }
-    }
-
-    auto abgr = monitor.getColor(bestMatch);
-    assert(reg == TIA_COLUP0 || reg == TIA_COLUP1 || reg == TIA_COLUPF || reg == TIA_COLUBK);
-    poke(reg, u8(bestMatch << 1));
-}
-*/
-
 u32 *
 TIA::getTexture() const
 {

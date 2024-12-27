@@ -23,11 +23,11 @@ class Player final : CoreObject, public Serializable {
 
     const char *objectName() const override { return "Player"; }
 
-    DualPhaseCounter<39> counter;
-    DualPhaseDelay<isize> start;
+    DualPhaseCounter<39> counter {};
+    DualPhaseDelay<isize> start {};
     u8 grp[2] {};
     isize sc = 0;
-    isize nusiz= 0;
+    isize nusiz = 0;
     bool vdelp = false;
     bool ena = false;
     bool refp = false;
@@ -39,6 +39,20 @@ class Player final : CoreObject, public Serializable {
 
 public:
 
+    Player& operator= (const Player& other) {
+        
+        CLONE(counter);
+        CLONE(start);
+        CLONE_ARRAY(grp);
+        CLONE(sc);
+        CLONE(nusiz);
+        CLONE(vdelp);
+        CLONE(ena);
+        CLONE(refp);
+
+        return *this;
+    }
+    
     template <class T>
     void serialize(T& worker)
     {

@@ -323,8 +323,53 @@ public:
 
         CLONE(config)
 
+        CLONE_ARRAY(audio)
+        CLONE(pf)
+        CLONE(p0)
+        CLONE(p1)
+        CLONE(m0)
+        CLONE(m1)
+        CLONE(bl)
+
+        CLONE(hmc)
+        CLONE(blec)
+        CLONE(m0ec)
+        CLONE(m1ec)
+        CLONE(p0ec)
+        CLONE(p1ec)
+        
         CLONE(x)
         CLONE(y)
+        
+        CLONE(colup0)
+        CLONE(colup1)
+        CLONE(colupf)
+        CLONE(colubk)
+        CLONE_ARRAY(rgba)
+        
+        CLONE(ctrlpf)
+        CLONE(score)
+        CLONE(pfp)
+        CLONE(cx)
+
+        CLONE_ARRAY(inpt)
+        CLONE(inptLatched)
+              
+        CLONE(cs)
+        CLONE(rw)
+
+        CLONE(vs)
+        CLONE(vb)
+        CLONE(vblank)
+        CLONE(vsedge)
+        CLONE(rdy)
+        CLONE(hc)
+        CLONE(sec)
+        CLONE(secl)
+        CLONE(hb)
+
+        CLONE(strobe)
+        CLONE(dataBus)
 
         return *this;
     }
@@ -339,6 +384,7 @@ public:
 
         worker
 
+        << audio
         << pf
         << p0
         << p1
@@ -367,24 +413,34 @@ public:
         << pfp
         << cx
 
+        << inpt
+        << inptLatched
+        
         << cs
         << rw
 
         << vs
         << vb
+        << vblank
         << vsedge
+        << rdy
         << hc
         << sec
         << secl
         << hb
 
+        << strobe
         << dataBus;
 
         if (isResetter(worker)) return;
 
-        // worker
-        //
-        // << config.xxx;
+        worker
+        
+        << config.revision
+        << config.autoDetect
+        << config.collMask
+        << config.lockMask
+        << config.watchMask;
 
     } SERIALIZERS(serialize);
 
