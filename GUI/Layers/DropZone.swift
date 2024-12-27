@@ -164,48 +164,12 @@ class DropZone: Layer {
         resize()
     }
 
+    /*
     override func layerDidClose() {
 
-        guard let url = metal.dropUrl else { return }
-        guard let type = metal.dropType else { return }
-
-        do {
-
-            if let n = metal.dropZone {
-
-                switch n {
-
-                case 0: try mm.addMedia(url: url, allowedTypes: [type])
-
-                default:
-                    fatalError()
-                }
-
-            } else {
-
-                switch type {
-
-                case .SNAPSHOT:
-
-                    try mm.addMedia(url: url, allowedTypes: [type])
-
-                case .SCRIPT:
-
-                    try mm.addMedia(url: url, allowedTypes: [type])
-                    mm.console.open()
-
-                default:
-                    
-                    NSSound.beep()
-                }
-            }
-
-        } catch {
-
-            controller.showAlert(.cantOpen(url: url), error: error, async: true)
-        }
     }
-
+    */
+    
     func updateAlpha() {
             
         for i in 0..<numZones {

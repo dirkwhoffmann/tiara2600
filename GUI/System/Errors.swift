@@ -82,15 +82,10 @@ enum Failure {
     case cantInsert
     case cantInsertTape
     case cantOpen(url: URL)
-    case cantRecord
     case cantRestore
     case cantRun
     case cantSaveRoms
-    case noFFmpegFound(exec: String)
-    case noFFmpegInstalled
     case noMetalSupport
-    case recorderAborted
-    case recorderSandboxed(exec: String)
     case unknown
 
     var alertStyle: NSAlert.Style {
@@ -107,12 +102,7 @@ enum Failure {
 
         switch self {
 
-        case .cantRecord: return NSImage(named: "FFmpegIcon")!
-        case .noFFmpegFound: return NSImage(named: "FFmpegIcon")!
-        case .noFFmpegInstalled: return NSImage(named: "FFmpegIcon")!
         case .noMetalSupport: return NSImage(named: "metal")!
-        case .recorderAborted: return NSImage(named: "mp4")!
-        case .recorderSandboxed: return NSImage(named: "FFmpegIcon")!
 
         default: return nil
         }
@@ -150,9 +140,6 @@ enum Failure {
         case let .cantOpen(url):
             return "\"\(url.lastPathComponent)\" can't be opened."
 
-        case .cantRecord:
-            return "Failed to launch the screen recorder."
-
         case .cantRestore:
             return "Failed to restore snapshot."
 
@@ -162,20 +149,8 @@ enum Failure {
         case .cantSaveRoms:
             return "Failed to save Roms."
 
-        case .noFFmpegFound:
-            return "Unable to locate FFmpeg."
-
-        case .noFFmpegInstalled:
-            return "Screen recording requires FFmpeg to be installed."
-
         case .noMetalSupport:
             return "No suitable GPU hardware found."
-
-        case .recorderAborted:
-            return "Screen recording has been aborted."
-
-        case .recorderSandboxed:
-            return "The selected screen recorder is unavailable."
 
         default:
             return ""
@@ -186,23 +161,9 @@ enum Failure {
 
         switch self {
 
-        case let .noFFmpegFound(exec): return
-            "\"\(exec)\" not found."
-
-        case .noFFmpegInstalled: return
-            "Visit FFmpeg.org for installation instructions."
-
         case .noMetalSupport: return
             "The emulator can only run on machines supporting the Metal graphics " +
             "technology (2012 models and above)."
-
-        case .recorderAborted: return
-            "Failed to write to the FFmpeg pipes."
-
-        case let .recorderSandboxed(exec): return
-            "The emulator is running as a sandboxed application and has no " +
-            "permission to access file \"\(exec)\"" +
-            "Please copy the file to the Applications folder."
 
         default:
             return ""

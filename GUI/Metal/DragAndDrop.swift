@@ -28,7 +28,6 @@ public extension MetalView {
             return NSDragOperation()
         }
 
-        dropZone = nil
         dropUrl = nil
         dropType = nil
         
@@ -49,9 +48,6 @@ public extension MetalView {
                 
                 // Analyze the file type
                 let type = MediaFileProxy.type(of: dropUrl)
-
-                // Open the drop zone layer
-                parent.renderer.dropZone.open(type: type, delay: 0.25)
             }
                 
             return NSDragOperation.copy
@@ -99,7 +95,7 @@ public extension MetalView {
     func performUrlDrag(_ sender: NSDraggingInfo) -> Bool {
 
         // Only proceed if an URL is given
-        if dropUrl == nil { return false }
+        guard let url = dropUrl else { return false }
 
         // Only proceed if a file type can be derived
         guard let type = FileType(url: dropUrl) else { return false }
@@ -107,24 +103,38 @@ public extension MetalView {
         // Only proceed if a draggable type is given
         if !FileType.draggable.contains(type) { return false }
 
-        // Check drop zones
-        /*
-        var zone: Int?
-        for i in 0...0 where renderer.dropZone.isInside(sender, zone: i) {
+        do {
 
-            if renderer.dropZone.enabled[i] {
-                zone = i
-            } else {
-                return false
+            switch type {
+                
+            case .CART:
+                
+                try parent.mm.addMedia(url: url, allowedTypes: [type])
+                print("CART ADDED PER DRAG AND DROP")
+                parent.emu?.atari.hardReset()
+                try? parent.emu?.run()
+                
+            case .SNAPSHOT:
+                
+                try parent.mm.addMedia(url: url, allowedTypes: [type])
+                try parent.emu?.run()
+                
+            case .SCRIPT:
+                
+                try parent.mm.addMedia(url: url, allowedTypes: [type])
+                parent.mm.console.open()
+                
+            default:
+                
+                NSSound.beep()
             }
+
+        } catch {
+
+            parent.showAlert(.cantOpen(url: url), error: error, async: true)
         }
-
-        dropZone = zone
-        dropType = type
-        */
-        dropZone = 0
-        dropType = type
-
+        
+        
         return true
     }
 

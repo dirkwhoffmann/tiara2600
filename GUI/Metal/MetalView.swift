@@ -36,7 +36,6 @@ public class MetalView: MTKView {
     var lastShake = DispatchTime(uptimeNanoseconds: 0)
 
     // Temporary storage of the properties of a dragged in file
-    var dropZone: Int?
     var dropUrl: URL?
     var dropType: FileType?
 
