@@ -391,11 +391,13 @@ Thread::suspend()
 {
     if (isEmulatorThread()) {
         
-        debug(RUN_DEBUG, "WARNING: suspend() called by the emulator thread\n");
+        warn("suspend() called by the emulator thread\n");
+        return;
     }
-
-    lock.lock();
-    suspendCounter++;
+    if (suspendCounter++ == 0) {
+        
+        lock.lock();
+    }
 }
 
 void
@@ -403,11 +405,14 @@ Thread::resume()
 {
     if (isEmulatorThread()) {
         
-        debug(RUN_DEBUG, "WARNING: resume() called by the emulator thread\n");
+        warn("resume() called by the emulator thread\n");
+        return;
     }
-    
-    suspendCounter++;
-    lock.unlock();
+    assert(suspendCounter > 0);
+    if (--suspendCounter == 0) {
+        
+        lock.unlock();
+    }
 }
 
 }
