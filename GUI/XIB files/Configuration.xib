@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,6 +26,7 @@
                 <outlet property="cartOkButton" destination="sYt-GY-XZQ" id="x48-u0-P2N"/>
                 <outlet property="cartPowerButton" destination="7kO-E0-VCD" id="B6z-qV-8e8"/>
                 <outlet property="cartType" destination="ybE-C9-Edd" id="7nO-WC-V3e"/>
+                <outlet property="cartWarning" destination="IVx-cy-KQY" id="5Y7-Nd-zk3"/>
                 <outlet property="hwOkButton" destination="cMh-0b-Yb2" id="Baw-Q8-cGK"/>
                 <outlet property="hwPiaModelPopup" destination="MVI-Fh-OO6" id="VYo-va-mdz"/>
                 <outlet property="hwPowerButton" destination="x83-RD-ne8" id="foW-6H-dGt"/>
@@ -113,7 +115,7 @@
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="646" height="486"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1496" height="933"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1728" height="1079"/>
             <value key="minSize" type="size" width="646" height="486"/>
             <value key="maxSize" type="size" width="646" height="486"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
@@ -270,6 +272,15 @@ DQ
                                                 <action selector="cartDeleteAction:" target="-2" id="JP3-Ps-6JR"/>
                                             </connections>
                                         </button>
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVx-cy-KQY">
+                                            <rect key="frame" x="238" y="94" width="355" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="This cartridge type is not supported by the emulator" id="dbF-uG-qjX">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="warningColor"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -931,12 +942,12 @@ Gw
                                         <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4fl-rA-Zcx">
                                             <rect key="frame" x="96" y="357" width="147" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <popUpButtonCell key="cell" type="push" title="Never" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" refusesFirstResponder="YES" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="ObU-o8-vq6" id="pAl-uT-EqD">
+                                            <popUpButtonCell key="cell" type="push" title="Never" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="ObU-o8-vq6" id="pAl-uT-EqD">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="message"/>
                                                 <menu key="menu" title="OtherViews" autoenablesItems="NO" id="YZF-Bf-cxB">
                                                     <items>
-                                                        <menuItem title="Never" tag="1" id="ObU-o8-vq6">
+                                                        <menuItem title="Never" state="on" tag="1" id="ObU-o8-vq6">
                                                             <modifierMask key="keyEquivalentModifierMask"/>
                                                         </menuItem>
                                                         <menuItem title="Always" tag="2" id="ncM-Fh-V3m">
@@ -2399,5 +2410,8 @@ Gw
         <image name="pref_cia" width="514" height="514"/>
         <image name="pref_mem" width="514" height="514"/>
         <image name="pref_pal" width="514" height="516"/>
+        <namedColor name="warningColor">
+            <color red="1" green="0.14900000393390656" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

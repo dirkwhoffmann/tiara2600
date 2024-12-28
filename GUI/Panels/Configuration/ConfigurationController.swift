@@ -22,6 +22,7 @@ class ConfigurationController: DialogController {
     @IBOutlet weak var cartManufacturer: NSTextField!
     @IBOutlet weak var cartModel: NSTextField!
     @IBOutlet weak var cartType: NSPopUpButton!
+    @IBOutlet weak var cartWarning: NSTextField!
     @IBOutlet weak var cartDeleteButton: NSButton!
 
     @IBOutlet weak var cartOkButton: NSButton!

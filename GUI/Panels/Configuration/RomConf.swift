@@ -24,24 +24,29 @@ extension ConfigurationController {
 
     func refreshRomTab() {
 
-        func validCartType(type: CartType) -> Bool {
+        func validCartType(_ type: CartType) -> Bool {
 
             return type.rawValue >= CartType._0840.rawValue &&
             type.rawValue <= CartType._X07.rawValue
         }
 
+        func supportedCartType(_ type: CartType) -> Bool {
+
+            return type == ._4K
+        }
+        
         if let emu = emu {
 
             let traits = emu.atari.romTraits
 
             let type = traits.cartType
             let hasCart = type != ._NONE
-            let hasKnownCart = hasCart && type != ._UNKNOWN
+            let known = hasCart && type != ._UNKNOWN
             let name = traits.name != nil ? String(cString: traits.name) : ""
             let manufacturer = traits.manufacturer != nil ? String(cString: traits.manufacturer) : ""
             let model = traits.model != nil ? String(cString: traits.model) : ""
             let hash = traits.md5 != nil ? String(cString: traits.md5) : ""
-            let supported = type == ._4K
+            let supported = supportedCartType(type)
 
             let romMissing = NSImage(named: "cart_missing")
             let romDefault = NSImage(named: "cart_original")
@@ -53,7 +58,7 @@ extension ConfigurationController {
             // Labels
             if hasCart {
 
-                cartName.stringValue = name
+                cartName.stringValue = name == "" ? "Unknown cartridge" : name
                 cartManufacturer.stringValue = manufacturer
                 cartModel.stringValue = model
                 cartType.stringValue = type.description
@@ -65,15 +70,16 @@ extension ConfigurationController {
                 cartModel.stringValue = ""
                 cartType.stringValue = ""
             }
-
+            
             // PopUps
             cartType.isHidden = !hasCart
-            if validCartType(type: traits.cartType) {
+            if validCartType(type) {
                 cartType.selectItem(withTag: traits.cartType.rawValue)
                 cartType.isEnabled = true
             } else {
                 cartType.isEnabled = false
             }
+            cartWarning.isHidden = !hasCart || supported
         }
     }
 
